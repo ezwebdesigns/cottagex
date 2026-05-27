@@ -7,9 +7,16 @@ export default function ContactForm() {
   const [contactSubmitted, setContactSubmitted] = useState(false);
   const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!contactForm.name || !contactForm.email || !contactForm.message) return;
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: contactForm.name, email: contactForm.email, text: contactForm.message }),
+      });
+    } catch {}
     setContactSubmitted(true);
     setContactForm({ name: '', email: '', message: '' });
     setTimeout(() => setContactSubmitted(false), 5000);
