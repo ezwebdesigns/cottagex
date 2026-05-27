@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server';
-
-const IMAGES: any[] = [];
+import { db } from '@/lib/db';
+import { libraryImages } from '@/db/schema';
+import { eq, desc } from 'drizzle-orm';
 
 export async function GET() {
-  return NextResponse.json({ files: IMAGES });
+  const files = await db.select().from(libraryImages).orderBy(desc(libraryImages.createdAt));
+  return NextResponse.json({ files });
 }
 
 export async function POST(request: Request) {
@@ -17,8 +19,12 @@ export async function POST(request: Request) {
     const bytes = await file.arrayBuffer();
     const base64 = Buffer.from(bytes).toString('base64');
     const url = `data:${file.type};base64,${base64}`;
-    const image = { id: Date.now().toString(), name: file.name, mimetype: file.type, url, createdAt: new Date().toISOString() };
-    IMAGES.push(image);
+
+    const [image] = await db.insert(libraryImages).values({
+      name: file.name,
+      url,
+      mimetype: file.type,
+    }).returning();
 
     return NextResponse.json({ image }, { status: 201 });
   } catch {
@@ -29,8 +35,7 @@ export async function POST(request: Request) {
 export async function DELETE(request: Request) {
   const { id } = await request.json();
   if (!id) return NextResponse.json({ error: 'ID required' }, { status: 400 });
-  const idx = IMAGES.findIndex((img: any) => img.id === id);
-  if (idx === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 });
-  IMAGES.splice(idx, 1);
+  const [deleted] = await db.delete(libraryImages).where(eq(libraryImages.id, Number(id))).returning();
+  if (!deleted) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   return NextResponse.json({ ok: true });
 }

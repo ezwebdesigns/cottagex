@@ -1,13 +1,14 @@
 import { NextResponse } from 'next/server';
-
-const STORAGE: any[] = [];
+import { db } from '@/lib/db';
+import { articles } from '@/db/schema';
+import { eq } from 'drizzle-orm';
 
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  const post = STORAGE.find((p: any) => p.id === id);
+  const [post] = await db.select().from(articles).where(eq(articles.id, Number(id))).limit(1);
   if (!post) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   return NextResponse.json({ post });
 }
@@ -18,10 +19,12 @@ export async function PATCH(
 ) {
   const { id } = await params;
   const body = await request.json();
-  const idx = STORAGE.findIndex((p: any) => p.id === id);
-  if (idx === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 });
-  STORAGE[idx] = { ...STORAGE[idx], ...body };
-  return NextResponse.json({ post: STORAGE[idx] });
+  const [post] = await db.update(articles)
+    .set({ ...body, updatedAt: new Date() })
+    .where(eq(articles.id, Number(id)))
+    .returning();
+  if (!post) return NextResponse.json({ error: 'Not found' }, { status: 404 });
+  return NextResponse.json({ post });
 }
 
 export async function DELETE(
@@ -29,8 +32,7 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  const idx = STORAGE.findIndex((p: any) => p.id === id);
-  if (idx === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 });
-  STORAGE.splice(idx, 1);
+  const [deleted] = await db.delete(articles).where(eq(articles.id, Number(id))).returning();
+  if (!deleted) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   return NextResponse.json({ success: true });
 }
