@@ -1,32 +1,42 @@
 'use client';
 
-import { useEffect, useId } from 'react';
+import { useEffect, useRef } from 'react';
 import { Sparkles } from 'lucide-react';
 
-const WIDGET_HTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref="chaletxhomepage"></div>`;
+const WIDGET_HTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref="chaletxhomepage"></div>
+<script class="eg-widgets-script" src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"></script>`;
 
 export default function HeroSection() {
-  const id = useId();
-  const containerId = `eg-widget-${id.replace(/[^a-zA-Z0-9]/g, '')}`;
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const container = document.getElementById(containerId);
-    if (!container) return;
+    const el = containerRef.current;
+    if (!el) return;
 
-    container.innerHTML = WIDGET_HTML;
+    el.innerHTML = WIDGET_HTML;
 
-    const script = document.createElement('script');
-    script.className = 'eg-widgets-script';
-    script.src = 'https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js';
-    script.async = true;
-    container.appendChild(script);
+    el.querySelectorAll('script').forEach((oldScript) => {
+      const newScript = document.createElement('script');
+      for (const attr of oldScript.attributes) {
+        newScript.setAttribute(attr.name, attr.value);
+      }
+      newScript.textContent = oldScript.textContent;
+      oldScript.parentNode?.replaceChild(newScript, oldScript);
+    });
+
+    const checkInit = setInterval(() => {
+      if ((window as any).eg?.widgets?.loaded) {
+        clearInterval(checkInit);
+      } else if (document.readyState !== 'loading') {
+        window.dispatchEvent(new Event('DOMContentLoaded'));
+      }
+    }, 300);
 
     return () => {
-      container.innerHTML = '';
-      const existing = document.querySelector('script.eg-widgets-script[src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"]');
-      if (existing) existing.remove();
+      clearInterval(checkInit);
+      el.innerHTML = '';
     };
-  }, [containerId]);
+  }, []);
 
   return (
     <div className="px-4 md:px-8 py-6">
@@ -39,7 +49,7 @@ export default function HeroSection() {
         }}
       >
         <div className="w-full md:w-1/2 flex justify-center md:justify-end">
-          <div id={containerId} className="w-full max-w-[575px]" />
+          <div ref={containerRef} className="w-full max-w-[575px]" />
         </div>
 
         <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">

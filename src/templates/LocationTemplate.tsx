@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, usePathname } from 'next/navigation';
-import { useMemo, useState, useEffect, useRef, useId } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
 import { Star, Waves, Trees, Compass, MapPin, ExternalLink, ChevronRight, BookOpen, CalendarDays, Clock, X } from 'lucide-react';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { initialProperties, ontarioSearchData } from '@/lib/mock-data';
@@ -63,19 +63,25 @@ export default function LocationTemplate({ locale, slug, pageData }: LocationTem
   const ontarioProperties = useMemo(() => initialProperties.filter(p => p.province === 'Ontario'), []);
 
   const [activeMoreCity, setActiveMoreCity] = useState<typeof ontarioSearchData[0] | null>(null);
-  const egWidgetId = `eg-location-${useId().replace(/[^a-zA-Z0-9]/g, '')}`;
+  const egContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const container = document.getElementById(egWidgetId);
-    if (!container) return;
-    container.innerHTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref="chaletxlocation"></div>`;
-    const script = document.createElement('script');
-    script.className = 'eg-widgets-script';
-    script.src = 'https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js';
-    script.async = true;
-    container.appendChild(script);
-    return () => { container.innerHTML = ''; };
-  }, [egWidgetId]);
+    const el = egContainerRef.current;
+    if (!el) return;
+    el.innerHTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref="chaletxlocation"></div>
+<script class="eg-widgets-script" src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"><\/script>`;
+    el.querySelectorAll('script').forEach((oldScript) => {
+      const newScript = document.createElement('script');
+      for (const attr of oldScript.attributes) newScript.setAttribute(attr.name, attr.value);
+      newScript.textContent = oldScript.textContent;
+      oldScript.parentNode?.replaceChild(newScript, oldScript);
+    });
+    const checkInit = setInterval(() => {
+      if ((window as any).eg?.widgets?.loaded) return clearInterval(checkInit);
+      if (document.readyState !== 'loading') window.dispatchEvent(new Event('DOMContentLoaded'));
+    }, 300);
+    return () => { clearInterval(checkInit); el.innerHTML = ''; };
+  }, []);
 
   return (
     <div className="animate-in fade-in duration-300">
@@ -101,7 +107,7 @@ export default function LocationTemplate({ locale, slug, pageData }: LocationTem
           <p className="text-blue-100 text-base md:text-lg mb-8 max-w-2xl font-light">
             {data.heroSubtitle}
           </p>
-          <div id={egWidgetId} className="w-full max-w-[575px] mx-auto" />
+          <div ref={egContainerRef} className="w-full max-w-[575px] mx-auto" />
         </div>
       </div>
 
