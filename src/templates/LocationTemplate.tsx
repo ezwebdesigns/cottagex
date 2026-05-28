@@ -1,8 +1,7 @@
 'use client';
 
 import { useRouter, usePathname } from 'next/navigation';
-import { useMemo, useState } from 'react';
-import Script from 'next/script';
+import { useMemo, useState, useEffect, useRef } from 'react';
 import { Star, Waves, Trees, Compass, MapPin, ExternalLink, ChevronRight, BookOpen, CalendarDays, Clock, X } from 'lucide-react';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { initialProperties, ontarioSearchData } from '@/lib/mock-data';
@@ -64,6 +63,16 @@ export default function LocationTemplate({ locale, slug, pageData }: LocationTem
   const ontarioProperties = useMemo(() => initialProperties.filter(p => p.province === 'Ontario'), []);
 
   const [activeMoreCity, setActiveMoreCity] = useState<typeof ontarioSearchData[0] | null>(null);
+  const egScriptLoaded = useRef(false);
+
+  useEffect(() => {
+    if (egScriptLoaded.current) return;
+    egScriptLoaded.current = true;
+    const script = document.createElement('script');
+    script.src = 'https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js';
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
 
   return (
     <div className="animate-in fade-in duration-300">
@@ -98,10 +107,6 @@ export default function LocationTemplate({ locale, slug, pageData }: LocationTem
               data-network="pz"
               data-camref="1100lpG3d"
               data-pubref="chaletxlocation"
-            />
-            <Script
-              src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"
-              strategy="afterInteractive"
             />
           </div>
         </div>

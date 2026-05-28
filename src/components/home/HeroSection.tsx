@@ -1,7 +1,19 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
 import { Sparkles } from 'lucide-react';
-import Script from 'next/script';
 
 export default function HeroSection() {
+  const widgetRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js';
+    script.async = true;
+    document.body.appendChild(script);
+    return () => { script.remove(); };
+  }, []);
+
   return (
     <div className="px-4 md:px-8 py-6">
       <div
@@ -24,7 +36,7 @@ export default function HeroSection() {
           Instantly query and secure verified premium lake houses and mountain lodges.
         </p>
 
-        <div className="w-full max-w-2xl mx-auto flex justify-center">
+        <div ref={widgetRef} className="w-full max-w-2xl mx-auto flex justify-center">
           <div
             className="eg-widget"
             data-widget="search"
@@ -35,10 +47,6 @@ export default function HeroSection() {
             data-pubref="chaletxhomepage"
           />
         </div>
-        <Script
-          src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"
-          strategy="afterInteractive"
-        />
       </div>
     </div>
   );
