@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { LayoutDashboard, X, Menu } from 'lucide-react';
+import { X, Menu } from 'lucide-react';
 import { BrandLogoFull } from '@/components/branding/Logo';
 import Link from 'next/link';
 
@@ -38,19 +38,6 @@ export default function Header({ locale }: HeaderProps) {
         ))}
       </div>
 
-      <div className="hidden md:flex items-center gap-4">
-        <Link
-          href={`/${locale}/admin`}
-          className="flex items-center gap-1 text-xs font-semibold px-4 py-2 rounded-full border border-red-200 text-red-600 bg-red-50/50 hover:bg-red-50 transition-colors"
-        >
-          <LayoutDashboard size={14} /> Admin Panel
-        </Link>
-        <button className="text-sm font-medium hover:text-[#1F51C6] transition-colors">Log In</button>
-        <button className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all shadow-md shadow-blue-500/10">
-          Sign Up
-        </button>
-      </div>
-
       <button
         className="md:hidden text-gray-600 p-2"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -70,17 +57,6 @@ export default function Header({ locale }: HeaderProps) {
               {item.label}
             </Link>
           ))}
-          <Link
-            href={`/${locale}/admin`}
-            className="py-2.5 border-b border-gray-100 text-left font-medium text-red-600 flex items-center gap-2"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            <LayoutDashboard size={16} /> Admin Panel
-          </Link>
-          <div className="flex flex-col gap-3 mt-4">
-            <button className="border border-[#1F51C6] text-[#1F51C6] px-4 py-2.5 rounded-full font-medium w-full">Log In</button>
-            <button className="bg-[#1F51C6] text-white px-4 py-2.5 rounded-full font-medium w-full">Sign Up</button>
-          </div>
         </div>
       )}
     </nav>
