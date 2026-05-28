@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, usePathname } from 'next/navigation';
-import { useMemo, useState, useEffect, useRef } from 'react';
+import { useMemo, useState, useEffect, useRef, useId } from 'react';
 import { Star, Waves, Trees, Compass, MapPin, ExternalLink, ChevronRight, BookOpen, CalendarDays, Clock, X } from 'lucide-react';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { initialProperties, ontarioSearchData } from '@/lib/mock-data';
@@ -63,16 +63,19 @@ export default function LocationTemplate({ locale, slug, pageData }: LocationTem
   const ontarioProperties = useMemo(() => initialProperties.filter(p => p.province === 'Ontario'), []);
 
   const [activeMoreCity, setActiveMoreCity] = useState<typeof ontarioSearchData[0] | null>(null);
-  const egScriptLoaded = useRef(false);
+  const egWidgetId = `eg-location-${useId().replace(/[^a-zA-Z0-9]/g, '')}`;
 
   useEffect(() => {
-    if (egScriptLoaded.current) return;
-    egScriptLoaded.current = true;
+    const container = document.getElementById(egWidgetId);
+    if (!container) return;
+    container.innerHTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref="chaletxlocation"></div>`;
     const script = document.createElement('script');
+    script.className = 'eg-widgets-script';
     script.src = 'https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js';
     script.async = true;
-    document.body.appendChild(script);
-  }, []);
+    container.appendChild(script);
+    return () => { container.innerHTML = ''; };
+  }, [egWidgetId]);
 
   return (
     <div className="animate-in fade-in duration-300">
@@ -98,17 +101,7 @@ export default function LocationTemplate({ locale, slug, pageData }: LocationTem
           <p className="text-blue-100 text-base md:text-lg mb-8 max-w-2xl font-light">
             {data.heroSubtitle}
           </p>
-          <div className="w-full max-w-2xl mx-auto flex justify-center">
-            <div
-              className="eg-widget"
-              data-widget="search"
-              data-program="ca-vrbo"
-              data-lobs="stays"
-              data-network="pz"
-              data-camref="1100lpG3d"
-              data-pubref="chaletxlocation"
-            />
-          </div>
+          <div id={egWidgetId} className="w-full max-w-[575px] mx-auto" />
         </div>
       </div>
 
