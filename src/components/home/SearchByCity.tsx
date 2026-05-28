@@ -4,15 +4,20 @@ import { useState } from 'react';
 import { X } from 'lucide-react';
 import { canadaSearchData } from '@/lib/mock-data';
 
-export default function SearchByCity() {
+type SearchByCityProps = {
+  title?: string;
+  description?: string;
+};
+
+export default function SearchByCity({ title = "Search by City and Category", description = "Quickly jump into active curated rentals across major Canadian regions." }: SearchByCityProps) {
   const [activeMoreCity, setActiveMoreCity] = useState<typeof canadaSearchData[0] | null>(null);
 
   return (
     <section className="px-4 md:px-8 py-16 bg-[#f8fafc] border-t border-slate-100">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-extrabold text-[#0B1B40] tracking-tight">Search by City and Category</h2>
-          <p className="text-slate-500 mt-2">Quickly jump into active curated rentals across major Canadian regions.</p>
+          <h2 className="text-3xl font-extrabold text-[#0B1B40] tracking-tight">{title}</h2>
+          <p className="text-slate-500 mt-2">{description}</p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">

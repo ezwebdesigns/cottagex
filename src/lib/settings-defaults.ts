@@ -1,3 +1,27 @@
+export type GeneralSettings = {
+  siteName: string;
+  siteDescription: string;
+  logo: string;
+};
+
+export type SEOSettings = {
+  defaultTitle: string;
+  defaultDescription: string;
+  ogImage: string;
+  googleAnalyticsId: string;
+};
+
+export type HeaderSettings = {
+  logoText: string;
+  menuItems: { label: string; href: string }[];
+};
+
+export type FooterSettings = {
+  description: string;
+  email: string;
+  socialLinks: { name: string; url: string }[];
+};
+
 export type HomepageHero = {
   tag: string;
   title: string;
@@ -43,6 +67,35 @@ export type HomepageCTA = {
 };
 
 export const defaultSettings: Record<string, any> = {
+  general: {
+    siteName: "Cottage Escape",
+    siteDescription: "Find your perfect Canadian cottage rental. Curated lake houses, mountain lodges, and wilderness cabins across Canada.",
+    logo: "",
+  },
+  seo: {
+    defaultTitle: "Canadian Cottage Rentals - Cottage Escape",
+    defaultDescription: "Discover premium lake houses, mountain lodges, and wilderness cabins across Canada. Curated cottage rentals with secure VRBO booking.",
+    ogImage: "https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=1200",
+    googleAnalyticsId: "",
+  },
+  header: {
+    logoText: "Cottage Escape",
+    menuItems: [
+      { label: "Home", href: "/{locale}" },
+      { label: "Guides", href: "/{locale}/guides" },
+      { label: "About", href: "/{locale}/about" },
+      { label: "Contact", href: "/{locale}/contact" },
+    ],
+  },
+  footer: {
+    description: "Curated Canadian cottage rentals. Discover your perfect escape with Cottage Escape — your trusted guide to premium lake houses, mountain lodges, and wilderness cabins.",
+    email: "socialmediacanada@gmail.com",
+    socialLinks: [
+      { name: "Facebook", url: "#" },
+      { name: "Instagram", url: "#" },
+      { name: "Twitter", url: "#" },
+    ],
+  },
   homepage_hero: {
     tag: "Official VRBO Affiliate Search",
     title: "Find Your Perfect Canadian Escape",

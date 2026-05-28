@@ -4,34 +4,39 @@ import { useState } from 'react';
 import { MapPin, Star, Heart, ExternalLink } from 'lucide-react';
 import { initialProperties } from '@/lib/mock-data';
 
-export default function PropertyGallery() {
-  const [activeFilter, setActiveFilter] = useState('Tout');
-  const [properties] = useState(initialProperties);
+type PropertyGalleryProps = {
+  title?: string;
+  description?: string;
+  tabs?: { name: string; category: string }[];
+};
 
-  const filters = ['Tout', 'Bord de l\'eau', 'Isolé', 'Luxe', 'Animaux acceptés', 'Spa'];
+export default function PropertyGallery({ title = "Browse Recommended Cottages", description = "Handpicked cabins tailored to your favorite wilderness scenery.", tabs }: PropertyGalleryProps) {
+  const galleryTabs = tabs ?? [{ name: 'All', category: 'Tout' }, { name: 'Lakefront', category: "Bord de l'eau" }, { name: 'Secluded', category: 'Isolé' }, { name: 'Luxury', category: 'Luxe' }, { name: 'Pet Friendly', category: 'Animaux acceptés' }, { name: 'Spa', category: 'Spa' }];
+  const [activeFilter, setActiveFilter] = useState(galleryTabs[0]?.category ?? 'Tout');
+  const [properties] = useState(initialProperties);
 
   return (
     <section className="px-4 md:px-8 py-12 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#0B1B40]">Browse Recommended Cottages</h2>
-            <p className="text-gray-500 mt-2">Handpicked cabins tailored to your favorite wilderness scenery.</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#0B1B40]">{title}</h2>
+            <p className="text-gray-500 mt-2">{description}</p>
           </div>
         </div>
 
         <div className="flex gap-3 overflow-x-auto pb-4 mb-6 [&::-webkit-scrollbar]:hidden">
-          {filters.map((filter) => (
+          {galleryTabs.map((tab) => (
             <button
-              key={filter}
-              onClick={() => setActiveFilter(filter)}
+              key={tab.category}
+              onClick={() => setActiveFilter(tab.category)}
               className={`px-5 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-                activeFilter === filter
+                activeFilter === tab.category
                   ? 'bg-[#1F51C6] text-white shadow-md'
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
-              {filter === 'Tout' ? 'All' : filter}
+              {tab.name}
             </button>
           ))}
         </div>

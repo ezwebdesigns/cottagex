@@ -6,7 +6,13 @@ import { Sparkles } from 'lucide-react';
 const WIDGET_HTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref="chaletxhomepage"></div>
 <script class="eg-widgets-script" src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"></script>`;
 
-export default function HeroSection() {
+type HeroSectionProps = {
+  tag?: string;
+  title?: string;
+  description?: string;
+};
+
+export default function HeroSection({ tag = "Official VRBO Affiliate Search", title = "Find Your Perfect Canadian Escape", description = "Instantly query and secure verified premium lake houses and mountain lodges." }: HeroSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -55,14 +61,14 @@ export default function HeroSection() {
         <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
           <div className="mb-4 inline-flex items-center justify-center bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20">
             <Sparkles className="text-[#93B4FF] mr-2" size={16} />
-            <span className="text-white text-xs font-bold tracking-wider uppercase">Official VRBO Affiliate Search</span>
+            <span className="text-white text-xs font-bold tracking-wider uppercase">{tag}</span>
           </div>
 
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-4 tracking-tight">
-            Find Your Perfect Canadian Escape
+            {title}
           </h1>
           <p className="text-blue-100/90 text-base md:text-lg mb-8 max-w-2xl font-light">
-            Instantly query and secure verified premium lake houses and mountain lodges.
+            {description}
           </p>
         </div>
       </div>
