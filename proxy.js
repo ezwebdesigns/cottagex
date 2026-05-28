@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 const locales = ['en', 'fr'];
 const defaultLocale = 'en';
 
-export function middleware(request) {
+export function proxy(request) {
   const { pathname } = request.nextUrl;
 
   if (pathname.startsWith('/api/') || pathname.startsWith('/_next/') || pathname === '/favicon.ico') {
@@ -30,8 +30,6 @@ export function middleware(request) {
   const adminPassword = process.env.ADMIN_PASSWORD;
   if (!adminPassword) return response;
 
-  console.log('middleware path:', pathname, 'isAdmin:', pathname.startsWith(`/${locale}/admin`));
-
   if (!pathname.startsWith(`/${locale}/admin`)) return response;
 
   const authHeader = request.headers.get('authorization');
@@ -55,5 +53,5 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next|.*\\..*).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)'],
 };
