@@ -1,5 +1,5 @@
 import { Sparkles } from 'lucide-react';
-import { VrboSearchWidget } from '@/components/branding/VrboWidget';
+import Script from 'next/script';
 
 export default function HeroSection() {
   return (
@@ -24,7 +24,21 @@ export default function HeroSection() {
           Instantly query and secure verified premium lake houses and mountain lodges.
         </p>
 
-        <VrboSearchWidget />
+        <div className="w-full max-w-2xl mx-auto flex justify-center">
+          <div
+            className="eg-widget"
+            data-widget="search"
+            data-program="ca-vrbo"
+            data-lobs="stays"
+            data-network="pz"
+            data-camref="1100lpG3d"
+            data-pubref="chaletxhomepage"
+          />
+        </div>
+        <Script
+          src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"
+          strategy="afterInteractive"
+        />
       </div>
     </div>
   );

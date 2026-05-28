@@ -2,8 +2,8 @@
 
 import { useRouter, usePathname } from 'next/navigation';
 import { useMemo, useState } from 'react';
+import Script from 'next/script';
 import { Star, Waves, Trees, Compass, MapPin, ExternalLink, ChevronRight, BookOpen, CalendarDays, Clock, X } from 'lucide-react';
-import { VrboSearchWidget } from '@/components/branding/VrboWidget';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { initialProperties, ontarioSearchData } from '@/lib/mock-data';
 
@@ -89,7 +89,21 @@ export default function LocationTemplate({ locale, slug, pageData }: LocationTem
           <p className="text-blue-100 text-base md:text-lg mb-8 max-w-2xl font-light">
             {data.heroSubtitle}
           </p>
-          <VrboSearchWidget />
+          <div className="w-full max-w-2xl mx-auto flex justify-center">
+            <div
+              className="eg-widget"
+              data-widget="search"
+              data-program="ca-vrbo"
+              data-lobs="stays"
+              data-network="pz"
+              data-camref="1100lpG3d"
+              data-pubref="chaletxlocation"
+            />
+            <Script
+              src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"
+              strategy="afterInteractive"
+            />
+          </div>
         </div>
       </div>
 
