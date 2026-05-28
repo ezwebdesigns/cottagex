@@ -106,3 +106,10 @@ export const libraryImages = pgTable('library_images', {
   mimetype: varchar('mimetype', { length: 100 }),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
+
+export const siteSettings = pgTable('site_settings', {
+  id: serial('id').primaryKey(),
+  section: varchar('section', { length: 100 }).notNull().unique(),
+  data: json('data').notNull().default({}),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});

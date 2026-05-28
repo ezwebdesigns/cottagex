@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { usePathname, useRouter, useParams } from 'next/navigation';
 import { SessionProvider } from 'next-auth/react';
-import { LayoutDashboard, FileText, BookOpen, Image as ImageIcon, Mail, ExternalLink, ChevronLeft, ChevronRight, Menu } from 'lucide-react';
+import { LayoutDashboard, FileText, BookOpen, Image as ImageIcon, Mail, Settings as SettingsIcon, ExternalLink, ChevronLeft, ChevronRight, Menu } from 'lucide-react';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [collapsed, setCollapsed] = useState(true);
@@ -45,6 +45,7 @@ function AdminShell({
     { label: 'Articles', href: `/${locale}/admin/articles`, icon: BookOpen },
     { label: 'Library', href: `/${locale}/admin/library`, icon: ImageIcon },
     { label: 'Messages', href: `/${locale}/admin/messages`, icon: Mail },
+    { label: 'Settings', href: `/${locale}/admin/settings`, icon: SettingsIcon },
   ];
 
   if (pathname.endsWith('/admin/login')) return <>{children}</>;
