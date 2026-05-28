@@ -30,6 +30,8 @@ export function middleware(request) {
   const adminPassword = process.env.ADMIN_PASSWORD;
   if (!adminPassword) return response;
 
+  console.log('middleware path:', pathname, 'isAdmin:', pathname.startsWith(`/${locale}/admin`));
+
   if (!pathname.startsWith(`/${locale}/admin`)) return response;
 
   const authHeader = request.headers.get('authorization');
