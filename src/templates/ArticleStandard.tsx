@@ -1,8 +1,34 @@
 'use client';
 
+import { useMemo } from 'react';
 import { ArrowLeft, CalendarDays, Clock } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 import { BreadcrumbSchema, ArticleSchema } from '@/components/seo/SchemaOrg';
+import { CottageShortcode } from '@/components/CottageShortcode';
+
+const shortcodeRegex = /\[([a-z0-9-]+),\s*([a-z0-9-]+)(?:,\s*(\d+))?\]/;
+
+function renderParagraph(text: string, key: number) {
+  if (!shortcodeRegex.test(text)) {
+    return <p key={key} className="text-base md:text-lg">{text}</p>;
+  }
+  const parts = text.split(shortcodeRegex);
+  return (
+    <p key={key} className="text-base md:text-lg">
+      {parts.map((part, i) => {
+        const mod = i % 4;
+        if (mod === 0) return part ? <span key={i}>{part}</span> : null;
+        if (mod === 1) {
+          const param1 = part.trim().toLowerCase();
+          const param2 = parts[i + 1]?.trim().toLowerCase() || 'rating';
+          const limit = parts[i + 2] ? parseInt(parts[i + 2], 10) : 3;
+          return <CottageShortcode key={i} param1={param1} param2={param2} limit={Math.min(limit, 10)} />;
+        }
+        return null;
+      })}
+    </p>
+  );
+}
 
 type ArticleStandardProps = {
   locale: string;
@@ -74,9 +100,7 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
         />
       ) : (
         <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed space-y-6 mb-12">
-          {article.content.split('\n\n').map((paragraph, index) => (
-            <p key={index} className="text-base md:text-lg">{paragraph}</p>
-          ))}
+          {article.content.split('\n\n').map((paragraph, index) => renderParagraph(paragraph, index))}
         </div>
       )}
 
