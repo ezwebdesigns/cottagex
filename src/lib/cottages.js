@@ -130,6 +130,12 @@ export async function getCottages({
     const { rows } = await client.query(query, params)
     return rows.map(row => ({
       ...row,
+      rating:    row.rating    ? parseFloat(row.rating)    : null,
+      price_cad: row.price_cad ? parseInt(row.price_cad)   : null,
+      reviews:   row.reviews   ? parseInt(row.reviews)     : null,
+      sleeps:    row.sleeps    ? parseInt(row.sleeps)      : null,
+      bedrooms:  row.bedrooms  ? parseInt(row.bedrooms)    : null,
+      bathrooms: row.bathrooms ? parseInt(row.bathrooms)   : null,
       photos:    typeof row.photos    === 'string' ? JSON.parse(row.photos)    : row.photos    || [],
       amenities: typeof row.amenities === 'string' ? JSON.parse(row.amenities) : row.amenities || [],
     }))
@@ -163,6 +169,12 @@ export async function getCottageBySlugFeatured(slug) {
     const row = rows[0]
     return {
       ...row,
+      rating:    row.rating    ? parseFloat(row.rating)    : null,
+      price_cad: row.price_cad ? parseInt(row.price_cad)   : null,
+      reviews:   row.reviews   ? parseInt(row.reviews)     : null,
+      sleeps:    row.sleeps    ? parseInt(row.sleeps)      : null,
+      bedrooms:  row.bedrooms  ? parseInt(row.bedrooms)    : null,
+      bathrooms: row.bathrooms ? parseInt(row.bathrooms)   : null,
       photos:    typeof row.photos    === 'string' ? JSON.parse(row.photos)    : row.photos    || [],
       amenities: typeof row.amenities === 'string' ? JSON.parse(row.amenities) : row.amenities || [],
     }

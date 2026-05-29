@@ -94,7 +94,7 @@ export default function CottageCard({ cottage, priority = false }) {
         {rating && (
           <span className={`absolute top-2 left-2 ${ratingColor} text-white
                             text-xs font-semibold px-2 py-0.5 rounded-lg`}>
-            ★ {rating.toFixed(1)}
+            ★ {parseFloat(rating).toFixed(1)}
           </span>
         )}
       </div>
