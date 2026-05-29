@@ -1,18 +1,13 @@
 /**
- * seed.js
- * Constitue le catalogue initial dans Neon (table: affiliatecottages)
+ * seed-cottages.mjs
+ * Constitue le catalogue dans Neon (table: affiliatecottages)
  *
  * Usage:
- *   SERPAPI_KEY=xxx DATABASE_URL=xxx node seed.js
+ *   node --env-file=.env scripts/seed-cottages.mjs
  *
- * Prérequis:
- *   npm install node-fetch pg
- *
- * Ce script:
- *   1. Appelle SerpApi pour chaque destination
- *   2. Filtre sur VRBO et Expedia uniquement
- *   3. Insère dans Neon via UPSERT (safe à relancer)
- *   4. Affiche un résumé final
+ * Filtres :
+ *   - strictLink: true  → source VRBO/Expedia ET google_link vrbo.com/expedia.com
+ *   - strictLink: false → source VRBO/Expedia seulement (pour destinations QC)
  */
 
 import fetch from 'node-fetch'
@@ -21,15 +16,17 @@ const { Pool } = pkg
 
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
 
-const SERPAPI_KEY  = process.env.SERPAPI_KEY  || 'c623b4d89875beec441178f238655fd40ae91bfff1b6d8caef151e3cc1efd9c7'
-const DATABASE_URL = process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_Yq5DfVIswFB9@ep-morning-frog-apofbubd-pooler.c-7.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require'
-
+const SERPAPI_KEY     = process.env.SERPAPI_KEY  || 'c623b4d89875beec441178f238655fd40ae91bfff1b6d8caef151e3cc1efd9c7'
+const DATABASE_URL    = process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_Yq5DfVIswFB9@ep-morning-frog-apofbubd-pooler.c-7.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require'
 const ALLOWED_SOURCES = ['Vrbo.com', 'Expedia.com', 'Hotels.com', 'VRBO']
+const ALLOWED_DOMAINS = ['vrbo.com', 'expedia.com']
 
 const pool = new Pool({
   connectionString: DATABASE_URL,
   ssl: { rejectUnauthorized: false },
 })
+
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
 
 function nextWeekend() {
   const now = new Date()
@@ -45,30 +42,96 @@ function nextWeekend() {
   }
 }
 
+function isAllowed(prop, strictLink = true) {
+  // Filtre 1 (toujours) : source VRBO ou Expedia dans prices[]
+  const hasAllowedSource = prop.prices?.some(price =>
+    ALLOWED_SOURCES.some(s => price.source?.includes(s))
+  )
+  if (!hasAllowedSource) return false
+
+  // Filtre 2 (strictLink seulement) : google_link pointe vers vrbo.com ou expedia.com
+  if (strictLink) {
+    return prop.link && ALLOWED_DOMAINS.some(d => prop.link.includes(d))
+  }
+
+  // strictLink: false → on accepte tout google_link non-null
+  return !!prop.link
+}
+
+function transform(prop, dest) {
+  const allowedPrice  = prop.prices?.find(p => ALLOWED_SOURCES.some(s => p.source?.includes(s)))
+  const info          = prop.essential_info || []
+  const sleeps        = info.find(i => i.startsWith('Sleeps'))?.match(/\d+/)?.[0]     || null
+  const bedrooms      = info.find(i => i.includes('bedroom'))?.match(/\d+/)?.[0]      || null
+  const bathrooms     = info.find(i => i.includes('bathroom'))?.match(/\d+/)?.[0]     || null
+  const sqm           = info.find(i => i.includes('sq m'))?.match(/[\d,]+/)?.[0]      || null
+  const type          = info.find(i => i.startsWith('Entire'))?.replace('Entire ','') || 'cottage'
+
+  return {
+    id:                 `${dest.slug}-${prop.property_token}`,
+    property_token:     prop.property_token,
+    slug:               dest.slug,
+    province:           dest.province,
+    name:               prop.name,
+    type,
+    source:             allowedPrice?.source || prop.prices?.[0]?.source || null,
+    thumbnail:          prop.images?.[0]?.original_image || null,
+    photos:             JSON.stringify((prop.images||[]).map(i => i.original_image).filter(Boolean)),
+    lat:                prop.gps_coordinates?.latitude  || null,
+    lng:                prop.gps_coordinates?.longitude || null,
+    price_cad:          prop.rate_per_night?.extracted_lowest            || null,
+    price_before_taxes: prop.rate_per_night?.extracted_before_taxes_fees || null,
+    rating:             prop.overall_rating ? Math.round(prop.overall_rating * 10) / 10 : null,
+    reviews:            prop.reviews || null,
+    sleeps:             sleeps    ? parseInt(sleeps)              : null,
+    bedrooms:           bedrooms  ? parseInt(bedrooms)            : null,
+    bathrooms:          bathrooms ? parseInt(bathrooms)           : null,
+    sqm:                sqm       ? parseInt(sqm.replace(',','')) : null,
+    amenities:          JSON.stringify(prop.amenities          || []),
+    excluded_amenities: JSON.stringify(prop.excluded_amenities || []),
+    check_in_time:      prop.check_in_time  || null,
+    check_out_time:     prop.check_out_time || null,
+    google_link:        prop.link || null,
+    affiliate_url:      null,
+  }
+}
+
 // ─── DESTINATIONS ────────────────────────────────────────────────────────────
+// strictLink: false → filtre souple (Québec + destinations à faible couverture VRBO)
+// strictLink: true  → filtre strict vrbo.com/expedia.com dans google_link (défaut)
 
 const DESTINATIONS = [
-  { slug: 'muskoka',            province: 'ontario',          query: 'muskoka cottage rentals ontario canada' },
-  { slug: 'kawarthas',          province: 'ontario',          query: 'kawarthas cottage rentals ontario canada' },
-  { slug: 'haliburton',         province: 'ontario',          query: 'haliburton highlands cottage rentals ontario canada' },
-  { slug: 'georgian-bay',       province: 'ontario',          query: 'georgian bay cottage rentals ontario canada' },
-  { slug: 'prince-edward',      province: 'ontario',          query: 'prince edward county cottage rentals ontario canada' },
-  { slug: 'laurentians',        province: 'quebec',           query: 'laurentians chalet rentals quebec canada' },
-  { slug: 'eastern-townships',  province: 'quebec',           query: 'eastern townships cottage rentals quebec canada' },
-  { slug: 'whistler',           province: 'british-columbia', query: 'whistler cabin rentals bc canada' },
-  { slug: 'okanagan',           province: 'british-columbia', query: 'okanagan valley cottage rentals bc canada' },
-  { slug: 'sunshine-coast',     province: 'british-columbia', query: 'sunshine coast cottage rentals bc canada' },
-  { slug: 'cape-breton',        province: 'nova-scotia',      query: 'cape breton cottage rentals nova scotia canada' },
-  { slug: 'south-shore-ns',     province: 'nova-scotia',      query: 'south shore cottage rentals nova scotia canada' },
-  { slug: 'canmore',            province: 'alberta',          query: 'canmore kananaskis cabin rentals alberta canada' },
-  { slug: 'sylvan-lake',        province: 'alberta',          query: 'sylvan lake cottage rentals alberta canada' },
-  { slug: 'acadian-peninsula',  province: 'new-brunswick',    query: 'acadian peninsula cottage rentals new brunswick canada' },
-  { slug: 'shediac',            province: 'new-brunswick',    query: 'shediac cottage rentals new brunswick canada' },
-  { slug: 'pei-north-shore',    province: 'pei',              query: 'north shore cottage rentals pei canada' },
-  { slug: 'pei-points-east',    province: 'pei',              query: 'points east cottage rentals pei canada' },
-  { slug: 'waskesiu',           province: 'saskatchewan',     query: 'waskesiu lake cottage rentals saskatchewan canada' },
-  { slug: 'falcon-lake',        province: 'manitoba',         query: 'falcon lake cottage rentals manitoba canada' },
-  { slug: 'west-hawk-lake',     province: 'manitoba',         query: 'west hawk lake cottage rentals manitoba canada' },
+  // Ontario
+  { slug: 'muskoka',      province: 'ontario', query: 'muskoka cottage rentals ontario canada',      strictLink: false },
+  { slug: 'kawarthas',         province: 'ontario',          query: 'kawarthas cottage rentals ontario canada' },
+  { slug: 'haliburton',        province: 'ontario',          query: 'haliburton highlands cottage rentals ontario canada' },
+  { slug: 'georgian-bay', province: 'ontario', query: 'georgian bay cottage rentals ontario canada', strictLink: false },
+  { slug: 'prince-edward',     province: 'ontario',          query: 'prince edward county cottage rentals ontario canada' },
+  // Quebec — strictLink: false (plateformes locales dominantes)
+  { slug: 'laurentides',       province: 'quebec',           query: 'laurentides chalet location quebec canada',           strictLink: false },
+  { slug: 'mont-tremblant',    province: 'quebec',           query: 'mont-tremblant chalet rentals quebec canada',         strictLink: false },
+  { slug: 'eastern-townships', province: 'quebec',           query: 'eastern townships cottage rentals quebec canada',     strictLink: false },
+  // British Columbia
+  { slug: 'whistler',          province: 'british-columbia', query: 'whistler cabin rentals bc canada' },
+  { slug: 'okanagan',          province: 'british-columbia', query: 'okanagan valley cottage rentals bc canada' },
+  { slug: 'sunshine-coast',    province: 'british-columbia', query: 'sunshine coast cottage rentals bc canada' },
+  // Nova Scotia
+  { slug: 'cape-breton',       province: 'nova-scotia',      query: 'cape breton cottage rentals nova scotia canada' },
+  { slug: 'south-shore-ns',    province: 'nova-scotia',      query: 'south shore cottage rentals nova scotia canada' },
+  // Alberta
+  { slug: 'canmore',           province: 'alberta',          query: 'canmore kananaskis cabin rentals alberta canada' },
+  { slug: 'sylvan-lake',       province: 'alberta',          query: 'sylvan lake cottage rentals alberta canada' },
+  // New Brunswick
+  { slug: 'acadian-peninsula', province: 'new-brunswick',    query: 'acadian peninsula cottage rentals new brunswick canada' },
+  { slug: 'shediac',           province: 'new-brunswick',    query: 'shediac cottage rentals new brunswick canada' },
+  // PEI
+  { slug: 'pei-north-shore',   province: 'pei',              query: 'north shore cottage rentals pei canada' },
+  { slug: 'pei-points-east',   province: 'pei',              query: 'points east cottage rentals pei canada' },
+  // Saskatchewan
+  { slug: 'waskesiu',          province: 'saskatchewan',     query: 'prince albert national park cabin rentals saskatchewan canada', strictLink: false },
+  // Manitoba
+  { slug: 'falcon-lake',       province: 'manitoba',         query: 'falcon lake cottage rentals manitoba canada',         strictLink: false },
+  { slug: 'west-hawk-lake',    province: 'manitoba',         query: 'west hawk lake cottage rentals manitoba canada',      strictLink: false },
 ]
 
 // ─── SERPAPI ─────────────────────────────────────────────────────────────────
@@ -88,7 +151,6 @@ async function fetchDestination(dest, checkin, checkout) {
     sort_by:          '8',
     api_key:          SERPAPI_KEY,
   })
-
   const res = await fetch(`https://serpapi.com/search.json?${params}`)
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const data = await res.json()
@@ -96,49 +158,7 @@ async function fetchDestination(dest, checkin, checkout) {
   return data.properties || []
 }
 
-// ─── TRANSFORM ───────────────────────────────────────────────────────────────
-
-function transform(prop, dest) {
-  const allowedPrice = prop.prices?.find(p =>
-    ALLOWED_SOURCES.some(s => p.source?.includes(s))
-  )
-  const info      = prop.essential_info || []
-  const sleeps    = info.find(i => i.startsWith('Sleeps'))?.match(/\d+/)?.[0]    || null
-  const bedrooms  = info.find(i => i.includes('bedroom'))?.match(/\d+/)?.[0]     || null
-  const bathrooms = info.find(i => i.includes('bathroom'))?.match(/\d+/)?.[0]    || null
-  const sqm       = info.find(i => i.includes('sq m'))?.match(/[\d,]+/)?.[0]     || null
-  const type      = info.find(i => i.startsWith('Entire'))?.replace('Entire ','') || 'cottage'
-
-  return {
-    id:                 `${dest.slug}-${prop.property_token}`,
-    property_token:     prop.property_token,
-    slug:               dest.slug,
-    province:           dest.province,
-    name:               prop.name,
-    type,
-    source:             allowedPrice?.source || prop.prices?.[0]?.source || null,
-    thumbnail:          prop.images?.[0]?.original_image || null,
-    photos:             JSON.stringify((prop.images||[]).map(i=>i.original_image).filter(Boolean)),
-    lat:                prop.gps_coordinates?.latitude  || null,
-    lng:                prop.gps_coordinates?.longitude || null,
-    price_cad:          prop.rate_per_night?.extracted_lowest            || null,
-    price_before_taxes: prop.rate_per_night?.extracted_before_taxes_fees || null,
-    rating:             prop.overall_rating ? Math.round(prop.overall_rating*10)/10 : null,
-    reviews:            prop.reviews || null,
-    sleeps:             sleeps    ? parseInt(sleeps)              : null,
-    bedrooms:           bedrooms  ? parseInt(bedrooms)            : null,
-    bathrooms:          bathrooms ? parseInt(bathrooms)           : null,
-    sqm:                sqm       ? parseInt(sqm.replace(',','')) : null,
-    amenities:          JSON.stringify(prop.amenities          || []),
-    excluded_amenities: JSON.stringify(prop.excluded_amenities || []),
-    check_in_time:      prop.check_in_time  || null,
-    check_out_time:     prop.check_out_time || null,
-    google_link:        prop.link           || null,
-    affiliate_url:      null,
-  }
-}
-
-// ─── UPSERT ──────────────────────────────────────────────────────────────────
+// ─── NEON UPSERT ─────────────────────────────────────────────────────────────
 
 async function upsert(client, c) {
   await client.query(`
@@ -172,6 +192,7 @@ async function upsert(client, c) {
       google_link        = EXCLUDED.google_link,
       available          = true,
       last_synced        = CURRENT_DATE
+      -- affiliate_url non touché : préserve tes deep links manuels
   `, [
     c.id, c.property_token, c.slug, c.province, c.name, c.type, c.source,
     c.thumbnail, c.photos, c.lat, c.lng,
@@ -189,24 +210,32 @@ async function seed() {
   const { checkin, checkout } = nextWeekend()
   const client = await pool.connect()
 
+  // Optionnel : passer des slugs spécifiques en argument
+  // ex: node seed-cottages.mjs muskoka georgian-bay
+  const targetSlugs = process.argv.slice(2)
+  const destinations = targetSlugs.length > 0
+    ? DESTINATIONS.filter(d => targetSlugs.includes(d.slug))
+    : DESTINATIONS
+
   console.log(`\n🏕️  Canada Cottage Rentals — Seed`)
   console.log(`📅  Dates        : ${checkin} → ${checkout}`)
   console.log(`🗄️  Base          : Neon PostgreSQL`)
-  console.log(`📍  Destinations : ${DESTINATIONS.length}\n`)
+  console.log(`🔍  Mode         : ${targetSlugs.length > 0 ? 'ciblé → ' + targetSlugs.join(', ') : 'complet'}`)
+  console.log(`📍  Destinations : ${destinations.length}\n`)
 
-  let totalFetched = 0, totalInserted = 0, totalUpdated = 0, searchesUsed = 0
+  let totalFetched = 0, totalKept = 0, totalInserted = 0, totalUpdated = 0, searchesUsed = 0
 
   try {
-    for (const dest of DESTINATIONS) {
-      process.stdout.write(`  ⏳ ${dest.slug.padEnd(24)}`)
+    for (const dest of destinations) {
+      const strict = dest.strictLink !== false // true par défaut
+      process.stdout.write(`  ⏳ ${dest.slug.padEnd(24)} [${strict ? 'strict' : 'souple'}] `)
       try {
         const properties = await fetchDestination(dest, checkin, checkout)
         searchesUsed++
         totalFetched += properties.length
 
-        const filtered = properties.filter(p =>
-          p.prices?.some(price => ALLOWED_SOURCES.some(s => price.source?.includes(s)))
-        )
+        const filtered = properties.filter(p => isAllowed(p, strict))
+        totalKept += filtered.length
 
         let inserted = 0, updated = 0
         for (const prop of filtered) {
@@ -221,7 +250,7 @@ async function seed() {
 
         totalInserted += inserted
         totalUpdated  += updated
-        console.log(`✓  ${properties.length} trouvés → ${filtered.length} VRBO/Expedia (${inserted} new, ${updated} updated)`)
+        console.log(`✓  ${properties.length} trouvés → ${filtered.length} valides (${inserted} new, ${updated} updated)`)
         await new Promise(r => setTimeout(r, 1200))
 
       } catch (err) {
@@ -233,21 +262,20 @@ async function seed() {
     await pool.end()
   }
 
-  console.log(`\n${'─'.repeat(52)}`)
+  console.log(`\n${'─'.repeat(54)}`)
   console.log(`✅  Seed terminé`)
   console.log(`   Searches SerpApi  : ${searchesUsed} / 250`)
-  console.log(`   Trouvées          : ${totalFetched}`)
+  console.log(`   Propriétés vues   : ${totalFetched}`)
+  console.log(`   Filtrées valides  : ${totalKept}`)
   console.log(`   Nouvelles         : ${totalInserted}`)
   console.log(`   Mises à jour      : ${totalUpdated}`)
   console.log(`\n⚠️  Prochaines étapes :`)
-  console.log(`   1. Vérifie les données dans Neon`)
-  console.log(`   2. Remplis affiliate_url depuis ton dashboard VRBO :`)
-  console.log(`      SELECT id, slug, name, google_link`)
-  console.log(`      FROM affiliatecottages`)
-  console.log(`      WHERE affiliate_url IS NULL;`)
-  console.log(`   3. Marque les cottages à afficher sur le site :`)
-  console.log(`      UPDATE affiliatecottages SET is_featured = true`)
-  console.log(`      WHERE id IN ('muskoka-xxx', 'kawarthas-yyy', ...);`)
+  console.log(`   1. Vérifie : SELECT * FROM v_destination_stats;`)
+  console.log(`   2. Remplis affiliate_url depuis ton dashboard VRBO/Expedia :`)
+  console.log(`      SELECT id, slug, name, google_link, source`)
+  console.log(`      FROM affiliatecottages WHERE affiliate_url IS NULL ORDER BY slug;`)
+  console.log(`   3. Marque les cottages à afficher :`)
+  console.log(`      UPDATE affiliatecottages SET is_featured = true WHERE id IN (...);`)
   console.log()
 }
 

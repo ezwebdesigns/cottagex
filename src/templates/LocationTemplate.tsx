@@ -10,6 +10,7 @@ type LocationTemplateProps = {
   locale: string;
   slug: string;
   pageData?: any;
+  cottages?: any[];
 };
 
 const locationData: Record<string, {
@@ -44,7 +45,7 @@ const iconMap: Record<string, React.ReactNode> = {
   Compass: <Compass size={24} />,
 };
 
-export default function LocationTemplate({ locale, slug, pageData }: LocationTemplateProps) {
+export default function LocationTemplate({ locale, slug, pageData, cottages }: LocationTemplateProps) {
   const router = useRouter();
   const pathname = usePathname();
   const data = locationData[slug] || {
@@ -60,7 +61,26 @@ export default function LocationTemplate({ locale, slug, pageData }: LocationTem
     ],
   };
 
-  const ontarioProperties = useMemo(() => initialProperties.filter(p => p.province === 'Ontario'), []);
+  const nameFromSlug = slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
+  const displayCottages = useMemo(() => {
+    if (cottages && cottages.length > 0) {
+      return cottages.map(c => ({
+        id: c.id,
+        title: c.name,
+        location: nameFromSlug,
+        province: c.province,
+        price: c.price_cad?.toString() || '',
+        rating: c.rating ? c.rating.toFixed(1) : '0',
+        image: c.thumbnail || (Array.isArray(c.photos) && c.photos[0]) || 'https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=600',
+        tag: c.type || 'Featured',
+        isLiked: false,
+        description: Array.isArray(c.amenities) ? c.amenities.slice(0, 3).join(' • ') : 'Available for booking',
+        bookingUrl: c.affiliate_url || c.google_link || 'https://www.vrbo.com',
+      }));
+    }
+    return initialProperties.filter(p => p.province === 'Ontario').map(p => ({ ...p, bookingUrl: 'https://www.vrbo.com' }));
+  }, [cottages]);
 
   const [activeMoreCity, setActiveMoreCity] = useState<typeof ontarioSearchData[0] | null>(null);
   const egContainerRef = useRef<HTMLDivElement>(null);
@@ -145,7 +165,7 @@ export default function LocationTemplate({ locale, slug, pageData }: LocationTem
           <p className="text-slate-500 mb-8">Our latest handpicked recommendations for your upcoming wilderness stay.</p>
 
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
-            {ontarioProperties.map((prop) => (
+            {displayCottages.map((prop) => (
               <div key={prop.id} className="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
                 <div className="relative h-36 md:h-64 overflow-hidden">
                   <img src={prop.image} alt={prop.title} className="w-full h-full object-cover" />
@@ -170,7 +190,7 @@ export default function LocationTemplate({ locale, slug, pageData }: LocationTem
                       <span className="text-sm md:text-2xl font-black text-[#1F51C6]">${prop.price}</span>
                       <span className="text-[10px] md:text-xs text-slate-500 font-medium">/night</span>
                     </div>
-                    <a href="https://www.vrbo.com" target="_blank" rel="noopener noreferrer" className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-3 md:px-5 py-1.5 md:py-2.5 rounded-full text-[11px] md:text-sm font-semibold transition-colors inline-flex items-center justify-center gap-1.5 w-full md:w-auto">
+                    <a href={prop.bookingUrl} target="_blank" rel="noopener noreferrer" className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-3 md:px-5 py-1.5 md:py-2.5 rounded-full text-[11px] md:text-sm font-semibold transition-colors inline-flex items-center justify-center gap-1.5 w-full md:w-auto">
                       Book <ExternalLink size={10} />
                     </a>
                   </div>
