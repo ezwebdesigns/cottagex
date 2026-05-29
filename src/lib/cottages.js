@@ -9,10 +9,16 @@
 
 import { Pool } from 'pg'
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
-})
+let pool = null
+function getPool() {
+  if (!pool) {
+    pool = new Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false },
+    })
+  }
+  return pool
+}
 
 /**
  * Catégories disponibles et leurs conditions SQL
@@ -118,8 +124,9 @@ export async function getCottages({
     ${limitClause}
   `
 
-  const client = await pool.connect()
+  let client
   try {
+    client = await getPool().connect()
     const { rows } = await client.query(query, params)
     return rows.map(row => ({
       ...row,
@@ -127,7 +134,7 @@ export async function getCottages({
       amenities: typeof row.amenities === 'string' ? JSON.parse(row.amenities) : row.amenities || [],
     }))
   } finally {
-    client.release()
+    if (client) client.release()
   }
 }
 
@@ -139,8 +146,9 @@ export async function getCottages({
  * @returns {Promise<object|null>}
  */
 export async function getCottageBySlugFeatured(slug) {
-  const client = await pool.connect()
+  let client
   try {
+    client = await getPool().connect()
     const { rows } = await client.query(`
       SELECT *
       FROM affiliatecottages
@@ -159,7 +167,7 @@ export async function getCottageBySlugFeatured(slug) {
       amenities: typeof row.amenities === 'string' ? JSON.parse(row.amenities) : row.amenities || [],
     }
   } finally {
-    client.release()
+    if (client) client.release()
   }
 }
 
@@ -171,8 +179,9 @@ export async function getCottageBySlugFeatured(slug) {
  * @returns {Promise<Array>}
  */
 export async function getDestinationStats(province = null) {
-  const client = await pool.connect()
+  let client
   try {
+    client = await getPool().connect()
     const condition = province ? `WHERE province = $1 AND available = true` : `WHERE available = true`
     const params    = province ? [province] : []
 
@@ -192,6 +201,6 @@ export async function getDestinationStats(province = null) {
 
     return rows
   } finally {
-    client.release()
+    if (client) client.release()
   }
 }

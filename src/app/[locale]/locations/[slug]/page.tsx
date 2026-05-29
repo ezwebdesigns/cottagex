@@ -71,10 +71,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function LocationPage({ params }: Props) {
   const { locale, slug } = await params;
-  const isProvince = PROVINCE_SLUGS.has(slug);
-  const cottages = isProvince
-    ? await getCottages({ province: slug, limit: 6, sort: 'rating' })
-    : await getCottages({ slug, limit: 3, sort: 'rating' });
+  let cottages: any[] = [];
+  try {
+    const isProvince = PROVINCE_SLUGS.has(slug);
+    cottages = isProvince
+      ? await getCottages({ province: slug, limit: 6, sort: 'rating' })
+      : await getCottages({ slug, limit: 3, sort: 'rating' });
+  } catch (e) {
+    console.error('Failed to fetch cottages for', slug, e);
+  }
 
   return <LocationTemplate locale={locale} slug={slug} cottages={cottages} />;
 }
