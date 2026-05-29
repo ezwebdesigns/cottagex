@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import { Save, Loader2, Settings as SettingsIcon, Home, Search, Image, Megaphone, Globe, ChevronDown, ChevronUp } from 'lucide-react';
+import ImageUploader from '@/components/admin/ImageUploader';
 
 type HomepageHero = { tag: string; title: string; description: string };
 type DestItem = { name: string; properties: string; image: string };
@@ -106,7 +107,8 @@ export default function AdminSettingsPage() {
           <div className="space-y-4">
             <Field label="Site Name" value={general.siteName} onChange={(v) => setGeneral({ ...general, siteName: v })} />
             <Field label="Site Description" value={general.siteDescription} onChange={(v) => setGeneral({ ...general, siteDescription: v })} textarea />
-            <Field label="Logo URL" value={general.logo} onChange={(v) => setGeneral({ ...general, logo: v })} />
+            <ImageUploader label="Logo" value={general.logo} onChange={(v) => setGeneral({ ...general, logo: v })} />
+            <ImageUploader label="Favicon" value={general.favicon} onChange={(v) => setGeneral({ ...general, favicon: v })} />
           </div>
           <SaveButton onClick={() => saveSection('general', general)} saving={saving} />
         </div>

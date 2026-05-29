@@ -1,11 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Upload, Trash2 } from 'lucide-react';
 
 export default function AdminLibraryPage() {
   const [images, setImages] = useState<{ id: string; name: string; url: string }[]>([]);
   const [uploading, setUploading] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/admin/library')
+      .then(r => r.json())
+      .then(data => setImages(data.files || []))
+      .catch(() => {});
+  }, []);
 
   async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];

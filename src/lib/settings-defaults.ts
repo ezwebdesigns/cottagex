@@ -2,6 +2,7 @@ export type GeneralSettings = {
   siteName: string;
   siteDescription: string;
   logo: string;
+  favicon: string;
 };
 
 export type SEOSettings = {
@@ -71,6 +72,7 @@ export const defaultSettings: Record<string, any> = {
     siteName: "Cottage Escape",
     siteDescription: "Find your perfect Canadian cottage rental. Curated lake houses, mountain lodges, and wilderness cabins across Canada.",
     logo: "",
+    favicon: "",
   },
   seo: {
     defaultTitle: "Canadian Cottage Rentals - Cottage Escape",

@@ -1,24 +1,36 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { X, Menu } from 'lucide-react';
 import { BrandLogoFull } from '@/components/branding/Logo';
 import Link from 'next/link';
 
 type HeaderProps = {
   locale: string;
+  menuItems?: { label: string; href: string }[];
+  logo?: string;
 };
 
-export default function Header({ locale }: HeaderProps) {
+const defaultNavItems = (locale: string) => [
+  { label: 'Explore', href: `/${locale}` },
+  { label: 'Ontario', href: `/${locale}/locations/ontario` },
+  { label: 'Guides & Articles', href: `/${locale}/guides` },
+  { label: 'About Us', href: `/${locale}/about` },
+  { label: 'Contact', href: `/${locale}/contact` },
+];
+
+export default function Header({ locale, menuItems, logo }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const navItems = [
-    { label: 'Explore', href: `/${locale}` },
-    { label: 'Ontario', href: `/${locale}/locations/ontario` },
-    { label: 'Guides & Articles', href: `/${locale}/guides` },
-    { label: 'About Us', href: `/${locale}/about` },
-    { label: 'Contact', href: `/${locale}/contact` },
-  ];
+  const navItems = useMemo(() => {
+    if (menuItems && menuItems.length > 0) {
+      return menuItems.map(item => ({
+        ...item,
+        href: item.href.replace(/\{locale\}/g, locale),
+      }));
+    }
+    return defaultNavItems(locale);
+  }, [menuItems, locale]);
 
   return (
     <nav className="bg-white px-4 md:px-8 py-4 flex justify-between items-center sticky top-0 z-50 shadow-sm border-b border-gray-100">
