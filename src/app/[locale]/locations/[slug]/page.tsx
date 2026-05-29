@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { getCottages } from '@/lib/cottages';
 import LocationTemplate from '@/templates/LocationTemplate';
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
@@ -73,6 +72,7 @@ export default async function LocationPage({ params }: Props) {
   const { locale, slug } = await params;
   let cottages: any[] = [];
   try {
+    const { getCottages } = await import('@/lib/cottages');
     const isProvince = PROVINCE_SLUGS.has(slug);
     cottages = isProvince
       ? await getCottages({ province: slug, limit: 6, sort: 'rating' })

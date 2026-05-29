@@ -35,7 +35,11 @@ export default function Header({ locale, menuItems, logo }: HeaderProps) {
   return (
     <nav className="bg-white px-4 md:px-8 py-4 flex justify-between items-center sticky top-0 z-50 shadow-sm border-b border-gray-100">
       <Link href={`/${locale}`} className="cursor-pointer">
-        <BrandLogoFull />
+        {logo ? (
+          <img src={logo} alt="Logo" className="h-12 w-auto" />
+        ) : (
+          <BrandLogoFull />
+        )}
       </Link>
 
       <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
