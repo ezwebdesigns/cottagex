@@ -1,6 +1,5 @@
 'use client';
 
-import { useMemo } from 'react';
 import { ArrowLeft, CalendarDays, Clock } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 import { BreadcrumbSchema, ArticleSchema } from '@/components/seo/SchemaOrg';
@@ -94,10 +93,27 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
       </div>
 
       {isHtml ? (
-        <div
-          className="prose prose-lg text-slate-700 max-w-none leading-relaxed mb-12"
-          dangerouslySetInnerHTML={{ __html: article.content }}
-        />
+        <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed mb-12">
+          {(() => {
+            const parts = article.content.split(shortcodeRegex);
+            if (parts.length === 1) {
+              return <div dangerouslySetInnerHTML={{ __html: article.content }} />;
+            }
+            return parts.map((part, i) => {
+              const mod = i % 4;
+              if (mod === 0) {
+                return part ? <div key={i} dangerouslySetInnerHTML={{ __html: part }} /> : null;
+              }
+              if (mod === 1) {
+                const param1 = part.trim().toLowerCase();
+                const param2 = parts[i + 1]?.trim().toLowerCase() || 'rating';
+                const limit = parts[i + 2] ? parseInt(parts[i + 2], 10) : 3;
+                return <CottageShortcode key={i} param1={param1} param2={param2} limit={Math.min(limit, 10)} />;
+              }
+              return null;
+            });
+          })()}
+        </div>
       ) : (
         <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed space-y-6 mb-12">
           {article.content.split('\n\n').map((paragraph, index) => renderParagraph(paragraph, index))}

@@ -44,6 +44,7 @@ async function fetchArticle(slug: string) {
       ctaTitle: dbArticle.ctaTitle || undefined,
       ctaButton: dbArticle.ctaButton || undefined,
       ctaLink: dbArticle.ctaLink || undefined,
+      isHtml: true,
       isListicle: dbArticle.type === "listicle",
     };
   } catch (e) {
@@ -84,5 +85,5 @@ export default async function ArticleDetailPage({
     return <ArticleListicle locale={locale} article={article} />;
   }
 
-  return <ArticleStandard locale={locale} article={article} />;
+  return <ArticleStandard locale={locale} article={article} isHtml={(article as any).isHtml} />;
 }
