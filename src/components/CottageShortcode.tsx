@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import CottageCard from '@/components/CottageCard'
 
 const SORT_PARAMS = ['price', 'rating']
+const FEATURED_PARAM = 'featured'
 
 const FILTER_MAP: Record<string, string> = {
   'hot-tub':   'hotTub',
@@ -54,16 +55,18 @@ export function CottageShortcode({ param1, param2, limit }: CottageShortcodeProp
   const [loading,  setLoading]  = useState(true)
 
   const isSort     = SORT_PARAMS.includes(param2)
+  const isFeatured = param2 === FEATURED_PARAM
   const isProvince = PROVINCES.includes(param1)
   const sort       = isSort ? param2 : 'rating'
-  const category   = !isSort ? (FILTER_MAP[param2] || '') : ''
+  const category   = !isSort && !isFeatured ? (FILTER_MAP[param2] || '') : ''
 
   useEffect(() => {
     const params = new URLSearchParams({
       [isProvince ? 'province' : 'slug']: param1,
       limit:    String(limit),
       sort,
-      ...(category ? { category } : {}),
+      ...(category   ? { category }        : {}),
+      ...(isFeatured ? { featured: 'true' } : {}),
     })
 
     fetch(`/api/cottages?${params}`)
@@ -71,7 +74,7 @@ export function CottageShortcode({ param1, param2, limit }: CottageShortcodeProp
       .then(data => setCottages(data?.cottages || []))
       .catch(() => setCottages([]))
       .finally(() => setLoading(false))
-  }, [param1, param2, limit, isProvince, sort, category])
+  }, [param1, param2, limit, isProvince, sort, category, isFeatured])
 
   if (loading) {
     return (
