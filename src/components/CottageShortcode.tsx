@@ -69,6 +69,7 @@ export function CottageShortcode({ param1, param2, limit }: CottageShortcodeProp
       ...(isFeatured ? { featured: 'true' } : {}),
     })
 
+    console.log('shortcode params:', params.toString())
     fetch(`/api/cottages?${params}`)
       .then(res => res.json())
       .then(data => setCottages(data?.cottages || []))

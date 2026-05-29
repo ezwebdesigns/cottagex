@@ -127,6 +127,7 @@ export async function getCottages({
   let client
   try {
     client = await getPool().connect()
+    console.log('SQL query:', query, JSON.stringify(params))
     const { rows } = await client.query(query, params)
     return rows.map(row => ({
       ...row,
