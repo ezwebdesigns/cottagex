@@ -12,6 +12,7 @@
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.8.8",
     "@neondatabase/serverless": "^1.1.0",
+    "@tailwindcss/typography": "^0.5.19",
     "@tiptap/extension-bullet-list": "^3.23.6",
     "@tiptap/extension-image": "^3.23.6",
     "@tiptap/extension-link": "^3.23.6",
