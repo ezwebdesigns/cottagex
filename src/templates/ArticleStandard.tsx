@@ -52,7 +52,7 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
   const pathname = usePathname();
 
   return (
-    <div className="animate-in fade-in duration-300 max-w-5xl mx-auto px-4 py-10">
+    <div className="animate-in fade-in duration-300 max-w-5xl mx-auto px-4 py-10 overflow-x-hidden min-w-0">
       <BreadcrumbSchema items={[
         { name: 'Home', url: `/${locale}` },
         { name: 'Guides', url: `/${locale}/guides` },
@@ -96,7 +96,7 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
       </div>
 
       {isHtml ? (
-        <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed mb-12 w-full overflow-x-hidden break-words">
+        <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed mb-12 w-full overflow-x-hidden break-words [&_pre]:whitespace-pre-wrap [&_code]:break-words">
           {(() => {
             const parts = article.content.split(shortcodeRegex);
             if (parts.length === 1) {
@@ -118,7 +118,7 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
           })()}
         </div>
       ) : (
-        <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed space-y-6 mb-12 max-w-full overflow-hidden break-words">
+        <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed space-y-6 mb-12 w-full overflow-x-hidden break-words [&_pre]:whitespace-pre-wrap [&_code]:break-words">
           {article.content.split('\n\n').map((paragraph, index) => renderParagraph(paragraph, index))}
         </div>
       )}
@@ -127,9 +127,6 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
         <div className="bg-[#0B1B40] rounded-[2rem] p-8 text-white mt-16 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h4 className="text-xl font-bold mb-2">{article.ctaTitle}</h4>
-            {article.ctaLink && (
-              <p className="text-blue-200 text-sm">{article.ctaButton || 'Find out more'}</p>
-            )}
           </div>
           {article.ctaLink && (
             <a
