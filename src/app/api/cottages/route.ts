@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    console.log('api received:', { slug, province, limit, sort, category, featuredOnly })
+    console.log('[api/cottages] params:', { slug, limit, sort, category, featuredOnly })
     const cottages = await getCottages({
       slug,
       province,
