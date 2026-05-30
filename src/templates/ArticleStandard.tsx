@@ -40,6 +40,9 @@ type ArticleStandardProps = {
     category: string;
     image: string;
     author?: string;
+    ctaTitle?: string;
+    ctaButton?: string;
+    ctaLink?: string;
   };
   isHtml?: boolean;
 };
@@ -93,7 +96,7 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
       </div>
 
       {isHtml ? (
-        <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed mb-12 max-w-full overflow-hidden break-words">
+        <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed mb-12 w-full overflow-x-hidden break-words">
           {(() => {
             const parts = article.content.split(shortcodeRegex);
             if (parts.length === 1) {
@@ -120,15 +123,36 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
         </div>
       )}
 
-      <div className="bg-[#0B1B40] rounded-[2rem] p-8 text-white mt-16 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div>
-          <h4 className="text-xl font-bold mb-2">Inspired by this reading?</h4>
-          <p className="text-blue-200 text-sm">Find and compare your dream cottage across Canada now.</p>
+      {article.ctaTitle ? (
+        <div className="bg-[#0B1B40] rounded-[2rem] p-8 text-white mt-16 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <h4 className="text-xl font-bold mb-2">{article.ctaTitle}</h4>
+            {article.ctaLink && (
+              <p className="text-blue-200 text-sm">{article.ctaButton || 'Find out more'}</p>
+            )}
+          </div>
+          {article.ctaLink && (
+            <a
+              href={article.ctaLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-6 py-3 rounded-full font-bold transition-colors whitespace-nowrap text-sm"
+            >
+              {article.ctaButton || 'Learn More'}
+            </a>
+          )}
         </div>
-        <button onClick={() => router.push(`/${locale}`)} className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-6 py-3 rounded-full font-bold transition-colors whitespace-nowrap text-sm">
-          Back to Homepage
-        </button>
-      </div>
+      ) : (
+        <div className="bg-[#0B1B40] rounded-[2rem] p-8 text-white mt-16 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <h4 className="text-xl font-bold mb-2">Inspired by this reading?</h4>
+            <p className="text-blue-200 text-sm">Find and compare your dream cottage across Canada now.</p>
+          </div>
+          <button onClick={() => router.push(`/${locale}`)} className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-6 py-3 rounded-full font-bold transition-colors whitespace-nowrap text-sm">
+            Back to Homepage
+          </button>
+        </div>
+      )}
     </div>
   );
 }
