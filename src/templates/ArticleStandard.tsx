@@ -93,7 +93,7 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
       </div>
 
       {isHtml ? (
-        <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed mb-12">
+        <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed mb-12 max-w-full overflow-hidden break-words">
           {(() => {
             const parts = article.content.split(shortcodeRegex);
             if (parts.length === 1) {
@@ -115,7 +115,7 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
           })()}
         </div>
       ) : (
-        <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed space-y-6 mb-12">
+        <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed space-y-6 mb-12 max-w-full overflow-hidden break-words">
           {article.content.split('\n\n').map((paragraph, index) => renderParagraph(paragraph, index))}
         </div>
       )}
