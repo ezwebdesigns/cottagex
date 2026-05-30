@@ -52,7 +52,7 @@ export async function getCottages({
   featuredOnly = false,
 } = {}) {
 
-  const conditions = ['available = true']
+  const conditions = featuredOnly ? [] : ['available = true']
   const params     = []
   let   paramIndex = 1
 
