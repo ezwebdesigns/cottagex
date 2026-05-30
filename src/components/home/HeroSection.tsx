@@ -55,7 +55,9 @@ export default function HeroSection({ tag = "Official VRBO Affiliate Search", ti
         }}
       >
         <div className="w-full md:w-1/2 flex justify-center md:justify-end">
-          <div ref={containerRef} className="w-full max-w-[575px]" />
+          <div className="w-full max-w-[575px] rounded-[2rem] overflow-hidden bg-white/10 backdrop-blur-sm">
+            <div ref={containerRef} className="w-full" />
+          </div>
         </div>
 
         <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
