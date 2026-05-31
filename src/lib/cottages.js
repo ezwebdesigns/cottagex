@@ -44,6 +44,7 @@ const CATEGORY_CONDITIONS = {
  * @param {string}  [opts.sort]       - 'rating' | 'price' (défaut: 'rating')
  * @param {string[]}[opts.categories] - ['family','hotTub','lakefront','luxury']
  * @param {boolean} [opts.featuredOnly] - seulement is_featured = true (défaut: false)
+ * @param {boolean} [opts.affiliateOnly] - seulement ceux avec affiliate_url (défaut: false)
  * @returns {Promise<Array>}
  */
 export async function getCottages({
@@ -53,11 +54,17 @@ export async function getCottages({
   sort        = 'rating',
   categories  = [],
   featuredOnly = false,
+  affiliateOnly = false,
 } = {}) {
 
   const conditions = featuredOnly ? [] : ['available = true']
   const params     = []
   let   paramIndex = 1
+
+  // Filtre affiliate_url (gallery uniquement)
+  if (affiliateOnly) {
+    conditions.push(`affiliate_url IS NOT NULL`)
+  }
 
   // Filtre destination
   if (slug && slug !== 'canada') {

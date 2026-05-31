@@ -18,6 +18,7 @@ export async function GET(request: NextRequest) {
   const sort     = (searchParams.get('sort') || 'rating') as 'rating' | 'price'
   const category     = searchParams.get('category') || ''
   const featuredOnly = searchParams.get('featured') === 'true'
+  const affiliateOnly = searchParams.get('affiliateOnly') === 'true'
 
   if (limit < 1 || limit > 20) {
     return NextResponse.json(
@@ -35,6 +36,7 @@ export async function GET(request: NextRequest) {
       sort,
       categories: category ? [category] : [],
       featuredOnly,
+      affiliateOnly,
     })
 
     return NextResponse.json(

@@ -120,6 +120,7 @@ export default function PropertyGallery({ title = "Browse Recommended Cottages",
       ...(slug && slug !== 'canada' ? { slug } : {}),
       limit: String(limit),
       sort: 'rating',
+      affiliateOnly: 'true',
       ...(category && category !== 'all' ? { category } : {}),
     });
     try {
