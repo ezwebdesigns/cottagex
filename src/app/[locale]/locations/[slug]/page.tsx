@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { db } from '@/lib/db';
+import { pages } from '@/db/schema';
+import { eq } from 'drizzle-orm';
 import LocationTemplate from '@/templates/LocationTemplate';
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
@@ -71,6 +74,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function LocationPage({ params }: Props) {
   const { locale, slug } = await params;
   let cottages: any[] = [];
+  let pageData = null;
   try {
     const { getCottages } = await import('@/lib/cottages');
     const isProvince = PROVINCE_SLUGS.has(slug);
@@ -80,6 +84,12 @@ export default async function LocationPage({ params }: Props) {
   } catch (e) {
     console.error('Failed to fetch cottages for', slug, e);
   }
+  try {
+    const [row] = await db.select().from(pages).where(eq(pages.slug, slug));
+    pageData = row ?? null;
+  } catch (e) {
+    console.error('Failed to fetch page data for', slug, e);
+  }
 
-  return <LocationTemplate locale={locale} slug={slug} cottages={cottages} />;
+  return <LocationTemplate locale={locale} slug={slug} pageData={pageData} cottages={cottages} />;
 }

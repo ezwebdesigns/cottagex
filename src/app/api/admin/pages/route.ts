@@ -24,6 +24,10 @@ export async function POST(request: Request) {
       ctaTitle: body.ctaTitle,
       ctaButton: body.ctaButton,
       ctaLink: body.ctaLink,
+      exploreTitle: body.exploreTitle,
+      exploreSubtitle: body.exploreSubtitle,
+      exploreDescription: body.exploreDescription,
+      exploreItems: body.exploreItems || [],
       isPublished: body.isPublished ?? true,
       publishedAt: body.isPublished ? new Date() : null,
     }).returning();
