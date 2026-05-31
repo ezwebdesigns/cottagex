@@ -7,7 +7,7 @@ import ImageUploader from '@/components/admin/ImageUploader';
 
 type HomepageHero = { tag: string; title: string; description: string; image: string };
 type DestItem = { name: string; properties: string; image: string };
-type GalleryTab = { name: string; category: string };
+type GalleryTab = { name: string; category: string; shortcode?: string };
 type HomepageDestinations = { title: string; description: string; ctaText: string; ctaLink: string; items: DestItem[] };
 type HomepageGallery = { title: string; description: string; tabs: GalleryTab[] };
 type HomepageSearch = { title: string; description: string };
@@ -183,24 +183,31 @@ export default function AdminSettingsPage() {
                 <h4 className="text-sm font-semibold text-gray-600 mb-3">Gallery Tabs</h4>
                 <div className="space-y-2">
                   {gallery.tabs.map((tab, i) => (
-                    <div key={i} className="flex gap-2 items-center">
-                      <input placeholder="Name (English)" value={tab.name} onChange={(e) => {
+                    <div key={i} className="flex flex-col gap-2 p-3 border border-gray-100 rounded-xl">
+                      <div className="flex gap-2 items-center">
+                        <input placeholder="Name (English)" value={tab.name} onChange={(e) => {
+                          const newTabs = [...gallery.tabs];
+                          newTabs[i] = { ...newTabs[i], name: e.target.value };
+                          setGallery({ ...gallery, tabs: newTabs });
+                        }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                        <input placeholder="Category (French)" value={tab.category} onChange={(e) => {
+                          const newTabs = [...gallery.tabs];
+                          newTabs[i] = { ...newTabs[i], category: e.target.value };
+                          setGallery({ ...gallery, tabs: newTabs });
+                        }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                        <button onClick={() => {
+                          const newTabs = gallery.tabs.filter((_, idx) => idx !== i);
+                          setGallery({ ...gallery, tabs: newTabs });
+                        }} className="text-xs text-red-500 hover:text-red-700">Remove</button>
+                      </div>
+                      <input placeholder="Shortcode (ex: [canada, all, 6])" value={tab.shortcode || ''} onChange={(e) => {
                         const newTabs = [...gallery.tabs];
-                        newTabs[i] = { ...newTabs[i], name: e.target.value };
+                        newTabs[i] = { ...newTabs[i], shortcode: e.target.value };
                         setGallery({ ...gallery, tabs: newTabs });
-                      }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
-                      <input placeholder="Category (French)" value={tab.category} onChange={(e) => {
-                        const newTabs = [...gallery.tabs];
-                        newTabs[i] = { ...newTabs[i], category: e.target.value };
-                        setGallery({ ...gallery, tabs: newTabs });
-                      }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
-                      <button onClick={() => {
-                        const newTabs = gallery.tabs.filter((_, idx) => idx !== i);
-                        setGallery({ ...gallery, tabs: newTabs });
-                      }} className="text-xs text-red-500 hover:text-red-700">Remove</button>
+                      }} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20 font-mono text-xs" />
                     </div>
                   ))}
-                  <button onClick={() => setGallery({ ...gallery, tabs: [...gallery.tabs, { name: '', category: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">
+                  <button onClick={() => setGallery({ ...gallery, tabs: [...gallery.tabs, { name: '', category: '', shortcode: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">
                     + Add Tab
                   </button>
                 </div>

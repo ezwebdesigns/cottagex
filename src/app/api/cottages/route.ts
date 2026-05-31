@@ -19,14 +19,6 @@ export async function GET(request: NextRequest) {
   const category     = searchParams.get('category') || ''
   const featuredOnly = searchParams.get('featured') === 'true'
 
-  // Validation basique
-  if (!slug && !province) {
-    return NextResponse.json(
-      { error: 'slug or province required' },
-      { status: 400 }
-    )
-  }
-
   if (limit < 1 || limit > 20) {
     return NextResponse.json(
       { error: 'limit must be between 1 and 20' },

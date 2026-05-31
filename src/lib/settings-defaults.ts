@@ -49,6 +49,7 @@ export type HomepageDestinations = {
 export type GalleryTab = {
   name: string;
   category: string;
+  shortcode?: string;
 };
 
 export type HomepageGallery = {
@@ -150,12 +151,12 @@ export const defaultSettings: Record<string, any> = {
     title: "Browse Recommended Cottages",
     description: "Handpicked cabins tailored to your favorite wilderness scenery.",
     tabs: [
-      { name: "All", category: "Tout" },
-      { name: "Lakefront", category: "Bord de l'eau" },
-      { name: "Secluded", category: "Isolé" },
-      { name: "Luxury", category: "Luxe" },
-      { name: "Pet Friendly", category: "Animaux acceptés" },
-      { name: "Spa", category: "Spa" },
+      { name: "Cottage rentals in Canada", category: "Chalets au Canada", shortcode: "[canada, all, 6]" },
+      { name: "Luxury Cottages", category: "Chalets de luxe", shortcode: "[canada, luxury, 6]" },
+      { name: "Pet Friendly Cottages", category: "Chalets acceptant les animaux", shortcode: "[canada, pet-friendly, 6]" },
+      { name: "Family Cottage Resorts", category: "Chalets familiaux", shortcode: "[canada, family, 6]" },
+      { name: "Lakefront Cottages", category: "Chalets en bord de lac", shortcode: "[canada, lakefront, 6]" },
+      { name: "Cottages with hot tub", category: "Chalets avec spa", shortcode: "[canada, hot-tub, 6]" },
     ],
   },
   homepage_search: {

@@ -25,10 +25,13 @@ function getPool() {
  * Basées sur les champs amenities (JSONB) et price_cad/rating
  */
 const CATEGORY_CONDITIONS = {
-  family:   `amenities @> '["Kid-friendly"]'`,
-  hotTub:   `(amenities @> '["Hot tub"]' OR amenities @> '["Spa"]')`,
-  lakefront:`(amenities @> '["Waterfront"]' OR amenities @> '["Beach access"]')`,
-  luxury:   `rating >= 4.5 AND price_cad >= 500`,
+  family:        `amenities @> '["Kid-friendly"]'`,
+  hotTub:        `(amenities @> '["Hot tub"]' OR amenities @> '["Spa"]')`,
+  'hot-tub':     `(amenities @> '["Hot tub"]' OR amenities @> '["Spa"]')`,
+  lakefront:     `(amenities @> '["Waterfront"]' OR amenities @> '["Beach access"]')`,
+  luxury:        `(rating >= 4.8 AND price_cad >= 600)`,
+  'pet-friendly':`amenities @> '["Pet-friendly"]'`,
+  all:           null,
 }
 
 /**
@@ -57,7 +60,7 @@ export async function getCottages({
   let   paramIndex = 1
 
   // Filtre destination
-  if (slug) {
+  if (slug && slug !== 'canada') {
     conditions.push(`slug = $${paramIndex++}`)
     params.push(slug)
   } else if (province) {
