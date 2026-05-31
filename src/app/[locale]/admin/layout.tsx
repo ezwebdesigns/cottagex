@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { usePathname, useRouter, useParams } from 'next/navigation';
 import { SessionProvider, signOut } from 'next-auth/react';
-import { LayoutDashboard, FileText, BookOpen, Image as ImageIcon, Mail, Settings as SettingsIcon, Building2, ExternalLink, ChevronLeft, ChevronRight, Menu, LogOut } from 'lucide-react';
+import { LayoutDashboard, FileText, BookOpen, Image as ImageIcon, Mail, Settings as SettingsIcon, Building2, User, ExternalLink, ChevronLeft, ChevronRight, Menu, LogOut } from 'lucide-react';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [collapsed, setCollapsed] = useState(true);
@@ -93,6 +93,12 @@ function AdminShell({
         </nav>
 
         <div className="p-2 border-t border-gray-200 space-y-1">
+          <a href={`/${locale}/admin/profile`} className={`flex items-center gap-3 w-full px-2 py-2.5 rounded-lg transition-colors ${
+            isActive(`/${locale}/admin/profile`) ? 'bg-[#1F51C6]/10 text-[#1F51C6]' : 'text-gray-600 hover:bg-gray-100'
+          }`} title="Profile">
+            <User className="w-5 h-5 shrink-0" />
+            <span className={`text-sm font-medium transition-opacity duration-300 ${collapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>Profile</span>
+          </a>
           <a href={`/${locale}`} target="_blank" className="flex items-center gap-3 w-full px-2 py-2.5 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" title="Visit Website">
             <ExternalLink className="w-5 h-5 shrink-0" />
             <span className={`text-sm font-medium transition-opacity duration-300 ${collapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>Visit Website</span>
