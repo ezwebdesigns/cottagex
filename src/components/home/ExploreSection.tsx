@@ -36,7 +36,7 @@ export default function ExploreSection({
   return (
     <>
       <section className="px-4 md:px-8 py-8 bg-white border-b border-slate-100">
-        <div className="max-w-4xl mx-auto text-center py-6">
+        <div className="max-w-4xl mx-auto text-left py-6">
           <h2 className="text-2xl md:text-3xl font-bold text-[#0B1B40] mb-3">
             {title}
           </h2>
@@ -56,7 +56,7 @@ export default function ExploreSection({
       <section className="px-4 md:px-8 py-10 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {items.map((item, i) => (
-            <div key={i} className="bg-[#1F51C6] p-8 rounded-3xl flex gap-4 items-start">
+            <div key={i} className="bg-[#0B1B40] p-8 rounded-3xl flex gap-4 items-start">
               <div className="p-3 bg-white text-[#1F51C6] rounded-2xl shrink-0">
                 {iconMap[item.icon] || <Compass size={24} />}
               </div>
