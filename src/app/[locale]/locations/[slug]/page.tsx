@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { db } from '@/lib/db';
-import { pages } from '@/db/schema';
+import { pages, siteSettings } from '@/db/schema';
 import { eq } from 'drizzle-orm';
+import { defaultSettings } from '@/lib/settings-defaults';
 import LocationTemplate from '@/templates/LocationTemplate';
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
@@ -91,5 +92,16 @@ export default async function LocationPage({ params }: Props) {
     console.error('Failed to fetch page data for', slug, e);
   }
 
-  return <LocationTemplate locale={locale} slug={slug} pageData={pageData} cottages={cottages} />;
+  let locationSettings = null;
+  try {
+    const sectionKey = `location_${slug}`;
+    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, sectionKey));
+    locationSettings = row?.data ?? defaultSettings[sectionKey] ?? null;
+  } catch (e) {
+    console.error('Failed to fetch location settings for', slug, e);
+  }
+
+  const name = getName(slug);
+
+  return <LocationTemplate locale={locale} slug={slug} pageData={pageData} locationSettings={locationSettings} name={name} cottages={cottages} />;
 }

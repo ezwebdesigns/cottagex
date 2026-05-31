@@ -11,50 +11,10 @@ type LocationTemplateProps = {
   locale: string;
   slug: string;
   pageData?: any;
+  locationSettings?: any;
+  name?: { en: string; fr: string };
   cottages?: any[];
 };
-
-const locationData: Record<string, {
-  name: string;
-  heroTitle: string;
-  heroSubtitle: string;
-  heroImage: string;
-  badge: string;
-  description: string;
-  highlightsTitle: string;
-  highlights: { icon: string; title: string; description: string }[];
-}> = {
-  ontario: {
-    name: 'Ontario',
-    heroTitle: 'Cottages to Rent in Ontario',
-    heroSubtitle: 'Find your perfect stay across Muskoka, Haliburton, the Kawarthas, and the scenic Bruce Peninsula.',
-    heroImage: 'https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=1500',
-    badge: 'Province of Lakes & Pines',
-    description: 'Ontario\'s cottage country is globally celebrated for its immense network of pristine freshwater lakes, spectacular granite cliffs, and deeply aromatic pine forests. From cozy rustic historic structures hidden deep inside the woods to luxurious modern architectural estates on the water, this beautiful province offers the quintessential North American nature escape for families and romantic couples alike.',
-    highlightsTitle: 'Finding Your Perfect Lakeside Haven',
-    highlights: [
-      { icon: 'Waves', title: 'The Country of 250,000 Lakes', description: 'Boating, paddling, and deep waterfront swimming off high wooden docks beneath gorgeous glowing horizons.' },
-      { icon: 'Trees', title: 'Boreal Forests & Parks', description: 'Hike along the rugged edges of the Bruce Peninsula trail system or explore the legendary canoe loops of Algonquin Park.' },
-      { icon: 'Compass', title: 'Accessible Wilderness', description: 'Peaceful, pristine lake houses located within a comfortable 2-to-4 hour scenic drive from Toronto and Ottawa.' },
-    ],
-  },
-};
-
-export default function LocationTemplate({ locale, slug, pageData, cottages }: LocationTemplateProps) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const data = locationData[slug] || {
-    name: slug.charAt(0).toUpperCase() + slug.slice(1),
-    heroTitle: `Cottages to Rent in ${slug.charAt(0).toUpperCase() + slug.slice(1)}`,
-    heroSubtitle: 'Find your perfect stay across this beautiful region.',
-    heroImage: 'https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=1500',
-    badge: 'Discover',
-    description: 'Explore this beautiful region and find your perfect cottage escape.',
-    highlightsTitle: 'Discover This Region',
-    highlights: [
-      { icon: 'Compass', title: 'Explore', description: 'Discover the beauty of this stunning region.' },
-    ],
-  };
 
 const iconMap: Record<string, React.ReactNode> = {
   Waves: <Waves size={24} />,
@@ -62,7 +22,41 @@ const iconMap: Record<string, React.ReactNode> = {
   Compass: <Compass size={24} />,
 };
 
-  const nameFromSlug = slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+function r(text: string, name: string) {
+  return text?.replace(/\{name\}/g, name) || '';
+}
+
+export default function LocationTemplate({ locale, slug, pageData, locationSettings, name: nameProp, cottages }: LocationTemplateProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const fallbackName = slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  const locName = nameProp?.en || fallbackName;
+
+  const s = locationSettings || {};
+  const hero = s.hero || {};
+  const intro = s.intro || {};
+  const featured = s.featured || {};
+  const explore = s.explore || {};
+  const search = s.search || {};
+
+  const heroTitle = hero.title || `Cottages to Rent in ${locName}`;
+  const heroSubtitle = hero.subtitle || 'Find your perfect stay across this beautiful region.';
+  const heroImage = hero.image || 'https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=1500';
+  const heroTag = hero.tag || 'Discover';
+  const introDesc = intro.description || 'Explore this beautiful region and find your perfect cottage escape.';
+  const introTitle = intro.highlightsTitle || 'Discover This Region';
+  const introSub = intro.subtitle || '';
+  const introHighlights = intro.highlights?.length ? intro.highlights : [{ icon: 'Compass', title: 'Explore', description: 'Discover the beauty of this stunning region.' }];
+  const featuredTitle = r(featured.title || `Featured {name} Cottages`, locName);
+  const featuredDesc = r(featured.description || 'Our latest handpicked recommendations for your upcoming wilderness stay.', locName);
+  const exploreTitle = pageData?.exploreTitle || explore.title || introTitle;
+  const exploreSub = pageData?.exploreSubtitle || explore.subtitle || introSub;
+  const exploreDesc = pageData?.exploreDescription || explore.description || introDesc;
+  const exploreItems = pageData?.exploreItems?.length ? pageData.exploreItems : explore.items?.length ? explore.items : introHighlights;
+  const searchTitle = r(search.title || `Search by City in {name}`, locName);
+  const searchDesc = r(search.description || 'Explore cottage listings categorized by local counties and lakes.', locName);
+
+  const nameFromSlug = locName;
 
   const displayCottages = useMemo(() => {
     if (cottages && cottages.length > 0) {
@@ -108,25 +102,25 @@ const iconMap: Record<string, React.ReactNode> = {
     <div className="animate-in fade-in duration-300">
       <BreadcrumbSchema items={[
         { name: 'Home', url: `/${locale}` },
-        { name: data.name, url: pathname },
+        { name: locName, url: pathname },
       ]} />
       <div className="px-4 md:px-8 py-6">
         <div
           className="relative min-h-[480px] rounded-[2rem] overflow-hidden flex flex-col justify-center items-center text-center px-4 py-12"
           style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(11, 27, 64, 0.45), rgba(11, 27, 64, 0.85)), url('${data.heroImage}')`,
+            backgroundImage: `linear-gradient(to bottom, rgba(11, 27, 64, 0.45), rgba(11, 27, 64, 0.85)), url('${heroImage}')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
         >
           <div className="bg-white/10 backdrop-blur-md text-white text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-4 border border-white/20">
-            {data.badge}
+            {heroTag}
           </div>
           <h1 className="text-3xl md:text-5xl font-extrabold text-white max-w-4xl leading-tight mb-4">
-            {data.heroTitle}
+            {heroTitle}
           </h1>
           <p className="text-blue-100 text-base md:text-lg mb-8 max-w-2xl font-light">
-            {data.heroSubtitle}
+            {heroSubtitle}
           </p>
           <div ref={egContainerRef} className="w-full max-w-[575px] mx-auto" />
         </div>
@@ -135,20 +129,22 @@ const iconMap: Record<string, React.ReactNode> = {
       <section className="px-4 md:px-8 py-8 bg-white border-b border-slate-100">
         <div className="max-w-4xl mx-auto text-center py-6">
           <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-6 font-light">
-            {data.description}
+            {introDesc}
           </p>
           <h2 className="text-2xl md:text-3xl font-bold text-[#0B1B40] mb-3">
-            {data.highlightsTitle}
+            {introTitle}
           </h2>
-          <p className="text-sm md:text-base text-[#1F51C6] leading-relaxed max-w-2xl mx-auto font-semibold">
-            We verify and curate high-performing wilderness accommodations, pairing travelers with secure booking links on VRBO and Expedia, entirely free of extra fees.
-          </p>
+          {introSub && (
+            <p className="text-sm md:text-base text-[#1F51C6] leading-relaxed max-w-2xl mx-auto font-semibold">
+              {introSub}
+            </p>
+          )}
         </div>
       </section>
 
       <section className="px-4 md:px-8 py-10 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {data.highlights.map((h, i) => (
+          {introHighlights.map((h: any, i: number) => (
             <div key={i} className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex gap-4 items-start">
               <div className="p-3 bg-blue-50 text-[#1F51C6] rounded-2xl">
                 {iconMap[h.icon] || <Compass size={24} />}
@@ -162,8 +158,8 @@ const iconMap: Record<string, React.ReactNode> = {
         </div>
 
         <div className="mb-16">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#0B1B40] mb-2">Featured {data.name} Cottages</h2>
-          <p className="text-slate-500 mb-8">Our latest handpicked recommendations for your upcoming wilderness stay.</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0B1B40] mb-2">{featuredTitle}</h2>
+          <p className="text-slate-500 mb-8">{featuredDesc}</p>
 
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
             {displayCottages.map((prop) => (
@@ -202,16 +198,16 @@ const iconMap: Record<string, React.ReactNode> = {
         </div>
 
         <ExploreSection
-          title={pageData?.exploreTitle || data.highlightsTitle}
-          subtitle={pageData?.exploreSubtitle || "We verify and curate high-performing wilderness accommodations, pairing travelers with secure booking links on VRBO and Expedia, entirely free of extra fees."}
-          description={pageData?.exploreDescription || data.description}
-          items={pageData?.exploreItems?.length ? pageData.exploreItems : data.highlights}
+          title={exploreTitle}
+          subtitle={exploreSub}
+          description={exploreDesc}
+          items={exploreItems}
         />
 
         <div className="mb-16">
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-extrabold text-[#0B1B40] tracking-tight">Search by City in {data.name}</h2>
-            <p className="text-slate-500 mt-2">Explore cottage listings categorized by local {data.name.toLowerCase()} counties and lakes.</p>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-[#0B1B40] tracking-tight">{searchTitle}</h2>
+            <p className="text-slate-500 mt-2">{searchDesc}</p>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
@@ -237,7 +233,7 @@ const iconMap: Record<string, React.ReactNode> = {
 
         <div className="bg-[#0B1B40] rounded-3xl p-8 md:p-12 text-white">
           <div className="max-w-3xl">
-            <h3 className="text-xl md:text-3xl font-bold mb-4">When is the Best Time to Visit {data.name}?</h3>
+            <h3 className="text-xl md:text-3xl font-bold mb-4">When is the Best Time to Visit {locName}?</h3>
             <p className="text-slate-300 mb-6 leading-relaxed">
               Summer (July & August) is prime time for lake swimming, jet skiing, and dock tanning. Autumn (September & October) is highly recommended for foliage sightseeing, while winter holds a quiet charm for snowshoeing, ice fishing, and reading next to blazing wood hearths.
             </p>
