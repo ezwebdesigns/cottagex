@@ -10,9 +10,10 @@ type HeroSectionProps = {
   tag?: string;
   title?: string;
   description?: string;
+  image?: string;
 };
 
-export default function HeroSection({ tag = "Official VRBO Affiliate Search", title = "Find Your Perfect Canadian Escape", description = "Instantly query and secure verified premium lake houses and mountain lodges." }: HeroSectionProps) {
+export default function HeroSection({ tag = "Official VRBO Affiliate Search", title = "Find Your Perfect Canadian Escape", description = "Instantly query and secure verified premium lake houses and mountain lodges.", image }: HeroSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -49,7 +50,7 @@ export default function HeroSection({ tag = "Official VRBO Affiliate Search", ti
       <div
         className="relative min-h-[500px] md:min-h-[580px] rounded-[2rem] overflow-hidden flex flex-col md:flex-row items-center justify-center text-center md:text-left px-4 md:px-12 py-12 gap-8 md:gap-12"
         style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(11, 27, 64, 0.45), rgba(11, 27, 64, 0.85)), url('https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&q=80&w=2000')`,
+          backgroundImage: `linear-gradient(to bottom, rgba(11, 27, 64, 0.45), rgba(11, 27, 64, 0.85)), url('${image || 'https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&q=80&w=2000'}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}

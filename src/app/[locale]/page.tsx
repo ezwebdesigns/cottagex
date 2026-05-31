@@ -40,7 +40,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <div>
-      <HeroSection tag={hero.tag} title={hero.title} description={hero.description} />
+      <HeroSection tag={hero.tag} title={hero.title} description={hero.description} image={hero.image} />
       <TrendingDestinations locale={locale} title={destinations.title} description={destinations.description} ctaText={destinations.ctaText} ctaLink={destinations.ctaLink} items={destinations.items} />
       <PropertyGallery title={gallery.title} description={gallery.description} tabs={gallery.tabs} />
       <SearchByCity title={search.title} description={search.description} />

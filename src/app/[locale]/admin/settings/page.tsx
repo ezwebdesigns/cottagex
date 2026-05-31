@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import { Save, Loader2, Settings as SettingsIcon, Home, Search, Image, Megaphone, Globe, ChevronDown, ChevronUp } from 'lucide-react';
 import ImageUploader from '@/components/admin/ImageUploader';
 
-type HomepageHero = { tag: string; title: string; description: string };
+type HomepageHero = { tag: string; title: string; description: string; image: string };
 type DestItem = { name: string; properties: string; image: string };
 type GalleryTab = { name: string; category: string };
 type HomepageDestinations = { title: string; description: string; ctaText: string; ctaLink: string; items: DestItem[] };
@@ -121,6 +121,7 @@ export default function AdminSettingsPage() {
               <Field label="Tag" value={hero.tag} onChange={(v) => setHero({ ...hero, tag: v })} />
               <Field label="Title" value={hero.title} onChange={(v) => setHero({ ...hero, title: v })} />
               <Field label="Description" value={hero.description} onChange={(v) => setHero({ ...hero, description: v })} textarea />
+              <ImageUploader label="Background Image" value={hero.image} onChange={(v) => setHero({ ...hero, image: v })} />
               <SaveButton onClick={() => saveSection('homepage_hero', hero)} saving={saving} />
             </CollapsibleSection>
           )}
@@ -153,11 +154,11 @@ export default function AdminSettingsPage() {
                         newItems[i] = { ...newItems[i], properties: e.target.value };
                         setDestinations({ ...destinations, items: newItems });
                       }} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
-                      <input placeholder="Image URL" value={item.image} onChange={(e) => {
+                      <ImageUploader label="Image" value={item.image} onChange={(v) => {
                         const newItems = [...destinations.items];
-                        newItems[i] = { ...newItems[i], image: e.target.value };
+                        newItems[i] = { ...newItems[i], image: v };
                         setDestinations({ ...destinations, items: newItems });
-                      }} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                      }} />
                     </div>
                   ))}
                   <button onClick={() => setDestinations({ ...destinations, items: [...destinations.items, { name: '', properties: '', image: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">
@@ -217,7 +218,7 @@ export default function AdminSettingsPage() {
               <Field label="Description" value={cta.description} onChange={(v) => setCta({ ...cta, description: v })} textarea />
               <Field label="Button Text" value={cta.buttonText} onChange={(v) => setCta({ ...cta, buttonText: v })} />
               <Field label="Button Link" value={cta.buttonLink} onChange={(v) => setCta({ ...cta, buttonLink: v })} />
-              <Field label="Image URL" value={cta.image} onChange={(v) => setCta({ ...cta, image: v })} />
+              <ImageUploader label="Image" value={cta.image} onChange={(v) => setCta({ ...cta, image: v })} />
               <SaveButton onClick={() => saveSection('homepage_cta', cta)} saving={saving} />
             </CollapsibleSection>
           )}
@@ -230,7 +231,7 @@ export default function AdminSettingsPage() {
           <div className="space-y-4">
             <Field label="Default Title" value={seo?.defaultTitle ?? ''} onChange={(v) => setSeo({ ...seo, defaultTitle: v })} />
             <Field label="Default Description" value={seo?.defaultDescription ?? ''} onChange={(v) => setSeo({ ...seo, defaultDescription: v })} textarea />
-            <Field label="OG Image URL" value={seo?.ogImage ?? ''} onChange={(v) => setSeo({ ...seo, ogImage: v })} />
+            <ImageUploader label="OG Image" value={seo?.ogImage ?? ''} onChange={(v) => setSeo({ ...seo, ogImage: v })} />
             <Field label="Google Analytics ID" value={seo?.googleAnalyticsId ?? ''} onChange={(v) => setSeo({ ...seo, googleAnalyticsId: v })} />
           </div>
           <SaveButton onClick={() => saveSection('seo', seo)} saving={saving} />
@@ -275,28 +276,64 @@ export default function AdminSettingsPage() {
           <h2 className="text-lg font-bold text-[#0B1B40] mb-6">Footer</h2>
           <div className="space-y-4">
             <Field label="Description" value={footer?.description ?? ''} onChange={(v) => setFooter({ ...footer, description: v })} textarea />
-            <Field label="Email" value={footer?.email ?? ''} onChange={(v) => setFooter({ ...footer, email: v })} />
+
             <div>
-              <h4 className="text-sm font-semibold text-gray-600 mb-3">Social Links</h4>
-              <div className="space-y-3">
-                {(footer?.socialLinks ?? []).map((link: any, i: number) => (
+              <h4 className="text-sm font-semibold text-gray-600 mb-3">DISCOVER</h4>
+              <div className="space-y-2">
+                {(footer?.discover ?? []).map((item: any, i: number) => (
                   <div key={i} className="flex gap-2 items-center">
-                    <input placeholder="Name (e.g. Facebook)" value={link.name} onChange={(e) => {
-                      const newLinks = [...footer.socialLinks];
-                      newLinks[i] = { ...newLinks[i], name: e.target.value };
-                      setFooter({ ...footer, socialLinks: newLinks });
+                    <input placeholder="Label" value={item.label} onChange={(e) => {
+                      const arr = [...footer.discover]; arr[i] = { ...arr[i], label: e.target.value };
+                      setFooter({ ...footer, discover: arr });
                     }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
-                    <input placeholder="URL" value={link.url} onChange={(e) => {
-                      const newLinks = [...footer.socialLinks];
-                      newLinks[i] = { ...newLinks[i], url: e.target.value };
-                      setFooter({ ...footer, socialLinks: newLinks });
+                    <input placeholder="href (use {locale})" value={item.href} onChange={(e) => {
+                      const arr = [...footer.discover]; arr[i] = { ...arr[i], href: e.target.value };
+                      setFooter({ ...footer, discover: arr });
                     }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
-                    <button onClick={() => setFooter({ ...footer, socialLinks: footer.socialLinks.filter((_: any, idx: number) => idx !== i) })} className="text-xs text-red-500 hover:text-red-700">Remove</button>
+                    <button onClick={() => setFooter({ ...footer, discover: footer.discover.filter((_: any, idx: number) => idx !== i) })} className="text-xs text-red-500 hover:text-red-700">Remove</button>
                   </div>
                 ))}
-                <button onClick={() => setFooter({ ...footer, socialLinks: [...footer.socialLinks, { name: '', url: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">
-                  + Add Social Link
-                </button>
+                <button onClick={() => setFooter({ ...footer, discover: [...(footer?.discover || []), { label: '', href: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">+ Add Link</button>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-semibold text-gray-600 mb-3">QUICK LINKS</h4>
+              <div className="space-y-2">
+                {(footer?.quickLinks ?? []).map((item: any, i: number) => (
+                  <div key={i} className="flex gap-2 items-center">
+                    <input placeholder="Label" value={item.label} onChange={(e) => {
+                      const arr = [...footer.quickLinks]; arr[i] = { ...arr[i], label: e.target.value };
+                      setFooter({ ...footer, quickLinks: arr });
+                    }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                    <input placeholder="href (use {locale})" value={item.href} onChange={(e) => {
+                      const arr = [...footer.quickLinks]; arr[i] = { ...arr[i], href: e.target.value };
+                      setFooter({ ...footer, quickLinks: arr });
+                    }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                    <button onClick={() => setFooter({ ...footer, quickLinks: footer.quickLinks.filter((_: any, idx: number) => idx !== i) })} className="text-xs text-red-500 hover:text-red-700">Remove</button>
+                  </div>
+                ))}
+                <button onClick={() => setFooter({ ...footer, quickLinks: [...(footer?.quickLinks || []), { label: '', href: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">+ Add Link</button>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-semibold text-gray-600 mb-3">ABOUT</h4>
+              <div className="space-y-2">
+                {(footer?.about ?? []).map((item: any, i: number) => (
+                  <div key={i} className="flex gap-2 items-center">
+                    <input placeholder="Label" value={item.label} onChange={(e) => {
+                      const arr = [...footer.about]; arr[i] = { ...arr[i], label: e.target.value };
+                      setFooter({ ...footer, about: arr });
+                    }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                    <input placeholder="href (use {locale})" value={item.href} onChange={(e) => {
+                      const arr = [...footer.about]; arr[i] = { ...arr[i], href: e.target.value };
+                      setFooter({ ...footer, about: arr });
+                    }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                    <button onClick={() => setFooter({ ...footer, about: footer.about.filter((_: any, idx: number) => idx !== i) })} className="text-xs text-red-500 hover:text-red-700">Remove</button>
+                  </div>
+                ))}
+                <button onClick={() => setFooter({ ...footer, about: [...(footer?.about || []), { label: '', href: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">+ Add Link</button>
               </div>
             </div>
           </div>

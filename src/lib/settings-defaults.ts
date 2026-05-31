@@ -19,14 +19,16 @@ export type HeaderSettings = {
 
 export type FooterSettings = {
   description: string;
-  email: string;
-  socialLinks: { name: string; url: string }[];
+  discover: { label: string; href: string }[];
+  quickLinks: { label: string; href: string }[];
+  about: { label: string; href: string }[];
 };
 
 export type HomepageHero = {
   tag: string;
   title: string;
   description: string;
+  image: string;
 };
 
 export type DestinationItem = {
@@ -91,17 +93,31 @@ export const defaultSettings: Record<string, any> = {
   },
   footer: {
     description: "Curated Canadian cottage rentals. Discover your perfect escape with Cottage Escape — your trusted guide to premium lake houses, mountain lodges, and wilderness cabins.",
-    email: "socialmediacanada@gmail.com",
-    socialLinks: [
-      { name: "Facebook", url: "#" },
-      { name: "Instagram", url: "#" },
-      { name: "Twitter", url: "#" },
+    discover: [
+      { label: "All Cottages", href: "/{locale}" },
+      { label: "Ontario Region", href: "/{locale}/locations/ontario" },
+      { label: "Quebec Region", href: "/{locale}/locations/quebec" },
+      { label: "Western Canada", href: "/{locale}/locations/british-columbia" },
+      { label: "Lakefront Cabins", href: "/{locale}" },
+    ],
+    quickLinks: [
+      { label: "Terms of Use", href: "/{locale}/p/terms" },
+      { label: "Affiliate Disclosure", href: "/{locale}/p/terms" },
+      { label: "Privacy Policy", href: "/{locale}/p/terms" },
+      { label: "Help Center", href: "/{locale}/contact" },
+    ],
+    about: [
+      { label: "Our Story", href: "/{locale}/about" },
+      { label: "Contact Us", href: "/{locale}/contact" },
+      { label: "Affiliation Partnership", href: "/{locale}/contact" },
+      { label: "Moderator Portal", href: "/{locale}/admin" },
     ],
   },
   homepage_hero: {
     tag: "Official VRBO Affiliate Search",
     title: "Find Your Perfect Canadian Escape",
     description: "Instantly query and secure verified premium lake houses and mountain lodges.",
+    image: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&q=80&w=2000",
   },
   homepage_destinations: {
     title: "Trending Destinations",
