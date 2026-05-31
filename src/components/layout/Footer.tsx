@@ -8,6 +8,7 @@ type FooterProps = {
   locale: string;
   footerData?: {
     description: string;
+    logo: string;
     discover: { label: string; href: string }[];
     quickLinks: { label: string; href: string }[];
     about: { label: string; href: string }[];
@@ -25,7 +26,7 @@ export default function Footer({ locale, footerData }: FooterProps) {
       .catch(() => {});
   }, [footerData]);
 
-  const f = data || footerData || { description: '', discover: [], quickLinks: [], about: [] };
+  const f = data || footerData || { description: '', logo: '', discover: [], quickLinks: [], about: [] };
   const interpolate = (text: string) => text?.replace(/\{locale\}/g, locale);
 
   return (
@@ -33,9 +34,15 @@ export default function Footer({ locale, footerData }: FooterProps) {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           <div>
-            <Link href={`/${locale}`} className="flex items-center gap-2 font-bold text-xl mb-6">
-              <BrandFavicon className="w-8 h-8" />
-              <span>Cottage<span className="text-[#1F51C6]">Escape</span></span>
+            <Link href={`/${locale}`} className="flex items-center gap-2 mb-6">
+              {f.logo ? (
+                <img src={f.logo} alt="Logo" className="h-12 w-auto" />
+              ) : (
+                <span className="flex items-center gap-2 font-bold text-xl">
+                  <BrandFavicon className="w-8 h-8" />
+                  <span>Cottage<span className="text-[#1F51C6]">Escape</span></span>
+                </span>
+              )}
             </Link>
             <p className="text-blue-100/70 text-sm mb-6 max-w-xs leading-relaxed">
               {f.description || 'Your premier directory for comparing beautiful wilderness retreats in Canada.'}
