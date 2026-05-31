@@ -172,42 +172,6 @@ export const defaultSettings: Record<string, any> = {
       { icon: "Compass", title: "Accessible Wilderness", description: "Peaceful, pristine lake houses located within a comfortable 2-to-4 hour scenic drive from Toronto and Ottawa." },
     ],
   },
-  location_ontario: {
-    hero: {
-      tag: "Province of Lakes & Pines",
-      title: "Cottages to Rent in Ontario",
-      subtitle: "Find your perfect stay across Muskoka, Haliburton, the Kawarthas, and the scenic Bruce Peninsula.",
-      image: "https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=1500",
-    },
-    intro: {
-      description: "Ontario's cottage country is globally celebrated for its immense network of pristine freshwater lakes, spectacular granite cliffs, and deeply aromatic pine forests. From cozy rustic historic structures hidden deep inside the woods to luxurious modern architectural estates on the water, this beautiful province offers the quintessential North American nature escape for families and romantic couples alike.",
-      highlightsTitle: "Finding Your Perfect Lakeside Haven",
-      subtitle: "We verify and curate high-performing wilderness accommodations, pairing travelers with secure booking links on VRBO and Expedia, entirely free of extra fees.",
-      highlights: [
-        { icon: "Waves", title: "The Country of 250,000 Lakes", description: "Boating, paddling, and deep waterfront swimming off high wooden docks beneath gorgeous glowing horizons." },
-        { icon: "Trees", title: "Boreal Forests & Parks", description: "Hike along the rugged edges of the Bruce Peninsula trail system or explore the legendary canoe loops of Algonquin Park." },
-        { icon: "Compass", title: "Accessible Wilderness", description: "Peaceful, pristine lake houses located within a comfortable 2-to-4 hour scenic drive from Toronto and Ottawa." },
-      ],
-    },
-    featured: {
-      title: "Featured {name} Cottages",
-      description: "Our latest handpicked recommendations for your upcoming wilderness stay.",
-    },
-    explore: {
-      title: "Finding Your Perfect Lakeside Haven",
-      subtitle: "We verify and curate high-performing wilderness accommodations, pairing travelers with secure booking links on VRBO and Expedia, entirely free of extra fees.",
-      description: "Ontario's cottage country is globally celebrated for its immense network of pristine freshwater lakes, spectacular granite cliffs, and deeply aromatic pine forests.",
-      items: [
-        { icon: "Waves", title: "The Country of 250,000 Lakes", description: "Boating, paddling, and deep waterfront swimming off high wooden docks beneath gorgeous glowing horizons." },
-        { icon: "Trees", title: "Boreal Forests & Parks", description: "Hike along the rugged edges of the Bruce Peninsula trail system or explore the legendary canoe loops of Algonquin Park." },
-        { icon: "Compass", title: "Accessible Wilderness", description: "Peaceful, pristine lake houses located within a comfortable 2-to-4 hour scenic drive from Toronto and Ottawa." },
-      ],
-    },
-    search: {
-      title: "Search by City in {name}",
-      description: "Explore cottage listings categorized by local {name} counties and lakes.",
-    },
-  },
   homepage_cta: {
     title: "Own a Beautiful Cabin?\nPartner with us seamlessly.",
     description: "Expand your booking volume by listing your Canadian property inside our premium recommended guides.",

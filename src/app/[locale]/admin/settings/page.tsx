@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
-import { Save, Loader2, Settings as SettingsIcon, Home, Search, Image, Megaphone, Globe, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
+import { Save, Loader2, Settings as SettingsIcon, Home, Search, Image, Megaphone, Globe, ChevronDown, ChevronUp } from 'lucide-react';
 import ImageUploader from '@/components/admin/ImageUploader';
 
 type HomepageHero = { tag: string; title: string; description: string; image: string };
@@ -15,12 +15,9 @@ type ExploreItem = { icon: string; title: string; description: string };
 type HomepageExplore = { title: string; description: string; subtitle: string; items: ExploreItem[] };
 type HomepageCTA = { title: string; description: string; buttonText: string; buttonLink: string; image: string };
 
-const LOCATION_SLUGS = ['ontario', 'quebec', 'muskoka', 'haliburton', 'kawarthas', 'bruce-peninsula'];
-
 const tabs = [
   { id: 'general', label: 'General', icon: SettingsIcon },
   { id: 'homepage', label: 'Homepage', icon: Home },
-  { id: 'locations', label: 'Locations', icon: MapPin },
   { id: 'seo', label: 'SEO', icon: Globe },
   { id: 'header', label: 'Header', icon: Image },
   { id: 'footer', label: 'Footer', icon: Megaphone },
@@ -44,8 +41,6 @@ export default function AdminSettingsPage() {
   const [cta, setCta] = useState<HomepageCTA | null>(null);
 
   const [openHomeSection, setOpenHomeSection] = useState<string>('hero');
-  const [locationSlug, setLocationSlug] = useState('ontario');
-  const [locationData, setLocationData] = useState<any>(null);
 
   const fetchSection = useCallback(async (section: string) => {
     const res = await fetch(`/api/admin/settings?section=${section}`);
@@ -67,9 +62,6 @@ export default function AdminSettingsPage() {
     fetchSection('homepage_cta').then(setCta);
   }, [fetchSection]);
 
-  useEffect(() => {
-    fetchSection(`location_${locationSlug}`).then(setLocationData);
-  }, [fetchSection, locationSlug]);
 
   const saveSection = async (section: string, data: any) => {
     setSaving(true);
@@ -270,81 +262,6 @@ export default function AdminSettingsPage() {
               <ImageUploader label="Image" value={cta.image} onChange={(v) => setCta({ ...cta, image: v })} />
               <SaveButton onClick={() => saveSection('homepage_cta', cta)} saving={saving} />
             </CollapsibleSection>
-          )}
-        </div>
-      )}
-
-      {activeTab === 'locations' && (
-        <div className="max-w-3xl space-y-6">
-          <div className="flex items-center gap-4 mb-2">
-            <label className="text-sm font-semibold text-gray-600">Location:</label>
-            <select value={locationSlug} onChange={(e) => setLocationSlug(e.target.value)}
-              className="px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20 text-sm">
-              {LOCATION_SLUGS.map((slug) => (
-                <option key={slug} value={slug}>{slug.charAt(0).toUpperCase() + slug.slice(1).replace(/-/g, ' ')}</option>
-              ))}
-            </select>
-          </div>
-
-          {locationData && (
-            <>
-              <CollapsibleSection title="Hero Section" id="loc-hero" isOpen={true} onToggle={() => {}}>
-                <Field label="Tag" value={locationData.hero?.tag ?? ''} onChange={(v) => setLocationData({ ...locationData, hero: { ...locationData.hero, tag: v } })} />
-                <Field label="Title" value={locationData.hero?.title ?? ''} onChange={(v) => setLocationData({ ...locationData, hero: { ...locationData.hero, title: v } })} />
-                <Field label="Subtitle" value={locationData.hero?.subtitle ?? ''} onChange={(v) => setLocationData({ ...locationData, hero: { ...locationData.hero, subtitle: v } })} textarea />
-                <ImageUploader label="Background Image" value={locationData.hero?.image ?? ''} onChange={(v) => setLocationData({ ...locationData, hero: { ...locationData.hero, image: v } })} />
-                <SaveButton onClick={() => saveSection(`location_${locationSlug}`, locationData)} saving={saving} />
-              </CollapsibleSection>
-
-              <CollapsibleSection title="Intro Section" id="loc-intro" isOpen={false} onToggle={() => {}}>
-                <Field label="Description" value={locationData.intro?.description ?? ''} onChange={(v) => setLocationData({ ...locationData, intro: { ...locationData.intro, description: v } })} textarea />
-                <Field label="Highlights Title" value={locationData.intro?.highlightsTitle ?? ''} onChange={(v) => setLocationData({ ...locationData, intro: { ...locationData.intro, highlightsTitle: v } })} />
-                <Field label="Subtitle" value={locationData.intro?.subtitle ?? ''} onChange={(v) => setLocationData({ ...locationData, intro: { ...locationData.intro, subtitle: v } })} textarea />
-                <div>
-                  <h4 className="text-sm font-semibold text-gray-600 mb-3">Highlight Cards</h4>
-                  {(locationData.intro?.highlights ?? []).map((item: any, i: number) => (
-                    <div key={i} className="border border-gray-200 rounded-xl p-4 mb-4 space-y-3">
-                      <select value={item.icon} onChange={(e) => {
-                        const arr = [...locationData.intro.highlights]; arr[i] = { ...arr[i], icon: e.target.value };
-                        setLocationData({ ...locationData, intro: { ...locationData.intro, highlights: arr } });
-                      }} className="px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20">
-                        {['Waves','Trees','Compass','MapPin','Mountain','TreePine','Sunrise'].map(ic => <option key={ic} value={ic}>{ic}</option>)}
-                      </select>
-                      <input placeholder="Title" value={item.title} onChange={(e) => {
-                        const arr = [...locationData.intro.highlights]; arr[i] = { ...arr[i], title: e.target.value };
-                        setLocationData({ ...locationData, intro: { ...locationData.intro, highlights: arr } });
-                      }} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
-                      <textarea placeholder="Description" value={item.description} onChange={(e) => {
-                        const arr = [...locationData.intro.highlights]; arr[i] = { ...arr[i], description: e.target.value };
-                        setLocationData({ ...locationData, intro: { ...locationData.intro, highlights: arr } });
-                      }} rows={2} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
-                      <button onClick={() => setLocationData({ ...locationData, intro: { ...locationData.intro, highlights: locationData.intro.highlights.filter((_: any, idx: number) => idx !== i) } })} className="text-xs text-red-500 hover:text-red-700">Remove</button>
-                    </div>
-                  ))}
-                  <button onClick={() => setLocationData({ ...locationData, intro: { ...locationData.intro, highlights: [...(locationData.intro?.highlights || []), { icon: 'Compass', title: '', description: '' }] } })} className="text-sm text-[#1F51C6] font-semibold hover:underline">+ Add Card</button>
-                </div>
-                <SaveButton onClick={() => saveSection(`location_${locationSlug}`, locationData)} saving={saving} />
-              </CollapsibleSection>
-
-              <CollapsibleSection title="Featured Section" id="loc-featured" isOpen={false} onToggle={() => {}}>
-                <Field label="Title" value={locationData.featured?.title ?? ''} onChange={(v) => setLocationData({ ...locationData, featured: { ...locationData.featured, title: v } })} />
-                <Field label="Description" value={locationData.featured?.description ?? ''} onChange={(v) => setLocationData({ ...locationData, featured: { ...locationData.featured, description: v } })} textarea />
-                <SaveButton onClick={() => saveSection(`location_${locationSlug}`, locationData)} saving={saving} />
-              </CollapsibleSection>
-
-              <CollapsibleSection title="Explore Section" id="loc-explore" isOpen={false} onToggle={() => {}}>
-                <Field label="Title" value={locationData.explore?.title ?? ''} onChange={(v) => setLocationData({ ...locationData, explore: { ...locationData.explore, title: v } })} />
-                <Field label="Subtitle" value={locationData.explore?.subtitle ?? ''} onChange={(v) => setLocationData({ ...locationData, explore: { ...locationData.explore, subtitle: v } })} textarea />
-                <Field label="Description" value={locationData.explore?.description ?? ''} onChange={(v) => setLocationData({ ...locationData, explore: { ...locationData.explore, description: v } })} textarea />
-                <SaveButton onClick={() => saveSection(`location_${locationSlug}`, locationData)} saving={saving} />
-              </CollapsibleSection>
-
-              <CollapsibleSection title="Search Section" id="loc-search" isOpen={false} onToggle={() => {}}>
-                <Field label="Title" value={locationData.search?.title ?? ''} onChange={(v) => setLocationData({ ...locationData, search: { ...locationData.search, title: v } })} />
-                <Field label="Description" value={locationData.search?.description ?? ''} onChange={(v) => setLocationData({ ...locationData, search: { ...locationData.search, description: v } })} textarea />
-                <SaveButton onClick={() => saveSection(`location_${locationSlug}`, locationData)} saving={saving} />
-              </CollapsibleSection>
-            </>
           )}
         </div>
       )}

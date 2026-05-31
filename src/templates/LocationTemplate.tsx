@@ -11,7 +11,6 @@ type LocationTemplateProps = {
   locale: string;
   slug: string;
   pageData?: any;
-  locationSettings?: any;
   name?: { en: string; fr: string };
   cottages?: any[];
 };
@@ -26,18 +25,18 @@ function r(text: string, name: string) {
   return text?.replace(/\{name\}/g, name) || '';
 }
 
-export default function LocationTemplate({ locale, slug, pageData, locationSettings, name: nameProp, cottages }: LocationTemplateProps) {
+export default function LocationTemplate({ locale, slug, pageData, name: nameProp, cottages }: LocationTemplateProps) {
   const router = useRouter();
   const pathname = usePathname();
   const fallbackName = slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   const locName = nameProp?.en || fallbackName;
 
-  const s = locationSettings || {};
-  const hero = s.hero || {};
-  const intro = s.intro || {};
-  const featured = s.featured || {};
-  const explore = s.explore || {};
-  const search = s.search || {};
+  const ld = pageData?.locationData || {};
+  const hero = ld.hero || {};
+  const intro = ld.intro || {};
+  const featured = ld.featured || {};
+  const explore = ld.explore || {};
+  const search = ld.search || {};
 
   const heroTitle = hero.title || `Cottages to Rent in ${locName}`;
   const heroSubtitle = hero.subtitle || 'Find your perfect stay across this beautiful region.';

@@ -28,6 +28,7 @@ export async function POST(request: Request) {
       exploreSubtitle: body.exploreSubtitle,
       exploreDescription: body.exploreDescription,
       exploreItems: body.exploreItems || [],
+      locationData: body.locationData || {},
       isPublished: body.isPublished ?? true,
       publishedAt: body.isPublished ? new Date() : null,
     }).returning();

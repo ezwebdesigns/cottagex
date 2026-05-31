@@ -46,6 +46,7 @@ export const pages = pgTable('pages', {
   exploreSubtitle: varchar('explore_subtitle', { length: 255 }),
   exploreDescription: text('explore_description'),
   exploreItems: json('explore_items').default([]),
+  locationData: json('location_data').default({}),
   isPublished: boolean('is_published').default(true),
   publishedAt: timestamp('published_at'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
