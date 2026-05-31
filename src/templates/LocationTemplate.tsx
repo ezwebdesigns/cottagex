@@ -121,7 +121,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
           <p className="text-blue-100 text-base md:text-lg mb-8 max-w-2xl font-light">
             {heroSubtitle}
           </p>
-          <div ref={egContainerRef} className="w-full max-w-[575px] mx-auto" />
+          <div className="w-full max-w-[575px] mx-auto rounded-[2rem] overflow-hidden"><div ref={egContainerRef} /></div>
         </div>
       </div>
 
