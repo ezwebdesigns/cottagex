@@ -11,6 +11,8 @@ type GalleryTab = { name: string; category: string };
 type HomepageDestinations = { title: string; description: string; ctaText: string; ctaLink: string; items: DestItem[] };
 type HomepageGallery = { title: string; description: string; tabs: GalleryTab[] };
 type HomepageSearch = { title: string; description: string };
+type ExploreItem = { icon: string; title: string; description: string };
+type HomepageExplore = { title: string; description: string; subtitle: string; items: ExploreItem[] };
 type HomepageCTA = { title: string; description: string; buttonText: string; buttonLink: string; image: string };
 
 const tabs = [
@@ -35,6 +37,7 @@ export default function AdminSettingsPage() {
   const [destinations, setDestinations] = useState<HomepageDestinations | null>(null);
   const [gallery, setGallery] = useState<HomepageGallery | null>(null);
   const [search, setSearch] = useState<HomepageSearch | null>(null);
+  const [explore, setExplore] = useState<HomepageExplore | null>(null);
   const [cta, setCta] = useState<HomepageCTA | null>(null);
 
   const [openHomeSection, setOpenHomeSection] = useState<string>('hero');
@@ -55,6 +58,7 @@ export default function AdminSettingsPage() {
     fetchSection('homepage_destinations').then(setDestinations);
     fetchSection('homepage_gallery').then(setGallery);
     fetchSection('homepage_search').then(setSearch);
+    fetchSection('homepage_explore').then(setExplore);
     fetchSection('homepage_cta').then(setCta);
   }, [fetchSection]);
 
@@ -212,6 +216,42 @@ export default function AdminSettingsPage() {
             </CollapsibleSection>
           )}
 
+          {explore && (
+            <CollapsibleSection title="Explore Section" id="explore" isOpen={openHomeSection === 'explore'} onToggle={() => setOpenHomeSection(openHomeSection === 'explore' ? '' : 'explore')}>
+              <Field label="Title" value={explore.title} onChange={(v) => setExplore({ ...explore, title: v })} />
+              <Field label="Description" value={explore.description} onChange={(v) => setExplore({ ...explore, description: v })} textarea />
+              <Field label="Subtitle" value={explore.subtitle} onChange={(v) => setExplore({ ...explore, subtitle: v })} textarea />
+              <div>
+                <h4 className="text-sm font-semibold text-gray-600 mb-3">Items</h4>
+                {explore.items.map((item, i) => (
+                  <div key={i} className="border border-gray-200 rounded-xl p-4 mb-4 space-y-3">
+                    <div className="flex gap-2">
+                      <select value={item.icon} onChange={(e) => {
+                        const arr = [...explore.items]; arr[i] = { ...arr[i], icon: e.target.value };
+                        setExplore({ ...explore, items: arr });
+                      }} className="px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20">
+                        {['Waves', 'Trees', 'Compass', 'MapPin', 'Mountain', 'TreePine', 'Sunrise'].map(icon => (
+                          <option key={icon} value={icon}>{icon}</option>
+                        ))}
+                      </select>
+                      <input placeholder="Title" value={item.title} onChange={(e) => {
+                        const arr = [...explore.items]; arr[i] = { ...arr[i], title: e.target.value };
+                        setExplore({ ...explore, items: arr });
+                      }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                    </div>
+                    <textarea placeholder="Description" value={item.description} onChange={(e) => {
+                      const arr = [...explore.items]; arr[i] = { ...arr[i], description: e.target.value };
+                      setExplore({ ...explore, items: arr });
+                    }} rows={2} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                    <button onClick={() => setExplore({ ...explore, items: explore.items.filter((_, idx) => idx !== i) })} className="text-xs text-red-500 hover:text-red-700">Remove</button>
+                  </div>
+                ))}
+                <button onClick={() => setExplore({ ...explore, items: [...explore.items, { icon: 'Compass', title: '', description: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">+ Add Item</button>
+              </div>
+              <SaveButton onClick={() => saveSection('homepage_explore', explore)} saving={saving} />
+            </CollapsibleSection>
+          )}
+
           {cta && (
             <CollapsibleSection title="CTA Section" id="cta" isOpen={openHomeSection === 'cta'} onToggle={() => setOpenHomeSection(openHomeSection === 'cta' ? '' : 'cta')}>
               <Field label="Title" value={cta.title} onChange={(v) => setCta({ ...cta, title: v })} />
@@ -276,6 +316,7 @@ export default function AdminSettingsPage() {
           <h2 className="text-lg font-bold text-[#0B1B40] mb-6">Footer</h2>
           <div className="space-y-4">
             <Field label="Description" value={footer?.description ?? ''} onChange={(v) => setFooter({ ...footer, description: v })} textarea />
+            <ImageUploader label="Logo" value={footer?.logo ?? ''} onChange={(v) => setFooter({ ...footer, logo: v })} />
 
             <div>
               <h4 className="text-sm font-semibold text-gray-600 mb-3">DISCOVER</h4>

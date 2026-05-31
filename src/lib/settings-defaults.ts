@@ -19,6 +19,7 @@ export type HeaderSettings = {
 
 export type FooterSettings = {
   description: string;
+  logo: string;
   discover: { label: string; href: string }[];
   quickLinks: { label: string; href: string }[];
   about: { label: string; href: string }[];
@@ -61,6 +62,19 @@ export type HomepageSearch = {
   description: string;
 };
 
+export type ExploreItem = {
+  icon: string;
+  title: string;
+  description: string;
+};
+
+export type HomepageExplore = {
+  title: string;
+  description: string;
+  subtitle: string;
+  items: ExploreItem[];
+};
+
 export type HomepageCTA = {
   title: string;
   description: string;
@@ -93,6 +107,7 @@ export const defaultSettings: Record<string, any> = {
   },
   footer: {
     description: "Curated Canadian cottage rentals. Discover your perfect escape with Cottage Escape — your trusted guide to premium lake houses, mountain lodges, and wilderness cabins.",
+    logo: "",
     discover: [
       { label: "All Cottages", href: "/{locale}" },
       { label: "Ontario Region", href: "/{locale}/locations/ontario" },
@@ -146,6 +161,16 @@ export const defaultSettings: Record<string, any> = {
   homepage_search: {
     title: "Search by City and Category",
     description: "Quickly jump into active curated rentals across major Canadian regions.",
+  },
+  homepage_explore: {
+    title: "Finding Your Perfect Lakeside Haven",
+    description: "Ontario's cottage country is globally celebrated for its immense network of pristine freshwater lakes, spectacular granite cliffs, and deeply aromatic pine forests. From cozy rustic historic structures hidden deep inside the woods to luxurious modern architectural estates on the water, this beautiful province offers the quintessential North American nature escape for families and romantic couples alike.",
+    subtitle: "We verify and curate high-performing wilderness accommodations, pairing travelers with secure booking links on VRBO and Expedia, entirely free of extra fees.",
+    items: [
+      { icon: "Waves", title: "The Country of 250,000 Lakes", description: "Boating, paddling, and deep waterfront swimming off high wooden docks beneath gorgeous glowing horizons." },
+      { icon: "Trees", title: "Boreal Forests & Parks", description: "Hike along the rugged edges of the Bruce Peninsula trail system or explore the legendary canoe loops of Algonquin Park." },
+      { icon: "Compass", title: "Accessible Wilderness", description: "Peaceful, pristine lake houses located within a comfortable 2-to-4 hour scenic drive from Toronto and Ottawa." },
+    ],
   },
   homepage_cta: {
     title: "Own a Beautiful Cabin?\nPartner with us seamlessly.",
