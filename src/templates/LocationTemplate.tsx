@@ -2,7 +2,7 @@
 
 import { useRouter, usePathname } from 'next/navigation';
 import { useMemo, useState, useEffect, useRef } from 'react';
-import { Star, ExternalLink, ChevronRight, BookOpen, CalendarDays, Clock, X } from 'lucide-react';
+import { Star, Waves, Trees, Compass, ExternalLink, ChevronRight, BookOpen, CalendarDays, Clock, X } from 'lucide-react';
 import ExploreSection from '@/components/home/ExploreSection';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { initialProperties, ontarioSearchData } from '@/lib/mock-data';
@@ -55,6 +55,12 @@ export default function LocationTemplate({ locale, slug, pageData, cottages }: L
       { icon: 'Compass', title: 'Explore', description: 'Discover the beauty of this stunning region.' },
     ],
   };
+
+const iconMap: Record<string, React.ReactNode> = {
+  Waves: <Waves size={24} />,
+  Trees: <Trees size={24} />,
+  Compass: <Compass size={24} />,
+};
 
   const nameFromSlug = slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 
@@ -126,14 +132,34 @@ export default function LocationTemplate({ locale, slug, pageData, cottages }: L
         </div>
       </div>
 
-      <ExploreSection
-        title={pageData?.exploreTitle || data.highlightsTitle}
-        subtitle={pageData?.exploreSubtitle || "We verify and curate high-performing wilderness accommodations, pairing travelers with secure booking links on VRBO and Expedia, entirely free of extra fees."}
-        description={pageData?.exploreDescription || data.description}
-        items={pageData?.exploreItems?.length ? pageData.exploreItems : data.highlights}
-      />
+      <section className="px-4 md:px-8 py-8 bg-white border-b border-slate-100">
+        <div className="max-w-4xl mx-auto text-center py-6">
+          <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-6 font-light">
+            {data.description}
+          </p>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0B1B40] mb-3">
+            {data.highlightsTitle}
+          </h2>
+          <p className="text-sm md:text-base text-[#1F51C6] leading-relaxed max-w-2xl mx-auto font-semibold">
+            We verify and curate high-performing wilderness accommodations, pairing travelers with secure booking links on VRBO and Expedia, entirely free of extra fees.
+          </p>
+        </div>
+      </section>
 
       <section className="px-4 md:px-8 py-10 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {data.highlights.map((h, i) => (
+            <div key={i} className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex gap-4 items-start">
+              <div className="p-3 bg-blue-50 text-[#1F51C6] rounded-2xl">
+                {iconMap[h.icon] || <Compass size={24} />}
+              </div>
+              <div>
+                <h3 className="font-bold text-lg text-[#0B1B40] mb-2">{h.title}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{h.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
 
         <div className="mb-16">
           <h2 className="text-2xl md:text-3xl font-bold text-[#0B1B40] mb-2">Featured {data.name} Cottages</h2>
@@ -174,6 +200,13 @@ export default function LocationTemplate({ locale, slug, pageData, cottages }: L
             ))}
           </div>
         </div>
+
+        <ExploreSection
+          title={pageData?.exploreTitle || data.highlightsTitle}
+          subtitle={pageData?.exploreSubtitle || "We verify and curate high-performing wilderness accommodations, pairing travelers with secure booking links on VRBO and Expedia, entirely free of extra fees."}
+          description={pageData?.exploreDescription || data.description}
+          items={pageData?.exploreItems?.length ? pageData.exploreItems : data.highlights}
+        />
 
         <div className="mb-16">
           <div className="text-center mb-10">
