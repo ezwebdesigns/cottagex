@@ -11,6 +11,16 @@ export async function generateMetadata(): Promise<Metadata> {
   const enPath = pathname.replace(/^\/(fr|en)/, "/en");
   const frPath = pathname.replace(/^\/(fr|en)/, "/fr");
 
+  let favicon = '';
+  try {
+    const { db } = await import('@/lib/db');
+    const { siteSettings } = await import('@/db/schema');
+    const { eq } = await import('drizzle-orm');
+    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'general'));
+    const data = row?.data as any;
+    if (data?.favicon) favicon = data.favicon;
+  } catch {}
+
   return {
     title: {
       default: "Cottage Escape - Canadian Cottage Rentals",
@@ -38,6 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
       index: true,
       follow: true,
     },
+    icons: favicon ? { icon: favicon } : undefined,
   };
 }
 
@@ -49,22 +60,11 @@ export default async function RootLayout({
   const h = await headers();
   const locale = h.get("x-locale") || "en";
 
-  let favicon = '';
-  try {
-    const { db } = await import('@/lib/db');
-    const { siteSettings } = await import('@/db/schema');
-    const { eq } = await import('drizzle-orm');
-    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'general'));
-    const data = row?.data as any;
-    if (data?.favicon) favicon = data.favicon;
-  } catch {}
-
   return (
     <html lang={locale} className="h-full antialiased">
       <head>
         <OrganizationSchema />
         <WebSiteSchema />
-        {favicon && <link rel="icon" href={favicon} />}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Radio+Canada:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
