@@ -15,7 +15,7 @@ export default function EditPagePage() {
   const [title, setTitle] = useState(''); const [content, setContent] = useState(''); const [slug, setSlug] = useState(''); const [template, setTemplate] = useState('');
   const [seoTitle, setSeoTitle] = useState(''); const [metaDescription, setMetaDescription] = useState('');
   const [featuredImage, setFeaturedImage] = useState(''); const [isPublished, setIsPublished] = useState(true);
-  const [ctaTitle, setCtaTitle] = useState(''); const [ctaButton, setCtaButton] = useState(''); const [ctaLink, setCtaLink] = useState('');
+  const [ctaTitle, setCtaTitle] = useState(''); const [ctaDescription, setCtaDescription] = useState(''); const [ctaButton, setCtaButton] = useState(''); const [ctaLink, setCtaLink] = useState('');
   const [exploreTitle, setExploreTitle] = useState(''); const [exploreSubtitle, setExploreSubtitle] = useState(''); const [exploreDescription, setExploreDescription] = useState('');
   const [exploreItems, setExploreItems] = useState<ExploreItem[]>([]);
   const [locationData, setLocationData] = useState<any>({ hero: {}, intro: { highlights: [] }, featured: {}, explore: { items: [] }, search: {} });
@@ -28,7 +28,7 @@ export default function EditPagePage() {
       setTitle(p.title); setContent(p.content); setSlug(p.slug); setTemplate(p.template || '');
       setSeoTitle(p.seoTitle); setMetaDescription(p.metaDescription);
       setFeaturedImage(p.featuredImage || ''); setIsPublished(p.isPublished);
-      setCtaTitle(p.ctaTitle || ''); setCtaButton(p.ctaButton || ''); setCtaLink(p.ctaLink || '');
+      setCtaTitle(p.ctaTitle || ''); setCtaDescription(p.ctaDescription || ''); setCtaButton(p.ctaButton || ''); setCtaLink(p.ctaLink || '');
       setExploreTitle(p.exploreTitle || ''); setExploreSubtitle(p.exploreSubtitle || ''); setExploreDescription(p.exploreDescription || '');
       setExploreItems(Array.isArray(p.exploreItems) ? p.exploreItems : []);
       setLocationData(typeof p.locationData === 'object' && p.locationData !== null ? p.locationData : { hero: {}, intro: { highlights: [] }, featured: {}, explore: { items: [] }, search: {} });
@@ -40,7 +40,7 @@ export default function EditPagePage() {
     e.preventDefault(); setSaving(true);
     await fetch(`/api/admin/pages/${params.id}`, {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, content, seoTitle, metaDescription, featuredImage, ctaTitle, ctaButton, ctaLink, exploreTitle, exploreSubtitle, exploreDescription, exploreItems, locationData, faq, isPublished })
+      body: JSON.stringify({ title, content, seoTitle, metaDescription, featuredImage, ctaTitle, ctaDescription, ctaButton, ctaLink, exploreTitle, exploreSubtitle, exploreDescription, exploreItems, locationData, faq, isPublished })
     });
     setSaving(false); router.push('/admin/pages');
   }
@@ -193,6 +193,7 @@ export default function EditPagePage() {
         <div className="bg-white border border-gray-200 rounded-3xl p-6 space-y-4">
           <h2 className="text-lg font-semibold text-[#0B1B40]">CTA</h2>
           <div><label className="block text-sm font-medium text-gray-700 mb-1">Title</label><input value={ctaTitle} onChange={e => setCtaTitle(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
+          <div><label className="block text-sm font-medium text-gray-700 mb-1">Description</label><textarea value={ctaDescription} onChange={e => setCtaDescription(e.target.value)} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6] h-20" /></div>
           <div className="grid grid-cols-2 gap-4">
             <div><label className="block text-sm font-medium text-gray-700 mb-1">Button Text</label><input value={ctaButton} onChange={e => setCtaButton(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
             <div><label className="block text-sm font-medium text-gray-700 mb-1">Link</label><input value={ctaLink} onChange={e => setCtaLink(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>

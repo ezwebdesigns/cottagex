@@ -42,6 +42,7 @@ export const pages = pgTable('pages', {
   ctaTitle: varchar('cta_title', { length: 255 }),
   ctaButton: varchar('cta_button', { length: 255 }),
   ctaLink: text('cta_link'),
+  ctaDescription: text('cta_description'),
   exploreTitle: varchar('explore_title', { length: 255 }),
   exploreSubtitle: varchar('explore_subtitle', { length: 255 }),
   exploreDescription: text('explore_description'),

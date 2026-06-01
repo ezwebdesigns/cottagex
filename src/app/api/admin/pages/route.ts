@@ -24,6 +24,7 @@ export async function POST(request: Request) {
       ctaTitle: body.ctaTitle,
       ctaButton: body.ctaButton,
       ctaLink: body.ctaLink,
+      ctaDescription: body.ctaDescription,
       exploreTitle: body.exploreTitle,
       exploreSubtitle: body.exploreSubtitle,
       exploreDescription: body.exploreDescription,

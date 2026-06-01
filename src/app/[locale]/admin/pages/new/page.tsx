@@ -19,6 +19,7 @@ export default function NewPagePage() {
   const [metaDescription, setMetaDescription] = useState('');
   const [featuredImage, setFeaturedImage] = useState('');
   const [ctaTitle, setCtaTitle] = useState('');
+  const [ctaDescription, setCtaDescription] = useState('');
   const [ctaButton, setCtaButton] = useState('');
   const [ctaLink, setCtaLink] = useState('');
   const [exploreTitle, setExploreTitle] = useState('');
@@ -38,7 +39,7 @@ export default function NewPagePage() {
       const res = await fetch('/api/admin/pages', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, content, template, seoTitle, metaDescription, featuredImage, ctaTitle, ctaButton, ctaLink, exploreTitle, exploreSubtitle, exploreDescription, exploreItems, locationData, faq, isPublished })
+        body: JSON.stringify({ title, content, template, seoTitle, metaDescription, featuredImage, ctaTitle, ctaDescription, ctaButton, ctaLink, exploreTitle, exploreSubtitle, exploreDescription, exploreItems, locationData, faq, isPublished })
       });
       if (res.ok) router.push('/admin/pages');
     } finally { setSaving(false); }
@@ -215,6 +216,10 @@ export default function NewPagePage() {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
             <input value={ctaTitle} onChange={e => setCtaTitle(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+            <textarea value={ctaDescription} onChange={e => setCtaDescription(e.target.value)} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6] h-20" />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
