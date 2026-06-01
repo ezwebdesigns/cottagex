@@ -41,7 +41,7 @@ export default function AdminLoginPage() {
         <div className="flex justify-center mb-8">
           <div className="flex items-center gap-2 text-[#1F51C6] font-bold text-2xl tracking-tight">
             <MapPin className="fill-[#1F51C6] text-white w-8 h-8" />
-            Cottage Escape
+            Chalet Express
           </div>
         </div>
 

@@ -4,7 +4,7 @@ export function OrganizationSchema() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Cottage Escape',
+    name: 'Chalet Express',
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
     contactPoint: {
@@ -21,7 +21,7 @@ export function WebSiteSchema() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Cottage Escape',
+    name: 'Chalet Express',
     url: SITE_URL,
     potentialAction: {
       '@type': 'SearchAction',
@@ -67,11 +67,11 @@ export function ArticleSchema({ title, description, image, date, author }: {
     datePublished: date,
     author: {
       '@type': 'Person',
-      name: author || 'Cottage Escape Editorial Team',
+      name: author || 'Chalet Express Editorial Team',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Cottage Escape',
+      name: 'Chalet Express',
     },
   };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;

@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const name = getName(slug);
   const title = locale === 'fr'
-    ? `Location de chalets à ${name.fr} | Cottage Escape`
+    ? `Location de chalets à ${name.fr} | Chalet Express`
     : `Cottages to Rent in ${name.en} - Canadian Cottage Rentals`;
   const description = locale === 'fr'
     ? `Trouvez le chalet idéal à ${name.fr}. Comparez les locations de vacances et réservez en toute sécurité sur VRBO et Expedia.`

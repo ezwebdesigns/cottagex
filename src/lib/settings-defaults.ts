@@ -86,19 +86,19 @@ export type HomepageCTA = {
 
 export const defaultSettings: Record<string, any> = {
   general: {
-    siteName: "Cottage Escape",
+    siteName: "Chalet Express",
     siteDescription: "Find your perfect Canadian cottage rental. Curated lake houses, mountain lodges, and wilderness cabins across Canada.",
     logo: "",
     favicon: "",
   },
   seo: {
-    defaultTitle: "Canadian Cottage Rentals - Cottage Escape",
+    defaultTitle: "Canadian Cottage Rentals - Chalet Express",
     defaultDescription: "Discover premium lake houses, mountain lodges, and wilderness cabins across Canada. Curated cottage rentals with secure VRBO booking.",
     ogImage: "https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=1200",
     googleAnalyticsId: "",
   },
   header: {
-    logoText: "Cottage Escape",
+    logoText: "Chalet Express",
     menuItems: [
       { label: "Home", href: "/{locale}" },
       { label: "Guides", href: "/{locale}/guides" },
@@ -107,7 +107,7 @@ export const defaultSettings: Record<string, any> = {
     ],
   },
   footer: {
-    description: "Curated Canadian cottage rentals. Discover your perfect escape with Cottage Escape — your trusted guide to premium lake houses, mountain lodges, and wilderness cabins.",
+    description: "Curated Canadian cottage rentals. Discover your perfect escape with Chalet Express — your trusted guide to premium lake houses, mountain lodges, and wilderness cabins.",
     logo: "",
     discover: [
       { label: "All Cottages", href: "/{locale}" },

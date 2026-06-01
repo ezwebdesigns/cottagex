@@ -30,7 +30,7 @@ export default function StandardTemplate({ pageData }: StandardTemplateProps) {
           <h1 className="text-3xl font-extrabold text-[#0B1B40] mb-6">{pageData.title}</h1>
           <div className="space-y-6 text-slate-600 leading-relaxed text-sm md:text-base">
             <h3 className="text-lg font-bold text-[#0B1B40] mt-6">1. Platform Scope</h3>
-            <p>Cottage Escape acts strictly as a directory aggregator and travel blog. We do not own, manage, or coordinate keys or check-ins for any advertised cottages. All booking transactions take place securely on third-party channels.</p>
+            <p>Chalet Express acts strictly as a directory aggregator and travel blog. We do not own, manage, or coordinate keys or check-ins for any advertised cottages. All booking transactions take place securely on third-party channels.</p>
             <h3 className="text-lg font-bold text-[#0B1B40] mt-6">2. Affiliate Partnership Disclosure</h3>
             <p>Certain links on our platform contain tracking codes. If you purchase or finalize a cottage stay after clicking our buttons (e.g., "Check Price" or "Book on VRBO"), we may receive a small marketing commission from the platform partners.</p>
             <div className="bg-blue-50 border border-blue-200 p-4 rounded-xl text-blue-900 font-medium text-sm">
@@ -51,7 +51,7 @@ export default function StandardTemplate({ pageData }: StandardTemplateProps) {
         ]} />
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-[#1F51C6] font-bold text-xs uppercase bg-blue-50 px-3 py-1.5 rounded-full tracking-wider">Our Story</span>
-          <h1 className="text-3xl md:text-5xl font-bold text-[#0B1B40] mt-4 mb-3">{pageData.title || 'About Cottage Escape'}</h1>
+          <h1 className="text-3xl md:text-5xl font-bold text-[#0B1B40] mt-4 mb-3">{pageData.title || 'About Chalet Express'}</h1>
           <p className="text-slate-500 text-base">We are the premier directory for wild outdoor lovers looking for premium escapes in Canada.</p>
         </div>
 
@@ -59,7 +59,7 @@ export default function StandardTemplate({ pageData }: StandardTemplateProps) {
           <div>
             <h3 className="text-2xl font-bold text-[#0B1B40] mb-4">Our Objective</h3>
             <p className="text-slate-600 leading-relaxed mb-6">
-              At <strong>Cottage Escape</strong>, our goal is not to sell direct rentals. Instead, we aim to inspire travelers and curate the absolute finest holiday cottage options across Canada.
+              At <strong>Chalet Express</strong>, our goal is not to sell direct rentals. Instead, we aim to inspire travelers and curate the absolute finest holiday cottage options across Canada.
             </p>
             <p className="text-slate-600 leading-relaxed mb-6">
               Through specialized affiliate partnerships with leading platforms like <strong>VRBO and Expedia</strong>, we combine native on-the-ground knowledge with global booking safety standards.

@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: "Discover premium lake houses, mountain lodges, and wilderness cabins across Canada. Curated cottage rentals with secure VRBO booking.",
     alternates: { canonical: `https://chaletexpress.com/${locale}` },
     openGraph: {
-      title: "Canadian Cottage Rentals - Cottage Escape",
+      title: "Canadian Cottage Rentals - Chalet Express",
       description: "Discover premium lake houses, mountain lodges, and wilderness cabins across Canada.",
       images: [{ url: "https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=1200", width: 1200, height: 630 }],
     },

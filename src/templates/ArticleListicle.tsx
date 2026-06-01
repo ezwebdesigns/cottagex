@@ -58,7 +58,7 @@ export default function ArticleListicle({ locale, article }: ArticleListicleProp
         <div className="flex items-center gap-6 text-sm text-slate-500 border-y border-slate-100 py-4">
           <div className="flex items-center gap-2">
             <span className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-[#1F51C6]">EC</span>
-            <span className="font-medium text-slate-700">Cottage Escape Editorial Team</span>
+            <span className="font-medium text-slate-700">Chalet Express Editorial Team</span>
           </div>
           <div className="flex items-center gap-4 border-l border-slate-200 pl-6">
             <span className="flex items-center gap-1"><CalendarDays size={14} /> {article.date}</span>

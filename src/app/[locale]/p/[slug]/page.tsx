@@ -8,7 +8,7 @@ const staticPages: Record<string, { title: string; content: string; type: 'terms
     content: '',
     type: 'terms',
     updatedDate: 'May 26, 2026',
-    metaDescription: 'Read the Cottage Escape Terms of Service and Affiliate Disclosure. Learn how our VRBO and Expedia affiliate partnerships work at no extra cost to you.',
+    metaDescription: 'Read the Chalet Express Terms of Service and Affiliate Disclosure. Learn how our VRBO and Expedia affiliate partnerships work at no extra cost to you.',
   },
 };
 
@@ -20,11 +20,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!page) return { title: "Page Not Found" };
   return {
     title: page.title,
-    description: page.metaDescription || `Cottage Escape - ${page.title}`,
+    description: page.metaDescription || `Chalet Express - ${page.title}`,
     alternates: { canonical: `https://chaletexpress.com/${locale}/p/${slug}` },
     openGraph: {
       title: page.title,
-      description: page.metaDescription || `Cottage Escape - ${page.title}`,
+      description: page.metaDescription || `Chalet Express - ${page.title}`,
     },
   };
 }

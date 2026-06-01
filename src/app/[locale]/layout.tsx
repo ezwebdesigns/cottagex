@@ -11,8 +11,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   return {
     title: {
-      template: `%s | Cottage Escape`,
-      default: `Canadian Cottage Rentals - Cottage Escape`,
+      template: `%s | Chalet Express`,
+      default: `Canadian Cottage Rentals - Chalet Express`,
     },
     description: "Find your perfect Canadian escape. Premium lake houses and mountain lodges across Canada.",
     alternates: {

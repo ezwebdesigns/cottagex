@@ -23,8 +23,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: {
-      default: "Cottage Escape - Canadian Cottage Rentals",
-      template: "%s | Cottage Escape",
+      default: "Chalet Express - Canadian Cottage Rentals",
+      template: "%s | Chalet Express",
     },
     description: "Find your perfect Canadian escape. Premium lake houses and mountain lodges across Canada.",
     metadataBase: new URL("https://chaletexpress.com"),
@@ -37,7 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     openGraph: {
-      siteName: "Cottage Escape",
+      siteName: "Chalet Express",
       type: "website",
       locale: locale === "fr" ? "fr_CA" : "en_CA",
     },
