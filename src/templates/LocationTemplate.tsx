@@ -4,6 +4,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useMemo, useState, useEffect, useRef } from 'react';
 import { Star, Waves, Trees, Compass, ExternalLink, ChevronRight, BookOpen, CalendarDays, Clock, X } from 'lucide-react';
 import ExploreSection from '@/components/home/ExploreSection';
+import FeaturedCottages from '@/components/FeaturedCottages';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { initialProperties, ontarioSearchData } from '@/lib/mock-data';
 
@@ -157,45 +158,48 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
           ))}
         </div>
 
-        <div className="mb-16">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#0B1B40] mb-2">{featuredTitle}</h2>
-          <p className="text-slate-500 mb-8">{featuredDesc}</p>
-
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
-            {displayCottages.map((prop) => (
-              <div key={prop.id} className="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-                <div className="relative h-36 md:h-64 overflow-hidden">
-                  <img src={prop.image} alt={prop.title} className="w-full h-full object-cover" />
-                  <span className="absolute top-2 md:top-4 left-2 md:left-4 bg-[#1F51C6] text-white px-2 md:px-3 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-semibold">
-                    {prop.tag}
-                  </span>
-                </div>
-                <div className="p-3 md:p-6 flex-1 flex flex-col justify-between">
-                  <div>
-                    <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-1 md:mb-3 gap-1">
-                      <span className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider line-clamp-1">{prop.location}</span>
-                      <div className="flex items-center gap-0.5 text-[10px] md:text-xs font-bold bg-yellow-50 text-yellow-700 px-1.5 py-0.5 rounded-lg w-fit">
-                        <Star size={11} className="fill-yellow-500 text-yellow-500" />
-                        <span>{prop.rating}</span>
-                      </div>
-                    </div>
-                    <h3 className="text-sm md:text-xl font-bold text-[#0B1B40] mb-2 leading-tight">{prop.title}</h3>
-                    <p className="hidden md:block text-slate-600 text-sm mb-6 leading-relaxed">{prop.description}</p>
+        {featured.shortcode ? (
+          <FeaturedCottages shortcode={featured.shortcode} fallbackTitle={featured.title} fallbackDesc={featured.description} />
+        ) : (
+          <div className="mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#0B1B40] mb-2">{featuredTitle}</h2>
+            <p className="text-slate-500 mb-8">{featuredDesc}</p>
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
+              {displayCottages.map((prop) => (
+                <div key={prop.id} className="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                  <div className="relative h-36 md:h-64 overflow-hidden">
+                    <img src={prop.image} alt={prop.title} className="w-full h-full object-cover" />
+                    <span className="absolute top-2 md:top-4 left-2 md:left-4 bg-[#1F51C6] text-white px-2 md:px-3 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-semibold">
+                      {prop.tag}
+                    </span>
                   </div>
-                  <div className="pt-2 md:pt-4 border-t border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-2">
+                  <div className="p-3 md:p-6 flex-1 flex flex-col justify-between">
                     <div>
-                      <span className="text-sm md:text-2xl font-black text-[#1F51C6]">${prop.price}</span>
-                      <span className="text-[10px] md:text-xs text-slate-500 font-medium">/night</span>
+                      <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-1 md:mb-3 gap-1">
+                        <span className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider line-clamp-1">{prop.location}</span>
+                        <div className="flex items-center gap-0.5 text-[10px] md:text-xs font-bold bg-yellow-50 text-yellow-700 px-1.5 py-0.5 rounded-lg w-fit">
+                          <Star size={11} className="fill-yellow-500 text-yellow-500" />
+                          <span>{prop.rating}</span>
+                        </div>
+                      </div>
+                      <h3 className="text-sm md:text-xl font-bold text-[#0B1B40] mb-2 leading-tight">{prop.title}</h3>
+                      <p className="hidden md:block text-slate-600 text-sm mb-6 leading-relaxed">{prop.description}</p>
                     </div>
-                    <a href={prop.bookingUrl} target="_blank" rel="noopener noreferrer" className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-3 md:px-5 py-1.5 md:py-2.5 rounded-full text-[11px] md:text-sm font-semibold transition-colors inline-flex items-center justify-center gap-1.5 w-full md:w-auto">
-                      Book <ExternalLink size={10} />
-                    </a>
+                    <div className="pt-2 md:pt-4 border-t border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-2">
+                      <div>
+                        <span className="text-sm md:text-2xl font-black text-[#1F51C6]">${prop.price}</span>
+                        <span className="text-[10px] md:text-xs text-slate-500 font-medium">/night</span>
+                      </div>
+                      <a href={prop.bookingUrl} target="_blank" rel="noopener noreferrer" className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-3 md:px-5 py-1.5 md:py-2.5 rounded-full text-[11px] md:text-sm font-semibold transition-colors inline-flex items-center justify-center gap-1.5 w-full md:w-auto">
+                        Book <ExternalLink size={10} />
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         <ExploreSection
           title={exploreTitle}
