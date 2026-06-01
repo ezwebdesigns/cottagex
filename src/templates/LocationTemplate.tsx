@@ -36,6 +36,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
   const intro = ld.intro || {};
   const featured = ld.featured || {};
   const explore = ld.explore || {};
+  const learnMore = ld.learnMore || {};
   const search = ld.search || {};
 
   const heroTitle = hero.title || `Cottages to Rent in ${locName}`;
@@ -202,6 +203,22 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
           description={exploreDesc}
           items={exploreItems}
         />
+
+        {(learnMore.title || learnMore.image) && (
+          <div className="bg-[#0B1B40] rounded-3xl p-8 md:p-12 mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 items-center">
+              <div className="md:col-span-3 text-white">
+                {learnMore.title && <h2 className="text-2xl md:text-3xl font-bold mb-4">{learnMore.title}</h2>}
+                {learnMore.description && <p className="text-blue-100/80 leading-relaxed">{learnMore.description}</p>}
+              </div>
+              {learnMore.image && (
+                <div className="md:col-span-2">
+                  <img src={learnMore.image} alt={learnMore.title || ''} className="w-full rounded-[2rem] object-cover shadow-lg" />
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         <div className="mb-16">
           <div className="text-center mb-10">

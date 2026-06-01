@@ -161,6 +161,30 @@ export default function EditDestinationPage() {
         </div>
 
         <div className="bg-white border border-gray-200 rounded-3xl p-6 space-y-4">
+          <h2 className="text-lg font-semibold text-[#0B1B40]">Learn More Section</h2>
+          <div className="grid grid-cols-5 gap-6">
+            <div className="col-span-3 space-y-4">
+              <div><label className="block text-sm font-medium text-gray-700 mb-1">Title</label><input value={locationData.learnMore?.title ?? ''} onChange={e => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, title: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
+              <div><label className="block text-sm font-medium text-gray-700 mb-1">Description</label><textarea value={locationData.learnMore?.description ?? ''} onChange={e => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, description: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6] h-28" /></div>
+            </div>
+            <div className="col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-1">Image</label>
+              {locationData.learnMore?.image && <img src={locationData.learnMore.image} className="w-full aspect-[4/3] rounded-2xl object-cover border mb-2" />}
+              <label className="cursor-pointer text-sm text-[#1F51C6] hover:underline">
+                {locationData.learnMore?.image ? 'Change' : 'Upload Image'}
+                <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
+                  const file = e.target.files?.[0]; if (!file) return;
+                  const fd = new FormData(); fd.append('file', file);
+                  const res = await fetch('/api/admin/upload', { method: 'POST', body: fd });
+                  if (res.ok) { const d = await res.json(); setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, image: d.url } }); }
+                }} />
+              </label>
+              {locationData.learnMore?.image && <button type="button" onClick={() => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, image: '' } })} className="text-xs text-red-500 ml-2">Remove</button>}
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white border border-gray-200 rounded-3xl p-6 space-y-4">
           <h2 className="text-lg font-semibold text-[#0B1B40]">Search Section</h2>
           <div><label className="block text-sm font-medium text-gray-700 mb-1">Title</label><input value={locationData.search?.title ?? ''} onChange={e => setLocationData({ ...locationData, search: { ...locationData.search, title: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
           <div><label className="block text-sm font-medium text-gray-700 mb-1">Description</label><textarea value={locationData.search?.description ?? ''} onChange={e => setLocationData({ ...locationData, search: { ...locationData.search, description: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6] h-20" /></div>
