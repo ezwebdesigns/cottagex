@@ -28,7 +28,7 @@ export default function EditArticlePage() {
     e.preventDefault(); setSaving(true);
     await fetch(`/api/admin/articles/${params.id}`, {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, content, excerpt, category, author, featuredImage, seoTitle, ctaTitle, ctaButton, ctaLink, faq, isPublished })
+      body: JSON.stringify({ title, slug, content, excerpt, category, author, featuredImage, seoTitle, ctaTitle, ctaButton, ctaLink, faq, isPublished })
     });
     setSaving(false); router.push('/admin/articles');
   }
@@ -41,6 +41,7 @@ export default function EditArticlePage() {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="bg-white border border-gray-200 rounded-3xl p-6 space-y-4">
           <div><label className="block text-sm font-medium text-gray-700 mb-1">Title</label><input value={title} onChange={e => setTitle(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
+          <div><label className="block text-sm font-medium text-gray-700 mb-1">Slug</label><div className="flex gap-2"><input value={slug} onChange={e => setSlug(e.target.value)} className="flex-1 border border-gray-300 rounded-full px-4 py-2.5 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /><button type="button" onClick={() => setSlug(title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-').replace(/^-|-$/g, ''))} className="text-xs text-[#1F51C6] hover:underline whitespace-nowrap">Auto</button></div></div>
           <div className="grid grid-cols-2 gap-4">
             <div><label className="block text-sm font-medium text-gray-700 mb-1">Category</label><input value={category} onChange={e => setCategory(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
             <div><label className="block text-sm font-medium text-gray-700 mb-1">Author</label><input value={author} onChange={e => setAuthor(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
