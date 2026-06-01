@@ -248,18 +248,28 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         </div>
 
         <div className="bg-[#0B1B40] rounded-3xl p-8 md:p-12 text-white">
-          <div className="max-w-3xl">
-            <h3 className="text-xl md:text-3xl font-bold mb-4">{pageData?.ctaTitle || `When is the Best Time to Visit ${locName}?`}</h3>
-            {pageData?.ctaDescription && <p className="text-slate-300 mb-6 leading-relaxed">{pageData.ctaDescription}</p>}
-            {(pageData?.ctaButton && pageData?.ctaLink) ? (
-              <a href={pageData.ctaLink.startsWith('/') ? pageData.ctaLink : `/${locale}/${pageData.ctaLink}`} className="inline-flex bg-[#1F51C6] hover:bg-[#163FA3] text-white px-6 py-3 rounded-full font-bold transition-colors items-center gap-2 text-sm shadow-md">
-                {pageData.ctaButton}
-              </a>
-            ) : (
-              <button onClick={() => router.push(`/${locale}/guides`)} className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-6 py-3 rounded-full font-bold transition-colors inline-flex items-center gap-2 text-sm shadow-md">
-                View Fall & Winter Guides <BookOpen size={16} />
-              </button>
-            )}
+          <div className="md:grid md:grid-cols-5 md:gap-12 md:items-center">
+            <div className="md:col-span-3">
+              <h3 className="text-xl md:text-3xl font-bold mb-4">{pageData?.ctaTitle || `When is the Best Time to Visit ${locName}?`}</h3>
+              {(pageData?.ctaDescription) ? (
+                <p className="text-slate-300 leading-relaxed">{pageData.ctaDescription}</p>
+              ) : (
+                <p className="text-slate-300 leading-relaxed">
+                  Summer (July & August) is prime time for lake swimming, jet skiing, and dock tanning. Autumn (September & October) is highly recommended for foliage sightseeing, while winter holds a quiet charm for snowshoeing, ice fishing, and reading next to blazing wood hearths.
+                </p>
+              )}
+            </div>
+            <div className="md:col-span-2 md:flex md:justify-center mt-6 md:mt-0">
+              {(pageData?.ctaButton && pageData?.ctaLink) ? (
+                <a href={pageData.ctaLink.startsWith('/') ? pageData.ctaLink : `/${locale}/${pageData.ctaLink}`} className="inline-flex bg-[#1F51C6] hover:bg-[#163FA3] text-white px-8 py-3.5 rounded-full font-bold transition-colors items-center gap-2 text-base shadow-md whitespace-nowrap">
+                  {pageData.ctaButton}
+                </a>
+              ) : (
+                <button onClick={() => router.push(`/${locale}/guides`)} className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-8 py-3.5 rounded-full font-bold transition-colors inline-flex items-center gap-2 text-base shadow-md whitespace-nowrap">
+                  View Fall & Winter Guides <BookOpen size={16} />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </section>
