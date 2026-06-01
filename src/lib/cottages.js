@@ -28,7 +28,7 @@ const CATEGORY_CONDITIONS = {
   family:        `amenities @> '["Kid-friendly"]'`,
   hotTub:        `(amenities @> '["Hot tub"]' OR amenities @> '["Spa"]')`,
   'hot-tub':     `(amenities @> '["Hot tub"]' OR amenities @> '["Spa"]')`,
-  lakefront:     `(amenities @> '["Waterfront"]' OR amenities @> '["Beach access"]')`,
+  lakefront:     `(amenities @> '["Waterfront"]' OR amenities @> '["Beach access"]' OR name ILIKE '%waterfront%' OR name ILIKE '%lakefront%' OR name ILIKE '%lake front%' OR name ILIKE '%beach access%' OR name ILIKE '%lakeside%' OR name ILIKE '%beachfront%')`,
   luxury:        `(rating >= 4.8 AND price_cad >= 600)`,
   'pet-friendly':`amenities @> '["Pet-friendly"]'`,
   all:           null,
