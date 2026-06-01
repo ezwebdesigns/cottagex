@@ -84,11 +84,7 @@ export default function Footer({ locale, footerData }: FooterProps) {
         </div>
 
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-blue-100/60">
-          <p>© {new Date().getFullYear()} Cottage Escape. All rights reserved. Cottage Escape is an independent travel affiliate partner.</p>
-          <div className="flex gap-4 mt-4 md:mt-0">
-            <Link href={`/${locale}/p/terms`} className="hover:text-white transition-colors font-medium">Privacy</Link>
-            <Link href={`/${locale}/p/terms`} className="hover:text-white transition-colors font-medium">Terms</Link>
-          </div>
+          <p>© {new Date().getFullYear()} Chalet Express. All rights reserved.</p>
         </div>
       </div>
     </footer>
