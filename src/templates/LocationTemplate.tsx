@@ -249,13 +249,17 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
 
         <div className="bg-[#0B1B40] rounded-3xl p-8 md:p-12 text-white">
           <div className="max-w-3xl">
-            <h3 className="text-xl md:text-3xl font-bold mb-4">When is the Best Time to Visit {locName}?</h3>
-            <p className="text-slate-300 mb-6 leading-relaxed">
-              Summer (July & August) is prime time for lake swimming, jet skiing, and dock tanning. Autumn (September & October) is highly recommended for foliage sightseeing, while winter holds a quiet charm for snowshoeing, ice fishing, and reading next to blazing wood hearths.
-            </p>
-            <button onClick={() => router.push(`/${locale}/guides`)} className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-6 py-3 rounded-full font-bold transition-colors inline-flex items-center gap-2 text-sm shadow-md">
-              View Fall & Winter Guides <BookOpen size={16} />
-            </button>
+            <h3 className="text-xl md:text-3xl font-bold mb-4">{pageData?.ctaTitle || `When is the Best Time to Visit ${locName}?`}</h3>
+            {pageData?.ctaDescription && <p className="text-slate-300 mb-6 leading-relaxed">{pageData.ctaDescription}</p>}
+            {(pageData?.ctaButton && pageData?.ctaLink) ? (
+              <a href={pageData.ctaLink.startsWith('/') ? pageData.ctaLink : `/${locale}/${pageData.ctaLink}`} className="inline-flex bg-[#1F51C6] hover:bg-[#163FA3] text-white px-6 py-3 rounded-full font-bold transition-colors items-center gap-2 text-sm shadow-md">
+                {pageData.ctaButton}
+              </a>
+            ) : (
+              <button onClick={() => router.push(`/${locale}/guides`)} className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-6 py-3 rounded-full font-bold transition-colors inline-flex items-center gap-2 text-sm shadow-md">
+                View Fall & Winter Guides <BookOpen size={16} />
+              </button>
+            )}
           </div>
         </div>
       </section>
