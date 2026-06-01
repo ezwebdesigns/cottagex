@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Edit, Trash2 } from 'lucide-react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
 
 export default function AdminDestinationsPage() {
   const router = useRouter();
@@ -51,6 +51,7 @@ export default function AdminDestinationsPage() {
                   </td>
                   <td className="px-5 py-4 text-right">
                     <div className="flex items-center justify-end gap-2">
+                      <button onClick={() => window.open(`/cottage-country/${dest.slug}?preview=true`, '_blank')} className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"><Eye className="w-4 h-4 text-gray-400" /></button>
                       <button onClick={() => router.push(`/admin/destinations/${dest.id}/edit`)} className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"><Edit className="w-4 h-4 text-gray-500" /></button>
                       <button onClick={() => remove(dest.id)} className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"><Trash2 className="w-4 h-4 text-red-400" /></button>
                     </div>

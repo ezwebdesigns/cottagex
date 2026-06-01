@@ -31,7 +31,7 @@ export default function EditDestinationPage() {
     e.preventDefault(); setSaving(true);
     await fetch(`/api/admin/pages/${params.id}`, {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, seoTitle, metaDescription, featuredImage, ctaTitle, ctaDescription, ctaButton, ctaLink, locationData, isPublished })
+      body: JSON.stringify({ title, slug, seoTitle, metaDescription, featuredImage, ctaTitle, ctaDescription, ctaButton, ctaLink, locationData, isPublished })
     });
     setSaving(false); router.push('/admin/destinations');
   }
@@ -41,10 +41,11 @@ export default function EditDestinationPage() {
   return (
     <div className="max-w-4xl mx-auto p-6 md:p-10">
       <h1 className="text-2xl font-bold text-[#0B1B40] mb-6">Edit Destination</h1>
-      <p className="text-sm text-gray-500 mb-6">Published at <code className="text-[#1F51C6]">/cottage-country/{slug}</code></p>
+      <p className="text-sm text-gray-500 mb-6">Published at <code className="text-[#1F51C6]">/cottage-country/{slug || '...'}</code></p>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="bg-white border border-gray-200 rounded-3xl p-6 space-y-4">
           <div><label className="block text-sm font-medium text-gray-700 mb-1">Name</label><input value={title} onChange={e => setTitle(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" required /></div>
+          <div><label className="block text-sm font-medium text-gray-700 mb-1">Slug</label><div className="flex gap-2"><input value={slug} onChange={e => setSlug(e.target.value)} className="flex-1 border border-gray-300 rounded-full px-4 py-2.5 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /><button type="button" onClick={() => router.push(`/cottage-country/${slug}?preview=true`)} className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-4 py-2 rounded-full text-xs font-semibold inline-flex items-center gap-1.5"><Eye className="w-3.5 h-3.5" /> Preview</button></div></div>
           <div><label className="block text-sm font-medium text-gray-700 mb-1">Featured Image</label>
             <div className="flex items-center gap-3">
               {featuredImage && <img src={featuredImage} className="w-16 h-16 rounded-full object-cover border" />}
