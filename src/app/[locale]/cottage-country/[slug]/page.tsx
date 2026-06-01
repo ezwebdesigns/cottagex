@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? `Trouvez le chalet idéal à ${name.fr}. Comparez les locations de vacances et réservez en toute sécurité sur VRBO et Expedia.`
     : `Find your perfect cottage escape in ${name.en}. Browse premium lake houses, cabins, and wilderness retreats with secure VRBO booking.`;
 
-  const canonical = `https://chaletexpress.com/${locale}/locations/${slug}`;
+  const canonical = `https://chaletexpress.com/${locale}/cottage-country/${slug}`;
 
   return {
     title,
@@ -54,8 +54,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical,
       languages: {
-        'en': `https://chaletexpress.com/en/locations/${slug}`,
-        'fr': `https://chaletexpress.com/fr/locations/${slug}`,
+        'en': `https://chaletexpress.com/en/cottage-country/${slug}`,
+        'fr': `https://chaletexpress.com/fr/cottage-country/${slug}`,
       },
     },
     openGraph: {

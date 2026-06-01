@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { usePathname, useRouter, useParams } from 'next/navigation';
 import { SessionProvider, signOut } from 'next-auth/react';
-import { LayoutDashboard, FileText, BookOpen, Image as ImageIcon, Mail, Settings as SettingsIcon, Building2, User, ExternalLink, ChevronLeft, ChevronRight, Menu, LogOut } from 'lucide-react';
+import { LayoutDashboard, FileText, BookOpen, Image as ImageIcon, Mail, Settings as SettingsIcon, Building2, MapPin, User, ExternalLink, ChevronLeft, ChevronRight, Menu, LogOut } from 'lucide-react';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [collapsed, setCollapsed] = useState(true);
@@ -46,6 +46,7 @@ function AdminShell({
     { label: 'Library', href: `/${locale}/admin/library`, icon: ImageIcon },
     { label: 'Messages', href: `/${locale}/admin/messages`, icon: Mail },
     { label: 'Cottages', href: `/${locale}/admin/cottages`, icon: Building2 },
+    { label: 'Destinations', href: `/${locale}/admin/destinations`, icon: MapPin },
     { label: 'Settings', href: `/${locale}/admin/settings`, icon: SettingsIcon },
   ];
 

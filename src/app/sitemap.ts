@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
 
     entries.push({
-      url: `${BASE_URL}/${locale}/locations/ontario`,
+      url: `${BASE_URL}/${locale}/cottage-country/ontario`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,

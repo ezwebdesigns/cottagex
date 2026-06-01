@@ -6,15 +6,11 @@ import { Plus, X } from 'lucide-react';
 import TiptapEditor from '@/components/admin/TiptapEditor';
 
 type FAQ = { question: string; answer: string };
-type ExploreItem = { icon: string; title: string; description: string };
-
-const EXPLORE_ICONS = ['Waves', 'Trees', 'Compass', 'MapPin', 'Mountain', 'TreePine', 'Sunrise'];
 
 export default function NewPagePage() {
   const router = useRouter();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [template, setTemplate] = useState<'standard' | 'location'>('standard');
   const [seoTitle, setSeoTitle] = useState('');
   const [metaDescription, setMetaDescription] = useState('');
   const [featuredImage, setFeaturedImage] = useState('');
@@ -22,11 +18,6 @@ export default function NewPagePage() {
   const [ctaDescription, setCtaDescription] = useState('');
   const [ctaButton, setCtaButton] = useState('');
   const [ctaLink, setCtaLink] = useState('');
-  const [exploreTitle, setExploreTitle] = useState('');
-  const [exploreSubtitle, setExploreSubtitle] = useState('');
-  const [exploreDescription, setExploreDescription] = useState('');
-  const [exploreItems, setExploreItems] = useState<ExploreItem[]>([]);
-  const [locationData, setLocationData] = useState<any>({ hero: {}, intro: { highlights: [] }, featured: {}, explore: { items: [] }, search: {} });
   const [faq, setFaq] = useState<FAQ[]>([]);
   const [isPublished, setIsPublished] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -39,7 +30,7 @@ export default function NewPagePage() {
       const res = await fetch('/api/admin/pages', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, content, template, seoTitle, metaDescription, featuredImage, ctaTitle, ctaDescription, ctaButton, ctaLink, exploreTitle, exploreSubtitle, exploreDescription, exploreItems, locationData, faq, isPublished })
+        body: JSON.stringify({ title, content, template: 'standard', seoTitle, metaDescription, featuredImage, ctaTitle, ctaDescription, ctaButton, ctaLink, faq, isPublished })
       });
       if (res.ok) router.push('/admin/pages');
     } finally { setSaving(false); }
@@ -53,13 +44,6 @@ export default function NewPagePage() {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
             <input value={title} onChange={e => setTitle(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" placeholder="Page title" required />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Template</label>
-            <select value={template} onChange={e => setTemplate(e.target.value as any)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]">
-              <option value="standard">Standard (Rich Text)</option>
-              <option value="location">Location (Structured Template)</option>
-            </select>
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Featured Image</label>
@@ -108,108 +92,6 @@ export default function NewPagePage() {
           ))}
           <button type="button" onClick={() => setFaq([...faq, { question: '', answer: '' }])} className="text-sm text-[#1F51C6] hover:underline flex items-center gap-1"><Plus className="w-3 h-3" /> Add FAQ</button>
         </div>
-
-        {template === 'location' && (
-          <>
-            <div className="bg-white border border-gray-200 rounded-3xl p-6 space-y-4">
-              <h2 className="text-lg font-semibold text-[#0B1B40]">Hero Section</h2>
-              <div><label className="block text-sm font-medium text-gray-700 mb-1">Tag</label><input value={locationData.hero?.tag ?? ''} onChange={e => setLocationData({ ...locationData, hero: { ...locationData.hero, tag: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
-              <div><label className="block text-sm font-medium text-gray-700 mb-1">Title</label><input value={locationData.hero?.title ?? ''} onChange={e => setLocationData({ ...locationData, hero: { ...locationData.hero, title: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
-              <div><label className="block text-sm font-medium text-gray-700 mb-1">Subtitle</label><textarea value={locationData.hero?.subtitle ?? ''} onChange={e => setLocationData({ ...locationData, hero: { ...locationData.hero, subtitle: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6] h-20" /></div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Background Image</label>
-                <div className="flex items-center gap-3">
-                  {locationData.hero?.image && <img src={locationData.hero.image} className="w-16 h-16 rounded-xl object-cover border" />}
-                  <label className="cursor-pointer text-sm text-[#1F51C6] hover:underline">
-                    Upload Image
-                    <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
-                      const file = e.target.files?.[0]; if (!file) return;
-                      const fd = new FormData(); fd.append('file', file);
-                      const res = await fetch('/api/admin/upload', { method: 'POST', body: fd });
-                      if (res.ok) { const d = await res.json(); setLocationData({ ...locationData, hero: { ...locationData.hero, image: d.url } }); }
-                    }} />
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-3xl p-6 space-y-4">
-              <h2 className="text-lg font-semibold text-[#0B1B40]">Intro Section</h2>
-              <div><label className="block text-sm font-medium text-gray-700 mb-1">Description</label><textarea value={locationData.intro?.description ?? ''} onChange={e => setLocationData({ ...locationData, intro: { ...locationData.intro, description: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6] h-20" /></div>
-              <div><label className="block text-sm font-medium text-gray-700 mb-1">Highlights Title</label><input value={locationData.intro?.highlightsTitle ?? ''} onChange={e => setLocationData({ ...locationData, intro: { ...locationData.intro, highlightsTitle: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
-              <div><label className="block text-sm font-medium text-gray-700 mb-1">Subtitle</label><textarea value={locationData.intro?.subtitle ?? ''} onChange={e => setLocationData({ ...locationData, intro: { ...locationData.intro, subtitle: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6] h-20" /></div>
-              <div>
-                <h4 className="text-sm font-semibold text-gray-600 mb-3">Highlight Cards</h4>
-                {(locationData.intro?.highlights ?? []).map((item: any, i: number) => (
-                  <div key={i} className="border border-gray-200 rounded-xl p-4 mb-4 space-y-3">
-                    <div className="flex gap-2">
-                      <select value={item.icon} onChange={(e) => {
-                        const arr = [...(locationData.intro?.highlights || [])]; arr[i] = { ...arr[i], icon: e.target.value };
-                        setLocationData({ ...locationData, intro: { ...locationData.intro, highlights: arr } });
-                      }} className="px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20">
-                        {EXPLORE_ICONS.map(icon => <option key={icon} value={icon}>{icon}</option>)}
-                      </select>
-                      <input placeholder="Title" value={item.title} onChange={(e) => {
-                        const arr = [...(locationData.intro?.highlights || [])]; arr[i] = { ...arr[i], title: e.target.value };
-                        setLocationData({ ...locationData, intro: { ...locationData.intro, highlights: arr } });
-                      }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
-                    </div>
-                    <textarea placeholder="Description" value={item.description} onChange={(e) => {
-                      const arr = [...(locationData.intro?.highlights || [])]; arr[i] = { ...arr[i], description: e.target.value };
-                      setLocationData({ ...locationData, intro: { ...locationData.intro, highlights: arr } });
-                    }} rows={2} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
-                    <button type="button" onClick={() => setLocationData({ ...locationData, intro: { ...locationData.intro, highlights: (locationData.intro?.highlights || []).filter((_: any, idx: number) => idx !== i) } })} className="text-xs text-red-500 hover:text-red-700">Remove</button>
-                  </div>
-                ))}
-                <button type="button" onClick={() => setLocationData({ ...locationData, intro: { ...locationData.intro, highlights: [...(locationData.intro?.highlights || []), { icon: 'Compass', title: '', description: '' }] } })} className="text-sm text-[#1F51C6] font-semibold hover:underline">+ Add Card</button>
-              </div>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-3xl p-6 space-y-4">
-              <h2 className="text-lg font-semibold text-[#0B1B40]">Featured Section</h2>
-              <div><label className="block text-sm font-medium text-gray-700 mb-1">Title</label><input value={locationData.featured?.title ?? ''} onChange={e => setLocationData({ ...locationData, featured: { ...locationData.featured, title: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
-              <div><label className="block text-sm font-medium text-gray-700 mb-1">Description</label><textarea value={locationData.featured?.description ?? ''} onChange={e => setLocationData({ ...locationData, featured: { ...locationData.featured, description: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6] h-20" /></div>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-3xl p-6 space-y-4">
-              <h2 className="text-lg font-semibold text-[#0B1B40]">Explore Section</h2>
-              <div><label className="block text-sm font-medium text-gray-700 mb-1">Title</label><input value={exploreTitle} onChange={e => setExploreTitle(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
-              <div><label className="block text-sm font-medium text-gray-700 mb-1">Subtitle</label><input value={exploreSubtitle} onChange={e => setExploreSubtitle(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
-              <div><label className="block text-sm font-medium text-gray-700 mb-1">Description</label><textarea value={exploreDescription} onChange={e => setExploreDescription(e.target.value)} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6] h-20" /></div>
-              <div>
-                <h4 className="text-sm font-semibold text-gray-600 mb-3">Items</h4>
-                {exploreItems.map((item, i) => (
-                  <div key={i} className="border border-gray-200 rounded-xl p-4 mb-4 space-y-3">
-                    <div className="flex gap-2">
-                      <select value={item.icon} onChange={(e) => {
-                        const arr = [...exploreItems]; arr[i] = { ...arr[i], icon: e.target.value };
-                        setExploreItems(arr);
-                      }} className="px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20">
-                        {EXPLORE_ICONS.map(icon => <option key={icon} value={icon}>{icon}</option>)}
-                      </select>
-                      <input placeholder="Title" value={item.title} onChange={(e) => {
-                        const arr = [...exploreItems]; arr[i] = { ...arr[i], title: e.target.value };
-                        setExploreItems(arr);
-                      }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
-                    </div>
-                    <textarea placeholder="Description" value={item.description} onChange={(e) => {
-                      const arr = [...exploreItems]; arr[i] = { ...arr[i], description: e.target.value };
-                      setExploreItems(arr);
-                    }} rows={2} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
-                    <button type="button" onClick={() => setExploreItems(exploreItems.filter((_, idx) => idx !== i))} className="text-xs text-red-500 hover:text-red-700">Remove</button>
-                  </div>
-                ))}
-                <button type="button" onClick={() => setExploreItems([...exploreItems, { icon: 'Compass', title: '', description: '' }])} className="text-sm text-[#1F51C6] font-semibold hover:underline">+ Add Item</button>
-              </div>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-3xl p-6 space-y-4">
-              <h2 className="text-lg font-semibold text-[#0B1B40]">Search Section</h2>
-              <div><label className="block text-sm font-medium text-gray-700 mb-1">Title</label><input value={locationData.search?.title ?? ''} onChange={e => setLocationData({ ...locationData, search: { ...locationData.search, title: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
-              <div><label className="block text-sm font-medium text-gray-700 mb-1">Description</label><textarea value={locationData.search?.description ?? ''} onChange={e => setLocationData({ ...locationData, search: { ...locationData.search, description: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6] h-20" /></div>
-            </div>
-          </>
-        )}
 
         <div className="bg-white border border-gray-200 rounded-3xl p-6 space-y-4">
           <h2 className="text-lg font-semibold text-[#0B1B40]">CTA</h2>

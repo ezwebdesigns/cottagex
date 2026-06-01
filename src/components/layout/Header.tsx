@@ -13,7 +13,7 @@ type HeaderProps = {
 
 const defaultNavItems = (locale: string) => [
   { label: 'Explore', href: `/${locale}` },
-  { label: 'Ontario', href: `/${locale}/locations/ontario` },
+  { label: 'Ontario', href: `/${locale}/cottage-country/ontario` },
   { label: 'Guides & Articles', href: `/${locale}/guides` },
   { label: 'About Us', href: `/${locale}/about` },
   { label: 'Contact', href: `/${locale}/contact` },

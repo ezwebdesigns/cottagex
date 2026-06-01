@@ -13,7 +13,7 @@ type TrendingDestinationsProps = {
   items?: { name: string; properties: string; image: string }[];
 };
 
-export default function TrendingDestinations({ locale, title = "Trending Destinations", description = "Discover Canada's most sought-after wilderness corridors.", ctaText = "Explore Ontario", ctaLink = "/{locale}/locations/ontario", items }: TrendingDestinationsProps) {
+export default function TrendingDestinations({ locale, title = "Trending Destinations", description = "Discover Canada's most sought-after wilderness corridors.", ctaText = "Explore Ontario", ctaLink = "/{locale}/cottage-country/ontario", items }: TrendingDestinationsProps) {
   const router = useRouter();
   const destItems = items ?? initialDestinations.map(d => ({ name: d.name, properties: d.properties, image: d.image }));
 
@@ -36,7 +36,7 @@ export default function TrendingDestinations({ locale, title = "Trending Destina
         {destItems.map((dest, i) => (
           <div
             key={i}
-            onClick={() => { if (dest.name.includes('ON')) router.push(`/${locale}/locations/ontario`); }}
+            onClick={() => { if (dest.name.includes('ON')) router.push(`/${locale}/cottage-country/ontario`); }}
             className="min-w-[240px] md:min-w-[280px] h-[320px] rounded-3xl relative overflow-hidden group cursor-pointer snap-start flex-shrink-0"
           >
             <img src={dest.image} alt={dest.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />

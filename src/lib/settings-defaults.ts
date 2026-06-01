@@ -111,9 +111,11 @@ export const defaultSettings: Record<string, any> = {
     logo: "",
     discover: [
       { label: "All Cottages", href: "/{locale}" },
-      { label: "Ontario Region", href: "/{locale}/locations/ontario" },
-      { label: "Quebec Region", href: "/{locale}/locations/quebec" },
-      { label: "Western Canada", href: "/{locale}/locations/british-columbia" },
+      { label: "Ontario Region", href: "/{locale}/cottage-country/ontario" },
+
+      { label: "Quebec Region", href: "/{locale}/cottage-country/quebec" },
+
+      { label: "Western Canada", href: "/{locale}/cottage-country/british-columbia" },
       { label: "Lakefront Cabins", href: "/{locale}" },
     ],
     quickLinks: [
@@ -139,7 +141,7 @@ export const defaultSettings: Record<string, any> = {
     title: "Trending Destinations",
     description: "Discover Canada's most sought-after wilderness corridors.",
     ctaText: "Explore Ontario",
-    ctaLink: "/{locale}/locations/ontario",
+    ctaLink: "/{locale}/cottage-country/ontario",
     items: [
       { name: "Muskoka, ON", properties: "320+ cottages", image: "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&q=80&w=600" },
       { name: "Mont-Tremblant, QC", properties: "450+ cottages", image: "https://images.unsplash.com/photo-1517770413964-df8ca61194a6?auto=format&fit=crop&q=80&w=600" },
