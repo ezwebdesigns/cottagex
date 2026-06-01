@@ -131,9 +131,10 @@ export default function NewDestinationPage() {
         </div>
 
         <div className="bg-white border border-gray-200 rounded-3xl p-6 space-y-4">
-          <h2 className="text-lg font-semibold text-[#0B1B40]">Featured Cottages</h2>
-          <p className="text-xs text-gray-400">Use a shortcode to display cottages. Ex: <code className="text-[#1F51C6]">[ontario, rating, 6]</code> — voir la liste complète des shortcodes</p>
-          <div><label className="block text-sm font-medium text-gray-700 mb-1">Shortcode</label><input value={locationData.featured?.shortcode ?? ''} onChange={e => setLocationData({ ...locationData, featured: { ...locationData.featured, shortcode: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" placeholder="[province, category, limit]" /></div>
+          <h2 className="text-lg font-semibold text-[#0B1B40]">Featured Section</h2>
+          <div><label className="block text-sm font-medium text-gray-700 mb-1">Title</label><input value={locationData.featured?.title ?? ''} onChange={e => setLocationData({ ...locationData, featured: { ...locationData.featured, title: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
+          <div><label className="block text-sm font-medium text-gray-700 mb-1">Description</label><textarea value={locationData.featured?.description ?? ''} onChange={e => setLocationData({ ...locationData, featured: { ...locationData.featured, description: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6] h-20" /></div>
+          <div><label className="block text-sm font-medium text-gray-700 mb-1">Shortcode <span className="text-gray-400 font-normal">(ex: <code className="text-[#1F51C6]">[ontario, rating, 6]</code>)</span></label><input value={locationData.featured?.shortcode ?? ''} onChange={e => setLocationData({ ...locationData, featured: { ...locationData.featured, shortcode: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" placeholder="[province, category, limit]" /></div>
         </div>
 
         <div className="bg-white border border-gray-200 rounded-3xl p-6 space-y-4">
