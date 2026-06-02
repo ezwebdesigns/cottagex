@@ -32,7 +32,7 @@ export default function StandardTemplate({ pageData }: StandardTemplateProps) {
             <h3 className="text-lg font-bold text-[#0B1B40] mt-6">1. Platform Scope</h3>
             <p>Chalet Express acts strictly as a directory aggregator and travel blog. We do not own, manage, or coordinate keys or check-ins for any advertised cottages. All booking transactions take place securely on third-party channels.</p>
             <h3 className="text-lg font-bold text-[#0B1B40] mt-6">2. Affiliate Partnership Disclosure</h3>
-            <p>Certain links on our platform contain tracking codes. If you purchase or finalize a cottage stay after clicking our buttons (e.g., "Check Price" or "Book on VRBO"), we may receive a small marketing commission from the platform partners.</p>
+            <p>Certain links on our platform contain tracking codes. If you purchase or finalize a cottage stay after clicking our buttons (e.g., "Check Price" or "Check Availability"), we may receive a small marketing commission from the platform partners.</p>
             <div className="bg-blue-50 border border-blue-200 p-4 rounded-xl text-blue-900 font-medium text-sm">
               This transaction occurs at absolutely zero extra cost to you. Cottage rates are completely identical whether booked directly or via our links.
             </div>

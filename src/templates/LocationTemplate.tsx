@@ -2,7 +2,7 @@
 
 import { useRouter, usePathname } from 'next/navigation';
 import { useMemo, useState, useEffect, useRef } from 'react';
-import { Waves, Trees, Compass, ExternalLink, ChevronRight, BookOpen, CalendarDays, Clock, X } from 'lucide-react';
+import { Waves, Trees, Compass, MapPin, ExternalLink, ChevronRight, BookOpen, CalendarDays, Clock, X } from 'lucide-react';
 import ExploreSection from '@/components/home/ExploreSection';
 import FeaturedCottages from '@/components/FeaturedCottages';
 import SourceBadge from '@/components/SourceBadge';
@@ -177,7 +177,10 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
                   <div className="p-3 md:p-6 flex-1 flex flex-col justify-between">
                     <div>
                       <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-1 md:mb-3 gap-1">
-                        <span className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider line-clamp-1">{prop.location}</span>
+                        <div className="flex items-center gap-1 text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider line-clamp-1">
+                          <MapPin size={11} className="text-[#1F51C6]" />
+                          <span>{prop.location}</span>
+                        </div>
                         <div className="flex items-center gap-1">
                           <StarRating rating={parseFloat(prop.rating) || 0} />
                           <span className="text-[10px] md:text-xs font-bold text-[#0B1B40]">{prop.rating}</span>
@@ -192,7 +195,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
                         <span className="text-[10px] md:text-xs text-slate-500 font-medium">/night</span>
                       </div>
                       <a href={prop.bookingUrl} target="_blank" rel="noopener noreferrer" className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-3 md:px-5 py-1.5 md:py-2.5 rounded-full text-[11px] md:text-sm font-semibold transition-colors inline-flex items-center justify-center gap-1.5 w-full md:w-auto">
-                        Book <ExternalLink size={10} />
+                        Check Availability <ExternalLink size={10} />
                       </a>
                     </div>
                   </div>

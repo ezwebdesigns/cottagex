@@ -1,6 +1,7 @@
 'use client';
 
-import { Star, ExternalLink } from 'lucide-react';
+import { ExternalLink, MapPin } from 'lucide-react';
+import StarRating from '@/components/StarRating';
 
 export default function ListicleCard({ cottage, rank = 1, priority = false }) {
   const {
@@ -39,15 +40,19 @@ export default function ListicleCard({ cottage, rank = 1, priority = false }) {
               </span>
             )}
             {rating && (
-              <div className="flex items-center gap-1 text-sm font-bold bg-yellow-50 text-yellow-700 px-2.5 py-1 rounded-lg">
-                <Star size={14} className="fill-yellow-500 text-yellow-500" />
-                <span>{parseFloat(rating).toFixed(1)} / 5</span>
+              <div className="flex items-center gap-1">
+                <StarRating rating={parseFloat(rating)} size={14} />
+                <span className="text-sm font-bold text-[#0B1B40]">{parseFloat(rating).toFixed(1)}</span>
               </div>
             )}
           </div>
-          <h3 className="text-2xl font-bold text-[#0B1B40] mb-4">
+          <h3 className="text-2xl font-bold text-[#0B1B40] mb-2">
             {name}
           </h3>
+          <div className="flex items-center gap-1 text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">
+            <MapPin size={12} className="text-[#1F51C6]" />
+            <span className="capitalize">{cottage.province || cottage.slug || ''}</span>
+          </div>
         </div>
         <div className="pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
           <div>
@@ -67,7 +72,7 @@ export default function ListicleCard({ cottage, rank = 1, priority = false }) {
             rel="noopener noreferrer sponsored"
             className="bg-[#0B1B40] hover:bg-[#1F51C6] text-white px-6 py-3 rounded-full font-bold transition-all flex items-center gap-2 text-sm shadow-md"
           >
-            Book on {sourceLabel} <ExternalLink size={16} />
+            Check Availability <ExternalLink size={16} />
           </a>
         </div>
       </div>

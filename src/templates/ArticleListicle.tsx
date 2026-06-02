@@ -1,6 +1,7 @@
 'use client';
 
-import { ArrowLeft, CalendarDays, Clock, Star, ExternalLink, BookOpen } from 'lucide-react';
+import { ArrowLeft, CalendarDays, Clock, ExternalLink, BookOpen } from 'lucide-react';
+import StarRating from '@/components/StarRating';
 import { useRouter, usePathname } from 'next/navigation';
 import { ontarioListicleChalets } from '@/lib/mock-data';
 import { BreadcrumbSchema, ArticleSchema, ItemListSchema } from '@/components/seo/SchemaOrg';
@@ -81,7 +82,7 @@ export default function ArticleListicle({ locale, article }: ArticleListicleProp
         <div className="border-l-4 border-[#1F51C6] pl-4 mb-8 bg-blue-50/50 p-6 rounded-r-2xl">
           <h4 className="font-bold text-[#0B1B40] text-lg mb-2">Editor's Disclaimer:</h4>
           <p className="text-sm text-slate-600">
-            Pricing is highly dependent on season and group size. Clicking "Book on VRBO" routes you directly to verified affiliate landing pages where transactions can be made securely. Happy scouting!
+            Pricing is highly dependent on season and group size. Clicking "Check Availability" routes you directly to verified affiliate landing pages where transactions can be made securely. Happy scouting!
           </p>
         </div>
 
@@ -99,9 +100,9 @@ export default function ArticleListicle({ locale, article }: ArticleListicleProp
                   <span className="bg-blue-50 text-[#1F51C6] text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full">
                     {chalet.vibe}
                   </span>
-                  <div className="flex items-center gap-1 text-sm font-bold bg-yellow-50 text-yellow-700 px-2.5 py-1 rounded-lg">
-                    <Star size={14} className="fill-yellow-500 text-yellow-500" />
-                    <span>{chalet.rating} / 5</span>
+                  <div className="flex items-center gap-1">
+                    <StarRating rating={parseFloat(chalet.rating)} size={14} />
+                    <span className="text-sm font-bold text-[#0B1B40]">{chalet.rating}</span>
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold text-[#0B1B40] mb-4">
@@ -118,7 +119,7 @@ export default function ArticleListicle({ locale, article }: ArticleListicleProp
                   <span className="text-xs text-slate-500 font-medium"> / night</span>
                 </div>
                 <a href={chalet.vrboLink} target="_blank" rel="noopener noreferrer" className="bg-[#0B1B40] hover:bg-[#1F51C6] text-white px-6 py-3 rounded-full font-bold transition-all flex items-center gap-2 text-sm shadow-md">
-                  Book on VRBO <ExternalLink size={16} />
+                  Check Availability <ExternalLink size={16} />
                 </a>
               </div>
             </div>
