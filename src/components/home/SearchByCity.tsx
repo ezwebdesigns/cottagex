@@ -44,7 +44,7 @@ export default function SearchByCity({ title = "Search by City and Category", de
                 onClick={() => setActiveMoreCity(data)}
                 className="text-[#1F51C6]/80 hover:text-[#1F51C6] text-[11px] md:text-xs font-bold mt-4 md:mt-5 text-left inline-flex items-center gap-1 hover:underline"
               >
-                + 8 more
+                + 6 more
               </button>
             </div>
           ))}
