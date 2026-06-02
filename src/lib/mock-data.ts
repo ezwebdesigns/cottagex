@@ -32,20 +32,20 @@ export const initialArticles = [
 
 const provinceSearch = (p: string) => ({
   categories: [
-    `Cottages for rent in ${p}`,
     `Luxury Cottages in ${p}`,
     `Pet Friendly Cottages in ${p}`,
-    `Family Cottage Resorts in ${p}`,
+    `Family Cottage Resort in ${p}`,
+    `Lakefront Cottage in ${p}`,
+    `Cottage with Hot Tub in ${p}`,
+    `Romantic Cottage for 2 in ${p}`,
   ],
   more: [
-    `Lakefront Cottages in ${p}`,
-    `Cottages with hot tub in ${p}`,
-    `Romantic Cottage for 2 in ${p}`,
-    `Cottage rentals in ${p}`,
-    `Cottage with spa in ${p}`,
-    `Chalet rental in ${p}`,
-    `chalet for rent in ${p}`,
-    `Cottages in ${p}`,
+    `Cottage Rentals in ${p}`,
+    `Chalet for Rent in ${p}`,
+    `Cabin for Rent in ${p}`,
+    `Waterfront Cottage in ${p}`,
+    `Log Wood Cottage in ${p}`,
+    `Mountain Cottage in ${p}`,
   ],
 });
 
