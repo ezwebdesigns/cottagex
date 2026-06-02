@@ -135,8 +135,8 @@ export const newBrunswickSearchData = [
 ];
 
 export const albertaSearchData = [
-  { city: 'Canmore & Kananaskis', ...citySearch('Canmore & Kananaskis') },
-  { city: 'Sylvan Lake & Pigeon Lake', ...citySearch('Sylvan Lake & Pigeon Lake') },
+  { city: 'Kananaskis', ...citySearch('Kananaskis') },
+  { city: 'Pigeon Lake', ...citySearch('Pigeon Lake') },
   { city: 'Banff', ...citySearch('Banff') },
   { city: 'Jasper', ...citySearch('Jasper') },
   { city: 'Lake Louise', ...citySearch('Lake Louise') },
