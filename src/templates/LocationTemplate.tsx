@@ -8,7 +8,7 @@ import FeaturedCottages from '@/components/FeaturedCottages';
 import SourceBadge from '@/components/SourceBadge';
 import StarRating from '@/components/StarRating';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
-import { initialProperties } from '@/lib/mock-data';
+import { initialProperties, ontarioSearchData, quebecSearchData, novaScotiaSearchData, britishColumbiaSearchData, newBrunswickSearchData, albertaSearchData, manitobaSearchData, peiSearchData, saskatchewanSearchData } from '@/lib/mock-data';
 
 type LocationTemplateProps = {
   locale: string;
@@ -81,30 +81,32 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
     return initialProperties.filter(p => p.province === 'Ontario').map(p => ({ ...p, bookingUrl: 'https://www.vrbo.com', source: '' }));
   }, [cottages]);
 
-  type CityLink = { label: string; url: string };
-  type CityGroup = { city: string; categories: CityLink[]; more: CityLink[] };
+  const searchDataMap: Record<string, typeof ontarioSearchData> = {
+    ontario: ontarioSearchData,
+    quebec: quebecSearchData,
+    'nova-scotia': novaScotiaSearchData,
+    'british-columbia': britishColumbiaSearchData,
+    'new-brunswick': newBrunswickSearchData,
+    alberta: albertaSearchData,
+    manitoba: manitobaSearchData,
+    'prince-edward-island': peiSearchData,
+    saskatchewan: saskatchewanSearchData,
+  };
+  const searchData = searchDataMap[slug] || ontarioSearchData;
 
-  const [searchData, setSearchData] = useState<CityGroup[]>([]);
-  const [activeMoreCity, setActiveMoreCity] = useState<CityGroup | null>(null);
+  const [linkMap, setLinkMap] = useState<Record<string, string>>({});
+  const [activeMoreCity, setActiveMoreCity] = useState<(typeof ontarioSearchData)[0] | null>(null);
   const egContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetch('/api/search-links')
       .then((r) => r.json())
       .then((rows: { city: string; category: string; affiliateUrl: string }[]) => {
-        const map = new Map<string, CityLink[]>();
-        for (const r of rows) {
-          const list = map.get(r.city) || [];
-          list.push({ label: r.category, url: r.affiliateUrl });
-          map.set(r.city, list);
-        }
-        const groups: CityGroup[] = [];
-        for (const [city, items] of map) {
-          groups.push({ city, categories: items.slice(0, 6), more: items.slice(6) });
-        }
-        setSearchData(groups);
+        const m: Record<string, string> = {};
+        for (const r of rows) m[`${r.city}|${r.category}`] = r.affiliateUrl;
+        setLinkMap(m);
       })
-      .catch((err) => console.error('Failed to load search links:', err));
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -263,11 +265,15 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
                 <div>
                   <h3 className="text-lg md:text-xl font-extrabold text-[#0B1B40] border-b border-slate-50 pb-2 md:pb-3 mb-3 md:mb-4">{data.city}</h3>
                   <ul className="space-y-2 md:space-y-3">
-                    {data.categories.map((item, idx) => (
-                      <li key={idx}>
-                        <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-[#1F51C6] hover:text-[#163FA3] text-xs font-normal hover:underline block transition-colors line-clamp-1">{item.label}</a>
-                      </li>
-                    ))}
+                    {data.categories.map((cat, idx) => {
+                      const linkKey = `${data.city}|${cat}`;
+                      const href = linkMap[linkKey] || 'https://www.vrbo.com/search';
+                      return (
+                        <li key={idx}>
+                          <a href={href} target="_blank" rel="noopener noreferrer" className="text-[#1F51C6] hover:text-[#163FA3] text-xs font-normal hover:underline block transition-colors line-clamp-1">{cat}</a>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
                 <button onClick={() => setActiveMoreCity(data)} className="text-[#1F51C6]/80 hover:text-[#1F51C6] text-[11px] md:text-xs font-bold mt-4 md:mt-5 text-left inline-flex items-center gap-1 hover:underline">
@@ -314,9 +320,13 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
             <h3 className="text-2xl font-black text-[#0B1B40] mb-2">{activeMoreCity.city}</h3>
             <p className="text-sm text-slate-400 mb-6">Explore expanded niche categories and localized cabin listings.</p>
             <div className="grid grid-cols-2 gap-3">
-              {activeMoreCity.more.map((item, idx) => (
-                <a key={idx} href={item.url} target="_blank" rel="noopener noreferrer" className="bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-[#1F51C6] p-3 rounded-full text-xs font-normal border border-slate-100 transition-colors text-center">{item.label}</a>
-              ))}
+              {activeMoreCity.more.map((item, idx) => {
+                const linkKey = `${activeMoreCity.city}|${item}`;
+                const href = linkMap[linkKey] || 'https://www.vrbo.com/search';
+                return (
+                  <a key={idx} href={href} target="_blank" rel="noopener noreferrer" className="bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-[#1F51C6] p-3 rounded-full text-xs font-normal border border-slate-100 transition-colors text-center">{item}</a>
+                );
+              })}
             </div>
             <div className="mt-8 pt-6 border-t border-slate-100 flex justify-end">
               <button onClick={() => setActiveMoreCity(null)} className="bg-[#0B1B40] hover:bg-slate-800 text-white px-6 py-2.5 rounded-full text-xs font-bold transition-colors">Close View</button>
