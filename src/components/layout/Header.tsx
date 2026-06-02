@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { X, Menu } from 'lucide-react';
+import { X, Menu, Home, MapPin, BookOpen } from 'lucide-react';
 import { BrandLogoFull } from '@/components/branding/Logo';
 import Link from 'next/link';
 
@@ -18,6 +18,15 @@ const defaultNavItems = (locale: string) => [
   { label: 'About Us', href: `/${locale}/about` },
   { label: 'Contact', href: `/${locale}/contact` },
 ];
+
+const iconForNav = (item: { label: string; href: string }) => {
+  const h = item.href.toLowerCase();
+  const l = item.label.toLowerCase();
+  if (h === '/' || l.includes('explore') || l.includes('accueil') || l.includes('home')) return <Home size={15} className="text-[#1F51C6]" />;
+  if (h.includes('cottage-country') || l.includes('destination')) return <MapPin size={15} className="text-[#1F51C6]" />;
+  if (l.includes('guide') || l.includes('blog') || l.includes('article')) return <BookOpen size={15} className="text-[#1F51C6]" />;
+  return null;
+};
 
 export default function Header({ locale, menuItems, logo }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -42,20 +51,21 @@ export default function Header({ locale, menuItems, logo }: HeaderProps) {
         )}
       </Link>
 
-      <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+      <div className="hidden md:flex items-center gap-8 text-sm font-medium">
         {navItems.map((item) => (
           <Link
             key={item.href}
             href={item.href}
-            className="hover:text-[#1F51C6] transition-colors py-2"
+            className="hover:text-[#1F51C6] transition-colors py-2 inline-flex items-center gap-1.5 text-[#000000]"
           >
+            {iconForNav(item)}
             {item.label}
           </Link>
         ))}
       </div>
 
       <button
-        className="md:hidden text-gray-600 p-2"
+        className="md:hidden text-[#000000] p-2"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
         {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -67,9 +77,10 @@ export default function Header({ locale, menuItems, logo }: HeaderProps) {
             <Link
               key={item.href}
               href={item.href}
-              className="py-2.5 border-b border-gray-100 text-left font-medium text-gray-700"
+              className="py-2.5 border-b border-gray-100 text-left font-medium text-[#000000] inline-flex items-center gap-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
+              {iconForNav(item)}
               {item.label}
             </Link>
           ))}
