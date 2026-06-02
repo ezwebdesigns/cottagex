@@ -8,7 +8,7 @@ import FeaturedCottages from '@/components/FeaturedCottages';
 import SourceBadge from '@/components/SourceBadge';
 import StarRating from '@/components/StarRating';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
-import { initialProperties, ontarioSearchData, quebecSearchData, novaScotiaSearchData, britishColumbiaSearchData, newBrunswickSearchData, albertaSearchData, manitobaSearchData } from '@/lib/mock-data';
+import { initialProperties, ontarioSearchData, quebecSearchData, novaScotiaSearchData, britishColumbiaSearchData, newBrunswickSearchData, albertaSearchData, manitobaSearchData, peiSearchData } from '@/lib/mock-data';
 
 type LocationTemplateProps = {
   locale: string;
@@ -89,6 +89,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
     'new-brunswick': newBrunswickSearchData,
     alberta: albertaSearchData,
     manitoba: manitobaSearchData,
+    'prince-edward-island': peiSearchData,
   };
   const searchData = searchDataMap[slug] || ontarioSearchData;
 
