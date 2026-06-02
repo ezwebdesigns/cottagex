@@ -4,10 +4,11 @@
  *
  * Usage:
  *   node --env-file=.env scripts/seed-cottages.mjs
+ *   node --env-file=.env scripts/seed-cottages.mjs muskoka georgian-bay
  *
  * Filtres :
  *   - strictLink: true  → source VRBO/Expedia ET google_link vrbo.com/expedia.com
- *   - strictLink: false → source VRBO/Expedia seulement (pour destinations QC)
+ *   - (défaut pour toutes les destinations incluant le Québec)
  */
 
 import fetch from 'node-fetch'
@@ -16,8 +17,8 @@ const { Pool } = pkg
 
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
 
-const SERPAPI_KEY     = process.env.SERPAPI_KEY  || 'c623b4d89875beec441178f238655fd40ae91bfff1b6d8caef151e3cc1efd9c7'
-const DATABASE_URL    = process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_Yq5DfVIswFB9@ep-morning-frog-apofbubd-pooler.c-7.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require'
+const SERPAPI_KEY     = process.env.SERPAPI_KEY  || 'REMPLACE_PAR_TA_CLE'
+const DATABASE_URL    = process.env.DATABASE_URL || 'REMPLACE_PAR_TON_URL_NEON'
 const ALLOWED_SOURCES = ['Vrbo.com', 'Expedia.com', 'Hotels.com', 'VRBO']
 const ALLOWED_DOMAINS = ['vrbo.com', 'expedia.com']
 
@@ -42,20 +43,14 @@ function nextWeekend() {
   }
 }
 
-function isAllowed(prop, strictLink = true) {
-  // Filtre 1 (toujours) : source VRBO ou Expedia dans prices[]
+// Double filtre strict : source VRBO/Expedia ET google_link vrbo.com/expedia.com
+function isAllowed(prop) {
   const hasAllowedSource = prop.prices?.some(price =>
     ALLOWED_SOURCES.some(s => price.source?.includes(s))
   )
-  if (!hasAllowedSource) return false
-
-  // Filtre 2 (strictLink seulement) : google_link pointe vers vrbo.com ou expedia.com
-  if (strictLink) {
-    return prop.link && ALLOWED_DOMAINS.some(d => prop.link.includes(d))
-  }
-
-  // strictLink: false → on accepte tout google_link non-null
-  return !!prop.link
+  const hasAllowedLink =
+    prop.link && ALLOWED_DOMAINS.some(d => prop.link.includes(d))
+  return hasAllowedSource && hasAllowedLink
 }
 
 function transform(prop, dest) {
@@ -91,47 +86,60 @@ function transform(prop, dest) {
     excluded_amenities: JSON.stringify(prop.excluded_amenities || []),
     check_in_time:      prop.check_in_time  || null,
     check_out_time:     prop.check_out_time || null,
-    google_link:        prop.link || null,
+    google_link:        prop.link,
     affiliate_url:      null,
   }
 }
 
 // ─── DESTINATIONS ────────────────────────────────────────────────────────────
-// strictLink: false → filtre souple (Québec + destinations à faible couverture VRBO)
-// strictLink: true  → filtre strict vrbo.com/expedia.com dans google_link (défaut)
 
 const DESTINATIONS = [
   // Ontario
-  { slug: 'muskoka',      province: 'ontario', query: 'muskoka cottage rentals ontario canada',      strictLink: false },
-  { slug: 'kawarthas',         province: 'ontario',          query: 'kawarthas cottage rentals ontario canada' },
-  { slug: 'haliburton',        province: 'ontario',          query: 'haliburton highlands cottage rentals ontario canada' },
-  { slug: 'georgian-bay', province: 'ontario', query: 'georgian bay cottage rentals ontario canada', strictLink: false },
-  { slug: 'prince-edward',     province: 'ontario',          query: 'prince edward county cottage rentals ontario canada' },
-  // Quebec — strictLink: false (plateformes locales dominantes)
-  { slug: 'laurentides',       province: 'quebec',           query: 'laurentides chalet location quebec canada',           strictLink: false },
-  { slug: 'mont-tremblant',    province: 'quebec',           query: 'mont-tremblant chalet rentals quebec canada',         strictLink: false },
-  { slug: 'eastern-townships', province: 'quebec',           query: 'eastern townships cottage rentals quebec canada',     strictLink: false },
+  { slug: 'muskoka',            province: 'ontario',          query: 'muskoka cottage rentals ontario canada' },
+  { slug: 'kawarthas',          province: 'ontario',          query: 'kawarthas cottage rentals ontario canada' },
+  { slug: 'haliburton',         province: 'ontario',          query: 'haliburton highlands cottage rentals ontario canada' },
+  { slug: 'georgian-bay',       province: 'ontario',          query: 'georgian bay cottage rentals ontario canada' },
+  { slug: 'prince-edward',      province: 'ontario',          query: 'prince edward county cottage rentals ontario canada' },
+
+// FR — court et précis
+{ slug: 'laurentides',    province: 'quebec', query: 'chalet laurentides',    hl: 'fr' },
+{ slug: 'mont-tremblant', province: 'quebec', query: 'chalet mont-tremblant', hl: 'fr' },
+{ slug: 'tremblant',      province: 'quebec', query: 'chalet tremblant',      hl: 'fr' },
+{ slug: 'quebec',         province: 'quebec', query: 'location chalet à louer', hl: 'fr' },
+
+// EN — court et précis
+{ slug: 'laurentides',    province: 'quebec', query: 'cottage laurentians',          hl: 'en' },
+{ slug: 'mont-tremblant', province: 'quebec', query: 'cottage mont-tremblant rental', hl: 'en' },
+{ slug: 'tremblant',      province: 'quebec', query: 'cabin tremblant cottage rental', hl: 'en' },
+{ slug: 'quebec',         province: 'quebec', query: 'vacation cottage rental quebec', hl: 'en' },
+
   // British Columbia
-  { slug: 'whistler',          province: 'british-columbia', query: 'whistler cabin rentals bc canada' },
-  { slug: 'okanagan',          province: 'british-columbia', query: 'okanagan valley cottage rentals bc canada' },
-  { slug: 'sunshine-coast',    province: 'british-columbia', query: 'sunshine coast cottage rentals bc canada' },
+  { slug: 'whistler',           province: 'british-columbia', query: 'whistler cabin rentals bc canada' },
+  { slug: 'okanagan',           province: 'british-columbia', query: 'okanagan valley cottage rentals bc canada' },
+  { slug: 'sunshine-coast',     province: 'british-columbia', query: 'sunshine coast cottage rentals bc canada' },
+
   // Nova Scotia
-  { slug: 'cape-breton',       province: 'nova-scotia',      query: 'cape breton cottage rentals nova scotia canada' },
-  { slug: 'south-shore-ns',    province: 'nova-scotia',      query: 'south shore cottage rentals nova scotia canada' },
+  { slug: 'cape-breton',        province: 'nova-scotia',      query: 'cape breton cottage rentals nova scotia canada' },
+  { slug: 'south-shore-ns',     province: 'nova-scotia',      query: 'south shore cottage rentals nova scotia canada' },
+
   // Alberta
-  { slug: 'canmore',           province: 'alberta',          query: 'canmore kananaskis cabin rentals alberta canada' },
-  { slug: 'sylvan-lake',       province: 'alberta',          query: 'sylvan lake cottage rentals alberta canada' },
+  { slug: 'canmore',            province: 'alberta',          query: 'canmore kananaskis cabin rentals alberta canada' },
+  { slug: 'sylvan-lake',        province: 'alberta',          query: 'sylvan lake cottage rentals alberta canada' },
+
   // New Brunswick
-  { slug: 'acadian-peninsula', province: 'new-brunswick',    query: 'acadian peninsula cottage rentals new brunswick canada' },
-  { slug: 'shediac',           province: 'new-brunswick',    query: 'shediac cottage rentals new brunswick canada' },
+  { slug: 'acadian-peninsula',  province: 'new-brunswick',    query: 'acadian peninsula cottage rentals new brunswick canada' },
+  { slug: 'shediac',            province: 'new-brunswick',    query: 'shediac cottage rentals new brunswick canada' },
+
   // PEI
-  { slug: 'pei-north-shore',   province: 'pei',              query: 'north shore cottage rentals pei canada' },
-  { slug: 'pei-points-east',   province: 'pei',              query: 'points east cottage rentals pei canada' },
+  { slug: 'pei-north-shore',    province: 'pei',              query: 'north shore cottage rentals pei canada' },
+  { slug: 'pei-points-east',    province: 'pei',              query: 'points east cottage rentals pei canada' },
+
   // Saskatchewan
-  { slug: 'waskesiu',          province: 'saskatchewan',     query: 'prince albert national park cabin rentals saskatchewan canada', strictLink: false },
+  { slug: 'waskesiu',           province: 'saskatchewan',     query: 'prince albert national park cabin rentals saskatchewan canada' },
+
   // Manitoba
-  { slug: 'falcon-lake',       province: 'manitoba',         query: 'falcon lake cottage rentals manitoba canada',         strictLink: false },
-  { slug: 'west-hawk-lake',    province: 'manitoba',         query: 'west hawk lake cottage rentals manitoba canada',      strictLink: false },
+  { slug: 'falcon-lake',        province: 'manitoba',         query: 'falcon lake cottage rentals manitoba canada' },
+  { slug: 'west-hawk-lake',     province: 'manitoba',         query: 'west hawk lake cottage rentals manitoba canada' },
 ]
 
 // ─── SERPAPI ─────────────────────────────────────────────────────────────────
@@ -141,7 +149,7 @@ async function fetchDestination(dest, checkin, checkout) {
     engine:           'google_hotels',
     q:                dest.query,
     gl:               'ca',
-    hl:               'en',
+    hl:               dest.hl || 'en',   // ← utilise hl de la destination
     currency:         'CAD',
     check_in_date:    checkin,
     check_out_date:   checkout,
@@ -210,8 +218,7 @@ async function seed() {
   const { checkin, checkout } = nextWeekend()
   const client = await pool.connect()
 
-  // Optionnel : passer des slugs spécifiques en argument
-  // ex: node seed-cottages.mjs muskoka georgian-bay
+  // Slugs ciblés via arguments
   const targetSlugs = process.argv.slice(2)
   const destinations = targetSlugs.length > 0
     ? DESTINATIONS.filter(d => targetSlugs.includes(d.slug))
@@ -220,21 +227,21 @@ async function seed() {
   console.log(`\n🏕️  Canada Cottage Rentals — Seed`)
   console.log(`📅  Dates        : ${checkin} → ${checkout}`)
   console.log(`🗄️  Base          : Neon PostgreSQL`)
-  console.log(`🔍  Mode         : ${targetSlugs.length > 0 ? 'ciblé → ' + targetSlugs.join(', ') : 'complet'}`)
+  console.log(`🔍  Filtres      : VRBO/Expedia strict (source + google_link)`)
+  console.log(`🇨🇦  Mode         : ${targetSlugs.length > 0 ? 'ciblé → ' + targetSlugs.join(', ') : 'complet'}`)
   console.log(`📍  Destinations : ${destinations.length}\n`)
 
   let totalFetched = 0, totalKept = 0, totalInserted = 0, totalUpdated = 0, searchesUsed = 0
 
   try {
     for (const dest of destinations) {
-      const strict = dest.strictLink !== false // true par défaut
-      process.stdout.write(`  ⏳ ${dest.slug.padEnd(24)} [${strict ? 'strict' : 'souple'}] `)
+      process.stdout.write(`  ⏳ ${dest.slug.padEnd(24)}`)
       try {
         const properties = await fetchDestination(dest, checkin, checkout)
         searchesUsed++
         totalFetched += properties.length
 
-        const filtered = properties.filter(p => isAllowed(p, strict))
+        const filtered = properties.filter(isAllowed)
         totalKept += filtered.length
 
         let inserted = 0, updated = 0
@@ -271,11 +278,8 @@ async function seed() {
   console.log(`   Mises à jour      : ${totalUpdated}`)
   console.log(`\n⚠️  Prochaines étapes :`)
   console.log(`   1. Vérifie : SELECT * FROM v_destination_stats;`)
-  console.log(`   2. Remplis affiliate_url depuis ton dashboard VRBO/Expedia :`)
-  console.log(`      SELECT id, slug, name, google_link, source`)
-  console.log(`      FROM affiliatecottages WHERE affiliate_url IS NULL ORDER BY slug;`)
-  console.log(`   3. Marque les cottages à afficher :`)
-  console.log(`      UPDATE affiliatecottages SET is_featured = true WHERE id IN (...);`)
+  console.log(`   2. Remplis affiliate_url depuis ton dashboard VRBO/Expedia`)
+  console.log(`   3. Marque is_featured = true pour les chalets à afficher`)
   console.log()
 }
 
