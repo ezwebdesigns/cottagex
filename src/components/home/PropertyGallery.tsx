@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { MapPin, Star, ExternalLink } from 'lucide-react';
+import { MapPin, ExternalLink } from 'lucide-react';
 import SourceBadge from '@/components/SourceBadge';
 
 type GalleryTab = { name: string; category: string; shortcode?: string };
@@ -60,9 +60,9 @@ function CottageCard({ cottage }: { cottage: any }) {
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-1 md:mb-2 gap-0.5 md:gap-2">
             <h3 className="font-bold text-[#0B1B40] text-sm md:text-lg leading-tight line-clamp-1">{cottage.name}</h3>
             {cottage.rating && (
-              <div className="flex items-center gap-0.5 text-xs font-medium bg-slate-50 px-1.5 py-0.5 rounded-lg w-fit">
-                <Star size={12} className="fill-yellow-400 text-yellow-400" />
-                <span className="text-[11px] md:text-sm">{cottage.rating.toFixed(1)}</span>
+              <div className="flex items-center gap-0.5">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffcb00" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span className="text-[11px] md:text-sm font-bold text-[#0B1B40]">{cottage.rating.toFixed(1)}</span>
               </div>
             )}
           </div>
