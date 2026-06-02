@@ -8,7 +8,7 @@ import FeaturedCottages from '@/components/FeaturedCottages';
 import SourceBadge from '@/components/SourceBadge';
 import StarRating from '@/components/StarRating';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
-import { initialProperties, ontarioSearchData, quebecSearchData, novaScotiaSearchData, britishColumbiaSearchData, newBrunswickSearchData, albertaSearchData } from '@/lib/mock-data';
+import { initialProperties, ontarioSearchData, quebecSearchData, novaScotiaSearchData, britishColumbiaSearchData, newBrunswickSearchData, albertaSearchData, manitobaSearchData } from '@/lib/mock-data';
 
 type LocationTemplateProps = {
   locale: string;
@@ -88,6 +88,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
     'british-columbia': britishColumbiaSearchData,
     'new-brunswick': newBrunswickSearchData,
     alberta: albertaSearchData,
+    manitoba: manitobaSearchData,
   };
   const searchData = searchDataMap[slug] || ontarioSearchData;
 
@@ -252,7 +253,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
                   <ul className="space-y-2 md:space-y-3">
                     {data.categories.map((cat, idx) => (
                       <li key={idx}>
-                        <a href="https://www.vrbo.com/search" target="_blank" rel="noopener noreferrer" className="text-[#1F51C6] hover:text-[#163FA3] text-xs font-light hover:underline block transition-colors line-clamp-1">{cat}</a>
+                        <a href="https://www.vrbo.com/search" target="_blank" rel="noopener noreferrer" className="text-[#1F51C6] hover:text-[#163FA3] text-xs font-normal hover:underline block transition-colors line-clamp-1">{cat}</a>
                       </li>
                     ))}
                   </ul>
@@ -302,7 +303,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
             <p className="text-sm text-slate-400 mb-6">Explore expanded niche categories and localized cabin listings.</p>
             <div className="grid grid-cols-2 gap-3">
               {activeMoreCity.more.map((item, idx) => (
-                <a key={idx} href="https://www.vrbo.com/search" target="_blank" rel="noopener noreferrer" className="bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-[#1F51C6] p-3 rounded-full text-xs font-light border border-slate-100 transition-colors text-center">{item}</a>
+                <a key={idx} href="https://www.vrbo.com/search" target="_blank" rel="noopener noreferrer" className="bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-[#1F51C6] p-3 rounded-full text-xs font-normal border border-slate-100 transition-colors text-center">{item}</a>
               ))}
             </div>
             <div className="mt-8 pt-6 border-t border-slate-100 flex justify-end">

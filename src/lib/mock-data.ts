@@ -145,6 +145,17 @@ export const albertaSearchData = [
   { city: 'Waterton Lakes', ...citySearch('Waterton Lakes') },
 ];
 
+export const manitobaSearchData = [
+  { city: 'Falcon Lake', ...citySearch('Falcon Lake') },
+  { city: 'West Hawk Lake', ...citySearch('West Hawk Lake') },
+  { city: 'Winnipeg', ...citySearch('Winnipeg') },
+  { city: 'Clear Lake', ...citySearch('Clear Lake') },
+  { city: 'Lake Winnipeg', ...citySearch('Lake Winnipeg') },
+  { city: 'Gimli', ...citySearch('Gimli') },
+  { city: 'Whiteshell Provincial Park', ...citySearch('Whiteshell Provincial Park') },
+  { city: 'Hecla', ...citySearch('Hecla') },
+];
+
 export const testimonials = [
   { id: 1, text: "We found the absolute perfect cabin for our autumn getaway in Mont-Tremblant through this directory. The handpicked recommendations made booking on VRBO super simple.", author: "Sophie M.", role: "Traveler", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100" },
   { id: 2, text: "The search filters are incredibly intuitive. We wanted a completely secluded lakefront escape in Ontario, and matched with our dream cottage in under 5 minutes.", author: "Marc-Antoine T.", role: "Explorer", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100" },

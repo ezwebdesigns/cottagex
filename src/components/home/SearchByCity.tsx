@@ -32,7 +32,7 @@ export default function SearchByCity({ title = "Search by City and Category", de
                         href="https://www.vrbo.com/search"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[#1F51C6] hover:text-[#163FA3] text-xs font-light hover:underline block transition-colors line-clamp-1"
+                        className="text-[#1F51C6] hover:text-[#163FA3] text-xs font-normal hover:underline block transition-colors line-clamp-1"
                       >
                         {cat}
                       </a>
@@ -70,7 +70,7 @@ export default function SearchByCity({ title = "Search by City and Category", de
                   href="https://www.vrbo.com/search"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-[#1F51C6] p-3 rounded-full text-xs font-light border border-slate-100 transition-colors text-center"
+                  className="bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-[#1F51C6] p-3 rounded-full text-xs font-normal border border-slate-100 transition-colors text-center"
                 >
                   {item}
                 </a>
