@@ -112,6 +112,17 @@ export const novaScotiaSearchData = [
   { city: 'Digby', ...citySearch('Digby') },
 ];
 
+export const britishColumbiaSearchData = [
+  { city: 'Okanagan Valley', ...citySearch('Okanagan Valley') },
+  { city: 'Sunshine Coast', ...citySearch('Sunshine Coast') },
+  { city: 'Vancouver Island', ...citySearch('Vancouver Island') },
+  { city: 'Whistler', ...citySearch('Whistler') },
+  { city: 'Tofino', ...citySearch('Tofino') },
+  { city: 'Victoria', ...citySearch('Victoria') },
+  { city: 'Kelowna', ...citySearch('Kelowna') },
+  { city: 'Squamish', ...citySearch('Squamish') },
+];
+
 export const testimonials = [
   { id: 1, text: "We found the absolute perfect cabin for our autumn getaway in Mont-Tremblant through this directory. The handpicked recommendations made booking on VRBO super simple.", author: "Sophie M.", role: "Traveler", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100" },
   { id: 2, text: "The search filters are incredibly intuitive. We wanted a completely secluded lakefront escape in Ontario, and matched with our dream cottage in under 5 minutes.", author: "Marc-Antoine T.", role: "Explorer", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100" },
