@@ -130,7 +130,7 @@ export const newBrunswickSearchData = [
   { city: 'Fredericton', ...citySearch('Fredericton') },
   { city: 'Moncton', ...citySearch('Moncton') },
   { city: 'Fundy National Park', ...citySearch('Fundy National Park') },
-  { city: 'St. Andrews-by-the-Sea', ...citySearch('St. Andrews-by-the-Sea') },
+  { city: 'St. Andrews', ...citySearch('St. Andrews') },
   { city: 'Miramichi', ...citySearch('Miramichi') },
 ];
 
