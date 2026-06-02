@@ -8,7 +8,7 @@ import FeaturedCottages from '@/components/FeaturedCottages';
 import SourceBadge from '@/components/SourceBadge';
 import StarRating from '@/components/StarRating';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
-import { initialProperties, ontarioSearchData, quebecSearchData } from '@/lib/mock-data';
+import { initialProperties, ontarioSearchData, quebecSearchData, novaScotiaSearchData } from '@/lib/mock-data';
 
 type LocationTemplateProps = {
   locale: string;
@@ -84,6 +84,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
   const searchDataMap: Record<string, typeof ontarioSearchData> = {
     ontario: ontarioSearchData,
     quebec: quebecSearchData,
+    'nova-scotia': novaScotiaSearchData,
   };
   const searchData = searchDataMap[slug] || ontarioSearchData;
 

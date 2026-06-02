@@ -101,6 +101,17 @@ export const quebecSearchData = [
   { city: 'Saguenay', ...citySearch('Saguenay') },
 ];
 
+export const novaScotiaSearchData = [
+  { city: 'Cape Breton', ...citySearch('Cape Breton') },
+  { city: 'South Shore', ...citySearch('South Shore') },
+  { city: 'Halifax', ...citySearch('Halifax') },
+  { city: 'Lunenburg', ...citySearch('Lunenburg') },
+  { city: 'Annapolis Valley', ...citySearch('Annapolis Valley') },
+  { city: 'Peggy\'s Cove', ...citySearch('Peggy\'s Cove') },
+  { city: 'Wolfville', ...citySearch('Wolfville') },
+  { city: 'Digby', ...citySearch('Digby') },
+];
+
 export const testimonials = [
   { id: 1, text: "We found the absolute perfect cabin for our autumn getaway in Mont-Tremblant through this directory. The handpicked recommendations made booking on VRBO super simple.", author: "Sophie M.", role: "Traveler", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100" },
   { id: 2, text: "The search filters are incredibly intuitive. We wanted a completely secluded lakefront escape in Ontario, and matched with our dream cottage in under 5 minutes.", author: "Marc-Antoine T.", role: "Explorer", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100" },
