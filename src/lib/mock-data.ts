@@ -30,15 +30,34 @@ export const initialArticles = [
   { id: 2, title: 'How to Choose the Perfect Waterfront Cottage in Canada', excerpt: 'Private docks, included watercraft, sunset orientation, and sandy entry. Read our essential checklist for an amazing, worry-free stay.', date: 'August 28, 2025', readTime: '8 min read', category: 'Practical Advice', image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=800', isListicle: false, slug: 'choose-perfect-waterfront-cottage', content: `Renting a waterfront cottage is a time-honored Canadian summer tradition. However, not all waterfronts are created equal. To ensure your vacation is perfectly tailored, consider these key criteria.\n\nWaterfront Access: Is it sandy or rocky?\nSome listings mention "water access," but it could mean a steep cliff or weedy, muddy shores. If you travel with young children, a gradual sandy beach entry is vital.\n\nSunset or Sunrise Orientation:\n- East-Facing (Sunrise): Beautiful bright mornings, perfect for early risers.\n- West-Facing (Sunset): Keeps your deck sunny all afternoon, ending with glowing skylines.` }
 ];
 
+const provinceSearch = (p: string) => ({
+  categories: [
+    `Cottages for rent in ${p}`,
+    `Luxury Cottages in ${p}`,
+    `Pet Friendly Cottages in ${p}`,
+    `Family Cottage Resorts in ${p}`,
+  ],
+  more: [
+    `Lakefront Cottages in ${p}`,
+    `Cottages with hot tub in ${p}`,
+    `Romantic Cottage for 2 in ${p}`,
+    `Cottage rentals in ${p}`,
+    `Cottage with spa in ${p}`,
+    `Chalet rental in ${p}`,
+    `chalet for rent in ${p}`,
+    `Cottages in ${p}`,
+  ],
+});
+
 export const canadaSearchData = [
-  { city: 'Montreal', categories: ['Cottages in Montreal', 'Lakefront in Montreal', 'Cabins with Spa in Montreal', 'Pet Friendly in Montreal'], more: ['Family Lodges', 'A-Frames', 'Ski Chalets', 'Luxury Retreats', 'Budget Cottages', 'Eco-Cabins', 'Modern Lofts', 'Historic Mills'] },
-  { city: 'Toronto', categories: ['Cottages near Toronto', 'Island Cabins Toronto', 'Spa Resorts Toronto', 'Waterfront Rentals Toronto'], more: ['Lake Shore Cottages', 'Glamping Domes', 'Tiny Homes', 'Luxury Estates', 'Couples Retreats', 'Pet-Friendly Parks', 'Fishing Lodges', 'Eco-Lodges'] },
-  { city: 'Vancouver', categories: ['Oceanview Cottages Vancouver', 'Mountain Chalets Vancouver', 'Rainforest Cabins Vancouver', 'Pet Friendly Vancouver'], more: ['Off-grid Huts', 'Luxury Ocean Villas', 'Log Cabins', 'Ski Lodge Rentals', 'Adventure Camps', 'Sailing Lodges', 'Beachfront Cabins', 'Hot Tub Sanctuaries'] },
-  { city: 'Quebec', categories: ['Chalets in Quebec City', 'Boreal Forest Cabins', 'Riverview Lodges Quebec', 'Spa Chalets Quebec'], more: ['Ski-in Ski-out', 'Historic Wood Cabins', 'Rustic Retreats', 'Riverside Glamping', 'Modern Nordic Villas', 'Family Domains', 'Pet Friendly Chalets', 'Hiker Cabins'] },
-  { city: 'Ottawa', categories: ['Riverfront Cottages Ottawa', 'Forest Escapes Ottawa', 'Pet Friendly Ottawa', 'Budget Cabins Ottawa'], more: ['Gatineau Hills Lodges', 'Lakefront A-Frames', 'Luxury Riverside Estates', 'Fishing Cabins', 'Spa Haven Cottages', 'Couples Cabins', 'Eco retreats', 'Kayaking Lodges'] },
-  { city: 'Calgary', categories: ['Rocky Mountain Chalets', 'Creekside Cabins Calgary', 'Luxury Log Lodges', 'Ski-out Cabins Calgary'], more: ['High-Alpine Huts', 'Pet Friendly Foothills', 'Riverside Cabins', 'Spa Resorts', 'Hiker Hideaways', 'Adventure Ranches', 'Eco-Lodges Calgary', 'Winter Glamping'] },
-  { city: 'Edmonton', categories: ['Lakeside Cabins Edmonton', 'Forest Retreats Edmonton', 'Pet Friendly Edmonton', 'Spacious Lodges Edmonton'], more: ['Northern Lights Cabins', 'Fishing Retreats', 'Budget Log Cabins', 'Family Camps', 'Cozy Fireplace Cottages', 'Wildlife Hideaways', 'Eco-Retreats', 'Sauna Cabins'] },
-  { city: 'Winnipeg', categories: ['Lake Winnipeg Cottages', 'Boreal Forest Winnipeg', 'Pet Friendly Winnipeg', 'Budget Cabins Winnipeg'], more: ['Whiteshell Lodges', 'Sandy Beach Cottages', 'Rustic Hunting Cabins', 'Riverside Havens', 'Winter Ski Huts', 'Family Getaways', 'Spa Deck Cabins', 'Kayaker Cabins'] }
+  { city: 'Ontario', ...provinceSearch('Ontario') },
+  { city: 'Quebec', ...provinceSearch('Quebec') },
+  { city: 'British Columbia', ...provinceSearch('British Columbia') },
+  { city: 'New Brunswick', ...provinceSearch('New Brunswick') },
+  { city: 'Alberta', ...provinceSearch('Alberta') },
+  { city: 'Nova Scotia', ...provinceSearch('Nova Scotia') },
+  { city: 'Manitoba', ...provinceSearch('Manitoba') },
+  { city: 'Saskatchewan', ...provinceSearch('Saskatchewan') },
 ];
 
 export const ontarioSearchData = [
