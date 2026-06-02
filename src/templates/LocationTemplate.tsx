@@ -8,7 +8,7 @@ import FeaturedCottages from '@/components/FeaturedCottages';
 import SourceBadge from '@/components/SourceBadge';
 import StarRating from '@/components/StarRating';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
-import { initialProperties, ontarioSearchData, quebecSearchData, novaScotiaSearchData, britishColumbiaSearchData, newBrunswickSearchData } from '@/lib/mock-data';
+import { initialProperties, ontarioSearchData, quebecSearchData, novaScotiaSearchData, britishColumbiaSearchData, newBrunswickSearchData, albertaSearchData } from '@/lib/mock-data';
 
 type LocationTemplateProps = {
   locale: string;
@@ -87,6 +87,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
     'nova-scotia': novaScotiaSearchData,
     'british-columbia': britishColumbiaSearchData,
     'new-brunswick': newBrunswickSearchData,
+    alberta: albertaSearchData,
   };
   const searchData = searchDataMap[slug] || ontarioSearchData;
 
