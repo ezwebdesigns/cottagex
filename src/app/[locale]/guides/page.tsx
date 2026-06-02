@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { db } from '@/lib/db';
 import { articles } from '@/db/schema';
 import { desc, eq } from 'drizzle-orm';
-import { initialArticles } from '@/lib/mock-data';
 import GuidesList from '@/components/guides/GuidesList';
 
 type Props = { params: Promise<{ locale: string }>; searchParams: Promise<{ page?: string }> };
@@ -45,7 +44,6 @@ export default async function GuidesPage({ params, searchParams }: Props) {
       category: a.category || 'Articles',
       image: a.featuredImage || '',
     })),
-    ...initialArticles,
   ];
 
   const total = combined.length;
