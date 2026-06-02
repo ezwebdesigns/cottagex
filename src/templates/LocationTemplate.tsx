@@ -8,7 +8,7 @@ import FeaturedCottages from '@/components/FeaturedCottages';
 import SourceBadge from '@/components/SourceBadge';
 import StarRating from '@/components/StarRating';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
-import { initialProperties, ontarioSearchData } from '@/lib/mock-data';
+import { initialProperties, ontarioSearchData, quebecSearchData } from '@/lib/mock-data';
 
 type LocationTemplateProps = {
   locale: string;
@@ -80,6 +80,12 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
     }
     return initialProperties.filter(p => p.province === 'Ontario').map(p => ({ ...p, bookingUrl: 'https://www.vrbo.com', source: '' }));
   }, [cottages]);
+
+  const searchDataMap: Record<string, typeof ontarioSearchData> = {
+    ontario: ontarioSearchData,
+    quebec: quebecSearchData,
+  };
+  const searchData = searchDataMap[slug] || ontarioSearchData;
 
   const [activeMoreCity, setActiveMoreCity] = useState<typeof ontarioSearchData[0] | null>(null);
   const egContainerRef = useRef<HTMLDivElement>(null);
@@ -235,7 +241,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
-            {ontarioSearchData.map((data) => (
+            {searchData.map((data) => (
               <div key={data.city} className="bg-white rounded-3xl p-4 md:p-6 border border-slate-100 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
                 <div>
                   <h3 className="text-lg md:text-xl font-extrabold text-[#0B1B40] border-b border-slate-50 pb-2 md:pb-3 mb-3 md:mb-4">{data.city}</h3>
