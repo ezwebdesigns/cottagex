@@ -1,0 +1,1 @@
+ALTER TABLE "search_links" ADD COLUMN "type" varchar(20) DEFAULT 'city' NOT NULL;

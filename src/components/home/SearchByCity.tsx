@@ -26,7 +26,7 @@ export default function SearchByCity({ title = "Search by City and Category", de
   const [activeMoreCity, setActiveMoreCity] = useState<CityGroup | null>(null);
 
   useEffect(() => {
-    fetch('/api/search-links')
+    fetch('/api/search-links?type=province')
       .then((r) => r.json())
       .then((rows: SearchRow[]) => {
         const map = new Map<string, { label: string; url: string }[]>();

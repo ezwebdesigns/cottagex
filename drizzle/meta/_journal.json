@@ -15,6 +15,22 @@
       "when": 1780379418108,
       "tag": "0001_heavy_abomination",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1780379418108,
+      "tag": "0001_heavy_abomination",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1780790400000,
+      "tag": "0002_loving_sally_floyd",
+      "breakpoints": true
     }
+  ]
+}
   ]
 }

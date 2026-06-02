@@ -127,5 +127,6 @@ export const searchLinks = pgTable('search_links', {
   categoryFr: text('category_fr'),
   affiliateUrl: text('affiliate_url').notNull(),
   platform: varchar('platform', { length: 50 }).default('vrbo'),
+  type: varchar('type', { length: 20 }).default('city').notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
