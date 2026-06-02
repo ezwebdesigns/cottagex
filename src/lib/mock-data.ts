@@ -60,15 +60,34 @@ export const canadaSearchData = [
   { city: 'Saskatchewan', ...provinceSearch('Saskatchewan') },
 ];
 
+const citySearch = (c: string) => ({
+  categories: [
+    `Luxury Cottages in ${c}`,
+    `Pet Friendly Cottages in ${c}`,
+    `Family Cottage Resort in ${c}`,
+    `Lakefront Cottage in ${c}`,
+    `Cottage with Hot Tub in ${c}`,
+    `Romantic Cottage for 2 in ${c}`,
+  ],
+  more: [
+    `Cottage Rentals in ${c}`,
+    `Chalet for Rent in ${c}`,
+    `Cabin for Rent in ${c}`,
+    `Waterfront Cottage in ${c}`,
+    `Log Wood Cottage in ${c}`,
+    `Mountain Cottage in ${c}`,
+  ],
+});
+
 export const ontarioSearchData = [
-  { city: 'Muskoka', categories: ['Luxury Muskoka Estates', 'Classic Lakefront Cottages', 'Boathouse Rentals Muskoka', 'Pet Friendly Muskoka'], more: ['Lake Joseph Cabins', 'Lake Rosseau Lodges', 'Lake Muskoka Villas', 'Island Cottages', 'Canoeing Cabins', 'Spas & Hot Tubs', 'Family Retreats', 'Sunset Decks'] },
-  { city: 'Haliburton', categories: ['Log Cabins Haliburton', 'Highland Forest Escapes', 'Pet Friendly Haliburton', 'Budget Cottages Haliburton'], more: ['Lakefront Lodges', 'Hiking Basecamps', 'Eco-Cabins', 'Snowshoeing Huts', 'Fireplace Havens', 'Private Dock Rentals', 'Fishing Cabins', 'Scenic Lookout Cottages'] },
-  { city: 'Tobermory', categories: ['Georgian Bay Cottages', 'Pebble Beach Cabins', 'Waterfront Tobermory', 'Pet Friendly Tobermory'], more: ['Flowerpot Island Views', 'Scuba Base Camps', 'Sunset Decks Tobermory', 'Forest Huts', 'Eco-Villas', 'Kayak Included Lodges', 'Hiking Cabins', 'Clifftop Escapes'] },
-  { city: 'Kawarthas', categories: ['Lakeside Kawartha Lodges', 'Fishing Cabins Kawarthas', 'Family Cottages Kawarthas', 'Riverfront Cabins'], more: ['Lock-system Houseboats', 'Sandy Beach Shorelines', 'Canoe Included Cabins', 'Budget Family Chalets', 'Pet Friendly Kawarthas', 'Quiet Lake Havens', 'Campfire Cottages', 'Multi-Family Lodges'] },
-  { city: 'Bruce Peninsula', categories: ['Clifftop Villas Bruce', 'Forest Hideaways Bruce', 'Lakeside Cabins Bruce', 'Pet Friendly Peninsula'], more: ['The Grotto Basecamps', 'Lion\'s Head Lodges', 'Wiarton Waterfronts', 'Hiker Cabins', 'Starry-Sky Glamping', 'Hot Tub Lodges', 'Winterized A-Frames', 'Beach Cabins'] },
-  { city: 'Prince Edward County', categories: ['PEC Vineyard Cottages', 'Sandbanks Beach Villas', 'Historic PEC Homes', 'Luxury Lakefront PEC'], more: ['Winery Trail Cabins', 'Boutique Lakehouses', 'Chic Farmhouses PEC', 'Sandy Shore Cottages', 'Pet Friendly PEC', 'Gourmet Kitchen Lodges', 'Biking Basecamps', 'Sunset Retreats'] },
-  { city: 'Algonquin', categories: ['Algonquin Border Cabins', 'Deep Forest Log Homes', 'Off-grid Algonquin Huts', 'Canoe Haven Cottages'], more: ['Wildlife Viewing Cabins', 'Riverside Retreats', 'Lake Algonquin Lodges', 'Hiking Cabins', 'Rustic Trapper Cabins', 'Autumn Color Overlooks', 'Winter Snow Huts', 'Pet Friendly Algonquin'] },
-  { city: 'Thousand Islands', categories: ['St. Lawrence River Cottages', 'Private Island Castles', 'Boating Lodges 1000 Islands', 'Pet Friendly Riverfront'], more: ['Gananoque Waterfronts', 'Fishing Cabins River', 'Kayaker Haven Lodges', 'Dockside Cottages', 'Scenic Deck Lodges', 'Luxury River Estates', 'Sunset View Cabins', 'Historic Stone Cottages'] }
+  { city: 'Muskoka', ...citySearch('Muskoka') },
+  { city: 'Haliburton', ...citySearch('Haliburton') },
+  { city: 'The Kawarthas', ...citySearch('the Kawarthas') },
+  { city: 'Georgian Bay', ...citySearch('Georgian Bay') },
+  { city: 'Ottawa Valley', ...citySearch('Ottawa Valley') },
+  { city: 'Rideau Lakes', ...citySearch('Rideau Lakes') },
+  { city: 'Prince Edward County', ...citySearch('Prince Edward County') },
+  { city: 'Algonquin', ...citySearch('Algonquin') },
 ];
 
 export const testimonials = [
