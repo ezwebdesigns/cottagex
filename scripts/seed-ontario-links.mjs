@@ -37,7 +37,7 @@ const CITIES = [
   { cityKey: 'Ottawa Valley',    labelCity: 'Ottawa Valley',    url: 'https://vrbo.com/affiliates/search-ottawa-valley-dateless.FNS8k4T' },
   { cityKey: 'Rideau Lakes',     labelCity: 'Rideau Lakes',     url: 'https://vrbo.com/affiliates/search-rideau-lakes-dateless.N069pfM' },
   { cityKey: 'Prince Edward County', labelCity: 'Prince Edward County', url: 'https://vrbo.com/affiliates/search-prince-edward-dateless.aw8hFUC' },
-  { cityKey: 'Algonquin Highlands', labelCity: 'Algonquin Highlands', url: 'https://vrbo.com/affiliates/search-algonquin-highlands-dateless.PZNHaPL' },
+  { cityKey: 'Algonquin Highlands', labelCity: 'Algonquin', url: 'https://vrbo.com/affiliates/search-algonquin-highlands-dateless.PZNHaPL' },
 ];
 
 async function seed() {

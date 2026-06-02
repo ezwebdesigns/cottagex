@@ -87,7 +87,7 @@ export const ontarioSearchData = [
   { city: 'Ottawa Valley', ...citySearch('Ottawa Valley') },
   { city: 'Rideau Lakes', ...citySearch('Rideau Lakes') },
   { city: 'Prince Edward County', ...citySearch('Prince Edward County') },
-  { city: 'Algonquin', ...citySearch('Algonquin') },
+  { city: 'Algonquin Highlands', ...citySearch('Algonquin') },
 ];
 
 export const quebecSearchData = [
