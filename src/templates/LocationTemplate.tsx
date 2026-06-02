@@ -5,6 +5,7 @@ import { useMemo, useState, useEffect, useRef } from 'react';
 import { Star, Waves, Trees, Compass, ExternalLink, ChevronRight, BookOpen, CalendarDays, Clock, X } from 'lucide-react';
 import ExploreSection from '@/components/home/ExploreSection';
 import FeaturedCottages from '@/components/FeaturedCottages';
+import SourceBadge from '@/components/SourceBadge';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
 import { initialProperties, ontarioSearchData } from '@/lib/mock-data';
 
@@ -70,12 +71,13 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         rating: c.rating ? c.rating.toFixed(1) : '0',
         image: c.thumbnail || (Array.isArray(c.photos) && c.photos[0]) || 'https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=600',
         tag: c.type || 'Featured',
+        source: c.source,
         isLiked: false,
         description: Array.isArray(c.amenities) ? c.amenities.slice(0, 3).join(' • ') : 'Available for booking',
         bookingUrl: c.affiliate_url || c.google_link || 'https://www.vrbo.com',
       }));
     }
-    return initialProperties.filter(p => p.province === 'Ontario').map(p => ({ ...p, bookingUrl: 'https://www.vrbo.com' }));
+    return initialProperties.filter(p => p.province === 'Ontario').map(p => ({ ...p, bookingUrl: 'https://www.vrbo.com', source: '' }));
   }, [cottages]);
 
   const [activeMoreCity, setActiveMoreCity] = useState<typeof ontarioSearchData[0] | null>(null);
@@ -169,9 +171,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
                 <div key={prop.id} className="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
                   <div className="relative h-36 md:h-64 overflow-hidden">
                     <img src={prop.image} alt={prop.title} className="w-full h-full object-cover" />
-                    <span className="absolute top-2 md:top-4 left-2 md:left-4 bg-[#1F51C6] text-white px-2 md:px-3 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-semibold">
-                      {prop.tag}
-                    </span>
+                    <div className="absolute top-2 md:top-4 left-2 md:left-4"><SourceBadge source={prop.source || prop.tag} /></div>
                   </div>
                   <div className="p-3 md:p-6 flex-1 flex flex-col justify-between">
                     <div>

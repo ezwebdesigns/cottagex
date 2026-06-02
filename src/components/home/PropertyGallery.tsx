@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { MapPin, Star, ExternalLink } from 'lucide-react';
+import SourceBadge from '@/components/SourceBadge';
 
 type GalleryTab = { name: string; category: string; shortcode?: string };
 
@@ -51,9 +52,7 @@ function CottageCard({ cottage }: { cottage: any }) {
     <div className="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-shadow group flex flex-col justify-between">
       <div className="relative h-36 md:h-56 overflow-hidden bg-slate-100">
         {photo && <img src={photo} alt={cottage.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />}
-        <div className="absolute top-2 md:top-4 left-2 md:left-4 bg-white/95 backdrop-blur-sm px-2 md:px-3 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-bold text-[#1F51C6]">
-          {badge}
-        </div>
+        <div className="absolute top-2 md:top-4 left-2 md:left-4"><SourceBadge source={badge} /></div>
       </div>
 
       <div className="p-3 md:p-5 flex-1 flex flex-col justify-between">
