@@ -1,8 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
-import { canadaSearchData } from '@/lib/mock-data';
+
+type SearchRow = {
+  id: number;
+  city: string;
+  category: string;
+  affiliateUrl: string;
+};
+
+type CityGroup = {
+  city: string;
+  categories: { label: string; url: string }[];
+  more: { label: string; url: string }[];
+};
 
 type SearchByCityProps = {
   title?: string;
@@ -10,7 +22,31 @@ type SearchByCityProps = {
 };
 
 export default function SearchByCity({ title = "Search by City and Category", description = "Quickly jump into active curated rentals across major Canadian regions." }: SearchByCityProps) {
-  const [activeMoreCity, setActiveMoreCity] = useState<typeof canadaSearchData[0] | null>(null);
+  const [data, setData] = useState<CityGroup[]>([]);
+  const [activeMoreCity, setActiveMoreCity] = useState<CityGroup | null>(null);
+
+  useEffect(() => {
+    fetch('/api/search-links')
+      .then((r) => r.json())
+      .then((rows: SearchRow[]) => {
+        const map = new Map<string, { label: string; url: string }[]>();
+        for (const r of rows) {
+          const list = map.get(r.city) || [];
+          list.push({ label: r.category, url: r.affiliateUrl });
+          map.set(r.city, list);
+        }
+        const groups: CityGroup[] = [];
+        for (const [city, items] of map) {
+          groups.push({
+            city,
+            categories: items.slice(0, 6),
+            more: items.slice(6),
+          });
+        }
+        setData(groups);
+      })
+      .catch((err) => console.error('Failed to load search links:', err));
+  }, []);
 
   return (
     <section className="px-4 md:px-8 py-16 bg-[#f8fafc] border-t border-slate-100">
@@ -21,27 +57,27 @@ export default function SearchByCity({ title = "Search by City and Category", de
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
-          {canadaSearchData.map((data) => (
-            <div key={data.city} className="bg-white rounded-3xl p-4 md:p-6 border border-slate-100 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+          {data.map((cityGroup) => (
+            <div key={cityGroup.city} className="bg-white rounded-3xl p-4 md:p-6 border border-slate-100 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
               <div>
-                <h3 className="text-lg md:text-xl font-extrabold text-[#0B1B40] border-b border-slate-50 pb-2 md:pb-3 mb-3 md:mb-4">{data.city}</h3>
+                <h3 className="text-lg md:text-xl font-extrabold text-[#0B1B40] border-b border-slate-50 pb-2 md:pb-3 mb-3 md:mb-4">{cityGroup.city}</h3>
                 <ul className="space-y-2 md:space-y-3">
-                  {data.categories.map((cat, idx) => (
+                  {cityGroup.categories.map((item, idx) => (
                     <li key={idx}>
                       <a
-                        href="https://www.vrbo.com/search"
+                        href={item.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[#1F51C6] hover:text-[#163FA3] text-xs font-normal hover:underline block transition-colors line-clamp-1"
                       >
-                        {cat}
+                        {item.label}
                       </a>
                     </li>
                   ))}
                 </ul>
               </div>
               <button
-                onClick={() => setActiveMoreCity(data)}
+                onClick={() => setActiveMoreCity(cityGroup)}
                 className="text-[#1F51C6]/80 hover:text-[#1F51C6] text-[11px] md:text-xs font-bold mt-4 md:mt-5 text-left inline-flex items-center gap-1 hover:underline"
               >
                 + 6 more
@@ -67,12 +103,12 @@ export default function SearchByCity({ title = "Search by City and Category", de
               {activeMoreCity.more.map((item, idx) => (
                 <a
                   key={idx}
-                  href="https://www.vrbo.com/search"
+                  href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-[#1F51C6] p-3 rounded-full text-xs font-normal border border-slate-100 transition-colors text-center"
                 >
-                  {item}
+                  {item.label}
                 </a>
               ))}
             </div>

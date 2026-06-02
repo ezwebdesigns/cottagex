@@ -119,3 +119,13 @@ export const siteSettings = pgTable('site_settings', {
   data: json('data').notNull().default({}),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
+
+export const searchLinks = pgTable('search_links', {
+  id: serial('id').primaryKey(),
+  city: text('city').notNull(),
+  category: text('category').notNull(),
+  categoryFr: text('category_fr'),
+  affiliateUrl: text('affiliate_url').notNull(),
+  platform: varchar('platform', { length: 50 }).default('vrbo'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});

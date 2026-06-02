@@ -8,6 +8,13 @@
       "when": 1779931725226,
       "tag": "0000_free_blacklash",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1780379418108,
+      "tag": "0001_heavy_abomination",
+      "breakpoints": true
     }
   ]
 }
