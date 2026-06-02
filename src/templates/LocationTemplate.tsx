@@ -8,7 +8,7 @@ import FeaturedCottages from '@/components/FeaturedCottages';
 import SourceBadge from '@/components/SourceBadge';
 import StarRating from '@/components/StarRating';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
-import { initialProperties, ontarioSearchData, quebecSearchData, novaScotiaSearchData, britishColumbiaSearchData, newBrunswickSearchData, albertaSearchData, manitobaSearchData, peiSearchData, saskatchewanSearchData } from '@/lib/mock-data';
+import { initialProperties } from '@/lib/mock-data';
 
 type LocationTemplateProps = {
   locale: string;
@@ -81,21 +81,31 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
     return initialProperties.filter(p => p.province === 'Ontario').map(p => ({ ...p, bookingUrl: 'https://www.vrbo.com', source: '' }));
   }, [cottages]);
 
-  const searchDataMap: Record<string, typeof ontarioSearchData> = {
-    ontario: ontarioSearchData,
-    quebec: quebecSearchData,
-    'nova-scotia': novaScotiaSearchData,
-    'british-columbia': britishColumbiaSearchData,
-    'new-brunswick': newBrunswickSearchData,
-    alberta: albertaSearchData,
-    manitoba: manitobaSearchData,
-    'prince-edward-island': peiSearchData,
-    saskatchewan: saskatchewanSearchData,
-  };
-  const searchData = searchDataMap[slug] || ontarioSearchData;
+  type CityLink = { label: string; url: string };
+  type CityGroup = { city: string; categories: CityLink[]; more: CityLink[] };
 
-  const [activeMoreCity, setActiveMoreCity] = useState<typeof ontarioSearchData[0] | null>(null);
+  const [searchData, setSearchData] = useState<CityGroup[]>([]);
+  const [activeMoreCity, setActiveMoreCity] = useState<CityGroup | null>(null);
   const egContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    fetch('/api/search-links')
+      .then((r) => r.json())
+      .then((rows: { city: string; category: string; affiliateUrl: string }[]) => {
+        const map = new Map<string, CityLink[]>();
+        for (const r of rows) {
+          const list = map.get(r.city) || [];
+          list.push({ label: r.category, url: r.affiliateUrl });
+          map.set(r.city, list);
+        }
+        const groups: CityGroup[] = [];
+        for (const [city, items] of map) {
+          groups.push({ city, categories: items.slice(0, 6), more: items.slice(6) });
+        }
+        setSearchData(groups);
+      })
+      .catch((err) => console.error('Failed to load search links:', err));
+  }, []);
 
   useEffect(() => {
     const el = egContainerRef.current;
@@ -253,9 +263,9 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
                 <div>
                   <h3 className="text-lg md:text-xl font-extrabold text-[#0B1B40] border-b border-slate-50 pb-2 md:pb-3 mb-3 md:mb-4">{data.city}</h3>
                   <ul className="space-y-2 md:space-y-3">
-                    {data.categories.map((cat, idx) => (
+                    {data.categories.map((item, idx) => (
                       <li key={idx}>
-                        <a href="https://www.vrbo.com/search" target="_blank" rel="noopener noreferrer" className="text-[#1F51C6] hover:text-[#163FA3] text-xs font-normal hover:underline block transition-colors line-clamp-1">{cat}</a>
+                        <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-[#1F51C6] hover:text-[#163FA3] text-xs font-normal hover:underline block transition-colors line-clamp-1">{item.label}</a>
                       </li>
                     ))}
                   </ul>
@@ -305,7 +315,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
             <p className="text-sm text-slate-400 mb-6">Explore expanded niche categories and localized cabin listings.</p>
             <div className="grid grid-cols-2 gap-3">
               {activeMoreCity.more.map((item, idx) => (
-                <a key={idx} href="https://www.vrbo.com/search" target="_blank" rel="noopener noreferrer" className="bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-[#1F51C6] p-3 rounded-full text-xs font-normal border border-slate-100 transition-colors text-center">{item}</a>
+                <a key={idx} href={item.url} target="_blank" rel="noopener noreferrer" className="bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-[#1F51C6] p-3 rounded-full text-xs font-normal border border-slate-100 transition-colors text-center">{item.label}</a>
               ))}
             </div>
             <div className="mt-8 pt-6 border-t border-slate-100 flex justify-end">
