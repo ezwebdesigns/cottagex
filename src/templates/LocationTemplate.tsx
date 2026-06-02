@@ -298,7 +298,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
             </div>
             <div className="md:col-span-2 md:flex md:justify-center mt-6 md:mt-0">
               {(pageData?.ctaButton && pageData?.ctaLink) ? (
-                <a href={pageData.ctaLink.startsWith('/') ? pageData.ctaLink : `/${locale}/${pageData.ctaLink}`} className="inline-flex bg-[#1F51C6] hover:bg-[#163FA3] text-white px-8 py-3.5 rounded-full font-bold transition-colors items-center gap-2 text-base shadow-md whitespace-nowrap">
+                <a href={pageData.ctaLink.startsWith('http') ? pageData.ctaLink : pageData.ctaLink.startsWith('/') ? pageData.ctaLink : `/${locale}/${pageData.ctaLink}`} className="inline-flex bg-[#1F51C6] hover:bg-[#163FA3] text-white px-8 py-3.5 rounded-full font-bold transition-colors items-center gap-2 text-base shadow-md whitespace-nowrap">
                   {pageData.ctaButton}
                 </a>
               ) : (
