@@ -7,7 +7,7 @@ export default function SourceBadge({ source }: Props) {
 
   if (isVrbo) {
     return (
-      <span className="inline-flex items-center justify-center px-2 md:px-3 py-0.5 md:py-1 rounded-full bg-[#003D29]">
+      <span className="inline-flex items-center justify-center px-2 md:px-3 py-0.5 md:py-1 rounded-full bg-white/95 backdrop-blur-sm">
         <img src="/images/vrb.jpg" alt="VRBO" className="h-3.5 md:h-4 w-auto" />
       </span>
     );
@@ -15,7 +15,7 @@ export default function SourceBadge({ source }: Props) {
 
   if (isExpedia) {
     return (
-      <span className="inline-flex items-center justify-center px-2 md:px-3 py-0.5 md:py-1 rounded-full bg-[#00387E]">
+      <span className="inline-flex items-center justify-center px-2 md:px-3 py-0.5 md:py-1 rounded-full bg-white/95 backdrop-blur-sm">
         <img src="/images/exp.jpg" alt="Expedia" className="h-3.5 md:h-4 w-auto" />
       </span>
     );
