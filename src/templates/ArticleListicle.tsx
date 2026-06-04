@@ -5,6 +5,7 @@ import StarRating from '@/components/StarRating';
 import { useRouter, usePathname } from 'next/navigation';
 import { ontarioListicleChalets } from '@/lib/mock-data';
 import { BreadcrumbSchema, ArticleSchema, ItemListSchema } from '@/components/seo/SchemaOrg';
+import FAQAccordion from '@/components/FAQAccordion';
 
 type ArticleListicleProps = {
   locale: string;
@@ -15,6 +16,7 @@ type ArticleListicleProps = {
     readTime: string;
     category: string;
     image: string;
+    faq?: { question: string; answer: string }[];
   };
 };
 
@@ -72,11 +74,7 @@ export default function ArticleListicle({ locale, article }: ArticleListicleProp
         <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
       </div>
 
-      <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed mb-12">
-        <p className="text-lg md:text-xl text-slate-600 italic leading-relaxed">
-          {article.content}
-        </p>
-      </div>
+      <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed mb-12 w-full overflow-x-hidden break-words [&_pre]:whitespace-pre-wrap [&_code]:break-words" dangerouslySetInnerHTML={{ __html: article.content }} />
 
       <div className="space-y-16">
         <div className="border-l-4 border-[#1F51C6] pl-4 mb-8 bg-blue-50/50 p-6 rounded-r-2xl">
@@ -126,6 +124,10 @@ export default function ArticleListicle({ locale, article }: ArticleListicleProp
           </div>
         ))}
       </div>
+
+      {article.faq && article.faq.length > 0 && (
+        <FAQAccordion items={article.faq} />
+      )}
 
       <div className="bg-[#0B1B40] rounded-[2rem] p-8 text-white mt-16 flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
