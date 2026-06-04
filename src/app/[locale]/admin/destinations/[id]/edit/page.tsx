@@ -12,7 +12,7 @@ export default function EditDestinationPage() {
   const [seoTitle, setSeoTitle] = useState(''); const [metaDescription, setMetaDescription] = useState('');
   const [featuredImage, setFeaturedImage] = useState(''); const [isPublished, setIsPublished] = useState(true);
   const [ctaTitle, setCtaTitle] = useState(''); const [ctaDescription, setCtaDescription] = useState(''); const [ctaButton, setCtaButton] = useState(''); const [ctaLink, setCtaLink] = useState('');
-  const [locationData, setLocationData] = useState<any>({ hero: {}, intro: { highlights: [] }, featured: {}, explore: { items: [] }, search: {} });
+  const [locationData, setLocationData] = useState<any>({ hero: {}, intro: { highlights: [] }, featured: {}, cta: {}, explore: { items: [] }, search: {} });
   const [loading, setLoading] = useState(true); const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function EditDestinationPage() {
       setSeoTitle(p.seoTitle); setMetaDescription(p.metaDescription);
       setFeaturedImage(p.featuredImage || ''); setIsPublished(p.isPublished);
       setCtaTitle(p.ctaTitle || ''); setCtaDescription(p.ctaDescription || ''); setCtaButton(p.ctaButton || ''); setCtaLink(p.ctaLink || '');
-      setLocationData(typeof p.locationData === 'object' && p.locationData !== null ? p.locationData : { hero: {}, intro: { highlights: [] }, featured: {}, explore: { items: [] }, search: {} });
+      setLocationData(typeof p.locationData === 'object' && p.locationData !== null ? p.locationData : { hero: {}, intro: { highlights: [] }, featured: {}, cta: {}, explore: { items: [] }, search: {} });
       setLoading(false);
     });
   }, [params.id]);
@@ -128,6 +128,34 @@ export default function EditDestinationPage() {
           <div><label className="block text-sm font-medium text-gray-700 mb-1">Title</label><input value={locationData.featured?.title ?? ''} onChange={e => setLocationData({ ...locationData, featured: { ...locationData.featured, title: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
           <div><label className="block text-sm font-medium text-gray-700 mb-1">Description</label><textarea value={locationData.featured?.description ?? ''} onChange={e => setLocationData({ ...locationData, featured: { ...locationData.featured, description: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6] h-20" /></div>
           <div><label className="block text-sm font-medium text-gray-700 mb-1">Shortcode <span className="text-gray-400 font-normal">(ex: <code className="text-[#1F51C6]">[ontario, rating, 6]</code>)</span></label><input value={locationData.featured?.shortcode ?? ''} onChange={e => setLocationData({ ...locationData, featured: { ...locationData.featured, shortcode: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" placeholder="[province, category, limit]" /></div>
+        </div>
+
+        <div className="bg-white border border-gray-200 rounded-3xl p-6 space-y-4">
+          <h2 className="text-lg font-semibold text-[#0B1B40]">CTA Section</h2>
+          <div className="grid grid-cols-5 gap-6">
+            <div className="col-span-3 space-y-4">
+              <div><label className="block text-sm font-medium text-gray-700 mb-1">Title</label><input value={locationData.cta?.title ?? ''} onChange={e => setLocationData({ ...locationData, cta: { ...locationData.cta, title: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
+              <div><label className="block text-sm font-medium text-gray-700 mb-1">Description</label><textarea value={locationData.cta?.description ?? ''} onChange={e => setLocationData({ ...locationData, cta: { ...locationData.cta, description: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6] h-20" /></div>
+              <div className="grid grid-cols-2 gap-4">
+                <div><label className="block text-sm font-medium text-gray-700 mb-1">Button Text</label><input value={locationData.cta?.buttonText ?? ''} onChange={e => setLocationData({ ...locationData, cta: { ...locationData.cta, buttonText: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
+                <div><label className="block text-sm font-medium text-gray-700 mb-1">Button Link</label><input value={locationData.cta?.buttonLink ?? ''} onChange={e => setLocationData({ ...locationData, cta: { ...locationData.cta, buttonLink: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /></div>
+              </div>
+            </div>
+            <div className="col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-1">Image</label>
+              {locationData.cta?.image && <img src={locationData.cta.image} className="w-full aspect-[4/3] rounded-2xl object-cover border mb-2" />}
+              <label className="cursor-pointer text-sm text-[#1F51C6] hover:underline">
+                {locationData.cta?.image ? 'Change' : 'Upload Image'}
+                <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
+                  const file = e.target.files?.[0]; if (!file) return;
+                  const fd = new FormData(); fd.append('file', file);
+                  const res = await fetch('/api/admin/upload', { method: 'POST', body: fd });
+                  if (res.ok) { const d = await res.json(); setLocationData({ ...locationData, cta: { ...locationData.cta, image: d.url } }); }
+                }} />
+              </label>
+              {locationData.cta?.image && <button type="button" onClick={() => setLocationData({ ...locationData, cta: { ...locationData.cta, image: '' } })} className="text-xs text-red-500 ml-2">Remove</button>}
+            </div>
+          </div>
         </div>
 
         <div className="bg-white border border-gray-200 rounded-3xl p-6 space-y-4">

@@ -41,6 +41,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
   const explore = ld.explore || {};
   const learnMore = ld.learnMore || {};
   const search = ld.search || {};
+  const ctaData = ld.cta || {};
 
   const heroTitle = hero.title || `Cottages to Rent in ${locName}`;
   const heroSubtitle = hero.subtitle || 'Find your perfect stay across this beautiful region.';
@@ -227,6 +228,28 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
                 </div>
               ))}
             </div>
+          </div>
+        )}
+
+        {ctaData.title && (
+          <div className="bg-[#0B1B40] rounded-3xl overflow-hidden relative flex flex-col md:flex-row items-center mb-16">
+            <div className="w-full md:w-1/2 p-8 md:p-12 z-10 text-white">
+              <h2 className="text-2xl md:text-4xl font-bold mb-4 leading-tight">{ctaData.title}</h2>
+              {ctaData.description && <p className="text-slate-300 mb-8 max-w-md text-sm leading-relaxed">{ctaData.description}</p>}
+              {ctaData.buttonText && ctaData.buttonLink && (
+                <a
+                  href={ctaData.buttonLink.startsWith('http') ? ctaData.buttonLink : ctaData.buttonLink.startsWith('/') ? ctaData.buttonLink : `/${locale}/${ctaData.buttonLink}`}
+                  className="inline-flex bg-[#1F51C6] hover:bg-[#163FA3] text-white px-6 py-3 rounded-full font-bold transition-all items-center gap-2 text-sm shadow-md"
+                >
+                  {ctaData.buttonText}
+                </a>
+              )}
+            </div>
+            {ctaData.image && (
+              <div className="w-full md:w-1/2 h-64 md:h-auto absolute right-0 inset-y-0 opacity-20 md:opacity-100 hidden md:block">
+                <img src={ctaData.image} alt="" className="w-full h-full object-cover" />
+              </div>
+            )}
           </div>
         )}
 
