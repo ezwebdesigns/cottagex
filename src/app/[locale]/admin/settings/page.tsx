@@ -13,6 +13,7 @@ type HomepageGallery = { title: string; description: string; tabs: GalleryTab[] 
 type HomepageSearch = { title: string; description: string };
 type ExploreItem = { icon: string; title: string; description: string };
 type HomepageExplore = { title: string; description: string; subtitle: string; items: ExploreItem[] };
+type HomepageInspiration = { title: string; description: string };
 type HomepageCTA = { title: string; description: string; buttonText: string; buttonLink: string; image: string };
 
 const tabs = [
@@ -38,6 +39,7 @@ export default function AdminSettingsPage() {
   const [gallery, setGallery] = useState<HomepageGallery | null>(null);
   const [search, setSearch] = useState<HomepageSearch | null>(null);
   const [explore, setExplore] = useState<HomepageExplore | null>(null);
+  const [inspiration, setInspiration] = useState<HomepageInspiration | null>(null);
   const [cta, setCta] = useState<HomepageCTA | null>(null);
 
   const [openHomeSection, setOpenHomeSection] = useState<string>('hero');
@@ -59,6 +61,7 @@ export default function AdminSettingsPage() {
     fetchSection('homepage_gallery').then(setGallery);
     fetchSection('homepage_search').then(setSearch);
     fetchSection('homepage_explore').then(setExplore);
+    fetchSection('homepage_inspiration').then(setInspiration);
     fetchSection('homepage_cta').then(setCta);
   }, [fetchSection]);
 
@@ -221,6 +224,14 @@ export default function AdminSettingsPage() {
               <Field label="Title" value={search.title} onChange={(v) => setSearch({ ...search, title: v })} />
               <Field label="Description" value={search.description} onChange={(v) => setSearch({ ...search, description: v })} textarea />
               <SaveButton onClick={() => saveSection('homepage_search', search)} saving={saving} />
+            </CollapsibleSection>
+          )}
+
+          {inspiration && (
+            <CollapsibleSection title="Inspiration Section" id="inspiration" isOpen={openHomeSection === 'inspiration'} onToggle={() => setOpenHomeSection(openHomeSection === 'inspiration' ? '' : 'inspiration')}>
+              <Field label="Title" value={inspiration.title} onChange={(v) => setInspiration({ ...inspiration, title: v })} />
+              <Field label="Description" value={inspiration.description} onChange={(v) => setInspiration({ ...inspiration, description: v })} textarea />
+              <SaveButton onClick={() => saveSection('homepage_inspiration', inspiration)} saving={saving} />
             </CollapsibleSection>
           )}
 

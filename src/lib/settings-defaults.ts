@@ -76,6 +76,11 @@ export type HomepageExplore = {
   items: ExploreItem[];
 };
 
+export type HomepageInspiration = {
+  title: string;
+  description: string;
+};
+
 export type HomepageCTA = {
   title: string;
   description: string;
@@ -164,6 +169,10 @@ export const defaultSettings: Record<string, any> = {
   homepage_search: {
     title: "Search by City and Category",
     description: "Quickly jump into active curated rentals across major Canadian regions.",
+  },
+  homepage_inspiration: {
+    title: "Latest Inspiration",
+    description: "Expert guides, local tips, and curated stories to help plan your perfect Canadian cottage escape.",
   },
   homepage_explore: {
     title: "Finding Your Perfect Lakeside Haven",
