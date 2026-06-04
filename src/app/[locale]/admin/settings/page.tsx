@@ -6,7 +6,7 @@ import { Save, Loader2, Settings as SettingsIcon, Home, Search, Image, Megaphone
 import ImageUploader from '@/components/admin/ImageUploader';
 
 type HomepageHero = { tag: string; title: string; description: string; image: string };
-type DestItem = { name: string; properties: string; image: string };
+type DestItem = { name: string; properties: string; image: string; link?: string };
 type GalleryTab = { name: string; category: string; shortcode?: string };
 type HomepageDestinations = { title: string; description: string; items: DestItem[] };
 type HomepageGallery = { title: string; description: string; tabs: GalleryTab[] };
@@ -160,14 +160,19 @@ export default function AdminSettingsPage() {
                         newItems[i] = { ...newItems[i], properties: e.target.value };
                         setDestinations({ ...destinations, items: newItems });
                       }} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
-                      <ImageUploader label="Image" value={item.image} onChange={(v) => {
-                        const newItems = [...destinations.items];
-                        newItems[i] = { ...newItems[i], image: v };
-                        setDestinations({ ...destinations, items: newItems });
-                      }} />
-                    </div>
+                      <input placeholder="Link (e.g. /en/cottage-country/ontario)" value={item.link || ''} onChange={(e) => {
+                         const newItems = [...destinations.items];
+                         newItems[i] = { ...newItems[i], link: e.target.value };
+                         setDestinations({ ...destinations, items: newItems });
+                       }} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                       <ImageUploader label="Image" value={item.image} onChange={(v) => {
+                         const newItems = [...destinations.items];
+                         newItems[i] = { ...newItems[i], image: v };
+                         setDestinations({ ...destinations, items: newItems });
+                       }} />
+                     </div>
                   ))}
-                  <button onClick={() => setDestinations({ ...destinations, items: [...destinations.items, { name: '', properties: '', image: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">
+                  <button onClick={() => setDestinations({ ...destinations, items: [...destinations.items, { name: '', properties: '', image: '', link: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">
                     + Add Item
                   </button>
                 </div>

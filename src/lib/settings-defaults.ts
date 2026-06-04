@@ -36,6 +36,7 @@ export type DestinationItem = {
   name: string;
   properties: string;
   image: string;
+  link: string;
 };
 
 export type HomepageDestinations = {
@@ -144,12 +145,12 @@ export const defaultSettings: Record<string, any> = {
     title: "Trending Destinations",
     description: "Discover Canada's most sought-after wilderness corridors.",
     items: [
-      { name: "Muskoka, ON", properties: "320+ cottages", image: "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&q=80&w=600" },
-      { name: "Mont-Tremblant, QC", properties: "450+ cottages", image: "https://images.unsplash.com/photo-1517770413964-df8ca61194a6?auto=format&fit=crop&q=80&w=600" },
-      { name: "Banff, AB", properties: "180+ cottages", image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600" },
-      { name: "Charlevoix, QC", properties: "210+ cottages", image: "https://images.unsplash.com/photo-1502672260266-1c1e52504437?auto=format&fit=crop&q=80&w=600" },
-      { name: "Cape Breton, NS", properties: "150+ cottages", image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=600" },
-      { name: "Whistler, BC", properties: "280+ cottages", image: "https://images.unsplash.com/photo-1502781252888-914c0a70e5fc?auto=format&fit=crop&q=80&w=600" },
+      { name: "Muskoka, ON", properties: "320+ cottages", image: "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&q=80&w=600", link: "/en/cottage-country/ontario" },
+      { name: "Mont-Tremblant, QC", properties: "450+ cottages", image: "https://images.unsplash.com/photo-1517770413964-df8ca61194a6?auto=format&fit=crop&q=80&w=600", link: "/en/cottage-country/quebec" },
+      { name: "Banff, AB", properties: "180+ cottages", image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600", link: "/en/cottage-country/alberta" },
+      { name: "Charlevoix, QC", properties: "210+ cottages", image: "https://images.unsplash.com/photo-1502672260266-1c1e52504437?auto=format&fit=crop&q=80&w=600", link: "/en/cottage-country/quebec" },
+      { name: "Cape Breton, NS", properties: "150+ cottages", image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=600", link: "/en/cottage-country/nova-scotia" },
+      { name: "Whistler, BC", properties: "280+ cottages", image: "https://images.unsplash.com/photo-1502781252888-914c0a70e5fc?auto=format&fit=crop&q=80&w=600", link: "/en/cottage-country/british-columbia" },
     ],
   },
   homepage_gallery: {

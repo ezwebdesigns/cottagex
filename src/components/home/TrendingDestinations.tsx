@@ -8,12 +8,12 @@ type TrendingDestinationsProps = {
   locale: string;
   title?: string;
   description?: string;
-  items?: { name: string; properties: string; image: string }[];
+  items?: { name: string; properties: string; image: string; link?: string }[];
 };
 
 export default function TrendingDestinations({ locale, title = "Trending Destinations", description = "Discover Canada's most sought-after wilderness corridors.", items }: TrendingDestinationsProps) {
   const router = useRouter();
-  const destItems = items ?? initialDestinations.map(d => ({ name: d.name, properties: d.properties, image: d.image }));
+  const destItems = items ?? initialDestinations.map(d => ({ name: d.name, properties: d.properties, image: d.image, link: '' }));
 
   return (
     <section className="px-4 md:px-8 py-16 bg-[#0B1B40]">
@@ -26,7 +26,7 @@ export default function TrendingDestinations({ locale, title = "Trending Destina
           {destItems.map((dest, i) => (
             <div
               key={i}
-              onClick={() => { if (dest.name.includes('ON')) router.push(`/${locale}/cottage-country/ontario`); }}
+              onClick={() => { if (dest.link) router.push(dest.link); }}
               className="flex-1 min-w-0 h-[140px] md:h-[320px] rounded-3xl relative overflow-hidden group cursor-pointer"
             >
               <img src={dest.image} alt={dest.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
