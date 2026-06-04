@@ -41,8 +41,6 @@ export type DestinationItem = {
 export type HomepageDestinations = {
   title: string;
   description: string;
-  ctaText: string;
-  ctaLink: string;
   items: DestinationItem[];
 };
 
@@ -145,8 +143,6 @@ export const defaultSettings: Record<string, any> = {
   homepage_destinations: {
     title: "Trending Destinations",
     description: "Discover Canada's most sought-after wilderness corridors.",
-    ctaText: "Explore Ontario",
-    ctaLink: "/{locale}/cottage-country/ontario",
     items: [
       { name: "Muskoka, ON", properties: "320+ cottages", image: "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&q=80&w=600" },
       { name: "Mont-Tremblant, QC", properties: "450+ cottages", image: "https://images.unsplash.com/photo-1517770413964-df8ca61194a6?auto=format&fit=crop&q=80&w=600" },

@@ -8,7 +8,7 @@ import ImageUploader from '@/components/admin/ImageUploader';
 type HomepageHero = { tag: string; title: string; description: string; image: string };
 type DestItem = { name: string; properties: string; image: string };
 type GalleryTab = { name: string; category: string; shortcode?: string };
-type HomepageDestinations = { title: string; description: string; ctaText: string; ctaLink: string; items: DestItem[] };
+type HomepageDestinations = { title: string; description: string; items: DestItem[] };
 type HomepageGallery = { title: string; description: string; tabs: GalleryTab[] };
 type HomepageSearch = { title: string; description: string };
 type ExploreItem = { icon: string; title: string; description: string };
@@ -138,8 +138,6 @@ export default function AdminSettingsPage() {
             <CollapsibleSection title="Destinations Section" id="destinations" isOpen={openHomeSection === 'destinations'} onToggle={() => setOpenHomeSection(openHomeSection === 'destinations' ? '' : 'destinations')}>
               <Field label="Title" value={destinations.title} onChange={(v) => setDestinations({ ...destinations, title: v })} />
               <Field label="Description" value={destinations.description} onChange={(v) => setDestinations({ ...destinations, description: v })} textarea />
-              <Field label="CTA Text" value={destinations.ctaText} onChange={(v) => setDestinations({ ...destinations, ctaText: v })} />
-              <Field label="CTA Link" value={destinations.ctaLink} onChange={(v) => setDestinations({ ...destinations, ctaLink: v })} />
               <div className="mt-4">
                 <h4 className="text-sm font-semibold text-gray-600 mb-3">Destination Items</h4>
                 <div className="space-y-3">
