@@ -40,7 +40,7 @@ async function fetchArticle(slug: string) {
       image: dbArticle.featuredImage || "/placeholder.jpg",
       author: dbArticle.author || "Editorial Team",
       seoTitle: dbArticle.seoTitle || undefined,
-      faq: dbArticle.faq || [],
+      faq: (dbArticle.faq as { question: string; answer: string }[]) || [],
       ctaTitle: dbArticle.ctaTitle || undefined,
       ctaButton: dbArticle.ctaButton || undefined,
       ctaLink: dbArticle.ctaLink || undefined,

@@ -4,6 +4,7 @@ import { ArrowLeft, CalendarDays, Clock } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 import { BreadcrumbSchema, ArticleSchema } from '@/components/seo/SchemaOrg';
 import { CottageShortcode } from '@/components/CottageShortcode';
+import FAQAccordion from '@/components/FAQAccordion';
 
 const shortcodeRegex = /\[([a-z0-9-]+),\s*([a-z0-9-]+)(?:,\s*(\d+))?\]/;
 
@@ -43,6 +44,7 @@ type ArticleStandardProps = {
     ctaTitle?: string;
     ctaButton?: string;
     ctaLink?: string;
+    faq?: { question: string; answer: string }[];
   };
   isHtml?: boolean;
 };
@@ -121,6 +123,10 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
         <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed space-y-6 mb-12 w-full overflow-x-hidden break-words [&_pre]:whitespace-pre-wrap [&_code]:break-words">
           {article.content.split('\n\n').map((paragraph, index) => renderParagraph(paragraph, index))}
         </div>
+      )}
+
+      {article.faq && article.faq.length > 0 && (
+        <FAQAccordion items={article.faq} />
       )}
 
       {article.ctaTitle ? (
