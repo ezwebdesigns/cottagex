@@ -22,12 +22,12 @@ export default function TrendingDestinations({ locale, title = "Trending Destina
           <p className="text-blue-100/80 mt-2">{description}</p>
         </div>
 
-        <div className="flex flex-row gap-2 md:gap-6">
+        <div className="flex flex-row gap-2 md:gap-6 overflow-x-auto md:overflow-visible snap-x md:snap-none">
           {destItems.map((dest, i) => (
             <div
               key={i}
               onClick={() => { if (dest.link) router.push(dest.link); }}
-              className="flex-1 min-w-0 h-[140px] md:h-[320px] rounded-3xl relative overflow-hidden group cursor-pointer"
+              className="min-w-[calc(50%-0.25rem)] md:flex-1 md:min-w-0 shrink-0 snap-start h-[140px] md:h-[320px] rounded-3xl relative overflow-hidden group cursor-pointer"
             >
               <img src={dest.image} alt={dest.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B40]/95 via-[#0B1B40]/20 to-transparent"></div>
