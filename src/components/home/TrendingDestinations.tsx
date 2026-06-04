@@ -17,18 +17,17 @@ export default function TrendingDestinations({ locale, title = "Trending Destina
 
   return (
     <section className="px-4 md:px-8 py-16 bg-[#0B1B40]">
-      <div className="max-w-7xl mx-auto">
         <div className="mb-10 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white">{title}</h2>
           <p className="text-blue-100/80 mt-2">{description}</p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 md:flex md:gap-6 md:overflow-x-auto md:pb-6 md:snap-x [&::-webkit-scrollbar]:hidden">
+        <div className="flex flex-row gap-2 md:gap-6">
           {destItems.map((dest, i) => (
             <div
               key={i}
               onClick={() => { if (dest.name.includes('ON')) router.push(`/${locale}/cottage-country/ontario`); }}
-              className="h-[180px] md:min-w-[280px] md:h-[320px] rounded-3xl relative overflow-hidden group cursor-pointer snap-start shrink-0"
+              className="flex-1 min-w-0 h-[140px] md:h-[320px] rounded-3xl relative overflow-hidden group cursor-pointer"
             >
               <img src={dest.image} alt={dest.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B40]/95 via-[#0B1B40]/20 to-transparent"></div>
@@ -42,7 +41,6 @@ export default function TrendingDestinations({ locale, title = "Trending Destina
             </div>
           ))}
         </div>
-      </div>
     </section>
   );
 }
