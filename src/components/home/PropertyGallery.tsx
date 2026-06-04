@@ -13,15 +13,21 @@ type PropertyGalleryProps = {
   tabs?: GalleryTab[];
 };
 
-const shortcodeRegex = /\[([a-z0-9-]+),\s*([a-z0-9-]+)(?:,\s*(\d+))?\]/;
+const shortcodeRegex = /\[([a-z0-9-]+),\s*([a-z0-9-]+)(?:,\s*([a-z0-9-]+))?(?:,\s*(\d+))?\]/;
 
 function parseShortcode(shortcode: string) {
   const match = shortcode.match(shortcodeRegex);
-  if (!match) return { slug: 'canada', category: 'all', limit: 6 };
+  if (!match) return { slug: 'canada', category: 'all', limit: 6, featured: false };
+
+  const parts = [match[2], match[3]].filter(Boolean);
+  const featured = parts.includes('featured');
+  const nonFeatured = parts.filter(p => p !== 'featured');
+
   return {
     slug: match[1].trim(),
-    category: match[2].trim(),
-    limit: match[3] ? parseInt(match[3]) : 6,
+    category: nonFeatured[0] || 'all',
+    limit: match[4] ? parseInt(match[4]) : (match[3] && !match[4] && /^\d+$/.test(match[3]) ? parseInt(match[3]) : 6),
+    featured,
   };
 }
 
@@ -115,13 +121,14 @@ export default function PropertyGallery({ title = "Browse Recommended Cottages",
   const fetchCottages = useCallback(async (tab: GalleryTab) => {
     setLoading(true);
     const sc = tab.shortcode || '[canada, all, 6]';
-    const { slug, category, limit } = parseShortcode(sc);
+    const { slug, category, limit, featured } = parseShortcode(sc);
     const params = new URLSearchParams({
       ...(slug && slug !== 'canada' ? { slug } : {}),
       limit: String(limit),
       sort: 'rating',
       affiliateOnly: 'true',
       ...(category && category !== 'all' ? { category } : {}),
+      ...(featured ? { featured: 'true' } : {}),
     });
     try {
       const res = await fetch(`/api/cottages?${params}`);
