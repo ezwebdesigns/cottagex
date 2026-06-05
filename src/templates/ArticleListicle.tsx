@@ -1,10 +1,8 @@
 'use client';
 
-import { ArrowLeft, CalendarDays, Clock, ExternalLink, BookOpen } from 'lucide-react';
-import StarRating from '@/components/StarRating';
+import { ArrowLeft, CalendarDays, Clock } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
-import { ontarioListicleChalets } from '@/lib/mock-data';
-import { BreadcrumbSchema, ArticleSchema, ItemListSchema } from '@/components/seo/SchemaOrg';
+import { BreadcrumbSchema, ArticleSchema } from '@/components/seo/SchemaOrg';
 import { CottageShortcode } from '@/components/CottageShortcode';
 import FAQAccordion from '@/components/FAQAccordion';
 
@@ -40,13 +38,6 @@ export default function ArticleListicle({ locale, article }: ArticleListicleProp
         description={article.content}
         image={article.image}
         date={article.date}
-      />
-      <ItemListSchema
-        items={ontarioListicleChalets.map(c => ({
-          title: c.title,
-          description: c.description,
-          url: c.vrboLink,
-        }))}
       />
       <button
         onClick={() => router.push(`/${locale}/guides`)}
@@ -103,53 +94,11 @@ export default function ArticleListicle({ locale, article }: ArticleListicleProp
         })()}
       </div>
 
-      <div className="space-y-16">
-        <div className="border-l-4 border-[#1F51C6] pl-4 mb-8 bg-blue-50/50 p-6 rounded-r-2xl">
-          <h4 className="font-bold text-[#0B1B40] text-lg mb-2">Editor's Disclaimer:</h4>
-          <p className="text-sm text-slate-600">
-            Pricing is highly dependent on season and group size. Clicking "Check Availability" routes you directly to verified affiliate landing pages where transactions can be made securely. Happy scouting!
-          </p>
-        </div>
-
-        {ontarioListicleChalets.map((chalet) => (
-          <div key={chalet.id} className="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col lg:flex-row">
-            <div className="lg:w-2/5 relative h-72 lg:h-auto min-h-[300px] bg-slate-100">
-              <img src={chalet.image} alt={chalet.title} className="w-full h-full object-cover" />
-              <div className="absolute top-6 left-6 w-12 h-12 bg-[#0B1B40] text-white rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
-                #{chalet.rank}
-              </div>
-            </div>
-            <div className="lg:w-3/5 p-8 flex flex-col justify-between">
-              <div>
-                <div className="flex flex-wrap justify-between items-center gap-2 mb-4">
-                  <span className="bg-blue-50 text-[#1F51C6] text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full">
-                    {chalet.vibe}
-                  </span>
-                  <div className="flex items-center gap-1">
-                    <StarRating rating={parseFloat(chalet.rating)} size={14} />
-                    <span className="text-sm font-bold text-[#0B1B40]">{chalet.rating}</span>
-                  </div>
-                </div>
-                <h3 className="text-2xl font-bold text-[#0B1B40] mb-4">
-                  {chalet.title}
-                </h3>
-                <p className="text-slate-600 leading-relaxed text-sm md:text-base mb-6">
-                  {chalet.description}
-                </p>
-              </div>
-              <div className="pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
-                <div>
-                  <p className="text-xs text-slate-400 uppercase tracking-widest font-semibold">ESTIMATED RATE</p>
-                  <span className="text-2xl font-black text-[#1F51C6]">${chalet.price}</span>
-                  <span className="text-xs text-slate-500 font-medium"> / night</span>
-                </div>
-                <a href={chalet.vrboLink} target="_blank" rel="noopener noreferrer" className="bg-[#0B1B40] hover:bg-[#1F51C6] text-white px-6 py-3 rounded-full font-bold transition-all flex items-center gap-2 text-sm shadow-md">
-                  Check Availability <ExternalLink size={16} />
-                </a>
-              </div>
-            </div>
-          </div>
-        ))}
+      <div className="border-l-4 border-[#1F51C6] pl-4 mb-8 bg-blue-50/50 p-6 rounded-r-2xl">
+        <h4 className="font-bold text-[#0B1B40] text-lg mb-2">Editor's Disclaimer:</h4>
+        <p className="text-sm text-slate-600">
+          Pricing is highly dependent on season and group size. Clicking "Check Availability" routes you directly to verified affiliate landing pages where transactions can be made securely. Happy scouting!
+        </p>
       </div>
 
       {article.faq && article.faq.length > 0 && (
