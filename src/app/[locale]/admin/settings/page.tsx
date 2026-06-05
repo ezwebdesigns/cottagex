@@ -5,8 +5,8 @@ import { useParams } from 'next/navigation';
 import { Save, Loader2, Settings as SettingsIcon, Home, Search, Image, Megaphone, Globe, ChevronDown, ChevronUp } from 'lucide-react';
 import ImageUploader from '@/components/admin/ImageUploader';
 
-type HomepageHero = { tag: string; title: string; description: string; image: string };
-type DestItem = { name: string; properties: string; image: string; link?: string };
+type HomepageHero = { tag: string; title: string; description: string; image: string; imageAlt: string };
+type DestItem = { name: string; properties: string; image: string; imageAlt?: string; link?: string };
 type GalleryTab = { name: string; category: string; shortcode?: string };
 type HomepageDestinations = { title: string; description: string; items: DestItem[] };
 type HomepageGallery = { title: string; description: string; tabs: GalleryTab[] };
@@ -14,7 +14,7 @@ type HomepageSearch = { title: string; description: string };
 type ExploreItem = { icon: string; title: string; description: string };
 type HomepageExplore = { title: string; description: string; subtitle: string; items: ExploreItem[] };
 type HomepageInspiration = { title: string; description: string };
-type HomepageCTA = { title: string; description: string; buttonText: string; buttonLink: string; image: string };
+type HomepageCTA = { title: string; description: string; buttonText: string; buttonLink: string; image: string; imageAlt: string };
 
 const tabs = [
   { id: 'general', label: 'General', icon: SettingsIcon },
@@ -130,6 +130,7 @@ export default function AdminSettingsPage() {
               <Field label="Title" value={hero.title} onChange={(v) => setHero({ ...hero, title: v })} />
               <Field label="Description" value={hero.description} onChange={(v) => setHero({ ...hero, description: v })} textarea />
               <ImageUploader label="Background Image" value={hero.image} onChange={(v) => setHero({ ...hero, image: v })} />
+              <Field label="Image Alt Text (SEO)" value={hero.imageAlt} onChange={(v) => setHero({ ...hero, imageAlt: v })} maxLength={255} />
               <SaveButton onClick={() => saveSection('homepage_hero', hero)} saving={saving} />
             </CollapsibleSection>
           )}
@@ -170,7 +171,12 @@ export default function AdminSettingsPage() {
                          newItems[i] = { ...newItems[i], image: v };
                          setDestinations({ ...destinations, items: newItems });
                        }} />
-                     </div>
+                       <Field label="Image Alt Text (SEO)" value={item.imageAlt || ''} onChange={(v) => {
+                         const newItems = [...destinations.items];
+                         newItems[i] = { ...newItems[i], imageAlt: v };
+                         setDestinations({ ...destinations, items: newItems });
+                       }} maxLength={255} />
+                      </div>
                   ))}
                   <button onClick={() => setDestinations({ ...destinations, items: [...destinations.items, { name: '', properties: '', image: '', link: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">
                     + Add Item
@@ -281,6 +287,7 @@ export default function AdminSettingsPage() {
               <Field label="Button Text" value={cta.buttonText} onChange={(v) => setCta({ ...cta, buttonText: v })} />
               <Field label="Button Link" value={cta.buttonLink} onChange={(v) => setCta({ ...cta, buttonLink: v })} />
               <ImageUploader label="Image" value={cta.image} onChange={(v) => setCta({ ...cta, image: v })} />
+              <Field label="Image Alt Text (SEO)" value={cta.imageAlt} onChange={(v) => setCta({ ...cta, imageAlt: v })} maxLength={255} />
               <SaveButton onClick={() => saveSection('homepage_cta', cta)} saving={saving} />
             </CollapsibleSection>
           )}
@@ -407,15 +414,15 @@ export default function AdminSettingsPage() {
   );
 }
 
-function Field({ label, value, onChange, textarea }: { label: string; value: string; onChange: (v: string) => void; textarea?: boolean }) {
+function Field({ label, value, onChange, textarea, maxLength }: { label: string; value: string; onChange: (v: string) => void; textarea?: boolean; maxLength?: number }) {
   return (
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
       {textarea ? (
-        <textarea value={value} onChange={(e) => onChange(e.target.value)} rows={3}
+        <textarea value={value} onChange={(e) => onChange(e.target.value)} rows={3} maxLength={maxLength}
           className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20 focus:border-[#1F51C6]" />
       ) : (
-        <input type="text" value={value} onChange={(e) => onChange(e.target.value)}
+        <input type="text" value={value} onChange={(e) => onChange(e.target.value)} maxLength={maxLength}
           className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20 focus:border-[#1F51C6]" />
       )}
     </div>

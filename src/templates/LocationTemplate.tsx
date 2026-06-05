@@ -46,6 +46,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
   const heroTitle = hero.title || `Cottages to Rent in ${locName}`;
   const heroSubtitle = hero.subtitle || 'Find your perfect stay across this beautiful region.';
   const heroImage = hero.image || 'https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=1500';
+  const heroImageAlt = hero.imageAlt || heroTitle;
   const heroTag = hero.tag || 'Discover';
   const introDesc = intro.description || 'Explore this beautiful region and find your perfect cottage escape.';
   const introTitle = intro.highlightsTitle || 'Discover This Region';
@@ -72,6 +73,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         price: c.price_cad?.toString() || '',
         rating: c.rating ? c.rating.toFixed(1) : '0',
         image: c.thumbnail || (Array.isArray(c.photos) && c.photos[0]) || 'https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=600',
+        imageAlt: c.image_alt || undefined,
         tag: c.type || 'Featured',
         source: c.source,
         isLiked: false,
@@ -79,7 +81,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         bookingUrl: c.affiliate_url || c.google_link || 'https://www.vrbo.com',
       }));
     }
-    return initialProperties.filter(p => p.province === 'Ontario').map(p => ({ ...p, bookingUrl: 'https://www.vrbo.com', source: '' }));
+    return initialProperties.filter(p => p.province === 'Ontario').map(p => ({ ...p, imageAlt: undefined, bookingUrl: 'https://www.vrbo.com', source: '' }));
   }, [cottages]);
 
   const searchDataMap: Record<string, typeof ontarioSearchData> = {
@@ -143,6 +145,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
             backgroundPosition: 'center'
           }}
         >
+          <img src={heroImage} alt={heroImageAlt} className="sr-only" aria-hidden="false" />
           <div className="bg-white/10 backdrop-blur-md text-white text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-4 border border-white/20">
             {heroTag}
           </div>
@@ -197,7 +200,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
               {displayCottages.map((prop) => (
                 <div key={prop.id} className="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
                   <div className="relative h-36 md:h-64 overflow-hidden">
-                    <img src={prop.image} alt={prop.title} className="w-full h-full object-cover" />
+                    <img src={prop.image} alt={prop.imageAlt || prop.title} className="w-full h-full object-cover" />
                     <div className="absolute top-2 md:top-4 left-2 md:left-4"><SourceBadge source={prop.source || prop.tag} /></div>
                   </div>
                   <div className="p-3 md:p-6 flex-1 flex flex-col justify-between">
@@ -247,7 +250,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
             </div>
             {ctaData.image && (
               <div className="w-full md:w-1/2 h-64 md:h-auto absolute right-0 inset-y-0 opacity-20 md:opacity-100 hidden md:block">
-                <img src={ctaData.image} alt="" className="w-full h-full object-cover" />
+                <img src={ctaData.image} alt={ctaData.imageAlt || ctaData.title || ''} className="w-full h-full object-cover" />
               </div>
             )}
           </div>
@@ -269,7 +272,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
               </div>
               {learnMore.image && (
                 <div className="md:col-span-2">
-                  <img src={learnMore.image} alt={learnMore.title || ''} className="w-full rounded-[2rem] object-cover shadow-lg" />
+                  <img src={learnMore.image} alt={learnMore.imageAlt || learnMore.title || ''} className="w-full rounded-[2rem] object-cover shadow-lg" />
                 </div>
               )}
             </div>

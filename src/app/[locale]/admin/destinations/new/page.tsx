@@ -84,7 +84,7 @@ export default function NewDestinationPage() {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Background Image</label>
             <div className="flex items-center gap-3">
-              {locationData.hero?.image && <img src={locationData.hero.image} className="w-16 h-16 rounded-xl object-cover border" />}
+              {locationData.hero?.image && <img src={locationData.hero.image} alt={locationData.hero?.imageAlt || ''} className="w-16 h-16 rounded-xl object-cover border" />}
               <label className="cursor-pointer text-sm text-[#1F51C6] hover:underline">
                 Upload Image
                 <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
@@ -95,6 +95,7 @@ export default function NewDestinationPage() {
                 }} />
               </label>
             </div>
+            <div className="mt-3"><label className="block text-sm font-medium text-gray-700 mb-1">Image Alt Text (SEO)</label><input value={locationData.hero?.imageAlt ?? ''} onChange={e => setLocationData({ ...locationData, hero: { ...locationData.hero, imageAlt: e.target.value } })} maxLength={255} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" placeholder="Describe the hero image for SEO & accessibility" /></div>
           </div>
         </div>
 
@@ -150,7 +151,7 @@ export default function NewDestinationPage() {
             </div>
             <div className="col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">Image</label>
-              {locationData.cta?.image && <img src={locationData.cta.image} className="w-full aspect-[4/3] rounded-2xl object-cover border mb-2" />}
+              {locationData.cta?.image && <img src={locationData.cta.image} alt={locationData.cta?.imageAlt || ''} className="w-full aspect-[4/3] rounded-2xl object-cover border mb-2" />}
               <label className="cursor-pointer text-sm text-[#1F51C6] hover:underline">
                 {locationData.cta?.image ? 'Change' : 'Upload Image'}
                 <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
@@ -161,6 +162,7 @@ export default function NewDestinationPage() {
                 }} />
               </label>
               {locationData.cta?.image && <button type="button" onClick={() => setLocationData({ ...locationData, cta: { ...locationData.cta, image: '' } })} className="text-xs text-red-500 ml-2">Remove</button>}
+              <div className="mt-3"><label className="block text-sm font-medium text-gray-700 mb-1">Image Alt Text (SEO)</label><input value={locationData.cta?.imageAlt ?? ''} onChange={e => setLocationData({ ...locationData, cta: { ...locationData.cta, imageAlt: e.target.value } })} maxLength={255} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" placeholder="Describe the image for SEO & accessibility" /></div>
             </div>
           </div>
         </div>
@@ -206,7 +208,7 @@ export default function NewDestinationPage() {
             </div>
             <div className="col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">Image</label>
-              {locationData.learnMore?.image && <img src={locationData.learnMore.image} className="w-full aspect-[4/3] rounded-2xl object-cover border mb-2" />}
+              {locationData.learnMore?.image && <img src={locationData.learnMore.image} alt={locationData.learnMore?.imageAlt || ''} className="w-full aspect-[4/3] rounded-2xl object-cover border mb-2" />}
               <label className="cursor-pointer text-sm text-[#1F51C6] hover:underline">
                 {locationData.learnMore?.image ? 'Change' : 'Upload Image'}
                 <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
@@ -217,6 +219,7 @@ export default function NewDestinationPage() {
                 }} />
               </label>
               {locationData.learnMore?.image && <button type="button" onClick={() => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, image: '' } })} className="text-xs text-red-500 ml-2">Remove</button>}
+              <div className="mt-3"><label className="block text-sm font-medium text-gray-700 mb-1">Image Alt Text (SEO)</label><input value={locationData.learnMore?.imageAlt ?? ''} onChange={e => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, imageAlt: e.target.value } })} maxLength={255} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" placeholder="Describe the image for SEO & accessibility" /></div>
             </div>
           </div>
         </div>

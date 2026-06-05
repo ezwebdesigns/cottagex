@@ -10,9 +10,10 @@ type PartnershipPromoProps = {
   buttonText?: string;
   buttonLink?: string;
   image?: string;
+  imageAlt?: string;
 };
 
-export default function PartnershipPromo({ locale, title = "Own a Beautiful Cabin?\nPartner with us seamlessly.", description = "Expand your booking volume by listing your Canadian property inside our premium recommended guides.", buttonText = "Contact Partnership Team", buttonLink = "/{locale}/contact", image = "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&q=80&w=1000" }: PartnershipPromoProps) {
+export default function PartnershipPromo({ locale, title = "Own a Beautiful Cabin?\nPartner with us seamlessly.", description = "Expand your booking volume by listing your Canadian property inside our premium recommended guides.", buttonText = "Contact Partnership Team", buttonLink = "/{locale}/contact", image = "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&q=80&w=1000", imageAlt }: PartnershipPromoProps) {
   const router = useRouter();
 
   return (
@@ -31,7 +32,7 @@ export default function PartnershipPromo({ locale, title = "Own a Beautiful Cabi
           </button>
         </div>
         <div className="w-full md:w-1/2 h-64 md:h-auto absolute right-0 inset-y-0 opacity-20 md:opacity-100 hidden md:block">
-          <img src={image} alt="Hosting" className="w-full h-full object-cover" />
+          <img src={image} alt={imageAlt || title.split('\n')[0]} className="w-full h-full object-cover" />
         </div>
       </div>
     </section>

@@ -8,12 +8,12 @@ type TrendingDestinationsProps = {
   locale: string;
   title?: string;
   description?: string;
-  items?: { name: string; properties: string; image: string; link?: string }[];
+  items?: { name: string; properties: string; image: string; imageAlt?: string; link?: string }[];
 };
 
 export default function TrendingDestinations({ locale, title = "Trending Destinations", description = "Discover Canada's most sought-after wilderness corridors.", items }: TrendingDestinationsProps) {
   const router = useRouter();
-  const destItems = items ?? initialDestinations.map(d => ({ name: d.name, properties: d.properties, image: d.image, link: '' }));
+  const destItems = items ?? initialDestinations.map(d => ({ name: d.name, properties: d.properties, image: d.image, imageAlt: '', link: '' }));
 
   return (
     <section className="px-4 md:px-8 py-16 bg-[#0B1B40]">
@@ -29,7 +29,7 @@ export default function TrendingDestinations({ locale, title = "Trending Destina
               onClick={() => { if (dest.link) router.push(dest.link); }}
               className="min-w-[calc(50%-0.25rem)] md:flex-1 md:min-w-0 shrink-0 snap-start h-[140px] md:h-[320px] rounded-3xl relative overflow-hidden group cursor-pointer"
             >
-              <img src={dest.image} alt={dest.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <img src={dest.image} alt={dest.imageAlt || dest.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B40]/95 via-[#0B1B40]/20 to-transparent"></div>
               <div className="absolute bottom-6 left-6 text-white">
                 <div className="flex items-center gap-1.5 mb-1">

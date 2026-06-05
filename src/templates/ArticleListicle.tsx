@@ -5,7 +5,10 @@ import StarRating from '@/components/StarRating';
 import { useRouter, usePathname } from 'next/navigation';
 import { ontarioListicleChalets } from '@/lib/mock-data';
 import { BreadcrumbSchema, ArticleSchema, ItemListSchema } from '@/components/seo/SchemaOrg';
+import { CottageShortcode } from '@/components/CottageShortcode';
 import FAQAccordion from '@/components/FAQAccordion';
+
+const shortcodeRegex = /\[([a-z0-9-]+),\s*([a-z0-9-]+)(?:,\s*([a-z0-9-]+))?(?:,\s*(\d+))?\]/;
 
 type ArticleListicleProps = {
   locale: string;
@@ -16,6 +19,7 @@ type ArticleListicleProps = {
     readTime: string;
     category: string;
     image: string;
+    imageAlt?: string;
     faq?: { question: string; answer: string }[];
   };
 };
@@ -71,10 +75,33 @@ export default function ArticleListicle({ locale, article }: ArticleListicleProp
       </div>
 
       <div className="h-[300px] md:h-[450px] rounded-[2rem] overflow-hidden mb-10 shadow-sm">
-        <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
+        <img src={article.image} alt={article.imageAlt || article.title} className="w-full h-full object-cover" />
       </div>
 
-      <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed mb-12 w-full overflow-x-hidden break-words [&_pre]:whitespace-pre-wrap [&_code]:break-words" dangerouslySetInnerHTML={{ __html: article.content }} />
+      <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed mb-12 w-full overflow-x-hidden break-words [&_pre]:whitespace-pre-wrap [&_code]:break-words">
+        {(() => {
+          const parts = article.content.split(shortcodeRegex);
+          if (parts.length === 1) {
+            return <div dangerouslySetInnerHTML={{ __html: article.content }} />;
+          }
+          return parts.map((part, i) => {
+            const mod = i % 5;
+            if (mod === 0) {
+              return part ? <div key={i} dangerouslySetInnerHTML={{ __html: part }} /> : null;
+            }
+            if (mod === 1) {
+              const param1 = part.trim().toLowerCase();
+              const param2 = (parts[i + 1] || '').trim().toLowerCase() || 'rating';
+              const param3 = (parts[i + 2] || '').trim().toLowerCase();
+              const limitStr = parts[i + 3];
+              const limit = limitStr ? parseInt(limitStr, 10) : (param3 && /^\d+$/.test(param3) ? parseInt(param3) : 6);
+              const actualParam3 = limitStr ? param3 : '';
+              return <CottageShortcode key={i} param1={param1} param2={param2} param3={actualParam3 || undefined} limit={Math.min(limit, 10)} />;
+            }
+            return null;
+          });
+        })()}
+      </div>
 
       <div className="space-y-16">
         <div className="border-l-4 border-[#1F51C6] pl-4 mb-8 bg-blue-50/50 p-6 rounded-r-2xl">

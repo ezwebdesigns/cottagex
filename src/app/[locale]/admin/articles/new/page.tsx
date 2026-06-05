@@ -19,6 +19,7 @@ export default function NewArticlePage() {
   const [author, setAuthor] = useState("Editorial Team");
   const [articleType, setArticleType] = useState<'standard' | 'listicle'>('standard');
   const [featuredImage, setFeaturedImage] = useState('');
+  const [imageAlt, setImageAlt] = useState('');
   const [seoTitle, setSeoTitle] = useState('');
   const [ctaTitle, setCtaTitle] = useState('');
   const [ctaButton, setCtaButton] = useState('');
@@ -35,7 +36,7 @@ export default function NewArticlePage() {
       await fetch('/api/admin/articles', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, slug, content, excerpt, category, author, articleType, featuredImage, seoTitle, ctaTitle, ctaButton, ctaLink, faq, isPublished })
+        body: JSON.stringify({ title, slug, content, excerpt, category, author, articleType, featuredImage, imageAlt, seoTitle, ctaTitle, ctaButton, ctaLink, faq, isPublished })
       });
       router.push('/admin/articles');
     } finally { setSaving(false); }
@@ -74,6 +75,7 @@ export default function NewArticlePage() {
               </label>
               {featuredImage && <button type="button" onClick={() => setFeaturedImage('')} className="text-xs text-red-500">Remove</button>}
             </div>
+            <div className="mt-3"><label className="block text-sm font-medium text-gray-700 mb-1">Image Alt Text (SEO)</label><input value={imageAlt} onChange={e => setImageAlt(e.target.value)} maxLength={255} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" placeholder="Describe the image for SEO & accessibility" /></div>
           </div>
           <div><label className="block text-sm font-medium text-gray-700 mb-1">Content</label><TiptapEditor content={content} onChange={setContent} /></div>
         </div>

@@ -11,9 +11,10 @@ type HeroSectionProps = {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
 };
 
-export default function HeroSection({ tag = "Official VRBO Affiliate Search", title = "Find Your Perfect Canadian Escape", description = "Instantly query and secure verified premium lake houses and mountain lodges.", image }: HeroSectionProps) {
+export default function HeroSection({ tag = "Official VRBO Affiliate Search", title = "Find Your Perfect Canadian Escape", description = "Instantly query and secure verified premium lake houses and mountain lodges.", image, imageAlt }: HeroSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -55,6 +56,7 @@ export default function HeroSection({ tag = "Official VRBO Affiliate Search", ti
           backgroundPosition: 'center'
         }}
       >
+        {image && <img src={image} alt={imageAlt || title} className="sr-only" aria-hidden="false" />}
         <div className="w-full md:w-1/2 flex justify-center md:justify-end">
           <div className="w-full max-w-[575px] rounded-[2rem] overflow-hidden bg-white/10 backdrop-blur-sm">
             <div ref={containerRef} className="w-full" />

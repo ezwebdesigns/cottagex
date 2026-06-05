@@ -127,7 +127,8 @@ export async function getCottages({
       google_link,
       affiliate_url,
       is_featured,
-      available
+      available,
+      image_alt
     FROM affiliatecottages
     WHERE ${where}
     ORDER BY ${orderBy}

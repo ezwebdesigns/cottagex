@@ -21,6 +21,7 @@ export async function POST(request: Request) {
       category: body.category,
       author: body.author || 'Editorial Team',
       featuredImage: body.featuredImage,
+      imageAlt: body.imageAlt,
       seoTitle: body.seoTitle,
       faq: body.faq || [],
       ctaTitle: body.ctaTitle,

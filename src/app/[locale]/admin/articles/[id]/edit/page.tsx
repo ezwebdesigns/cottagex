@@ -11,6 +11,7 @@ export default function EditArticlePage() {
   const router = useRouter(); const params = useParams();
   const [title, setTitle] = useState(''); const [content, setContent] = useState(''); const [excerpt, setExcerpt] = useState('');
   const [category, setCategory] = useState(''); const [author, setAuthor] = useState(''); const [featuredImage, setFeaturedImage] = useState('');
+  const [imageAlt, setImageAlt] = useState('');
   const [seoTitle, setSeoTitle] = useState(''); const [ctaTitle, setCtaTitle] = useState(''); const [ctaButton, setCtaButton] = useState('');
   const [ctaLink, setCtaLink] = useState(''); const [faq, setFaq] = useState<FAQ[]>([]); const [isPublished, setIsPublished] = useState(true); const [slug, setSlug] = useState('');
   const [loading, setLoading] = useState(true); const [saving, setSaving] = useState(false);
@@ -19,6 +20,7 @@ export default function EditArticlePage() {
     fetch(`/api/admin/articles/${params.id}`).then(r => r.json()).then(d => {
       const p = d.post; setTitle(p.title); setContent(p.content); setExcerpt(p.excerpt);
       setCategory(p.category); setAuthor(p.author); setFeaturedImage(p.featuredImage || p.imageUrl);
+      setImageAlt(p.imageAlt || '');
       setSeoTitle(p.seoTitle); setCtaTitle(p.ctaTitle); setCtaButton(p.ctaButton); setCtaLink(p.ctaLink);
       setFaq(Array.isArray(p.faq) ? p.faq : []); setIsPublished(p.isPublished); setSlug(p.slug); setLoading(false);
     });
@@ -28,7 +30,7 @@ export default function EditArticlePage() {
     e.preventDefault(); setSaving(true);
     await fetch(`/api/admin/articles/${params.id}`, {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, slug, content, excerpt, category, author, featuredImage, seoTitle, ctaTitle, ctaButton, ctaLink, faq, isPublished })
+      body: JSON.stringify({ title, slug, content, excerpt, category, author, featuredImage, imageAlt, seoTitle, ctaTitle, ctaButton, ctaLink, faq, isPublished })
     });
     setSaving(false); router.push('/admin/articles');
   }
@@ -60,6 +62,7 @@ export default function EditArticlePage() {
                 }} /></label>
               {featuredImage && <button type="button" onClick={() => setFeaturedImage('')} className="text-xs text-red-500">Remove</button>}
             </div>
+            <div className="mt-3"><label className="block text-sm font-medium text-gray-700 mb-1">Image Alt Text (SEO)</label><input value={imageAlt} onChange={e => setImageAlt(e.target.value)} maxLength={255} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" placeholder="Describe the image for SEO & accessibility" /></div>
           </div>
           <div><label className="block text-sm font-medium text-gray-700 mb-1">Content</label><TiptapEditor content={content} onChange={setContent} /></div>
         </div>

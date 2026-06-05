@@ -30,12 +30,14 @@ export type HomepageHero = {
   title: string;
   description: string;
   image: string;
+  imageAlt: string;
 };
 
 export type DestinationItem = {
   name: string;
   properties: string;
   image: string;
+  imageAlt: string;
   link: string;
 };
 
@@ -86,6 +88,7 @@ export type HomepageCTA = {
   buttonText: string;
   buttonLink: string;
   image: string;
+  imageAlt: string;
 };
 
 export const defaultSettings: Record<string, any> = {
@@ -140,17 +143,18 @@ export const defaultSettings: Record<string, any> = {
     title: "Find Your Perfect Canadian Escape",
     description: "Instantly query and secure verified premium lake houses and mountain lodges.",
     image: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&q=80&w=2000",
+    imageAlt: "Aerial view of a pristine Canadian lake surrounded by pine forest and cottages at sunset",
   },
   homepage_destinations: {
     title: "Trending Destinations",
     description: "Discover Canada's most sought-after wilderness corridors.",
     items: [
-      { name: "Muskoka, ON", properties: "320+ cottages", image: "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&q=80&w=600", link: "/en/cottage-country/ontario" },
-      { name: "Mont-Tremblant, QC", properties: "450+ cottages", image: "https://images.unsplash.com/photo-1517770413964-df8ca61194a6?auto=format&fit=crop&q=80&w=600", link: "/en/cottage-country/quebec" },
-      { name: "Banff, AB", properties: "180+ cottages", image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600", link: "/en/cottage-country/alberta" },
-      { name: "Charlevoix, QC", properties: "210+ cottages", image: "https://images.unsplash.com/photo-1502672260266-1c1e52504437?auto=format&fit=crop&q=80&w=600", link: "/en/cottage-country/quebec" },
-      { name: "Cape Breton, NS", properties: "150+ cottages", image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=600", link: "/en/cottage-country/nova-scotia" },
-      { name: "Whistler, BC", properties: "280+ cottages", image: "https://images.unsplash.com/photo-1502781252888-914c0a70e5fc?auto=format&fit=crop&q=80&w=600", link: "/en/cottage-country/british-columbia" },
+      { name: "Muskoka, ON", properties: "320+ cottages", image: "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&q=80&w=600", imageAlt: "Wooden cottage dock on a calm Muskoka lake surrounded by pine trees", link: "/en/cottage-country/ontario" },
+      { name: "Mont-Tremblant, QC", properties: "450+ cottages", image: "https://images.unsplash.com/photo-1517770413964-df8ca61194a6?auto=format&fit=crop&q=80&w=600", imageAlt: "Mountain chalet with snowy peaks of Mont-Tremblant in the background", link: "/en/cottage-country/quebec" },
+      { name: "Banff, AB", properties: "180+ cottages", image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600", imageAlt: "Rocky Mountain lodge near Banff with turquoise lake and evergreen forest", link: "/en/cottage-country/alberta" },
+      { name: "Charlevoix, QC", properties: "210+ cottages", image: "https://images.unsplash.com/photo-1502672260266-1c1e52504437?auto=format&fit=crop&q=80&w=600", imageAlt: "Charming A-frame chalet in the Charlevoix region of Quebec with autumn colors", link: "/en/cottage-country/quebec" },
+      { name: "Cape Breton, NS", properties: "150+ cottages", image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=600", imageAlt: "Coastal cottage overlooking the ocean cliffs of Cape Breton Island, Nova Scotia", link: "/en/cottage-country/nova-scotia" },
+      { name: "Whistler, BC", properties: "280+ cottages", image: "https://images.unsplash.com/photo-1502781252888-914c0a70e5fc?auto=format&fit=crop&q=80&w=600", imageAlt: "Modern alpine cabin in Whistler with snow-covered evergreen trees", link: "/en/cottage-country/british-columbia" },
     ],
   },
   homepage_gallery: {
@@ -189,5 +193,6 @@ export const defaultSettings: Record<string, any> = {
     buttonText: "Contact Partnership Team",
     buttonLink: "/{locale}/contact",
     image: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&q=80&w=1000",
+    imageAlt: "Cozy wooden cabin interior with warm lighting in a Canadian forest setting",
   },
 };

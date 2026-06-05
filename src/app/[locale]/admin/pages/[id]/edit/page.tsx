@@ -99,7 +99,7 @@ export default function EditPagePage() {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Background Image</label>
                 <div className="flex items-center gap-3">
-                  {locationData.hero?.image && <img src={locationData.hero.image} className="w-16 h-16 rounded-xl object-cover border" />}
+                  {locationData.hero?.image && <img src={locationData.hero.image} alt={locationData.hero?.imageAlt || ''} className="w-16 h-16 rounded-xl object-cover border" />}
                   <label className="cursor-pointer text-sm text-[#1F51C6] hover:underline">
                     Upload Image
                     <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
@@ -110,6 +110,7 @@ export default function EditPagePage() {
                     }} />
                   </label>
                 </div>
+                <div className="mt-3"><label className="block text-sm font-medium text-gray-700 mb-1">Image Alt Text (SEO)</label><input value={locationData.hero?.imageAlt ?? ''} onChange={e => setLocationData({ ...locationData, hero: { ...locationData.hero, imageAlt: e.target.value } })} maxLength={255} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" placeholder="Describe the hero image for SEO & accessibility" /></div>
               </div>
             </div>
 

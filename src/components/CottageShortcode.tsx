@@ -28,6 +28,7 @@ const PROVINCES = [
 interface CottageShortcodeProps {
   param1: string
   param2: string
+  param3?: string
   limit:  number
 }
 
@@ -50,7 +51,7 @@ interface Cottage {
   available:     boolean
 }
 
-export function CottageShortcode({ param1, param2, limit }: CottageShortcodeProps) {
+export function CottageShortcode({ param1, param2, param3, limit }: CottageShortcodeProps) {
   const [cottages, setCottages] = useState<Cottage[]>([])
   const [loading,  setLoading]  = useState(true)
 
@@ -58,14 +59,15 @@ export function CottageShortcode({ param1, param2, limit }: CottageShortcodeProp
   const isFeatured = param2 === FEATURED_PARAM
   const isProvince = PROVINCES.includes(param1)
   const sort       = isSort ? param2 : 'rating'
-  const category   = !isSort && !isFeatured ? (FILTER_MAP[param2] || '') : ''
+  const category   = !isSort && !isFeatured ? (FILTER_MAP[param2] || param2) : ''
+  const featuredCategory = isFeatured && param3 ? (FILTER_MAP[param3] || param3) : ''
 
   useEffect(() => {
     const params = new URLSearchParams({
       [isProvince ? 'province' : 'slug']: param1,
       limit:    String(limit),
       sort,
-      ...(category   ? { category }        : {}),
+      ...(category || featuredCategory ? { category: category || featuredCategory } : {}),
       ...(isFeatured ? { featured: 'true' } : {}),
     })
 

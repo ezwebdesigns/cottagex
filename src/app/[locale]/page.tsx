@@ -62,13 +62,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <div>
-      <HeroSection tag={hero.tag} title={hero.title} description={hero.description} image={hero.image} />
+      <HeroSection tag={hero.tag} title={hero.title} description={hero.description} image={hero.image} imageAlt={hero.imageAlt} />
       <TrendingDestinations locale={locale} title={destinations.title} description={destinations.description} items={destinations.items} />
       <PropertyGallery title={gallery.title} description={gallery.description} tabs={gallery.tabs} />
       <SearchByCity title={search.title} description={search.description} />
       <InspirationSection locale={locale} title={inspiration.title} description={inspiration.description} articles={articlePreviews} />
       <ExploreSection title={explore.title} description={explore.description} subtitle={explore.subtitle} items={explore.items} />
-      <PartnershipPromo locale={locale} title={cta.title} description={cta.description} buttonText={cta.buttonText} buttonLink={cta.buttonLink} image={cta.image} />
+      <PartnershipPromo locale={locale} title={cta.title} description={cta.description} buttonText={cta.buttonText} buttonLink={cta.buttonLink} image={cta.image} imageAlt={cta.imageAlt} />
     </div>
   );
 }

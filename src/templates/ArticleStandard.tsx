@@ -6,7 +6,7 @@ import { BreadcrumbSchema, ArticleSchema } from '@/components/seo/SchemaOrg';
 import { CottageShortcode } from '@/components/CottageShortcode';
 import FAQAccordion from '@/components/FAQAccordion';
 
-const shortcodeRegex = /\[([a-z0-9-]+),\s*([a-z0-9-]+)(?:,\s*(\d+))?\]/;
+const shortcodeRegex = /\[([a-z0-9-]+),\s*([a-z0-9-]+)(?:,\s*([a-z0-9-]+))?(?:,\s*(\d+))?\]/;
 
 function renderParagraph(text: string, key: number) {
   if (!shortcodeRegex.test(text)) {
@@ -16,13 +16,16 @@ function renderParagraph(text: string, key: number) {
   return (
     <p key={key} className="text-base md:text-lg">
       {parts.map((part, i) => {
-        const mod = i % 4;
+        const mod = i % 5;
         if (mod === 0) return part ? <span key={i}>{part}</span> : null;
         if (mod === 1) {
           const param1 = part.trim().toLowerCase();
-          const param2 = parts[i + 1]?.trim().toLowerCase() || 'rating';
-          const limit = parts[i + 2] ? parseInt(parts[i + 2], 10) : 3;
-          return <CottageShortcode key={i} param1={param1} param2={param2} limit={Math.min(limit, 10)} />;
+          const param2 = (parts[i + 1] || '').trim().toLowerCase() || 'rating';
+          const param3 = (parts[i + 2] || '').trim().toLowerCase();
+          const limitStr = parts[i + 3];
+          const limit = limitStr ? parseInt(limitStr, 10) : (param3 && /^\d+$/.test(param3) ? parseInt(param3) : 6);
+          const actualParam3 = limitStr ? param3 : '';
+          return <CottageShortcode key={i} param1={param1} param2={param2} param3={actualParam3 || undefined} limit={Math.min(limit, 10)} />;
         }
         return null;
       })}
@@ -40,6 +43,7 @@ type ArticleStandardProps = {
     readTime: string;
     category: string;
     image: string;
+    imageAlt?: string;
     author?: string;
     ctaTitle?: string;
     ctaButton?: string;
@@ -94,7 +98,7 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
       </div>
 
       <div className="h-[300px] md:h-[450px] rounded-[2rem] overflow-hidden mb-10 shadow-sm">
-        <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
+        <img src={article.image} alt={article.imageAlt || article.title} className="w-full h-full object-cover" />
       </div>
 
       {isHtml ? (
@@ -105,15 +109,18 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
               return <div dangerouslySetInnerHTML={{ __html: article.content }} />;
             }
             return parts.map((part, i) => {
-              const mod = i % 4;
+              const mod = i % 5;
               if (mod === 0) {
                 return part ? <div key={i} dangerouslySetInnerHTML={{ __html: part }} /> : null;
               }
               if (mod === 1) {
                 const param1 = part.trim().toLowerCase();
-                const param2 = parts[i + 1]?.trim().toLowerCase() || 'rating';
-                const limit = parts[i + 2] ? parseInt(parts[i + 2], 10) : 3;
-                return <CottageShortcode key={i} param1={param1} param2={param2} limit={Math.min(limit, 10)} />;
+                const param2 = (parts[i + 1] || '').trim().toLowerCase() || 'rating';
+                const param3 = (parts[i + 2] || '').trim().toLowerCase();
+                const limitStr = parts[i + 3];
+                const limit = limitStr ? parseInt(limitStr, 10) : (param3 && /^\d+$/.test(param3) ? parseInt(param3) : 6);
+                const actualParam3 = limitStr ? param3 : '';
+                return <CottageShortcode key={i} param1={param1} param2={param2} param3={actualParam3 || undefined} limit={Math.min(limit, 10)} />;
               }
               return null;
             });

@@ -64,6 +64,7 @@ export const articles = pgTable('articles', {
   category: varchar('category', { length: 100 }),
   author: varchar('author', { length: 255 }).default('Editorial Team'),
   featuredImage: text('featured_image'),
+  imageAlt: varchar('image_alt', { length: 255 }),
   seoTitle: varchar('seo_title', { length: 255 }),
   faq: json('faq').default([]),
   ctaTitle: varchar('cta_title', { length: 255 }),

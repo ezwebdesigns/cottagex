@@ -38,6 +38,7 @@ async function fetchArticle(slug: string) {
       readTime: computeReadTime(dbArticle.content || ""),
       category: dbArticle.category || "Articles",
       image: dbArticle.featuredImage || "/placeholder.jpg",
+      imageAlt: dbArticle.imageAlt || undefined,
       author: dbArticle.author || "Editorial Team",
       seoTitle: dbArticle.seoTitle || undefined,
       faq: (dbArticle.faq as { question: string; answer: string }[]) || [],
