@@ -2,6 +2,7 @@
 
 import { ChevronRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 type PartnershipPromoProps = {
   locale: string;
@@ -31,8 +32,8 @@ export default function PartnershipPromo({ locale, title = "Own a Beautiful Cabi
             {buttonText} <ChevronRight size={18} />
           </button>
         </div>
-        <div className="w-full md:w-1/2 h-64 md:h-auto absolute right-0 inset-y-0 opacity-20 md:opacity-100 hidden md:block">
-          <img src={image} alt={imageAlt || title.split('\n')[0]} className="w-full h-full object-cover" />
+        <div className="relative w-full md:w-1/2 h-64 md:h-auto absolute right-0 inset-y-0 opacity-20 md:opacity-100 hidden md:block">
+          <Image src={image} alt={imageAlt || title.split('\n')[0]} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" />
         </div>
       </div>
     </section>

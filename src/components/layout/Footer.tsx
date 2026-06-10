@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { BrandFavicon } from '@/components/branding/Logo';
 import Link from 'next/link';
+import Image from 'next/image';
 
 type FooterProps = {
   locale: string;
@@ -36,11 +37,11 @@ export default function Footer({ locale, footerData }: FooterProps) {
           <div>
             <Link href={`/${locale}`} className="flex items-center gap-2 mb-6">
               {f.logo ? (
-                <img src={f.logo} alt="Logo" className="h-12 w-auto" />
+                <Image src={f.logo} alt="Chalet Express home" width={48} height={48} className="h-12 w-auto" />
               ) : (
                 <span className="flex items-center gap-2 font-bold text-xl">
                   <BrandFavicon className="w-8 h-8" />
-                  <span>Cottage<span className="text-[#1F51C6]">Escape</span></span>
+                  <span>Cottage<span className="text-[#1F51C6]">Express</span></span>
                 </span>
               )}
             </Link>

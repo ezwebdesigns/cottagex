@@ -3,6 +3,7 @@
 import { CheckCircle, Info } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
+import Image from 'next/image';
 
 type StandardTemplateProps = {
   pageData: {
@@ -29,9 +30,9 @@ export default function StandardTemplate({ pageData }: StandardTemplateProps) {
           </div>
           <h1 className="text-3xl font-extrabold text-[#0B1B40] mb-6">{pageData.title}</h1>
           <div className="space-y-6 text-slate-600 leading-relaxed text-sm md:text-base">
-            <h3 className="text-lg font-bold text-[#0B1B40] mt-6">1. Platform Scope</h3>
+            <h2 className="text-lg font-bold text-[#0B1B40] mt-6">1. Platform Scope</h2>
             <p>Chalet Express acts strictly as a directory aggregator and travel blog. We do not own, manage, or coordinate keys or check-ins for any advertised cottages. All booking transactions take place securely on third-party channels.</p>
-            <h3 className="text-lg font-bold text-[#0B1B40] mt-6">2. Affiliate Partnership Disclosure</h3>
+            <h2 className="text-lg font-bold text-[#0B1B40] mt-6">2. Affiliate Partnership Disclosure</h2>
             <p>Certain links on our platform contain tracking codes. If you purchase or finalize a cottage stay after clicking our buttons (e.g., "Check Price" or "Check Availability"), we may receive a small marketing commission from the platform partners.</p>
             <div className="bg-blue-50 border border-blue-200 p-4 rounded-xl text-blue-900 font-medium text-sm">
               This transaction occurs at absolutely zero extra cost to you. Cottage rates are completely identical whether booked directly or via our links.
@@ -57,7 +58,7 @@ export default function StandardTemplate({ pageData }: StandardTemplateProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
           <div>
-            <h3 className="text-2xl font-bold text-[#0B1B40] mb-4">Our Objective</h3>
+            <h2 className="text-2xl font-bold text-[#0B1B40] mb-4">Our Objective</h2>
             <p className="text-slate-600 leading-relaxed mb-6">
               At <strong>Chalet Express</strong>, our goal is not to sell direct rentals. Instead, we aim to inspire travelers and curate the absolute finest holiday cottage options across Canada.
             </p>
@@ -71,7 +72,7 @@ export default function StandardTemplate({ pageData }: StandardTemplateProps) {
             </ul>
           </div>
           <div className="relative h-96 rounded-3xl overflow-hidden shadow-md">
-            <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&q=80&w=600" alt="Mission" className="w-full h-full object-cover" />
+            <Image src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&q=80&w=600" alt="Cozy wooden cabin interior in a Canadian forest setting" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" />
           </div>
         </div>
       </div>

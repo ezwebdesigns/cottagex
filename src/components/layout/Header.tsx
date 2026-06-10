@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { X, Menu, Home, MapPin, BookOpen } from 'lucide-react';
 import { BrandLogoFull } from '@/components/branding/Logo';
 import Link from 'next/link';
+import Image from 'next/image';
 
 type HeaderProps = {
   locale: string;
@@ -45,7 +46,7 @@ export default function Header({ locale, menuItems, logo }: HeaderProps) {
     <nav className="bg-white px-4 md:px-8 py-4 flex justify-between items-center sticky top-0 z-50 shadow-sm border-b border-gray-100">
       <Link href={`/${locale}`} className="cursor-pointer">
         {logo ? (
-          <img src={logo} alt="Logo" className="h-12 w-auto" />
+          <Image src={logo} alt="Chalet Express home" width={48} height={48} className="h-12 w-auto" />
         ) : (
           <BrandLogoFull />
         )}

@@ -38,7 +38,7 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
             <tr key={c.property_token} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
               <td className="p-4">
                 {c.thumbnail ? (
-                  <img src={c.thumbnail} alt="" className="w-12 h-12 rounded-xl object-cover" />
+                  <img src={c.thumbnail} alt="" className="w-12 h-12 rounded-xl object-cover" loading="lazy" />
                 ) : (
                   <div className="w-12 h-12 rounded-xl bg-gray-100" />
                 )}

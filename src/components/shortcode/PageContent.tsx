@@ -68,7 +68,7 @@ function renderNode(node: any): React.ReactNode {
     case 'listItem':
       return <li>{node.content?.map((n: any, i: number) => <React.Fragment key={i}>{renderNode(n)}</React.Fragment>)}</li>;
     case 'image':
-      return <img src={node.attrs?.src} alt={node.attrs?.alt || ''} />;
+      return <img src={node.attrs?.src} alt={node.attrs?.alt || ''} loading="lazy" />;
     case 'table':
       return (
         <div className="overflow-x-auto my-6">

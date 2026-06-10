@@ -2,6 +2,7 @@
 
 import { ArrowRight, Clock, BookOpen } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 type ArticlePreview = {
   id: number;
@@ -54,10 +55,13 @@ export default function InspirationSection({
             >
               <div className="relative h-48 overflow-hidden bg-slate-100">
                 {article.image ? (
-                  <img
+                  <Image
                     src={article.image}
                     alt={article.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    loading="lazy"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-slate-300">

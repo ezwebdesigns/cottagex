@@ -47,7 +47,7 @@ export default function AdminLibraryPage() {
       <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
         {images.map((img) => (
           <div key={img.id} className="relative group aspect-square rounded-2xl overflow-hidden border border-gray-200">
-            <img src={img.url} alt={img.name} className="w-full h-full object-cover" />
+            <img src={img.url} alt={img.name} className="w-full h-full object-cover" loading="lazy" />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-center justify-center">
               <button onClick={() => remove(img.id)} className="p-2 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
                 <Trash2 className="w-4 h-4" />

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { MapPin, ExternalLink } from 'lucide-react';
 import SourceBadge from '@/components/SourceBadge';
 import StarRating from '@/components/StarRating';
+import Image from 'next/image';
 
 type Props = {
   shortcode: string;
@@ -48,7 +49,7 @@ function CottageCard({ cottage }: { cottage: any }) {
   return (
     <div className="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-shadow group flex flex-col justify-between">
       <div className="relative h-36 md:h-64 overflow-hidden bg-slate-100">
-        {photo && <img src={photo} alt={cottage.image_alt || cottage.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />}
+        {photo && <Image src={photo} alt={cottage.image_alt || cottage.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" />}
         <div className="absolute top-2 md:top-4 left-2 md:left-4"><SourceBadge source={badge} /></div>
       </div>
       <div className="p-3 md:p-6 flex-1 flex flex-col justify-between">

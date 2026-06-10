@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { db } from '@/lib/db';
 import { pages } from '@/db/schema';
 import { eq } from 'drizzle-orm';
+import { locales } from '@/i18n/routing';
 import LocationTemplate from '@/templates/LocationTemplate';
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
@@ -34,6 +35,20 @@ function getName(slug: string): { en: string; fr: string } {
   if (DESTINATION_NAMES[slug]) return DESTINATION_NAMES[slug];
   const name = slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   return { en: name, fr: name };
+}
+
+export async function generateStaticParams() {
+  let dbSlugs: string[] = [];
+  try {
+    const rows = await db.select({ slug: pages.slug }).from(pages).where(eq(pages.isPublished, true));
+    dbSlugs = rows.map(r => r.slug);
+  } catch {}
+
+  const allSlugs = [...PROVINCE_SLUGS, ...dbSlugs];
+
+  return locales.flatMap(locale =>
+    allSlugs.map(slug => ({ locale, slug }))
+  );
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

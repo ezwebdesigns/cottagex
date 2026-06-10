@@ -15,9 +15,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       default: `Canadian Cottage Rentals - Chalet Express`,
     },
     description: "Find your perfect Canadian escape. Premium lake houses and mountain lodges across Canada.",
-    alternates: {
-      canonical: `https://chaletexpress.com/${locale}`,
-    },
     openGraph: {
       locale: locale === "fr" ? "fr_CA" : "en_CA",
     },

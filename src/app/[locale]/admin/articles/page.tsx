@@ -42,7 +42,7 @@ export default function AdminArticlesPage() {
             <div key={post.id} className="bg-white border border-gray-200 rounded-3xl p-4 flex items-center gap-4">
               <div className="w-16 h-16 rounded-xl bg-gray-100 overflow-hidden shrink-0">
                 {post.featuredImage ? (
-                  <img src={post.featuredImage} alt="" className="w-full h-full object-cover" />
+                  <img src={post.featuredImage} alt="" className="w-full h-full object-cover" loading="lazy" />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center"><FileText className="w-6 h-6 text-gray-400" /></div>
                 )}

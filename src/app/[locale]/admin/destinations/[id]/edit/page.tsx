@@ -48,7 +48,7 @@ export default function EditDestinationPage() {
           <div><label className="block text-sm font-medium text-gray-700 mb-1">Slug</label><div className="flex gap-2"><input value={slug} onChange={e => setSlug(e.target.value)} className="flex-1 border border-gray-300 rounded-full px-4 py-2.5 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#1F51C6]" /><button type="button" onClick={() => router.push(`/cottage-country/${slug}?preview=true`)} className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-4 py-2 rounded-full text-xs font-semibold inline-flex items-center gap-1.5"><Eye className="w-3.5 h-3.5" /> Preview</button></div></div>
           <div><label className="block text-sm font-medium text-gray-700 mb-1">Featured Image</label>
             <div className="flex items-center gap-3">
-              {featuredImage && <img src={featuredImage} className="w-16 h-16 rounded-full object-cover border" />}
+              {featuredImage && <img src={featuredImage} className="w-16 h-16 rounded-full object-cover border" loading="lazy" />}
               <label className="cursor-pointer text-sm text-[#1F51C6] hover:underline">
                 {featuredImage ? 'Change' : 'Upload Image'}
                 <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
@@ -77,7 +77,7 @@ export default function EditDestinationPage() {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Background Image</label>
             <div className="flex items-center gap-3">
-              {locationData.hero?.image && <img src={locationData.hero.image} alt={locationData.hero?.imageAlt || ''} className="w-16 h-16 rounded-xl object-cover border" />}
+              {locationData.hero?.image && <img src={locationData.hero.image} alt={locationData.hero?.imageAlt || ''} className="w-16 h-16 rounded-xl object-cover border" loading="lazy" />}
               <label className="cursor-pointer text-sm text-[#1F51C6] hover:underline">
                 Upload Image
                 <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
@@ -144,7 +144,7 @@ export default function EditDestinationPage() {
             </div>
             <div className="col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">Image</label>
-              {locationData.cta?.image && <img src={locationData.cta.image} alt={locationData.cta?.imageAlt || ''} className="w-full aspect-[4/3] rounded-2xl object-cover border mb-2" />}
+              {locationData.cta?.image && <img src={locationData.cta.image} alt={locationData.cta?.imageAlt || ''} className="w-full aspect-[4/3] rounded-2xl object-cover border mb-2" loading="lazy" />}
               <label className="cursor-pointer text-sm text-[#1F51C6] hover:underline">
                 {locationData.cta?.image ? 'Change' : 'Upload Image'}
                 <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
@@ -201,7 +201,7 @@ export default function EditDestinationPage() {
             </div>
             <div className="col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">Image</label>
-              {locationData.learnMore?.image && <img src={locationData.learnMore.image} alt={locationData.learnMore?.imageAlt || ''} className="w-full aspect-[4/3] rounded-2xl object-cover border mb-2" />}
+              {locationData.learnMore?.image && <img src={locationData.learnMore.image} alt={locationData.learnMore?.imageAlt || ''} className="w-full aspect-[4/3] rounded-2xl object-cover border mb-2" loading="lazy" />}
               <label className="cursor-pointer text-sm text-[#1F51C6] hover:underline">
                 {locationData.learnMore?.image ? 'Change' : 'Upload Image'}
                 <input type="file" accept="image/*" className="hidden" onChange={async (e) => {

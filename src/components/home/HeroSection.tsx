@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { Sparkles } from 'lucide-react';
+import Image from 'next/image';
 
 const WIDGET_HTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref="chaletxhomepage"></div>
 <script class="eg-widgets-script" src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"></script>`;
@@ -56,7 +57,7 @@ export default function HeroSection({ tag = "Official VRBO Affiliate Search", ti
           backgroundPosition: 'center'
         }}
       >
-        {image && <img src={image} alt={imageAlt || title} className="sr-only" aria-hidden="false" />}
+        {image && <Image src={image} alt={imageAlt || title} width={2000} height={580} className="sr-only" priority />}
         <div className="w-full md:w-1/2 flex justify-center md:justify-end">
           <div className="w-full max-w-[575px] rounded-[2rem] overflow-hidden bg-white/10 backdrop-blur-sm">
             <div ref={containerRef} className="w-full" />

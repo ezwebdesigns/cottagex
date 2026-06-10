@@ -4,6 +4,7 @@ import { initialArticles } from '@/lib/mock-data';
 import { db } from '@/lib/db';
 import { articles } from '@/db/schema';
 import { eq } from 'drizzle-orm';
+import { locales } from '@/i18n/routing';
 import ArticleStandard from '@/templates/ArticleStandard';
 import ArticleListicle from '@/templates/ArticleListicle';
 
@@ -18,6 +19,22 @@ function computeReadTime(text: string): string {
   const wpm = 200;
   const words = text?.split(/\s+/).length || 0;
   return `${Math.max(1, Math.ceil(words / wpm))} min read`;
+}
+
+export async function generateStaticParams() {
+  const mockSlugs = initialArticles.map(a => a.slug);
+
+  let dbSlugs: string[] = [];
+  try {
+    const rows = await db.select({ slug: articles.slug }).from(articles).where(eq(articles.isPublished, true));
+    dbSlugs = rows.map(r => r.slug);
+  } catch {}
+
+  const allSlugs = [...new Set([...mockSlugs, ...dbSlugs])];
+
+  return locales.flatMap(locale =>
+    allSlugs.map(slug => ({ locale, slug }))
+  );
 }
 
 async function fetchArticle(slug: string) {

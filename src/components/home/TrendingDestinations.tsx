@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { initialDestinations } from '@/lib/mock-data';
 import { MapPin } from 'lucide-react';
+import Image from 'next/image';
 
 type TrendingDestinationsProps = {
   locale: string;
@@ -29,7 +30,7 @@ export default function TrendingDestinations({ locale, title = "Trending Destina
               onClick={() => { if (dest.link) router.push(dest.link); }}
               className="min-w-[calc(50%-0.25rem)] md:flex-1 md:min-w-0 shrink-0 snap-start h-[140px] md:h-[320px] rounded-3xl relative overflow-hidden group cursor-pointer"
             >
-              <img src={dest.image} alt={dest.imageAlt || dest.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <Image src={dest.image} alt={dest.imageAlt || dest.name} fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="(max-width: 768px) 50vw, 16vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B40]/95 via-[#0B1B40]/20 to-transparent"></div>
               <div className="absolute bottom-6 left-6 text-white">
                 <div className="flex items-center gap-1.5 mb-1">

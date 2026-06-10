@@ -1,12 +1,36 @@
 import type { MetadataRoute } from 'next';
 import { locales } from '@/i18n/routing';
-import { initialArticles } from '@/lib/mock-data';
+import { db } from '@/lib/db';
+import { articles, pages } from '@/db/schema';
+import { eq, desc } from 'drizzle-orm';
 
 const BASE_URL = 'https://chaletexpress.com';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+const provinces = [
+  'ontario', 'quebec', 'british-columbia', 'nova-scotia',
+  'alberta', 'new-brunswick', 'prince-edward-island',
+  'saskatchewan', 'manitoba',
+];
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = ['', '/about', '/contact', '/guides', '/p/terms'];
   const entries: MetadataRoute.Sitemap = [];
+
+  let dbArticles: { slug: string; updatedAt: Date | null }[] = [];
+  try {
+    dbArticles = await db
+      .select({ slug: articles.slug, updatedAt: articles.updatedAt })
+      .from(articles)
+      .where(eq(articles.isPublished, true));
+  } catch {}
+
+  let dbPages: { slug: string; updatedAt: Date | null }[] = [];
+  try {
+    dbPages = await db
+      .select({ slug: pages.slug, updatedAt: pages.updatedAt })
+      .from(pages)
+      .where(eq(pages.isPublished, true));
+  } catch {}
 
   for (const locale of locales) {
     for (const route of staticRoutes) {
@@ -18,19 +42,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       });
     }
 
-    entries.push({
-      url: `${BASE_URL}/${locale}/cottage-country/ontario`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    });
+    for (const province of provinces) {
+      entries.push({
+        url: `${BASE_URL}/${locale}/cottage-country/${province}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.9,
+      });
+    }
 
-    for (const article of initialArticles) {
+    for (const article of dbArticles) {
       entries.push({
         url: `${BASE_URL}/${locale}/guides/${article.slug}`,
-        lastModified: new Date(),
+        lastModified: article.updatedAt || new Date(),
         changeFrequency: 'monthly',
         priority: 0.7,
+      });
+    }
+
+    for (const page of dbPages) {
+      entries.push({
+        url: `${BASE_URL}/${locale}/p/${page.slug}`,
+        lastModified: page.updatedAt || new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.6,
       });
     }
   }

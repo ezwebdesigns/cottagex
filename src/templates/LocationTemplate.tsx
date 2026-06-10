@@ -7,8 +7,9 @@ import ExploreSection from '@/components/home/ExploreSection';
 import FeaturedCottages from '@/components/FeaturedCottages';
 import SourceBadge from '@/components/SourceBadge';
 import StarRating from '@/components/StarRating';
-import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
+import { BreadcrumbSchema, PlaceSchema } from '@/components/seo/SchemaOrg';
 import { initialProperties, ontarioSearchData, quebecSearchData, novaScotiaSearchData, britishColumbiaSearchData, newBrunswickSearchData, albertaSearchData, manitobaSearchData, peiSearchData, saskatchewanSearchData } from '@/lib/mock-data';
+import Image from 'next/image';
 
 type LocationTemplateProps = {
   locale: string;
@@ -136,6 +137,12 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         { name: 'Home', url: `/${locale}` },
         { name: locName, url: pathname },
       ]} />
+      <PlaceSchema
+        name={`${locName}, Canada`}
+        description={heroSubtitle || heroTitle}
+        image={heroImage}
+        url={`https://chaletexpress.com${pathname}`}
+      />
       <div className="px-4 md:px-8 py-6">
         <div
           className="relative min-h-[480px] rounded-[2rem] overflow-hidden flex flex-col justify-center items-center text-center px-4 py-12"
@@ -145,7 +152,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
             backgroundPosition: 'center'
           }}
         >
-          <img src={heroImage} alt={heroImageAlt} className="sr-only" aria-hidden="false" />
+          <Image src={heroImage} alt={heroImageAlt} width={2000} height={580} className="sr-only" priority />
           <div className="bg-white/10 backdrop-blur-md text-white text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-4 border border-white/20">
             {heroTag}
           </div>
@@ -200,7 +207,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
               {displayCottages.map((prop) => (
                 <div key={prop.id} className="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
                   <div className="relative h-36 md:h-64 overflow-hidden">
-                    <img src={prop.image} alt={prop.imageAlt || prop.title} className="w-full h-full object-cover" />
+                    <Image src={prop.image} alt={prop.imageAlt || prop.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" />
                     <div className="absolute top-2 md:top-4 left-2 md:left-4"><SourceBadge source={prop.source || prop.tag} /></div>
                   </div>
                   <div className="p-3 md:p-6 flex-1 flex flex-col justify-between">
@@ -249,8 +256,8 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
               )}
             </div>
             {ctaData.image && (
-              <div className="w-full md:w-1/2 h-64 md:h-auto absolute right-0 inset-y-0 opacity-20 md:opacity-100 hidden md:block">
-                <img src={ctaData.image} alt={ctaData.imageAlt || ctaData.title || ''} className="w-full h-full object-cover" />
+              <div className="relative w-full md:w-1/2 h-64 md:h-auto absolute right-0 inset-y-0 opacity-20 md:opacity-100 hidden md:block">
+                <Image src={ctaData.image} alt={ctaData.imageAlt || ctaData.title || ''} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" />
               </div>
             )}
           </div>
@@ -271,8 +278,8 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
                 {learnMore.description && <p className="text-blue-100/80 leading-relaxed">{learnMore.description}</p>}
               </div>
               {learnMore.image && (
-                <div className="md:col-span-2">
-                  <img src={learnMore.image} alt={learnMore.imageAlt || learnMore.title || ''} className="w-full rounded-[2rem] object-cover shadow-lg" />
+                <div className="relative md:col-span-2">
+                  <Image src={learnMore.image} alt={learnMore.imageAlt || learnMore.title || ''} fill className="rounded-[2rem] object-cover shadow-lg" sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" />
                 </div>
               )}
             </div>

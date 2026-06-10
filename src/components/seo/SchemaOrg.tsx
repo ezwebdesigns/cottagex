@@ -77,19 +77,41 @@ export function ArticleSchema({ title, description, image, date, author }: {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }
 
-export function ItemListSchema({ items }: {
-  items: { title: string; description: string; url: string }[];
+export function FAQPageSchema({ items }: {
+  items: { question: string; answer: string }[];
 }) {
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    itemListElement: items.map((item, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      name: item.title,
-      description: item.description,
-      url: item.url,
+    '@type': 'FAQPage',
+    mainEntity: items.map(item => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
     })),
+  };
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
+}
+
+export function PlaceSchema({ name, description, image, url }: {
+  name: string;
+  description: string;
+  image: string;
+  url: string;
+}) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Place',
+    name,
+    description,
+    image,
+    url,
+    containedInPlace: {
+      '@type': 'Country',
+      name: 'Canada',
+    },
   };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }

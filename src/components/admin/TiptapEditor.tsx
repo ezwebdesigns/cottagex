@@ -256,7 +256,7 @@ export default function TiptapEditor({
               <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
                 {mediaFiles.map((file) => (
                   <button key={file.name} onClick={() => { editor.chain().focus().setImage({ src: file.url }).run(); setShowMediaPicker(false); }} className="aspect-square rounded-xl overflow-hidden border-2 border-transparent hover:border-[#1F51C6] transition-colors">
-                    <img src={file.url} className="w-full h-full object-cover" />
+                    <img src={file.url} className="w-full h-full object-cover" loading="lazy" />
                   </button>
                 ))}
               </div>

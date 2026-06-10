@@ -37,7 +37,7 @@ export default function ImageUploader({ value, onChange, label }: ImageUploaderP
       <div className="flex items-start gap-4">
         <div className="w-24 h-24 rounded-2xl border border-gray-200 overflow-hidden flex-shrink-0 bg-gray-50 flex items-center justify-center">
           {value ? (
-            <img src={value} alt="Preview" className="w-full h-full object-cover" />
+            <img src={value} alt="Preview" className="w-full h-full object-cover" loading="lazy" />
           ) : (
             <span className="text-gray-300 text-xs text-center px-2">No image</span>
           )}

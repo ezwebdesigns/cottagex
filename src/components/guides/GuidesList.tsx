@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { CalendarDays, Clock, ChevronRight, ChevronLeft, ChevronUp } from 'lucide-react';
+import Image from 'next/image';
 
 type ArticleItem = {
   id: string | number;
@@ -47,7 +48,7 @@ export default function GuidesList({ locale, articles, page, totalPages }: Guide
             >
               <div className="relative h-56 overflow-hidden">
                 {article.image ? (
-                  <img src={article.image} alt={article.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" loading="lazy" />
                 ) : (
                   <div className="w-full h-full bg-gradient-to-br from-blue-50 to-slate-100 flex items-center justify-center">
                     <span className="text-4xl">🏡</span>

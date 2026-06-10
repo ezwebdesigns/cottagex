@@ -2,9 +2,10 @@
 
 import { ArrowLeft, CalendarDays, Clock } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
-import { BreadcrumbSchema, ArticleSchema } from '@/components/seo/SchemaOrg';
+import { BreadcrumbSchema, ArticleSchema, FAQPageSchema } from '@/components/seo/SchemaOrg';
 import { CottageShortcode } from '@/components/CottageShortcode';
 import FAQAccordion from '@/components/FAQAccordion';
+import Image from 'next/image';
 
 const shortcodeRegex = /\[([a-z0-9-]+),\s*([a-z0-9-]+)(?:,\s*([a-z0-9-]+))?(?:,\s*(\d+))?\]/;
 
@@ -97,8 +98,8 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
         </div>
       </div>
 
-      <div className="h-[300px] md:h-[450px] rounded-[2rem] overflow-hidden mb-10 shadow-sm">
-        <img src={article.image} alt={article.imageAlt || article.title} className="w-full h-full object-cover" />
+      <div className="relative h-[300px] md:h-[450px] rounded-[2rem] overflow-hidden mb-10 shadow-sm">
+        <Image src={article.image} alt={article.imageAlt || article.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 1200px" priority />
       </div>
 
       {isHtml ? (
@@ -133,13 +134,15 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
       )}
 
       {article.faq && article.faq.length > 0 && (
-        <FAQAccordion items={article.faq} />
-      )}
+        <>
+          <FAQPageSchema items={article.faq} />
+          <FAQAccordion items={article.faq} />
+        </>)}
 
       {article.ctaTitle ? (
         <div className="bg-[#0B1B40] rounded-[2rem] p-8 text-white mt-16 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <h4 className="text-xl font-bold mb-2">{article.ctaTitle}</h4>
+            <h2 className="text-xl font-bold mb-2">{article.ctaTitle}</h2>
           </div>
           {article.ctaLink && (
             <a
@@ -155,7 +158,7 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
       ) : (
         <div className="bg-[#0B1B40] rounded-[2rem] p-8 text-white mt-16 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <h4 className="text-xl font-bold mb-2">Inspired by this reading?</h4>
+            <h2 className="text-xl font-bold mb-2">Inspired by this reading?</h2>
             <p className="text-blue-200 text-sm">Find and compare your dream cottage across Canada now.</p>
           </div>
           <button onClick={() => router.push(`/${locale}`)} className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-6 py-3 rounded-full font-bold transition-colors whitespace-nowrap text-sm">
