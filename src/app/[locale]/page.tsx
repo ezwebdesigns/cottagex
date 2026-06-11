@@ -28,8 +28,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 async function getSettings(section: string) {
-  const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, section));
-  return (row?.data ?? defaultSettings[section]) as any;
+  try {
+    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, section));
+    return (row?.data ?? defaultSettings[section]) as any;
+  } catch (e) {
+    console.error(`Failed to fetch settings for ${section}:`, e);
+    return defaultSettings[section];
+  }
 }
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
