@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { db } from '@/lib/db';
-import { siteSettings, articles } from '@/db/schema';
+import { articles } from '@/db/schema';
 import { desc, eq } from 'drizzle-orm';
-import { defaultSettings } from '@/lib/settings-defaults';
+import { getSettings } from '@/lib/cached-settings';
 import HeroSection from '@/components/home/HeroSection';
 import TrendingDestinations from '@/components/home/TrendingDestinations';
 import PropertyGallery from '@/components/home/PropertyGallery';
@@ -27,25 +27,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-async function getSettings(section: string) {
-  try {
-    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, section));
-    return (row?.data ?? defaultSettings[section]) as any;
-  } catch (e) {
-    console.error(`Failed to fetch settings for ${section}:`, e);
-    return defaultSettings[section];
-  }
-}
-
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const hero = await getSettings('homepage_hero');
-  const destinations = await getSettings('homepage_destinations');
-  const gallery = await getSettings('homepage_gallery');
-  const search = await getSettings('homepage_search');
-  const inspiration = await getSettings('homepage_inspiration');
-  const explore = await getSettings('homepage_explore');
-  const cta = await getSettings('homepage_cta');
+  const [hero, destinations, gallery, search, inspiration, explore, cta] = await Promise.all([
+    getSettings('homepage_hero'),
+    getSettings('homepage_destinations'),
+    getSettings('homepage_gallery'),
+    getSettings('homepage_search'),
+    getSettings('homepage_inspiration'),
+    getSettings('homepage_explore'),
+    getSettings('homepage_cta'),
+  ]);
 
   let recentArticles: any[] = [];
   try {

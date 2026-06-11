@@ -13,11 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
   let favicon = '';
   try {
-    const { db } = await import('@/lib/db');
-    const { siteSettings } = await import('@/db/schema');
-    const { eq } = await import('drizzle-orm');
-    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'general'));
-    const data = row?.data as any;
+    const { getSettings } = await import('@/lib/cached-settings');
+    const data = await getSettings('general');
     if (data?.favicon) favicon = data.favicon;
   } catch {}
 

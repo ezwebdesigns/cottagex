@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { db } from '@/lib/db';
-import { siteSettings } from '@/db/schema';
-import { eq } from 'drizzle-orm';
+import { getSettings } from '@/lib/cached-settings';
 import { defaultSettings } from '@/lib/settings-defaults';
 import LocaleLayout from '@/components/layout/LocaleLayout';
 
@@ -30,16 +28,12 @@ export default async function LocaleRootLayout({
 }) {
   const { locale } = await params;
 
-  let menuItems = defaultSettings.header.menuItems;
-  let logo = defaultSettings.general.logo;
-  try {
-    const [headerRow] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'header'));
-    const headerData = headerRow?.data as any;
-    if (headerData?.menuItems) menuItems = headerData.menuItems;
-    const [generalRow] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'general'));
-    const generalData = generalRow?.data as any;
-    if (generalData?.logo) logo = generalData.logo;
-  } catch {}
+  const [headerData, generalData] = await Promise.all([
+    getSettings('header'),
+    getSettings('general'),
+  ]);
+  const menuItems = headerData?.menuItems ?? defaultSettings.header.menuItems;
+  const logo = generalData?.logo ?? defaultSettings.general.logo;
 
   return (
     <LocaleLayout locale={locale} menuItems={menuItems} logo={logo}>
