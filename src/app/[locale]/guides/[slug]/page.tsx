@@ -52,6 +52,7 @@ async function fetchArticle(slug: string) {
       content: dbArticle.content || "",
       excerpt: dbArticle.excerpt || "",
       date: formatDate(dbArticle.publishedAt || dbArticle.createdAt),
+      dateModified: formatDate(dbArticle.updatedAt),
       readTime: computeReadTime(dbArticle.content || ""),
       category: dbArticle.category || "Articles",
       image: dbArticle.featuredImage || "/placeholder.jpg",

@@ -142,6 +142,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         description={heroSubtitle || heroTitle}
         image={heroImage}
         url={`https://chaletexpress.com${pathname}`}
+        address={locName}
       />
       <div className="px-4 md:px-8 py-6">
         <div

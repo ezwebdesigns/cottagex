@@ -12,7 +12,13 @@ export function OrganizationSchema() {
       email: 'socialmediacanada@gmail.com',
       contactType: 'customer support',
     },
-    sameAs: [],
+    sameAs: [
+      'https://facebook.com/chaletxpress',
+      'https://instagram.com/chaletxpress',
+      'https://tiktok.com/@chaletxpress',
+      'https://x.com/chaletxpress',
+      'https://youtube.com/chaletxpress',
+    ],
   };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }
@@ -43,20 +49,23 @@ export function BreadcrumbSchema({ items }: { items: Crumb[] }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }
 
-export function ArticleSchema({ title, description, image, date, author }: {
+export function ArticleSchema({ title, description, image, date, dateModified, url, author }: {
   title: string;
   description: string;
   image: string;
   date: string;
+  dateModified?: string;
+  url?: string;
   author?: string;
 }) {
-  const schema = {
+  const schema: Record<string, any> = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: title,
     description,
     image,
     datePublished: date,
+    dateModified: dateModified || date,
     author: {
       '@type': 'Person',
       name: author || 'Chalet Express Editorial Team',
@@ -64,8 +73,15 @@ export function ArticleSchema({ title, description, image, date, author }: {
     publisher: {
       '@type': 'Organization',
       name: 'Chalet Express',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/logo.png`,
+      },
     },
   };
+  if (url) {
+    schema.mainEntityOfPage = { '@type': 'WebPage', '@id': url };
+  }
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }
 
@@ -87,13 +103,14 @@ export function FAQPageSchema({ items }: {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }
 
-export function PlaceSchema({ name, description, image, url }: {
+export function PlaceSchema({ name, description, image, url, address }: {
   name: string;
   description: string;
   image: string;
   url: string;
+  address?: string;
 }) {
-  const schema = {
+  const schema: Record<string, any> = {
     '@context': 'https://schema.org',
     '@type': 'Place',
     name,
@@ -105,5 +122,8 @@ export function PlaceSchema({ name, description, image, url }: {
       name: 'Canada',
     },
   };
+  if (address) {
+    schema.address = { '@type': 'PostalAddress', addressCountry: address };
+  }
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }

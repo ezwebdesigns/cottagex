@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import ListicleCard from '@/components/ListicleCard'
+import { useProductSchemas } from '@/hooks/useProductSchemas'
 
 const SORT_PARAMS = ['price', 'rating']
 const FEATURED_PARAM = 'featured'
@@ -107,6 +108,8 @@ export function CottageShortcode({ param1, param2, param3, limit }: CottageShort
   }
 
   if (cottages.length === 0) return null
+
+  useProductSchemas(cottages)
 
   return (
     <div className="my-6 space-y-4">

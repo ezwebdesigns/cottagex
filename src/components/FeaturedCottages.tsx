@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { MapPin, ExternalLink } from 'lucide-react';
 import SourceBadge from '@/components/SourceBadge';
 import StarRating from '@/components/StarRating';
+import { useProductSchemas } from '@/hooks/useProductSchemas';
 import Image from 'next/image';
 
 type Props = {
@@ -116,6 +117,8 @@ export default function FeaturedCottages({ shortcode, fallbackTitle, fallbackDes
       .catch(() => setCottages([]))
       .finally(() => setLoading(false));
   }, [param1, param2, limit, isProvince, sort, category, isFeatured]);
+
+  useProductSchemas(cottages);
 
   return (
     <div className="mb-16">

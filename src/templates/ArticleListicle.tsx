@@ -39,6 +39,8 @@ export default function ArticleListicle({ locale, article }: ArticleListicleProp
         description={article.content}
         image={article.image}
         date={article.date}
+        dateModified={(article as any).dateModified}
+        url={`https://chaletexpress.com${pathname}`}
       />
       <button
         onClick={() => router.push(`/${locale}/guides`)}

@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { MapPin, ExternalLink } from 'lucide-react';
 import SourceBadge from '@/components/SourceBadge';
 import StarRating from '@/components/StarRating';
+import { useProductSchemas } from '@/hooks/useProductSchemas';
 import Image from 'next/image';
 
 type GalleryTab = { name: string; category: string; shortcode?: string };
@@ -145,6 +146,8 @@ export default function PropertyGallery({ title = "Browse Recommended Cottages",
   useEffect(() => {
     fetchCottages(galleryTabs[activeIndex]);
   }, [activeIndex, galleryTabs, fetchCottages]);
+
+  useProductSchemas(cottages);
 
   return (
     <section className="px-4 md:px-8 py-12 bg-white">

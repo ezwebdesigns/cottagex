@@ -70,7 +70,9 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
         description={article.excerpt}
         image={article.image}
         date={article.date}
+        dateModified={(article as any).dateModified}
         author={article.author}
+        url={`https://chaletexpress.com${pathname}`}
       />
       <button
         onClick={() => router.push(`/${locale}/guides`)}
