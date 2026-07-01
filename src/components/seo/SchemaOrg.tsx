@@ -23,14 +23,6 @@ export function WebSiteSchema() {
     '@type': 'WebSite',
     name: 'Chalet Express',
     url: SITE_URL,
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${SITE_URL}/{search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
   };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }

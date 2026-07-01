@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { db } from '@/lib/db';
-import { sql } from 'drizzle-orm';
-import { getSettings } from '@/lib/cached-settings';
+import { getAllSettings } from '@/lib/cached-settings';
 import { defaultSettings } from '@/lib/settings-defaults';
 import LocaleLayout from '@/components/layout/LocaleLayout';
 import ComingSoon from '@/components/ComingSoon';
@@ -10,9 +8,8 @@ type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  let healthy = false;
-  try { await db.execute(sql`SELECT 1`); healthy = true; } catch {}
-  if (!healthy) {
+  const all = await getAllSettings();
+  if (!all.header) {
     return { title: "Chalet Express - Coming Soon" };
   }
   return {
@@ -36,19 +33,13 @@ export default async function LocaleRootLayout({
 }) {
   const { locale } = await params;
 
-  let healthy = false;
-  try { await db.execute(sql`SELECT 1`); healthy = true; } catch {}
-
-  if (!healthy) {
+  const all = await getAllSettings();
+  if (!all.header) {
     return <ComingSoon locale={locale} />;
   }
 
-  const [headerData, generalData] = await Promise.all([
-    getSettings('header'),
-    getSettings('general'),
-  ]);
-  const menuItems = headerData?.menuItems ?? defaultSettings.header.menuItems;
-  const logo = generalData?.logo ?? defaultSettings.general.logo;
+  const menuItems = all.header?.menuItems ?? defaultSettings.header.menuItems;
+  const logo = all.general?.logo ?? defaultSettings.general.logo;
 
   return (
     <LocaleLayout locale={locale} menuItems={menuItems} logo={logo}>

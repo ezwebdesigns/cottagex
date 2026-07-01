@@ -27,7 +27,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     return <ComingSoon locale={locale} />;
   }
 
-  const { getSettings } = await import('@/lib/cached-settings');
+  const { getAllSettings } = await import('@/lib/cached-settings');
   const { articles } = await import('@/db/schema');
   const { desc, eq } = await import('drizzle-orm');
   const HeroSection = (await import('@/components/home/HeroSection')).default;
@@ -37,23 +37,22 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const SearchByCity = (await import('@/components/home/SearchByCity')).default;
   const InspirationSection = (await import('@/components/home/InspirationSection')).default;
   const PartnershipPromo = (await import('@/components/home/PartnershipPromo')).default;
+  const { defaultSettings } = await import('@/lib/settings-defaults');
 
-  const [hero, destinations, gallery, search, inspiration, explore, cta] = await Promise.all([
-    getSettings('homepage_hero'),
-    getSettings('homepage_destinations'),
-    getSettings('homepage_gallery'),
-    getSettings('homepage_search'),
-    getSettings('homepage_inspiration'),
-    getSettings('homepage_explore'),
-    getSettings('homepage_cta'),
+  const [all, recentArticles] = await Promise.all([
+    getAllSettings(),
+    db.select().from(articles).where(eq(articles.isPublished, true)).orderBy(desc(articles.createdAt)).catch(() => []),
   ]);
 
-  let recentArticles: any[] = [];
-  try {
-    recentArticles = await db.select().from(articles).where(eq(articles.isPublished, true)).orderBy(desc(articles.createdAt));
-  } catch {}
+  const hero = all.homepage_hero ?? defaultSettings.homepage_hero;
+  const destinations = all.homepage_destinations ?? defaultSettings.homepage_destinations;
+  const gallery = all.homepage_gallery ?? defaultSettings.homepage_gallery;
+  const search = all.homepage_search ?? defaultSettings.homepage_search;
+  const inspiration = all.homepage_inspiration ?? defaultSettings.homepage_inspiration;
+  const explore = all.homepage_explore ?? defaultSettings.homepage_explore;
+  const cta = all.homepage_cta ?? defaultSettings.homepage_cta;
 
-  const articlePreviews = recentArticles.slice(0, 4).map(a => ({
+  const articlePreviews = (recentArticles as any[]).slice(0, 4).map(a => ({
     id: a.id, title: a.title, slug: a.slug, excerpt: a.excerpt || '',
     date: a.publishedAt ? new Date(a.publishedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : '',
     readTime: `${Math.max(1, Math.ceil((a.content || '').split(/\s+/).length / 200))} min read`,

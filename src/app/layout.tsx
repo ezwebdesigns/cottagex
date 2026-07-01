@@ -13,9 +13,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
   let favicon = '';
   try {
-    const { getSettings } = await import('@/lib/cached-settings');
-    const data = await getSettings('general');
-    if (data?.favicon) favicon = data.favicon;
+    const { getAllSettings } = await import('@/lib/cached-settings');
+    const all = await getAllSettings();
+    if (all.general?.favicon) favicon = all.general.favicon;
   } catch {}
 
   return {

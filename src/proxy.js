@@ -6,7 +6,7 @@ const defaultLocale = 'en';
 export function proxy(request) {
   const { pathname } = request.nextUrl;
 
-  if (pathname.startsWith('/api/') || pathname.startsWith('/_next/') || pathname === '/favicon.ico') {
+  if (pathname.startsWith('/api/') || pathname.startsWith('/_next/') || pathname === '/favicon.ico' || pathname === '/ads.txt' || pathname === '/logo.png') {
     return NextResponse.next();
   }
 
@@ -53,5 +53,5 @@ export function proxy(request) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|ads.txt|logo.png).*)'],
 };
