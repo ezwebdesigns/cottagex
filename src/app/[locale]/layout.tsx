@@ -8,10 +8,6 @@ type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const all = await getAllSettings();
-  if (!all.header) {
-    return { title: "Chalet Express - Coming Soon" };
-  }
   return {
     title: {
       template: `%s | Chalet Express`,
