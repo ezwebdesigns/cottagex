@@ -2,7 +2,8 @@
 
 import { CheckCircle, Info } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
+import { BreadcrumbSchema, FAQPageSchema } from '@/components/seo/SchemaOrg';
+import FAQAccordion from '@/components/FAQAccordion';
 import Image from 'next/image';
 
 type StandardTemplateProps = {
@@ -11,6 +12,7 @@ type StandardTemplateProps = {
     content: string;
     type: 'about' | 'terms' | 'default';
     updatedDate?: string;
+    faq?: { question: string; answer: string }[];
   };
 };
 
@@ -89,6 +91,12 @@ export default function StandardTemplate({ pageData }: StandardTemplateProps) {
         <h1 className="text-3xl font-extrabold text-[#0B1B40] mb-6">{pageData.title}</h1>
         <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: pageData.content }} />
       </div>
+      {pageData.faq && pageData.faq.length > 0 && (
+        <div className="mt-8">
+          <FAQPageSchema items={pageData.faq} />
+          <FAQAccordion items={pageData.faq} />
+        </div>
+      )}
     </div>
   );
 }

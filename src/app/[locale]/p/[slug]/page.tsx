@@ -2,13 +2,14 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
 import StandardTemplate from '@/templates/StandardTemplate';
 
-const staticPages: Record<string, { title: string; content: string; type: 'terms' | 'about' | 'default'; updatedDate?: string; metaDescription?: string }> = {
+const staticPages: Record<string, { title: string; content: string; type: 'terms' | 'about' | 'default'; updatedDate?: string; metaDescription?: string; faq?: { question: string; answer: string }[] }> = {
   terms: {
     title: 'Terms of Service & Affiliate Disclosure',
     content: '',
     type: 'terms',
     updatedDate: 'May 26, 2026',
     metaDescription: 'Read the Chalet Express Terms of Service and Affiliate Disclosure. Learn how our VRBO and Expedia affiliate partnerships work at no extra cost to you.',
+    faq: [],
   },
 };
 

@@ -18,6 +18,7 @@ async function fetchPage(slug: string) {
       type: "default" as const,
       updatedDate: page.updatedAt ? new Date(page.updatedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : undefined,
       metaDescription: page.metaDescription || undefined,
+      faq: (page.faq as { question: string; answer: string }[]) || [],
     };
   } catch (e) {
     console.error("Failed to fetch page:", e);
