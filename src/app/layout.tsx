@@ -4,6 +4,16 @@ import { OrganizationSchema, WebSiteSchema } from "@/components/seo/SchemaOrg";
 import "./globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
+  const maintenance = process.env.MAINTENANCE_MODE === 'true';
+
+  if (maintenance) {
+    return {
+      title: "Maintenance en cours | Chalet Express",
+      description: "Chalet Express est temporairement en maintenance. Nous serons de retour sous peu.",
+      robots: { index: false, follow: false },
+    };
+  }
+
   const h = await headers();
   const pathname = h.get("x-pathname") || "/";
   const locale = h.get("x-locale") || "en";
@@ -46,6 +56,29 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const maintenance = process.env.MAINTENANCE_MODE === 'true';
+
+  if (maintenance) {
+    return (
+      <html lang="en" className="h-full antialiased">
+        <head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          <link href="https://fonts.googleapis.com/css2?family=Radio+Canada:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
+        </head>
+        <body className="min-h-full flex flex-col items-center justify-center bg-gray-50">
+          <main className="text-center px-4">
+            <h1 className="text-5xl font-bold text-gray-900 mb-4">Chalet Express</h1>
+            <div className="w-16 h-1 bg-yellow-400 mx-auto mb-6" />
+            <p className="text-xl text-gray-600 mb-2">Maintenance en cours</p>
+            <p className="text-gray-500">Nous serons de retour sous peu. Merci de votre patience.</p>
+            <p className="text-gray-500 mt-6">We will be back shortly. Thank you for your patience.</p>
+          </main>
+        </body>
+      </html>
+    );
+  }
+
   const h = await headers();
   const locale = h.get("x-locale") || "en";
 
