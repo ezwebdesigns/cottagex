@@ -4,7 +4,12 @@ import { OrganizationSchema, WebSiteSchema } from "@/components/seo/SchemaOrg";
 import "./globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const maintenance = process.env.MAINTENANCE_MODE === 'true';
+  const h = await headers();
+  const pathname = h.get("x-pathname") || "/";
+  const locale = h.get("x-locale") || "en";
+  const isAdmin = pathname.includes('/admin/');
+
+  const maintenance = process.env.MAINTENANCE_MODE === 'true' && !isAdmin;
 
   if (maintenance) {
     return {
@@ -13,10 +18,6 @@ export async function generateMetadata(): Promise<Metadata> {
       robots: { index: false, follow: false },
     };
   }
-
-  const h = await headers();
-  const pathname = h.get("x-pathname") || "/";
-  const locale = h.get("x-locale") || "en";
 
   const enPath = pathname.replace(/^\/(fr|en)/, "/en");
   const frPath = pathname.replace(/^\/(fr|en)/, "/fr");
@@ -56,7 +57,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const maintenance = process.env.MAINTENANCE_MODE === 'true';
+  const h = await headers();
+  const pathname = h.get("x-pathname") || "/";
+  const locale = h.get("x-locale") || "en";
+  const isAdmin = pathname.includes('/admin/');
+
+  const maintenance = process.env.MAINTENANCE_MODE === 'true' && !isAdmin;
 
   if (maintenance) {
     return (
@@ -79,8 +85,7 @@ export default async function RootLayout({
     );
   }
 
-  const h = await headers();
-  const locale = h.get("x-locale") || "en";
+  // headers() already called above
 
   return (
     <html lang={locale} className="h-full antialiased">

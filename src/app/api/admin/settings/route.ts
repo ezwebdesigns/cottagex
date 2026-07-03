@@ -10,8 +10,12 @@ export async function GET(request: Request) {
   if (!section || !defaultSettings[section]) {
     return NextResponse.json({ error: 'Invalid section' }, { status: 400 });
   }
-  const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, section));
-  return NextResponse.json({ data: row?.data ?? defaultSettings[section] });
+  try {
+    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, section));
+    return NextResponse.json({ data: row?.data ?? defaultSettings[section] });
+  } catch {
+    return NextResponse.json({ data: defaultSettings[section] });
+  }
 }
 
 export async function PUT(request: Request) {

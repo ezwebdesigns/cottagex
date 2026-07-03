@@ -18,15 +18,19 @@ export type Cottage = {
 };
 
 async function getCottages(): Promise<Cottage[]> {
-  const client = await pool.connect();
   try {
-    const { rows } = await client.query(
-      `SELECT property_token, name, slug, source, google_link, affiliate_url, is_featured, thumbnail
-       FROM affiliatecottages ORDER BY is_featured DESC, name ASC`
-    );
-    return rows;
-  } finally {
-    client.release();
+    const client = await pool.connect();
+    try {
+      const { rows } = await client.query(
+        `SELECT property_token, name, slug, source, google_link, affiliate_url, is_featured, thumbnail
+         FROM affiliatecottages ORDER BY is_featured DESC, name ASC`
+      );
+      return rows;
+    } finally {
+      client.release();
+    }
+  } catch {
+    return [];
   }
 }
 
