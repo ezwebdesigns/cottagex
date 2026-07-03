@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { getAllSettings } from '@/lib/cached-settings';
 import { defaultSettings } from '@/lib/settings-defaults';
 import LocaleLayout from '@/components/layout/LocaleLayout';
-import ComingSoon from '@/components/ComingSoon';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -29,13 +27,8 @@ export default async function LocaleRootLayout({
 }) {
   const { locale } = await params;
 
-  const all = await getAllSettings();
-  if (!all.header) {
-    return <ComingSoon locale={locale} />;
-  }
-
-  const menuItems = all.header?.menuItems ?? defaultSettings.header.menuItems;
-  const logo = all.general?.logo ?? defaultSettings.general.logo;
+  const menuItems = defaultSettings.header.menuItems;
+  const logo = defaultSettings.general.logo;
 
   return (
     <LocaleLayout locale={locale} menuItems={menuItems} logo={logo}>

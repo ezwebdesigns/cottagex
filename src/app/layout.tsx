@@ -11,13 +11,6 @@ export async function generateMetadata(): Promise<Metadata> {
   const enPath = pathname.replace(/^\/(fr|en)/, "/en");
   const frPath = pathname.replace(/^\/(fr|en)/, "/fr");
 
-  let favicon = '';
-  try {
-    const { getAllSettings } = await import('@/lib/cached-settings');
-    const all = await getAllSettings();
-    if (all.general?.favicon) favicon = all.general.favicon;
-  } catch {}
-
   return {
     title: {
       default: "Chalet Express - Canadian Cottage Rentals",
@@ -45,7 +38,6 @@ export async function generateMetadata(): Promise<Metadata> {
       index: true,
       follow: true,
     },
-    icons: favicon ? { icon: favicon } : undefined,
   };
 }
 

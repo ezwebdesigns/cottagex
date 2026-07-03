@@ -1,15 +1,26 @@
 import type { Metadata } from "next";
 import { db } from '@/lib/db';
-import { sql } from 'drizzle-orm';
-import ComingSoon from '@/components/ComingSoon';
+import { articles } from '@/db/schema';
+import { desc, eq } from 'drizzle-orm';
+import { getAllSettings } from '@/lib/cached-settings';
+import { defaultSettings } from '@/lib/settings-defaults';
+import HeroSection from '@/components/home/HeroSection';
+import TrendingDestinations from '@/components/home/TrendingDestinations';
+import PropertyGallery from '@/components/home/PropertyGallery';
+import ExploreSection from '@/components/home/ExploreSection';
+import SearchByCity from '@/components/home/SearchByCity';
+import InspirationSection from '@/components/home/InspirationSection';
+import PartnershipPromo from '@/components/home/PartnershipPromo';
+
+export const revalidate = 3600;
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title: "Chalet Express - Coming Soon",
-    description: "Canadian cottage rentals coming back soon.",
+    title: "Chalet Express - Canadian Cottage Rentals",
+    description: "Find your perfect Canadian escape. Premium lake houses and mountain lodges across Canada.",
     alternates: { canonical: `https://chaletexpress.com/${locale}` },
   };
 }
@@ -17,30 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
 
-  let healthy = false;
-  try {
-    await db.execute(sql`SELECT 1`);
-    healthy = true;
-  } catch {}
-
-  if (!healthy) {
-    return <ComingSoon locale={locale} />;
-  }
-
-  const { getAllSettings } = await import('@/lib/cached-settings');
-  const { articles } = await import('@/db/schema');
-  const { desc, eq } = await import('drizzle-orm');
-  const HeroSection = (await import('@/components/home/HeroSection')).default;
-  const TrendingDestinations = (await import('@/components/home/TrendingDestinations')).default;
-  const PropertyGallery = (await import('@/components/home/PropertyGallery')).default;
-  const ExploreSection = (await import('@/components/home/ExploreSection')).default;
-  const SearchByCity = (await import('@/components/home/SearchByCity')).default;
-  const InspirationSection = (await import('@/components/home/InspirationSection')).default;
-  const PartnershipPromo = (await import('@/components/home/PartnershipPromo')).default;
-  const { defaultSettings } = await import('@/lib/settings-defaults');
-
   const [all, recentArticles] = await Promise.all([
-    getAllSettings(),
+    getAllSettings().catch(() => ({} as Record<string, any>)),
     db.select().from(articles).where(eq(articles.isPublished, true)).orderBy(desc(articles.createdAt)).catch(() => []),
   ]);
 

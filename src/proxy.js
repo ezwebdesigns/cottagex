@@ -6,7 +6,7 @@ const defaultLocale = 'en';
 export function proxy(request) {
   const { pathname } = request.nextUrl;
 
-  if (pathname.startsWith('/api/') || pathname.startsWith('/_next/') || pathname === '/favicon.ico' || pathname === '/ads.txt' || pathname === '/logo.png') {
+  if (pathname.startsWith('/_next/') || pathname.startsWith('/api/') || pathname === '/favicon.ico' || pathname === '/ads.txt' || pathname === '/logo.png') {
     return NextResponse.next();
   }
 
@@ -22,36 +22,35 @@ export function proxy(request) {
   }
 
   const locale = pathname.split('/')[1];
-
   const response = NextResponse.next();
   response.headers.set('x-locale', locale);
   response.headers.set('x-pathname', pathname);
 
-  const adminPassword = process.env.ADMIN_PASSWORD;
-  if (!adminPassword) return response;
+  if (pathname.startsWith(`/${locale}/admin`)) {
+    const adminPassword = process.env.ADMIN_PASSWORD;
+    if (adminPassword) {
+      const authHeader = request.headers.get('authorization');
+      if (!authHeader || !authHeader.startsWith('Basic ')) {
+        return new NextResponse('Authentication required', {
+          status: 401,
+          headers: { 'WWW-Authenticate': 'Basic realm="Admin"' },
+        });
+      }
 
-  if (!pathname.startsWith(`/${locale}/admin`)) return response;
-
-  const authHeader = request.headers.get('authorization');
-  if (!authHeader || !authHeader.startsWith('Basic ')) {
-    return new NextResponse('Authentication required', {
-      status: 401,
-      headers: { 'WWW-Authenticate': 'Basic realm="Admin"' },
-    });
-  }
-
-  const decoded = atob(authHeader.slice(6));
-  const [, password] = decoded.split(':');
-  if (password !== adminPassword) {
-    return new NextResponse('Invalid credentials', {
-      status: 401,
-      headers: { 'WWW-Authenticate': 'Basic realm="Admin"' },
-    });
+      const decoded = atob(authHeader.slice(6));
+      const [, password] = decoded.split(':');
+      if (password !== adminPassword) {
+        return new NextResponse('Invalid credentials', {
+          status: 401,
+          headers: { 'WWW-Authenticate': 'Basic realm="Admin"' },
+        });
+      }
+    }
   }
 
   return response;
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|ads.txt|logo.png).*)'],
+  matcher: ['/((?!_next/static|_next/image|api|favicon.ico|sitemap.xml|robots.txt|ads.txt|logo.png).*)'],
 };
