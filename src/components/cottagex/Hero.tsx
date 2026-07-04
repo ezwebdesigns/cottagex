@@ -1,14 +1,17 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Shield, Map, Heart, Trees } from 'lucide-react';
 import { useTranslations } from '@/lib/useTranslations';
 
 const iconMap: Record<string, React.ElementType> = { shield: Shield, map: Map, heart: Heart, trees: Trees };
 
+const WIDGET_HTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref="chaletxhomepage"></div><script class="eg-widgets-script" src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"></script>`;
+
 export default function Hero() {
   const { t } = useTranslations();
   const [scrollY, setScrollY] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -17,20 +20,21 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
-    const existingScript = document.querySelector('.eg-widgets-script');
-    if (!existingScript) {
-      const script = document.createElement('script');
-      script.className = 'eg-widgets-script';
-      script.src = 'https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js';
-      script.async = true;
-      document.body.appendChild(script);
-    } else {
-      setTimeout(() => {
-        if ((window as any).EGWidgets && typeof (window as any).EGWidgets.parse === 'function') {
-          (window as any).EGWidgets.parse();
-        }
-      }, 200);
-    }
+    const el = containerRef.current;
+    if (!el) return;
+
+    el.innerHTML = WIDGET_HTML;
+
+    el.querySelectorAll('script').forEach((oldScript) => {
+      const newScript = document.createElement('script');
+      for (const attr of oldScript.attributes) {
+        newScript.setAttribute(attr.name, attr.value);
+      }
+      newScript.textContent = oldScript.textContent;
+      oldScript.parentNode?.replaceChild(newScript, oldScript);
+    });
+
+    return () => { el.innerHTML = ''; };
   }, []);
 
   return (
@@ -56,7 +60,7 @@ export default function Hero() {
                 {t.hero.search.title}
               </h2>
               <p className="text-xs text-slate-500 mb-4">VRBO · Expedia Group</p>
-              <div className="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref=""></div>
+              <div ref={containerRef} />
             </div>
           </div>
 
