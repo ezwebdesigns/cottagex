@@ -1,12 +1,10 @@
 'use client';
 
 import { useRouter, usePathname } from 'next/navigation';
-import { useMemo, useState, useEffect, useRef } from 'react';
-import { Waves, Trees, Compass, MapPin, ExternalLink, ChevronRight, BookOpen, CalendarDays, Clock, X } from 'lucide-react';
-import ExploreSection from '@/components/home/ExploreSection';
-import FeaturedCottages from '@/components/FeaturedCottages';
-import SourceBadge from '@/components/SourceBadge';
-import StarRating from '@/components/StarRating';
+import { useMemo, useState, useEffect } from 'react';
+import { MapPin, ChevronDown, Waves, Trees, Compass, Star, Snowflake, Mountain, Leaf, Home as HomeIcon, BookOpen, X } from 'lucide-react';
+import { useTranslations } from '@/lib/useTranslations';
+import PropertyCard from '@/components/cottagex/PropertyCard';
 import { BreadcrumbSchema, PlaceSchema } from '@/components/seo/SchemaOrg';
 import { ontarioSearchData, quebecSearchData, novaScotiaSearchData, britishColumbiaSearchData, newBrunswickSearchData, albertaSearchData, manitobaSearchData, peiSearchData, saskatchewanSearchData } from '@/lib/mock-data';
 import Image from 'next/image';
@@ -19,19 +17,28 @@ type LocationTemplateProps = {
   cottages?: any[];
 };
 
-const iconMap: Record<string, React.ReactNode> = {
-  Waves: <Waves size={24} />,
-  Trees: <Trees size={24} />,
-  Compass: <Compass size={24} />,
+const featureIconMap: Record<string, React.ReactNode> = {
+  waves: <Waves size={20} />, Waves: <Waves size={20} />,
+  trees: <Trees size={20} />, Trees: <Trees size={20} />,
+  compass: <Compass size={20} />, Compass: <Compass size={20} />,
+  star: <Star size={20} />, Star: <Star size={20} />,
+  snowflake: <Snowflake size={20} />, Snowflake: <Snowflake size={20} />,
+  mountain: <Mountain size={20} />, Mountain: <Mountain size={20} />,
+  leaf: <Leaf size={20} />, Leaf: <Leaf size={20} />,
+  home: <HomeIcon size={20} />, Home: <HomeIcon size={20} />, HomeIcon: <HomeIcon size={20} />,
 };
 
-function r(text: string, name: string) {
-  return text?.replace(/\{name\}/g, name) || '';
-}
+const fallbackFeatures = [
+  { icon: 'compass', title: 'Explore', description: 'Discover the beauty of this stunning region.' },
+  { icon: 'trees', title: 'Nature', description: 'Immerse yourself in breathtaking natural landscapes.' },
+  { icon: 'star', title: 'Activities', description: 'Enjoy hiking, swimming, skiing and more.' },
+  { icon: 'snowflake', title: 'Year-Round', description: 'Each season offers a unique and memorable experience.' },
+];
 
 export default function LocationTemplate({ locale, slug, pageData, name: nameProp, cottages }: LocationTemplateProps) {
   const router = useRouter();
   const pathname = usePathname();
+  const { t } = useTranslations();
   const fallbackName = slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   const locName = nameProp?.en || fallbackName;
 
@@ -39,50 +46,50 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
   const hero = ld.hero || {};
   const intro = ld.intro || {};
   const featured = ld.featured || {};
-  const explore = ld.explore || {};
-  const learnMore = ld.learnMore || {};
   const search = ld.search || {};
   const ctaData = ld.cta || {};
 
-  const heroTitle = hero.title || `Cottages to Rent in ${locName}`;
-  const heroSubtitle = hero.subtitle || 'Find your perfect stay across this beautiful region.';
+  const heroTitle = hero.title || locName;
+  const heroSubtitle = hero.subtitle || '';
   const heroImage = hero.image || 'https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=1500';
   const heroImageAlt = hero.imageAlt || heroTitle;
-  const heroTag = hero.tag || 'Discover';
-  const introDesc = intro.description || 'Explore this beautiful region and find your perfect cottage escape.';
-  const introTitle = intro.highlightsTitle || 'Discover This Region';
-  const introSub = intro.subtitle || '';
-  const introHighlights = intro.highlights?.length ? intro.highlights : [{ icon: 'Compass', title: 'Explore', description: 'Discover the beauty of this stunning region.' }];
-  const featuredTitle = r(featured.title || `Featured {name} Cottages`, locName);
-  const featuredDesc = r(featured.description || 'Our latest handpicked recommendations for your upcoming wilderness stay.', locName);
-  const exploreTitle = pageData?.exploreTitle || explore.title || introTitle;
-  const exploreSub = pageData?.exploreSubtitle || explore.subtitle || introSub;
-  const exploreDesc = pageData?.exploreDescription || explore.description || introDesc;
-  const exploreItems = pageData?.exploreItems?.length ? pageData.exploreItems : explore.items?.length ? explore.items : introHighlights;
-  const searchTitle = r(search.title || `Search by City in {name}`, locName);
-  const searchDesc = r(search.description || 'Explore cottage listings categorized by local counties and lakes.', locName);
 
-  const nameFromSlug = locName;
+  const introDesc = intro.description || '';
 
-  const displayCottages = useMemo(() => {
-    if (cottages && cottages.length > 0) {
-      return cottages.map(c => ({
-        id: c.id,
-        title: c.name,
-        location: nameFromSlug,
-        province: c.province,
-        price: c.price_cad?.toString() || '',
-        rating: c.rating ? c.rating.toFixed(1) : '0',
-        image: c.thumbnail || (Array.isArray(c.photos) && c.photos[0]) || 'https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=600',
-        imageAlt: c.image_alt || undefined,
-        tag: c.type || 'Featured',
-        source: c.source,
-        isLiked: false,
-        description: Array.isArray(c.amenities) ? c.amenities.slice(0, 3).join(' • ') : 'Available for booking',
-        bookingUrl: c.affiliate_url || c.google_link || 'https://www.vrbo.com',
-      }));
-    }
-    return [];
+  const featuresList = featured?.items?.length ? featured.items : fallbackFeatures;
+
+  const faqItems: any[] = Array.isArray(pageData?.faq) ? pageData.faq : [];
+
+  const searchTitle = (search.title || '').replace(/\{name\}/g, locName) || `Search by City in ${locName}`;
+  const searchDesc = (search.description || '').replace(/\{name\}/g, locName) || 'Explore cottage listings categorized by local counties and lakes.';
+
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  const chaletCards = useMemo(() => {
+    return (cottages || []).map(c => ({
+      id: String(c.id),
+      name: c.name,
+      location: locName,
+      province: c.province || '',
+      price: c.price_cad || 0,
+      rating: c.rating || 0,
+      badge: c.type || 'Featured',
+      image: c.thumbnail || (Array.isArray(c.photos) && c.photos[0]) || 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=800&q=80',
+      description: Array.isArray(c.amenities) ? c.amenities.slice(0, 3).join(' • ') : '',
+      vrboUrl: c.affiliate_url || c.google_link || '#',
+      beds: c.bedrooms || 0,
+      baths: c.bathrooms || 0,
+      guests: c.sleeps || 0,
+    }));
+  }, [cottages, locName]);
+
+  const galleryImages = useMemo(() => {
+    const photos = new Set<string>();
+    (cottages || []).forEach(c => {
+      if (c.thumbnail) photos.add(c.thumbnail);
+      if (Array.isArray(c.photos)) c.photos.forEach((p: string) => photos.add(p));
+    });
+    return [...photos].slice(0, 3);
   }, [cottages]);
 
   const searchDataMap: Record<string, typeof ontarioSearchData> = {
@@ -100,7 +107,6 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
 
   const [linkMap, setLinkMap] = useState<Record<string, string>>({});
   const [activeMoreCity, setActiveMoreCity] = useState<(typeof ontarioSearchData)[0] | null>(null);
-  const egContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetch('/api/search-links')
@@ -113,26 +119,8 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
       .catch(() => {});
   }, []);
 
-  useEffect(() => {
-    const el = egContainerRef.current;
-    if (!el) return;
-    el.innerHTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref="chaletxlocation"></div>
-<script class="eg-widgets-script" src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"><\/script>`;
-    el.querySelectorAll('script').forEach((oldScript) => {
-      const newScript = document.createElement('script');
-      for (const attr of oldScript.attributes) newScript.setAttribute(attr.name, attr.value);
-      newScript.textContent = oldScript.textContent;
-      oldScript.parentNode?.replaceChild(newScript, oldScript);
-    });
-    const checkInit = setInterval(() => {
-      if ((window as any).eg?.widgets?.loaded) return clearInterval(checkInit);
-      if (document.readyState !== 'loading') window.dispatchEvent(new Event('DOMContentLoaded'));
-    }, 300);
-    return () => { clearInterval(checkInit); el.innerHTML = ''; };
-  }, []);
-
   return (
-    <div className="animate-in fade-in duration-300">
+    <div className="min-h-screen bg-white">
       <BreadcrumbSchema items={[
         { name: 'Home', url: `/${locale}` },
         { name: locName, url: pathname },
@@ -144,160 +132,113 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         url={`https://chaletexpress.com${pathname}`}
         address={locName}
       />
-      <div className="px-4 md:px-8 py-6">
-        <div
-          className="relative min-h-[480px] rounded-[2rem] overflow-hidden flex flex-col justify-center items-center text-center px-4 py-12"
-          style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(11, 27, 64, 0.45), rgba(11, 27, 64, 0.85)), url('${heroImage}')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}
-        >
-          <Image src={heroImage} alt={heroImageAlt} width={2000} height={580} className="sr-only" priority />
-          <div className="bg-white/10 backdrop-blur-md text-white text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-4 border border-white/20">
-            {heroTag}
-          </div>
-          <h1 className="text-3xl md:text-5xl font-extrabold text-white max-w-4xl leading-tight mb-4">
-            {heroTitle}
-          </h1>
-          <p className="text-blue-100 text-base md:text-lg mb-8 max-w-2xl font-light">
-            {heroSubtitle}
-          </p>
-          <div className="w-full max-w-[575px] mx-auto rounded-[2rem] overflow-hidden"><div ref={egContainerRef} /></div>
-        </div>
-      </div>
 
-      <section className="px-4 md:px-8 py-8 bg-white border-b border-slate-100">
-        <div className="max-w-4xl mx-auto text-center py-6">
-          <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-6 font-light">
-            {introDesc}
-          </p>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#191e3b] mb-3">
-            {introTitle}
-          </h2>
-          {introSub && (
-            <p className="text-sm md:text-base text-[#0f51ec] leading-relaxed max-w-2xl mx-auto font-semibold">
-              {introSub}
-            </p>
-          )}
+      <section className="relative h-64 sm:h-96 overflow-hidden">
+        <Image src={heroImage} alt={heroImageAlt} fill className="object-cover" sizes="100vw" priority />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#191e3b]/90 via-[#191e3b]/40 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-6 lg:px-8 pb-8">
+          <div className="text-white">
+            <div className="flex items-center gap-2 text-[#77e1fb] text-sm font-medium mb-2">
+              <MapPin className="w-4 h-4" />
+              {t.nav.destinations}
+            </div>
+            <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-2" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{heroTitle}</h1>
+            {heroSubtitle && <p className="text-base sm:text-lg text-white/80">{heroSubtitle}</p>}
+          </div>
         </div>
       </section>
 
-      <section className="px-4 md:px-8 py-10 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {introHighlights.map((h: any, i: number) => (
-            <div key={i} className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex gap-4 items-start">
-              <div className="p-3 bg-blue-50 text-[#0f51ec] rounded-2xl">
-                {iconMap[h.icon] || <Compass size={24} />}
-              </div>
-              <div>
-                <h3 className="font-bold text-lg text-[#191e3b] mb-2">{h.title}</h3>
-                <p className="text-slate-600 text-sm leading-relaxed">{h.description}</p>
-              </div>
-            </div>
-          ))}
+      {introDesc && (
+        <section className="py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-[#0f51ec] mb-3">{t.destination.overview}</h2>
+            <p className="text-base sm:text-lg text-[#191e3b] leading-relaxed" style={{ lineHeight: 1.8 }}>{introDesc}</p>
+          </div>
+        </section>
+      )}
+
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-slate-50">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-6" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{t.destination.features}</h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {featuresList.map((feature: any, i: number) => {
+              const fTitle = feature.title;
+              const fDesc = feature.description || feature.desc || '';
+              return (
+                <div key={i} className="p-5 rounded-2xl bg-white shadow-sm border border-slate-100">
+                  <div className="w-10 h-10 rounded-xl bg-[#0f51ec]/10 flex items-center justify-center mb-3">
+                    <div className="w-5 h-5 text-[#0f51ec]">{featureIconMap[feature.icon] || <Compass size={20} className="text-[#0f51ec]" />}</div>
+                  </div>
+                  <h3 className="font-bold text-[#191e3b] text-sm mb-1" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{fTitle}</h3>
+                  <p className="text-xs text-slate-500 leading-relaxed">{fDesc}</p>
+                </div>
+              );
+            })}
+          </div>
         </div>
+      </section>
 
-        {featured.shortcode ? (
-          <FeaturedCottages shortcode={featured.shortcode} fallbackTitle={featured.title} fallbackDesc={featured.description} />
-        ) : (
-          <div className="mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#191e3b] mb-2">{featuredTitle}</h2>
-            <p className="text-slate-500 mb-8">{featuredDesc}</p>
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
-              {displayCottages.map((prop) => (
-                <div key={prop.id} className="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-                  <div className="relative h-36 md:h-64 overflow-hidden">
-                    <Image src={prop.image} alt={prop.imageAlt || prop.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" />
-                    <div className="absolute top-2 md:top-4 left-2 md:left-4"><SourceBadge source={prop.source || prop.tag} /></div>
-                  </div>
-                  <div className="p-3 md:p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-1 md:mb-3 gap-1">
-                        <div className="flex items-center gap-1 text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider line-clamp-1">
-                          <MapPin size={11} className="text-[#0f51ec]" />
-                          <span>{prop.location}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <StarRating rating={parseFloat(prop.rating) || 0} />
-                          <span className="text-[10px] md:text-xs font-bold text-[#191e3b]">{prop.rating}</span>
-                        </div>
-                      </div>
-                      <h3 className="text-sm md:text-xl font-bold text-[#191e3b] mb-2 leading-tight">{prop.title}</h3>
-                      <p className="hidden md:block text-slate-600 text-sm mb-6 leading-relaxed">{prop.description}</p>
-                    </div>
-                    <div className="pt-2 md:pt-4 border-t border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-2">
-                      <div>
-                        <span className="text-sm md:text-2xl font-black text-[#0f51ec]">${prop.price}</span>
-                        <span className="text-[10px] md:text-xs text-slate-500 font-medium">/night</span>
-                      </div>
-                      <a href={prop.bookingUrl} target="_blank" rel="noopener noreferrer" className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-3 md:px-5 py-1.5 md:py-2.5 rounded-full text-[11px] md:text-sm font-semibold transition-colors inline-flex items-center justify-center gap-1.5 w-full md:w-auto">
-                        Check Availability <ExternalLink size={10} />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+      {chaletCards.length > 0 && (
+        <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-1" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{t.destination.exploreChalets}</h2>
+          <p className="text-sm text-slate-500 mb-6">{locName}</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
+            {chaletCards.map((chalet) => (
+              <PropertyCard key={chalet.id} chalet={chalet} />
+            ))}
           </div>
-        )}
+        </section>
+      )}
 
-        {ctaData.title && (
-          <div className="bg-[#191e3b] rounded-3xl overflow-hidden relative flex flex-col md:flex-row items-center mb-16">
-            <div className="w-full md:w-1/2 p-8 md:p-12 z-10 text-white">
-              <h2 className="text-2xl md:text-4xl font-bold mb-4 leading-tight">{ctaData.title}</h2>
-              {ctaData.description && <p className="text-slate-300 mb-8 max-w-md text-sm leading-relaxed">{ctaData.description}</p>}
-              {ctaData.buttonText && ctaData.buttonLink && (
-                <a
-                  href={ctaData.buttonLink.startsWith('http') ? ctaData.buttonLink : ctaData.buttonLink.startsWith('/') ? ctaData.buttonLink : `/${locale}/${ctaData.buttonLink}`}
-                  className="inline-flex bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-6 py-3 rounded-full font-bold transition-all items-center gap-2 text-sm shadow-md"
-                >
-                  {ctaData.buttonText}
-                </a>
-              )}
-            </div>
-            {ctaData.image && (
-              <div className="relative w-full md:w-1/2 h-64 md:h-auto absolute right-0 inset-y-0 opacity-20 md:opacity-100 hidden md:block">
-                <Image src={ctaData.image} alt={ctaData.imageAlt || ctaData.title || ''} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" />
+      {galleryImages.length >= 2 && (
+        <section className="py-8 px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-3 gap-3 sm:gap-4">
+            {galleryImages.map((img, i) => (
+              <div key={i} className={`rounded-[2rem] overflow-hidden ${i === 0 ? 'col-span-2 h-48 sm:h-64' : 'h-48 sm:h-64'}`}>
+                <Image src={img} alt={`${locName} ${i + 1}`} width={800} height={400} className="w-full h-full object-cover" sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" />
               </div>
-            )}
+            ))}
           </div>
-        )}
+        </section>
+      )}
 
-        <ExploreSection
-          title={exploreTitle}
-          subtitle={exploreSub}
-          description={exploreDesc}
-          items={exploreItems}
-        />
-
-        {(learnMore.title || learnMore.image) && (
-          <div className="bg-[#191e3b] rounded-3xl p-8 md:p-12 mb-16">
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 items-center">
-              <div className="md:col-span-3 text-white">
-                {learnMore.title && <h2 className="text-2xl md:text-3xl font-bold mb-4">{learnMore.title}</h2>}
-                {learnMore.description && <p className="text-blue-100/80 leading-relaxed">{learnMore.description}</p>}
-              </div>
-              {learnMore.image && (
-                <div className="relative md:col-span-2">
-                  <Image src={learnMore.image} alt={learnMore.imageAlt || learnMore.title || ''} fill className="rounded-[2rem] object-cover shadow-lg" sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" />
-                </div>
-              )}
+      {faqItems.length > 0 && (
+        <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-slate-50">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-6" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{t.destination.faq}</h2>
+            <div className="space-y-2">
+              {faqItems.map((item: any, i: number) => {
+                const q = item.q;
+                const a = item.a;
+                const isOpen = openFaq === i;
+                return (
+                  <div key={i} className="rounded-2xl bg-white border border-slate-100 overflow-hidden">
+                    <button onClick={() => setOpenFaq(isOpen ? null : i)} className="flex items-center justify-between w-full px-5 py-4 text-left min-h-[48px]">
+                      <span className="font-semibold text-sm text-[#191e3b] pr-3">{q}</span>
+                      <ChevronDown className={`w-5 h-5 text-[#0f51ec] flex-shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
+                      <p className="px-5 pb-4 text-sm text-slate-600 leading-relaxed">{a}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
-        )}
+        </section>
+      )}
 
+      <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="mb-16">
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-extrabold text-[#191e3b] tracking-tight">{searchTitle}</h2>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-[#191e3b] tracking-tight" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{searchTitle}</h2>
             <p className="text-slate-500 mt-2">{searchDesc}</p>
           </div>
-
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
             {searchData.map((data) => (
               <div key={data.city} className="bg-white rounded-3xl p-4 md:p-6 border border-slate-100 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
                 <div>
-                  <h3 className="text-lg md:text-xl font-extrabold text-[#191e3b] border-b border-slate-50 pb-2 md:pb-3 mb-3 md:mb-4">{data.city}</h3>
+                  <h3 className="text-lg md:text-xl font-extrabold text-[#191e3b] border-b border-slate-50 pb-2 md:pb-3 mb-3 md:mb-4" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{data.city}</h3>
                   <ul className="space-y-2 md:space-y-3">
                     {data.categories.map((cat, idx) => {
                       const linkKey = `${data.city}|${cat}`;
@@ -321,7 +262,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         <div className="bg-[#191e3b] rounded-3xl p-8 md:p-12 text-white">
           <div className="md:grid md:grid-cols-5 md:gap-12 md:items-center">
             <div className="md:col-span-3">
-              <h3 className="text-xl md:text-3xl font-bold mb-4">{pageData?.ctaTitle || `When is the Best Time to Visit ${locName}?`}</h3>
+              <h3 className="text-xl md:text-3xl font-bold mb-4" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{pageData?.ctaTitle || `When is the Best Time to Visit ${locName}?`}</h3>
               {(pageData?.ctaDescription) ? (
                 <p className="text-slate-300 leading-relaxed">{pageData.ctaDescription}</p>
               ) : (
@@ -351,7 +292,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
             <button onClick={() => setActiveMoreCity(null)} className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-700 bg-slate-50 hover:bg-slate-100 rounded-full transition-colors">
               <X size={18} />
             </button>
-            <h3 className="text-2xl font-black text-[#191e3b] mb-2">{activeMoreCity.city}</h3>
+            <h3 className="text-2xl font-black text-[#191e3b] mb-2" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{activeMoreCity.city}</h3>
             <p className="text-sm text-slate-400 mb-6">Explore expanded niche categories and localized cabin listings.</p>
             <div className="grid grid-cols-2 gap-3">
               {activeMoreCity.more.map((item, idx) => {
