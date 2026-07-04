@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { Mountain, Globe } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from '@/lib/useTranslations';
@@ -9,6 +10,11 @@ const socialIcons = [Globe, Globe, Globe];
 
 export default function Footer() {
   const { t, lang } = useTranslations();
+  const [footerSettings, setFooterSettings] = useState<{ logo: string } | null>(null);
+
+  useEffect(() => {
+    fetch('/api/admin/settings?section=footer').then(r => r.json()).then(d => setFooterSettings(d.data)).catch(() => {});
+  }, []);
 
   return (
     <footer className="bg-[#191e3b] text-white">
@@ -16,12 +22,18 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-9 h-9 rounded-2xl bg-[#0f51ec] flex items-center justify-center">
-                <Mountain className="w-5 h-5 text-white" strokeWidth={2.5} />
-              </div>
-              <span className="text-xl font-bold" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
-                Chalet<span className="text-[#77e1fb]"> Express</span>
-              </span>
+              {footerSettings?.logo ? (
+                <img src={footerSettings.logo} alt="Logo" className="h-8 w-auto" />
+              ) : (
+                <>
+                  <div className="w-9 h-9 rounded-2xl bg-[#0f51ec] flex items-center justify-center">
+                    <Mountain className="w-5 h-5 text-white" strokeWidth={2.5} />
+                  </div>
+                  <span className="text-xl font-bold" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+                    Chalet<span className="text-[#77e1fb]"> Express</span>
+                  </span>
+                </>
+              )}
             </div>
             <p className="text-sm text-white/60 leading-relaxed mb-4">{t.footer.tagline}</p>
             <div className="flex gap-3">

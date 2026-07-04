@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+import { Send, CheckCircle } from 'lucide-react';
 
 export default function ContactForm() {
   const [contactSubmitted, setContactSubmitted] = useState(false);
@@ -28,32 +28,6 @@ export default function ContactForm() {
         <span className="text-[#0f51ec] font-bold text-xs uppercase bg-blue-50 px-3 py-1.5 rounded-full tracking-wider font-mono">Get in Touch</span>
         <h1 className="text-3xl md:text-5xl font-bold text-[#191e3b] mt-4 mb-3">We'd Love to Hear From You</h1>
         <p className="text-slate-500 text-base">Cottage owners, travelers, or affiliate networks — feel free to drop us a line below.</p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm text-center">
-          <div className="w-12 h-12 bg-blue-50 text-[#0f51ec] rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <Mail size={24} />
-          </div>
-          <h4 className="font-bold text-[#191e3b] mb-1">Email Us</h4>
-          <p className="text-sm text-slate-500 font-medium">socialmediacanada@gmail.com</p>
-        </div>
-
-        <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm text-center">
-          <div className="w-12 h-12 bg-blue-50 text-[#0f51ec] rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <Phone size={24} />
-          </div>
-          <h4 className="font-bold text-[#191e3b] mb-1">Call Us</h4>
-          <p className="text-sm text-slate-500 font-medium">+1 (514) 555-0192</p>
-        </div>
-
-        <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm text-center">
-          <div className="w-12 h-12 bg-blue-50 text-[#0f51ec] rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <MapPin size={24} />
-          </div>
-          <h4 className="font-bold text-[#191e3b] mb-1">Head Office</h4>
-          <p className="text-sm text-slate-500 font-medium">Old Port, Montreal, QC, Canada</p>
-        </div>
       </div>
 
       <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-lg max-w-2xl mx-auto">

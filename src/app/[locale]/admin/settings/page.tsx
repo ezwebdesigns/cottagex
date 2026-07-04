@@ -15,6 +15,8 @@ type ExploreItem = { icon: string; title: string; description: string };
 type HomepageExplore = { title: string; description: string; subtitle: string; items: ExploreItem[] };
 type HomepageInspiration = { title: string; description: string };
 type HomepageCTA = { title: string; description: string; buttonText: string; buttonLink: string; image: string; imageAlt: string };
+type CategoryItem = { id: string; labelEn: string; labelFr: string; icon: string };
+type CategoryBarConfig = { items: CategoryItem[] };
 
 const tabs = [
   { id: 'general', label: 'General', icon: SettingsIcon },
@@ -41,6 +43,7 @@ export default function AdminSettingsPage() {
   const [explore, setExplore] = useState<HomepageExplore | null>(null);
   const [inspiration, setInspiration] = useState<HomepageInspiration | null>(null);
   const [cta, setCta] = useState<HomepageCTA | null>(null);
+  const [categories, setCategories] = useState<CategoryBarConfig | null>(null);
 
   const [openHomeSection, setOpenHomeSection] = useState<string>('hero');
 
@@ -63,6 +66,7 @@ export default function AdminSettingsPage() {
     fetchSection('homepage_explore').then(setExplore);
     fetchSection('homepage_inspiration').then(setInspiration);
     fetchSection('homepage_cta').then(setCta);
+    fetchSection('homepage_categories').then(setCategories);
   }, [fetchSection]);
 
 
@@ -288,6 +292,50 @@ export default function AdminSettingsPage() {
               <ImageUploader label="Image" value={cta.image} onChange={(v) => setCta({ ...cta, image: v })} />
               <Field label="Image Alt Text (SEO)" value={cta.imageAlt} onChange={(v) => setCta({ ...cta, imageAlt: v })} maxLength={255} />
               <SaveButton onClick={() => saveSection('homepage_cta', cta)} saving={saving} />
+            </CollapsibleSection>
+          )}
+
+          {categories && (
+            <CollapsibleSection title="Category Icons" id="categories" isOpen={openHomeSection === 'categories'} onToggle={() => setOpenHomeSection(openHomeSection === 'categories' ? '' : 'categories')}>
+              <div>
+                <div className="space-y-3">
+                  {categories.items.map((item, i) => (
+                    <div key={i} className="p-3 border border-slate-100 rounded-2xl space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-xs font-bold text-slate-400">Category {i + 1}</span>
+                        <button onClick={() => {
+                          const newItems = categories.items.filter((_, idx) => idx !== i);
+                          setCategories({ ...categories, items: newItems });
+                        }} className="text-xs text-red-500 hover:text-red-700">Remove</button>
+                      </div>
+                      <input placeholder="ID (ex: lakefront)" value={item.id} onChange={(e) => {
+                        const arr = [...categories.items]; arr[i] = { ...arr[i], id: e.target.value };
+                        setCategories({ ...categories, items: arr });
+                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
+                      <input placeholder="Label (English)" value={item.labelEn} onChange={(e) => {
+                        const arr = [...categories.items]; arr[i] = { ...arr[i], labelEn: e.target.value };
+                        setCategories({ ...categories, items: arr });
+                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
+                      <input placeholder="Label (French)" value={item.labelFr} onChange={(e) => {
+                        const arr = [...categories.items]; arr[i] = { ...arr[i], labelFr: e.target.value };
+                        setCategories({ ...categories, items: arr });
+                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
+                      <select value={item.icon} onChange={(e) => {
+                        const arr = [...categories.items]; arr[i] = { ...arr[i], icon: e.target.value };
+                        setCategories({ ...categories, items: arr });
+                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20">
+                        {['Sailboat', 'Bath', 'Users', 'Gem', 'Dog', 'Mountain', 'Heart', 'Home', 'Trees', 'TreePine', 'Umbrella', 'Building2', 'MountainSnow', 'Waves', 'Footprints', 'Compass', 'MapPin', 'Sunrise'].map(icon => (
+                          <option key={icon} value={icon}>{icon}</option>
+                        ))}
+                      </select>
+                    </div>
+                  ))}
+                  <button onClick={() => setCategories({ ...categories, items: [...categories.items, { id: '', labelEn: '', labelFr: '', icon: 'Compass' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">
+                    + Add Category
+                  </button>
+                </div>
+              </div>
+              <SaveButton onClick={() => saveSection('homepage_categories', categories)} saving={saving} />
             </CollapsibleSection>
           )}
         </div>

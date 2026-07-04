@@ -82,6 +82,9 @@ export type HomepageInspiration = {
   description: string;
 };
 
+export type CategoryItem = { id: string; labelEn: string; labelFr: string; icon: string };
+export type HomepageCategories = { items: CategoryItem[] };
+
 export type HomepageCTA = {
   title: string;
   description: string;
@@ -194,5 +197,24 @@ export const defaultSettings: Record<string, any> = {
     buttonLink: "/{locale}/contact",
     image: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&q=80&w=1000",
     imageAlt: "Cozy wooden cabin interior with warm lighting in a Canadian forest setting",
+  },
+  homepage_categories: {
+    items: [
+      { id: "lakefront", labelEn: "Lakefront", labelFr: "Lac", icon: "Sailboat" },
+      { id: "hot-tub", labelEn: "Hot Tub", labelFr: "Spa", icon: "Bath" },
+      { id: "family", labelEn: "Family", labelFr: "Famille", icon: "Users" },
+      { id: "luxury", labelEn: "Luxury", labelFr: "Luxe", icon: "Gem" },
+      { id: "pet-friendly", labelEn: "Pet Friendly", labelFr: "Animaux", icon: "Dog" },
+      { id: "mountain", labelEn: "Mountain", labelFr: "Montagne", icon: "Mountain" },
+      { id: "romantic", labelEn: "Romantic", labelFr: "Romantique", icon: "Heart" },
+      { id: "log-cabin", labelEn: "Log Cabin", labelFr: "Chalet bois", icon: "Home" },
+      { id: "countryside", labelEn: "Countryside", labelFr: "Campagne", icon: "Trees" },
+      { id: "secluded", labelEn: "Secluded", labelFr: "Isolé", icon: "TreePine" },
+      { id: "beach", labelEn: "Beach", labelFr: "Plage", icon: "Umbrella" },
+      { id: "resort", labelEn: "Resort", labelFr: "Village", icon: "Building2" },
+      { id: "skiing", labelEn: "Skiing", labelFr: "Ski", icon: "MountainSnow" },
+      { id: "pools", labelEn: "Pools", labelFr: "Piscines", icon: "Waves" },
+      { id: "hiking", labelEn: "Hiking", labelFr: "Randonnée", icon: "Footprints" },
+    ],
   },
 };
