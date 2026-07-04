@@ -43,6 +43,7 @@ export default async function GuidesPage({ params, searchParams }: Props) {
       readTime: `${Math.max(1, Math.ceil((a.content || '').split(/\s+/).length / 200))} min read`,
       category: a.category || 'Articles',
       image: a.featuredImage || '',
+      author: a.author || 'Editorial Team',
     })),
   ];
 

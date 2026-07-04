@@ -89,7 +89,10 @@ export const translations = {
       rankedChalets: 'Top Ranked Chalets',
       estimatedPrice: 'Est. price',
       bookNow: 'Book Now',
-      viewGuide: 'Read Guide'
+      viewGuide: 'Read Guide',
+      noArticles: 'No articles yet.',
+      checkBack: 'Check back soon for new guides.',
+      contributor: 'Contributor'
     },
     destination: {
       overview: 'Overview',
@@ -285,7 +288,10 @@ export const translations = {
       rankedChalets: 'Chalets les mieux classés',
       estimatedPrice: 'Prix estimé',
       bookNow: 'Réserver',
-      viewGuide: 'Lire le guide'
+      viewGuide: 'Lire le guide',
+      noArticles: 'Aucun article pour le moment.',
+      checkBack: 'Revenez bientôt pour de nouveaux guides.',
+      contributor: 'Contributeur'
     },
     destination: {
       overview: 'Aperçu',
