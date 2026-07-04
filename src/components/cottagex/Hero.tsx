@@ -6,7 +6,7 @@ import { useTranslations } from '@/lib/useTranslations';
 
 const iconMap: Record<string, React.ElementType> = { shield: Shield, map: Map, heart: Heart, trees: Trees };
 
-const WIDGET_HTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref="chaletxhomepage"></div><script class="eg-widgets-script" src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"></script>`;
+const WIDGET_HTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref=""></div><script class="eg-widgets-script" src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"></script>`;
 
 export default function Hero() {
   const { t } = useTranslations();
@@ -34,7 +34,18 @@ export default function Hero() {
       oldScript.parentNode?.replaceChild(newScript, oldScript);
     });
 
-    return () => { el.innerHTML = ''; };
+    const checkInit = setInterval(() => {
+      if ((window as any).eg?.widgets?.loaded) {
+        clearInterval(checkInit);
+      } else if (document.readyState !== 'loading') {
+        window.dispatchEvent(new Event('DOMContentLoaded'));
+      }
+    }, 300);
+
+    return () => {
+      clearInterval(checkInit);
+      el.innerHTML = '';
+    };
   }, []);
 
   return (
