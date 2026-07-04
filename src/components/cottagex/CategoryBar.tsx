@@ -1,24 +1,24 @@
 'use client';
 
-import { Umbrella, Wind, Building2, Trees, Waves, Sailboat, Droplets, MountainSnow, Landmark, Tent, Snowflake, Mountain, Sun, Warehouse, Gem } from 'lucide-react';
+import { Sailboat, Bath, Users, Gem, Dog, Mountain, Heart, Home, Trees, TreePine, Umbrella, Building2, MountainSnow, Waves, Footprints } from 'lucide-react';
 import { useTranslations } from '@/lib/useTranslations';
 
 const iconMap: Record<string, React.ElementType> = {
-  beach: Umbrella,
-  windmills: Wind,
-  modern: Building2,
-  countryside: Trees,
-  pools: Waves,
-  islands: Sailboat,
-  lake: Droplets,
-  skiing: MountainSnow,
-  castles: Landmark,
-  camping: Tent,
-  arctic: Snowflake,
-  cave: Mountain,
-  desert: Sun,
-  barn: Warehouse,
-  lux: Gem,
+  'lakefront': Sailboat,
+  'hot-tub': Bath,
+  'family': Users,
+  'luxury': Gem,
+  'pet-friendly': Dog,
+  'mountain': Mountain,
+  'romantic': Heart,
+  'log-cabin': Home,
+  'countryside': Trees,
+  'secluded': TreePine,
+  'beach': Umbrella,
+  'resort': Building2,
+  'skiing': MountainSnow,
+  'pools': Waves,
+  'hiking': Footprints,
 };
 
 export default function CategoryBar() {

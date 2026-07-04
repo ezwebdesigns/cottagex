@@ -1,10 +1,8 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Shield, Map, Heart, Trees } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { useTranslations } from '@/lib/useTranslations';
-
-const iconMap: Record<string, React.ElementType> = { shield: Shield, map: Map, heart: Heart, trees: Trees };
 
 const WIDGET_HTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref=""></div><script class="eg-widgets-script" src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"></script>`;
 
@@ -65,39 +63,26 @@ export default function Hero() {
 
       <div className="relative z-10 px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[500px] max-w-[1600px] mx-auto">
-          <div className="order-2 lg:order-1">
-            <div className="bg-white/90 backdrop-blur-xl rounded-[2rem] shadow-2xl shadow-blue-900/20 p-5 sm:p-7 border border-white/40 overflow-hidden">
-              <h2 className="text-lg font-bold text-[#191e3b] mb-1" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
-                {t.hero.search.title}
-              </h2>
-              <p className="text-xs text-slate-500 mb-4">VRBO · Expedia Group</p>
+          <div className="order-2 lg:order-1 w-full flex justify-center lg:justify-end">
+            <div className="w-full max-w-[575px] rounded-[2rem] overflow-hidden bg-white">
               <div ref={containerRef} />
             </div>
           </div>
 
-          <div className="order-1 lg:order-2 text-white">
+          <div className="order-1 lg:order-2 flex flex-col items-center lg:items-start">
+            <div className="mb-4 inline-flex items-center justify-center bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20">
+              <Sparkles className="text-[#93B4FF] mr-2" size={16} />
+              <span className="text-white text-xs font-bold tracking-wider uppercase">{t.hero.search.title || 'Official VRBO Affiliate Search'}</span>
+            </div>
             <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-4"
+              className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-4 tracking-tight"
               style={{ fontFamily: 'Radio Canada, sans-serif', textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}
             >
               {t.hero.title}
             </h1>
-            <p className="text-base sm:text-lg text-white/80 leading-relaxed mb-6 max-w-md">
+            <p className="text-blue-100/90 text-base md:text-lg mb-8 max-w-2xl font-light">
               {t.hero.subtitle}
             </p>
-            <div className="space-y-2.5">
-              {t.hero.args.map((arg: { icon: string; text: string }, i: number) => {
-                const Icon = iconMap[arg.icon] || Shield;
-                return (
-                  <div key={i} className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-xl bg-[#77e1fb]/20 backdrop-blur flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-4 h-4 text-[#77e1fb]" />
-                    </div>
-                    <span className="text-sm font-medium text-white/90">{arg.text}</span>
-                  </div>
-                );
-              })}
-            </div>
           </div>
         </div>
       </div>
