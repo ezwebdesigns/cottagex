@@ -47,32 +47,27 @@ export default function AppSidebar() {
       onMouseLeave={() => setExpanded(false)}
     >
       <div className="border-b border-slate-100 flex items-center h-16 sm:h-20 px-4 flex-shrink-0">
-        <Link href={`/${lang}`} className="relative flex items-center gap-2.5">
-          {/* Favicon — always takes space, hidden when expanded */}
-          <div className={`w-9 h-9 flex-shrink-0 transition-opacity duration-200 ${expanded ? 'opacity-0' : 'opacity-100'}`}>
-            {general?.favicon ? (
-              <img src={general.favicon} alt="" className="w-9 h-9 rounded-2xl" />
+        <Link href={`/${lang}`} className="flex items-center gap-2.5">
+          {!expanded ? (
+            general?.favicon ? (
+              <img src={general.favicon} alt="" className="w-9 h-9 rounded-2xl flex-shrink-0" />
             ) : (
-              <div className="w-9 h-9 rounded-2xl bg-[#0f51ec] flex items-center justify-center">
+              <div className="w-9 h-9 rounded-2xl bg-[#0f51ec] flex items-center justify-center flex-shrink-0">
                 <Mountain className="w-5 h-5 text-white" strokeWidth={2.5} />
               </div>
-            )}
-          </div>
-          {/* Logo + text — absolute, overlays favicon position when expanded */}
-          <div className={`absolute left-0 flex items-center gap-2.5 transition-opacity duration-200 ${expanded ? 'opacity-100' : 'opacity-0'}`}>
-            {general?.logo ? (
-              <img src={general.logo} alt={general.siteName || 'Logo'} className="h-8 w-auto flex-shrink-0" />
-            ) : (
-              <>
-                <div className="w-9 h-9 rounded-2xl bg-[#0f51ec] flex items-center justify-center flex-shrink-0">
-                  <Mountain className="w-5 h-5 text-white" strokeWidth={2.5} />
-                </div>
-                <span className="text-xl font-bold text-[#191e3b] whitespace-nowrap" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
-                  {header?.logoText || 'Chalet Express'}
-                </span>
-              </>
-            )}
-          </div>
+            )
+          ) : general?.logo ? (
+            <img src={general.logo} alt={general.siteName || 'Logo'} className="h-8 w-auto flex-shrink-0" />
+          ) : (
+            <>
+              <div className="w-9 h-9 rounded-2xl bg-[#0f51ec] flex items-center justify-center flex-shrink-0">
+                <Mountain className="w-5 h-5 text-white" strokeWidth={2.5} />
+              </div>
+              <span className="text-xl font-bold text-[#191e3b] whitespace-nowrap" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+                {header?.logoText || 'Chalet Express'}
+              </span>
+            </>
+          )}
         </Link>
       </div>
 
