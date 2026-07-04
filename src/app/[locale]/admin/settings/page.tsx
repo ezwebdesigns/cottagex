@@ -83,24 +83,23 @@ export default function AdminSettingsPage() {
 
   const interpolate = (text: string) => text?.replace(/\{locale\}/g, locale);
 
-  if (!general) return <div className="p-10 text-gray-400">Loading...</div>;
+  if (!general) return <div className="p-10 text-slate-400">Loading...</div>;
 
   return (
     <div className="p-6 md:p-10 animate-in fade-in duration-200">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-2xl md:text-3xl font-extrabold text-[#0B1B40] flex items-center gap-2">
-          <SettingsIcon size={24} className="text-[#1F51C6]" /> Settings
-        </h1>
-        {saved && <span className="text-xs text-emerald-600 font-bold bg-emerald-50 px-3 py-1.5 rounded-full">Saved</span>}
+          <h1 className="text-2xl font-bold text-[#191e3b]">Settings</h1>
+          <p className="text-sm text-slate-400 mt-1">Navigation, footer, logo &amp; favicon</p>
+          {saved && <span className="text-xs text-emerald-600 font-bold bg-emerald-50 px-3 py-1.5 rounded-full">Saved</span>}
       </div>
 
-      <div className="flex gap-1 border-b border-gray-200 mb-8 overflow-x-auto">
+      <div className="flex gap-1 border-b border-slate-100 mb-8 overflow-x-auto">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`flex items-center gap-2 px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
-              activeTab === tab.id ? 'border-[#1F51C6] text-[#1F51C6]' : 'border-transparent text-gray-500 hover:text-gray-700'
+              activeTab === tab.id ? 'border-[#0f51ec] text-[#0f51ec]' : 'border-transparent text-slate-500 hover:text-slate-700'
             }`}
           >
             <tab.icon size={16} />
@@ -110,8 +109,8 @@ export default function AdminSettingsPage() {
       </div>
 
       {activeTab === 'general' && (
-        <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm max-w-2xl">
-          <h2 className="text-lg font-bold text-[#0B1B40] mb-6">General</h2>
+        <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm max-w-2xl">
+          <h2 className="text-lg font-bold text-[#191e3b] mb-6">General</h2>
           <div className="space-y-4">
             <Field label="Site Name" value={general.siteName} onChange={(v) => setGeneral({ ...general, siteName: v })} />
             <Field label="Site Description" value={general.siteDescription} onChange={(v) => setGeneral({ ...general, siteDescription: v })} textarea />
@@ -140,12 +139,12 @@ export default function AdminSettingsPage() {
               <Field label="Title" value={destinations.title} onChange={(v) => setDestinations({ ...destinations, title: v })} />
               <Field label="Description" value={destinations.description} onChange={(v) => setDestinations({ ...destinations, description: v })} textarea />
               <div className="mt-4">
-                <h4 className="text-sm font-semibold text-gray-600 mb-3">Destination Items</h4>
+                <h4 className="text-sm font-semibold text-slate-600 mb-3">Destination Items</h4>
                 <div className="space-y-3">
                   {destinations.items.map((item, i) => (
-                    <div key={i} className="p-3 border border-gray-100 rounded-2xl space-y-2">
+                    <div key={i} className="p-3 border border-slate-100 rounded-2xl space-y-2">
                       <div className="flex justify-between items-center">
-                        <span className="text-xs font-bold text-gray-400">Item {i + 1}</span>
+                        <span className="text-xs font-bold text-slate-400">Item {i + 1}</span>
                         <button onClick={() => {
                           const newItems = destinations.items.filter((_, idx) => idx !== i);
                           setDestinations({ ...destinations, items: newItems });
@@ -155,17 +154,17 @@ export default function AdminSettingsPage() {
                         const newItems = [...destinations.items];
                         newItems[i] = { ...newItems[i], name: e.target.value };
                         setDestinations({ ...destinations, items: newItems });
-                      }} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
                       <input placeholder="Properties (e.g. 320+ cottages)" value={item.properties} onChange={(e) => {
                         const newItems = [...destinations.items];
                         newItems[i] = { ...newItems[i], properties: e.target.value };
                         setDestinations({ ...destinations, items: newItems });
-                      }} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
                       <input placeholder="Link (e.g. /en/cottage-country/ontario)" value={item.link || ''} onChange={(e) => {
                          const newItems = [...destinations.items];
                          newItems[i] = { ...newItems[i], link: e.target.value };
                          setDestinations({ ...destinations, items: newItems });
-                       }} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                       }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
                        <ImageUploader label="Image" value={item.image} onChange={(v) => {
                          const newItems = [...destinations.items];
                          newItems[i] = { ...newItems[i], image: v };
@@ -178,7 +177,7 @@ export default function AdminSettingsPage() {
                        }} maxLength={255} />
                       </div>
                   ))}
-                  <button onClick={() => setDestinations({ ...destinations, items: [...destinations.items, { name: '', properties: '', image: '', link: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">
+                  <button onClick={() => setDestinations({ ...destinations, items: [...destinations.items, { name: '', properties: '', image: '', link: '' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">
                     + Add Item
                   </button>
                 </div>
@@ -192,21 +191,21 @@ export default function AdminSettingsPage() {
               <Field label="Title" value={gallery.title} onChange={(v) => setGallery({ ...gallery, title: v })} />
               <Field label="Description" value={gallery.description} onChange={(v) => setGallery({ ...gallery, description: v })} textarea />
               <div className="mt-4">
-                <h4 className="text-sm font-semibold text-gray-600 mb-3">Gallery Tabs</h4>
+                <h4 className="text-sm font-semibold text-slate-600 mb-3">Gallery Tabs</h4>
                 <div className="space-y-2">
                   {gallery.tabs.map((tab, i) => (
-                    <div key={i} className="flex flex-col gap-2 p-3 border border-gray-100 rounded-xl">
+                    <div key={i} className="flex flex-col gap-2 p-3 border border-slate-100 rounded-xl">
                       <div className="flex gap-2 items-center">
                         <input placeholder="Name (English)" value={tab.name} onChange={(e) => {
                           const newTabs = [...gallery.tabs];
                           newTabs[i] = { ...newTabs[i], name: e.target.value };
                           setGallery({ ...gallery, tabs: newTabs });
-                        }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                        }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
                         <input placeholder="Category (French)" value={tab.category} onChange={(e) => {
                           const newTabs = [...gallery.tabs];
                           newTabs[i] = { ...newTabs[i], category: e.target.value };
                           setGallery({ ...gallery, tabs: newTabs });
-                        }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                        }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
                         <button onClick={() => {
                           const newTabs = gallery.tabs.filter((_, idx) => idx !== i);
                           setGallery({ ...gallery, tabs: newTabs });
@@ -216,10 +215,10 @@ export default function AdminSettingsPage() {
                         const newTabs = [...gallery.tabs];
                         newTabs[i] = { ...newTabs[i], shortcode: e.target.value };
                         setGallery({ ...gallery, tabs: newTabs });
-                      }} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20 font-mono text-xs" />
+                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20 font-mono text-xs" />
                     </div>
                   ))}
-                  <button onClick={() => setGallery({ ...gallery, tabs: [...gallery.tabs, { name: '', category: '', shortcode: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">
+                  <button onClick={() => setGallery({ ...gallery, tabs: [...gallery.tabs, { name: '', category: '', shortcode: '' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">
                     + Add Tab
                   </button>
                 </div>
@@ -250,14 +249,14 @@ export default function AdminSettingsPage() {
               <Field label="Description" value={explore.description} onChange={(v) => setExplore({ ...explore, description: v })} textarea />
               <Field label="Subtitle" value={explore.subtitle} onChange={(v) => setExplore({ ...explore, subtitle: v })} textarea />
               <div>
-                <h4 className="text-sm font-semibold text-gray-600 mb-3">Items</h4>
+                <h4 className="text-sm font-semibold text-slate-600 mb-3">Items</h4>
                 {explore.items.map((item, i) => (
-                  <div key={i} className="border border-gray-200 rounded-xl p-4 mb-4 space-y-3">
+                  <div key={i} className="border border-slate-200 rounded-xl p-4 mb-4 space-y-3">
                     <div className="flex gap-2">
                       <select value={item.icon} onChange={(e) => {
                         const arr = [...explore.items]; arr[i] = { ...arr[i], icon: e.target.value };
                         setExplore({ ...explore, items: arr });
-                      }} className="px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20">
+                      }} className="px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20">
                         {['Waves', 'Trees', 'Compass', 'MapPin', 'Mountain', 'TreePine', 'Sunrise'].map(icon => (
                           <option key={icon} value={icon}>{icon}</option>
                         ))}
@@ -265,16 +264,16 @@ export default function AdminSettingsPage() {
                       <input placeholder="Title" value={item.title} onChange={(e) => {
                         const arr = [...explore.items]; arr[i] = { ...arr[i], title: e.target.value };
                         setExplore({ ...explore, items: arr });
-                      }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                      }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
                     </div>
                     <textarea placeholder="Description" value={item.description} onChange={(e) => {
                       const arr = [...explore.items]; arr[i] = { ...arr[i], description: e.target.value };
                       setExplore({ ...explore, items: arr });
-                    }} rows={2} className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                    }} rows={2} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
                     <button onClick={() => setExplore({ ...explore, items: explore.items.filter((_, idx) => idx !== i) })} className="text-xs text-red-500 hover:text-red-700">Remove</button>
                   </div>
                 ))}
-                <button onClick={() => setExplore({ ...explore, items: [...explore.items, { icon: 'Compass', title: '', description: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">+ Add Item</button>
+                <button onClick={() => setExplore({ ...explore, items: [...explore.items, { icon: 'Compass', title: '', description: '' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">+ Add Item</button>
               </div>
               <SaveButton onClick={() => saveSection('homepage_explore', explore)} saving={saving} />
             </CollapsibleSection>
@@ -295,8 +294,8 @@ export default function AdminSettingsPage() {
       )}
 
       {activeTab === 'seo' && (
-        <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm max-w-2xl">
-          <h2 className="text-lg font-bold text-[#0B1B40] mb-6">SEO</h2>
+        <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm max-w-2xl">
+          <h2 className="text-lg font-bold text-[#191e3b] mb-6">SEO</h2>
           <div className="space-y-4">
             <Field label="Default Title" value={seo?.defaultTitle ?? ''} onChange={(v) => setSeo({ ...seo, defaultTitle: v })} />
             <Field label="Default Description" value={seo?.defaultDescription ?? ''} onChange={(v) => setSeo({ ...seo, defaultDescription: v })} textarea />
@@ -308,12 +307,12 @@ export default function AdminSettingsPage() {
       )}
 
       {activeTab === 'header' && (
-        <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm max-w-2xl">
-          <h2 className="text-lg font-bold text-[#0B1B40] mb-6">Header</h2>
+        <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm max-w-2xl">
+          <h2 className="text-lg font-bold text-[#191e3b] mb-6">Header</h2>
           <div className="space-y-4">
             <Field label="Logo Text" value={header?.logoText ?? ''} onChange={(v) => setHeader({ ...header, logoText: v })} />
             <div>
-              <h4 className="text-sm font-semibold text-gray-600 mb-3">Menu Items</h4>
+              <h4 className="text-sm font-semibold text-slate-600 mb-3">Menu Items</h4>
               <div className="space-y-3">
                 {(header?.menuItems ?? []).map((item: any, i: number) => (
                   <div key={i} className="flex gap-2 items-center">
@@ -321,16 +320,16 @@ export default function AdminSettingsPage() {
                       const newItems = [...header.menuItems];
                       newItems[i] = { ...newItems[i], label: e.target.value };
                       setHeader({ ...header, menuItems: newItems });
-                    }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                    }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
                     <input placeholder="href (use {locale})" value={item.href} onChange={(e) => {
                       const newItems = [...header.menuItems];
                       newItems[i] = { ...newItems[i], href: e.target.value };
                       setHeader({ ...header, menuItems: newItems });
-                    }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                    }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
                     <button onClick={() => setHeader({ ...header, menuItems: header.menuItems.filter((_: any, idx: number) => idx !== i) })} className="text-xs text-red-500 hover:text-red-700">Remove</button>
                   </div>
                 ))}
-                <button onClick={() => setHeader({ ...header, menuItems: [...header.menuItems, { label: '', href: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">
+                <button onClick={() => setHeader({ ...header, menuItems: [...header.menuItems, { label: '', href: '' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">
                   + Add Menu Item
                 </button>
               </div>
@@ -341,69 +340,69 @@ export default function AdminSettingsPage() {
       )}
 
       {activeTab === 'footer' && (
-        <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm max-w-2xl">
-          <h2 className="text-lg font-bold text-[#0B1B40] mb-6">Footer</h2>
+        <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm max-w-2xl">
+          <h2 className="text-lg font-bold text-[#191e3b] mb-6">Footer</h2>
           <div className="space-y-4">
             <Field label="Description" value={footer?.description ?? ''} onChange={(v) => setFooter({ ...footer, description: v })} textarea />
             <ImageUploader label="Logo" value={footer?.logo ?? ''} onChange={(v) => setFooter({ ...footer, logo: v })} />
 
             <div>
-              <h4 className="text-sm font-semibold text-gray-600 mb-3">DISCOVER</h4>
+              <h4 className="text-sm font-semibold text-slate-600 mb-3">DISCOVER</h4>
               <div className="space-y-2">
                 {(footer?.discover ?? []).map((item: any, i: number) => (
                   <div key={i} className="flex gap-2 items-center">
                     <input placeholder="Label" value={item.label} onChange={(e) => {
                       const arr = [...footer.discover]; arr[i] = { ...arr[i], label: e.target.value };
                       setFooter({ ...footer, discover: arr });
-                    }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                    }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
                     <input placeholder="href (use {locale})" value={item.href} onChange={(e) => {
                       const arr = [...footer.discover]; arr[i] = { ...arr[i], href: e.target.value };
                       setFooter({ ...footer, discover: arr });
-                    }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                    }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
                     <button onClick={() => setFooter({ ...footer, discover: footer.discover.filter((_: any, idx: number) => idx !== i) })} className="text-xs text-red-500 hover:text-red-700">Remove</button>
                   </div>
                 ))}
-                <button onClick={() => setFooter({ ...footer, discover: [...(footer?.discover || []), { label: '', href: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">+ Add Link</button>
+                <button onClick={() => setFooter({ ...footer, discover: [...(footer?.discover || []), { label: '', href: '' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">+ Add Link</button>
               </div>
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold text-gray-600 mb-3">QUICK LINKS</h4>
+              <h4 className="text-sm font-semibold text-slate-600 mb-3">QUICK LINKS</h4>
               <div className="space-y-2">
                 {(footer?.quickLinks ?? []).map((item: any, i: number) => (
                   <div key={i} className="flex gap-2 items-center">
                     <input placeholder="Label" value={item.label} onChange={(e) => {
                       const arr = [...footer.quickLinks]; arr[i] = { ...arr[i], label: e.target.value };
                       setFooter({ ...footer, quickLinks: arr });
-                    }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                    }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
                     <input placeholder="href (use {locale})" value={item.href} onChange={(e) => {
                       const arr = [...footer.quickLinks]; arr[i] = { ...arr[i], href: e.target.value };
                       setFooter({ ...footer, quickLinks: arr });
-                    }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                    }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
                     <button onClick={() => setFooter({ ...footer, quickLinks: footer.quickLinks.filter((_: any, idx: number) => idx !== i) })} className="text-xs text-red-500 hover:text-red-700">Remove</button>
                   </div>
                 ))}
-                <button onClick={() => setFooter({ ...footer, quickLinks: [...(footer?.quickLinks || []), { label: '', href: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">+ Add Link</button>
+                <button onClick={() => setFooter({ ...footer, quickLinks: [...(footer?.quickLinks || []), { label: '', href: '' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">+ Add Link</button>
               </div>
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold text-gray-600 mb-3">ABOUT</h4>
+              <h4 className="text-sm font-semibold text-slate-600 mb-3">ABOUT</h4>
               <div className="space-y-2">
                 {(footer?.about ?? []).map((item: any, i: number) => (
                   <div key={i} className="flex gap-2 items-center">
                     <input placeholder="Label" value={item.label} onChange={(e) => {
                       const arr = [...footer.about]; arr[i] = { ...arr[i], label: e.target.value };
                       setFooter({ ...footer, about: arr });
-                    }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                    }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
                     <input placeholder="href (use {locale})" value={item.href} onChange={(e) => {
                       const arr = [...footer.about]; arr[i] = { ...arr[i], href: e.target.value };
                       setFooter({ ...footer, about: arr });
-                    }} className="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20" />
+                    }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
                     <button onClick={() => setFooter({ ...footer, about: footer.about.filter((_: any, idx: number) => idx !== i) })} className="text-xs text-red-500 hover:text-red-700">Remove</button>
                   </div>
                 ))}
-                <button onClick={() => setFooter({ ...footer, about: [...(footer?.about || []), { label: '', href: '' }] })} className="text-sm text-[#1F51C6] font-semibold hover:underline">+ Add Link</button>
+                <button onClick={() => setFooter({ ...footer, about: [...(footer?.about || []), { label: '', href: '' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">+ Add Link</button>
               </div>
             </div>
           </div>
@@ -417,13 +416,13 @@ export default function AdminSettingsPage() {
 function Field({ label, value, onChange, textarea, maxLength }: { label: string; value: string; onChange: (v: string) => void; textarea?: boolean; maxLength?: number }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+      <label className="block text-sm font-medium text-slate-600 mb-1">{label}</label>
       {textarea ? (
         <textarea value={value} onChange={(e) => onChange(e.target.value)} rows={3} maxLength={maxLength}
-          className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20 focus:border-[#1F51C6]" />
+          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20 focus:border-[#0f51ec]" />
       ) : (
         <input type="text" value={value} onChange={(e) => onChange(e.target.value)} maxLength={maxLength}
-          className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#1F51C6]/20 focus:border-[#1F51C6]" />
+          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20 focus:border-[#0f51ec]" />
       )}
     </div>
   );
@@ -432,7 +431,7 @@ function Field({ label, value, onChange, textarea, maxLength }: { label: string;
 function SaveButton({ onClick, saving }: { onClick: () => void; saving: boolean }) {
   return (
     <button onClick={onClick} disabled={saving}
-      className="mt-6 inline-flex items-center gap-2 bg-[#1F51C6] text-white px-6 py-2.5 rounded-xl font-semibold hover:bg-[#1F51C6]/90 transition-colors disabled:opacity-50">
+      className="mt-6 inline-flex items-center gap-2 bg-[#0f51ec] text-white px-6 py-2.5 rounded-full font-semibold hover:bg-[#0d44c9] transition-colors disabled:opacity-50">
       {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
       Save
     </button>
@@ -441,10 +440,10 @@ function SaveButton({ onClick, saving }: { onClick: () => void; saving: boolean 
 
 function CollapsibleSection({ title, id, isOpen, onToggle, children }: { title: string; id: string; isOpen: boolean; onToggle: () => void; children: React.ReactNode }) {
   return (
-    <div className="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
-      <button onClick={onToggle} className="w-full flex items-center justify-between px-8 py-4 hover:bg-gray-50 transition-colors">
-        <h3 className="text-lg font-bold text-[#0B1B40]">{title}</h3>
-        {isOpen ? <ChevronUp size={20} className="text-gray-400" /> : <ChevronDown size={20} className="text-gray-400" />}
+    <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+      <button onClick={onToggle} className="w-full flex items-center justify-between px-8 py-4 hover:bg-slate-50 transition-colors">
+        <h3 className="text-lg font-bold text-[#191e3b]">{title}</h3>
+        {isOpen ? <ChevronUp size={20} className="text-slate-400" /> : <ChevronDown size={20} className="text-slate-400" />}
       </button>
       {isOpen && <div className="px-8 pb-8 space-y-4">{children}</div>}
     </div>

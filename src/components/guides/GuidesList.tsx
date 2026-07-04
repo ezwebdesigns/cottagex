@@ -28,8 +28,8 @@ export default function GuidesList({ locale, articles, page, totalPages }: Guide
   return (
     <div className="animate-in fade-in duration-300 max-w-7xl mx-auto px-4 md:px-8 py-10">
       <div className="text-center max-w-2xl mx-auto mb-16">
-        <span className="text-[#1F51C6] font-bold text-sm tracking-widest uppercase bg-blue-50 px-3 py-1.5 rounded-full">Inspiration & Travel Intel</span>
-        <h1 className="text-3xl md:text-5xl font-bold text-[#0B1B40] mt-4 mb-3">The Escape Magazine</h1>
+        <span className="text-[#0f51ec] font-bold text-sm tracking-widest uppercase bg-blue-50 px-3 py-1.5 rounded-full">Inspiration & Travel Intel</span>
+        <h1 className="text-3xl md:text-5xl font-bold text-[#191e3b] mt-4 mb-3">The Escape Magazine</h1>
         <p className="text-slate-500 text-lg">In-depth guides, expert packing lists, and local recommendations to simplify your upcoming cabin retreat.</p>
       </div>
 
@@ -54,7 +54,7 @@ export default function GuidesList({ locale, articles, page, totalPages }: Guide
                     <span className="text-4xl">🏡</span>
                   </div>
                 )}
-                <span className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#0B1B40]">
+                <span className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#191e3b]">
                   {article.category}
                 </span>
               </div>
@@ -64,14 +64,14 @@ export default function GuidesList({ locale, articles, page, totalPages }: Guide
                     {article.date && <span className="flex items-center gap-1"><CalendarDays size={12} /> {article.date}</span>}
                     <span className="flex items-center gap-1"><Clock size={12} /> {article.readTime}</span>
                   </div>
-                  <h3 className="font-bold text-lg text-[#0B1B40] mb-3 group-hover:text-[#1F51C6] transition-colors line-clamp-2 leading-tight">
+                  <h3 className="font-bold text-lg text-[#191e3b] mb-3 group-hover:text-[#0f51ec] transition-colors line-clamp-2 leading-tight">
                     {article.title}
                   </h3>
                   <p className="text-slate-500 text-sm line-clamp-3 mb-6 leading-relaxed">
                     {article.excerpt}
                   </p>
                 </div>
-                <span className="text-[#1F51C6] font-semibold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all mt-auto">
+                <span className="text-[#0f51ec] font-semibold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all mt-auto">
                   Read Article <ChevronRight size={16} />
                 </span>
               </div>
@@ -96,7 +96,7 @@ export default function GuidesList({ locale, articles, page, totalPages }: Guide
               onClick={() => router.push(`/${locale}/guides?page=${p}`)}
               className={`w-10 h-10 rounded-full font-semibold text-sm transition-colors ${
                 p === page
-                  ? 'bg-[#1F51C6] text-white'
+                  ? 'bg-[#0f51ec] text-white'
                   : 'border border-slate-200 text-slate-500 hover:bg-slate-50'
               }`}
             >

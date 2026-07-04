@@ -51,8 +51,8 @@ export default function AdminMessagesPage() {
 
   return (
     <div className="max-w-4xl mx-auto p-6 md:p-10 animate-in fade-in duration-200">
-      <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
-        <h3 className="font-bold text-[#0B1B40] text-lg mb-4">Moderator Inbox ({messages.length})</h3>
+      <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+        <h3 className="font-bold text-[#191e3b] text-lg mb-4">Moderator Inbox ({messages.length})</h3>
         {loading ? (
           <p className="text-slate-400 text-sm">Loading...</p>
         ) : messages.length === 0 ? (
@@ -63,8 +63,8 @@ export default function AdminMessagesPage() {
               <div key={msg.id} className={`py-4 first:pt-0 last:pb-0 ${!msg.read ? 'bg-blue-50/40 -mx-6 px-6 rounded-lg' : ''}`}>
                 <div className="flex justify-between items-start gap-2 mb-2">
                   <div>
-                    <h4 className="font-bold text-[#0B1B40]">{msg.name}</h4>
-                    <p className="text-xs text-[#1F51C6] font-medium">{msg.email}</p>
+                    <h4 className="font-bold text-[#191e3b]">{msg.name}</h4>
+                    <p className="text-xs text-[#0f51ec] font-medium">{msg.email}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-slate-400 bg-slate-50 px-2.5 py-1 rounded-full">
@@ -80,7 +80,7 @@ export default function AdminMessagesPage() {
                     </button>
                   </div>
                 </div>
-                <p className="text-gray-600 text-sm bg-slate-50 p-3 rounded-xl mt-2 italic">&ldquo;{msg.text}&rdquo;</p>
+                <p className="text-slate-600 text-sm bg-slate-50 p-3 rounded-xl mt-2 italic">&ldquo;{msg.text}&rdquo;</p>
               </div>
             ))}
           </div>

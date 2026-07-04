@@ -37,8 +37,8 @@ export default function AdminLibraryPage() {
   return (
     <div className="max-w-5xl mx-auto p-6 md:p-10 animate-in fade-in duration-200">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-[#0B1B40]">Media Library</h1>
-        <label className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-1.5 cursor-pointer transition-colors">
+        <h1 className="text-2xl font-bold text-[#191e3b]">Media Library</h1>
+        <label className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-1.5 cursor-pointer transition-colors">
           <Upload className="w-4 h-4" /> {uploading ? 'Uploading...' : 'Upload Image'}
           <input type="file" accept="image/*" className="hidden" onChange={handleUpload} disabled={uploading} />
         </label>
@@ -46,7 +46,7 @@ export default function AdminLibraryPage() {
 
       <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
         {images.map((img) => (
-          <div key={img.id} className="relative group aspect-square rounded-2xl overflow-hidden border border-gray-200">
+          <div key={img.id} className="relative group aspect-square rounded-2xl overflow-hidden border border-slate-200">
             <img src={img.url} alt={img.name} className="w-full h-full object-cover" loading="lazy" />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-center justify-center">
               <button onClick={() => remove(img.id)} className="p-2 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
@@ -57,7 +57,7 @@ export default function AdminLibraryPage() {
         ))}
       </div>
       {images.length === 0 && (
-        <div className="text-center py-16 text-gray-400">
+        <div className="text-center py-16 text-slate-400">
           <p className="text-lg font-medium mb-2">No images yet</p>
           <p className="text-sm">Upload your first image to get started.</p>
         </div>

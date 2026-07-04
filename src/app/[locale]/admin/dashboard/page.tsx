@@ -1,93 +1,84 @@
 'use client';
 
-import { Eye, ExternalLink, TrendingUp, Star, Mail, Lock } from 'lucide-react';
-import { initialProperties, initialArticles } from '@/lib/mock-data';
+import { useRouter } from 'next/navigation';
+import { Home, FileText, MapPin, Mail, TrendingUp, Eye, Heart, MousePointerClick } from 'lucide-react';
+
+const stats = [
+  { label: 'Total Cottages', value: '8', change: '+2', icon: Home, color: 'bg-[#0f51ec]/10 text-[#0f51ec]' },
+  { label: 'Articles', value: '4', change: '+1', icon: FileText, color: 'bg-amber-100 text-amber-600' },
+  { label: 'Destinations', value: '4', change: '0', icon: MapPin, color: 'bg-green-100 text-green-600' },
+  { label: 'Messages', value: '12', change: '+5', icon: Mail, color: 'bg-purple-100 text-purple-600' },
+];
+
+const activity = [
+  { label: 'Page Views', value: '24.5K', icon: Eye },
+  { label: 'Favorites', value: '1,203', icon: Heart },
+  { label: 'VRBO Clicks', value: '892', icon: MousePointerClick },
+  { label: 'Conversion', value: '3.2%', icon: TrendingUp },
+];
 
 export default function AdminDashboardPage() {
-  const properties = initialProperties;
-  const articles = initialArticles;
+  const router = useRouter();
 
   return (
-    <div className="p-6 md:p-10 animate-in fade-in duration-200">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-extrabold text-[#0B1B40] flex items-center gap-2">
-            <Lock size={24} className="text-[#1F51C6]" /> Performance & Affiliate Analytics
-          </h1>
-        </div>
-        <div className="flex items-center gap-2 bg-emerald-50 text-emerald-800 text-xs px-3 py-1.5 rounded-full font-bold">
-          <TrendingUp size={16} /> Estimated Earnings: +$1,420 USD
+    <div className="p-6 sm:p-8 lg:p-10">
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold text-[#191e3b]">Dashboard</h1>
+        <p className="text-sm text-slate-400 mt-1">Welcome back — here&apos;s what&apos;s happening</p>
+      </div>
+
+      {/* Stats grid */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
+        {stats.map((stat) => (
+          <div key={stat.label} className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-100">
+            <div className={`w-10 h-10 rounded-xl ${stat.color} flex items-center justify-center mb-3`}>
+              <stat.icon className="w-5 h-5" />
+            </div>
+            <p className="text-2xl font-bold text-[#191e3b]">{stat.value}</p>
+            <div className="flex items-center justify-between mt-1">
+              <p className="text-xs text-slate-400">{stat.label}</p>
+              <span className="text-xs font-semibold text-green-500">{stat.change}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Performance */}
+      <div className="p-5 rounded-2xl bg-white border border-slate-100 mb-6">
+        <h3 className="text-sm font-bold text-[#191e3b] mb-4">Performance (30 days)</h3>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {activity.map((item) => (
+            <div key={item.label} className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center">
+                <item.icon className="w-4 h-4 text-slate-500" />
+              </div>
+              <div>
+                <p className="text-lg font-bold text-[#191e3b]">{item.value}</p>
+                <p className="text-xs text-slate-400">{item.label}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      <div className="space-y-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex items-center justify-between">
-            <div>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Global Traffic</p>
-              <h3 className="text-2xl font-black text-[#0B1B40] mt-1">14,280</h3>
-              <span className="text-xs text-emerald-600 font-bold">↑ 12% vs last month</span>
+      {/* Quick actions */}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {[
+          { label: 'Add Cottage', href: '/admin/cottages', icon: Home },
+          { label: 'Write Article', href: '/admin/articles/new', icon: FileText },
+          { label: 'View Messages', href: '/admin/messages', icon: Mail },
+        ].map((action) => (
+          <button
+            key={action.label}
+            onClick={() => router.push(action.href)}
+            className="flex items-center gap-3 p-4 rounded-2xl bg-white border border-slate-100 hover:border-[#0f51ec] hover:shadow-sm transition-all text-left"
+          >
+            <div className="w-10 h-10 rounded-xl bg-[#0f51ec]/10 flex items-center justify-center">
+              <action.icon className="w-5 h-5 text-[#0f51ec]" />
             </div>
-            <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-[#1F51C6]">
-              <Eye size={22} />
-            </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex items-center justify-between">
-            <div>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">VRBO Affiliate Leads</p>
-              <h3 className="text-2xl font-black text-[#0B1B40] mt-1">3,890</h3>
-              <span className="text-xs text-emerald-600 font-bold">↑ 8.3% click conversion</span>
-            </div>
-            <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-[#1F51C6]">
-              <ExternalLink size={22} />
-            </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex items-center justify-between">
-            <div>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Listicle Engagements</p>
-              <h3 className="text-2xl font-black text-[#0B1B40] mt-1">1,120</h3>
-              <span className="text-xs text-[#1F51C6] font-bold">60% of all clicks</span>
-            </div>
-            <div className="w-12 h-12 rounded-2xl bg-yellow-50 flex items-center justify-center text-yellow-600">
-              <Star size={22} />
-            </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex items-center justify-between">
-            <div>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Properties</p>
-              <h3 className="text-2xl font-black text-[#0B1B40] mt-1">{properties.length}</h3>
-              <span className="text-xs text-slate-400">Active listings</span>
-            </div>
-            <div className="w-12 h-12 rounded-2xl bg-red-50 flex items-center justify-center text-red-600">
-              <Mail size={22} />
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-          <h3 className="font-bold text-[#0B1B40] text-lg mb-4">Affiliate Click Trend Volume</h3>
-          <div className="h-48 flex items-end gap-2 pt-6">
-            <div className="flex-1 flex flex-col items-center gap-2">
-              <div className="w-full bg-[#1F51C6]/10 h-16 rounded-t-lg relative hover:bg-[#1F51C6]/20 transition-all"></div>
-              <span className="text-xs text-slate-400">Feb</span>
-            </div>
-            <div className="flex-1 flex flex-col items-center gap-2">
-              <div className="w-full bg-[#1F51C6]/10 h-24 rounded-t-lg relative hover:bg-[#1F51C6]/20 transition-all"></div>
-              <span className="text-xs text-slate-400">Mar</span>
-            </div>
-            <div className="flex-1 flex flex-col items-center gap-2">
-              <div className="w-full bg-[#1F51C6]/10 h-32 rounded-t-lg relative hover:bg-[#1F51C6]/20 transition-all"></div>
-              <span className="text-xs text-slate-400">Apr</span>
-            </div>
-            <div className="flex-1 flex flex-col items-center gap-2">
-              <div className="w-full bg-[#1F51C6] h-44 rounded-t-lg relative"></div>
-              <span className="text-xs font-bold text-[#1F51C6]">May</span>
-            </div>
-          </div>
-        </div>
+            <span className="text-sm font-semibold text-[#191e3b]">{action.label}</span>
+          </button>
+        ))}
       </div>
     </div>
   );

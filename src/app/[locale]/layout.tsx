@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { defaultSettings } from '@/lib/settings-defaults';
-import LocaleLayout from '@/components/layout/LocaleLayout';
+import { TranslationsProvider } from '@/lib/TranslationsProvider';
+import PublicLayoutWrapper from '@/components/PublicLayoutWrapper';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -27,12 +27,11 @@ export default async function LocaleRootLayout({
 }) {
   const { locale } = await params;
 
-  const menuItems = defaultSettings.header.menuItems;
-  const logo = defaultSettings.general.logo;
-
   return (
-    <LocaleLayout locale={locale} menuItems={menuItems} logo={logo}>
-      {children}
-    </LocaleLayout>
+    <TranslationsProvider locale={locale}>
+      <PublicLayoutWrapper>
+        {children}
+      </PublicLayoutWrapper>
+    </TranslationsProvider>
   );
 }

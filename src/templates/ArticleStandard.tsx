@@ -76,21 +76,21 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
       />
       <button
         onClick={() => router.push(`/${locale}/guides`)}
-        className="inline-flex items-center gap-2 text-slate-500 hover:text-[#1F51C6] font-semibold text-sm mb-8 transition-colors bg-white px-4 py-2 rounded-full border border-slate-100 shadow-sm"
+        className="inline-flex items-center gap-2 text-slate-500 hover:text-[#0f51ec] font-semibold text-sm mb-8 transition-colors bg-white px-4 py-2 rounded-full border border-slate-100 shadow-sm"
       >
         <ArrowLeft size={16} /> Back to Guides
       </button>
 
       <div className="mb-8">
-        <span className="text-xs font-bold text-[#1F51C6] uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full">
+        <span className="text-xs font-bold text-[#0f51ec] uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full">
           {article.category}
         </span>
-        <h1 className="text-3xl md:text-5xl font-bold text-[#0B1B40] mt-4 mb-6 leading-tight">
+        <h1 className="text-3xl md:text-5xl font-bold text-[#191e3b] mt-4 mb-6 leading-tight">
           {article.title}
         </h1>
         <div className="flex items-center gap-6 text-sm text-slate-500 border-y border-slate-100 py-4">
           <div className="flex items-center gap-2">
-            <span className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-[#1F51C6]">EC</span>
+            <span className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-[#0f51ec]">EC</span>
             <span className="font-medium text-slate-700">{article.author || 'Chalet Express Editorial Team'}</span>
           </div>
           <div className="flex items-center gap-4 border-l border-slate-200 pl-6">
@@ -142,7 +142,7 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
         </>)}
 
       {article.ctaTitle ? (
-        <div className="bg-[#0B1B40] rounded-[2rem] p-8 text-white mt-16 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="bg-[#191e3b] rounded-[2rem] p-8 text-white mt-16 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h2 className="text-xl font-bold mb-2">{article.ctaTitle}</h2>
           </div>
@@ -151,19 +151,19 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
               href={article.ctaLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-6 py-3 rounded-full font-bold transition-colors whitespace-nowrap text-sm"
+              className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-6 py-3 rounded-full font-bold transition-colors whitespace-nowrap text-sm"
             >
               {article.ctaButton || 'Learn More'}
             </a>
           )}
         </div>
       ) : (
-        <div className="bg-[#0B1B40] rounded-[2rem] p-8 text-white mt-16 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="bg-[#191e3b] rounded-[2rem] p-8 text-white mt-16 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h2 className="text-xl font-bold mb-2">Inspired by this reading?</h2>
             <p className="text-blue-200 text-sm">Find and compare your dream cottage across Canada now.</p>
           </div>
-          <button onClick={() => router.push(`/${locale}`)} className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-6 py-3 rounded-full font-bold transition-colors whitespace-nowrap text-sm">
+          <button onClick={() => router.push(`/${locale}`)} className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-6 py-3 rounded-full font-bold transition-colors whitespace-nowrap text-sm">
             Back to Homepage
           </button>
         </div>

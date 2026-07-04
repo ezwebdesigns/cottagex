@@ -1,14 +1,12 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-brand-blue: #0f51ec;
+  --color-brand-navy: #191e3b;
+  --color-brand-sky: #77e1fb;
+  --color-background: #ffffff;
+  --color-foreground: #191e3b;
 }
 
 * {
@@ -16,6 +14,14 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+/* Hide scrollbar for category bar and other overflow containers */
+[style*="scrollbar-width: none"] {
+  -ms-overflow-style: none;
+}
+[style*="scrollbar-width: none"]::-webkit-scrollbar {
+  display: none;
 }

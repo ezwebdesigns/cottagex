@@ -1,16 +1,9 @@
 import type { Metadata } from "next";
-import { db } from '@/lib/db';
-import { articles } from '@/db/schema';
-import { desc, eq } from 'drizzle-orm';
-import { getAllSettings } from '@/lib/cached-settings';
-import { defaultSettings } from '@/lib/settings-defaults';
-import HeroSection from '@/components/home/HeroSection';
-import TrendingDestinations from '@/components/home/TrendingDestinations';
-import PropertyGallery from '@/components/home/PropertyGallery';
-import ExploreSection from '@/components/home/ExploreSection';
-import SearchByCity from '@/components/home/SearchByCity';
-import InspirationSection from '@/components/home/InspirationSection';
-import PartnershipPromo from '@/components/home/PartnershipPromo';
+import { getCottages } from '@/lib/cottages';
+import Hero from '@/components/cottagex/Hero';
+import CategoryBar from '@/components/cottagex/CategoryBar';
+import PropertyGrid from '@/components/cottagex/PropertyGrid';
+import type { Chalet } from '@/components/cottagex/PropertyCard';
 
 export const revalidate = 3600;
 
@@ -25,38 +18,102 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+const allProvinceIds = ['ontario', 'quebec', 'britishColumbia', 'alberta'];
+
+const destinationMeta: Record<string, { name: string; nameFr: string; tagline: string; taglineFr: string; image: string }> = {
+  ontario: {
+    name: 'Ontario', nameFr: 'Ontario',
+    tagline: 'Land of a Thousand Lakes', taglineFr: 'Le pays des mille lacs',
+    image: 'https://images.unsplash.com/photo-1469768411273-917c5c855b87?auto=format&fit=crop&w=1600&q=80',
+  },
+  quebec: {
+    name: 'Quebec', nameFr: 'Québec',
+    tagline: 'European Charm, Wild Nature', taglineFr: 'Charme européen, nature sauvage',
+    image: 'https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&w=1600&q=80',
+  },
+  britishColumbia: {
+    name: 'British Columbia', nameFr: 'Colombie-Britannique',
+    tagline: 'Where Mountains Meet the Sea', taglineFr: 'Où les montagnes rencontrent la mer',
+    image: 'https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?auto=format&fit=crop&w=1600&q=80',
+  },
+  alberta: {
+    name: 'Alberta', nameFr: 'Alberta',
+    tagline: 'Rocky Mountain Majesty', taglineFr: 'La majesté des Rocheuses',
+    image: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1600&q=80',
+  },
+};
+
+const provinceDisplay: Record<string, string> = {
+  ontario: 'Ontario',
+  quebec: 'Quebec',
+  'british-columbia': 'British Columbia',
+  alberta: 'Alberta',
+};
+
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
 
-  const [all, recentArticles] = await Promise.all([
-    getAllSettings().catch(() => ({} as Record<string, any>)),
-    db.select().from(articles).where(eq(articles.isPublished, true)).orderBy(desc(articles.createdAt)).catch(() => []),
-  ]);
+  const cottages = await getCottages({ limit: 12, sort: 'rating', featuredOnly: false }).catch(() => []);
 
-  const hero = all.homepage_hero ?? defaultSettings.homepage_hero;
-  const destinations = all.homepage_destinations ?? defaultSettings.homepage_destinations;
-  const gallery = all.homepage_gallery ?? defaultSettings.homepage_gallery;
-  const search = all.homepage_search ?? defaultSettings.homepage_search;
-  const inspiration = all.homepage_inspiration ?? defaultSettings.homepage_inspiration;
-  const explore = all.homepage_explore ?? defaultSettings.homepage_explore;
-  const cta = all.homepage_cta ?? defaultSettings.homepage_cta;
-
-  const articlePreviews = (recentArticles as any[]).slice(0, 4).map(a => ({
-    id: a.id, title: a.title, slug: a.slug, excerpt: a.excerpt || '',
-    date: a.publishedAt ? new Date(a.publishedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : '',
-    readTime: `${Math.max(1, Math.ceil((a.content || '').split(/\s+/).length / 200))} min read`,
-    category: a.category || 'Articles', image: a.featuredImage || '',
+  const displayChalets: Chalet[] = cottages.map((c) => ({
+    id: String(c.id),
+    name: c.name,
+    location: provinceDisplay[c.province] || c.province || '',
+    province: c.province || '',
+    price: c.price_cad || 0,
+    rating: c.rating || 4.5,
+    badge: c.type || 'Featured',
+    image: c.thumbnail || (Array.isArray(c.photos) && c.photos[0]) || 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=800&q=80',
+    description: Array.isArray(c.amenities) ? c.amenities.slice(0, 3).join(' • ') : '',
+    vrboUrl: c.affiliate_url || c.google_link || '#',
+    beds: c.bedrooms || 0,
+    baths: c.bathrooms || 0,
+    guests: c.sleeps || 0,
   }));
 
   return (
     <div>
-      <HeroSection tag={hero.tag} title={hero.title} description={hero.description} image={hero.image} imageAlt={hero.imageAlt} />
-      <TrendingDestinations locale={locale} title={destinations.title} description={destinations.description} items={destinations.items} />
-      <PropertyGallery title={gallery.title} description={gallery.description} tabs={gallery.tabs} />
-      <SearchByCity title={search.title} description={search.description} />
-      <InspirationSection locale={locale} title={inspiration.title} description={inspiration.description} articles={articlePreviews} />
-      <ExploreSection title={explore.title} description={explore.description} subtitle={explore.subtitle} items={explore.items} />
-      <PartnershipPromo locale={locale} title={cta.title} description={cta.description} buttonText={cta.buttonText} buttonLink={cta.buttonLink} image={cta.image} imageAlt={cta.imageAlt} />
+      <Hero />
+      <CategoryBar />
+
+      <PropertyGrid
+        title="Featured Chalets"
+        subtitle="Handpicked escapes across the Canadian wilderness"
+        chalets={displayChalets}
+        onViewAll="View all chalets"
+      />
+
+      <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-1" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+          Destinations
+        </h2>
+        <p className="text-sm text-slate-500 mb-6">Handpicked escapes across the Canadian wilderness</p>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {allProvinceIds.map((provId) => {
+            const dest = destinationMeta[provId];
+            const name = locale === 'fr' ? dest.nameFr : dest.name;
+            const tagline = locale === 'fr' ? dest.taglineFr : dest.tagline;
+            return (
+              <a
+                key={provId}
+                href={`/${locale}/cottage-country/${provId}`}
+                className="group relative h-48 sm:h-56 rounded-[2rem] overflow-hidden block"
+              >
+                <img
+                  src={dest.image}
+                  alt={name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#191e3b]/90 via-[#191e3b]/30 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <h3 className="font-bold text-base sm:text-lg" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{name}</h3>
+                  <p className="text-xs text-white/70 mt-0.5">{tagline}</p>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </section>
     </div>
   );
 }

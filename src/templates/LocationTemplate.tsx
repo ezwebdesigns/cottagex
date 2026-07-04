@@ -8,7 +8,7 @@ import FeaturedCottages from '@/components/FeaturedCottages';
 import SourceBadge from '@/components/SourceBadge';
 import StarRating from '@/components/StarRating';
 import { BreadcrumbSchema, PlaceSchema } from '@/components/seo/SchemaOrg';
-import { initialProperties, ontarioSearchData, quebecSearchData, novaScotiaSearchData, britishColumbiaSearchData, newBrunswickSearchData, albertaSearchData, manitobaSearchData, peiSearchData, saskatchewanSearchData } from '@/lib/mock-data';
+import { ontarioSearchData, quebecSearchData, novaScotiaSearchData, britishColumbiaSearchData, newBrunswickSearchData, albertaSearchData, manitobaSearchData, peiSearchData, saskatchewanSearchData } from '@/lib/mock-data';
 import Image from 'next/image';
 
 type LocationTemplateProps = {
@@ -82,7 +82,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         bookingUrl: c.affiliate_url || c.google_link || 'https://www.vrbo.com',
       }));
     }
-    return initialProperties.filter(p => p.province === 'Ontario').map(p => ({ ...p, imageAlt: undefined, bookingUrl: 'https://www.vrbo.com', source: '' }));
+    return [];
   }, [cottages]);
 
   const searchDataMap: Record<string, typeof ontarioSearchData> = {
@@ -172,11 +172,11 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
           <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-6 font-light">
             {introDesc}
           </p>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#0B1B40] mb-3">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#191e3b] mb-3">
             {introTitle}
           </h2>
           {introSub && (
-            <p className="text-sm md:text-base text-[#1F51C6] leading-relaxed max-w-2xl mx-auto font-semibold">
+            <p className="text-sm md:text-base text-[#0f51ec] leading-relaxed max-w-2xl mx-auto font-semibold">
               {introSub}
             </p>
           )}
@@ -187,11 +187,11 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {introHighlights.map((h: any, i: number) => (
             <div key={i} className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex gap-4 items-start">
-              <div className="p-3 bg-blue-50 text-[#1F51C6] rounded-2xl">
+              <div className="p-3 bg-blue-50 text-[#0f51ec] rounded-2xl">
                 {iconMap[h.icon] || <Compass size={24} />}
               </div>
               <div>
-                <h3 className="font-bold text-lg text-[#0B1B40] mb-2">{h.title}</h3>
+                <h3 className="font-bold text-lg text-[#191e3b] mb-2">{h.title}</h3>
                 <p className="text-slate-600 text-sm leading-relaxed">{h.description}</p>
               </div>
             </div>
@@ -202,7 +202,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
           <FeaturedCottages shortcode={featured.shortcode} fallbackTitle={featured.title} fallbackDesc={featured.description} />
         ) : (
           <div className="mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#0B1B40] mb-2">{featuredTitle}</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#191e3b] mb-2">{featuredTitle}</h2>
             <p className="text-slate-500 mb-8">{featuredDesc}</p>
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
               {displayCottages.map((prop) => (
@@ -215,23 +215,23 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
                     <div>
                       <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-1 md:mb-3 gap-1">
                         <div className="flex items-center gap-1 text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider line-clamp-1">
-                          <MapPin size={11} className="text-[#1F51C6]" />
+                          <MapPin size={11} className="text-[#0f51ec]" />
                           <span>{prop.location}</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <StarRating rating={parseFloat(prop.rating) || 0} />
-                          <span className="text-[10px] md:text-xs font-bold text-[#0B1B40]">{prop.rating}</span>
+                          <span className="text-[10px] md:text-xs font-bold text-[#191e3b]">{prop.rating}</span>
                         </div>
                       </div>
-                      <h3 className="text-sm md:text-xl font-bold text-[#0B1B40] mb-2 leading-tight">{prop.title}</h3>
+                      <h3 className="text-sm md:text-xl font-bold text-[#191e3b] mb-2 leading-tight">{prop.title}</h3>
                       <p className="hidden md:block text-slate-600 text-sm mb-6 leading-relaxed">{prop.description}</p>
                     </div>
                     <div className="pt-2 md:pt-4 border-t border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-2">
                       <div>
-                        <span className="text-sm md:text-2xl font-black text-[#1F51C6]">${prop.price}</span>
+                        <span className="text-sm md:text-2xl font-black text-[#0f51ec]">${prop.price}</span>
                         <span className="text-[10px] md:text-xs text-slate-500 font-medium">/night</span>
                       </div>
-                      <a href={prop.bookingUrl} target="_blank" rel="noopener noreferrer" className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-3 md:px-5 py-1.5 md:py-2.5 rounded-full text-[11px] md:text-sm font-semibold transition-colors inline-flex items-center justify-center gap-1.5 w-full md:w-auto">
+                      <a href={prop.bookingUrl} target="_blank" rel="noopener noreferrer" className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-3 md:px-5 py-1.5 md:py-2.5 rounded-full text-[11px] md:text-sm font-semibold transition-colors inline-flex items-center justify-center gap-1.5 w-full md:w-auto">
                         Check Availability <ExternalLink size={10} />
                       </a>
                     </div>
@@ -243,14 +243,14 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         )}
 
         {ctaData.title && (
-          <div className="bg-[#0B1B40] rounded-3xl overflow-hidden relative flex flex-col md:flex-row items-center mb-16">
+          <div className="bg-[#191e3b] rounded-3xl overflow-hidden relative flex flex-col md:flex-row items-center mb-16">
             <div className="w-full md:w-1/2 p-8 md:p-12 z-10 text-white">
               <h2 className="text-2xl md:text-4xl font-bold mb-4 leading-tight">{ctaData.title}</h2>
               {ctaData.description && <p className="text-slate-300 mb-8 max-w-md text-sm leading-relaxed">{ctaData.description}</p>}
               {ctaData.buttonText && ctaData.buttonLink && (
                 <a
                   href={ctaData.buttonLink.startsWith('http') ? ctaData.buttonLink : ctaData.buttonLink.startsWith('/') ? ctaData.buttonLink : `/${locale}/${ctaData.buttonLink}`}
-                  className="inline-flex bg-[#1F51C6] hover:bg-[#163FA3] text-white px-6 py-3 rounded-full font-bold transition-all items-center gap-2 text-sm shadow-md"
+                  className="inline-flex bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-6 py-3 rounded-full font-bold transition-all items-center gap-2 text-sm shadow-md"
                 >
                   {ctaData.buttonText}
                 </a>
@@ -272,7 +272,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         />
 
         {(learnMore.title || learnMore.image) && (
-          <div className="bg-[#0B1B40] rounded-3xl p-8 md:p-12 mb-16">
+          <div className="bg-[#191e3b] rounded-3xl p-8 md:p-12 mb-16">
             <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 items-center">
               <div className="md:col-span-3 text-white">
                 {learnMore.title && <h2 className="text-2xl md:text-3xl font-bold mb-4">{learnMore.title}</h2>}
@@ -289,7 +289,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
 
         <div className="mb-16">
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-extrabold text-[#0B1B40] tracking-tight">{searchTitle}</h2>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-[#191e3b] tracking-tight">{searchTitle}</h2>
             <p className="text-slate-500 mt-2">{searchDesc}</p>
           </div>
 
@@ -297,20 +297,20 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
             {searchData.map((data) => (
               <div key={data.city} className="bg-white rounded-3xl p-4 md:p-6 border border-slate-100 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
                 <div>
-                  <h3 className="text-lg md:text-xl font-extrabold text-[#0B1B40] border-b border-slate-50 pb-2 md:pb-3 mb-3 md:mb-4">{data.city}</h3>
+                  <h3 className="text-lg md:text-xl font-extrabold text-[#191e3b] border-b border-slate-50 pb-2 md:pb-3 mb-3 md:mb-4">{data.city}</h3>
                   <ul className="space-y-2 md:space-y-3">
                     {data.categories.map((cat, idx) => {
                       const linkKey = `${data.city}|${cat}`;
                       const href = linkMap[linkKey] || 'https://www.vrbo.com/search';
                       return (
                         <li key={idx}>
-                          <a href={href} target="_blank" rel="noopener noreferrer" className="text-[#1F51C6] hover:text-[#163FA3] text-xs font-normal hover:underline block transition-colors line-clamp-1">{cat}</a>
+                          <a href={href} target="_blank" rel="noopener noreferrer" className="text-[#0f51ec] hover:text-[#0d44c9] text-xs font-normal hover:underline block transition-colors line-clamp-1">{cat}</a>
                         </li>
                       );
                     })}
                   </ul>
                 </div>
-                <button onClick={() => setActiveMoreCity(data)} className="text-[#1F51C6]/80 hover:text-[#1F51C6] text-[11px] md:text-xs font-bold mt-4 md:mt-5 text-left inline-flex items-center gap-1 hover:underline">
+                <button onClick={() => setActiveMoreCity(data)} className="text-[#0f51ec]/80 hover:text-[#0f51ec] text-[11px] md:text-xs font-bold mt-4 md:mt-5 text-left inline-flex items-center gap-1 hover:underline">
                   + 6 more
                 </button>
               </div>
@@ -318,7 +318,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
           </div>
         </div>
 
-        <div className="bg-[#0B1B40] rounded-3xl p-8 md:p-12 text-white">
+        <div className="bg-[#191e3b] rounded-3xl p-8 md:p-12 text-white">
           <div className="md:grid md:grid-cols-5 md:gap-12 md:items-center">
             <div className="md:col-span-3">
               <h3 className="text-xl md:text-3xl font-bold mb-4">{pageData?.ctaTitle || `When is the Best Time to Visit ${locName}?`}</h3>
@@ -332,11 +332,11 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
             </div>
             <div className="md:col-span-2 md:flex md:justify-center mt-6 md:mt-0">
               {(pageData?.ctaButton && pageData?.ctaLink) ? (
-                <a href={pageData.ctaLink.startsWith('http') ? pageData.ctaLink : pageData.ctaLink.startsWith('/') ? pageData.ctaLink : `/${locale}/${pageData.ctaLink}`} className="inline-flex bg-[#1F51C6] hover:bg-[#163FA3] text-white px-8 py-3.5 rounded-full font-bold transition-colors items-center gap-2 text-base shadow-md whitespace-nowrap">
+                <a href={pageData.ctaLink.startsWith('http') ? pageData.ctaLink : pageData.ctaLink.startsWith('/') ? pageData.ctaLink : `/${locale}/${pageData.ctaLink}`} className="inline-flex bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-8 py-3.5 rounded-full font-bold transition-colors items-center gap-2 text-base shadow-md whitespace-nowrap">
                   {pageData.ctaButton}
                 </a>
               ) : (
-                <button onClick={() => router.push(`/${locale}/guides`)} className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-8 py-3.5 rounded-full font-bold transition-colors inline-flex items-center gap-2 text-base shadow-md whitespace-nowrap">
+                <button onClick={() => router.push(`/${locale}/guides`)} className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-8 py-3.5 rounded-full font-bold transition-colors inline-flex items-center gap-2 text-base shadow-md whitespace-nowrap">
                   View Fall & Winter Guides <BookOpen size={16} />
                 </button>
               )}
@@ -351,19 +351,19 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
             <button onClick={() => setActiveMoreCity(null)} className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-700 bg-slate-50 hover:bg-slate-100 rounded-full transition-colors">
               <X size={18} />
             </button>
-            <h3 className="text-2xl font-black text-[#0B1B40] mb-2">{activeMoreCity.city}</h3>
+            <h3 className="text-2xl font-black text-[#191e3b] mb-2">{activeMoreCity.city}</h3>
             <p className="text-sm text-slate-400 mb-6">Explore expanded niche categories and localized cabin listings.</p>
             <div className="grid grid-cols-2 gap-3">
               {activeMoreCity.more.map((item, idx) => {
                 const linkKey = `${activeMoreCity.city}|${item}`;
                 const href = linkMap[linkKey] || 'https://www.vrbo.com/search';
                 return (
-                  <a key={idx} href={href} target="_blank" rel="noopener noreferrer" className="bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-[#1F51C6] p-3 rounded-full text-xs font-normal border border-slate-100 transition-colors text-center">{item}</a>
+                  <a key={idx} href={href} target="_blank" rel="noopener noreferrer" className="bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-[#0f51ec] p-3 rounded-full text-xs font-normal border border-slate-100 transition-colors text-center">{item}</a>
                 );
               })}
             </div>
             <div className="mt-8 pt-6 border-t border-slate-100 flex justify-end">
-              <button onClick={() => setActiveMoreCity(null)} className="bg-[#0B1B40] hover:bg-slate-800 text-white px-6 py-2.5 rounded-full text-xs font-bold transition-colors">Close View</button>
+              <button onClick={() => setActiveMoreCity(null)} className="bg-[#191e3b] hover:bg-slate-800 text-white px-6 py-2.5 rounded-full text-xs font-bold transition-colors">Close View</button>
             </div>
           </div>
         </div>
