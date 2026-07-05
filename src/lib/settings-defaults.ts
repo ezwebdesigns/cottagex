@@ -102,9 +102,6 @@ export const defaultSettings: Record<string, any> = {
     logo: "",
     favicon: "",
   },
-  maintenance: {
-    enabled: false,
-  },
   seo: {
     defaultTitle: "Canadian Cottage Rentals - Chalet Express",
     defaultDescription: "Discover premium lake houses, mountain lodges, and wilderness cabins across Canada. Curated cottage rentals with secure VRBO booking.",

@@ -32,7 +32,6 @@ export default function AdminSettingsPage() {
   const [saved, setSaved] = useState(false);
 
   const [general, setGeneral] = useState<any>(null);
-  const [maintenance, setMaintenance] = useState<any>(null);
   const [seo, setSeo] = useState<any>(null);
   const [header, setHeader] = useState<any>(null);
   const [footer, setFooter] = useState<any>(null);
@@ -56,7 +55,6 @@ export default function AdminSettingsPage() {
 
   useEffect(() => {
     fetchSection('general').then(setGeneral);
-    fetchSection('maintenance').then(setMaintenance);
     fetchSection('seo').then(setSeo);
     fetchSection('header').then(setHeader);
     fetchSection('footer').then(setFooter);
@@ -123,22 +121,6 @@ export default function AdminSettingsPage() {
             <ImageUploader label="Favicon" value={general.favicon} onChange={(v) => setGeneral({ ...general, favicon: v })} />
           </div>
           <SaveButton onClick={() => saveSection('general', general)} saving={saving} />
-
-          <hr className="my-8 border-slate-100" />
-
-          <h3 className="text-lg font-bold text-[#191e3b] mb-4">Maintenance Mode</h3>
-          <div className="space-y-4">
-            <label className="flex items-center gap-3 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={maintenance?.enabled ?? false}
-                onChange={(e) => setMaintenance({ ...maintenance, enabled: e.target.checked })}
-                className="w-5 h-5 rounded border-slate-300 text-[#0f51ec] focus:ring-[#0f51ec]/20"
-              />
-              <span className="text-sm text-slate-600">Enable maintenance mode (public sees maintenance page, admins can still access)</span>
-            </label>
-          </div>
-          <SaveButton onClick={() => saveSection('maintenance', maintenance)} saving={saving} />
         </div>
       )}
 
