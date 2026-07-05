@@ -1,5 +1,5 @@
 -- ============================================================
--- Canada Cottage Rentals — Neon PostgreSQL Schema
+-- Canada Cottage Rentals — Supabase PostgreSQL Schema
 -- Table: affiliatecottages
 -- ============================================================
 

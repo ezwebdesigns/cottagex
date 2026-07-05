@@ -1,6 +1,6 @@
 /**
  * lib/cottages.js
- * Requêtes Neon pour les cottages avec filtres et tri
+ * Requêtes Supabase pour les cottages avec filtres et tri
  *
  * Usage:
  *   import { getCottages } from '@/lib/cottages'

@@ -1,6 +1,6 @@
 /**
  * seed-cottages.mjs
- * Constitue le catalogue dans Neon (table: affiliatecottages)
+ * Constitue le catalogue dans Supabase (table: affiliatecottages)
  *
  * Usage:
  *   node --env-file=.env scripts/seed-cottages.mjs
@@ -18,7 +18,7 @@ const { Pool } = pkg
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
 
 const SERPAPI_KEY     = process.env.SERPAPI_KEY  || 'REMPLACE_PAR_TA_CLE'
-const DATABASE_URL    = process.env.DATABASE_URL || 'REMPLACE_PAR_TON_URL_NEON'
+const DATABASE_URL    = process.env.DATABASE_URL || 'REMPLACE_PAR_TON_URL_SUPABASE'
 const ALLOWED_SOURCES = ['Vrbo.com', 'Expedia.com', 'Hotels.com', 'VRBO']
 const ALLOWED_DOMAINS = ['vrbo.com', 'expedia.com']
 
@@ -166,7 +166,7 @@ async function fetchDestination(dest, checkin, checkout) {
   return data.properties || []
 }
 
-// ─── NEON UPSERT ─────────────────────────────────────────────────────────────
+// ─── UPSERT ──────────────────────────────────────────────────────────────────
 
 async function upsert(client, c) {
   await client.query(`
@@ -226,7 +226,7 @@ async function seed() {
 
   console.log(`\n🏕️  Canada Cottage Rentals — Seed`)
   console.log(`📅  Dates        : ${checkin} → ${checkout}`)
-  console.log(`🗄️  Base          : Neon PostgreSQL`)
+  console.log(`🗄️  Base          : Supabase PostgreSQL`)
   console.log(`🔍  Filtres      : VRBO/Expedia strict (source + google_link)`)
   console.log(`🇨🇦  Mode         : ${targetSlugs.length > 0 ? 'ciblé → ' + targetSlugs.join(', ') : 'complet'}`)
   console.log(`📍  Destinations : ${destinations.length}\n`)
