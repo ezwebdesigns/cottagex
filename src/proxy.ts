@@ -12,11 +12,17 @@ export function proxy(request: NextRequest) {
 
   if (isStatic) return NextResponse.next()
 
-  if (process.env.MAINTENANCE_MODE === 'true') {
-    return NextResponse.rewrite(new URL('/maintenance', request.url))
-  }
+  if (process.env.MAINTENANCE_MODE !== 'true') return NextResponse.next()
 
-  return NextResponse.next()
+  const isAdmin =
+    pathname.includes('/admin/') ||
+    pathname.includes('/login') ||
+    pathname.includes('/register') ||
+    pathname.includes('/api/auth')
+
+  if (isAdmin) return NextResponse.next()
+
+  return NextResponse.rewrite(new URL('/maintenance', request.url))
 }
 
 export const config = {
