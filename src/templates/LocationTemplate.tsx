@@ -141,6 +141,27 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
               {ld.learnMore.description && (
                 <p className="text-slate-500 mt-4 text-sm sm:text-base leading-relaxed">{ld.learnMore.description}</p>
               )}
+              {learnMoreFaq.length > 0 && (
+                <div className="mt-8 space-y-0">
+                  {learnMoreFaq.map((item: any, i: number) => {
+                    const isOpen = openLearnMoreFaq === i;
+                    return (
+                      <div key={i} className="border-b border-slate-200">
+                        <button
+                          onClick={() => setOpenLearnMoreFaq(isOpen ? null : i)}
+                          className="flex items-center justify-between w-full py-4 text-left"
+                        >
+                          <span className="font-medium text-sm text-[#191e3b] pr-3">{item.q}</span>
+                          <ChevronDown className={`w-4 h-4 text-[#0f51ec] shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 pb-4' : 'max-h-0'}`}>
+                          <p className="text-sm text-slate-500 leading-relaxed">{item.a}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
             {ld.learnMore?.image && (
               <div className="w-full md:w-1/2">
@@ -148,27 +169,6 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
               </div>
             )}
           </div>
-          {learnMoreFaq.length > 0 && (
-            <div className="max-w-3xl mx-auto mt-10 space-y-0">
-              {learnMoreFaq.map((item: any, i: number) => {
-                const isOpen = openLearnMoreFaq === i;
-                return (
-                  <div key={i} className="border-b border-slate-200">
-                    <button
-                      onClick={() => setOpenLearnMoreFaq(isOpen ? null : i)}
-                      className="flex items-center justify-between w-full py-4 text-left"
-                    >
-                      <span className="font-medium text-sm text-[#191e3b] pr-3">{item.q}</span>
-                      <ChevronDown className={`w-4 h-4 text-[#0f51ec] shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                    <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 pb-4' : 'max-h-0'}`}>
-                      <p className="text-sm text-slate-500 leading-relaxed">{item.a}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
         </section>
       )}
 
