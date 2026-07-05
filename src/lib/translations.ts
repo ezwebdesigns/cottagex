@@ -196,7 +196,11 @@ export const translations = {
       { id: 'skiing', label: 'Skiing' },
       { id: 'pools', label: 'Pools' },
       { id: 'hiking', label: 'Hiking' },
-    ]
+    ],
+    maintenance: {
+      title: 'Under Maintenance',
+      description: 'We are currently performing scheduled maintenance to improve your experience. Please check back shortly.',
+    },
   },
   fr: {
     nav: {
@@ -395,6 +399,10 @@ export const translations = {
       { id: 'skiing', label: 'Ski' },
       { id: 'pools', label: 'Piscines' },
       { id: 'hiking', label: 'Randonnée' },
-    ]
-  }
+    ],
+    maintenance: {
+      title: 'En Maintenance',
+      description: 'Nous effectuons actuellement une maintenance programmée pour améliorer votre expérience. Veuillez revenir bientôt.',
+    },
+  },
 };
