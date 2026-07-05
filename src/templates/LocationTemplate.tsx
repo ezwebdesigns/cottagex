@@ -18,9 +18,7 @@ type LocationTemplateProps = {
 
 const highlightIconMap: Record<string, React.ReactNode> = {
   Waves: <Waves size={20} />, Trees: <Trees size={20} />, Compass: <Compass size={20} />,
-  MapPin: <MapPin size={20} />, Mountain: <Mountain size={20} />, TreePine: <></>,
-  Sunrise: <></>, Sailboat: <></>, Bath: <></>, Users: <></>, Gem: <></>, Dog: <></>,
-  Heart: <></>, Home: <HomeIcon size={20} />, Umbrella: <></>, Building2: <></>, MountainSnow: <></>, Footprints: <></>,
+  MapPin: <MapPin size={20} />, Mountain: <Mountain size={20} />,
 };
 
 export default function LocationTemplate({ locale, slug, pageData, name: nameProp, cottages }: LocationTemplateProps) {
@@ -40,9 +38,12 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
   const introDesc = intro.description || '';
   const highlights = intro.highlights || [];
 
+  const learnMoreFaq = ld.learnMore?.faq || [];
+
   const faqItems: any[] = Array.isArray(pageData?.faq) ? pageData.faq : [];
 
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [openLearnMoreFaq, setOpenLearnMoreFaq] = useState<number | null>(0);
 
   const chaletCards = useMemo(() => {
     return (cottages || []).map(c => ({
@@ -147,17 +148,27 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
               </div>
             )}
           </div>
-        </section>
-      )}
-
-      {ld.search?.title && (
-        <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-slate-50">
-          <div className="text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{ld.search.title}</h2>
-            {ld.search.description && (
-              <p className="text-slate-500 mt-2 text-sm sm:text-base">{ld.search.description}</p>
-            )}
-          </div>
+          {learnMoreFaq.length > 0 && (
+            <div className="max-w-3xl mx-auto mt-10 space-y-0">
+              {learnMoreFaq.map((item: any, i: number) => {
+                const isOpen = openLearnMoreFaq === i;
+                return (
+                  <div key={i} className="border-b border-slate-200">
+                    <button
+                      onClick={() => setOpenLearnMoreFaq(isOpen ? null : i)}
+                      className="flex items-center justify-between w-full py-4 text-left"
+                    >
+                      <span className="font-medium text-sm text-[#191e3b] pr-3">{item.q}</span>
+                      <ChevronDown className={`w-4 h-4 text-[#0f51ec] shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 pb-4' : 'max-h-0'}`}>
+                      <p className="text-sm text-slate-500 leading-relaxed">{item.a}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </section>
       )}
 
@@ -171,6 +182,38 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         imageAlt={ld.cta?.imageAlt}
         fullWidth
       />
+
+      {ld.search?.title && (
+        <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-slate-50">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{ld.search.title}</h2>
+            {ld.search.description && (
+              <p className="text-slate-500 mt-2 text-sm sm:text-base">{ld.search.description}</p>
+            )}
+          </div>
+          {ld.search.columns && ld.search.columns.length > 0 && (
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+              {ld.search.columns.map((col: any, ci: number) => (
+                <div key={ci} className="bg-white rounded-[2rem] p-5 sm:p-6 border border-slate-100 shadow-sm">
+                  <h3 className="text-lg sm:text-xl font-bold text-[#191e3b] border-b border-slate-50 pb-3 mb-3">{col.title}</h3>
+                  <ul className="space-y-2">
+                    {(col.links || []).map((link: any, li: number) => (
+                      <li key={li}>
+                        <a
+                          href={link.url}
+                          className="text-sm text-[#0f51ec] hover:underline"
+                        >
+                          {link.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+      )}
 
       {faqItems.length > 0 && (
         <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-slate-50">

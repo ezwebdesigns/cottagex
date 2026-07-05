@@ -11,7 +11,7 @@ export default function EditDestinationPage() {
   const [title, setTitle] = useState(''); const [slug, setSlug] = useState('');
   const [seoTitle, setSeoTitle] = useState(''); const [metaDescription, setMetaDescription] = useState('');
   const [featuredImage, setFeaturedImage] = useState(''); const [isPublished, setIsPublished] = useState(true);
-  const [locationData, setLocationData] = useState<any>({ hero: {}, intro: { highlights: [] }, featured: {}, cta: {}, explore: { items: [] }, search: {}, learnMore: {} });
+  const [locationData, setLocationData] = useState<any>({ hero: {}, intro: { highlights: [] }, featured: {}, cta: {}, search: { columns: [] }, learnMore: { faq: [] } });
   const [loading, setLoading] = useState(true); const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function EditDestinationPage() {
       setTitle(p.title); setSlug(p.slug);
       setSeoTitle(p.seoTitle); setMetaDescription(p.metaDescription);
       setFeaturedImage(p.featuredImage || ''); setIsPublished(p.isPublished);
-      setLocationData(typeof p.locationData === 'object' && p.locationData !== null ? p.locationData : { hero: {}, intro: { highlights: [] }, featured: {}, cta: {}, explore: { items: [] }, search: {}, learnMore: {} });
+      setLocationData(typeof p.locationData === 'object' && p.locationData !== null ? p.locationData : { hero: {}, intro: { highlights: [] }, featured: {}, cta: {}, search: { columns: [] }, learnMore: { faq: [] } });
       setLoading(false);
     });
   }, [params.id]);
@@ -130,6 +130,49 @@ export default function EditDestinationPage() {
         </div>
 
         <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
+          <h2 className="text-lg font-semibold text-[#191e3b]">Learn More Section</h2>
+          <div className="grid grid-cols-5 gap-6">
+            <div className="col-span-3 space-y-4">
+              <div><label className="block text-sm font-medium text-slate-700 mb-1">Title</label><input value={locationData.learnMore?.title ?? ''} onChange={e => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, title: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" /></div>
+              <div><label className="block text-sm font-medium text-slate-700 mb-1">Subtitle</label><input value={locationData.learnMore?.subtitle ?? ''} onChange={e => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, subtitle: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" placeholder="A short subtitle above the title" /></div>
+              <div><label className="block text-sm font-medium text-slate-700 mb-1">Description</label><textarea value={locationData.learnMore?.description ?? ''} onChange={e => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, description: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec] h-28" /></div>
+              <div>
+                <h4 className="text-sm font-semibold text-slate-600 mb-3">FAQ Items</h4>
+                {(locationData.learnMore?.faq ?? []).map((item: any, i: number) => (
+                  <div key={i} className="border border-slate-200 rounded-xl p-4 mb-4 space-y-3">
+                    <input placeholder="Question" value={item.q} onChange={(e) => {
+                      const arr = [...(locationData.learnMore?.faq || [])]; arr[i] = { ...arr[i], q: e.target.value };
+                      setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, faq: arr } });
+                    }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
+                    <textarea placeholder="Answer" value={item.a} onChange={(e) => {
+                      const arr = [...(locationData.learnMore?.faq || [])]; arr[i] = { ...arr[i], a: e.target.value };
+                      setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, faq: arr } });
+                    }} rows={3} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
+                    <button type="button" onClick={() => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, faq: (locationData.learnMore?.faq || []).filter((_: any, idx: number) => idx !== i) } })} className="text-xs text-red-500 hover:text-red-700">Remove FAQ</button>
+                  </div>
+                ))}
+                <button type="button" onClick={() => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, faq: [...(locationData.learnMore?.faq || []), { q: '', a: '' }] } })} className="text-sm text-[#0f51ec] font-semibold hover:underline">+ Add FAQ Item</button>
+              </div>
+            </div>
+            <div className="col-span-2">
+              <label className="block text-sm font-medium text-slate-700 mb-1">Image</label>
+              {locationData.learnMore?.image && <img src={locationData.learnMore.image} alt={locationData.learnMore?.imageAlt || ''} className="w-full aspect-[4/3] rounded-2xl object-cover border mb-2" loading="lazy" />}
+              <label className="cursor-pointer text-sm text-[#0f51ec] hover:underline">
+                {locationData.learnMore?.image ? 'Change' : 'Upload Image'}
+                <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
+                  const file = e.target.files?.[0]; if (!file) return;
+                  const fd = new FormData(); fd.append('file', file);
+                  const res = await fetch('/api/admin/upload', { method: 'POST', body: fd });
+                  if (res.ok) { const d = await res.json(); setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, image: d.url } }); }
+                }} />
+              </label>
+              {locationData.learnMore?.image && <button type="button" onClick={() => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, image: '' } })} className="text-xs text-red-500 ml-2">Remove</button>}
+              <div className="mt-3"><label className="block text-sm font-medium text-slate-700 mb-1">Image Alt Text (SEO)</label><input value={locationData.learnMore?.imageAlt ?? ''} onChange={e => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, imageAlt: e.target.value } })} maxLength={255} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" placeholder="Describe the image for SEO & accessibility" /></div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
           <h2 className="text-lg font-semibold text-[#191e3b]">CTA Section</h2>
           <div className="grid grid-cols-5 gap-6">
             <div className="col-span-3 space-y-4">
@@ -159,67 +202,55 @@ export default function EditDestinationPage() {
         </div>
 
         <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
-          <h2 className="text-lg font-semibold text-[#191e3b]">Explore Section</h2>
-          <div><label className="block text-sm font-medium text-slate-700 mb-1">Title</label><input value={locationData.explore?.title ?? ''} onChange={e => setLocationData({ ...locationData, explore: { ...locationData.explore, title: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" /></div>
-          <div><label className="block text-sm font-medium text-slate-700 mb-1">Subtitle</label><input value={locationData.explore?.subtitle ?? ''} onChange={e => setLocationData({ ...locationData, explore: { ...locationData.explore, subtitle: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" /></div>
-          <div><label className="block text-sm font-medium text-slate-700 mb-1">Description</label><textarea value={locationData.explore?.description ?? ''} onChange={e => setLocationData({ ...locationData, explore: { ...locationData.explore, description: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec] h-20" /></div>
-          <div>
-            <h4 className="text-sm font-semibold text-slate-600 mb-3">Items</h4>
-            {(locationData.explore?.items ?? []).map((item: any, i: number) => (
-              <div key={i} className="border border-slate-200 rounded-xl p-4 mb-4 space-y-3">
-                <div className="flex gap-2">
-                  <select value={item.icon} onChange={(e) => {
-                    const arr = [...(locationData.explore?.items || [])]; arr[i] = { ...arr[i], icon: e.target.value };
-                    setLocationData({ ...locationData, explore: { ...locationData.explore, items: arr } });
-                  }} className="px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20">
-                    {EXPLORE_ICONS.map(icon => <option key={icon} value={icon}>{icon}</option>)}
-                  </select>
-                  <input placeholder="Title" value={item.title} onChange={(e) => {
-                    const arr = [...(locationData.explore?.items || [])]; arr[i] = { ...arr[i], title: e.target.value };
-                    setLocationData({ ...locationData, explore: { ...locationData.explore, items: arr } });
-                  }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
-                </div>
-                <textarea placeholder="Description" value={item.description} onChange={(e) => {
-                  const arr = [...(locationData.explore?.items || [])]; arr[i] = { ...arr[i], description: e.target.value };
-                  setLocationData({ ...locationData, explore: { ...locationData.explore, items: arr } });
-                }} rows={2} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
-                <button type="button" onClick={() => setLocationData({ ...locationData, explore: { ...locationData.explore, items: (locationData.explore?.items || []).filter((_: any, idx: number) => idx !== i) } })} className="text-xs text-red-500 hover:text-red-700">Remove</button>
-              </div>
-            ))}
-            <button type="button" onClick={() => setLocationData({ ...locationData, explore: { ...locationData.explore, items: [...(locationData.explore?.items || []), { icon: 'Compass', title: '', description: '' }] } })} className="text-sm text-[#0f51ec] font-semibold hover:underline">+ Add Item</button>
-          </div>
-        </div>
-
-        <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
-          <h2 className="text-lg font-semibold text-[#191e3b]">Learn More Section</h2>
-          <div className="grid grid-cols-5 gap-6">
-            <div className="col-span-3 space-y-4">
-              <div><label className="block text-sm font-medium text-slate-700 mb-1">Title</label><input value={locationData.learnMore?.title ?? ''} onChange={e => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, title: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" /></div>
-              <div><label className="block text-sm font-medium text-slate-700 mb-1">Subtitle</label><input value={locationData.learnMore?.subtitle ?? ''} onChange={e => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, subtitle: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" placeholder="A short subtitle above the title" /></div>
-              <div><label className="block text-sm font-medium text-slate-700 mb-1">Description</label><textarea value={locationData.learnMore?.description ?? ''} onChange={e => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, description: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec] h-28" /></div>
-            </div>
-            <div className="col-span-2">
-              <label className="block text-sm font-medium text-slate-700 mb-1">Image</label>
-              {locationData.learnMore?.image && <img src={locationData.learnMore.image} alt={locationData.learnMore?.imageAlt || ''} className="w-full aspect-[4/3] rounded-2xl object-cover border mb-2" loading="lazy" />}
-              <label className="cursor-pointer text-sm text-[#0f51ec] hover:underline">
-                {locationData.learnMore?.image ? 'Change' : 'Upload Image'}
-                <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
-                  const file = e.target.files?.[0]; if (!file) return;
-                  const fd = new FormData(); fd.append('file', file);
-                  const res = await fetch('/api/admin/upload', { method: 'POST', body: fd });
-                  if (res.ok) { const d = await res.json(); setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, image: d.url } }); }
-                }} />
-              </label>
-              {locationData.learnMore?.image && <button type="button" onClick={() => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, image: '' } })} className="text-xs text-red-500 ml-2">Remove</button>}
-              <div className="mt-3"><label className="block text-sm font-medium text-slate-700 mb-1">Image Alt Text (SEO)</label><input value={locationData.learnMore?.imageAlt ?? ''} onChange={e => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, imageAlt: e.target.value } })} maxLength={255} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" placeholder="Describe the image for SEO & accessibility" /></div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
           <h2 className="text-lg font-semibold text-[#191e3b]">Search Section</h2>
           <div><label className="block text-sm font-medium text-slate-700 mb-1">Title</label><input value={locationData.search?.title ?? ''} onChange={e => setLocationData({ ...locationData, search: { ...locationData.search, title: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" /></div>
           <div><label className="block text-sm font-medium text-slate-700 mb-1">Description</label><textarea value={locationData.search?.description ?? ''} onChange={e => setLocationData({ ...locationData, search: { ...locationData.search, description: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec] h-20" /></div>
+          <div>
+            <h4 className="text-sm font-semibold text-slate-600 mb-3">Columns (4 columns)</h4>
+            {(locationData.search?.columns ?? []).map((col: any, ci: number) => (
+              <div key={ci} className="border border-slate-200 rounded-xl p-4 mb-4 space-y-3">
+                <div className="flex items-center justify-between">
+                  <input placeholder="Column Title" value={col.title} onChange={(e) => {
+                    const arr = [...(locationData.search?.columns || [])]; arr[ci] = { ...arr[ci], title: e.target.value };
+                    setLocationData({ ...locationData, search: { ...locationData.search, columns: arr } });
+                  }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
+                  <button type="button" onClick={() => setLocationData({ ...locationData, search: { ...locationData.search, columns: (locationData.search?.columns || []).filter((_: any, idx: number) => idx !== ci) } })} className="text-xs text-red-500 hover:text-red-700 ml-2 shrink-0">Remove Column</button>
+                </div>
+                <div>
+                  <p className="text-xs text-slate-400 mb-2">Links</p>
+                  {(col.links ?? []).map((link: any, li: number) => (
+                    <div key={li} className="flex gap-2 mb-2">
+                      <input placeholder="Text" value={link.text} onChange={(e) => {
+                        const arr = [...(locationData.search?.columns || [])];
+                        const links = [...(arr[ci].links || [])]; links[li] = { ...links[li], text: e.target.value };
+                        arr[ci] = { ...arr[ci], links };
+                        setLocationData({ ...locationData, search: { ...locationData.search, columns: arr } });
+                      }} className="flex-1 px-3 py-1.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20 text-sm" />
+                      <input placeholder="URL" value={link.url} onChange={(e) => {
+                        const arr = [...(locationData.search?.columns || [])];
+                        const links = [...(arr[ci].links || [])]; links[li] = { ...links[li], url: e.target.value };
+                        arr[ci] = { ...arr[ci], links };
+                        setLocationData({ ...locationData, search: { ...locationData.search, columns: arr } });
+                      }} className="flex-1 px-3 py-1.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20 text-sm font-mono" />
+                      <button type="button" onClick={() => {
+                        const arr = [...(locationData.search?.columns || [])];
+                        const links = (arr[ci].links || []).filter((_: any, idx: number) => idx !== li);
+                        arr[ci] = { ...arr[ci], links };
+                        setLocationData({ ...locationData, search: { ...locationData.search, columns: arr } });
+                      }} className="text-xs text-red-500 hover:text-red-700 shrink-0">Remove</button>
+                    </div>
+                  ))}
+                  <button type="button" onClick={() => {
+                    const arr = [...(locationData.search?.columns || [])];
+                    const links = [...(arr[ci].links || []), { text: '', url: '' }];
+                    arr[ci] = { ...arr[ci], links };
+                    setLocationData({ ...locationData, search: { ...locationData.search, columns: arr } });
+                  }} className="text-xs text-[#0f51ec] font-semibold hover:underline">+ Add Link</button>
+                </div>
+              </div>
+            ))}
+            <button type="button" onClick={() => setLocationData({ ...locationData, search: { ...locationData.search, columns: [...(locationData.search?.columns || []), { title: '', links: [] }] } })} className="text-sm text-[#0f51ec] font-semibold hover:underline">+ Add Column</button>
+          </div>
         </div>
 
         <div className="bg-white border border-slate-200 rounded-2xl p-6">
