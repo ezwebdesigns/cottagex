@@ -138,6 +138,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         locale={locale}
         title={search?.title}
         description={search?.description}
+        columns={search?.columns}
       />
 
       <InspirationSection
@@ -154,6 +155,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         buttonLink={cta?.buttonLink}
         image={cta?.image}
         imageAlt={cta?.imageAlt}
+        fullWidth
       />
     </div>
   );

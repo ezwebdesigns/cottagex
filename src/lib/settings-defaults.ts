@@ -62,6 +62,7 @@ export type HomepageGallery = {
 export type HomepageSearch = {
   title: string;
   description: string;
+  columns?: { title: string; links: { text: string; url: string }[] }[];
 };
 
 export type ExploreItem = {
@@ -175,6 +176,12 @@ export const defaultSettings: Record<string, any> = {
   homepage_search: {
     title: "Search by City and Category",
     description: "Quickly jump into active curated rentals across major Canadian regions.",
+    columns: [
+      { title: "Ontario", links: [{ text: "Cottages in Muskoka", url: "/en/cottage-country/ontario" }, { text: "Lakefront in Haliburton", url: "/en/cottage-country/ontario" }, { text: "Cottages in Kawarthas", url: "/en/cottage-country/ontario" }] },
+      { title: "Quebec", links: [{ text: "Cottages in Mont-Tremblant", url: "/en/cottage-country/quebec" }, { text: "Cottages in Charlevoix", url: "/en/cottage-country/quebec" }, { text: "Cottages in Laurentians", url: "/en/cottage-country/quebec" }] },
+      { title: "British Columbia", links: [{ text: "Cottages in Whistler", url: "/en/cottage-country/british-columbia" }, { text: "Cottages in Vancouver", url: "/en/cottage-country/british-columbia" }, { text: "Cottages in Tofino", url: "/en/cottage-country/british-columbia" }] },
+      { title: "Alberta", links: [{ text: "Cottages in Banff", url: "/en/cottage-country/alberta" }, { text: "Cottages in Jasper", url: "/en/cottage-country/alberta" }, { text: "Cottages in Calgary", url: "/en/cottage-country/alberta" }] },
+    ],
   },
   homepage_inspiration: {
     title: "Latest Inspiration",

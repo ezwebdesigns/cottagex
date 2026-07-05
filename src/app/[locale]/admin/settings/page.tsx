@@ -10,7 +10,7 @@ type DestItem = { name: string; properties: string; image: string; imageAlt?: st
 type GalleryTab = { name: string; category: string; shortcode?: string };
 type HomepageDestinations = { title: string; description: string; items: DestItem[] };
 type HomepageGallery = { title: string; description: string; tabs: GalleryTab[] };
-type HomepageSearch = { title: string; description: string };
+type HomepageSearch = { title: string; description: string; columns?: { title: string; links: { text: string; url: string }[] }[] };
 type ExploreItem = { icon: string; title: string; description: string };
 type HomepageExplore = { title: string; description: string; subtitle: string; items: ExploreItem[] };
 type HomepageInspiration = { title: string; description: string };
@@ -235,6 +235,52 @@ export default function AdminSettingsPage() {
             <CollapsibleSection title="Search Section" id="search" isOpen={openHomeSection === 'search'} onToggle={() => setOpenHomeSection(openHomeSection === 'search' ? '' : 'search')}>
               <Field label="Title" value={search.title} onChange={(v) => setSearch({ ...search, title: v })} />
               <Field label="Description" value={search.description} onChange={(v) => setSearch({ ...search, description: v })} textarea />
+              <div>
+                <h4 className="text-sm font-semibold text-slate-600 mb-3">Columns (4 columns)</h4>
+                {(search.columns ?? []).map((col, ci) => (
+                  <div key={ci} className="border border-slate-200 rounded-xl p-4 mb-4 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <input placeholder="Column Title" value={col.title} onChange={(e) => {
+                        const arr = [...(search.columns || [])]; arr[ci] = { ...arr[ci], title: e.target.value };
+                        setSearch({ ...search, columns: arr });
+                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
+                      <button type="button" onClick={() => setSearch({ ...search, columns: (search.columns || []).filter((_, idx) => idx !== ci) })} className="text-xs text-red-500 hover:text-red-700 ml-2 shrink-0">Remove Column</button>
+                    </div>
+                    <div>
+                      <p className="text-xs text-slate-400 mb-2">Links</p>
+                      {(col.links ?? []).map((link, li) => (
+                        <div key={li} className="flex gap-2 mb-2">
+                          <input placeholder="Text" value={link.text} onChange={(e) => {
+                            const arr = [...(search.columns || [])];
+                            const links = [...(arr[ci].links || [])]; links[li] = { ...links[li], text: e.target.value };
+                            arr[ci] = { ...arr[ci], links };
+                            setSearch({ ...search, columns: arr });
+                          }} className="flex-1 px-3 py-1.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20 text-sm" />
+                          <input placeholder="URL" value={link.url} onChange={(e) => {
+                            const arr = [...(search.columns || [])];
+                            const links = [...(arr[ci].links || [])]; links[li] = { ...links[li], url: e.target.value };
+                            arr[ci] = { ...arr[ci], links };
+                            setSearch({ ...search, columns: arr });
+                          }} className="flex-1 px-3 py-1.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20 text-sm font-mono" />
+                          <button type="button" onClick={() => {
+                            const arr = [...(search.columns || [])];
+                            const links = (arr[ci].links || []).filter((_, idx) => idx !== li);
+                            arr[ci] = { ...arr[ci], links };
+                            setSearch({ ...search, columns: arr });
+                          }} className="text-xs text-red-500 hover:text-red-700 shrink-0">Remove</button>
+                        </div>
+                      ))}
+                      <button type="button" onClick={() => {
+                        const arr = [...(search.columns || [])];
+                        const links = [...(arr[ci].links || []), { text: '', url: '' }];
+                        arr[ci] = { ...arr[ci], links };
+                        setSearch({ ...search, columns: arr });
+                      }} className="text-xs text-[#0f51ec] font-semibold hover:underline">+ Add Link</button>
+                    </div>
+                  </div>
+                ))}
+                <button type="button" onClick={() => setSearch({ ...search, columns: [...(search.columns || []), { title: '', links: [] }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">+ Add Column</button>
+              </div>
               <SaveButton onClick={() => saveSection('homepage_search', search)} saving={saving} />
             </CollapsibleSection>
           )}
