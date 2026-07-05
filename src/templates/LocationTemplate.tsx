@@ -42,8 +42,8 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
 
   const faqItems: any[] = Array.isArray(pageData?.faq) ? pageData.faq : [];
 
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [openLearnMoreFaq, setOpenLearnMoreFaq] = useState<number | null>(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [openLearnMoreFaq, setOpenLearnMoreFaq] = useState<number | null>(null);
 
   const chaletCards = useMemo(() => {
     return (cottages || []).map(c => ({
