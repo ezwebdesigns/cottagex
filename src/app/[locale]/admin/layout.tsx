@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname, useParams } from 'next/navigation';
 import { SessionProvider, signOut } from 'next-auth/react';
 import {
@@ -12,13 +12,18 @@ import {
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [collapsed, setCollapsed] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [favicon, setFavicon] = useState<string | null>(null);
   const pathname = usePathname();
   const params = useParams();
   const locale = params?.locale as string || 'en';
 
+  useEffect(() => {
+    fetch('/api/admin/settings?section=general').then(r => r.json()).then(d => setFavicon(d.data?.favicon ?? null)).catch(() => {});
+  }, []);
+
   return (
     <SessionProvider>
-      <AdminShell collapsed={collapsed} setCollapsed={setCollapsed} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} pathname={pathname} locale={locale}>
+      <AdminShell collapsed={collapsed} setCollapsed={setCollapsed} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} pathname={pathname} locale={locale} favicon={favicon}>
         {children}
       </AdminShell>
     </SessionProvider>
@@ -26,7 +31,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 }
 
 function AdminShell({
-  children, collapsed, setCollapsed, mobileOpen, setMobileOpen, pathname, locale,
+  children, collapsed, setCollapsed, mobileOpen, setMobileOpen, pathname, locale, favicon,
 }: {
   children: React.ReactNode;
   collapsed: boolean;
@@ -35,6 +40,7 @@ function AdminShell({
   setMobileOpen: (v: boolean) => void;
   pathname: string;
   locale: string;
+  favicon: string | null;
 }) {
   const menuItems = [
     { label: 'Dashboard', href: `/${locale}/admin/dashboard`, icon: LayoutDashboard },
@@ -64,9 +70,13 @@ function AdminShell({
       >
         {/* Logo */}
         <div className="border-b border-slate-100 flex items-center h-16 px-4 flex-shrink-0 gap-2.5">
-          <div className="w-9 h-9 rounded-2xl bg-[#0f51ec] flex items-center justify-center flex-shrink-0">
-            <Mountain className="w-5 h-5 text-white" strokeWidth={2.5} />
-          </div>
+          {favicon ? (
+            <img src={favicon} alt="" className="w-9 h-9 rounded-2xl flex-shrink-0" />
+          ) : (
+            <div className="w-9 h-9 rounded-2xl bg-[#0f51ec] flex items-center justify-center flex-shrink-0">
+              <Mountain className="w-5 h-5 text-white" strokeWidth={2.5} />
+            </div>
+          )}
           <span className={`text-xl font-bold text-[#191e3b] whitespace-nowrap transition-opacity duration-200 ${
             collapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'
           }`}>

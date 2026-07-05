@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import { getCottages } from '@/lib/cottages';
+import { getAllSettings } from '@/lib/cached-settings';
 import Hero from '@/components/cottagex/Hero';
 import CategoryBar from '@/components/cottagex/CategoryBar';
 import PropertyGrid from '@/components/cottagex/PropertyGrid';
+import ExploreSection from '@/components/cottagex/ExploreSection';
+import SearchSection from '@/components/cottagex/SearchSection';
+import InspirationSection from '@/components/cottagex/InspirationSection';
+import CTASection from '@/components/cottagex/CTASection';
 import type { Chalet } from '@/components/cottagex/PropertyCard';
 
 export const revalidate = 3600;
@@ -55,6 +60,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   const cottages = await getCottages({ limit: 12, sort: 'rating', featuredOnly: false }).catch(() => []);
 
+  const settings = await getAllSettings().catch(() => ({} as Record<string, any>));
+
+  const explore = settings.homepage_explore;
+  const search = settings.homepage_search;
+  const inspiration = settings.homepage_inspiration;
+  const cta = settings.homepage_cta;
+
   const displayChalets: Chalet[] = cottages.map((c) => ({
     id: String(c.id),
     name: c.name,
@@ -81,6 +93,35 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         subtitle="Handpicked escapes across the Canadian wilderness"
         chalets={displayChalets}
         onViewAll="View all chalets"
+      />
+
+      <ExploreSection
+        title={explore?.title}
+        description={explore?.description}
+        subtitle={explore?.subtitle}
+        items={explore?.items}
+      />
+
+      <SearchSection
+        locale={locale}
+        title={search?.title}
+        description={search?.description}
+      />
+
+      <InspirationSection
+        locale={locale}
+        title={inspiration?.title}
+        description={inspiration?.description}
+      />
+
+      <CTASection
+        locale={locale}
+        title={cta?.title}
+        description={cta?.description}
+        buttonText={cta?.buttonText}
+        buttonLink={cta?.buttonLink}
+        image={cta?.image}
+        imageAlt={cta?.imageAlt}
       />
 
       <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
