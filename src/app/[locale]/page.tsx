@@ -95,35 +95,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         onViewAll="View all chalets"
       />
 
-      <ExploreSection
-        title={explore?.title}
-        description={explore?.description}
-        subtitle={explore?.subtitle}
-        items={explore?.items}
-      />
-
-      <SearchSection
-        locale={locale}
-        title={search?.title}
-        description={search?.description}
-      />
-
-      <InspirationSection
-        locale={locale}
-        title={inspiration?.title}
-        description={inspiration?.description}
-      />
-
-      <CTASection
-        locale={locale}
-        title={cta?.title}
-        description={cta?.description}
-        buttonText={cta?.buttonText}
-        buttonLink={cta?.buttonLink}
-        image={cta?.image}
-        imageAlt={cta?.imageAlt}
-      />
-
       <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-1" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
           Destinations
@@ -155,6 +126,35 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           })}
         </div>
       </section>
+
+      <ExploreSection
+        title={explore?.title}
+        description={explore?.description}
+        subtitle={explore?.subtitle}
+        items={explore?.items}
+      />
+
+      <SearchSection
+        locale={locale}
+        title={search?.title}
+        description={search?.description}
+      />
+
+      <InspirationSection
+        locale={locale}
+        title={inspiration?.title}
+        description={inspiration?.description}
+      />
+
+      <CTASection
+        locale={locale}
+        title={cta?.title}
+        description={cta?.description}
+        buttonText={cta?.buttonText}
+        buttonLink={cta?.buttonLink}
+        image={cta?.image}
+        imageAlt={cta?.imageAlt}
+      />
     </div>
   );
 }

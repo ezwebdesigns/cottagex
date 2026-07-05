@@ -11,8 +11,7 @@ export default function EditDestinationPage() {
   const [title, setTitle] = useState(''); const [slug, setSlug] = useState('');
   const [seoTitle, setSeoTitle] = useState(''); const [metaDescription, setMetaDescription] = useState('');
   const [featuredImage, setFeaturedImage] = useState(''); const [isPublished, setIsPublished] = useState(true);
-  const [ctaTitle, setCtaTitle] = useState(''); const [ctaDescription, setCtaDescription] = useState(''); const [ctaButton, setCtaButton] = useState(''); const [ctaLink, setCtaLink] = useState('');
-  const [locationData, setLocationData] = useState<any>({ hero: {}, intro: { highlights: [] }, featured: {}, cta: {}, explore: { items: [] }, search: {} });
+  const [locationData, setLocationData] = useState<any>({ hero: {}, intro: { highlights: [] }, featured: {}, cta: {}, explore: { items: [] }, search: {}, learnMore: {} });
   const [loading, setLoading] = useState(true); const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -21,8 +20,7 @@ export default function EditDestinationPage() {
       setTitle(p.title); setSlug(p.slug);
       setSeoTitle(p.seoTitle); setMetaDescription(p.metaDescription);
       setFeaturedImage(p.featuredImage || ''); setIsPublished(p.isPublished);
-      setCtaTitle(p.ctaTitle || ''); setCtaDescription(p.ctaDescription || ''); setCtaButton(p.ctaButton || ''); setCtaLink(p.ctaLink || '');
-      setLocationData(typeof p.locationData === 'object' && p.locationData !== null ? p.locationData : { hero: {}, intro: { highlights: [] }, featured: {}, cta: {}, explore: { items: [] }, search: {} });
+      setLocationData(typeof p.locationData === 'object' && p.locationData !== null ? p.locationData : { hero: {}, intro: { highlights: [] }, featured: {}, cta: {}, explore: { items: [] }, search: {}, learnMore: {} });
       setLoading(false);
     });
   }, [params.id]);
@@ -31,7 +29,7 @@ export default function EditDestinationPage() {
     e.preventDefault(); setSaving(true);
     await fetch(`/api/admin/pages/${params.id}`, {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, slug, seoTitle, metaDescription, featuredImage, ctaTitle, ctaDescription, ctaButton, ctaLink, locationData, isPublished })
+      body: JSON.stringify({ title, slug, seoTitle, metaDescription, featuredImage, locationData, isPublished })
     });
     setSaving(false); router.push('/admin/destinations');
   }
@@ -221,16 +219,6 @@ export default function EditDestinationPage() {
           <h2 className="text-lg font-semibold text-[#191e3b]">Search Section</h2>
           <div><label className="block text-sm font-medium text-slate-700 mb-1">Title</label><input value={locationData.search?.title ?? ''} onChange={e => setLocationData({ ...locationData, search: { ...locationData.search, title: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" /></div>
           <div><label className="block text-sm font-medium text-slate-700 mb-1">Description</label><textarea value={locationData.search?.description ?? ''} onChange={e => setLocationData({ ...locationData, search: { ...locationData.search, description: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec] h-20" /></div>
-        </div>
-
-        <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
-          <h2 className="text-lg font-semibold text-[#191e3b]">CTA</h2>
-          <div><label className="block text-sm font-medium text-slate-700 mb-1">Title</label><input value={ctaTitle} onChange={e => setCtaTitle(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" /></div>
-          <div><label className="block text-sm font-medium text-slate-700 mb-1">Description</label><textarea value={ctaDescription} onChange={e => setCtaDescription(e.target.value)} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec] h-20" /></div>
-          <div className="grid grid-cols-2 gap-4">
-            <div><label className="block text-sm font-medium text-slate-700 mb-1">Button Text</label><input value={ctaButton} onChange={e => setCtaButton(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" /></div>
-            <div><label className="block text-sm font-medium text-slate-700 mb-1">Link</label><input value={ctaLink} onChange={e => setCtaLink(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" /></div>
-          </div>
         </div>
 
         <div className="bg-white border border-slate-200 rounded-2xl p-6">

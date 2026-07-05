@@ -1,9 +1,11 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { MapPin, ChevronDown, Waves, Trees, Compass, Star, Snowflake, Mountain, Leaf, Home as HomeIcon } from 'lucide-react';
+import { MapPin, ChevronDown, Waves, Trees, Compass, Star, Snowflake, Mountain, Leaf, Home as HomeIcon, ArrowRight } from 'lucide-react';
 import { useTranslations } from '@/lib/useTranslations';
 import PropertyCard from '@/components/cottagex/PropertyCard';
+import ExploreSection from '@/components/cottagex/ExploreSection';
+import CTASection from '@/components/cottagex/CTASection';
 import { BreadcrumbSchema, PlaceSchema } from '@/components/seo/SchemaOrg';
 import Image from 'next/image';
 
@@ -72,15 +74,6 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
       guests: c.sleeps || 0,
     }));
   }, [cottages, locName]);
-
-  const galleryImages = useMemo(() => {
-    const photos = new Set<string>();
-    (cottages || []).forEach(c => {
-      if (c.thumbnail) photos.add(c.thumbnail);
-      if (Array.isArray(c.photos)) c.photos.forEach((p: string) => photos.add(p));
-    });
-    return [...photos].slice(0, 3);
-  }, [cottages]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -153,17 +146,51 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         </section>
       )}
 
-      {galleryImages.length >= 2 && (
-        <section className="py-8 px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-3 gap-3 sm:gap-4">
-            {galleryImages.map((img, i) => (
-              <div key={i} className={`rounded-[2rem] overflow-hidden ${i === 0 ? 'col-span-2 h-48 sm:h-64' : 'h-48 sm:h-64'}`}>
-                <Image src={img} alt={`${locName} ${i + 1}`} width={800} height={400} className="w-full h-full object-cover" sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" />
+      <ExploreSection
+        title={ld.explore?.title}
+        subtitle={ld.explore?.subtitle}
+        description={ld.explore?.description}
+        items={ld.explore?.items}
+      />
+
+      {ld.learnMore?.title && (
+        <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
+            <div className="w-full md:w-1/2">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{ld.learnMore.title}</h2>
+              {ld.learnMore.description && (
+                <p className="text-slate-500 mt-4 text-sm sm:text-base leading-relaxed">{ld.learnMore.description}</p>
+              )}
+            </div>
+            {ld.learnMore?.image && (
+              <div className="w-full md:w-1/2">
+                <img src={ld.learnMore.image} alt={ld.learnMore.imageAlt || ld.learnMore.title} className="w-full rounded-[2rem] object-cover aspect-[4/3]" loading="lazy" />
               </div>
-            ))}
+            )}
           </div>
         </section>
       )}
+
+      {ld.search?.title && (
+        <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-slate-50">
+          <div className="max-w-7xl mx-auto text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{ld.search.title}</h2>
+            {ld.search.description && (
+              <p className="text-slate-500 mt-2 text-sm sm:text-base">{ld.search.description}</p>
+            )}
+          </div>
+        </section>
+      )}
+
+      <CTASection
+        locale={locale}
+        title={ld.cta?.title}
+        description={ld.cta?.description}
+        buttonText={ld.cta?.buttonText}
+        buttonLink={ld.cta?.buttonLink}
+        image={ld.cta?.image}
+        imageAlt={ld.cta?.imageAlt}
+      />
 
       {faqItems.length > 0 && (
         <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-slate-50">
