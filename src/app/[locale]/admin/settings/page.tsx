@@ -7,9 +7,7 @@ import ImageUploader from '@/components/admin/ImageUploader';
 
 type HomepageHero = { tag: string; title: string; description: string; image: string; imageAlt: string };
 type DestItem = { name: string; properties: string; image: string; imageAlt?: string; link?: string };
-type GalleryTab = { name: string; category: string; shortcode?: string };
 type HomepageDestinations = { title: string; description: string; items: DestItem[] };
-type HomepageGallery = { title: string; description: string; tabs: GalleryTab[] };
 type HomepageSearch = { title: string; description: string; columns?: { title: string; links: { text: string; url: string }[] }[] };
 type ExploreItem = { icon: string; title: string; description: string };
 type HomepageExplore = { title: string; description: string; subtitle: string; items: ExploreItem[] };
@@ -38,7 +36,6 @@ export default function AdminSettingsPage() {
   const [footer, setFooter] = useState<any>(null);
   const [hero, setHero] = useState<HomepageHero | null>(null);
   const [destinations, setDestinations] = useState<HomepageDestinations | null>(null);
-  const [gallery, setGallery] = useState<HomepageGallery | null>(null);
   const [search, setSearch] = useState<HomepageSearch | null>(null);
   const [explore, setExplore] = useState<HomepageExplore | null>(null);
   const [inspiration, setInspiration] = useState<HomepageInspiration | null>(null);
@@ -61,7 +58,6 @@ export default function AdminSettingsPage() {
     fetchSection('footer').then(setFooter);
     fetchSection('homepage_hero').then(setHero);
     fetchSection('homepage_destinations').then(setDestinations);
-    fetchSection('homepage_gallery').then(setGallery);
     fetchSection('homepage_search').then(setSearch);
     fetchSection('homepage_explore').then(setExplore);
     fetchSection('homepage_inspiration').then(setInspiration);
@@ -187,47 +183,6 @@ export default function AdminSettingsPage() {
                 </div>
               </div>
               <SaveButton onClick={() => saveSection('homepage_destinations', destinations)} saving={saving} />
-            </CollapsibleSection>
-          )}
-
-          {gallery && (
-            <CollapsibleSection title="Gallery Section" id="gallery" isOpen={openHomeSection === 'gallery'} onToggle={() => setOpenHomeSection(openHomeSection === 'gallery' ? '' : 'gallery')}>
-              <Field label="Title" value={gallery.title} onChange={(v) => setGallery({ ...gallery, title: v })} />
-              <Field label="Description" value={gallery.description} onChange={(v) => setGallery({ ...gallery, description: v })} textarea />
-              <div className="mt-4">
-                <h4 className="text-sm font-semibold text-slate-600 mb-3">Gallery Tabs</h4>
-                <div className="space-y-2">
-                  {gallery.tabs.map((tab, i) => (
-                    <div key={i} className="flex flex-col gap-2 p-3 border border-slate-100 rounded-xl">
-                      <div className="flex gap-2 items-center">
-                        <input placeholder="Name (English)" value={tab.name} onChange={(e) => {
-                          const newTabs = [...gallery.tabs];
-                          newTabs[i] = { ...newTabs[i], name: e.target.value };
-                          setGallery({ ...gallery, tabs: newTabs });
-                        }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
-                        <input placeholder="Category (French)" value={tab.category} onChange={(e) => {
-                          const newTabs = [...gallery.tabs];
-                          newTabs[i] = { ...newTabs[i], category: e.target.value };
-                          setGallery({ ...gallery, tabs: newTabs });
-                        }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
-                        <button onClick={() => {
-                          const newTabs = gallery.tabs.filter((_, idx) => idx !== i);
-                          setGallery({ ...gallery, tabs: newTabs });
-                        }} className="text-xs text-red-500 hover:text-red-700">Remove</button>
-                      </div>
-                      <input placeholder="Shortcode (ex: [canada, all, 6])" value={tab.shortcode || ''} onChange={(e) => {
-                        const newTabs = [...gallery.tabs];
-                        newTabs[i] = { ...newTabs[i], shortcode: e.target.value };
-                        setGallery({ ...gallery, tabs: newTabs });
-                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20 font-mono text-xs" />
-                    </div>
-                  ))}
-                  <button onClick={() => setGallery({ ...gallery, tabs: [...gallery.tabs, { name: '', category: '', shortcode: '' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">
-                    + Add Tab
-                  </button>
-                </div>
-              </div>
-              <SaveButton onClick={() => saveSection('homepage_gallery', gallery)} saving={saving} />
             </CollapsibleSection>
           )}
 
