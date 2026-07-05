@@ -10,7 +10,7 @@ type DestItem = { name: string; properties: string; image: string; imageAlt?: st
 type HomepageDestinations = { title: string; description: string; items: DestItem[] };
 type HomepageSearch = { title: string; description: string; columns?: { title: string; links: { text: string; url: string }[] }[] };
 type ExploreItem = { icon: string; title: string; description: string };
-type HomepageExplore = { title: string; description: string; subtitle: string; items: ExploreItem[] };
+type HomepageExplore = { title: string; description: string; subtitle: string; image: string; imageAlt: string; items: ExploreItem[] };
 type HomepageInspiration = { title: string; description: string };
 type HomepageFeaturedChalets = { title: string; subtitle: string };
 type HomepageCTA = { title: string; description: string; buttonText: string; buttonLink: string; image: string; imageAlt: string };
@@ -247,6 +247,8 @@ export default function AdminSettingsPage() {
               <Field label="Title" value={explore.title} onChange={(v) => setExplore({ ...explore, title: v })} />
               <Field label="Description" value={explore.description} onChange={(v) => setExplore({ ...explore, description: v })} textarea />
               <Field label="Subtitle" value={explore.subtitle} onChange={(v) => setExplore({ ...explore, subtitle: v })} textarea />
+              <ImageUploader label="Image" value={explore.image} onChange={(v) => setExplore({ ...explore, image: v })} />
+              <Field label="Image Alt Text (SEO)" value={explore.imageAlt} onChange={(v) => setExplore({ ...explore, imageAlt: v })} maxLength={255} />
               <div>
                 <h4 className="text-sm font-semibold text-slate-600 mb-3">Items</h4>
                 {explore.items.map((item, i) => (

@@ -128,6 +128,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         title={explore?.title}
         description={explore?.description}
         subtitle={explore?.subtitle}
+        image={explore?.image}
+        imageAlt={explore?.imageAlt}
         items={explore?.items}
       />
 
