@@ -6,7 +6,15 @@ import { useTranslations } from '@/lib/useTranslations';
 
 const WIDGET_HTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref=""></div><script class="eg-widgets-script" src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"></script>`;
 
-export default function Hero() {
+type HeroProps = {
+  tag?: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+};
+
+export default function Hero({ tag, title, description, image, imageAlt }: HeroProps) {
   const { t } = useTranslations();
   const [scrollY, setScrollY] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -53,8 +61,8 @@ export default function Hero() {
         style={{ transform: `translateY(${scrollY * 0.4}px) scale(1.1)` }}
       >
         <img
-          src="https://images.unsplash.com/photo-1469768411273-917c5c855b87?auto=format&fit=crop&w=1920&q=80"
-          alt="Misty Canadian lake at dusk"
+          src={image || "https://images.unsplash.com/photo-1469768411273-917c5c855b87?auto=format&fit=crop&w=1920&q=80"}
+          alt={imageAlt || "Misty Canadian lake at dusk"}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#191e3b]/80 via-[#191e3b]/50 to-[#191e3b]/30" />
@@ -72,16 +80,16 @@ export default function Hero() {
           <div className="order-1 lg:order-2 flex flex-col items-center lg:items-start">
             <div className="mb-4 inline-flex items-center justify-center bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20">
               <Sparkles className="text-[#93B4FF] mr-2" size={16} />
-              <span className="text-white text-xs font-bold tracking-wider uppercase">{t.hero.search.title || 'Official VRBO Affiliate Search'}</span>
+              <span className="text-white text-xs font-bold tracking-wider uppercase">{tag || t.hero.search.title || 'Official VRBO Affiliate Search'}</span>
             </div>
             <h1
               className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-4 tracking-tight"
               style={{ fontFamily: 'Radio Canada, sans-serif', textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}
             >
-              {t.hero.title}
+              {title || t.hero.title}
             </h1>
             <p className="text-blue-100/90 text-base md:text-lg mb-8 max-w-2xl font-light">
-              {t.hero.subtitle}
+              {description || t.hero.subtitle}
             </p>
           </div>
         </div>

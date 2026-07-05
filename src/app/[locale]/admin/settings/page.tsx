@@ -12,6 +12,7 @@ type HomepageSearch = { title: string; description: string; columns?: { title: s
 type ExploreItem = { icon: string; title: string; description: string };
 type HomepageExplore = { title: string; description: string; subtitle: string; items: ExploreItem[] };
 type HomepageInspiration = { title: string; description: string };
+type HomepageFeaturedChalets = { title: string; subtitle: string };
 type HomepageCTA = { title: string; description: string; buttonText: string; buttonLink: string; image: string; imageAlt: string };
 type CategoryItem = { id: string; labelEn: string; labelFr: string; icon: string };
 type CategoryBarConfig = { items: CategoryItem[] };
@@ -39,6 +40,7 @@ export default function AdminSettingsPage() {
   const [search, setSearch] = useState<HomepageSearch | null>(null);
   const [explore, setExplore] = useState<HomepageExplore | null>(null);
   const [inspiration, setInspiration] = useState<HomepageInspiration | null>(null);
+  const [featured, setFeatured] = useState<HomepageFeaturedChalets | null>(null);
   const [cta, setCta] = useState<HomepageCTA | null>(null);
   const [categories, setCategories] = useState<CategoryBarConfig | null>(null);
 
@@ -61,6 +63,7 @@ export default function AdminSettingsPage() {
     fetchSection('homepage_search').then(setSearch);
     fetchSection('homepage_explore').then(setExplore);
     fetchSection('homepage_inspiration').then(setInspiration);
+    fetchSection('homepage_featured').then(setFeatured);
     fetchSection('homepage_cta').then(setCta);
     fetchSection('homepage_categories').then(setCategories);
   }, [fetchSection]);
@@ -124,7 +127,7 @@ export default function AdminSettingsPage() {
       {activeTab === 'homepage' && (
         <div className="space-y-4 max-w-3xl">
           {hero && (
-            <CollapsibleSection title="Hero Section" id="hero" isOpen={openHomeSection === 'hero'} onToggle={() => setOpenHomeSection(openHomeSection === 'hero' ? '' : 'hero')}>
+            <CollapsibleSection title="1 — Hero Section" id="hero" isOpen={openHomeSection === 'hero'} onToggle={() => setOpenHomeSection(openHomeSection === 'hero' ? '' : 'hero')}>
               <Field label="Tag" value={hero.tag} onChange={(v) => setHero({ ...hero, tag: v })} />
               <Field label="Title" value={hero.title} onChange={(v) => setHero({ ...hero, title: v })} />
               <Field label="Description" value={hero.description} onChange={(v) => setHero({ ...hero, description: v })} textarea />
@@ -134,8 +137,61 @@ export default function AdminSettingsPage() {
             </CollapsibleSection>
           )}
 
+          {categories && (
+            <CollapsibleSection title="2 — Category Icons" id="categories" isOpen={openHomeSection === 'categories'} onToggle={() => setOpenHomeSection(openHomeSection === 'categories' ? '' : 'categories')}>
+              <div>
+                <div className="space-y-3">
+                  {categories.items.map((item, i) => (
+                    <div key={i} className="p-3 border border-slate-100 rounded-2xl space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-xs font-bold text-slate-400">Category {i + 1}</span>
+                        <button onClick={() => {
+                          const newItems = categories.items.filter((_, idx) => idx !== i);
+                          setCategories({ ...categories, items: newItems });
+                        }} className="text-xs text-red-500 hover:text-red-700">Remove</button>
+                      </div>
+                      <input placeholder="ID (ex: lakefront)" value={item.id} onChange={(e) => {
+                        const arr = [...categories.items]; arr[i] = { ...arr[i], id: e.target.value };
+                        setCategories({ ...categories, items: arr });
+                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
+                      <input placeholder="Label (English)" value={item.labelEn} onChange={(e) => {
+                        const arr = [...categories.items]; arr[i] = { ...arr[i], labelEn: e.target.value };
+                        setCategories({ ...categories, items: arr });
+                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
+                      <input placeholder="Label (French)" value={item.labelFr} onChange={(e) => {
+                        const arr = [...categories.items]; arr[i] = { ...arr[i], labelFr: e.target.value };
+                        setCategories({ ...categories, items: arr });
+                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
+                      <select value={item.icon} onChange={(e) => {
+                        const arr = [...categories.items]; arr[i] = { ...arr[i], icon: e.target.value };
+                        setCategories({ ...categories, items: arr });
+                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20">
+                        {['Sailboat', 'Bath', 'Users', 'Gem', 'Dog', 'Mountain', 'Heart', 'Home', 'Trees', 'TreePine', 'Umbrella', 'Building2', 'MountainSnow', 'Waves', 'Footprints', 'Compass', 'MapPin', 'Sunrise'].map(icon => (
+                          <option key={icon} value={icon}>{icon}</option>
+                        ))}
+                      </select>
+                    </div>
+                  ))}
+                  <button onClick={() => setCategories({ ...categories, items: [...categories.items, { id: '', labelEn: '', labelFr: '', icon: 'Compass' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">
+                    + Add Category
+                  </button>
+                </div>
+              </div>
+              <SaveButton onClick={() => saveSection('homepage_categories', categories)} saving={saving} />
+            </CollapsibleSection>
+          )}
+
+          {featured && (
+            <CollapsibleSection title="3 — Featured Chalets" id="featured" isOpen={openHomeSection === 'featured'} onToggle={() => setOpenHomeSection(openHomeSection === 'featured' ? '' : 'featured')}>
+              <Field label="Title" value={featured.title} onChange={(v) => setFeatured({ ...featured, title: v })} />
+              <Field label="Subtitle" value={featured.subtitle} onChange={(v) => setFeatured({ ...featured, subtitle: v })} textarea />
+              <p className="text-xs text-slate-400">Chalets data comes from the database — only the title and subtitle are editable here.</p>
+              <SaveButton onClick={() => saveSection('homepage_featured', featured)} saving={saving} />
+            </CollapsibleSection>
+          )}
+
           {destinations && (
-            <CollapsibleSection title="Destinations Section" id="destinations" isOpen={openHomeSection === 'destinations'} onToggle={() => setOpenHomeSection(openHomeSection === 'destinations' ? '' : 'destinations')}>
+            <CollapsibleSection title="4 — Destinations Section" id="destinations" isOpen={openHomeSection === 'destinations'} onToggle={() => setOpenHomeSection(openHomeSection === 'destinations' ? '' : 'destinations')}>
               <Field label="Title" value={destinations.title} onChange={(v) => setDestinations({ ...destinations, title: v })} />
               <Field label="Description" value={destinations.description} onChange={(v) => setDestinations({ ...destinations, description: v })} textarea />
               <div className="mt-4">
@@ -186,8 +242,52 @@ export default function AdminSettingsPage() {
             </CollapsibleSection>
           )}
 
+          {explore && (
+            <CollapsibleSection title="5 — Explore Section" id="explore" isOpen={openHomeSection === 'explore'} onToggle={() => setOpenHomeSection(openHomeSection === 'explore' ? '' : 'explore')}>
+              <Field label="Title" value={explore.title} onChange={(v) => setExplore({ ...explore, title: v })} />
+              <Field label="Description" value={explore.description} onChange={(v) => setExplore({ ...explore, description: v })} textarea />
+              <Field label="Subtitle" value={explore.subtitle} onChange={(v) => setExplore({ ...explore, subtitle: v })} textarea />
+              <div>
+                <h4 className="text-sm font-semibold text-slate-600 mb-3">Items</h4>
+                {explore.items.map((item, i) => (
+                  <div key={i} className="border border-slate-200 rounded-xl p-4 mb-4 space-y-3">
+                    <div className="flex gap-2">
+                      <select value={item.icon} onChange={(e) => {
+                        const arr = [...explore.items]; arr[i] = { ...arr[i], icon: e.target.value };
+                        setExplore({ ...explore, items: arr });
+                      }} className="px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20">
+                        {['Waves', 'Trees', 'Compass', 'MapPin', 'Mountain', 'TreePine', 'Sunrise'].map(icon => (
+                          <option key={icon} value={icon}>{icon}</option>
+                        ))}
+                      </select>
+                      <input placeholder="Title" value={item.title} onChange={(e) => {
+                        const arr = [...explore.items]; arr[i] = { ...arr[i], title: e.target.value };
+                        setExplore({ ...explore, items: arr });
+                      }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
+                    </div>
+                    <textarea placeholder="Description" value={item.description} onChange={(e) => {
+                      const arr = [...explore.items]; arr[i] = { ...arr[i], description: e.target.value };
+                      setExplore({ ...explore, items: arr });
+                    }} rows={2} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
+                    <button onClick={() => setExplore({ ...explore, items: explore.items.filter((_, idx) => idx !== i) })} className="text-xs text-red-500 hover:text-red-700">Remove</button>
+                  </div>
+                ))}
+                <button onClick={() => setExplore({ ...explore, items: [...explore.items, { icon: 'Compass', title: '', description: '' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">+ Add Item</button>
+              </div>
+              <SaveButton onClick={() => saveSection('homepage_explore', explore)} saving={saving} />
+            </CollapsibleSection>
+          )}
+
+          {inspiration && (
+            <CollapsibleSection title="6 — Inspiration Section" id="inspiration" isOpen={openHomeSection === 'inspiration'} onToggle={() => setOpenHomeSection(openHomeSection === 'inspiration' ? '' : 'inspiration')}>
+              <Field label="Title" value={inspiration.title} onChange={(v) => setInspiration({ ...inspiration, title: v })} />
+              <Field label="Description" value={inspiration.description} onChange={(v) => setInspiration({ ...inspiration, description: v })} textarea />
+              <SaveButton onClick={() => saveSection('homepage_inspiration', inspiration)} saving={saving} />
+            </CollapsibleSection>
+          )}
+
           {search && (
-            <CollapsibleSection title="Search Section" id="search" isOpen={openHomeSection === 'search'} onToggle={() => setOpenHomeSection(openHomeSection === 'search' ? '' : 'search')}>
+            <CollapsibleSection title="7 — Search Section" id="search" isOpen={openHomeSection === 'search'} onToggle={() => setOpenHomeSection(openHomeSection === 'search' ? '' : 'search')}>
               <Field label="Title" value={search.title} onChange={(v) => setSearch({ ...search, title: v })} />
               <Field label="Description" value={search.description} onChange={(v) => setSearch({ ...search, description: v })} textarea />
               <div>
@@ -240,52 +340,8 @@ export default function AdminSettingsPage() {
             </CollapsibleSection>
           )}
 
-          {inspiration && (
-            <CollapsibleSection title="Inspiration Section" id="inspiration" isOpen={openHomeSection === 'inspiration'} onToggle={() => setOpenHomeSection(openHomeSection === 'inspiration' ? '' : 'inspiration')}>
-              <Field label="Title" value={inspiration.title} onChange={(v) => setInspiration({ ...inspiration, title: v })} />
-              <Field label="Description" value={inspiration.description} onChange={(v) => setInspiration({ ...inspiration, description: v })} textarea />
-              <SaveButton onClick={() => saveSection('homepage_inspiration', inspiration)} saving={saving} />
-            </CollapsibleSection>
-          )}
-
-          {explore && (
-            <CollapsibleSection title="Explore Section" id="explore" isOpen={openHomeSection === 'explore'} onToggle={() => setOpenHomeSection(openHomeSection === 'explore' ? '' : 'explore')}>
-              <Field label="Title" value={explore.title} onChange={(v) => setExplore({ ...explore, title: v })} />
-              <Field label="Description" value={explore.description} onChange={(v) => setExplore({ ...explore, description: v })} textarea />
-              <Field label="Subtitle" value={explore.subtitle} onChange={(v) => setExplore({ ...explore, subtitle: v })} textarea />
-              <div>
-                <h4 className="text-sm font-semibold text-slate-600 mb-3">Items</h4>
-                {explore.items.map((item, i) => (
-                  <div key={i} className="border border-slate-200 rounded-xl p-4 mb-4 space-y-3">
-                    <div className="flex gap-2">
-                      <select value={item.icon} onChange={(e) => {
-                        const arr = [...explore.items]; arr[i] = { ...arr[i], icon: e.target.value };
-                        setExplore({ ...explore, items: arr });
-                      }} className="px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20">
-                        {['Waves', 'Trees', 'Compass', 'MapPin', 'Mountain', 'TreePine', 'Sunrise'].map(icon => (
-                          <option key={icon} value={icon}>{icon}</option>
-                        ))}
-                      </select>
-                      <input placeholder="Title" value={item.title} onChange={(e) => {
-                        const arr = [...explore.items]; arr[i] = { ...arr[i], title: e.target.value };
-                        setExplore({ ...explore, items: arr });
-                      }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
-                    </div>
-                    <textarea placeholder="Description" value={item.description} onChange={(e) => {
-                      const arr = [...explore.items]; arr[i] = { ...arr[i], description: e.target.value };
-                      setExplore({ ...explore, items: arr });
-                    }} rows={2} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
-                    <button onClick={() => setExplore({ ...explore, items: explore.items.filter((_, idx) => idx !== i) })} className="text-xs text-red-500 hover:text-red-700">Remove</button>
-                  </div>
-                ))}
-                <button onClick={() => setExplore({ ...explore, items: [...explore.items, { icon: 'Compass', title: '', description: '' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">+ Add Item</button>
-              </div>
-              <SaveButton onClick={() => saveSection('homepage_explore', explore)} saving={saving} />
-            </CollapsibleSection>
-          )}
-
           {cta && (
-            <CollapsibleSection title="CTA Section" id="cta" isOpen={openHomeSection === 'cta'} onToggle={() => setOpenHomeSection(openHomeSection === 'cta' ? '' : 'cta')}>
+            <CollapsibleSection title="8 — CTA Section" id="cta" isOpen={openHomeSection === 'cta'} onToggle={() => setOpenHomeSection(openHomeSection === 'cta' ? '' : 'cta')}>
               <Field label="Title" value={cta.title} onChange={(v) => setCta({ ...cta, title: v })} />
               <Field label="Description" value={cta.description} onChange={(v) => setCta({ ...cta, description: v })} textarea />
               <Field label="Button Text" value={cta.buttonText} onChange={(v) => setCta({ ...cta, buttonText: v })} />
@@ -293,50 +349,6 @@ export default function AdminSettingsPage() {
               <ImageUploader label="Image" value={cta.image} onChange={(v) => setCta({ ...cta, image: v })} />
               <Field label="Image Alt Text (SEO)" value={cta.imageAlt} onChange={(v) => setCta({ ...cta, imageAlt: v })} maxLength={255} />
               <SaveButton onClick={() => saveSection('homepage_cta', cta)} saving={saving} />
-            </CollapsibleSection>
-          )}
-
-          {categories && (
-            <CollapsibleSection title="Category Icons" id="categories" isOpen={openHomeSection === 'categories'} onToggle={() => setOpenHomeSection(openHomeSection === 'categories' ? '' : 'categories')}>
-              <div>
-                <div className="space-y-3">
-                  {categories.items.map((item, i) => (
-                    <div key={i} className="p-3 border border-slate-100 rounded-2xl space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-xs font-bold text-slate-400">Category {i + 1}</span>
-                        <button onClick={() => {
-                          const newItems = categories.items.filter((_, idx) => idx !== i);
-                          setCategories({ ...categories, items: newItems });
-                        }} className="text-xs text-red-500 hover:text-red-700">Remove</button>
-                      </div>
-                      <input placeholder="ID (ex: lakefront)" value={item.id} onChange={(e) => {
-                        const arr = [...categories.items]; arr[i] = { ...arr[i], id: e.target.value };
-                        setCategories({ ...categories, items: arr });
-                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
-                      <input placeholder="Label (English)" value={item.labelEn} onChange={(e) => {
-                        const arr = [...categories.items]; arr[i] = { ...arr[i], labelEn: e.target.value };
-                        setCategories({ ...categories, items: arr });
-                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
-                      <input placeholder="Label (French)" value={item.labelFr} onChange={(e) => {
-                        const arr = [...categories.items]; arr[i] = { ...arr[i], labelFr: e.target.value };
-                        setCategories({ ...categories, items: arr });
-                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
-                      <select value={item.icon} onChange={(e) => {
-                        const arr = [...categories.items]; arr[i] = { ...arr[i], icon: e.target.value };
-                        setCategories({ ...categories, items: arr });
-                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20">
-                        {['Sailboat', 'Bath', 'Users', 'Gem', 'Dog', 'Mountain', 'Heart', 'Home', 'Trees', 'TreePine', 'Umbrella', 'Building2', 'MountainSnow', 'Waves', 'Footprints', 'Compass', 'MapPin', 'Sunrise'].map(icon => (
-                          <option key={icon} value={icon}>{icon}</option>
-                        ))}
-                      </select>
-                    </div>
-                  ))}
-                  <button onClick={() => setCategories({ ...categories, items: [...categories.items, { id: '', labelEn: '', labelFr: '', icon: 'Compass' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">
-                    + Add Category
-                  </button>
-                </div>
-              </div>
-              <SaveButton onClick={() => saveSection('homepage_categories', categories)} saving={saving} />
             </CollapsibleSection>
           )}
         </div>

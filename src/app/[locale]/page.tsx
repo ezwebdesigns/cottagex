@@ -23,37 +23,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const allProvinceIds = ['ontario', 'quebec', 'britishColumbia', 'alberta'];
-
-const destinationMeta: Record<string, { name: string; nameFr: string; tagline: string; taglineFr: string; image: string }> = {
-  ontario: {
-    name: 'Ontario', nameFr: 'Ontario',
-    tagline: 'Land of a Thousand Lakes', taglineFr: 'Le pays des mille lacs',
-    image: 'https://images.unsplash.com/photo-1469768411273-917c5c855b87?auto=format&fit=crop&w=1600&q=80',
-  },
-  quebec: {
-    name: 'Quebec', nameFr: 'Québec',
-    tagline: 'European Charm, Wild Nature', taglineFr: 'Charme européen, nature sauvage',
-    image: 'https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&w=1600&q=80',
-  },
-  britishColumbia: {
-    name: 'British Columbia', nameFr: 'Colombie-Britannique',
-    tagline: 'Where Mountains Meet the Sea', taglineFr: 'Où les montagnes rencontrent la mer',
-    image: 'https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?auto=format&fit=crop&w=1600&q=80',
-  },
-  alberta: {
-    name: 'Alberta', nameFr: 'Alberta',
-    tagline: 'Rocky Mountain Majesty', taglineFr: 'La majesté des Rocheuses',
-    image: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1600&q=80',
-  },
-};
-
 const provinceDisplay: Record<string, string> = {
   ontario: 'Ontario',
   quebec: 'Quebec',
   'british-columbia': 'British Columbia',
   alberta: 'Alberta',
 };
+
+const fallbackDests = [
+  { name: 'Ontario', nameFr: 'Ontario', properties: '320+ cottages', image: 'https://images.unsplash.com/photo-1469768411273-917c5c855b87?auto=format&fit=crop&w=1600&q=80', link: '/en/cottage-country/ontario' },
+  { name: 'Quebec', nameFr: 'Québec', properties: '280+ cottages', image: 'https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&w=1600&q=80', link: '/en/cottage-country/quebec' },
+  { name: 'British Columbia', nameFr: 'Colombie-Britannique', properties: '350+ cottages', image: 'https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?auto=format&fit=crop&w=1600&q=80', link: '/en/cottage-country/british-columbia' },
+  { name: 'Alberta', nameFr: 'Alberta', properties: '200+ cottages', image: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1600&q=80', link: '/en/cottage-country/alberta' },
+];
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -62,9 +44,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   const settings = await getAllSettings().catch(() => ({} as Record<string, any>));
 
+  const hero = settings.homepage_hero;
+  const categories = settings.homepage_categories;
+  const featured = settings.homepage_featured;
+  const destData = settings.homepage_destinations;
   const explore = settings.homepage_explore;
-  const search = settings.homepage_search;
   const inspiration = settings.homepage_inspiration;
+  const search = settings.homepage_search;
   const cta = settings.homepage_cta;
 
   const displayChalets: Chalet[] = cottages.map((c) => ({
@@ -83,43 +69,54 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     guests: c.sleeps || 0,
   }));
 
+  const catItems = categories?.items?.map((item: any) => ({
+    id: item.id,
+    label: locale === 'fr' ? item.labelFr : item.labelEn,
+  }));
+
+  const destItems = destData?.items?.length > 0 ? destData.items : fallbackDests;
+
   return (
     <div>
-      <Hero />
-      <CategoryBar />
+      <Hero
+        tag={hero?.tag}
+        title={hero?.title}
+        description={hero?.description}
+        image={hero?.image}
+        imageAlt={hero?.imageAlt}
+      />
+      <CategoryBar items={catItems} />
 
       <PropertyGrid
-        title="Featured Chalets"
-        subtitle="Handpicked escapes across the Canadian wilderness"
+        title={featured?.title || "Featured Chalets"}
+        subtitle={featured?.subtitle || "Handpicked escapes across the Canadian wilderness"}
         chalets={displayChalets}
         onViewAll="View all chalets"
       />
 
       <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-1" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
-          Destinations
+          {destData?.title || 'Destinations'}
         </h2>
-        <p className="text-sm text-slate-500 mb-6">Handpicked escapes across the Canadian wilderness</p>
+        <p className="text-sm text-slate-500 mb-6">{destData?.description || 'Handpicked escapes across the Canadian wilderness'}</p>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {allProvinceIds.map((provId) => {
-            const dest = destinationMeta[provId];
-            const name = locale === 'fr' ? dest.nameFr : dest.name;
-            const tagline = locale === 'fr' ? dest.taglineFr : dest.tagline;
+          {destItems.map((item: any, i: number) => {
+            const link = item.link || `/${locale}/cottage-country/${item.name?.toLowerCase().replace(/\s+/g, '-')}`;
             return (
               <a
-                key={provId}
-                href={`/${locale}/cottage-country/${provId}`}
+                key={i}
+                href={link}
                 className="group relative h-48 sm:h-56 rounded-[2rem] overflow-hidden block"
               >
                 <img
-                  src={dest.image}
-                  alt={name}
+                  src={item.image}
+                  alt={item.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#191e3b]/90 via-[#191e3b]/30 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <h3 className="font-bold text-base sm:text-lg" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{name}</h3>
-                  <p className="text-xs text-white/70 mt-0.5">{tagline}</p>
+                  <h3 className="font-bold text-base sm:text-lg" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{item.name}</h3>
+                  <p className="text-xs text-white/70 mt-0.5">{item.properties}</p>
                 </div>
               </a>
             );
