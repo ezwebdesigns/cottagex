@@ -10,13 +10,15 @@ type InspirationSectionProps = {
 const placeholders: Record<string, { title: string; description: string; image: string }[]> = {
   en: [
     { title: 'Top 10 Ontario Lakefront Rentals', description: 'Discover the best waterfront cottages across Ontario for your perfect summer getaway.', image: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=600&q=80' },
-    { title: 'Quebec Cottage Guide for Families', description: 'Family-friendly chalets in Quebec with activities for all ages, from swimming to hiking.', image: 'https://images.unsplash.com/photo-1517770413964-df8ca61194a6?auto=format&fit=crop&w=600&q=80' },
-    { title: 'Luxury Mountain Retreats in BC', description: 'Premium alpine lodges in British Columbia offering hot tubs, views, and world-class amenities.', image: 'https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?auto=format&fit=crop&w=600&q=80' },
+    { title: 'Quebec Cottage Guide for Families', description: 'Family-friendly chalets in Quebec with activities for all ages.', image: 'https://images.unsplash.com/photo-1517770413964-df8ca61194a6?auto=format&fit=crop&w=600&q=80' },
+    { title: 'Luxury Mountain Retreats in BC', description: 'Premium alpine lodges in British Columbia with hot tubs and views.', image: 'https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?auto=format&fit=crop&w=600&q=80' },
+    { title: 'Alberta Ski Chalet Guide', description: 'Top-rated ski-in ski-out chalets in Banff, Jasper, and Lake Louise.', image: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=600&q=80' },
   ],
   fr: [
-    { title: 'Top 10 locations au bord du lac en Ontario', description: 'Découvrez les meilleurs chalets au bord de l\'eau en Ontario pour vos vacances d\'été.', image: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=600&q=80' },
-    { title: 'Guide des chalets au Québec pour familles', description: 'Chalets familiaux au Québec avec activités pour tous les âges, de la baignade à la randonnée.', image: 'https://images.unsplash.com/photo-1517770413964-df8ca61194a6?auto=format&fit=crop&w=600&q=80' },
-    { title: 'Retraites de montagne luxueuses en CB', description: 'Chalets de luxe en Colombie-Britannique offrant spas, vues imprenables et commodités de classe mondiale.', image: 'https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?auto=format&fit=crop&w=600&q=80' },
+    { title: 'Top 10 locations au bord du lac en Ontario', description: 'Découvrez les meilleurs chalets au bord de l\'eau en Ontario.', image: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=600&q=80' },
+    { title: 'Guide des chalets au Québec pour familles', description: 'Chalets familiaux au Québec avec activités pour tous les âges.', image: 'https://images.unsplash.com/photo-1517770413964-df8ca61194a6?auto=format&fit=crop&w=600&q=80' },
+    { title: 'Retraites de montagne luxueuses en CB', description: 'Chalets de luxe en Colombie-Britannique avec spas et vues.', image: 'https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?auto=format&fit=crop&w=600&q=80' },
+    { title: 'Guide des chalets de ski en Alberta', description: 'Chalets ski-in ski-out à Banff, Jasper et Lake Louise.', image: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=600&q=80' },
   ],
 };
 
@@ -25,8 +27,7 @@ export default function InspirationSection({ locale, title, description }: Inspi
 
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20 bg-slate-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
           <div className="max-w-2xl">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
               {title}
@@ -43,7 +44,7 @@ export default function InspirationSection({ locale, title, description }: Inspi
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 lg:gap-8">
           {guides.map((guide, i) => (
             <Link
               key={i}
@@ -60,7 +61,6 @@ export default function InspirationSection({ locale, title, description }: Inspi
             </Link>
           ))}
         </div>
-      </div>
     </section>
   );
 }

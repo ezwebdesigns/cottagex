@@ -20,7 +20,7 @@ export default function CTASection({ locale, title, description, buttonText, but
             ))}
           </h2>
           {description && (
-            <p className="text-white/60 mb-8 max-w-md text-sm sm:text-base leading-relaxed">{description}</p>
+            <p className="text-white/60 mb-8 text-sm sm:text-base leading-relaxed">{description}</p>
           )}
           <a
             href={buttonLink?.replace('{locale}', locale) || `/${locale}/contact`}
