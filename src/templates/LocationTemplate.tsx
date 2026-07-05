@@ -40,9 +40,6 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
 
   const learnMoreFaq = ld.learnMore?.faq || [];
 
-  const faqItems: any[] = Array.isArray(pageData?.faq) ? pageData.faq : [];
-
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [openLearnMoreFaq, setOpenLearnMoreFaq] = useState<number | null>(null);
 
   const chaletCards = useMemo(() => {
@@ -215,31 +212,6 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         </section>
       )}
 
-      {faqItems.length > 0 && (
-        <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-slate-50">
-          <div className="max-w-3xl">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-6" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{t.destination.faq}</h2>
-            <div className="space-y-2">
-              {faqItems.map((item: any, i: number) => {
-                const q = item.q;
-                const a = item.a;
-                const isOpen = openFaq === i;
-                return (
-                  <div key={i} className="rounded-2xl bg-white border border-slate-100 overflow-hidden">
-                    <button onClick={() => setOpenFaq(isOpen ? null : i)} className="flex items-center justify-between w-full px-5 py-4 text-left min-h-[48px]">
-                      <span className="font-semibold text-sm text-[#191e3b] pr-3">{q}</span>
-                      <ChevronDown className={`w-5 h-5 text-[#0f51ec] flex-shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                    <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
-                      <p className="px-5 pb-4 text-sm text-slate-600 leading-relaxed">{a}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-      )}
     </div>
   );
 }
