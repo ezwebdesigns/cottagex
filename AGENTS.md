@@ -34,7 +34,7 @@ Replace the current cottage site frontend with a new design from Base44, adapted
 - Articles — Base44 card grid (category badges, status pills, image preview, hover shadow)
 - Settings — updated all colors to Base44 palette, rounded-full buttons, slate borders
 - All 12 remaining admin pages (messages, library, login, profile, pages, destinations, articles create/edit, pages create/edit, destinations create/edit) — colors migrated to Base44
-- Build compiles successfully (runtime DB quota errors only)
+- Build compiles successfully (runtime NEON quota errors only)
 
 ### Phase 2 ✅ — Remaining public pages redesigned to Base44
 - Destination page (`LocationTemplate.tsx`) — colors migrated to `#0f51ec`/`#191e3b`
@@ -42,7 +42,7 @@ Replace the current cottage site frontend with a new design from Base44, adapted
 - Article detail (`ArticleStandard.tsx`, `ArticleListicle.tsx`) — colors migrated, CTA sections updated
 - Terms/About (`StandardTemplate.tsx`) — colors migrated
 - Contact (`ContactForm.tsx`) — colors migrated, email updated to `socialmediacanada@gmail.com`
-- Build compiles successfully (runtime DB quota errors only)
+- Build compiles successfully (runtime NEON quota errors only)
 
 ### Phase 3 ✅ — i18n merge
 - Merged missing keys from `messages/*.json` into `translations.ts` (home, admin, nav.login/signup/admin, footer.newsletter/support)
@@ -53,7 +53,7 @@ Replace the current cottage site frontend with a new design from Base44, adapted
 - Dormant system: `next-intl@^4.12.0` installed but unused in source (safe to remove later)
 
 ### Phase 4 (Pending) — Data layer
-Connect to `affiliatecottages`, `articles`, `pages` tables (blocked by Supabase quota)
+Connect to `affiliatecottages`, `articles`, `pages` tables (blocked by NEON data transfer quota)
 
 ## Blocked
 - **NEON data transfer quota exceeded** — all DB queries fail at runtime. Project ref: `tqcdlzmlulklnwdnhtwn`. Upgrade plan or reduce transfer to unblock.
