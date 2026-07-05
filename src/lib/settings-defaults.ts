@@ -173,6 +173,10 @@ export const defaultSettings: Record<string, any> = {
       { name: "Cottages with hot tub", category: "Chalets avec spa", shortcode: "[canada, featured, hot-tub, 6]" },
     ],
   },
+  homepage_featured: {
+    title: "Featured Chalets",
+    subtitle: "Handpicked escapes across the Canadian wilderness",
+  },
   homepage_search: {
     title: "Search by City and Category",
     description: "Quickly jump into active curated rentals across major Canadian regions.",

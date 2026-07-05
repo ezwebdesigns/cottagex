@@ -110,7 +110,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               >
                 <img
                   src={item.image}
-                  alt={item.name}
+                  alt={item.imageAlt || item.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#191e3b]/90 via-[#191e3b]/30 to-transparent" />

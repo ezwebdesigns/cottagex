@@ -56,7 +56,7 @@ Replace the current cottage site frontend with a new design from Base44, adapted
 Connect to `affiliatecottages`, `articles`, `pages` tables (blocked by Supabase quota)
 
 ## Blocked
-- **Supabase data transfer quota exceeded** — all DB queries fail at runtime. Project ref: `tqcdlzmlulklnwdnhtwn`. Upgrade plan or reduce transfer to unblock.
+- **NEON data transfer quota exceeded** — all DB queries fail at runtime. Project ref: `tqcdlzmlulklnwdnhtwn`. Upgrade plan or reduce transfer to unblock.
 
 ## Key Context
 - Supabase: `postgresql://postgres.tqcdlzmlulklnwdnhtwn:Chaletexpress123%40!@aws-1-us-east-2.pooler.supabase.com:5432/postgres`

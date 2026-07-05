@@ -22,31 +22,31 @@ export default function ExploreSection({ title, description, subtitle, items = [
   if (!items || items.length === 0) return null;
 
   return (
-    <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 max-w-7xl mx-auto">
-      <div className="mb-10">
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
-          {title}
-        </h2>
-        {subtitle && (
-          <p className="text-[#0f51ec] font-semibold mt-2 text-sm sm:text-base">{subtitle}</p>
-        )}
-        {description && (
-          <p className="text-slate-500 mt-2 text-sm sm:text-base leading-relaxed max-w-3xl">{description}</p>
-        )}
-      </div>
+    <section className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20 bg-white">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          {subtitle && (
+            <p className="text-sm font-semibold uppercase tracking-wider text-[#0f51ec] mb-3">{subtitle}</p>
+          )}
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+            {title}
+          </h2>
+          {description && (
+            <p className="text-slate-500 mt-4 text-sm sm:text-base leading-relaxed max-w-4xl mx-auto">{description}</p>
+          )}
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {items.map((item, i) => (
-          <div key={i} className="bg-[#191e3b] p-6 sm:p-8 rounded-[2rem] flex gap-4 items-start">
-            <div className="p-3 bg-white text-[#0f51ec] rounded-2xl shrink-0">
-              {iconMap[item.icon] || <Compass size={24} />}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {items.map((item, i) => (
+            <div key={i} className="bg-slate-50 p-8 sm:p-10 rounded-[2rem] border border-slate-100 hover:border-slate-200 transition-colors">
+              <div className="p-3.5 bg-[#0f51ec]/10 text-[#0f51ec] rounded-2xl w-fit mb-5">
+                {iconMap[item.icon] || <Compass size={24} />}
+              </div>
+              <h3 className="text-xl font-bold text-[#191e3b] mb-3">{item.title}</h3>
+              <p className="text-slate-500 text-sm leading-relaxed">{item.description}</p>
             </div>
-            <div>
-              <h3 className="font-bold text-lg text-white mb-2">{item.title}</h3>
-              <p className="text-white/70 text-sm leading-relaxed">{item.description}</p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
