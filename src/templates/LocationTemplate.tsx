@@ -1,10 +1,9 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { MapPin, ChevronDown, Waves, Trees, Compass, Star, Snowflake, Mountain, Leaf, Home as HomeIcon, ArrowRight } from 'lucide-react';
+import { MapPin, ChevronDown, Waves, Trees, Compass, Star, Snowflake, Mountain, Leaf, Home as HomeIcon } from 'lucide-react';
 import { useTranslations } from '@/lib/useTranslations';
 import PropertyCard from '@/components/cottagex/PropertyCard';
-import ExploreSection from '@/components/cottagex/ExploreSection';
 import CTASection from '@/components/cottagex/CTASection';
 import { BreadcrumbSchema, PlaceSchema } from '@/components/seo/SchemaOrg';
 import Image from 'next/image';
@@ -17,23 +16,12 @@ type LocationTemplateProps = {
   cottages?: any[];
 };
 
-const featureIconMap: Record<string, React.ReactNode> = {
-  waves: <Waves size={20} />, Waves: <Waves size={20} />,
-  trees: <Trees size={20} />, Trees: <Trees size={20} />,
-  compass: <Compass size={20} />, Compass: <Compass size={20} />,
-  star: <Star size={20} />, Star: <Star size={20} />,
-  snowflake: <Snowflake size={20} />, Snowflake: <Snowflake size={20} />,
-  mountain: <Mountain size={20} />, Mountain: <Mountain size={20} />,
-  leaf: <Leaf size={20} />, Leaf: <Leaf size={20} />,
-  home: <HomeIcon size={20} />, Home: <HomeIcon size={20} />, HomeIcon: <HomeIcon size={20} />,
+const highlightIconMap: Record<string, React.ReactNode> = {
+  Waves: <Waves size={20} />, Trees: <Trees size={20} />, Compass: <Compass size={20} />,
+  MapPin: <MapPin size={20} />, Mountain: <Mountain size={20} />, TreePine: <></>,
+  Sunrise: <></>, Sailboat: <></>, Bath: <></>, Users: <></>, Gem: <></>, Dog: <></>,
+  Heart: <></>, Home: <HomeIcon size={20} />, Umbrella: <></>, Building2: <></>, MountainSnow: <></>, Footprints: <></>,
 };
-
-const fallbackFeatures = [
-  { icon: 'compass', title: 'Explore', description: 'Discover the beauty of this stunning region.' },
-  { icon: 'trees', title: 'Nature', description: 'Immerse yourself in breathtaking natural landscapes.' },
-  { icon: 'star', title: 'Activities', description: 'Enjoy hiking, swimming, skiing and more.' },
-  { icon: 'snowflake', title: 'Year-Round', description: 'Each season offers a unique and memorable experience.' },
-];
 
 export default function LocationTemplate({ locale, slug, pageData, name: nameProp, cottages }: LocationTemplateProps) {
   const { t } = useTranslations();
@@ -43,7 +31,6 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
   const ld = pageData?.locationData || {};
   const hero = ld.hero || {};
   const intro = ld.intro || {};
-  const featured = ld.featured || {};
 
   const heroTitle = hero.title || locName;
   const heroSubtitle = hero.subtitle || '';
@@ -51,7 +38,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
   const heroImageAlt = hero.imageAlt || heroTitle;
 
   const introDesc = intro.description || '';
-  const featuresList = featured?.items?.length ? featured.items : fallbackFeatures;
+  const highlights = intro.highlights || [];
 
   const faqItems: any[] = Array.isArray(pageData?.faq) ? pageData.faq : [];
 
@@ -105,34 +92,30 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
       </section>
 
       {introDesc && (
-        <section className="py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-[#0f51ec] mb-3">{t.destination.overview}</h2>
-            <p className="text-base sm:text-lg text-[#191e3b] leading-relaxed" style={{ lineHeight: 1.8 }}>{introDesc}</p>
+        <section className="py-10 sm:py-14 px-4 sm:px-6 lg:px-8 bg-[#f8fafc]">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
+            <div className="w-full lg:w-[55%]">
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-[#0f51ec] mb-3">{t.destination.overview}</h2>
+              <p className="text-base sm:text-lg text-[#191e3b] leading-relaxed" style={{ lineHeight: 1.8 }}>{introDesc}</p>
+            </div>
+            {highlights.length > 0 && (
+              <div className="w-full lg:w-[45%] grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {highlights.map((item: any, i: number) => (
+                  <div key={i} className="bg-[#191e3b] p-4 sm:p-5 rounded-2xl flex gap-3 items-start">
+                    <div className="p-2.5 bg-white text-[#0f51ec] rounded-xl shrink-0">
+                      {highlightIconMap[item.icon] || <Compass size={18} />}
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-sm text-white mb-0.5">{item.title}</h3>
+                      <p className="text-white/60 text-xs leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       )}
-
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-slate-50">
-        <div className="max-w-7xl">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-6" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{t.destination.features}</h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {featuresList.map((feature: any, i: number) => {
-              const fTitle = feature.title;
-              const fDesc = feature.description || feature.desc || '';
-              return (
-                <div key={i} className="p-5 rounded-2xl bg-white shadow-sm border border-slate-100">
-                  <div className="w-10 h-10 rounded-xl bg-[#0f51ec]/10 flex items-center justify-center mb-3">
-                    <div className="w-5 h-5 text-[#0f51ec]">{featureIconMap[feature.icon] || <Compass size={20} className="text-[#0f51ec]" />}</div>
-                  </div>
-                  <h3 className="font-bold text-[#191e3b] text-sm mb-1" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{fTitle}</h3>
-                  <p className="text-xs text-slate-500 leading-relaxed">{fDesc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
       {chaletCards.length > 0 && (
         <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
@@ -146,17 +129,13 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         </section>
       )}
 
-      <ExploreSection
-        title={ld.explore?.title}
-        subtitle={ld.explore?.subtitle}
-        description={ld.explore?.description}
-        items={ld.explore?.items}
-      />
-
       {ld.learnMore?.title && (
-        <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
+        <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-white">
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
             <div className="w-full md:w-1/2">
+              {ld.learnMore.subtitle && (
+                <p className="text-sm font-semibold uppercase tracking-wider text-[#0f51ec] mb-2">{ld.learnMore.subtitle}</p>
+              )}
               <h2 className="text-2xl sm:text-3xl font-bold text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{ld.learnMore.title}</h2>
               {ld.learnMore.description && (
                 <p className="text-slate-500 mt-4 text-sm sm:text-base leading-relaxed">{ld.learnMore.description}</p>
@@ -173,7 +152,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
 
       {ld.search?.title && (
         <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-slate-50">
-          <div className="max-w-7xl mx-auto text-center">
+          <div className="text-center">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{ld.search.title}</h2>
             {ld.search.description && (
               <p className="text-slate-500 mt-2 text-sm sm:text-base">{ld.search.description}</p>
@@ -190,6 +169,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         buttonLink={ld.cta?.buttonLink}
         image={ld.cta?.image}
         imageAlt={ld.cta?.imageAlt}
+        fullWidth
       />
 
       {faqItems.length > 0 && (

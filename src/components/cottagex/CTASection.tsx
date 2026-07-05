@@ -6,11 +6,12 @@ type CTASectionProps = {
   buttonLink?: string;
   image?: string;
   imageAlt?: string;
+  fullWidth?: boolean;
 };
 
-export default function CTASection({ locale, title, description, buttonText, buttonLink, image, imageAlt }: CTASectionProps) {
+export default function CTASection({ locale, title, description, buttonText, buttonLink, image, imageAlt, fullWidth }: CTASectionProps) {
   return (
-    <section className="px-4 sm:px-6 lg:px-8 py-8 sm:py-12 max-w-7xl mx-auto">
+    <section className={`px-4 sm:px-6 lg:px-8 py-8 sm:py-12 ${fullWidth ? '' : 'max-w-7xl mx-auto'}`}>
       <div className="bg-[#191e3b] rounded-[2rem] overflow-hidden relative flex flex-col md:flex-row items-center">
         <div className="w-full md:w-1/2 p-8 sm:p-12 z-10 text-white">
           <h2 className="text-2xl sm:text-4xl font-bold mb-4 leading-tight" style={{ fontFamily: 'Radio Canada, sans-serif' }}>

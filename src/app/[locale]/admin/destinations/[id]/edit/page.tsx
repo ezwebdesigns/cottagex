@@ -195,6 +195,7 @@ export default function EditDestinationPage() {
           <div className="grid grid-cols-5 gap-6">
             <div className="col-span-3 space-y-4">
               <div><label className="block text-sm font-medium text-slate-700 mb-1">Title</label><input value={locationData.learnMore?.title ?? ''} onChange={e => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, title: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" /></div>
+              <div><label className="block text-sm font-medium text-slate-700 mb-1">Subtitle</label><input value={locationData.learnMore?.subtitle ?? ''} onChange={e => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, subtitle: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" placeholder="A short subtitle above the title" /></div>
               <div><label className="block text-sm font-medium text-slate-700 mb-1">Description</label><textarea value={locationData.learnMore?.description ?? ''} onChange={e => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, description: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec] h-28" /></div>
             </div>
             <div className="col-span-2">
