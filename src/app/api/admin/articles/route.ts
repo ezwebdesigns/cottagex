@@ -2,13 +2,18 @@ import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { articles } from '@/db/schema';
 import { desc } from 'drizzle-orm';
+import { requireAuth } from '@/lib/api-auth';
 
 export async function GET() {
+  const unauthorized = await requireAuth();
+  if (unauthorized) return unauthorized;
   const all = await db.select().from(articles).orderBy(desc(articles.createdAt));
   return NextResponse.json({ posts: all });
 }
 
 export async function POST(request: Request) {
+  const unauthorized = await requireAuth();
+  if (unauthorized) return unauthorized;
   try {
     const body = await request.json();
     const slug = body.slug || body.title?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') || `article-${Date.now()}`;

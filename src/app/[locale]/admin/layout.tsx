@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { usePathname, useParams } from 'next/navigation';
 import { SessionProvider, signOut } from 'next-auth/react';
+import AuthGuard from '@/components/cottagex/AuthGuard';
 import {
   LayoutDashboard, FileText, BookOpen, Image as ImageIcon, Mail,
   Settings as SettingsIcon, Building2, MapPin, User, ExternalLink,
@@ -23,9 +24,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <SessionProvider>
-      <AdminShell collapsed={collapsed} setCollapsed={setCollapsed} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} pathname={pathname} locale={locale} favicon={favicon}>
-        {children}
-      </AdminShell>
+      <AuthGuard>
+        <AdminShell collapsed={collapsed} setCollapsed={setCollapsed} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} pathname={pathname} locale={locale} favicon={favicon}>
+          {children}
+        </AdminShell>
+      </AuthGuard>
     </SessionProvider>
   );
 }

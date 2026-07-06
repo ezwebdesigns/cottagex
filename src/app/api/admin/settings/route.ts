@@ -3,8 +3,11 @@ import { db } from '@/lib/db';
 import { siteSettings } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { defaultSettings } from '@/lib/settings-defaults';
+import { requireAuth } from '@/lib/api-auth';
 
 export async function GET(request: Request) {
+  const unauthorized = await requireAuth();
+  if (unauthorized) return unauthorized;
   const { searchParams } = new URL(request.url);
   const section = searchParams.get('section');
   if (!section || !defaultSettings[section]) {
@@ -19,6 +22,8 @@ export async function GET(request: Request) {
 }
 
 export async function PUT(request: Request) {
+  const unauthorized = await requireAuth();
+  if (unauthorized) return unauthorized;
   try {
     const { section, data } = await request.json();
     if (!section || !data || !defaultSettings[section]) {

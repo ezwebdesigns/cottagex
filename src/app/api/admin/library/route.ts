@@ -2,13 +2,18 @@ import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { libraryImages } from '@/db/schema';
 import { eq, desc } from 'drizzle-orm';
+import { requireAuth } from '@/lib/api-auth';
 
 export async function GET() {
+  const unauthorized = await requireAuth();
+  if (unauthorized) return unauthorized;
   const files = await db.select().from(libraryImages).orderBy(desc(libraryImages.createdAt));
   return NextResponse.json({ files });
 }
 
 export async function POST(request: Request) {
+  const unauthorized = await requireAuth();
+  if (unauthorized) return unauthorized;
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File | null;
@@ -33,6 +38,8 @@ export async function POST(request: Request) {
 }
 
 export async function DELETE(request: Request) {
+  const unauthorized = await requireAuth();
+  if (unauthorized) return unauthorized;
   const { id } = await request.json();
   if (!id) return NextResponse.json({ error: 'ID required' }, { status: 400 });
   const [deleted] = await db.delete(libraryImages).where(eq(libraryImages.id, Number(id))).returning();
