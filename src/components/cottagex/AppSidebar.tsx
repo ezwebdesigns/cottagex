@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Mountain, Compass, BookOpen, MapPin, Info, Globe, LayoutDashboard } from 'lucide-react';
+import { Mountain, Compass, BookOpen, MapPin, Info, Globe } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from '@/lib/useTranslations';
@@ -96,14 +96,6 @@ export default function AppSidebar() {
       </nav>
 
       <div className="border-t border-slate-100 px-2 py-2 flex-shrink-0">
-        <Link
-          href={`/${lang}/admin`}
-          className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-colors min-h-[44px] mb-1"
-          title="Admin"
-        >
-          <LayoutDashboard className="w-5 h-5 text-[#191e3b] flex-shrink-0" />
-          <span className={`text-sm font-medium text-[#191e3b] whitespace-nowrap transition-opacity duration-200 ${expanded ? 'opacity-100' : 'opacity-0'}`}>Admin</span>
-        </Link>
         <button
           onClick={toggleLocale}
           className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-colors min-h-[44px]"
