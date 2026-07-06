@@ -1,10 +1,17 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Sailboat, Bath, Users, Gem, Dog, Mountain, Heart, Home, Trees, TreePine, Umbrella, Building2, MountainSnow, Waves, Footprints } from 'lucide-react';
 import { useTranslations } from '@/lib/useTranslations';
 
 const WIDGET_HTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref=""></div><script class="eg-widgets-script" src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"></script>`;
+
+const iconMap: Record<string, React.ElementType> = {
+  lakefront: Sailboat, 'hot-tub': Bath, family: Users, luxury: Gem,
+  'pet-friendly': Dog, mountain: Mountain, romantic: Heart, 'log-cabin': Home,
+  countryside: Trees, secluded: TreePine, beach: Umbrella, resort: Building2,
+  skiing: MountainSnow, pools: Waves, hiking: Footprints,
+};
 
 type HeroProps = {
   tag?: string;
@@ -92,6 +99,22 @@ export default function Hero({ tag, title, description, image, imageAlt }: HeroP
               {description || t.hero.subtitle}
             </p>
           </div>
+        </div>
+
+        <div className="flex gap-4 sm:gap-5 lg:gap-7 justify-center mt-8 lg:mt-12 overflow-x-auto [&::-webkit-scrollbar]:hidden pb-2" style={{ scrollbarWidth: 'none' }}>
+          {(t.categories as { id: string; label: string }[]).map((cat) => {
+            const Icon = iconMap[cat.id] || Mountain;
+            return (
+              <div key={cat.id} className="flex flex-col items-center gap-1.5 flex-shrink-0 group min-w-[56px] sm:min-w-[64px]">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl border border-white/20 bg-transparent group-hover:bg-white/10 flex items-center justify-center transition-colors">
+                  <Icon className="w-5 h-5 text-white transition-colors" strokeWidth={1.5} />
+                </div>
+                <span className="text-[10px] sm:text-xs font-medium text-white/80 group-hover:text-white transition-colors text-center">
+                  {cat.label}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
