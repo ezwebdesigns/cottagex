@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { Plus, X } from 'lucide-react';
 import TiptapEditor from '@/components/admin/TiptapEditor';
 
@@ -10,7 +10,7 @@ type FAQ = { question: string; answer: string };
 const toSlug = (s: string) => s.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-').replace(/^-|-$/g, '');
 
 export default function NewArticlePage() {
-  const router = useRouter();
+  const router = useRouter(); const locale = useParams()?.locale as string;
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
   const [content, setContent] = useState('');
@@ -38,7 +38,7 @@ export default function NewArticlePage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, slug, content, excerpt, category, author, articleType, featuredImage, imageAlt, seoTitle, ctaTitle, ctaButton, ctaLink, faq, isPublished })
       });
-      router.push('/admin/articles');
+      router.push(`/${locale}/admin/articles`);
     } finally { setSaving(false); }
   }
 

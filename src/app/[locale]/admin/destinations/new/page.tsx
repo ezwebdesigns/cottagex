@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { Plus, X } from 'lucide-react';
 
 type ExploreItem = { icon: string; title: string; description: string };
@@ -9,7 +9,7 @@ type ExploreItem = { icon: string; title: string; description: string };
 const EXPLORE_ICONS = ['Waves', 'Trees', 'Compass', 'MapPin', 'Mountain', 'TreePine', 'Sunrise'];
 
 export default function NewDestinationPage() {
-  const router = useRouter();
+  const router = useRouter(); const locale = useParams()?.locale as string;
   const [title, setTitle] = useState('');
   const [seoTitle, setSeoTitle] = useState('');
   const [metaDescription, setMetaDescription] = useState('');
@@ -32,7 +32,7 @@ export default function NewDestinationPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, template: 'location', seoTitle, metaDescription, featuredImage, ctaTitle, ctaDescription, ctaButton, ctaLink, locationData, isPublished })
       });
-      if (res.ok) router.push('/admin/destinations');
+      if (res.ok) router.push(`/${locale}/admin/destinations`);
     } finally { setSaving(false); }
   }
 

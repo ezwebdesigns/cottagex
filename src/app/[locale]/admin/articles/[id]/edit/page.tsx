@@ -8,7 +8,7 @@ import TiptapEditor from '@/components/admin/TiptapEditor';
 type FAQ = { question: string; answer: string };
 
 export default function EditArticlePage() {
-  const router = useRouter(); const params = useParams();
+  const router = useRouter(); const params = useParams(); const locale = params.locale as string;
   const [title, setTitle] = useState(''); const [content, setContent] = useState(''); const [excerpt, setExcerpt] = useState('');
   const [category, setCategory] = useState(''); const [author, setAuthor] = useState(''); const [featuredImage, setFeaturedImage] = useState('');
   const [imageAlt, setImageAlt] = useState('');
@@ -32,7 +32,7 @@ export default function EditArticlePage() {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title, slug, content, excerpt, category, author, featuredImage, imageAlt, seoTitle, ctaTitle, ctaButton, ctaLink, faq, isPublished })
     });
-    setSaving(false); router.push('/admin/articles');
+    setSaving(false); router.push(`/${locale}/admin/articles`);
   }
 
   if (loading) return <div className="p-10 text-gray-400">Loading...</div>;
@@ -101,8 +101,8 @@ export default function EditArticlePage() {
           </div>
         </div>
         <div className="flex justify-end gap-3">
-          <button type="button" onClick={() => router.push('/admin/articles')} className="px-4 py-2 border border-gray-300 rounded-full text-sm text-slate-600 hover:bg-slate-50">Cancel</button>
-          {slug && <button type="button" onClick={() => window.open(`/guides/${slug}?preview=true`, '_blank')} className="px-4 py-2 border border-gray-300 rounded-full text-sm text-slate-600 hover:bg-slate-50 flex items-center gap-1.5"><Eye className="w-4 h-4" /> Preview</button>}
+          <button type="button" onClick={() => router.push(`/${locale}/admin/articles`)} className="px-4 py-2 border border-gray-300 rounded-full text-sm text-slate-600 hover:bg-slate-50">Cancel</button>
+          {slug && <button type="button" onClick={() => window.open(`/${locale}/guides/${slug}?preview=true`, '_blank')} className="px-4 py-2 border border-gray-300 rounded-full text-sm text-slate-600 hover:bg-slate-50 flex items-center gap-1.5"><Eye className="w-4 h-4" /> Preview</button>}
           <button type="submit" disabled={saving} className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-5 py-2 rounded-full text-sm font-semibold disabled:opacity-60">{saving ? 'Saving...' : 'Save Changes'}</button>
         </div>
       </form>

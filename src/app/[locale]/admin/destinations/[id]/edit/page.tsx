@@ -7,7 +7,7 @@ import { Eye } from 'lucide-react';
 const EXPLORE_ICONS = ['Waves', 'Trees', 'Compass', 'MapPin', 'Mountain', 'TreePine', 'Sunrise'];
 
 export default function EditDestinationPage() {
-  const router = useRouter(); const params = useParams();
+  const router = useRouter(); const params = useParams(); const locale = params.locale as string;
   const [title, setTitle] = useState(''); const [slug, setSlug] = useState('');
   const [seoTitle, setSeoTitle] = useState(''); const [metaDescription, setMetaDescription] = useState('');
   const [featuredImage, setFeaturedImage] = useState(''); const [isPublished, setIsPublished] = useState(true);
@@ -31,7 +31,7 @@ export default function EditDestinationPage() {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title, slug, seoTitle, metaDescription, featuredImage, locationData, isPublished })
     });
-    setSaving(false); router.push('/admin/destinations');
+    setSaving(false); router.push(`/${locale}/admin/destinations`);
   }
 
   if (loading) return <div className="p-10 text-slate-400">Loading...</div>;
@@ -43,7 +43,7 @@ export default function EditDestinationPage() {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
           <div><label className="block text-sm font-medium text-slate-700 mb-1">Name</label><input value={title} onChange={e => setTitle(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" required /></div>
-          <div><label className="block text-sm font-medium text-slate-700 mb-1">Slug</label><div className="flex gap-2"><input value={slug} onChange={e => setSlug(e.target.value)} className="flex-1 border border-gray-300 rounded-full px-4 py-2.5 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" /><button type="button" onClick={() => router.push(`/cottage-country/${slug}?preview=true`)} className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-4 py-2 rounded-full text-xs font-semibold inline-flex items-center gap-1.5"><Eye className="w-3.5 h-3.5" /> Preview</button></div></div>
+          <div><label className="block text-sm font-medium text-slate-700 mb-1">Slug</label><div className="flex gap-2"><input value={slug} onChange={e => setSlug(e.target.value)} className="flex-1 border border-gray-300 rounded-full px-4 py-2.5 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" /><button type="button" onClick={() => router.push(`/${locale}/cottage-country/${slug}?preview=true`)} className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-4 py-2 rounded-full text-xs font-semibold inline-flex items-center gap-1.5"><Eye className="w-3.5 h-3.5" /> Preview</button></div></div>
           <div><label className="block text-sm font-medium text-slate-700 mb-1">Featured Image</label>
             <div className="flex items-center gap-3">
               {featuredImage && <img src={featuredImage} className="w-16 h-16 rounded-full object-cover border" loading="lazy" />}
@@ -264,8 +264,8 @@ export default function EditDestinationPage() {
         </div>
 
         <div className="flex justify-end gap-3">
-          <button type="button" onClick={() => router.push('/admin/destinations')} className="px-4 py-2 border border-gray-300 rounded-full text-sm text-slate-600 hover:bg-slate-50">Cancel</button>
-          {slug && <button type="button" onClick={() => window.open(`/cottage-country/${slug}?preview=true`, '_blank')} className="px-4 py-2 border border-gray-300 rounded-full text-sm text-slate-600 hover:bg-slate-50 flex items-center gap-1.5"><Eye className="w-4 h-4" /> Preview</button>}
+          <button type="button" onClick={() => router.push(`/${locale}/admin/destinations`)} className="px-4 py-2 border border-gray-300 rounded-full text-sm text-slate-600 hover:bg-slate-50">Cancel</button>
+          {slug && <button type="button" onClick={() => window.open(`/${locale}/cottage-country/${slug}?preview=true`, '_blank')} className="px-4 py-2 border border-gray-300 rounded-full text-sm text-slate-600 hover:bg-slate-50 flex items-center gap-1.5"><Eye className="w-4 h-4" /> Preview</button>}
           <button type="submit" disabled={saving} className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-5 py-2 rounded-full text-sm font-semibold disabled:opacity-60">{saving ? 'Saving...' : 'Save Changes'}</button>
         </div>
       </form>
