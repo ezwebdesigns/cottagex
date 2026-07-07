@@ -113,7 +113,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               <a
                 key={i}
                 href={link}
-                className="group relative h-48 sm:h-56 rounded-[2rem] overflow-hidden block"
+                className="group relative h-40 sm:h-48 rounded-[2rem] overflow-hidden block"
               >
                 <img
                   src={item.image}

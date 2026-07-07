@@ -39,11 +39,11 @@ export default function ExploreSection({ title, description, subtitle, image, im
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {items.map((item, i) => (
-              <div key={i} className="bg-white p-5 sm:p-6 rounded-2xl border border-white/10 hover:border-[#77e1fb]/30 transition-colors">
-                <div className="p-3 bg-[#0f51ec]/10 text-[#0f51ec] rounded-xl w-fit mb-3">
-                  {iconMap[item.icon] || <Compass size={20} />}
+              <div key={i} className="bg-white p-3 sm:p-4 rounded-2xl border border-white/10 hover:border-[#77e1fb]/30 transition-colors">
+                <div className="p-2 bg-[#0f51ec]/10 text-[#0f51ec] rounded-xl w-fit mb-2">
+                  {iconMap[item.icon] || <Compass size={18} />}
                 </div>
-                <h3 className="font-bold text-[#191e3b] mb-1.5 text-sm sm:text-base">{item.title}</h3>
+                <h3 className="font-bold text-[#191e3b] mb-1 text-sm sm:text-base">{item.title}</h3>
                 <p className="text-slate-500 text-xs sm:text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}

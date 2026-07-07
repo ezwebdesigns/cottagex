@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Sparkles, Sailboat, Bath, Users, Gem, Dog, Mountain, Heart, Home, Trees, TreePine, Umbrella, Building2, MountainSnow, Waves, Footprints } from 'lucide-react';
+import { Sailboat, Bath, Users, Gem, Dog, Mountain, Heart, Home, Trees, TreePine, Umbrella, Building2, MountainSnow, Waves, Footprints } from 'lucide-react';
 import { useTranslations } from '@/lib/useTranslations';
 
 const WIDGET_HTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref=""></div><script class="eg-widgets-script" src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"></script>`;
@@ -88,8 +88,7 @@ export default function Hero({ tag, title, description, image, imageAlt, catItem
           </div>
 
           <div className="order-1 lg:order-2 flex flex-col items-center lg:items-start">
-            <div className="mb-4 inline-flex items-center justify-center bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20">
-              <Sparkles className="text-[#93B4FF] mr-2" size={16} />
+            <div className="mb-4 inline-flex items-center justify-center bg-[#0f51ec] px-4 py-1.5 rounded-full">
               <span className="text-white text-xs font-bold tracking-wider uppercase">{tag || t.hero.search.title || 'Official VRBO Affiliate Search'}</span>
             </div>
             <h1
@@ -112,7 +111,7 @@ export default function Hero({ tag, title, description, image, imageAlt, catItem
                 <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl border border-white/20 bg-transparent group-hover:bg-[#0f51ec] flex items-center justify-center transition-colors">
                   <Icon className="w-5 h-5 text-white transition-colors" strokeWidth={1.5} />
                 </div>
-                <span className="text-[10px] sm:text-xs font-medium text-white/80 group-hover:text-[#77e1fb] transition-colors text-center">
+                <span className="text-[10px] sm:text-xs font-medium text-white/80 group-hover:text-white transition-colors text-center">
                   {cat.label}
                 </span>
               </div>
