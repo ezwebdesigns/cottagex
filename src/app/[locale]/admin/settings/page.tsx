@@ -14,6 +14,7 @@ type HomepageExplore = { title: string; description: string; subtitle: string; i
 type HomepageInspiration = { title: string; description: string };
 type HomepageFeaturedChalets = { title: string; subtitle: string };
 type HomepageCTA = { title: string; description: string; buttonText: string; buttonLink: string; image: string; imageAlt: string };
+type HomepageCTABar = { title: string; description: string; buttonText: string; buttonLink: string };
 type CategoryItem = { id: string; labelEn: string; labelFr: string; icon: string };
 type CategoryBarConfig = { items: CategoryItem[] };
 
@@ -42,6 +43,7 @@ export default function AdminSettingsPage() {
   const [inspiration, setInspiration] = useState<HomepageInspiration | null>(null);
   const [featured, setFeatured] = useState<HomepageFeaturedChalets | null>(null);
   const [cta, setCta] = useState<HomepageCTA | null>(null);
+  const [ctaBar, setCtaBar] = useState<HomepageCTABar | null>(null);
   const [categories, setCategories] = useState<CategoryBarConfig | null>(null);
 
   const [openHomeSection, setOpenHomeSection] = useState<string>('hero');
@@ -65,6 +67,7 @@ export default function AdminSettingsPage() {
     fetchSection('homepage_inspiration').then(setInspiration);
     fetchSection('homepage_featured').then(setFeatured);
     fetchSection('homepage_cta').then(setCta);
+    fetchSection('homepage_cta_bar').then(setCtaBar);
     fetchSection('homepage_categories').then(setCategories);
   }, [fetchSection]);
 
@@ -181,8 +184,18 @@ export default function AdminSettingsPage() {
             </CollapsibleSection>
           )}
 
+          {ctaBar && (
+            <CollapsibleSection title="3 — CTA Bar" id="cta-bar" isOpen={openHomeSection === 'cta-bar'} onToggle={() => setOpenHomeSection(openHomeSection === 'cta-bar' ? '' : 'cta-bar')}>
+              <Field label="Title" value={ctaBar.title} onChange={(v) => setCtaBar({ ...ctaBar, title: v })} />
+              <Field label="Description" value={ctaBar.description} onChange={(v) => setCtaBar({ ...ctaBar, description: v })} textarea />
+              <Field label="Button Text" value={ctaBar.buttonText} onChange={(v) => setCtaBar({ ...ctaBar, buttonText: v })} />
+              <Field label="Button Link" value={ctaBar.buttonLink} onChange={(v) => setCtaBar({ ...ctaBar, buttonLink: v })} />
+              <SaveButton onClick={() => saveSection('homepage_cta_bar', ctaBar)} saving={saving} />
+            </CollapsibleSection>
+          )}
+
           {featured && (
-            <CollapsibleSection title="3 — Featured Chalets" id="featured" isOpen={openHomeSection === 'featured'} onToggle={() => setOpenHomeSection(openHomeSection === 'featured' ? '' : 'featured')}>
+            <CollapsibleSection title="4 — Featured Chalets" id="featured" isOpen={openHomeSection === 'featured'} onToggle={() => setOpenHomeSection(openHomeSection === 'featured' ? '' : 'featured')}>
               <Field label="Title" value={featured.title} onChange={(v) => setFeatured({ ...featured, title: v })} />
               <Field label="Subtitle" value={featured.subtitle} onChange={(v) => setFeatured({ ...featured, subtitle: v })} textarea />
               <p className="text-xs text-slate-400">Chalets data comes from the database — only the title and subtitle are editable here.</p>
@@ -191,7 +204,7 @@ export default function AdminSettingsPage() {
           )}
 
           {destinations && (
-            <CollapsibleSection title="4 — Destinations Section" id="destinations" isOpen={openHomeSection === 'destinations'} onToggle={() => setOpenHomeSection(openHomeSection === 'destinations' ? '' : 'destinations')}>
+            <CollapsibleSection title="5 — Destinations Section" id="destinations" isOpen={openHomeSection === 'destinations'} onToggle={() => setOpenHomeSection(openHomeSection === 'destinations' ? '' : 'destinations')}>
               <Field label="Title" value={destinations.title} onChange={(v) => setDestinations({ ...destinations, title: v })} />
               <Field label="Description" value={destinations.description} onChange={(v) => setDestinations({ ...destinations, description: v })} textarea />
               <div className="mt-4">
@@ -243,7 +256,7 @@ export default function AdminSettingsPage() {
           )}
 
           {explore && (
-            <CollapsibleSection title="5 — Explore Section" id="explore" isOpen={openHomeSection === 'explore'} onToggle={() => setOpenHomeSection(openHomeSection === 'explore' ? '' : 'explore')}>
+            <CollapsibleSection title="6 — Explore Section" id="explore" isOpen={openHomeSection === 'explore'} onToggle={() => setOpenHomeSection(openHomeSection === 'explore' ? '' : 'explore')}>
               <Field label="Title" value={explore.title} onChange={(v) => setExplore({ ...explore, title: v })} />
               <Field label="Description" value={explore.description} onChange={(v) => setExplore({ ...explore, description: v })} textarea />
               <Field label="Subtitle" value={explore.subtitle} onChange={(v) => setExplore({ ...explore, subtitle: v })} textarea />
@@ -281,7 +294,7 @@ export default function AdminSettingsPage() {
           )}
 
           {inspiration && (
-            <CollapsibleSection title="6 — Inspiration Section" id="inspiration" isOpen={openHomeSection === 'inspiration'} onToggle={() => setOpenHomeSection(openHomeSection === 'inspiration' ? '' : 'inspiration')}>
+            <CollapsibleSection title="7 — Inspiration Section" id="inspiration" isOpen={openHomeSection === 'inspiration'} onToggle={() => setOpenHomeSection(openHomeSection === 'inspiration' ? '' : 'inspiration')}>
               <Field label="Title" value={inspiration.title} onChange={(v) => setInspiration({ ...inspiration, title: v })} />
               <Field label="Description" value={inspiration.description} onChange={(v) => setInspiration({ ...inspiration, description: v })} textarea />
               <SaveButton onClick={() => saveSection('homepage_inspiration', inspiration)} saving={saving} />
@@ -289,7 +302,7 @@ export default function AdminSettingsPage() {
           )}
 
           {search && (
-            <CollapsibleSection title="7 — Search Section" id="search" isOpen={openHomeSection === 'search'} onToggle={() => setOpenHomeSection(openHomeSection === 'search' ? '' : 'search')}>
+            <CollapsibleSection title="8 — Search Section" id="search" isOpen={openHomeSection === 'search'} onToggle={() => setOpenHomeSection(openHomeSection === 'search' ? '' : 'search')}>
               <Field label="Title" value={search.title} onChange={(v) => setSearch({ ...search, title: v })} />
               <Field label="Description" value={search.description} onChange={(v) => setSearch({ ...search, description: v })} textarea />
               <div>
@@ -343,7 +356,7 @@ export default function AdminSettingsPage() {
           )}
 
           {cta && (
-            <CollapsibleSection title="8 — CTA Section" id="cta" isOpen={openHomeSection === 'cta'} onToggle={() => setOpenHomeSection(openHomeSection === 'cta' ? '' : 'cta')}>
+            <CollapsibleSection title="9 — CTA Section" id="cta" isOpen={openHomeSection === 'cta'} onToggle={() => setOpenHomeSection(openHomeSection === 'cta' ? '' : 'cta')}>
               <Field label="Title" value={cta.title} onChange={(v) => setCta({ ...cta, title: v })} />
               <Field label="Description" value={cta.description} onChange={(v) => setCta({ ...cta, description: v })} textarea />
               <Field label="Button Text" value={cta.buttonText} onChange={(v) => setCta({ ...cta, buttonText: v })} />

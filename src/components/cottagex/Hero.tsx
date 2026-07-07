@@ -13,15 +13,18 @@ const iconMap: Record<string, React.ElementType> = {
   skiing: MountainSnow, pools: Waves, hiking: Footprints,
 };
 
+type CatItem = { id: string; label: string };
+
 type HeroProps = {
   tag?: string;
   title?: string;
   description?: string;
   image?: string;
   imageAlt?: string;
+  catItems?: CatItem[];
 };
 
-export default function Hero({ tag, title, description, image, imageAlt }: HeroProps) {
+export default function Hero({ tag, title, description, image, imageAlt, catItems }: HeroProps) {
   const { t } = useTranslations();
   const [scrollY, setScrollY] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -102,14 +105,14 @@ export default function Hero({ tag, title, description, image, imageAlt }: HeroP
         </div>
 
         <div className="flex gap-4 sm:gap-5 lg:gap-7 justify-center mt-8 lg:mt-12 overflow-x-auto [&::-webkit-scrollbar]:hidden pb-2" style={{ scrollbarWidth: 'none' }}>
-          {(t.categories as { id: string; label: string }[]).map((cat) => {
+          {(catItems || (t.categories as CatItem[])).map((cat) => {
             const Icon = iconMap[cat.id] || Mountain;
             return (
               <div key={cat.id} className="flex flex-col items-center gap-1.5 flex-shrink-0 group min-w-[56px] sm:min-w-[64px]">
-                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl border border-white/20 bg-transparent group-hover:bg-white/10 flex items-center justify-center transition-colors">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl border border-white/20 bg-transparent group-hover:bg-[#0f51ec] flex items-center justify-center transition-colors">
                   <Icon className="w-5 h-5 text-white transition-colors" strokeWidth={1.5} />
                 </div>
-                <span className="text-[10px] sm:text-xs font-medium text-white/80 group-hover:text-white transition-colors text-center">
+                <span className="text-[10px] sm:text-xs font-medium text-white/80 group-hover:text-[#77e1fb] transition-colors text-center">
                   {cat.label}
                 </span>
               </div>

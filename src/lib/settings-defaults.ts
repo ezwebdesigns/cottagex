@@ -211,6 +211,12 @@ export const defaultSettings: Record<string, any> = {
     image: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&q=80&w=1000",
     imageAlt: "Cozy wooden cabin interior with warm lighting in a Canadian forest setting",
   },
+  homepage_cta_bar: {
+    title: "Find Your Perfect Canadian Escape",
+    description: "Browse handpicked lake houses, mountain lodges, and wilderness cabins across Canada.",
+    buttonText: "Explore Cottages",
+    buttonLink: "/{locale}/cottage-country/ontario",
+  },
   homepage_categories: {
     items: [
       { id: "lakefront", labelEn: "Lakefront", labelFr: "Lac", icon: "Sailboat" },

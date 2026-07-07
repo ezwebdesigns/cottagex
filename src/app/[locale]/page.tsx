@@ -52,6 +52,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const inspiration = settings.homepage_inspiration;
   const search = settings.homepage_search;
   const cta = settings.homepage_cta;
+  const ctaBar = settings.homepage_cta_bar;
 
   const displayChalets: Chalet[] = cottages.map((c) => ({
     id: String(c.id),
@@ -84,8 +85,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         description={hero?.description}
         image={hero?.image}
         imageAlt={hero?.imageAlt}
+        catItems={catItems}
       />
-      <CategoryBar items={catItems} />
+      <CategoryBar
+        ctaTitle={ctaBar?.title}
+        ctaDescription={ctaBar?.description}
+        ctaButtonText={ctaBar?.buttonText}
+        ctaButtonLink={ctaBar?.buttonLink}
+      />
 
       <PropertyGrid
         title={featured?.title || "Featured Chalets"}
