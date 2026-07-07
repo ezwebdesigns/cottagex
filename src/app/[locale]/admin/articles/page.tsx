@@ -1,13 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { Plus, Search, Pencil, Trash2, Eye, FileText, Copy } from 'lucide-react';
 
 type Post = { id: string; title: string; slug: string; excerpt: string; category: string; featuredImage: string; isPublished: boolean; author?: string; date?: string };
 
 export default function AdminArticlesPage() {
   const router = useRouter();
+  const { locale } = useParams<{ locale: string }>();
   const [posts, setPosts] = useState<Post[]>([]);
   const [search, setSearch] = useState('');
 
@@ -41,7 +42,7 @@ export default function AdminArticlesPage() {
     });
     if (createRes.ok) {
       const { post: newPost } = await createRes.json();
-      router.push(`/admin/articles/${newPost.id}/edit`);
+      router.push(`/${locale}/admin/articles/${newPost.id}/edit`);
     } else {
       alert('Failed to duplicate — slug may already exist.');
     }

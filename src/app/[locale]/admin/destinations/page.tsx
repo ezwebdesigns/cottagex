@@ -1,11 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { Plus, Edit, Trash2, Eye, Copy } from 'lucide-react';
 
 export default function AdminDestinationsPage() {
   const router = useRouter();
+  const { locale } = useParams<{ locale: string }>();
   const [destinations, setDestinations] = useState<any[]>([]);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export default function AdminDestinationsPage() {
     });
     if (createRes.ok) {
       const { page: newPage } = await createRes.json();
-      router.push(`/admin/destinations/${newPage.id}/edit`);
+      router.push(`/${locale}/admin/destinations/${newPage.id}/edit`);
     } else {
       alert('Failed to duplicate — slug may already exist.');
     }

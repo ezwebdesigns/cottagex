@@ -34,13 +34,13 @@ export default function ExploreSection({ title, description, subtitle, image, im
             <p className="text-sm font-semibold uppercase tracking-wider text-[#77e1fb] mt-4 mb-3">{subtitle}</p>
           )}
           {description && (
-            <p className="text-white/60 text-sm sm:text-base leading-relaxed mb-8">{description}</p>
+            <p className="text-white text-sm sm:text-base leading-relaxed mb-8">{description}</p>
           )}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {items.map((item, i) => (
               <div key={i} className="bg-white p-3 sm:p-4 rounded-2xl border border-white/10 hover:border-[#77e1fb]/30 transition-colors">
-                <div className="flex items-center gap-3">
+                <div className="flex items-start gap-3">
                   <div className="p-2 bg-[#0f51ec]/10 text-[#0f51ec] rounded-xl w-fit shrink-0">
                     {iconMap[item.icon] || <Compass size={18} />}
                   </div>
