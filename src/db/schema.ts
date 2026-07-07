@@ -1,4 +1,4 @@
-import { pgTable, serial, text, integer, decimal, boolean, json, timestamp, varchar } from 'drizzle-orm/pg-core';
+import { pgTable, serial, text, integer, decimal, boolean, json, timestamp, varchar, uuid } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
   id: serial('id').primaryKey(),
@@ -30,7 +30,7 @@ export const properties = pgTable('properties', {
 });
 
 export const pages = pgTable('pages', {
-  id: serial('id').primaryKey(),
+  id: uuid('id').defaultRandom().primaryKey(),
   title: varchar('title', { length: 255 }).notNull(),
   slug: varchar('slug', { length: 255 }).notNull().unique(),
   template: varchar('template', { length: 50 }).default('standard').notNull(),
