@@ -43,7 +43,7 @@ export default function AdminDestinationsPage() {
     <div className="max-w-5xl mx-auto p-6 md:p-10">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-[#191e3b]">Destinations</h1>
-        <button onClick={() => router.push('/admin/destinations/new')} className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-1.5">
+        <button onClick={() => router.push(`/${locale}/admin/destinations/new`)} className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-1.5">
           <Plus className="w-4 h-4" /> Create New Destination
         </button>
       </div>
@@ -72,8 +72,8 @@ export default function AdminDestinationsPage() {
                   </td>
                   <td className="px-5 py-4 text-right">
                     <div className="flex items-center justify-end gap-2">
-                      <button onClick={() => window.open(`/cottage-country/${dest.slug}?preview=true`, '_blank')} className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors"><Eye className="w-4 h-4 text-slate-400" /></button>
-                      <button onClick={() => router.push(`/admin/destinations/${dest.id}/edit`)} className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors"><Edit className="w-4 h-4 text-slate-500" /></button>
+                      <button onClick={() => window.open(`/${locale}/cottage-country/${dest.slug}?preview=true`, '_blank')} className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors"><Eye className="w-4 h-4 text-slate-400" /></button>
+                      <button onClick={() => router.push(`/${locale}/admin/destinations/${dest.id}/edit`)} className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors"><Edit className="w-4 h-4 text-slate-500" /></button>
                       <button onClick={() => duplicate(dest.id, dest.slug)} className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors" title="Duplicate"><Copy className="w-4 h-4 text-slate-400" /></button>
                       <button onClick={() => remove(dest.id)} className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors"><Trash2 className="w-4 h-4 text-red-400" /></button>
                     </div>
