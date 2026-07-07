@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Pencil, Trash2, Eye, FileText } from 'lucide-react';
+import { Plus, Search, Pencil, Trash2, Eye, FileText, Copy } from 'lucide-react';
 
 type Post = { id: string; title: string; slug: string; excerpt: string; category: string; featuredImage: string; isPublished: boolean; author?: string; date?: string };
 
@@ -25,6 +25,26 @@ export default function AdminArticlesPage() {
     if (!confirm('Delete this article?')) return;
     await fetch(`/api/admin/articles/${id}`, { method: 'DELETE' });
     load();
+  }
+
+  async function duplicate(id: string, currentSlug: string) {
+    const newSlug = prompt('Enter slug for the copy:', `${currentSlug}-copy`);
+    if (!newSlug) return;
+    const res = await fetch(`/api/admin/articles/${id}`);
+    if (!res.ok) return;
+    const { post } = await res.json();
+    const { id: _, createdAt, updatedAt, publishedAt, ...rest } = post;
+    const createRes = await fetch('/api/admin/articles', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...rest, slug: newSlug, title: `${rest.title} (copy)`, isPublished: false, publishedAt: null }),
+    });
+    if (createRes.ok) {
+      const { post: newPost } = await createRes.json();
+      router.push(`/admin/articles/${newPost.id}/edit`);
+    } else {
+      alert('Failed to duplicate — slug may already exist.');
+    }
   }
 
   const filtered = posts.filter(a => a.title?.toLowerCase().includes(search.toLowerCase()));
@@ -103,6 +123,13 @@ export default function AdminArticlesPage() {
                   className="w-9 h-9 rounded-full hover:bg-slate-100 flex items-center justify-center transition-colors"
                 >
                   <Pencil className="w-3.5 h-3.5 text-slate-500" />
+                </button>
+                <button
+                  onClick={() => duplicate(a.id, a.slug)}
+                  className="w-9 h-9 rounded-full hover:bg-slate-100 flex items-center justify-center transition-colors"
+                  title="Duplicate"
+                >
+                  <Copy className="w-3.5 h-3.5 text-slate-400" />
                 </button>
                 <button
                   onClick={() => remove(a.id)}

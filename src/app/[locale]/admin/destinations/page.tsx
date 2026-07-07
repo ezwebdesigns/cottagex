@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import { Plus, Edit, Trash2, Eye, Copy } from 'lucide-react';
 
 export default function AdminDestinationsPage() {
   const router = useRouter();
@@ -16,6 +16,26 @@ export default function AdminDestinationsPage() {
     if (!confirm('Delete this destination?')) return;
     await fetch(`/api/admin/pages/${id}`, { method: 'DELETE' });
     setDestinations(destinations.filter(p => p.id !== id));
+  }
+
+  async function duplicate(id: string, currentSlug: string) {
+    const newSlug = prompt('Enter slug for the copy:', `${currentSlug}-copy`);
+    if (!newSlug) return;
+    const res = await fetch(`/api/admin/pages/${id}`);
+    if (!res.ok) return;
+    const { page } = await res.json();
+    const { id: _, createdAt, updatedAt, publishedAt, ...rest } = page;
+    const createRes = await fetch('/api/admin/pages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...rest, slug: newSlug, title: `${rest.title} (copy)`, template: 'location', isPublished: false, publishedAt: null }),
+    });
+    if (createRes.ok) {
+      const { page: newPage } = await createRes.json();
+      router.push(`/admin/destinations/${newPage.id}/edit`);
+    } else {
+      alert('Failed to duplicate — slug may already exist.');
+    }
   }
 
   return (
@@ -53,6 +73,7 @@ export default function AdminDestinationsPage() {
                     <div className="flex items-center justify-end gap-2">
                       <button onClick={() => window.open(`/cottage-country/${dest.slug}?preview=true`, '_blank')} className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors"><Eye className="w-4 h-4 text-slate-400" /></button>
                       <button onClick={() => router.push(`/admin/destinations/${dest.id}/edit`)} className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors"><Edit className="w-4 h-4 text-slate-500" /></button>
+                      <button onClick={() => duplicate(dest.id, dest.slug)} className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors" title="Duplicate"><Copy className="w-4 h-4 text-slate-400" /></button>
                       <button onClick={() => remove(dest.id)} className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors"><Trash2 className="w-4 h-4 text-red-400" /></button>
                     </div>
                   </td>
