@@ -13,18 +13,46 @@ export default function ImageUploader({ value, onChange, label }: ImageUploaderP
   const [uploading, setUploading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  function resizeImage(file: File): Promise<Blob> {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        const MAX = 800;
+        let { width, height } = img;
+        if (width > MAX || height > MAX) {
+          if (width > height) { height = Math.round(height * MAX / width); width = MAX; }
+          else { width = Math.round(width * MAX / height); height = MAX; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d')!;
+        ctx.drawImage(img, 0, 0, width, height);
+        canvas.toBlob((blob) => {
+          if (blob) resolve(blob);
+          else reject(new Error('Canvas toBlob failed'));
+        }, file.type, 0.8);
+      };
+      img.onerror = () => reject(new Error('Image load failed'));
+      img.src = URL.createObjectURL(file);
+    });
+  }
+
   async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
     setUploading(true);
-    const fd = new FormData();
-    fd.append('file', file);
     try {
+      const resized = await resizeImage(file);
+      const fd = new FormData();
+      fd.append('file', resized, file.name);
       const res = await fetch('/api/admin/library', { method: 'POST', body: fd });
       if (res.ok) {
         const data = await res.json();
         onChange(data.image?.url || '');
       }
+    } catch (err) {
+      console.error('Upload error:', err);
     } finally {
       setUploading(false);
       if (inputRef.current) inputRef.current.value = '';

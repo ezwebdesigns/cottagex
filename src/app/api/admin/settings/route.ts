@@ -36,7 +36,8 @@ export async function PUT(request: Request) {
       .onConflictDoUpdate({ target: siteSettings.section, set: { data, updatedAt: new Date() } });
     revalidatePath('/', 'layout');
     return NextResponse.json({ success: true });
-  } catch {
-    return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
+  } catch (e) {
+    const message = e instanceof Error ? e.message : 'Unknown error';
+    return NextResponse.json({ error: message }, { status: 400 });
   }
 }

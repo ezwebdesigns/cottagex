@@ -31,6 +31,7 @@ export default function AdminSettingsPage() {
   const [activeTab, setActiveTab] = useState('general');
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const [general, setGeneral] = useState<any>(null);
   const [seo, setSeo] = useState<any>(null);
@@ -75,13 +76,21 @@ export default function AdminSettingsPage() {
   const saveSection = async (section: string, data: any) => {
     setSaving(true);
     setSaved(false);
+    setError(null);
     try {
       const res = await fetch('/api/admin/settings', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ section, data }),
       });
-      if (res.ok) setSaved(true);
+      if (res.ok) {
+        setSaved(true);
+      } else {
+        const err = await res.json().catch(() => ({ error: 'Save failed' }));
+        setError(err.error || 'Save failed');
+      }
+    } catch (e) {
+      setError('Network error — check console');
     } finally {
       setSaving(false);
     }
@@ -94,9 +103,14 @@ export default function AdminSettingsPage() {
   return (
     <div className="p-6 md:p-10 animate-in fade-in duration-200">
       <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-bold text-[#191e3b]">Settings</h1>
-          <p className="text-sm text-slate-400 mt-1">Navigation, footer, logo &amp; favicon</p>
-          {saved && <span className="text-xs text-emerald-600 font-bold bg-emerald-50 px-3 py-1.5 rounded-full">Saved</span>}
+          <div>
+            <h1 className="text-2xl font-bold text-[#191e3b]">Settings</h1>
+            <p className="text-sm text-slate-400 mt-1">Navigation, footer, logo &amp; favicon</p>
+          </div>
+          <div className="flex items-center gap-3">
+            {saved && <span className="text-xs text-emerald-600 font-bold bg-emerald-50 px-3 py-1.5 rounded-full">Saved</span>}
+            {error && <span className="text-xs text-red-600 font-bold bg-red-50 px-3 py-1.5 rounded-full">{error}</span>}
+          </div>
       </div>
 
       <div className="flex gap-1 border-b border-slate-100 mb-8 overflow-x-auto">
