@@ -141,17 +141,17 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         items={explore?.items}
       />
 
+      <InspirationSection
+        locale={locale}
+        title={inspiration?.title}
+        description={inspiration?.description}
+      />
+
       <SearchSection
         locale={locale}
         title={search?.title}
         description={search?.description}
         columns={search?.columns}
-      />
-
-      <InspirationSection
-        locale={locale}
-        title={inspiration?.title}
-        description={inspiration?.description}
       />
 
       <CTASection

@@ -311,8 +311,16 @@ export default function AdminSettingsPage() {
             </CollapsibleSection>
           )}
 
+          {inspiration && (
+            <CollapsibleSection title="7 — Inspiration Section" id="inspiration" isOpen={openHomeSection === 'inspiration'} onToggle={() => setOpenHomeSection(openHomeSection === 'inspiration' ? '' : 'inspiration')}>
+              <Field label="Title" value={inspiration.title} onChange={(v) => setInspiration({ ...inspiration, title: v })} />
+              <Field label="Description" value={inspiration.description} onChange={(v) => setInspiration({ ...inspiration, description: v })} textarea />
+              <SaveButton onClick={() => saveSection('homepage_inspiration', inspiration)} saving={saving} />
+            </CollapsibleSection>
+          )}
+
           {search && (
-            <CollapsibleSection title="7 — Search Section" id="search" isOpen={openHomeSection === 'search'} onToggle={() => setOpenHomeSection(openHomeSection === 'search' ? '' : 'search')}>
+            <CollapsibleSection title="8 — Search Section" id="search" isOpen={openHomeSection === 'search'} onToggle={() => setOpenHomeSection(openHomeSection === 'search' ? '' : 'search')}>
               <Field label="Title" value={search.title} onChange={(v) => setSearch({ ...search, title: v })} />
               <Field label="Description" value={search.description} onChange={(v) => setSearch({ ...search, description: v })} textarea />
               <div>
@@ -362,14 +370,6 @@ export default function AdminSettingsPage() {
                 <button type="button" onClick={() => setSearch({ ...search, columns: [...(search.columns || []), { title: '', links: [] }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">+ Add Column</button>
               </div>
               <SaveButton onClick={() => saveSection('homepage_search', search)} saving={saving} />
-            </CollapsibleSection>
-          )}
-
-          {inspiration && (
-            <CollapsibleSection title="8 — Inspiration Section" id="inspiration" isOpen={openHomeSection === 'inspiration'} onToggle={() => setOpenHomeSection(openHomeSection === 'inspiration' ? '' : 'inspiration')}>
-              <Field label="Title" value={inspiration.title} onChange={(v) => setInspiration({ ...inspiration, title: v })} />
-              <Field label="Description" value={inspiration.description} onChange={(v) => setInspiration({ ...inspiration, description: v })} textarea />
-              <SaveButton onClick={() => saveSection('homepage_inspiration', inspiration)} saving={saving} />
             </CollapsibleSection>
           )}
 
