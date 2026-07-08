@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { db } from '@/lib/db';
 import { siteSettings } from '@/db/schema';
 import { eq } from 'drizzle-orm';
@@ -33,6 +34,7 @@ export async function PUT(request: Request) {
       .insert(siteSettings)
       .values({ section, data })
       .onConflictDoUpdate({ target: siteSettings.section, set: { data, updatedAt: new Date() } });
+    revalidatePath('/', 'layout');
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
