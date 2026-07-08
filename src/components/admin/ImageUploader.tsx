@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Upload, X, Loader2 } from 'lucide-react';
 
 type ImageUploaderProps = {
@@ -11,45 +11,32 @@ type ImageUploaderProps = {
 
 export default function ImageUploader({ value, onChange, label }: ImageUploaderProps) {
   const [uploading, setUploading] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState<string>('');
   const inputRef = useRef<HTMLInputElement>(null);
 
-  function resizeImage(file: File): Promise<Blob> {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.onload = () => {
-        const MAX = 800;
-        let { width, height } = img;
-        if (width > MAX || height > MAX) {
-          if (width > height) { height = Math.round(height * MAX / width); width = MAX; }
-          else { width = Math.round(width * MAX / height); height = MAX; }
-        }
-        const canvas = document.createElement('canvas');
-        canvas.width = width;
-        canvas.height = height;
-        const ctx = canvas.getContext('2d')!;
-        ctx.drawImage(img, 0, 0, width, height);
-        canvas.toBlob((blob) => {
-          if (blob) resolve(blob);
-          else reject(new Error('Canvas toBlob failed'));
-        }, file.type, 0.8);
-      };
-      img.onerror = () => reject(new Error('Image load failed'));
-      img.src = URL.createObjectURL(file);
-    });
-  }
+  useEffect(() => {
+    if (value?.startsWith('lib:')) {
+      fetch(`/api/library/${value.slice(4)}`).then(r => r.ok && r.json()).then(d => setPreviewUrl(d?.url || '')).catch(() => setPreviewUrl(''));
+    } else {
+      setPreviewUrl(value || '');
+    }
+  }, [value]);
 
   async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
     setUploading(true);
     try {
-      const resized = await resizeImage(file);
       const fd = new FormData();
-      fd.append('file', resized, file.name);
+      fd.append('file', file);
       const res = await fetch('/api/admin/library', { method: 'POST', body: fd });
       if (res.ok) {
         const data = await res.json();
-        onChange(data.image?.url || '');
+        if (data.image?.id) {
+          onChange(`lib:${data.image.id}`);
+        } else {
+          onChange(data.image?.url || '');
+        }
       }
     } catch (err) {
       console.error('Upload error:', err);
@@ -64,8 +51,8 @@ export default function ImageUploader({ value, onChange, label }: ImageUploaderP
       {label && <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>}
       <div className="flex items-start gap-4">
         <div className="w-24 h-24 rounded-2xl border border-gray-200 overflow-hidden flex-shrink-0 bg-gray-50 flex items-center justify-center">
-          {value ? (
-            <img src={value} alt="Preview" className="w-full h-full object-cover" loading="lazy" />
+          {previewUrl ? (
+            <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" loading="lazy" />
           ) : (
             <span className="text-gray-300 text-xs text-center px-2">No image</span>
           )}

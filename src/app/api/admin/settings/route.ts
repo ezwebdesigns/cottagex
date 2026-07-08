@@ -5,6 +5,7 @@ import { siteSettings } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { defaultSettings } from '@/lib/settings-defaults';
 import { requireAuth } from '@/lib/api-auth';
+import { resolveLibRefs } from '@/lib/resolve-lib-refs';
 
 export async function GET(request: Request) {
   const unauthorized = await requireAuth();
@@ -16,7 +17,9 @@ export async function GET(request: Request) {
   }
   try {
     const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, section));
-    return NextResponse.json({ data: row?.data ?? defaultSettings[section] });
+    const data = row?.data ?? defaultSettings[section];
+    const resolved = await resolveLibRefs(data);
+    return NextResponse.json({ data: resolved });
   } catch {
     return NextResponse.json({ data: defaultSettings[section] });
   }
