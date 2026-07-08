@@ -13,7 +13,7 @@ const iconMap: Record<string, React.ElementType> = {
   skiing: MountainSnow, pools: Waves, hiking: Footprints,
 };
 
-type CatItem = { id: string; label: string };
+type CatItem = { id: string; label: string; link?: string };
 
 type HeroProps = {
   tag?: string;
@@ -106,15 +106,16 @@ export default function Hero({ tag, title, description, image, imageAlt, catItem
         <div className="flex gap-4 sm:gap-5 lg:gap-7 justify-center mt-8 lg:mt-12 overflow-x-auto [&::-webkit-scrollbar]:hidden pb-2" style={{ scrollbarWidth: 'none' }}>
           {(catItems || (t.categories as CatItem[])).map((cat) => {
             const Icon = iconMap[cat.id] || Mountain;
+            const Wrapper = cat.link ? 'a' : 'div';
             return (
-              <div key={cat.id} className="flex flex-col items-center gap-1.5 flex-shrink-0 group min-w-[56px] sm:min-w-[64px]">
+              <Wrapper key={cat.id} href={cat.link} className="flex flex-col items-center gap-1.5 flex-shrink-0 group min-w-[56px] sm:min-w-[64px]">
                 <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl border border-white/20 bg-transparent group-hover:bg-[#0f51ec] flex items-center justify-center transition-colors">
                   <Icon className="w-5 h-5 text-white transition-colors" strokeWidth={1.5} />
                 </div>
                 <span className="text-[10px] sm:text-xs font-medium text-white/80 group-hover:text-white transition-colors text-center">
                   {cat.label}
                 </span>
-              </div>
+              </Wrapper>
             );
           })}
         </div>

@@ -73,6 +73,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const catItems = categories?.items?.map((item: any) => ({
     id: item.id,
     label: locale === 'fr' ? item.labelFr : item.labelEn,
+    link: item.link,
   }));
 
   const destItems = destData?.items?.length > 0 ? destData.items : fallbackDests;

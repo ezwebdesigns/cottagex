@@ -15,7 +15,7 @@ type HomepageInspiration = { title: string; description: string };
 type HomepageFeaturedChalets = { title: string; subtitle: string };
 type HomepageCTA = { title: string; description: string; buttonText: string; buttonLink: string; image: string; imageAlt: string };
 type HomepageCTABar = { title: string; description: string; buttonText: string; buttonLink: string };
-type CategoryItem = { id: string; labelEn: string; labelFr: string; icon: string };
+type CategoryItem = { id: string; labelEn: string; labelFr: string; icon: string; link: string };
 type CategoryBarConfig = { items: CategoryItem[] };
 
 const tabs = [
@@ -166,16 +166,20 @@ export default function AdminSettingsPage() {
                         setCategories({ ...categories, items: arr });
                       }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
                       <select value={item.icon} onChange={(e) => {
-                        const arr = [...categories.items]; arr[i] = { ...arr[i], icon: e.target.value };
-                        setCategories({ ...categories, items: arr });
-                      }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20">
-                        {['Sailboat', 'Bath', 'Users', 'Gem', 'Dog', 'Mountain', 'Heart', 'Home', 'Trees', 'TreePine', 'Umbrella', 'Building2', 'MountainSnow', 'Waves', 'Footprints', 'Compass', 'MapPin', 'Sunrise'].map(icon => (
-                          <option key={icon} value={icon}>{icon}</option>
-                        ))}
-                      </select>
+                         const arr = [...categories.items]; arr[i] = { ...arr[i], icon: e.target.value };
+                         setCategories({ ...categories, items: arr });
+                       }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20">
+                         {['Sailboat', 'Bath', 'Users', 'Gem', 'Dog', 'Mountain', 'Heart', 'Home', 'Trees', 'TreePine', 'Umbrella', 'Building2', 'MountainSnow', 'Waves', 'Footprints', 'Compass', 'MapPin', 'Sunrise'].map(icon => (
+                           <option key={icon} value={icon}>{icon}</option>
+                         ))}
+                       </select>
+                       <input placeholder="Link (ex: /en/cottage-country/ontario)" value={item.link} onChange={(e) => {
+                         const arr = [...categories.items]; arr[i] = { ...arr[i], link: e.target.value };
+                         setCategories({ ...categories, items: arr });
+                       }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
                     </div>
                   ))}
-                  <button onClick={() => setCategories({ ...categories, items: [...categories.items, { id: '', labelEn: '', labelFr: '', icon: 'Compass' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">
+                  <button onClick={() => setCategories({ ...categories, items: [...categories.items, { id: '', labelEn: '', labelFr: '', icon: 'Compass', link: '' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">
                     + Add Category
                   </button>
                 </div>

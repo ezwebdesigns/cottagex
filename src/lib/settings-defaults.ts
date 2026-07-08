@@ -83,7 +83,7 @@ export type HomepageInspiration = {
   description: string;
 };
 
-export type CategoryItem = { id: string; labelEn: string; labelFr: string; icon: string };
+export type CategoryItem = { id: string; labelEn: string; labelFr: string; icon: string; link: string };
 export type HomepageCategories = { items: CategoryItem[] };
 
 export type HomepageCTA = {
@@ -219,21 +219,21 @@ export const defaultSettings: Record<string, any> = {
   },
   homepage_categories: {
     items: [
-      { id: "lakefront", labelEn: "Lakefront", labelFr: "Lac", icon: "Sailboat" },
-      { id: "hot-tub", labelEn: "Hot Tub", labelFr: "Spa", icon: "Bath" },
-      { id: "family", labelEn: "Family", labelFr: "Famille", icon: "Users" },
-      { id: "luxury", labelEn: "Luxury", labelFr: "Luxe", icon: "Gem" },
-      { id: "pet-friendly", labelEn: "Pet Friendly", labelFr: "Animaux", icon: "Dog" },
-      { id: "mountain", labelEn: "Mountain", labelFr: "Montagne", icon: "Mountain" },
-      { id: "romantic", labelEn: "Romantic", labelFr: "Romantique", icon: "Heart" },
-      { id: "log-cabin", labelEn: "Log Cabin", labelFr: "Chalet bois", icon: "Home" },
-      { id: "countryside", labelEn: "Countryside", labelFr: "Campagne", icon: "Trees" },
-      { id: "secluded", labelEn: "Secluded", labelFr: "Isolé", icon: "TreePine" },
-      { id: "beach", labelEn: "Beach", labelFr: "Plage", icon: "Umbrella" },
-      { id: "resort", labelEn: "Resort", labelFr: "Village", icon: "Building2" },
-      { id: "skiing", labelEn: "Skiing", labelFr: "Ski", icon: "MountainSnow" },
-      { id: "pools", labelEn: "Pools", labelFr: "Piscines", icon: "Waves" },
-      { id: "hiking", labelEn: "Hiking", labelFr: "Randonnée", icon: "Footprints" },
+      { id: "lakefront", labelEn: "Lakefront", labelFr: "Lac", icon: "Sailboat", link: "" },
+      { id: "hot-tub", labelEn: "Hot Tub", labelFr: "Spa", icon: "Bath", link: "" },
+      { id: "family", labelEn: "Family", labelFr: "Famille", icon: "Users", link: "" },
+      { id: "luxury", labelEn: "Luxury", labelFr: "Luxe", icon: "Gem", link: "" },
+      { id: "pet-friendly", labelEn: "Pet Friendly", labelFr: "Animaux", icon: "Dog", link: "" },
+      { id: "mountain", labelEn: "Mountain", labelFr: "Montagne", icon: "Mountain", link: "" },
+      { id: "romantic", labelEn: "Romantic", labelFr: "Romantique", icon: "Heart", link: "" },
+      { id: "log-cabin", labelEn: "Log Cabin", labelFr: "Chalet bois", icon: "Home", link: "" },
+      { id: "countryside", labelEn: "Countryside", labelFr: "Campagne", icon: "Trees", link: "" },
+      { id: "secluded", labelEn: "Secluded", labelFr: "Isolé", icon: "TreePine", link: "" },
+      { id: "beach", labelEn: "Beach", labelFr: "Plage", icon: "Umbrella", link: "" },
+      { id: "resort", labelEn: "Resort", labelFr: "Village", icon: "Building2", link: "" },
+      { id: "skiing", labelEn: "Skiing", labelFr: "Ski", icon: "MountainSnow", link: "" },
+      { id: "pools", labelEn: "Pools", labelFr: "Piscines", icon: "Waves", link: "" },
+      { id: "hiking", labelEn: "Hiking", labelFr: "Randonnée", icon: "Footprints", link: "" },
     ],
   },
 };
