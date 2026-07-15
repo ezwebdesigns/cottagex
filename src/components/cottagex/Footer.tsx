@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Mountain, Globe } from 'lucide-react';
+import { Globe } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from '@/lib/useTranslations';
 
@@ -21,20 +21,11 @@ export default function Footer() {
       <div className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 mb-3">
-              {footerSettings?.logo ? (
+            {footerSettings?.logo ? (
+              <div className="flex items-center gap-2 mb-3">
                 <img src={footerSettings.logo} alt="Logo" className="h-8 w-auto" />
-              ) : (
-                <>
-                  <div className="w-9 h-9 rounded-2xl bg-[#0f51ec] flex items-center justify-center">
-                    <Mountain className="w-5 h-5 text-white" strokeWidth={2.5} />
-                  </div>
-                  <span className="text-xl font-bold" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
-                    Chalet<span className="text-[#77e1fb]"> Express</span>
-                  </span>
-                </>
-              )}
-            </div>
+              </div>
+            ) : null}
             <p className="text-sm text-white/60 leading-relaxed mb-4">{t.footer.tagline}</p>
             <div className="flex gap-3">
               {socialIcons.map((Icon, i) => (

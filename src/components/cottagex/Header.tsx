@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Globe, Mountain } from 'lucide-react';
+import { Globe } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from '@/lib/useTranslations';
@@ -28,16 +28,7 @@ export default function Header() {
           <Link href={`/${lang}`} className="flex items-center gap-2 group">
             {logo ? (
               <img src={logo} alt="Chalet Express" className="h-8 sm:h-9 w-auto" />
-            ) : (
-              <>
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-[#0f51ec] flex items-center justify-center shadow-lg shadow-blue-500/20 transition-transform group-hover:scale-105">
-                  <Mountain className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={2.5} />
-                </div>
-                <span className="text-xl sm:text-2xl font-bold tracking-tight text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
-                  Chalet<span className="text-[#0f51ec]"> Express</span>
-                </span>
-              </>
-            )}
+            ) : null}
           </Link>
 
           <div className="flex items-center gap-2 sm:gap-3">
