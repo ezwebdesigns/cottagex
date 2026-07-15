@@ -1,6 +1,7 @@
 import { db } from '@/lib/db';
 import { siteSettings, libraryImages } from '@/db/schema';
 import { eq } from 'drizzle-orm';
+import { defaultSettings } from '@/lib/settings-defaults';
 
 const BASE64_RE = /^data:image\/[a-z+.-]+;base64,[A-Za-z0-9+/=]+$/;
 
@@ -45,7 +46,17 @@ async function migrateValue(value: unknown): Promise<{ result: unknown; count: n
   return { result: value, count: 0 };
 }
 
-export async function migrateAllImages(): Promise<{ totalMigrated: number; sectionsUpdated: number }> {
+export async function migrateAllImages(): Promise<{ totalMigrated: number; sectionsUpdated: number; seeded: number }> {
+  let seeded = 0;
+
+  for (const [section, data] of Object.entries(defaultSettings)) {
+    const [existing] = await db.select({ section: siteSettings.section }).from(siteSettings).where(eq(siteSettings.section, section)).limit(1);
+    if (!existing) {
+      await db.insert(siteSettings).values({ section, data });
+      seeded++;
+    }
+  }
+
   const rows = await db.select({ section: siteSettings.section, data: siteSettings.data }).from(siteSettings);
   let totalMigrated = 0;
   let sectionsUpdated = 0;
@@ -59,5 +70,5 @@ export async function migrateAllImages(): Promise<{ totalMigrated: number; secti
     }
   }
 
-  return { totalMigrated, sectionsUpdated };
+  return { totalMigrated, sectionsUpdated, seeded };
 }
