@@ -80,6 +80,8 @@ export function CottageShortcode({ param1, param2, param3, limit }: CottageShort
       .finally(() => setLoading(false))
   }, [param1, param2, limit, isProvince, sort, category, isFeatured])
 
+  useProductSchemas(cottages)
+
   if (loading) {
     return (
       <div className="my-6 space-y-8">
@@ -108,8 +110,6 @@ export function CottageShortcode({ param1, param2, param3, limit }: CottageShort
   }
 
   if (cottages.length === 0) return null
-
-  useProductSchemas(cottages)
 
   return (
     <div className="my-6 space-y-4">
