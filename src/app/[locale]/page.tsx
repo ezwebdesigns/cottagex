@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { getCottages } from '@/lib/cottages';
 import { getAllSettings } from '@/lib/cached-settings';
+import { db } from '@/lib/db';
+import { articles } from '@/db/schema';
+import { desc, eq } from 'drizzle-orm';
 import Hero from '@/components/cottagex/Hero';
 import CategoryBar from '@/components/cottagex/CategoryBar';
 import PropertyGrid from '@/components/cottagex/PropertyGrid';
@@ -36,6 +39,28 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const cottages = await getCottages({ limit: 12, sort: 'rating', featuredOnly: false }).catch(() => []);
 
   const settings = await getAllSettings().catch(() => ({} as Record<string, any>));
+
+  let recentArticles: any[] = [];
+  try {
+    const rows = await db.select({
+      slug: articles.slug,
+      title: articles.title,
+      excerpt: articles.excerpt,
+      featuredImage: articles.featuredImage,
+      category: articles.category,
+      publishedAt: articles.publishedAt,
+      content: articles.content,
+    }).from(articles).where(eq(articles.isPublished, true)).orderBy(desc(articles.publishedAt)).limit(3);
+    recentArticles = rows.map(a => ({
+      slug: a.slug,
+      title: a.title,
+      excerpt: a.excerpt || '',
+      image: a.featuredImage || '',
+      category: a.category || 'Articles',
+      date: a.publishedAt ? new Date(a.publishedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : '',
+      readTime: `${Math.max(1, Math.ceil((a.content || '').split(/\s+/).length / 200))} min read`,
+    }));
+  } catch {}
 
   const hero = settings.homepage_hero;
   const categories = settings.homepage_categories;
@@ -138,6 +163,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         locale={locale}
         title={inspiration?.title}
         description={inspiration?.description}
+        articles={recentArticles}
       />
 
       <SearchSection
