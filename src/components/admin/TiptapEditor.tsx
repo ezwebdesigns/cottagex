@@ -111,6 +111,10 @@ export default function TiptapEditor({
   if (!editor) return null;
 
   const addLink = () => {
+    if (editor.isActive('link')) {
+      editor.chain().focus().unsetLink().run();
+      return;
+    }
     const url = window.prompt('Enter URL:');
     if (url) {
       editor.chain().focus()
