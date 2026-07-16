@@ -96,6 +96,7 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Photo</th>
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Name</th>
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden md:table-cell">Slug</th>
+              <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden lg:table-cell">Province</th>
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden lg:table-cell">Source</th>
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden lg:table-cell">Links</th>
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Featured</th>
@@ -117,6 +118,9 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
                 </td>
                 <td className="px-4 py-3 hidden md:table-cell">
                   <code className="text-xs text-slate-500 bg-slate-50 px-2 py-0.5 rounded-md">{c.slug}</code>
+                </td>
+                <td className="px-4 py-3 hidden lg:table-cell">
+                  <span className="text-xs text-slate-600 capitalize">{c.province}</span>
                 </td>
                 <td className="px-4 py-3 hidden lg:table-cell">
                   <span className="px-2 py-0.5 rounded-full bg-[#77e1fb]/20 text-[#191e3b] text-xs font-semibold">{c.source}</span>
