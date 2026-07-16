@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Compass, BookOpen, MapPin, Info, Globe } from 'lucide-react';
+import { Compass, BookOpen, MapPin, Info } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from '@/lib/useTranslations';
@@ -28,12 +28,6 @@ export default function AppSidebar() {
   }, []);
 
   const currentPage = pathname.replace(/^\/(en|fr)\/?/, '') || 'home';
-
-  const toggleLocale = () => {
-    const otherLocale = lang === 'en' ? 'fr' : 'en';
-    const newPath = pathname.replace(/^\/(en|fr)/, `/${otherLocale}`);
-    window.location.href = newPath;
-  };
 
   const navItems = [
     { label: t.nav.explore, icon: Compass, href: `/${lang}` },
@@ -100,16 +94,7 @@ export default function AppSidebar() {
         <p className={`px-3 text-xs text-slate-400 leading-relaxed transition-opacity duration-200 ${expanded ? 'opacity-100' : 'opacity-0'}`}>{t.sidebar.noFavorites}</p>
       </nav>
 
-      <div className="border-t border-slate-100 px-2 py-2 flex-shrink-0">
-        <button
-          onClick={toggleLocale}
-          className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-colors min-h-[44px]"
-          title={t.langLabel}
-        >
-          <Globe className="w-5 h-5 text-[#191e3b] flex-shrink-0" />
-          <span className={`text-sm font-medium text-[#191e3b] whitespace-nowrap transition-opacity duration-200 ${expanded ? 'opacity-100' : 'opacity-0'}`}>{t.langLabel}</span>
-        </button>
-      </div>
+      {/* language switcher hidden for now */}
     </aside>
   );
 }
