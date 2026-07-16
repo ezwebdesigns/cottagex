@@ -86,6 +86,13 @@ export type HomepageInspiration = {
 export type CategoryItem = { id: string; labelEn: string; labelFr: string; icon: string; link: string };
 export type HomepageCategories = { items: CategoryItem[] };
 
+export type SideMenuSettings = {
+  sections: {
+    title: string;
+    items: { label: string; icon: string; href: string }[];
+  }[];
+};
+
 export type HomepageCTA = {
   title: string;
   description: string;
@@ -234,6 +241,27 @@ export const defaultSettings: Record<string, any> = {
       { id: "skiing", labelEn: "Skiing", labelFr: "Ski", icon: "MountainSnow", link: "" },
       { id: "pools", labelEn: "Pools", labelFr: "Piscines", icon: "Waves", link: "" },
       { id: "hiking", labelEn: "Hiking", labelFr: "Randonnée", icon: "Footprints", link: "" },
+    ],
+  },
+  side_menu: {
+    sections: [
+      {
+        title: "Navigation",
+        items: [
+          { label: "Explore", icon: "Compass", href: "/{locale}" },
+          { label: "Guides", icon: "BookOpen", href: "/{locale}/guides" },
+          { label: "Terms", icon: "Info", href: "/{locale}/terms" },
+        ],
+      },
+      {
+        title: "Destinations",
+        items: [
+          { label: "Ontario", icon: "MapPin", href: "/{locale}/cottage-country/ontario" },
+          { label: "Quebec", icon: "MapPin", href: "/{locale}/cottage-country/quebec" },
+          { label: "British Columbia", icon: "MapPin", href: "/{locale}/cottage-country/british-columbia" },
+          { label: "Alberta", icon: "MapPin", href: "/{locale}/cottage-country/alberta" },
+        ],
+      },
     ],
   },
 };

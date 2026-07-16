@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
-import { Save, Loader2, Settings as SettingsIcon, Home, Search, Image, Megaphone, Globe, ChevronDown, ChevronUp } from 'lucide-react';
+import { Save, Loader2, Settings as SettingsIcon, Home, Search, Image, Megaphone, Globe, Menu, ChevronDown, ChevronUp } from 'lucide-react';
 import ImageUploader from '@/components/admin/ImageUploader';
 
 type HomepageHero = { tag: string; title: string; description: string; image: string; imageAlt: string };
@@ -24,6 +24,7 @@ const tabs = [
   { id: 'seo', label: 'SEO', icon: Globe },
   { id: 'header', label: 'Header', icon: Image },
   { id: 'footer', label: 'Footer', icon: Megaphone },
+  { id: 'side_menu', label: 'Side Menu', icon: Menu },
 ];
 
 export default function AdminSettingsPage() {
@@ -46,6 +47,7 @@ export default function AdminSettingsPage() {
   const [cta, setCta] = useState<HomepageCTA | null>(null);
   const [ctaBar, setCtaBar] = useState<HomepageCTABar | null>(null);
   const [categories, setCategories] = useState<CategoryBarConfig | null>(null);
+  const [sideMenu, setSideMenu] = useState<any>(null);
 
   const [openHomeSection, setOpenHomeSection] = useState<string>('hero');
 
@@ -70,6 +72,7 @@ export default function AdminSettingsPage() {
     fetchSection('homepage_cta').then(setCta);
     fetchSection('homepage_cta_bar').then(setCtaBar);
     fetchSection('homepage_categories').then(setCategories);
+    fetchSection('side_menu').then(setSideMenu);
   }, [fetchSection]);
 
 
@@ -501,6 +504,59 @@ export default function AdminSettingsPage() {
             </div>
           </div>
           <SaveButton onClick={() => saveSection('footer', footer)} saving={saving} />
+        </div>
+      )}
+
+      {activeTab === 'side_menu' && (
+        <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm max-w-2xl">
+          <h2 className="text-lg font-bold text-[#191e3b] mb-6">Side Menu</h2>
+          <p className="text-sm text-slate-500 mb-6">Manage the sections and links in the sidebar navigation menu.</p>
+          <div className="space-y-6">
+            {(sideMenu?.sections ?? []).map((section: any, si: number) => (
+              <div key={si} className="p-4 border border-slate-100 rounded-2xl space-y-3">
+                <div className="flex items-center justify-between">
+                  <input placeholder="Section Title" value={section.title} onChange={(e) => {
+                    const arr = [...sideMenu.sections]; arr[si] = { ...arr[si], title: e.target.value };
+                    setSideMenu({ ...sideMenu, sections: arr });
+                  }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20 font-semibold" />
+                  <button onClick={() => setSideMenu({ ...sideMenu, sections: sideMenu.sections.filter((_: any, idx: number) => idx !== si) })} className="text-xs text-red-500 hover:text-red-700 ml-2 shrink-0">Remove Section</button>
+                </div>
+                <div className="space-y-2 pl-2 border-l-2 border-slate-100">
+                  <p className="text-xs font-semibold text-slate-400 uppercase">Links</p>
+                  {section.items.map((item: any, ii: number) => (
+                    <div key={ii} className="flex gap-2 items-center">
+                      <input placeholder="Label" value={item.label} onChange={(e) => {
+                        const arr = [...sideMenu.sections]; const items = [...arr[si].items]; items[ii] = { ...items[ii], label: e.target.value };
+                        arr[si] = { ...arr[si], items }; setSideMenu({ ...sideMenu, sections: arr });
+                      }} className="w-36 px-3 py-1.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20 text-sm" />
+                      <select value={item.icon} onChange={(e) => {
+                        const arr = [...sideMenu.sections]; const items = [...arr[si].items]; items[ii] = { ...items[ii], icon: e.target.value };
+                        arr[si] = { ...arr[si], items }; setSideMenu({ ...sideMenu, sections: arr });
+                      }} className="px-3 py-1.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20 text-sm">
+                        {['Compass', 'BookOpen', 'Info', 'MapPin', 'Mountain', 'Home', 'TreePine', 'Sailboat', 'Sunrise', 'Globe', 'Heart', 'Star', 'Search', 'Image', 'Settings', 'User'].map(icon => (
+                          <option key={icon} value={icon}>{icon}</option>
+                        ))}
+                      </select>
+                      <input placeholder="href (use {locale})" value={item.href} onChange={(e) => {
+                        const arr = [...sideMenu.sections]; const items = [...arr[si].items]; items[ii] = { ...items[ii], href: e.target.value };
+                        arr[si] = { ...arr[si], items }; setSideMenu({ ...sideMenu, sections: arr });
+                      }} className="flex-1 px-3 py-1.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20 text-sm font-mono" />
+                      <button onClick={() => {
+                        const arr = [...sideMenu.sections]; arr[si] = { ...arr[si], items: arr[si].items.filter((_: any, idx: number) => idx !== ii) };
+                        setSideMenu({ ...sideMenu, sections: arr });
+                      }} className="text-xs text-red-500 hover:text-red-700 shrink-0">Remove</button>
+                    </div>
+                  ))}
+                  <button onClick={() => {
+                    const arr = [...sideMenu.sections]; arr[si] = { ...arr[si], items: [...arr[si].items, { label: '', icon: 'Compass', href: '' }] };
+                    setSideMenu({ ...sideMenu, sections: arr });
+                  }} className="text-xs text-[#0f51ec] font-semibold hover:underline">+ Add Link</button>
+                </div>
+              </div>
+            ))}
+            <button onClick={() => setSideMenu({ ...sideMenu, sections: [...(sideMenu?.sections || []), { title: '', items: [] }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">+ Add Section</button>
+          </div>
+          <SaveButton onClick={() => saveSection('side_menu', sideMenu)} saving={saving} />
         </div>
       )}
     </div>

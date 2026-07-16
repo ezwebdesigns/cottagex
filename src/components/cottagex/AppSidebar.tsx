@@ -1,19 +1,21 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Compass, BookOpen, MapPin, Info } from 'lucide-react';
+import { Compass, BookOpen, MapPin, Info, Mountain, Home, TreePine, Sailboat, Sunrise, Globe, Heart, Star, Search, Image, Settings as SettingsIcon, User } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useTranslations } from '@/lib/useTranslations';
 
-const allProvinces = ['ontario', 'quebec', 'britishColumbia', 'alberta'] as const;
+const iconMap: Record<string, any> = {
+  Compass, BookOpen, MapPin, Info, Mountain, Home, TreePine, Sailboat, Sunrise, Globe, Heart, Star, Search, Image, Settings: SettingsIcon, User,
+};
 
 export default function AppSidebar() {
-  const { t, lang } = useTranslations();
   const pathname = usePathname();
+  const lang = pathname.startsWith('/fr') ? 'fr' : 'en';
   const [expanded, setExpanded] = useState(false);
   const [favicon, setFavicon] = useState<string | null>(undefined!);
   const [loading, setLoading] = useState(true);
+  const [menuSections, setMenuSections] = useState<{ title: string; items: { label: string; icon: string; href: string }[] }[]>([]);
 
   useEffect(() => {
     fetch('/api/admin/settings?section=general').then(r => r.json()).then(d => {
@@ -25,19 +27,15 @@ export default function AppSidebar() {
         setLoading(false);
       }
     }).catch(() => setLoading(false));
+    fetch('/api/admin/settings?section=side_menu').then(r => r.json()).then(d => { if (d.data?.sections) setMenuSections(d.data.sections); }).catch(() => {});
   }, []);
 
-  const currentPage = pathname.replace(/^\/(en|fr)\/?/, '') || 'home';
-
-  const navItems = [
-    { label: t.nav.explore, icon: Compass, href: `/${lang}` },
-    { label: t.nav.guides, icon: BookOpen, href: `/${lang}/guides` },
-    { label: t.nav.terms, icon: Info, href: `/${lang}/terms` },
-  ];
+  const interpolate = (text: string) => text?.replace(/\{locale\}/g, lang);
 
   const isActive = (href: string) => {
-    if (href === `/${lang}`) return currentPage === 'home';
-    return pathname.startsWith(href);
+    const resolved = interpolate(href);
+    if (resolved === `/${lang}`) return pathname.replace(/^\/(en|fr)\/?/, '') === 'home';
+    return pathname.startsWith(resolved);
   };
 
   return (
@@ -56,42 +54,31 @@ export default function AppSidebar() {
       </div>
 
       <nav className="flex-1 overflow-y-auto px-2 py-3">
-        <div className="space-y-0.5 mb-3">
-          {navItems.map((item) => {
-            const active = isActive(item.href);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-xl font-medium text-sm transition-colors min-h-[44px] ${
-                  active ? 'bg-[#0f51ec]/10 text-[#0f51ec]' : 'text-[#191e3b] hover:bg-slate-50'
-                }`}
-                title={item.label}
-              >
-                <item.icon className="w-5 h-5 flex-shrink-0" />
-                <span className={`whitespace-nowrap transition-opacity duration-200 ${expanded ? 'opacity-100' : 'opacity-0'}`}>{item.label}</span>
-              </Link>
-            );
-          })}
-        </div>
-
-        <p className={`px-3 text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1 transition-opacity duration-200 ${expanded ? 'opacity-100' : 'opacity-0'}`}>{t.nav.destinations}</p>
-        <div className="space-y-0.5 mb-3">
-          {allProvinces.map((prov) => (
-            <Link
-              key={prov}
-              href={`/${lang}/cottage-country/${prov}`}
-              className="flex items-center gap-3 w-full px-3 py-2 rounded-xl font-medium text-sm text-[#191e3b] hover:bg-slate-50 transition-colors min-h-[40px]"
-              title={t.provinces[prov]}
-            >
-              <MapPin className="w-5 h-5 text-[#77e1fb] flex-shrink-0" />
-              <span className={`whitespace-nowrap transition-opacity duration-200 ${expanded ? 'opacity-100' : 'opacity-0'}`}>{t.provinces[prov]}</span>
-            </Link>
-          ))}
-        </div>
-
-        <p className={`px-3 text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1 transition-opacity duration-200 ${expanded ? 'opacity-100' : 'opacity-0'}`}>{t.sidebar.favorites}</p>
-        <p className={`px-3 text-xs text-slate-400 leading-relaxed transition-opacity duration-200 ${expanded ? 'opacity-100' : 'opacity-0'}`}>{t.sidebar.noFavorites}</p>
+        {menuSections.map((section, si) => (
+          <div key={si} className="space-y-0.5 mb-3">
+            {section.title && (
+              <p className={`px-3 text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1 transition-opacity duration-200 ${expanded ? 'opacity-100' : 'opacity-0'}`}>{section.title}</p>
+            )}
+            {section.items.map((item, ii) => {
+              const href = interpolate(item.href);
+              const Icon = iconMap[item.icon] || Compass;
+              const active = isActive(item.href);
+              return (
+                <Link
+                  key={`${si}-${ii}`}
+                  href={href}
+                  className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-xl font-medium text-sm transition-colors min-h-[44px] ${
+                    active ? 'bg-[#0f51ec]/10 text-[#0f51ec]' : 'text-[#191e3b] hover:bg-slate-50'
+                  }`}
+                  title={item.label}
+                >
+                  <Icon className="w-5 h-5 flex-shrink-0" />
+                  <span className={`whitespace-nowrap transition-opacity duration-200 ${expanded ? 'opacity-100' : 'opacity-0'}`}>{item.label}</span>
+                </Link>
+              );
+            })}
+          </div>
+        ))}
       </nav>
 
       {/* language switcher hidden for now */}
