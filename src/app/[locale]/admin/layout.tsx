@@ -13,7 +13,8 @@ import {
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [collapsed, setCollapsed] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [favicon, setFavicon] = useState<string | null>(null);
+  const [favicon, setFavicon] = useState<string | null>(undefined!);
+  const [loading, setLoading] = useState(true);
   const pathname = usePathname();
   const params = useParams();
   const locale = params?.locale as string || 'en';
@@ -22,17 +23,18 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     fetch('/api/admin/settings?section=general').then(r => r.json()).then(d => {
       const raw = d.data?.favicon ?? null;
       if (raw && raw.startsWith('lib:')) {
-        fetch(`/api/library/${raw.slice(4)}`).then(r => r.ok && r.json()).then(d => setFavicon(d?.url || '')).catch(() => setFavicon(''));
+        fetch(`/api/library/${raw.slice(4)}`).then(r => r.ok && r.json()).then(d => { setFavicon(d?.url || ''); setLoading(false); }).catch(() => { setFavicon(''); setLoading(false); });
       } else {
         setFavicon(raw);
+        setLoading(false);
       }
-    }).catch(() => {});
+    }).catch(() => setLoading(false));
   }, []);
 
   return (
     <SessionProvider>
       <AuthGuard>
-        <AdminShell collapsed={collapsed} setCollapsed={setCollapsed} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} pathname={pathname} locale={locale} favicon={favicon}>
+        <AdminShell collapsed={collapsed} setCollapsed={setCollapsed} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} pathname={pathname} locale={locale} favicon={favicon} loading={loading}>
           {children}
         </AdminShell>
       </AuthGuard>
@@ -41,7 +43,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 }
 
 function AdminShell({
-  children, collapsed, setCollapsed, mobileOpen, setMobileOpen, pathname, locale, favicon,
+  children, collapsed, setCollapsed, mobileOpen, setMobileOpen, pathname, locale, favicon, loading,
 }: {
   children: React.ReactNode;
   collapsed: boolean;
@@ -51,6 +53,7 @@ function AdminShell({
   pathname: string;
   locale: string;
   favicon: string | null;
+  loading: boolean;
 }) {
   const menuItems = [
     { label: 'Dashboard', href: `/${locale}/admin/dashboard`, icon: LayoutDashboard },
@@ -80,8 +83,8 @@ function AdminShell({
       >
         {/* Logo */}
         <div className="border-b border-slate-100 flex items-center h-16 px-4 flex-shrink-0 gap-2.5">
-          {favicon ? (
-            <img src={favicon} alt="" className="w-9 h-9 rounded-2xl flex-shrink-0" />
+          {loading ? <div className="w-9 h-9" /> : favicon ? (
+            <img src={favicon} alt="" className="w-9 h-9 rounded-2xl flex-shrink-0 object-cover" />
           ) : (
             <div className="w-9 h-9 rounded-2xl bg-[#0f51ec] flex items-center justify-center flex-shrink-0">
               <Mountain className="w-5 h-5 text-white" strokeWidth={2.5} />
