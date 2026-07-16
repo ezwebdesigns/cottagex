@@ -19,7 +19,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const locale = params?.locale as string || 'en';
 
   useEffect(() => {
-    fetch('/api/admin/settings?section=general').then(r => r.json()).then(d => setFavicon(d.data?.favicon ?? null)).catch(() => {});
+    fetch('/api/admin/settings?section=general').then(r => r.json()).then(d => {
+      const raw = d.data?.favicon ?? null;
+      if (raw && raw.startsWith('lib:')) {
+        fetch(`/api/library/${raw.slice(4)}`).then(r => r.ok && r.json()).then(d => setFavicon(d?.url || '')).catch(() => setFavicon(''));
+      } else {
+        setFavicon(raw);
+      }
+    }).catch(() => {});
   }, []);
 
   return (
