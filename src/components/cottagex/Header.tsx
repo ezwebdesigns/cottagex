@@ -12,7 +12,14 @@ export default function Header() {
   const [logo, setLogo] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/api/admin/settings?section=general').then(r => r.json()).then(d => setLogo(d.data?.logo ?? null)).catch(() => {});
+    fetch('/api/admin/settings?section=general').then(r => r.json()).then(d => {
+      const raw = d.data?.logo ?? null;
+      if (raw && raw.startsWith('lib:')) {
+        fetch(`/api/library/${raw.slice(4)}`).then(r => r.ok && r.json()).then(d => setLogo(d?.url || '')).catch(() => setLogo(''));
+      } else {
+        setLogo(raw);
+      }
+    }).catch(() => {});
   }, []);
 
   const toggleLang = () => {

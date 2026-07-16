@@ -13,7 +13,14 @@ export default function Footer() {
   const [footerSettings, setFooterSettings] = useState<{ logo: string } | null>(null);
 
   useEffect(() => {
-    fetch('/api/admin/settings?section=footer').then(r => r.json()).then(d => setFooterSettings(d.data)).catch(() => {});
+    fetch('/api/admin/settings?section=footer').then(r => r.json()).then(d => {
+      const raw = d.data ?? null;
+      if (raw?.logo?.startsWith('lib:')) {
+        fetch(`/api/library/${raw.logo.slice(4)}`).then(r => r.ok && r.json()).then(d => setFooterSettings({ ...raw, logo: d?.url || '' })).catch(() => setFooterSettings(raw));
+      } else {
+        setFooterSettings(raw);
+      }
+    }).catch(() => {});
   }, []);
 
   return (
