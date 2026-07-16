@@ -7,6 +7,7 @@ import { eq } from 'drizzle-orm';
 import { locales } from '@/i18n/routing';
 import ArticleStandard from '@/templates/ArticleStandard';
 import ArticleListicle from '@/templates/ArticleListicle';
+import { generateToc, injectHeadingIds } from '@/lib/extract-toc';
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -39,21 +40,29 @@ export async function generateStaticParams() {
 
 async function fetchArticle(slug: string) {
   const mock = initialArticles.find(a => a.slug === slug);
-  if (mock) return mock;
+  if (mock) {
+    const content = mock.content || "";
+    return { ...mock, toc: generateToc(content), enhancedContent: injectHeadingIds(content) };
+  }
 
   try {
     const [dbArticle] = await db.select().from(articles).where(eq(articles.slug, slug)).limit(1);
     if (!dbArticle) return null;
 
+    const content = dbArticle.content || "";
+    const toc = content ? generateToc(content) : [];
+    const enhancedContent = content ? injectHeadingIds(content) : "";
+
     return {
       id: dbArticle.id,
       title: dbArticle.title,
       slug: dbArticle.slug,
-      content: dbArticle.content || "",
+      content,
+      enhancedContent,
       excerpt: dbArticle.excerpt || "",
       date: formatDate(dbArticle.publishedAt || dbArticle.createdAt),
       dateModified: formatDate(dbArticle.updatedAt),
-      readTime: computeReadTime(dbArticle.content || ""),
+      readTime: computeReadTime(content),
       category: dbArticle.category || "Articles",
       image: dbArticle.featuredImage || "/placeholder.jpg",
       imageAlt: dbArticle.imageAlt || undefined,
@@ -63,6 +72,7 @@ async function fetchArticle(slug: string) {
       ctaTitle: dbArticle.ctaTitle || undefined,
       ctaButton: dbArticle.ctaButton || undefined,
       ctaLink: dbArticle.ctaLink || undefined,
+      toc,
       isHtml: true,
       isListicle: dbArticle.type === "listicle",
     };
@@ -101,8 +111,8 @@ export default async function ArticleDetailPage({
   if (!article) notFound();
 
   if (article.isListicle) {
-    return <ArticleListicle locale={locale} article={article} />;
+    return <ArticleListicle locale={locale} article={article} toc={article.toc} enhancedContent={article.enhancedContent} />;
   }
 
-  return <ArticleStandard locale={locale} article={article} isHtml={(article as any).isHtml} />;
+  return <ArticleStandard locale={locale} article={article} isHtml={(article as any).isHtml} toc={article.toc} enhancedContent={article.enhancedContent} />;
 }

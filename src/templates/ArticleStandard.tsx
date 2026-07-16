@@ -5,7 +5,9 @@ import { useRouter, usePathname } from 'next/navigation';
 import { BreadcrumbSchema, ArticleSchema, FAQPageSchema } from '@/components/seo/SchemaOrg';
 import { CottageShortcode } from '@/components/CottageShortcode';
 import FAQAccordion from '@/components/FAQAccordion';
+import TableOfContents from '@/components/TableOfContents';
 import Image from 'next/image';
+import type { TocItem } from '@/lib/extract-toc';
 
 const shortcodeRegex = /\[([a-z0-9-]+),\s*([a-z0-9-]+)(?:,\s*([a-z0-9-]+))?(?:,\s*(\d+))?\]/;
 
@@ -52,14 +54,17 @@ type ArticleStandardProps = {
     faq?: { question: string; answer: string }[];
   };
   isHtml?: boolean;
+  toc?: TocItem[];
+  enhancedContent?: string;
 };
 
-export default function ArticleStandard({ locale, article, isHtml }: ArticleStandardProps) {
+export default function ArticleStandard({ locale, article, isHtml, toc, enhancedContent }: ArticleStandardProps) {
   const router = useRouter();
   const pathname = usePathname();
+  const contentHtml = enhancedContent || article.content;
 
   return (
-    <div className="animate-in fade-in duration-300 max-w-5xl mx-auto px-4 py-10 overflow-x-hidden min-w-0">
+    <div className="animate-in fade-in duration-300 max-w-7xl mx-auto px-4 py-10 overflow-x-hidden min-w-0">
       <BreadcrumbSchema items={[
         { name: 'Home', url: `/${locale}` },
         { name: 'Guides', url: `/${locale}/guides` },
@@ -104,36 +109,48 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
         <Image src={article.image} alt={article.imageAlt || article.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 1200px" priority />
       </div>
 
-      {isHtml ? (
-        <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed mb-12 w-full overflow-x-hidden break-words [&_pre]:whitespace-pre-wrap [&_code]:break-words">
-          {(() => {
-            const parts = article.content.split(shortcodeRegex);
-            if (parts.length === 1) {
-              return <div dangerouslySetInnerHTML={{ __html: article.content }} />;
-            }
-            return parts.map((part, i) => {
-              const mod = i % 5;
-              if (mod === 0) {
-                return part ? <div key={i} dangerouslySetInnerHTML={{ __html: part }} /> : null;
-              }
-              if (mod === 1) {
-                const param1 = part.trim().toLowerCase();
-                const param2 = (parts[i + 1] || '').trim().toLowerCase() || 'rating';
-                const param3 = (parts[i + 2] || '').trim().toLowerCase();
-                const limitStr = parts[i + 3];
-                const limit = limitStr ? parseInt(limitStr, 10) : (param3 && /^\d+$/.test(param3) ? parseInt(param3) : 6);
-                const actualParam3 = limitStr ? param3 : '';
-                return <CottageShortcode key={i} param1={param1} param2={param2} param3={actualParam3 || undefined} limit={Math.min(limit, 10)} />;
-              }
-              return null;
-            });
-          })()}
+      <div className="lg:grid lg:grid-cols-[1fr_260px] lg:gap-12">
+        <div className="min-w-0">
+          {isHtml ? (
+            <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed mb-12 w-full overflow-x-hidden break-words [&_pre]:whitespace-pre-wrap [&_code]:break-words">
+              {(() => {
+                const parts = contentHtml.split(shortcodeRegex);
+                if (parts.length === 1) {
+                  return <div dangerouslySetInnerHTML={{ __html: contentHtml }} />;
+                }
+                return parts.map((part, i) => {
+                  const mod = i % 5;
+                  if (mod === 0) {
+                    return part ? <div key={i} dangerouslySetInnerHTML={{ __html: part }} /> : null;
+                  }
+                  if (mod === 1) {
+                    const param1 = part.trim().toLowerCase();
+                    const param2 = (parts[i + 1] || '').trim().toLowerCase() || 'rating';
+                    const param3 = (parts[i + 2] || '').trim().toLowerCase();
+                    const limitStr = parts[i + 3];
+                    const limit = limitStr ? parseInt(limitStr, 10) : (param3 && /^\d+$/.test(param3) ? parseInt(param3) : 6);
+                    const actualParam3 = limitStr ? param3 : '';
+                    return <CottageShortcode key={i} param1={param1} param2={param2} param3={actualParam3 || undefined} limit={Math.min(limit, 10)} />;
+                  }
+                  return null;
+                });
+              })()}
+            </div>
+          ) : (
+            <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed space-y-6 mb-12 w-full overflow-x-hidden break-words [&_pre]:whitespace-pre-wrap [&_code]:break-words">
+              {article.content.split('\n\n').map((paragraph, index) => renderParagraph(paragraph, index))}
+            </div>
+          )}
         </div>
-      ) : (
-        <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed space-y-6 mb-12 w-full overflow-x-hidden break-words [&_pre]:whitespace-pre-wrap [&_code]:break-words">
-          {article.content.split('\n\n').map((paragraph, index) => renderParagraph(paragraph, index))}
-        </div>
-      )}
+
+        {toc && toc.length > 0 && (
+          <aside className="hidden lg:block">
+            <div className="sticky top-24">
+              <TableOfContents items={toc} />
+            </div>
+          </aside>
+        )}
+      </div>
 
       {article.faq && article.faq.length > 0 && (
         <>
@@ -141,33 +158,26 @@ export default function ArticleStandard({ locale, article, isHtml }: ArticleStan
           <FAQAccordion items={article.faq} />
         </>)}
 
-      {article.ctaTitle ? (
-        <div className="bg-[#191e3b] rounded-[2rem] p-8 text-white mt-16 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <h2 className="text-xl font-bold mb-2">{article.ctaTitle}</h2>
-          </div>
-          {article.ctaLink && (
-            <a
-              href={article.ctaLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-6 py-3 rounded-full font-bold transition-colors whitespace-nowrap text-sm"
-            >
-              {article.ctaButton || 'Learn More'}
-            </a>
-          )}
+      <div className="bg-[#191e3b] rounded-[2rem] p-8 text-white mt-16 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <h2 className="text-xl font-bold mb-2">{article.ctaTitle || 'Inspired by this reading?'}</h2>
+          {!article.ctaTitle && <p className="text-blue-200 text-sm">Find and compare your dream cottage across Canada now.</p>}
         </div>
-      ) : (
-        <div className="bg-[#191e3b] rounded-[2rem] p-8 text-white mt-16 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <h2 className="text-xl font-bold mb-2">Inspired by this reading?</h2>
-            <p className="text-blue-200 text-sm">Find and compare your dream cottage across Canada now.</p>
-          </div>
+        {article.ctaLink ? (
+          <a
+            href={article.ctaLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-6 py-3 rounded-full font-bold transition-colors whitespace-nowrap text-sm"
+          >
+            {article.ctaButton || 'Learn More'}
+          </a>
+        ) : (
           <button onClick={() => router.push(`/${locale}`)} className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-6 py-3 rounded-full font-bold transition-colors whitespace-nowrap text-sm">
             Back to Homepage
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

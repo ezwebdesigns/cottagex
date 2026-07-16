@@ -5,7 +5,9 @@ import { useRouter, usePathname } from 'next/navigation';
 import { BreadcrumbSchema, ArticleSchema, FAQPageSchema } from '@/components/seo/SchemaOrg';
 import { CottageShortcode } from '@/components/CottageShortcode';
 import FAQAccordion from '@/components/FAQAccordion';
+import TableOfContents from '@/components/TableOfContents';
 import Image from 'next/image';
+import type { TocItem } from '@/lib/extract-toc';
 
 const shortcodeRegex = /\[([a-z0-9-]+),\s*([a-z0-9-]+)(?:,\s*([a-z0-9-]+))?(?:,\s*(\d+))?\]/;
 
@@ -21,14 +23,17 @@ type ArticleListicleProps = {
     imageAlt?: string;
     faq?: { question: string; answer: string }[];
   };
+  toc?: TocItem[];
+  enhancedContent?: string;
 };
 
-export default function ArticleListicle({ locale, article }: ArticleListicleProps) {
+export default function ArticleListicle({ locale, article, toc, enhancedContent }: ArticleListicleProps) {
   const router = useRouter();
   const pathname = usePathname();
+  const contentHtml = enhancedContent || article.content;
 
   return (
-    <div className="animate-in fade-in duration-300 max-w-5xl mx-auto px-4 py-10">
+    <div className="animate-in fade-in duration-300 max-w-7xl mx-auto px-4 py-10">
       <BreadcrumbSchema items={[
         { name: 'Home', url: `/${locale}` },
         { name: 'Guides', url: `/${locale}/guides` },
@@ -72,29 +77,41 @@ export default function ArticleListicle({ locale, article }: ArticleListicleProp
         <Image src={article.image} alt={article.imageAlt || article.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 1200px" priority />
       </div>
 
-      <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed mb-12 w-full overflow-x-hidden break-words [&_pre]:whitespace-pre-wrap [&_code]:break-words">
-        {(() => {
-          const parts = article.content.split(shortcodeRegex);
-          if (parts.length === 1) {
-            return <div dangerouslySetInnerHTML={{ __html: article.content }} />;
-          }
-          return parts.map((part, i) => {
-            const mod = i % 5;
-            if (mod === 0) {
-              return part ? <div key={i} dangerouslySetInnerHTML={{ __html: part }} /> : null;
-            }
-            if (mod === 1) {
-              const param1 = part.trim().toLowerCase();
-              const param2 = (parts[i + 1] || '').trim().toLowerCase() || 'rating';
-              const param3 = (parts[i + 2] || '').trim().toLowerCase();
-              const limitStr = parts[i + 3];
-              const limit = limitStr ? parseInt(limitStr, 10) : (param3 && /^\d+$/.test(param3) ? parseInt(param3) : 6);
-              const actualParam3 = limitStr ? param3 : '';
-              return <CottageShortcode key={i} param1={param1} param2={param2} param3={actualParam3 || undefined} limit={Math.min(limit, 10)} />;
-            }
-            return null;
-          });
-        })()}
+      <div className="lg:grid lg:grid-cols-[1fr_260px] lg:gap-12">
+        <div className="min-w-0">
+          <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed mb-12 w-full overflow-x-hidden break-words [&_pre]:whitespace-pre-wrap [&_code]:break-words">
+            {(() => {
+              const parts = contentHtml.split(shortcodeRegex);
+              if (parts.length === 1) {
+                return <div dangerouslySetInnerHTML={{ __html: contentHtml }} />;
+              }
+              return parts.map((part, i) => {
+                const mod = i % 5;
+                if (mod === 0) {
+                  return part ? <div key={i} dangerouslySetInnerHTML={{ __html: part }} /> : null;
+                }
+                if (mod === 1) {
+                  const param1 = part.trim().toLowerCase();
+                  const param2 = (parts[i + 1] || '').trim().toLowerCase() || 'rating';
+                  const param3 = (parts[i + 2] || '').trim().toLowerCase();
+                  const limitStr = parts[i + 3];
+                  const limit = limitStr ? parseInt(limitStr, 10) : (param3 && /^\d+$/.test(param3) ? parseInt(param3) : 6);
+                  const actualParam3 = limitStr ? param3 : '';
+                  return <CottageShortcode key={i} param1={param1} param2={param2} param3={actualParam3 || undefined} limit={Math.min(limit, 10)} />;
+                }
+                return null;
+              });
+            })()}
+          </div>
+        </div>
+
+        {toc && toc.length > 0 && (
+          <aside className="hidden lg:block">
+            <div className="sticky top-24">
+              <TableOfContents items={toc} />
+            </div>
+          </aside>
+        )}
       </div>
 
       <div className="border-l-4 border-[#0f51ec] pl-4 mb-8 bg-blue-50/50 p-6 rounded-r-2xl">

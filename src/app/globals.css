@@ -19,6 +19,10 @@
   font-family: 'Radio Canada', 'sans-serif' !important;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--color-background);
   color: var(--color-foreground);
