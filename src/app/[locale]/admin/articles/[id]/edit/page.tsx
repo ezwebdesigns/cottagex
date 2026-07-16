@@ -12,7 +12,7 @@ export default function EditArticlePage() {
   const [title, setTitle] = useState(''); const [content, setContent] = useState(''); const [excerpt, setExcerpt] = useState('');
   const [category, setCategory] = useState(''); const [author, setAuthor] = useState(''); const [featuredImage, setFeaturedImage] = useState('');
   const [imageAlt, setImageAlt] = useState('');
-  const [seoTitle, setSeoTitle] = useState(''); const [ctaTitle, setCtaTitle] = useState(''); const [ctaButton, setCtaButton] = useState('');
+  const [seoTitle, setSeoTitle] = useState(''); const [seoKeywords, setSeoKeywords] = useState(''); const [ctaTitle, setCtaTitle] = useState(''); const [ctaButton, setCtaButton] = useState('');
   const [ctaLink, setCtaLink] = useState(''); const [faq, setFaq] = useState<FAQ[]>([]); const [isPublished, setIsPublished] = useState(true); const [slug, setSlug] = useState('');
   const [loading, setLoading] = useState(true); const [saving, setSaving] = useState(false);
 
@@ -21,7 +21,7 @@ export default function EditArticlePage() {
       const p = d.post; setTitle(p.title); setContent(p.content); setExcerpt(p.excerpt);
       setCategory(p.category); setAuthor(p.author); setFeaturedImage(p.featuredImage || p.imageUrl);
       setImageAlt(p.imageAlt || '');
-      setSeoTitle(p.seoTitle); setCtaTitle(p.ctaTitle); setCtaButton(p.ctaButton); setCtaLink(p.ctaLink);
+      setSeoTitle(p.seoTitle); setSeoKeywords(p.seoKeywords || ''); setCtaTitle(p.ctaTitle); setCtaButton(p.ctaButton); setCtaLink(p.ctaLink);
       setFaq(Array.isArray(p.faq) ? p.faq : []); setIsPublished(p.isPublished); setSlug(p.slug); setLoading(false);
     });
   }, [params.id]);
@@ -30,7 +30,7 @@ export default function EditArticlePage() {
     e.preventDefault(); setSaving(true);
     await fetch(`/api/admin/articles/${params.id}`, {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, slug, content, excerpt, category, author, featuredImage, imageAlt, seoTitle, ctaTitle, ctaButton, ctaLink, faq, isPublished })
+      body: JSON.stringify({ title, slug, content, excerpt, category, author, featuredImage, imageAlt, seoTitle, seoKeywords, ctaTitle, ctaButton, ctaLink, faq, isPublished })
     });
     setSaving(false); router.push(`/${locale}/admin/articles`);
   }
@@ -69,6 +69,7 @@ export default function EditArticlePage() {
         <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
           <h2 className="text-lg font-semibold text-[#191e3b]">SEO</h2>
           <div><label className="block text-sm font-medium text-slate-700 mb-1">SEO Title</label><input value={seoTitle} onChange={e => setSeoTitle(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" /></div>
+          <div><label className="block text-sm font-medium text-slate-700 mb-1">SEO Keywords</label><input value={seoKeywords} onChange={e => setSeoKeywords(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" placeholder="cottage, rental, ontario, ..." /></div>
         </div>
         <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
           <h2 className="text-lg font-semibold text-[#191e3b]">FAQ</h2>

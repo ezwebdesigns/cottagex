@@ -21,6 +21,7 @@ export default function NewArticlePage() {
   const [featuredImage, setFeaturedImage] = useState('');
   const [imageAlt, setImageAlt] = useState('');
   const [seoTitle, setSeoTitle] = useState('');
+  const [seoKeywords, setSeoKeywords] = useState('');
   const [ctaTitle, setCtaTitle] = useState('');
   const [ctaButton, setCtaButton] = useState('');
   const [ctaLink, setCtaLink] = useState('');
@@ -36,7 +37,7 @@ export default function NewArticlePage() {
       await fetch('/api/admin/articles', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, slug, content, excerpt, category, author, articleType, featuredImage, imageAlt, seoTitle, ctaTitle, ctaButton, ctaLink, faq, isPublished })
+        body: JSON.stringify({ title, slug, content, excerpt, category, author, articleType, featuredImage, imageAlt, seoTitle, seoKeywords, ctaTitle, ctaButton, ctaLink, faq, isPublished })
       });
       router.push(`/${locale}/admin/articles`);
     } finally { setSaving(false); }
@@ -82,6 +83,7 @@ export default function NewArticlePage() {
         <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
           <h2 className="text-lg font-semibold text-[#191e3b]">SEO</h2>
           <div><label className="block text-sm font-medium text-slate-700 mb-1">SEO Title</label><input value={seoTitle} onChange={e => setSeoTitle(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" /></div>
+          <div><label className="block text-sm font-medium text-slate-700 mb-1">SEO Keywords</label><input value={seoKeywords} onChange={e => setSeoKeywords(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" placeholder="cottage, rental, ontario, ..." /></div>
         </div>
         <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
           <h2 className="text-lg font-semibold text-[#191e3b]">FAQ</h2>

@@ -35,3 +35,8 @@ body {
 [style*="scrollbar-width: none"]::-webkit-scrollbar {
   display: none;
 }
+
+.prose img {
+  width: 100%;
+  border-radius: 1rem;
+}

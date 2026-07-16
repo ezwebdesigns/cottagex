@@ -28,6 +28,7 @@ export async function POST(request: Request) {
       featuredImage: body.featuredImage,
       imageAlt: body.imageAlt,
       seoTitle: body.seoTitle,
+      seoKeywords: body.seoKeywords,
       faq: body.faq || [],
       ctaTitle: body.ctaTitle,
       ctaButton: body.ctaButton,
