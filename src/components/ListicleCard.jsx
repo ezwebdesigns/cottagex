@@ -21,7 +21,7 @@ export default function ListicleCard({ cottage, rank = 1, priority = false }) {
 
   return (
     <div className="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-md hover:shadow-xl transition-all duration-300 grid grid-cols-1 lg:grid-cols-[2fr_3fr]">
-      <div className="relative min-h-[200px] bg-slate-100">
+      <div className="relative min-h-[150px] bg-slate-100">
         {thumbnail ? (
           <img src={thumbnail} alt={name} className="absolute inset-0 w-full h-full object-cover" />
         ) : (
