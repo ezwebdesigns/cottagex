@@ -30,16 +30,9 @@ const pool = new Pool({
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 
 function nextWeekend() {
-  const now = new Date()
-  const day = now.getDay()
-  const daysToFriday = (5 - day + 7) % 7 || 7
-  const checkin = new Date(now)
-  checkin.setDate(now.getDate() + daysToFriday)
-  const checkout = new Date(checkin)
-  checkout.setDate(checkin.getDate() + 2)
   return {
-    checkin:  checkin.toISOString().split('T')[0],
-    checkout: checkout.toISOString().split('T')[0],
+    checkin:  '2026-08-07',
+    checkout: '2026-08-09',
   }
 }
 
@@ -96,7 +89,7 @@ function transform(prop, dest) {
 const DESTINATIONS = [
   // Ontario
   { slug: 'muskoka',            province: 'ontario',          query: 'muskoka cottage rentals ontario canada' },
-  { slug: 'kawarthas',          province: 'ontario',          query: 'kawarthas cottage rentals ontario canada' },
+  { slug: 'kawarthas',          province: 'ontario',          query: 'kawartha lakes ontario cottage vrbo' },
   { slug: 'haliburton',         province: 'ontario',          query: 'haliburton highlands cottage rentals ontario canada' },
   { slug: 'georgian-bay',       province: 'ontario',          query: 'georgian bay cottage rentals ontario canada' },
   { slug: 'prince-edward',      province: 'ontario',          query: 'prince edward county cottage rentals ontario canada' },
@@ -104,26 +97,23 @@ const DESTINATIONS = [
 // FR — court et précis
 { slug: 'laurentides',    province: 'quebec', query: 'chalet laurentides',    hl: 'fr' },
 { slug: 'mont-tremblant', province: 'quebec', query: 'chalet mont-tremblant', hl: 'fr' },
-{ slug: 'tremblant',      province: 'quebec', query: 'chalet tremblant',      hl: 'fr' },
 { slug: 'quebec',         province: 'quebec', query: 'location chalet à louer', hl: 'fr' },
 
 // EN — court et précis
 { slug: 'laurentides',    province: 'quebec', query: 'cottage laurentians',          hl: 'en' },
 { slug: 'mont-tremblant', province: 'quebec', query: 'cottage mont-tremblant rental', hl: 'en' },
-{ slug: 'tremblant',      province: 'quebec', query: 'cabin tremblant cottage rental', hl: 'en' },
 { slug: 'quebec',         province: 'quebec', query: 'vacation cottage rental quebec', hl: 'en' },
 
   // British Columbia
   { slug: 'whistler',           province: 'british-columbia', query: 'whistler cabin rentals bc canada' },
   { slug: 'okanagan',           province: 'british-columbia', query: 'okanagan valley cottage rentals bc canada' },
-  { slug: 'sunshine-coast',     province: 'british-columbia', query: 'sunshine coast cottage rentals bc canada' },
+  { slug: 'sunshine-coast',     province: 'british-columbia', query: 'gibsons bc cabin rental vrbo' },
 
   // Nova Scotia
   { slug: 'cape-breton',        province: 'nova-scotia',      query: 'cape breton cottage rentals nova scotia canada' },
   { slug: 'south-shore-ns',     province: 'nova-scotia',      query: 'south shore cottage rentals nova scotia canada' },
 
   // Alberta
-  { slug: 'canmore',            province: 'alberta',          query: 'canmore kananaskis cabin rentals alberta canada' },
   { slug: 'sylvan-lake',        province: 'alberta',          query: 'sylvan lake cottage rentals alberta canada' },
 
   // New Brunswick
@@ -139,7 +129,7 @@ const DESTINATIONS = [
 
   // Manitoba
   { slug: 'falcon-lake',        province: 'manitoba',         query: 'falcon lake cottage rentals manitoba canada' },
-  { slug: 'west-hawk-lake',     province: 'manitoba',         query: 'west hawk lake cottage rentals manitoba canada' },
+  { slug: 'west-hawk-lake',     province: 'manitoba',         query: 'whiteshell provincial park cabin rental manitoba' },
 ]
 
 // ─── SERPAPI ─────────────────────────────────────────────────────────────────
