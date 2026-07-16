@@ -20,39 +20,37 @@ export default function ListicleCard({ cottage, rank = 1, priority = false }) {
   const sourceLabel = source?.replace('.com', '') || 'Partner';
 
   return (
-    <div className="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col lg:flex-row [&_img]:!h-full [&_img]:!w-full [&_img]:!max-w-none [&_img]:!m-0 [&_img]:!object-cover">
-      <div className="lg:w-2/5 relative h-[200px] bg-slate-100">
+    <div className="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-md hover:shadow-xl transition-all duration-300">
+      <div className="aspect-[4/3] relative bg-slate-100">
         {thumbnail ? (
-          <img src={thumbnail} alt={name} className="w-full h-full object-cover" />
+          <img src={thumbnail} alt={name} className="absolute inset-0 w-full h-full object-cover" />
         ) : (
-          <div className="w-full h-full bg-slate-200 flex items-center justify-center text-2xl">🏡</div>
+          <div className="absolute inset-0 bg-slate-200 flex items-center justify-center text-4xl">🏡</div>
         )}
         <div className="absolute top-3 left-3 w-8 h-8 bg-[#0B1B40] text-white rounded-full flex items-center justify-center font-bold text-sm shadow-lg">
           #{rank}
         </div>
       </div>
-      <div className="lg:w-3/5 p-5 flex flex-col justify-between">
-        <div>
-          <div className="flex flex-wrap justify-between items-center gap-2 mb-3">
-            {vibe && (
-              <span className="bg-blue-50 text-[#1F51C6] text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-full">
-                {vibe}
-              </span>
-            )}
-            {rating && (
-              <div className="flex items-center gap-1">
-                <StarRating rating={parseFloat(rating)} size={12} />
-                <span className="text-xs font-bold text-[#0B1B40]">{parseFloat(rating).toFixed(1)}</span>
-              </div>
-            )}
-          </div>
-          <h3 className="text-lg font-bold text-[#0B1B40] mb-1 leading-tight">
-            {name}
-          </h3>
-          <div className="flex items-center gap-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
-            <MapPin size={10} className="text-[#1F51C6]" />
-            <span className="capitalize">{cottage.province || cottage.slug || ''}</span>
-          </div>
+      <div className="p-5 space-y-3">
+        <div className="flex flex-wrap justify-between items-center gap-2">
+          {vibe && (
+            <span className="bg-blue-50 text-[#1F51C6] text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-full">
+              {vibe}
+            </span>
+          )}
+          {rating && (
+            <div className="flex items-center gap-1">
+              <StarRating rating={parseFloat(rating)} size={12} />
+              <span className="text-xs font-bold text-[#0B1B40]">{parseFloat(rating).toFixed(1)}</span>
+            </div>
+          )}
+        </div>
+        <h3 className="text-lg font-bold text-[#0B1B40] leading-tight">
+          {name}
+        </h3>
+        <div className="flex items-center gap-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+          <MapPin size={10} className="text-[#1F51C6]" />
+          <span className="capitalize">{cottage.province || cottage.slug || ''}</span>
         </div>
         <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
           <div>
