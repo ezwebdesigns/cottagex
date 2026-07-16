@@ -21,58 +21,58 @@ export default function ListicleCard({ cottage, rank = 1, priority = false }) {
 
   return (
     <div className="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col lg:flex-row">
-      <div className="lg:w-2/5 relative h-72 lg:h-auto min-h-[300px] bg-slate-100">
+      <div className="lg:w-2/5 relative h-[200px] bg-slate-100">
         {thumbnail ? (
           <img src={thumbnail} alt={name} className="w-full h-full object-cover" />
         ) : (
-          <div className="w-full h-full bg-slate-200 flex items-center justify-center text-4xl">🏡</div>
+          <div className="w-full h-full bg-slate-200 flex items-center justify-center text-2xl">🏡</div>
         )}
-        <div className="absolute top-6 left-6 w-12 h-12 bg-[#0B1B40] text-white rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
+        <div className="absolute top-3 left-3 w-8 h-8 bg-[#0B1B40] text-white rounded-full flex items-center justify-center font-bold text-sm shadow-lg">
           #{rank}
         </div>
       </div>
-      <div className="lg:w-3/5 p-8 flex flex-col justify-between">
+      <div className="lg:w-3/5 p-5 flex flex-col justify-between">
         <div>
-          <div className="flex flex-wrap justify-between items-center gap-2 mb-4">
+          <div className="flex flex-wrap justify-between items-center gap-2 mb-3">
             {vibe && (
-              <span className="bg-blue-50 text-[#1F51C6] text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full">
+              <span className="bg-blue-50 text-[#1F51C6] text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-full">
                 {vibe}
               </span>
             )}
             {rating && (
               <div className="flex items-center gap-1">
-                <StarRating rating={parseFloat(rating)} size={14} />
-                <span className="text-sm font-bold text-[#0B1B40]">{parseFloat(rating).toFixed(1)}</span>
+                <StarRating rating={parseFloat(rating)} size={12} />
+                <span className="text-xs font-bold text-[#0B1B40]">{parseFloat(rating).toFixed(1)}</span>
               </div>
             )}
           </div>
-          <h3 className="text-2xl font-bold text-[#0B1B40] mb-2">
+          <h3 className="text-lg font-bold text-[#0B1B40] mb-1 leading-tight">
             {name}
           </h3>
-          <div className="flex items-center gap-1 text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">
-            <MapPin size={12} className="text-[#1F51C6]" />
+          <div className="flex items-center gap-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
+            <MapPin size={10} className="text-[#1F51C6]" />
             <span className="capitalize">{cottage.province || cottage.slug || ''}</span>
           </div>
         </div>
-        <div className="pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+        <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p className="text-xs text-slate-400 uppercase tracking-widest font-semibold">ESTIMATED RATE</p>
+            <p className="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">ESTIMATED RATE</p>
             {price_cad ? (
               <>
-                <span className="text-2xl font-black text-[#1F51C6]">${parseInt(price_cad)}</span>
-                <span className="text-xs text-slate-500 font-medium"> / night</span>
+                <span className="text-xl font-black text-[#1F51C6]">${parseInt(price_cad)}</span>
+                <span className="text-[10px] text-slate-500 font-medium"> / night</span>
               </>
             ) : (
-              <span className="text-sm text-slate-400">Check price</span>
+              <span className="text-xs text-slate-400">Check price</span>
             )}
           </div>
           <a
             href={bookingUrl}
             target="_blank"
             rel="noopener noreferrer sponsored"
-            className="bg-[#0B1B40] hover:bg-[#1F51C6] text-white px-6 py-3 rounded-full font-bold transition-all flex items-center gap-2 text-sm shadow-md"
+            className="bg-[#0B1B40] hover:bg-[#1F51C6] text-white px-4 py-2 rounded-full font-bold transition-all flex items-center gap-1.5 text-xs shadow-md"
           >
-            Check Availability <ExternalLink size={16} />
+            Check Availability <ExternalLink size={14} />
           </a>
         </div>
       </div>
