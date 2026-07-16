@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Mountain, Compass, BookOpen, MapPin, Info, Globe } from 'lucide-react';
+import { Compass, BookOpen, MapPin, Info, Globe } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from '@/lib/useTranslations';
@@ -55,15 +55,9 @@ export default function AppSidebar() {
     >
       <div className="border-b border-slate-100 flex items-center h-16 sm:h-20 px-4 flex-shrink-0">
         <Link href={`/${lang}`} className="flex items-center">
-          {loading ? (
-            <div className="w-9 h-9" />
-          ) : favicon ? (
+          {loading ? <div className="w-9 h-9" /> : favicon ? (
             <img src={favicon} alt="" className="w-9 h-9 rounded-2xl flex-shrink-0 object-cover" />
-          ) : (
-            <div className="w-9 h-9 rounded-2xl bg-[#0f51ec] flex items-center justify-center flex-shrink-0">
-              <Mountain className="w-5 h-5 text-white" strokeWidth={2.5} />
-            </div>
-          )}
+          ) : null}
         </Link>
       </div>
 
