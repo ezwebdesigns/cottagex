@@ -12,17 +12,19 @@ export default function AppSidebar() {
   const { t, lang } = useTranslations();
   const pathname = usePathname();
   const [expanded, setExpanded] = useState(false);
-  const [favicon, setFavicon] = useState<string | null>(null);
+  const [favicon, setFavicon] = useState<string | null>(undefined!);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/admin/settings?section=general').then(r => r.json()).then(d => {
       const raw = d.data?.favicon ?? null;
       if (raw && raw.startsWith('lib:')) {
-        fetch(`/api/library/${raw.slice(4)}`).then(r => r.ok && r.json()).then(d => setFavicon(d?.url || '')).catch(() => setFavicon(''));
+        fetch(`/api/library/${raw.slice(4)}`).then(r => r.ok && r.json()).then(d => { setFavicon(d?.url || ''); setLoading(false); }).catch(() => { setFavicon(''); setLoading(false); });
       } else {
         setFavicon(raw);
+        setLoading(false);
       }
-    }).catch(() => {});
+    }).catch(() => setLoading(false));
   }, []);
 
   const currentPage = pathname.replace(/^\/(en|fr)\/?/, '') || 'home';
@@ -53,8 +55,10 @@ export default function AppSidebar() {
     >
       <div className="border-b border-slate-100 flex items-center h-16 sm:h-20 px-4 flex-shrink-0">
         <Link href={`/${lang}`} className="flex items-center">
-          {favicon ? (
-            <img src={favicon} alt="" className="w-9 h-9 rounded-2xl flex-shrink-0" />
+          {loading ? (
+            <div className="w-9 h-9" />
+          ) : favicon ? (
+            <img src={favicon} alt="" className="w-9 h-9 rounded-2xl flex-shrink-0 object-cover" />
           ) : (
             <div className="w-9 h-9 rounded-2xl bg-[#0f51ec] flex items-center justify-center flex-shrink-0">
               <Mountain className="w-5 h-5 text-white" strokeWidth={2.5} />
