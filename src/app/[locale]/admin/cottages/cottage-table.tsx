@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Plus, Search, Star, ExternalLink, Pencil, Trash2, X, Upload } from 'lucide-react';
+import { Plus, Search, Star, ExternalLink, Pencil, Trash2, X, Upload, ChevronUp, ChevronDown } from 'lucide-react';
 import { updateCottage } from '@/lib/actions/cottages';
 import type { Cottage } from './page';
 
@@ -14,11 +14,19 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState<string | null>(null);
+  const [sortProvince, setSortProvince] = useState<'asc' | 'desc' | null>(null);
 
   const filtered = cottages.filter(c =>
     (c.name?.toLowerCase()?.includes(search.toLowerCase()) || c.slug?.includes(search.toLowerCase())) &&
     (filterFeatured === 'all' || (filterFeatured === 'featured' ? c.is_featured : !c.is_featured))
   );
+
+  const sorted = sortProvince
+    ? [...filtered].sort((a, b) =>
+        sortProvince === 'asc'
+          ? a.province.localeCompare(b.province)
+          : b.province.localeCompare(a.province))
+    : filtered;
 
   const openAdd = () => { setForm(emptyForm); setShowModal(true); };
   const openEdit = (c: Cottage) => {
@@ -96,7 +104,9 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Photo</th>
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Name</th>
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden md:table-cell">Slug</th>
-              <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden lg:table-cell">Province</th>
+              <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden lg:table-cell cursor-pointer select-none" onClick={() => setSortProvince(sp => sp === 'asc' ? 'desc' : sp === 'desc' ? null : 'asc')}>
+                <span className="flex items-center gap-1">Province {sortProvince === 'asc' ? <ChevronUp className="w-3 h-3" /> : sortProvince === 'desc' ? <ChevronDown className="w-3 h-3" /> : null}</span>
+              </th>
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden lg:table-cell">Source</th>
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden lg:table-cell">Links</th>
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Featured</th>
@@ -104,7 +114,7 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
             </tr>
           </thead>
           <tbody>
-            {filtered.map((c) => (
+            {sorted.map((c) => (
               <tr key={c.property_token} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
                 <td className="px-4 py-3">
                   {c.thumbnail ? (
