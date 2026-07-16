@@ -20,7 +20,7 @@ export default function ListicleCard({ cottage, rank = 1, priority = false }) {
   const sourceLabel = source?.replace('.com', '') || 'Partner';
 
   return (
-    <div className="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col lg:flex-row">
+    <div className="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col lg:flex-row [&_img]:!h-full [&_img]:!w-full [&_img]:!max-w-none [&_img]:!m-0 [&_img]:!object-cover">
       <div className="lg:w-2/5 relative h-[200px] bg-slate-100">
         {thumbnail ? (
           <img src={thumbnail} alt={name} className="w-full h-full object-cover" />
