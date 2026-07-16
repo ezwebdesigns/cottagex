@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Compass, BookOpen, MapPin, Info, Mountain, Home, TreePine, Sailboat, Sunrise, Globe, Heart, Star, Search, Image, Settings as SettingsIcon, User } from 'lucide-react';
+import { Compass, BookOpen, MapPin, Info, Mountain, Home, TreePine, Sailboat, Sunrise, Globe, Heart, Star, Search, Image, Settings as SettingsIcon, User, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -9,7 +9,7 @@ const iconMap: Record<string, any> = {
   Compass, BookOpen, MapPin, Info, Mountain, Home, TreePine, Sailboat, Sunrise, Globe, Heart, Star, Search, Image, Settings: SettingsIcon, User,
 };
 
-export default function AppSidebar() {
+export default function AppSidebar({ mobileOpen, onMobileClose }: { mobileOpen: boolean; onMobileClose: () => void }) {
   const pathname = usePathname();
   const lang = pathname.startsWith('/fr') ? 'fr' : 'en';
   const [expanded, setExpanded] = useState(false);
@@ -38,18 +38,22 @@ export default function AppSidebar() {
     return pathname.startsWith(resolved);
   };
 
-  return (
-    <aside
-      className="flex flex-col sticky top-0 h-screen bg-white border-r border-slate-100 flex-shrink-0 transition-all duration-300 overflow-hidden z-40"
-      style={{ width: expanded ? '240px' : '68px' }}
-      onMouseEnter={() => setExpanded(true)}
-      onMouseLeave={() => setExpanded(false)}
-    >
+  const content = (
+    <>
       <div className="border-b border-slate-100 flex items-center h-16 sm:h-20 px-4 flex-shrink-0">
-        <Link href={`/${lang}`} className="flex items-center">
+        <Link href={`/${lang}`} className="flex items-center justify-between w-full" onClick={mobileOpen ? onMobileClose : undefined}>
           {loading ? <div className="w-9 h-9" /> : favicon ? (
             <img src={favicon} alt="" className="w-9 h-9 rounded-2xl flex-shrink-0 object-cover" />
           ) : null}
+          {mobileOpen && (
+            <button
+              onClick={(e) => { e.stopPropagation(); onMobileClose(); }}
+              className="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-slate-100 transition-colors min-h-[44px] min-w-[44px]"
+              aria-label="Close menu"
+            >
+              <X className="w-5 h-5 text-[#191e3b]" />
+            </button>
+          )}
         </Link>
       </div>
 
@@ -57,7 +61,7 @@ export default function AppSidebar() {
         {menuSections.map((section, si) => (
           <div key={si} className="space-y-0.5 mb-3">
             {section.title && (
-              <p className={`px-3 text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1 transition-opacity duration-200 ${expanded ? 'opacity-100' : 'opacity-0'}`}>{section.title}</p>
+              <p className={`px-3 text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1 transition-opacity duration-200 ${mobileOpen || expanded ? 'opacity-100' : 'opacity-0'}`}>{section.title}</p>
             )}
             {section.items.map((item, ii) => {
               const href = interpolate(item.href);
@@ -67,21 +71,39 @@ export default function AppSidebar() {
                 <Link
                   key={`${si}-${ii}`}
                   href={href}
+                  onClick={mobileOpen ? onMobileClose : undefined}
                   className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-xl font-medium text-sm transition-colors min-h-[44px] ${
                     active ? 'bg-[#0f51ec]/10 text-[#0f51ec]' : 'text-[#191e3b] hover:bg-slate-50'
                   }`}
                   title={item.label}
                 >
                   <Icon className="w-5 h-5 flex-shrink-0" />
-                  <span className={`whitespace-nowrap transition-opacity duration-200 ${expanded ? 'opacity-100' : 'opacity-0'}`}>{item.label}</span>
+                  <span className={`whitespace-nowrap transition-opacity duration-200 ${mobileOpen || expanded ? 'opacity-100' : 'opacity-0'}`}>{item.label}</span>
                 </Link>
               );
             })}
           </div>
         ))}
       </nav>
+    </>
+  );
 
-      {/* language switcher hidden for now */}
+  if (mobileOpen) {
+    return (
+      <aside className="fixed left-0 inset-y-0 z-50 w-72 flex flex-col bg-white shadow-xl animate-slide-in">
+        {content}
+      </aside>
+    );
+  }
+
+  return (
+    <aside
+      className="flex flex-col sticky top-0 h-screen bg-white border-r border-slate-100 flex-shrink-0 transition-all duration-300 overflow-hidden z-40"
+      style={{ width: expanded ? '240px' : '68px' }}
+      onMouseEnter={() => setExpanded(true)}
+      onMouseLeave={() => setExpanded(false)}
+    >
+      {content}
     </aside>
   );
 }

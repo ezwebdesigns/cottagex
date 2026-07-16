@@ -7,6 +7,12 @@
   --color-brand-sky: #77e1fb;
   --color-background: #ffffff;
   --color-foreground: #191e3b;
+  --animate-slide-in: slide-in 0.25s ease-out;
+}
+
+@keyframes slide-in {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
 }
 
 * {

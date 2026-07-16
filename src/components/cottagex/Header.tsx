@@ -1,12 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Globe } from 'lucide-react';
+import { Globe, Menu } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from '@/lib/useTranslations';
 
-export default function Header() {
+export default function Header({ onMenuToggle }: { onMenuToggle?: () => void }) {
   const { t, lang } = useTranslations();
   const pathname = usePathname();
   const [logo, setLogo] = useState<string | null>(null);
@@ -32,11 +32,20 @@ export default function Header() {
     <header className="sticky top-0 z-40 backdrop-blur-md bg-white/90 border-b border-slate-200/60">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
-          <Link href={`/${lang}`} className="flex items-center gap-2 group">
-            {logo ? (
-              <img src={logo} alt="Chalet Express" className="h-8 sm:h-9 w-auto" />
-            ) : null}
-          </Link>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onMenuToggle}
+              className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl hover:bg-slate-100 transition-colors min-h-[44px] min-w-[44px]"
+              aria-label="Toggle menu"
+            >
+              <Menu className="w-5 h-5 text-[#191e3b]" />
+            </button>
+            <Link href={`/${lang}`} className="flex items-center gap-2 group">
+              {logo ? (
+                <img src={logo} alt="Chalet Express" className="h-8 sm:h-9 w-auto" />
+              ) : null}
+            </Link>
+          </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
             <button
