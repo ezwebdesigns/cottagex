@@ -44,7 +44,9 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: { mobileOpen: 
         <Link href={`/${lang}`} className="flex items-center justify-between w-full" onClick={mobileOpen ? onMobileClose : undefined}>
           {loading ? <div className="w-9 h-9" /> : favicon ? (
             <img src={favicon} alt="" className="w-9 h-9 rounded-2xl flex-shrink-0 object-cover" />
-          ) : null}
+          ) : (
+            <span className="w-9 h-9 rounded-2xl flex-shrink-0 bg-[#0f51ec] flex items-center justify-center text-white font-bold text-sm">CE</span>
+          )}
           {mobileOpen && (
             <button
               onClick={(e) => { e.stopPropagation(); onMobileClose(); }}

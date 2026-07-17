@@ -43,7 +43,11 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: () => void }) 
             <Link href={`/${lang}`} className="flex items-center gap-2 group">
               {logo ? (
                 <img src={logo} alt="Chalet Express" className="h-8 sm:h-9 w-auto" />
-              ) : null}
+              ) : (
+                <span className="text-xl font-bold text-[#191e3b] whitespace-nowrap">
+                  Chalet <span className="text-[#0f51ec]">Express</span>
+                </span>
+              )}
             </Link>
           </div>
 
