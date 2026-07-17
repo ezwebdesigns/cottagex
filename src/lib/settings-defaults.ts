@@ -250,6 +250,13 @@ export const defaultSettings: Record<string, any> = {
       { id: "hiking", labelEn: "Hiking", labelFr: "Randonnée", icon: "Footprints", link: "" },
     ],
   },
+  search: {
+    hero: { title: "", subtitle: "", image: "", imageAlt: "" },
+    intro: { description: "", highlights: [] },
+    learnMore: { title: "", subtitle: "", description: "", faq: [], image: "", imageAlt: "" },
+    cta: { title: "", description: "", buttonText: "", buttonLink: "", image: "", imageAlt: "" },
+    search: { title: "", description: "", columns: [] },
+  },
   side_menu: {
     sections: [
       {

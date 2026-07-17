@@ -11,7 +11,8 @@ export const translations = {
       home: 'Home',
       admin: 'Admin Panel',
       login: 'Log In',
-      signup: 'Sign Up'
+      signup: 'Sign Up',
+      search: 'Search'
     },
     hero: {
       title: 'Your Wild Canadian Sanctuary',
@@ -210,7 +211,8 @@ export const translations = {
       home: 'Accueil',
       admin: 'Admin',
       login: 'Connexion',
-      signup: 'Inscription'
+      signup: 'Inscription',
+      search: 'Recherche'
     },
     hero: {
       title: 'Votre sanctuaire sauvage au Canada',

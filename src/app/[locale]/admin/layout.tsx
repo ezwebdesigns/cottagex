@@ -7,7 +7,7 @@ import AuthGuard from '@/components/cottagex/AuthGuard';
 import {
   LayoutDashboard, FileText, BookOpen, Image as ImageIcon, Mail,
   Settings as SettingsIcon, Building2, MapPin, User, ExternalLink,
-  ChevronLeft, ChevronRight, Menu, LogOut, Mountain
+  ChevronLeft, ChevronRight, Menu, LogOut, Mountain, Search
 } from 'lucide-react';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -61,6 +61,7 @@ function AdminShell({
     { label: 'Articles', href: `/${locale}/admin/articles`, icon: BookOpen },
     { label: 'Library', href: `/${locale}/admin/library`, icon: ImageIcon },
     { label: 'Messages', href: `/${locale}/admin/messages`, icon: Mail },
+    { label: 'Search', href: `/${locale}/admin/search`, icon: Search },
     { label: 'Cottages', href: `/${locale}/admin/cottages`, icon: Building2 },
     { label: 'Destinations', href: `/${locale}/admin/destinations`, icon: MapPin },
     { label: 'Settings', href: `/${locale}/admin/settings`, icon: SettingsIcon },
