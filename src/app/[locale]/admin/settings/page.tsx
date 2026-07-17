@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
-import { Save, Loader2, Settings as SettingsIcon, Home, Search, Image, Megaphone, Globe, Menu, ChevronDown, ChevronUp } from 'lucide-react';
+import { Save, Loader2, Settings as SettingsIcon, Home, Search, Image, Megaphone, Globe, Menu, ChevronDown, ChevronUp, Code } from 'lucide-react';
 import ImageUploader from '@/components/admin/ImageUploader';
 
 type HomepageHero = { tag: string; title: string; description: string; image: string; imageAlt: string };
@@ -25,6 +25,7 @@ const tabs = [
   { id: 'header', label: 'Header', icon: Image },
   { id: 'footer', label: 'Footer', icon: Megaphone },
   { id: 'side_menu', label: 'Side Menu', icon: Menu },
+  { id: 'ads', label: 'Ads', icon: Code },
 ];
 
 export default function AdminSettingsPage() {
@@ -48,6 +49,7 @@ export default function AdminSettingsPage() {
   const [ctaBar, setCtaBar] = useState<HomepageCTABar | null>(null);
   const [categories, setCategories] = useState<CategoryBarConfig | null>(null);
   const [sideMenu, setSideMenu] = useState<any>(null);
+  const [ads, setAds] = useState<any>(null);
 
   const [openHomeSection, setOpenHomeSection] = useState<string>('hero');
 
@@ -73,6 +75,7 @@ export default function AdminSettingsPage() {
     fetchSection('homepage_cta_bar').then(setCtaBar);
     fetchSection('homepage_categories').then(setCategories);
     fetchSection('side_menu').then(setSideMenu);
+    fetchSection('ads').then(setAds);
   }, [fetchSection]);
 
 
@@ -105,24 +108,24 @@ export default function AdminSettingsPage() {
 
   return (
     <div className="p-6 md:p-10 animate-in fade-in duration-200">
-      <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-2xl font-bold text-[#191e3b]">Settings</h1>
-            <p className="text-sm text-slate-400 mt-1">Navigation, footer, logo &amp; favicon</p>
-          </div>
-          <div className="flex items-center gap-3">
-            {saved && <span className="text-xs text-emerald-600 font-bold bg-emerald-50 px-3 py-1.5 rounded-full">Saved</span>}
-            {error && <span className="text-xs text-red-600 font-bold bg-red-50 px-3 py-1.5 rounded-full">{error}</span>}
-          </div>
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h1 className="text-2xl font-bold text-[#191e3b]">Settings</h1>
+          <p className="text-sm text-slate-400 mt-1">Manage your site configuration</p>
+        </div>
+        <div className="flex items-center gap-3">
+          {saved && <span className="text-xs text-emerald-600 font-bold bg-emerald-50 px-3 py-1.5 rounded-full">Saved</span>}
+          {error && <span className="text-xs text-red-600 font-bold bg-red-50 px-3 py-1.5 rounded-full">{error}</span>}
+        </div>
       </div>
 
-      <div className="flex gap-1 border-b border-slate-100 mb-8 overflow-x-auto">
+      <div className="flex gap-1 mb-8 overflow-x-auto">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center gap-2 px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
-              activeTab === tab.id ? 'border-[#0f51ec] text-[#0f51ec]' : 'border-transparent text-slate-500 hover:text-slate-700'
+            className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap rounded-xl transition-all ${
+              activeTab === tab.id ? 'bg-[#0f51ec] text-white shadow-sm' : 'text-slate-500 hover:bg-slate-100'
             }`}
           >
             <tab.icon size={16} />
@@ -132,7 +135,7 @@ export default function AdminSettingsPage() {
       </div>
 
       {activeTab === 'general' && (
-        <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm max-w-2xl">
+        <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
           <h2 className="text-lg font-bold text-[#191e3b] mb-6">General</h2>
           <div className="space-y-4">
             <Field label="Site Name" value={general.siteName} onChange={(v) => setGeneral({ ...general, siteName: v })} />
@@ -145,7 +148,7 @@ export default function AdminSettingsPage() {
       )}
 
       {activeTab === 'homepage' && (
-        <div className="space-y-4 max-w-3xl">
+        <div className="space-y-4">
           {hero && (
             <CollapsibleSection title="1 — Hero Section" id="hero" isOpen={openHomeSection === 'hero'} onToggle={() => setOpenHomeSection(openHomeSection === 'hero' ? '' : 'hero')}>
               <Field label="Tag" value={hero.tag} onChange={(v) => setHero({ ...hero, tag: v })} />
@@ -391,7 +394,7 @@ export default function AdminSettingsPage() {
       )}
 
       {activeTab === 'seo' && (
-        <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm max-w-2xl">
+        <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
           <h2 className="text-lg font-bold text-[#191e3b] mb-6">SEO</h2>
           <div className="space-y-4">
             <Field label="Default Title" value={seo?.defaultTitle ?? ''} onChange={(v) => setSeo({ ...seo, defaultTitle: v })} />
@@ -404,7 +407,7 @@ export default function AdminSettingsPage() {
       )}
 
       {activeTab === 'header' && (
-        <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm max-w-2xl">
+        <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
           <h2 className="text-lg font-bold text-[#191e3b] mb-6">Header</h2>
           <div className="space-y-4">
             <Field label="Logo Text" value={header?.logoText ?? ''} onChange={(v) => setHeader({ ...header, logoText: v })} />
@@ -437,7 +440,7 @@ export default function AdminSettingsPage() {
       )}
 
       {activeTab === 'footer' && (
-        <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm max-w-2xl">
+        <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
           <h2 className="text-lg font-bold text-[#191e3b] mb-6">Footer</h2>
           <div className="space-y-4">
             <Field label="Description" value={footer?.description ?? ''} onChange={(v) => setFooter({ ...footer, description: v })} textarea />
@@ -508,7 +511,7 @@ export default function AdminSettingsPage() {
       )}
 
       {activeTab === 'side_menu' && (
-        <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm max-w-2xl">
+        <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
           <h2 className="text-lg font-bold text-[#191e3b] mb-6">Side Menu</h2>
           <p className="text-sm text-slate-500 mb-6">Manage the sections and links in the sidebar navigation menu.</p>
           <div className="space-y-6">
@@ -557,6 +560,27 @@ export default function AdminSettingsPage() {
             <button onClick={() => setSideMenu({ ...sideMenu, sections: [...(sideMenu?.sections || []), { title: '', items: [] }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">+ Add Section</button>
           </div>
           <SaveButton onClick={() => saveSection('side_menu', sideMenu)} saving={saving} />
+        </div>
+      )}
+
+      {activeTab === 'ads' && (
+        <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
+          <h2 className="text-lg font-bold text-[#191e3b] mb-2">Ads</h2>
+          <p className="text-sm text-slate-500 mb-6">Paste ad script code to display a banner in the article sidebar.</p>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-slate-600 mb-1">Sidebar Ad Script</label>
+              <textarea
+                value={ads?.sidebarScript ?? ''}
+                onChange={(e) => setAds({ ...ads, sidebarScript: e.target.value })}
+                rows={8}
+                placeholder="Paste your ad script here..."
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20 focus:border-[#0f51ec] font-mono text-sm"
+              />
+              <p className="text-xs text-slate-400 mt-1">This script will render in the article sidebar below the Table of Contents and recent articles.</p>
+            </div>
+          </div>
+          <SaveButton onClick={() => saveSection('ads', ads)} saving={saving} />
         </div>
       )}
     </div>

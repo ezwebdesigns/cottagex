@@ -29,7 +29,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
   if (items.length === 0) return null;
 
   return (
-    <div className="border-l border-slate-200 pl-5">
+    <div className="border-l-2 border-[#0f51ec]/20 pl-5">
       <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Contents</h3>
       <nav className="space-y-1">
         {items.map((item) => (

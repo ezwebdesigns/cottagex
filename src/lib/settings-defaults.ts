@@ -86,6 +86,10 @@ export type HomepageInspiration = {
 export type CategoryItem = { id: string; labelEn: string; labelFr: string; icon: string; link: string };
 export type HomepageCategories = { items: CategoryItem[] };
 
+export type AdSettings = {
+  sidebarScript: string;
+};
+
 export type SideMenuSettings = {
   sections: {
     title: string;
@@ -223,6 +227,9 @@ export const defaultSettings: Record<string, any> = {
     description: "Browse handpicked lake houses, mountain lodges, and wilderness cabins across Canada.",
     buttonText: "Explore Cottages",
     buttonLink: "/{locale}/cottage-country/ontario",
+  },
+  ads: {
+    sidebarScript: "",
   },
   homepage_categories: {
     items: [

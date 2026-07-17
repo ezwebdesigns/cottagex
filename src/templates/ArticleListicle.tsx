@@ -2,14 +2,25 @@
 
 import { ArrowLeft, CalendarDays, Clock } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
+import Link from 'next/link';
 import { BreadcrumbSchema, ArticleSchema, FAQPageSchema } from '@/components/seo/SchemaOrg';
 import { CottageShortcode } from '@/components/CottageShortcode';
 import FAQAccordion from '@/components/FAQAccordion';
 import TableOfContents from '@/components/TableOfContents';
+import AdRenderer from '@/components/AdRenderer';
 import Image from 'next/image';
 import type { TocItem } from '@/lib/extract-toc';
 
 const shortcodeRegex = /\[([a-z0-9-]+),\s*([a-z0-9-]+)(?:,\s*([a-z0-9-]+))?(?:,\s*(\d+))?\]/;
+
+type RecentArticle = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  image: string;
+  category: string;
+  date: string;
+};
 
 type ArticleListicleProps = {
   locale: string;
@@ -25,9 +36,11 @@ type ArticleListicleProps = {
   };
   toc?: TocItem[];
   enhancedContent?: string;
+  recentArticles?: RecentArticle[];
+  adScript?: string;
 };
 
-export default function ArticleListicle({ locale, article, toc, enhancedContent }: ArticleListicleProps) {
+export default function ArticleListicle({ locale, article, toc, enhancedContent, recentArticles, adScript }: ArticleListicleProps) {
   const router = useRouter();
   const pathname = usePathname();
   const contentHtml = enhancedContent || article.content;
@@ -105,13 +118,32 @@ export default function ArticleListicle({ locale, article, toc, enhancedContent 
           </div>
         </div>
 
-        {toc && toc.length > 0 && (
-          <aside className="hidden lg:block">
-            <div className="sticky top-24">
+        <aside className="hidden lg:block">
+          <div className="sticky top-24 space-y-8">
+            {toc && toc.length > 0 && (
               <TableOfContents items={toc} />
-            </div>
-          </aside>
-        )}
+            )}
+            {recentArticles && recentArticles.length > 0 && (
+              <div>
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Recent Guides</h3>
+                <div className="space-y-3">
+                  {recentArticles.map((a) => (
+                    <Link key={a.slug} href={`/${locale}/guides/${a.slug}`} className="flex gap-3 group">
+                      <div className="w-14 h-14 rounded-xl overflow-hidden bg-slate-100 shrink-0">
+                        <img src={a.image} alt={a.title} className="w-full h-full object-cover" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold text-slate-700 group-hover:text-[#0f51ec] transition-colors line-clamp-2 leading-snug">{a.title}</p>
+                        <p className="text-xs text-slate-400 mt-0.5">{a.date}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+            {adScript && <AdRenderer html={adScript} />}
+          </div>
+        </aside>
       </div>
 
       <div className="border-l-4 border-[#0f51ec] pl-4 mb-8 bg-blue-50/50 p-6 rounded-r-2xl">

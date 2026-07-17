@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { initialArticles } from '@/lib/mock-data';
 import { db } from '@/lib/db';
-import { articles } from '@/db/schema';
-import { eq } from 'drizzle-orm';
+import { articles, siteSettings } from '@/db/schema';
+import { eq, desc, and, ne } from 'drizzle-orm';
 import { locales } from '@/i18n/routing';
 import ArticleStandard from '@/templates/ArticleStandard';
 import ArticleListicle from '@/templates/ArticleListicle';
@@ -100,6 +100,45 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+async function fetchRecentArticles(excludeSlug: string) {
+  try {
+    const rows = await db
+      .select({
+        slug: articles.slug,
+        title: articles.title,
+        excerpt: articles.excerpt,
+        featuredImage: articles.featuredImage,
+        category: articles.category,
+        publishedAt: articles.publishedAt,
+        createdAt: articles.createdAt,
+      })
+      .from(articles)
+      .where(and(eq(articles.isPublished, true), ne(articles.slug, excludeSlug)))
+      .orderBy(desc(articles.publishedAt))
+      .limit(3);
+
+    return rows.map((r) => ({
+      slug: r.slug,
+      title: r.title,
+      excerpt: r.excerpt || "",
+      image: r.featuredImage || "/placeholder.jpg",
+      category: r.category || "Articles",
+      date: formatDate(r.publishedAt || r.createdAt),
+    }));
+  } catch {
+    return [];
+  }
+}
+
+async function fetchAdScript() {
+  try {
+    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, "ads"));
+    return (row?.data as { sidebarScript?: string })?.sidebarScript || "";
+  } catch {
+    return "";
+  }
+}
+
 export default async function ArticleDetailPage({
   params,
 }: {
@@ -110,9 +149,14 @@ export default async function ArticleDetailPage({
 
   if (!article) notFound();
 
+  const [recentArticles, adScript] = await Promise.all([
+    fetchRecentArticles(slug),
+    fetchAdScript(),
+  ]);
+
   if (article.isListicle) {
-    return <ArticleListicle locale={locale} article={article} toc={article.toc} enhancedContent={article.enhancedContent} />;
+    return <ArticleListicle locale={locale} article={article} toc={article.toc} enhancedContent={article.enhancedContent} recentArticles={recentArticles} adScript={adScript} />;
   }
 
-  return <ArticleStandard locale={locale} article={article} isHtml={(article as any).isHtml} toc={article.toc} enhancedContent={article.enhancedContent} />;
+  return <ArticleStandard locale={locale} article={article} isHtml={(article as any).isHtml} toc={article.toc} enhancedContent={article.enhancedContent} recentArticles={recentArticles} adScript={adScript} />;
 }
