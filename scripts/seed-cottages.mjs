@@ -30,9 +30,20 @@ const pool = new Pool({
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 
 function nextWeekend() {
+  const now = new Date()
+  // Choisit aléatoirement une date dans les 6 prochains mois
+  const daysAhead = Math.floor(Math.random() * 180) + 7 // entre 7 et 187 jours
+  const checkin = new Date(now)
+  checkin.setDate(now.getDate() + daysAhead)
+  // Ajuste au vendredi le plus proche
+  const dayOfWeek = checkin.getDay()
+  const daysToFriday = (5 - dayOfWeek + 7) % 7 || 7
+  checkin.setDate(checkin.getDate() + daysToFriday)
+  const checkout = new Date(checkin)
+  checkout.setDate(checkin.getDate() + 2)
   return {
-    checkin:  '2026-12-26',
-    checkout: '2026-12-28',
+    checkin:  checkin.toISOString().split('T')[0],
+    checkout: checkout.toISOString().split('T')[0],
   }
 }
 
