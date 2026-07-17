@@ -104,15 +104,11 @@ const DESTINATIONS = [
   { slug: 'haliburton',         province: 'ontario',          query: 'haliburton highlands cottage rentals ontario canada' },
   { slug: 'georgian-bay',       province: 'ontario',          query: 'georgian bay cottage rentals ontario canada' },
   { slug: 'prince-edward',      province: 'ontario',          query: 'prince edward county cottage rentals ontario canada' },
-  { slug: 'ontario-wide',       province: 'ontario',          query: 'ontario cottage rental vrbo canada' },
 
 // FR — court et précis
 { slug: 'laurentides',    province: 'quebec', query: 'chalet laurentides',    hl: 'fr' },
 { slug: 'mont-tremblant', province: 'quebec', query: 'chalet mont-tremblant', hl: 'fr' },
 { slug: 'quebec',         province: 'quebec', query: 'location chalet à louer', hl: 'fr' },
-{ slug: 'memphremagog',  province: 'quebec', query: 'lac memphremagog chalet rental quebec', hl: 'fr' },
-{ slug: 'saguenay',      province: 'quebec', query: 'saguenay fjord chalet rental quebec',   hl: 'fr' },
-{ slug: 'gatineau',      province: 'quebec', query: 'gatineau hills chalet rental quebec',   hl: 'fr' },
 
 // EN — court et précis
 { slug: 'laurentides',    province: 'quebec', query: 'cottage laurentians',          hl: 'en' },
@@ -136,15 +132,11 @@ const DESTINATIONS = [
   // Nova Scotia
   { slug: 'cape-breton',        province: 'nova-scotia',      query: 'cape breton cottage rentals nova scotia canada' },
   { slug: 'south-shore-ns',     province: 'nova-scotia',      query: 'south shore cottage rentals nova scotia canada' },
-  { slug: 'annapolis',          province: 'nova-scotia',      query: 'annapolis valley nova scotia cottage rental' },
   { slug: 'digby',              province: 'nova-scotia',      query: 'digby nova scotia cottage rental canada' },
   { slug: 'yarmouth-ns',        province: 'nova-scotia',      query: 'yarmouth nova scotia cottage rental canada' },
 
   // Alberta
   { slug: 'sylvan-lake',        province: 'alberta',          query: 'sylvan lake cottage rentals alberta canada' },
-  { slug: 'alberta-wide',       province: 'alberta',          query: 'alberta cabin rental vrbo canada' },
-  { slug: 'banff',              province: 'alberta',          query: 'banff national park vacation rental alberta' },
-  { slug: 'jasper',             province: 'alberta',          query: 'jasper national park cabin rental alberta' },
   { slug: 'pigeon-lake',        province: 'alberta',          query: 'pigeon lake cottage alberta canada' },
   { slug: 'gull-lake-ab',       province: 'alberta',          query: 'gull lake cottage rental alberta canada' },
 
@@ -153,8 +145,6 @@ const DESTINATIONS = [
   { slug: 'shediac',            province: 'new-brunswick',    query: 'shediac cottage rentals new brunswick canada' },
   { slug: 'fundy-coast',        province: 'new-brunswick',    query: 'bay of fundy cottage rental new brunswick' },
   { slug: 'st-andrews',         province: 'new-brunswick',    query: 'st andrews nb cottage rental canada' },
-  { slug: 'miramichi',          province: 'new-brunswick',    query: 'miramichi cottage rental new brunswick' },
-  { slug: 'grand-manan',        province: 'new-brunswick',    query: 'grand manan island cottage new brunswick' },
   { slug: 'sussex-nb',          province: 'new-brunswick',    query: 'sussex new brunswick cottage rental' },
   { slug: 'moncton-nb',         province: 'new-brunswick',    query: 'moncton new brunswick cottage rental canada' },
 
@@ -162,28 +152,15 @@ const DESTINATIONS = [
   { slug: 'pei-north-shore',    province: 'pei',              query: 'north shore cottage rentals pei canada' },
   { slug: 'pei-points-east',    province: 'pei',              query: 'points east cottage rentals pei canada' },
   { slug: 'charlottetown',      province: 'pei',              query: 'charlottetown pei cottage rental canada' },
-  { slug: 'cavendish',          province: 'pei',              query: 'cavendish pei cottage rental canada' },
   { slug: 'victoria-pei',       province: 'pei',              query: 'victoria pei cottage rental canada' },
 
   // Saskatchewan
-  { slug: 'waskesiu',           province: 'saskatchewan',     query: 'prince albert national park cabin rentals saskatchewan canada' },
-  { slug: 'emma-lake',          province: 'saskatchewan',     query: 'emma lake cabin rental saskatchewan canada' },
   { slug: 'candle-lake',        province: 'saskatchewan',     query: 'candle lake cottage rental saskatchewan' },
-  { slug: 'madge-lake',         province: 'saskatchewan',     query: 'madge lake cabin rental saskatchewan canada' },
-  { slug: 'waskesiu-2',         province: 'saskatchewan',     query: 'waskesiu lake cabin rental saskatchewan' },
-  { slug: 'good-spirit',        province: 'saskatchewan',     query: 'good spirit lake cottage rental saskatchewan' },
-  { slug: 'katepwa',            province: 'saskatchewan',     query: 'katepwa lake cottage rental saskatchewan' },
-  { slug: 'fort-qu-appelle',    province: 'saskatchewan',     query: 'fort qu appelle valley cottage saskatchewan' },
 
   // Manitoba
   { slug: 'falcon-lake',        province: 'manitoba',         query: 'falcon lake cottage rentals manitoba canada' },
-  { slug: 'west-hawk-lake',     province: 'manitoba',         query: 'whiteshell provincial park cabin rental manitoba' },
-  { slug: 'winnipeg-beach',     province: 'manitoba',         query: 'winnipeg beach cottage rental manitoba' },
   { slug: 'gimli',              province: 'manitoba',         query: 'gimli cottage rental manitoba canada' },
-  { slug: 'wasagaming',         province: 'manitoba',         query: 'wasagaming riding mountain cabin manitoba' },
-  { slug: 'birds-hill',         province: 'manitoba',         query: 'birds hill provincial park cabin rental manitoba' },
   { slug: 'lake-winnipeg',      province: 'manitoba',         query: 'lake winnipeg cottage rental manitoba canada' },
-  { slug: 'clear-lake',         province: 'manitoba',         query: 'clear lake riding mountain cottage rental manitoba' },
 ]
 
 // ─── SERPAPI ─────────────────────────────────────────────────────────────────
