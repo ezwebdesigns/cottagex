@@ -78,6 +78,7 @@ export default async function SearchPage({ params }: Props) {
   const { locationSlug, querySlug } = parseSlug(slug);
   let cottages: any[] = [];
   let pageData = null;
+  let categories: any[] = [];
 
   const location = locationSlug === 'canada' ? null : locationSlug;
 
@@ -99,7 +100,19 @@ export default async function SearchPage({ params }: Props) {
     console.error('Failed to fetch search settings', e);
   }
 
+  try {
+    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'homepage_categories'));
+    const raw: any[] = (row?.data as any)?.items ?? [];
+    categories = raw.map((item: any) => ({
+      id: item.id,
+      label: locale === 'fr' ? item.labelFr : item.labelEn,
+      link: item.link || `/${locale}/search/${item.id}`,
+    }));
+  } catch (e) {
+    console.error('Failed to fetch categories', e);
+  }
+
   const slugStr = slug ? slug.join('/') : '';
 
-  return <SearchTemplate locale={locale} slug={slugStr} pageData={pageData} cottages={cottages} />;
+  return <SearchTemplate locale={locale} slug={slugStr} pageData={pageData} cottages={cottages} categories={categories} />;
 }

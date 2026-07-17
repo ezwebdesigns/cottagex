@@ -1,18 +1,25 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { MapPin, ChevronDown, Search as SearchIcon, Waves, Trees, Compass, Star, Snowflake, Mountain, Leaf, Home as HomeIcon } from 'lucide-react';
+import { MapPin, ChevronDown, Search as SearchIcon, Waves, Trees, Compass, Star, Snowflake, Mountain, Leaf, Home as HomeIcon, Sailboat, Bath, Users, Gem, Dog, Heart, TreePine, Umbrella, Building2, MountainSnow, Footprints } from 'lucide-react';
 import { useTranslations } from '@/lib/useTranslations';
 import PropertyCard from '@/components/cottagex/PropertyCard';
 import CTASection from '@/components/cottagex/CTASection';
 import { BreadcrumbSchema, PlaceSchema } from '@/components/seo/SchemaOrg';
-import Image from 'next/image';
+
+const categoryIconMap: Record<string, React.ElementType> = {
+  lakefront: Sailboat, 'hot-tub': Bath, family: Users, luxury: Gem,
+  'pet-friendly': Dog, mountain: Mountain, romantic: Heart, 'log-cabin': HomeIcon,
+  countryside: Trees, secluded: TreePine, beach: Umbrella, resort: Building2,
+  skiing: MountainSnow, pools: Waves, hiking: Footprints,
+};
 
 type SearchTemplateProps = {
   locale: string;
   slug: string;
   pageData?: any;
   cottages?: any[];
+  categories?: any[];
 };
 
 const highlightIconMap: Record<string, React.ReactNode> = {
@@ -20,7 +27,7 @@ const highlightIconMap: Record<string, React.ReactNode> = {
   MapPin: <MapPin size={20} />, Mountain: <Mountain size={20} />,
 };
 
-export default function SearchTemplate({ locale, slug, pageData, cottages }: SearchTemplateProps) {
+export default function SearchTemplate({ locale, slug, pageData, cottages, categories }: SearchTemplateProps) {
   const { t } = useTranslations();
   const segments = slug.split('/').filter(Boolean);
   const lastSegment = segments[segments.length - 1] || '';
@@ -77,20 +84,37 @@ export default function SearchTemplate({ locale, slug, pageData, cottages }: Sea
         />
       )}
 
-      <section className="relative h-64 sm:h-96 overflow-hidden">
-        <Image src={heroImage} alt={heroImageAlt} fill className="object-cover" sizes="100vw" priority />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#191e3b]/90 via-[#191e3b]/40 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-6 lg:px-8 pb-8">
-          <div className="text-white">
-            <div className="flex items-center gap-2 text-[#77e1fb] text-sm font-medium mb-2">
-              <SearchIcon className="w-4 h-4" />
-              {t.nav.search || 'Search'}
-            </div>
-            <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-2" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{heroTitle}</h1>
-            {heroSubtitle && <p className="text-base sm:text-lg text-white/80">{heroSubtitle}</p>}
+      <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-white">
+        <div>
+          <div className="flex items-center gap-2 text-[#0f51ec] text-sm font-medium mb-2">
+            <SearchIcon className="w-4 h-4" />
+            {t.nav.search || 'Search'}
           </div>
+          <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{heroTitle}</h1>
+          {heroSubtitle && <p className="text-base sm:text-lg text-slate-500 mt-1">{heroSubtitle}</p>}
         </div>
       </section>
+
+      {categories && categories.length > 0 && (
+        <section className="pb-6 sm:pb-8 px-4 sm:px-6 lg:px-8 bg-white">
+          <div className="flex gap-4 sm:gap-5 lg:gap-7 overflow-x-auto [&::-webkit-scrollbar]:hidden pb-2" style={{ scrollbarWidth: 'none' }}>
+            {categories.map((cat: any) => {
+              const Icon = categoryIconMap[cat.id] || Mountain;
+              const Wrapper = cat.link ? 'a' : 'div';
+              return (
+                <Wrapper key={cat.id} href={cat.link} className="flex flex-col items-center gap-1.5 flex-shrink-0 group min-w-[56px] sm:min-w-[64px]">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl border border-slate-200 bg-white group-hover:bg-[#0f51ec] group-hover:border-[#0f51ec] flex items-center justify-center transition-colors">
+                    <Icon className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" strokeWidth={1.5} />
+                  </div>
+                  <span className="text-[10px] sm:text-xs font-medium text-slate-500 group-hover:text-[#191e3b] transition-colors text-center whitespace-nowrap">
+                    {cat.label}
+                  </span>
+                </Wrapper>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       {introDesc && (
         <section className="py-10 sm:py-14 px-4 sm:px-6 lg:px-8 bg-[#f8fafc]">
