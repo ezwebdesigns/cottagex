@@ -97,16 +97,16 @@ export default function SearchTemplate({ locale, slug, pageData, cottages, categ
 
       {categories && categories.length > 0 && (
         <section className="pb-6 sm:pb-8 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="flex gap-4 sm:gap-5 lg:gap-7 overflow-x-auto [&::-webkit-scrollbar]:hidden pb-2" style={{ scrollbarWidth: 'none' }}>
+          <div className="flex justify-center gap-4 sm:gap-5 lg:gap-7 overflow-x-auto [&::-webkit-scrollbar]:hidden pb-2" style={{ scrollbarWidth: 'none' }}>
             {categories.map((cat: any) => {
               const Icon = categoryIconMap[cat.id] || Mountain;
               const Wrapper = cat.link ? 'a' : 'div';
               return (
                 <Wrapper key={cat.id} href={cat.link} className="flex flex-col items-center gap-1.5 flex-shrink-0 group min-w-[56px] sm:min-w-[64px]">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl border border-slate-200 bg-white group-hover:bg-[#0f51ec] group-hover:border-[#0f51ec] flex items-center justify-center transition-colors">
-                    <Icon className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" strokeWidth={1.5} />
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl border border-[#0f51ec] bg-[#0f51ec] group-hover:bg-white group-hover:border-slate-200 flex items-center justify-center transition-colors">
+                    <Icon className="w-5 h-5 text-white group-hover:text-slate-400 transition-colors" strokeWidth={1.5} />
                   </div>
-                  <span className="text-[10px] sm:text-xs font-medium text-slate-500 group-hover:text-[#191e3b] transition-colors text-center whitespace-nowrap">
+                  <span className="text-[10px] sm:text-xs font-medium text-[#191e3b] group-hover:text-slate-500 transition-colors text-center whitespace-nowrap">
                     {cat.label}
                   </span>
                 </Wrapper>
