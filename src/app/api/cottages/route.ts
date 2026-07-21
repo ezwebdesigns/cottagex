@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
   const slug     = searchParams.get('slug')     || undefined
   const province = searchParams.get('province') || undefined
   const limit    = parseInt(searchParams.get('limit') || '3', 10)
-  const sort     = (searchParams.get('sort') || 'rating') as 'rating' | 'price'
+  const sort     = (searchParams.get('sort') || 'rating') as 'rating' | 'price' | 'newest'
   const category     = searchParams.get('category') || ''
   const featuredOnly = searchParams.get('featured') === 'true'
   const affiliateOnly = searchParams.get('affiliateOnly') === 'true'

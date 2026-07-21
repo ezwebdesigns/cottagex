@@ -97,6 +97,24 @@ export type SideMenuSettings = {
   }[];
 };
 
+export type SearchCTA = {
+  title: string;
+  subtitle: string;
+  description: string;
+};
+
+export type SearchInspirationItem = {
+  city: string;
+  category: string;
+  tab: string;
+  link: string;
+};
+
+export type SearchInspirations = {
+  title: string;
+  items: SearchInspirationItem[];
+};
+
 export type HomepageCTA = {
   title: string;
   description: string;
@@ -256,6 +274,15 @@ export const defaultSettings: Record<string, any> = {
     learnMore: { title: "", subtitle: "", description: "", faq: [], image: "", imageAlt: "" },
     cta: { title: "", description: "", buttonText: "", buttonLink: "", image: "", imageAlt: "" },
     search: { title: "", description: "", columns: [] },
+  },
+  search_cta: {
+    title: "",
+    subtitle: "",
+    description: "",
+  },
+  search_inspirations: {
+    title: "",
+    items: [],
   },
   side_menu: {
     sections: [

@@ -85,19 +85,36 @@ export default async function SearchPage({ params }: Props) {
   try {
     const { getCottages } = await import('@/lib/cottages');
     if (location) {
-      cottages = await getCottages({ slug: location, limit: 50, sort: 'rating', categories: querySlug ? [querySlug] : [] });
+      cottages = await getCottages({ slug: location, limit: 30, sort: 'newest', categories: querySlug ? [querySlug] : [] });
     } else {
-      cottages = await getCottages({ limit: 50, sort: 'rating', categories: querySlug ? [querySlug] : [] });
+      cottages = await getCottages({ limit: 30, sort: 'newest', categories: querySlug ? [querySlug] : [] });
     }
   } catch (e) {
     console.error('Failed to fetch cottages for search', slug, e);
   }
 
+  let searchData = null;
   try {
     const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search'));
-    pageData = row?.data ?? null;
+    searchData = row?.data ?? null;
   } catch (e) {
     console.error('Failed to fetch search settings', e);
+  }
+
+  let searchCTA = null;
+  try {
+    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search_cta'));
+    searchCTA = row?.data ?? null;
+  } catch (e) {
+    console.error('Failed to fetch search_cta settings', e);
+  }
+
+  let searchInspirations = null;
+  try {
+    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search_inspirations'));
+    searchInspirations = row?.data ?? null;
+  } catch (e) {
+    console.error('Failed to fetch search_inspirations settings', e);
   }
 
   try {
@@ -114,5 +131,5 @@ export default async function SearchPage({ params }: Props) {
 
   const slugStr = slug ? slug.join('/') : '';
 
-  return <SearchTemplate locale={locale} slug={slugStr} pageData={pageData} cottages={cottages} categories={categories} />;
+  return <SearchTemplate locale={locale} slug={slugStr} pageData={searchData} searchCTA={searchCTA} searchInspirations={searchInspirations} cottages={cottages} categories={categories} />;
 }

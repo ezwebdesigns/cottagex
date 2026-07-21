@@ -41,7 +41,7 @@ const CATEGORY_CONDITIONS = {
  * @param {string}  [opts.slug]       - destination slug (ex: 'muskoka')
  * @param {string}  [opts.province]   - province slug (ex: 'ontario')
  * @param {number}  [opts.limit]      - nombre de résultats (défaut: 3)
- * @param {string}  [opts.sort]       - 'rating' | 'price' (défaut: 'rating')
+ * @param {string}  [opts.sort]       - 'rating' | 'price' | 'newest' (défaut: 'rating')
  * @param {string[]}[opts.categories] - ['family','hotTub','lakefront','luxury']
  * @param {boolean} [opts.featuredOnly] - seulement is_featured = true (défaut: false)
  * @param {boolean} [opts.affiliateOnly] - seulement ceux avec affiliate_url (défaut: false)
@@ -90,7 +90,9 @@ export async function getCottages({
   // Tri
   const orderBy = sort === 'price'
     ? 'price_cad ASC NULLS LAST'
-    : 'rating DESC NULLS LAST'
+    : sort === 'newest'
+      ? 'created_at DESC NULLS LAST'
+      : 'rating DESC NULLS LAST'
 
   // Limite
   conditions.push(`LIMIT $${paramIndex++}`)
@@ -128,7 +130,8 @@ export async function getCottages({
       affiliate_url,
       is_featured,
       available,
-      image_alt
+      image_alt,
+      created_at
     FROM affiliatecottages
     WHERE ${where}
     ORDER BY ${orderBy}
