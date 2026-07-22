@@ -85,12 +85,12 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
       )}
 
       <section className="py-10 sm:py-14 px-4 sm:px-6 lg:px-8 bg-white">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-1 text-center" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-1 text-left" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
           {resultCards.length > 0
             ? (searchResults?.title || `${resultCards.length} result${resultCards.length > 1 ? 's' : ''} found`)
             : 'No results found'}
         </h2>
-        <p className="text-sm text-slate-500 mb-8 text-center">{searchResults?.subtitle || locName || 'All locations'}</p>
+        <p className="text-sm text-slate-500 mb-8 text-left">{searchResults?.subtitle || locName || 'All locations'}</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
           {resultCards.map((chalet) => (
             <PropertyCard key={chalet.id} chalet={chalet} />
