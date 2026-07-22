@@ -106,7 +106,7 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
               <p className="text-white/80 text-lg mb-4">{searchCTA.subtitle}</p>
             )}
             {searchCTA.description && (
-              <p className="text-white/60 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">{searchCTA.description}</p>
+              <p className="text-white/60 text-sm sm:text-base leading-relaxed text-justify">{searchCTA.description}</p>
             )}
           </div>
         </section>
