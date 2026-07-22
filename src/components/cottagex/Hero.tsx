@@ -1,16 +1,17 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Sailboat, Bath, Users, Gem, Dog, Mountain, Heart, Home, Trees, TreePine, Umbrella, Building2, MountainSnow, Waves, Footprints } from 'lucide-react';
+import { Kayak, Bath, Users, Gem, PawPrint, Mountain, Heart, Home, Trees, TreePine, Umbrella, Building2, Snowflake, Waves, Footprints, Sailboat } from 'lucide-react';
 import { useTranslations } from '@/lib/useTranslations';
 
 const WIDGET_HTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref=""></div><script class="eg-widgets-script" src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"></script>`;
 
 const iconMap: Record<string, React.ElementType> = {
-  lakefront: Sailboat, 'hot-tub': Bath, family: Users, luxury: Gem,
-  'pet-friendly': Dog, mountain: Mountain, romantic: Heart, 'log-cabin': Home,
+  lakefront: Kayak, 'hot-tub': Bath, family: Users, luxury: Gem,
+  'pet-friendly': PawPrint, mountain: Mountain, romantic: Heart, 'log-cabin': Home,
   countryside: Trees, secluded: TreePine, beach: Umbrella, resort: Building2,
-  skiing: MountainSnow, pools: Waves, hiking: Footprints,
+  skiing: Snowflake, pools: Waves, hiking: Footprints,
+  coastal: Sailboat, waterfront: Kayak,
 };
 
 type CatItem = { id: string; label: string; link?: string };
