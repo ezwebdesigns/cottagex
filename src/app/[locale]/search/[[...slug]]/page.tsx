@@ -77,48 +77,43 @@ export default async function SearchPage({ params }: Props) {
   const { locale, slug } = await params;
   const { locationSlug, querySlug } = parseSlug(slug);
   let cottages: any[] = [];
-  let pageData = null;
+  let hero: any = null;
+  let searchCTA: any = null;
+  let searchInspirations: any = null;
+  let searchResults: any = null;
   let categories: any[] = [];
 
   const location = locationSlug === 'canada' ? null : locationSlug;
 
   try {
+    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search_results'));
+    searchResults = row?.data ?? null;
+  } catch (e) {
+    console.error('Failed to fetch search_results settings', e);
+  }
+
+  const sort = searchResults?.sort === 'rating' ? 'rating' : 'newest';
+
+  try {
     const { getCottages } = await import('@/lib/cottages');
     if (location) {
-      cottages = await getCottages({ slug: location, limit: 30, sort: 'newest', categories: querySlug ? [querySlug] : [] });
+      cottages = await getCottages({ slug: location, limit: 30, sort, categories: querySlug ? [querySlug] : [] });
     } else {
-      cottages = await getCottages({ limit: 30, sort: 'newest', categories: querySlug ? [querySlug] : [] });
+      cottages = await getCottages({ limit: 30, sort, categories: querySlug ? [querySlug] : [] });
     }
   } catch (e) {
     console.error('Failed to fetch cottages for search', slug, e);
   }
 
-  let searchData = null;
   try {
-    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search'));
-    searchData = row?.data ?? null;
+    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search_hero'));
+    hero = row?.data ?? null;
   } catch (e) {
-    console.error('Failed to fetch search settings', e);
-  }
-
-  let searchCTA = null;
-  try {
-    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search_cta'));
-    searchCTA = row?.data ?? null;
-  } catch (e) {
-    console.error('Failed to fetch search_cta settings', e);
-  }
-
-  let searchInspirations = null;
-  try {
-    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search_inspirations'));
-    searchInspirations = row?.data ?? null;
-  } catch (e) {
-    console.error('Failed to fetch search_inspirations settings', e);
+    console.error('Failed to fetch search_hero settings', e);
   }
 
   try {
-    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'homepage_categories'));
+    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search_categories'));
     const raw: any[] = (row?.data as any)?.items ?? [];
     categories = raw.map((item: any) => ({
       id: item.id,
@@ -126,10 +121,24 @@ export default async function SearchPage({ params }: Props) {
       link: item.link || `/${locale}/search/${item.id}`,
     }));
   } catch (e) {
-    console.error('Failed to fetch categories', e);
+    console.error('Failed to fetch search_categories', e);
+  }
+
+  try {
+    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search_cta'));
+    searchCTA = row?.data ?? null;
+  } catch (e) {
+    console.error('Failed to fetch search_cta settings', e);
+  }
+
+  try {
+    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search_inspirations'));
+    searchInspirations = row?.data ?? null;
+  } catch (e) {
+    console.error('Failed to fetch search_inspirations settings', e);
   }
 
   const slugStr = slug ? slug.join('/') : '';
 
-  return <SearchTemplate locale={locale} slug={slugStr} pageData={searchData} searchCTA={searchCTA} searchInspirations={searchInspirations} cottages={cottages} categories={categories} />;
+  return <SearchTemplate locale={locale} slug={slugStr} hero={hero} searchResults={searchResults} searchCTA={searchCTA} searchInspirations={searchInspirations} cottages={cottages} categories={categories} />;
 }

@@ -97,6 +97,20 @@ export type SideMenuSettings = {
   }[];
 };
 
+export type SearchHero = {
+  title: string;
+  subtitle: string;
+};
+
+export type SearchCategoryItem = { id: string; labelEn: string; labelFr: string; icon: string; link: string };
+export type SearchCategories = { items: SearchCategoryItem[] };
+
+export type SearchResults = {
+  title: string;
+  subtitle: string;
+  sort: 'newest' | 'rating';
+};
+
 export type SearchCTA = {
   title: string;
   subtitle: string;
@@ -274,6 +288,18 @@ export const defaultSettings: Record<string, any> = {
     learnMore: { title: "", subtitle: "", description: "", faq: [], image: "", imageAlt: "" },
     cta: { title: "", description: "", buttonText: "", buttonLink: "", image: "", imageAlt: "" },
     search: { title: "", description: "", columns: [] },
+  },
+  search_hero: {
+    title: "",
+    subtitle: "",
+  },
+  search_categories: {
+    items: [],
+  },
+  search_results: {
+    title: "Results",
+    subtitle: "All locations",
+    sort: "newest",
   },
   search_cta: {
     title: "",

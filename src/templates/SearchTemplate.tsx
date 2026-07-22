@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { Home as HomeIcon, Sailboat, Bath, Users, Gem, Dog, Heart, Trees, TreePine, Umbrella, Building2, MountainSnow, Waves, Footprints, Mountain } from 'lucide-react';
 import PropertyCard from '@/components/cottagex/PropertyCard';
 import SearchInspirations from '@/components/cottagex/SearchInspirations';
-import { BreadcrumbSchema, PlaceSchema } from '@/components/seo/SchemaOrg';
+import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
 
 const categoryIconMap: Record<string, React.ElementType> = {
   lakefront: Sailboat, 'hot-tub': Bath, family: Users, luxury: Gem,
@@ -16,25 +16,22 @@ const categoryIconMap: Record<string, React.ElementType> = {
 type SearchTemplateProps = {
   locale: string;
   slug: string;
-  pageData?: any;
+  hero?: any;
+  searchResults?: any;
   searchCTA?: any;
   searchInspirations?: any;
   cottages?: any[];
   categories?: any[];
 };
 
-export default function SearchTemplate({ locale, slug, pageData, searchCTA, searchInspirations, cottages, categories }: SearchTemplateProps) {
+export default function SearchTemplate({ locale, slug, hero, searchResults, searchCTA, searchInspirations, cottages, categories }: SearchTemplateProps) {
   const segments = slug.split('/').filter(Boolean);
   const lastSegment = segments[segments.length - 1] || '';
   const fallbackName = lastSegment.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   const locName = fallbackName || (segments.length === 0 ? 'Search' : '');
 
-  const hero = pageData?.hero || {};
-
-  const heroTitle = hero.title || (locName ? `${locName} Cottages` : 'Search Cottages');
-  const heroSubtitle = hero.subtitle || '';
-  const heroImage = hero.image || 'https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=1500';
-  const heroImageAlt = hero.imageAlt || heroTitle;
+  const heroTitle = hero?.title || (locName ? `${locName} Cottages` : 'Search Cottages');
+  const heroSubtitle = hero?.subtitle || '';
 
   const resultCards = useMemo(() => {
     return (cottages || []).map(c => ({
@@ -60,15 +57,6 @@ export default function SearchTemplate({ locale, slug, pageData, searchCTA, sear
         { name: 'Home', url: `/${locale}` },
         { name: locName || 'Search', url: `/${locale}/search/${slug}` },
       ]} />
-      {locName && (
-        <PlaceSchema
-          name={`${locName}, Canada`}
-          description={heroSubtitle || heroTitle}
-          image={heroImage}
-          url={`https://chaletexpress.com/${locale}/search/${slug}`}
-          address={locName}
-        />
-      )}
 
       <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-white text-center">
         <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{heroTitle}</h1>
@@ -98,9 +86,11 @@ export default function SearchTemplate({ locale, slug, pageData, searchCTA, sear
 
       <section className="py-10 sm:py-14 px-4 sm:px-6 lg:px-8 bg-white">
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-1 text-center" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
-          {resultCards.length > 0 ? `${resultCards.length} result${resultCards.length > 1 ? 's' : ''} found` : 'No results found'}
+          {resultCards.length > 0
+            ? (searchResults?.title || `${resultCards.length} result${resultCards.length > 1 ? 's' : ''} found`)
+            : 'No results found'}
         </h2>
-        <p className="text-sm text-slate-500 mb-8 text-center">{locName || 'All locations'}</p>
+        <p className="text-sm text-slate-500 mb-8 text-center">{searchResults?.subtitle || locName || 'All locations'}</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
           {resultCards.map((chalet) => (
             <PropertyCard key={chalet.id} chalet={chalet} />
