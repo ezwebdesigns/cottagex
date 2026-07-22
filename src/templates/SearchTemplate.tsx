@@ -1,16 +1,17 @@
 'use client';
 
 import { useMemo } from 'react';
-import { Home as HomeIcon, Sailboat, Bath, Users, Gem, Dog, Heart, Trees, TreePine, Umbrella, Building2, MountainSnow, Waves, Footprints, Mountain } from 'lucide-react';
+import { Home as HomeIcon, Sailboat, Bath, Users, Gem, PawPrint, Heart, Trees, TreePine, Umbrella, Building2, MountainSnow, Waves, Footprints, Mountain, Kayak } from 'lucide-react';
 import PropertyCard from '@/components/cottagex/PropertyCard';
 import SearchInspirations from '@/components/cottagex/SearchInspirations';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
 
 const categoryIconMap: Record<string, React.ElementType> = {
-  lakefront: Sailboat, 'hot-tub': Bath, family: Users, luxury: Gem,
-  'pet-friendly': Dog, mountain: Mountain, romantic: Heart, 'log-cabin': HomeIcon,
+  lakefront: Kayak, 'hot-tub': Bath, family: Users, luxury: Gem,
+  'pet-friendly': PawPrint, mountain: Mountain, romantic: Heart, 'log-cabin': HomeIcon,
   countryside: Trees, secluded: TreePine, beach: Umbrella, resort: Building2,
   skiing: MountainSnow, pools: Waves, hiking: Footprints,
+  coastal: Sailboat, waterfront: Kayak,
 };
 
 type SearchTemplateProps = {
