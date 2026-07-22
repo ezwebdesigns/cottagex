@@ -109,7 +109,7 @@ export default function AdminSearchPage() {
                      const arr = [...categories.items]; arr[i] = { ...arr[i], icon: e.target.value };
                      setCategories({ ...categories, items: arr });
                    }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20">
-                     {['Sailboat', 'Bath', 'Users', 'Gem', 'PawPrint', 'Kayak', 'Mountain', 'Heart', 'Home', 'Trees', 'TreePine', 'Umbrella', 'Building2', 'MountainSnow', 'Waves', 'Footprints', 'Compass', 'MapPin', 'Sunrise'].map(icon => (
+                     {['Sailboat', 'Bath', 'Users', 'Gem', 'PawPrint', 'Kayak', 'Mountain', 'Heart', 'Home', 'Trees', 'TreePine', 'Umbrella', 'Building2', 'Snowflake', 'Waves', 'Footprints', 'Compass', 'MapPin', 'Sunrise'].map(icon => (
                        <option key={icon} value={icon}>{icon}</option>
                      ))}
                    </select>
