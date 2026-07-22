@@ -25,11 +25,11 @@ export default function AdminSearchPage() {
   }, []);
 
   useEffect(() => {
-    fetchSection('search_hero').then(setHero);
-    fetchSection('search_categories').then(setCategories);
-    fetchSection('search_results').then(setResults);
-    fetchSection('search_cta').then(setCta);
-    fetchSection('search_inspirations').then(setInspirations);
+    fetchSection('search_hero').then(d => setHero(d ?? { title: '', subtitle: '' }));
+    fetchSection('search_categories').then(d => setCategories(d ?? { items: [] }));
+    fetchSection('search_results').then(d => setResults(d ?? { title: 'Results', subtitle: 'All locations', sort: 'newest' }));
+    fetchSection('search_cta').then(d => setCta(d ?? { title: '', subtitle: '', description: '' }));
+    fetchSection('search_inspirations').then(d => setInspirations(d ?? { title: '', items: [] }));
   }, [fetchSection]);
 
   const saveSection = async (section: string, data: any) => {
