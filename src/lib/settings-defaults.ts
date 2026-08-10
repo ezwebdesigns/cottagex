@@ -133,9 +133,6 @@ export type SearchInspirations = {
 };
 
 export type SearchFaq = {
-  title: string;
-  subtitle: string;
-  description: string;
   items: { q: string; a: string }[];
 };
 
@@ -324,9 +321,6 @@ export const defaultSettings: Record<string, any> = {
     items: [],
   },
   search_faq: {
-    title: "",
-    subtitle: "",
-    description: "",
     items: [],
   },
   side_menu: {

@@ -31,7 +31,7 @@ export default function AdminSearchPage() {
     fetchSection('search_categories').then(d => setCategories(d ?? { items: [] }));
     fetchSection('search_results').then(d => setResults(d ?? { title: 'Results', subtitle: 'All locations', sort: 'newest' }));
     fetchSection('search_cta').then(d => setCta(d ?? { title: '', description: '', buttonText: '', buttonLink: '', image: '', imageAlt: '' }));
-    fetchSection('search_faq').then(d => setFaq(d ?? { title: '', subtitle: '', description: '', items: [] }));
+    fetchSection('search_faq').then(d => setFaq(d ?? { items: [] }));
     fetchSection('search_inspirations').then(d => setInspirations(d ?? { title: '', items: [] }));
   }, [fetchSection]);
 
@@ -167,10 +167,7 @@ export default function AdminSearchPage() {
         {/* 5 — FAQ */}
         {faq && (
           <CollapsibleSection title="5 — FAQ" id="faq" isOpen={openSection === 'faq'} onToggle={() => setOpenSection(openSection === 'faq' ? '' : 'faq')}>
-            <p className="text-xs text-slate-400">Shown between the CTA and Inspirations. FAQ items render in 2 columns of 3 with the same accordion style as the destination Learn More section.</p>
-            <Field label="Title" value={faq.title} onChange={(v) => setFaq({ ...faq, title: v })} />
-            <Field label="Subtitle" value={faq.subtitle} onChange={(v) => setFaq({ ...faq, subtitle: v })} />
-            <Field label="Description" value={faq.description} onChange={(v) => setFaq({ ...faq, description: v })} textarea />
+            <p className="text-xs text-slate-400">Accordion between CTA and Inspirations. Use {'{location}'} and {'{province}'} placeholders — they are filled from the URL at render time.</p>
             <div>
               <h4 className="text-sm font-semibold text-slate-600 mb-3">FAQ Items</h4>
               <div className="space-y-3">

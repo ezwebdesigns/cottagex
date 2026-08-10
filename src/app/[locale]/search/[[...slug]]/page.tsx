@@ -22,6 +22,17 @@ function parseSlug(segments: string[] | undefined): { locationSlug: string | nul
   return { locationSlug, querySlug };
 }
 
+const PROVINCE_NAMES: Record<string, string> = {
+  ontario: 'Ontario',
+  quebec: 'Quebec',
+  'british-columbia': 'British Columbia',
+  'new-brunswick': 'New Brunswick',
+  manitoba: 'Manitoba',
+  pei: 'Prince Edward Island',
+};
+
+const CATEGORY_IDS = new Set(['lakefront', 'hot-tub', 'family', 'luxury', 'pet-friendly', 'mountain', 'romantic', 'log-cabin', 'countryside', 'secluded', 'beach', 'resort', 'skiing', 'pools', 'hiking', 'coastal', 'waterfront']);
+
 function formatTitle(slug: string | null): string {
   if (!slug) return 'Search';
   if (slug === 'pet-friendly') return 'Pet Friendly';
@@ -149,5 +160,9 @@ export default async function SearchPage({ params }: Props) {
 
   const slugStr = slug ? slug.join('/') : '';
 
-  return <SearchTemplate locale={locale} slug={slugStr} hero={hero} searchResults={searchResults} searchCTA={searchCTA} searchInspirations={searchInspirations} searchFaq={searchFaq} cottages={cottages} categories={categories} />;
+  const faqRawLocation = locationSlug || (querySlug && !CATEGORY_IDS.has(querySlug) && querySlug !== 'canada' ? querySlug : null);
+  const faqLocation = faqRawLocation ? formatTitle(faqRawLocation) : '';
+  const faqProvince = faqRawLocation ? PROVINCE_NAMES[faqRawLocation] || PROVINCE_NAMES[cottages[0]?.province] || '' : '';
+
+  return <SearchTemplate locale={locale} slug={slugStr} hero={hero} searchResults={searchResults} searchCTA={searchCTA} searchInspirations={searchInspirations} searchFaq={searchFaq} faqLocation={faqLocation} faqProvince={faqProvince} cottages={cottages} categories={categories} />;
 }

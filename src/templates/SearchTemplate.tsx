@@ -23,12 +23,14 @@ type SearchTemplateProps = {
   searchResults?: any;
   searchCTA?: any;
   searchFaq?: any;
+  faqLocation?: string;
+  faqProvince?: string;
   searchInspirations?: any;
   cottages?: any[];
   categories?: any[];
 };
 
-export default function SearchTemplate({ locale, slug, hero, searchResults, searchCTA, searchFaq, searchInspirations, cottages, categories }: SearchTemplateProps) {
+export default function SearchTemplate({ locale, slug, hero, searchResults, searchCTA, searchFaq, faqLocation, faqProvince, searchInspirations, cottages, categories }: SearchTemplateProps) {
   const segments = slug.split('/').filter(Boolean);
   const lastSegment = segments[segments.length - 1] || '';
   const fallbackName = lastSegment.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
@@ -113,7 +115,7 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
         fullWidth
       />
 
-      <SearchFaq data={searchFaq} />
+      <SearchFaq data={searchFaq} location={faqLocation} province={faqProvince} />
 
       <SearchInspirations data={searchInspirations} locale={locale} />
 
