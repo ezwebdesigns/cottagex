@@ -134,6 +134,7 @@ export type SearchInspirations = {
 
 export type SearchFaq = {
   items: { q: string; a: string }[];
+  note: string;
 };
 
 export type HomepageCTA = {
@@ -322,6 +323,7 @@ export const defaultSettings: Record<string, any> = {
   },
   search_faq: {
     items: [],
+    note: "",
   },
   side_menu: {
     sections: [

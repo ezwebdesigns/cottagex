@@ -31,7 +31,7 @@ export default function AdminSearchPage() {
     fetchSection('search_categories').then(d => setCategories(d ?? { items: [] }));
     fetchSection('search_results').then(d => setResults(d ?? { title: 'Results', subtitle: 'All locations', sort: 'newest' }));
     fetchSection('search_cta').then(d => setCta(d ?? { title: '', description: '', buttonText: '', buttonLink: '', image: '', imageAlt: '' }));
-    fetchSection('search_faq').then(d => setFaq(d ?? { items: [] }));
+    fetchSection('search_faq').then(d => setFaq(d ?? { items: [], note: '' }));
     fetchSection('search_inspirations').then(d => setInspirations(d ?? { title: '', items: [] }));
   }, [fetchSection]);
 
@@ -167,7 +167,9 @@ export default function AdminSearchPage() {
         {/* 5 — FAQ */}
         {faq && (
           <CollapsibleSection title="5 — FAQ" id="faq" isOpen={openSection === 'faq'} onToggle={() => setOpenSection(openSection === 'faq' ? '' : 'faq')}>
-            <p className="text-xs text-slate-400">Accordion between CTA and Inspirations. Use {'{location}'} and {'{province}'} placeholders — they are filled from the URL at render time.</p>
+            <p className="text-xs text-slate-400">Accordion between CTA and Inspirations. Use {'{location}'} and {'{province}'} placeholders — they are filled from the URL at render time. When no location is set, {'{location}'} falls back to Canada.</p>
+            <Field label="Right Panel Text (third column)" value={faq.note} onChange={(v) => setFaq({ ...faq, note: v })} textarea />
+            <p className="text-xs text-slate-400">Shown in the tertiary-colour #77e1fb panel on the right, aligned justified.</p>
             <div>
               <h4 className="text-sm font-semibold text-slate-600 mb-3">FAQ Items</h4>
               <div className="space-y-3">

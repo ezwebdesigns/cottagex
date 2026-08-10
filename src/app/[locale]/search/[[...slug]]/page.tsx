@@ -161,7 +161,7 @@ export default async function SearchPage({ params }: Props) {
   const slugStr = slug ? slug.join('/') : '';
 
   const faqRawLocation = locationSlug || (querySlug && !CATEGORY_IDS.has(querySlug) && querySlug !== 'canada' ? querySlug : null);
-  const faqLocation = faqRawLocation ? formatTitle(faqRawLocation) : '';
+  const faqLocation = faqRawLocation ? formatTitle(faqRawLocation) : 'Canada';
   const faqProvince = faqRawLocation ? PROVINCE_NAMES[faqRawLocation] || PROVINCE_NAMES[cottages[0]?.province] || '' : '';
 
   return <SearchTemplate locale={locale} slug={slugStr} hero={hero} searchResults={searchResults} searchCTA={searchCTA} searchInspirations={searchInspirations} searchFaq={searchFaq} faqLocation={faqLocation} faqProvince={faqProvince} cottages={cottages} categories={categories} />;

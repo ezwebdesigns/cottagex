@@ -11,16 +11,29 @@ type SearchFaqProps = {
 
 export default function SearchFaq({ data, location = '', province = '' }: SearchFaqProps) {
   const items: { q: string; a: string }[] = data?.items || [];
+  const note = data?.note || '';
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   if (items.length === 0) return null;
 
-  const fill = (text: string) => text.replaceAll('{location}', location).replaceAll('{province}', province || location);
+  const fill = (text: string) => {
+    let out = text.replace(/\{location\}/g, location);
+    if (province) {
+      out = out.replace(/\{province\}/g, province);
+    } else {
+      out = out
+        .replace(/,?\s*(?:in\s+)?\{province\}\s*,?/g, ' ')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+    }
+    return out;
+  };
 
   const half = Math.ceil(items.length / 2);
   const left = items.slice(0, half);
   const right = items.slice(half);
+  const hasNote = Boolean(note.trim());
 
   const renderAccordion = (list: { q: string; a: string }[], offset: number) => (
     <div className="space-y-0">
@@ -47,11 +60,14 @@ export default function SearchFaq({ data, location = '', province = '' }: Search
 
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-white">
-      <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10">
-          {renderAccordion(left, 0)}
-          {renderAccordion(right, half)}
-        </div>
+      <div className={hasNote ? 'grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8' : 'grid grid-cols-1 md:grid-cols-2 gap-x-10'}>
+        {renderAccordion(left, 0)}
+        {renderAccordion(right, half)}
+        {hasNote && (
+          <div className="bg-[#77e1fb] rounded-[2rem] p-6 sm:p-8">
+            <p className="text-sm text-[#191e3b] leading-relaxed text-justify">{fill(note)}</p>
+          </div>
+        )}
       </div>
     </section>
   );
