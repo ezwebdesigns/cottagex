@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import { Save, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
+import ImageUploader from '@/components/admin/ImageUploader';
 
 export default function AdminSearchPage() {
   const { locale } = useParams<{ locale: string }>();
@@ -28,7 +29,7 @@ export default function AdminSearchPage() {
     fetchSection('search_hero').then(d => setHero(d ?? { title: '', subtitle: '' }));
     fetchSection('search_categories').then(d => setCategories(d ?? { items: [] }));
     fetchSection('search_results').then(d => setResults(d ?? { title: 'Results', subtitle: 'All locations', sort: 'newest' }));
-    fetchSection('search_cta').then(d => setCta(d ?? { title: '', subtitle: '', description: '' }));
+    fetchSection('search_cta').then(d => setCta(d ?? { title: '', description: '', buttonText: '', buttonLink: '', image: '', imageAlt: '' }));
     fetchSection('search_inspirations').then(d => setInspirations(d ?? { title: '', items: [] }));
   }, [fetchSection]);
 
@@ -148,9 +149,15 @@ export default function AdminSearchPage() {
         {/* 4 — CTA */}
         {cta && (
           <CollapsibleSection title="4 — CTA Section" id="cta" isOpen={openSection === 'cta'} onToggle={() => setOpenSection(openSection === 'cta' ? '' : 'cta')}>
+            <p className="text-xs text-slate-400">Content is independent from the destination pages. Title supports line breaks with \n.</p>
             <Field label="Title" value={cta.title} onChange={(v) => setCta({ ...cta, title: v })} />
-            <Field label="Subtitle" value={cta.subtitle} onChange={(v) => setCta({ ...cta, subtitle: v })} />
             <Field label="Description" value={cta.description} onChange={(v) => setCta({ ...cta, description: v })} textarea />
+            <div className="grid grid-cols-2 gap-4">
+              <Field label="Button Text" value={cta.buttonText} onChange={(v) => setCta({ ...cta, buttonText: v })} />
+              <Field label="Button Link" value={cta.buttonLink} onChange={(v) => setCta({ ...cta, buttonLink: v })} />
+            </div>
+            <ImageUploader label="Image" value={cta.image} onChange={(v) => setCta({ ...cta, image: v })} />
+            <Field label="Image Alt Text (SEO)" value={cta.imageAlt} onChange={(v) => setCta({ ...cta, imageAlt: v })} maxLength={255} />
             <SaveButton onClick={() => saveSection('search_cta', cta)} saving={saving} />
           </CollapsibleSection>
         )}
@@ -203,15 +210,15 @@ export default function AdminSearchPage() {
   );
 }
 
-function Field({ label, value, onChange, textarea }: { label: string; value: string; onChange: (v: string) => void; textarea?: boolean }) {
+function Field({ label, value, onChange, textarea, maxLength }: { label: string; value: string; onChange: (v: string) => void; textarea?: boolean; maxLength?: number }) {
   return (
     <div>
       <label className="block text-sm font-medium text-slate-600 mb-1">{label}</label>
       {textarea ? (
-        <textarea value={value} onChange={(e) => onChange(e.target.value)} rows={3}
+        <textarea value={value} onChange={(e) => onChange(e.target.value)} rows={3} maxLength={maxLength}
           className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20 focus:border-[#0f51ec]" />
       ) : (
-        <input type="text" value={value} onChange={(e) => onChange(e.target.value)}
+        <input type="text" value={value} onChange={(e) => onChange(e.target.value)} maxLength={maxLength}
           className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20 focus:border-[#0f51ec]" />
       )}
     </div>

@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import { Home as HomeIcon, Sailboat, Bath, Users, Gem, PawPrint, Heart, Trees, TreePine, Umbrella, Building2, Snowflake, Waves, Footprints, Mountain, Kayak } from 'lucide-react';
 import PropertyCard from '@/components/cottagex/PropertyCard';
+import CTASection from '@/components/cottagex/CTASection';
 import SearchInspirations from '@/components/cottagex/SearchInspirations';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
 
@@ -99,19 +100,16 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
         </div>
       </section>
 
-      {searchCTA?.title && (
-        <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-          <div className="bg-[#0f51ec] rounded-[2rem] p-8 sm:p-12 text-center text-white">
-            <h2 className="text-2xl sm:text-4xl font-bold mb-3" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{searchCTA.title}</h2>
-            {searchCTA.subtitle && (
-              <p className="text-white/80 text-lg mb-4">{searchCTA.subtitle}</p>
-            )}
-            {searchCTA.description && (
-              <p className="text-white/60 text-sm sm:text-base leading-relaxed text-justify">{searchCTA.description}</p>
-            )}
-          </div>
-        </section>
-      )}
+      <CTASection
+        locale={locale}
+        title={searchCTA?.title}
+        description={searchCTA?.description}
+        buttonText={searchCTA?.buttonText}
+        buttonLink={searchCTA?.buttonLink}
+        image={searchCTA?.image}
+        imageAlt={searchCTA?.imageAlt}
+        fullWidth
+      />
 
       <SearchInspirations data={searchInspirations} locale={locale} />
 

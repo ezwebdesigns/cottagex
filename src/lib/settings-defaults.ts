@@ -113,8 +113,11 @@ export type SearchResults = {
 
 export type SearchCTA = {
   title: string;
-  subtitle: string;
   description: string;
+  buttonText: string;
+  buttonLink: string;
+  image: string;
+  imageAlt: string;
 };
 
 export type SearchInspirationItem = {
@@ -303,8 +306,11 @@ export const defaultSettings: Record<string, any> = {
   },
   search_cta: {
     title: "",
-    subtitle: "",
     description: "",
+    buttonText: "",
+    buttonLink: "",
+    image: "",
+    imageAlt: "",
   },
   search_inspirations: {
     title: "",
