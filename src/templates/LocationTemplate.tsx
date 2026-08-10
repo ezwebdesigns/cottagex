@@ -99,13 +99,13 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
             {highlights.length > 0 && (
               <div className="w-full lg:w-[45%] grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {highlights.map((item: any, i: number) => (
-                  <div key={i} className="bg-[#191e3b] p-4 sm:p-5 rounded-2xl flex gap-3 items-start">
+                  <div key={i} className="bg-[#191e3b] p-4 sm:p-5 rounded-2xl flex flex-col items-center justify-center gap-3 text-center">
                     <div className="p-2.5 bg-white text-[#0f51ec] rounded-xl shrink-0">
                       {highlightIconMap[item.icon] || <Compass size={18} />}
                     </div>
                     <div>
                       <h3 className="font-bold text-sm text-white mb-0.5">{item.title}</h3>
-                      <p className="text-white/60 text-xs leading-relaxed">{item.description}</p>
+                      <p className="text-white/60 text-xs leading-relaxed text-justify">{item.description}</p>
                     </div>
                   </div>
                 ))}
