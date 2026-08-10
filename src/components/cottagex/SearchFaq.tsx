@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import ResolvedImage from '@/components/cottagex/ResolvedImage';
 
 type SearchFaqProps = {
   data?: any;
@@ -12,6 +13,9 @@ type SearchFaqProps = {
 export default function SearchFaq({ data, location = '', province = '' }: SearchFaqProps) {
   const items: { q: string; a: string }[] = data?.items || [];
   const note = data?.note || '';
+  const noteTitle = data?.noteTitle || '';
+  const logo1 = data?.logo1 || '';
+  const logo2 = data?.logo2 || '';
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -33,7 +37,7 @@ export default function SearchFaq({ data, location = '', province = '' }: Search
   const half = Math.ceil(items.length / 2);
   const left = items.slice(0, half);
   const right = items.slice(half);
-  const hasNote = Boolean(note.trim());
+  const hasPanel = Boolean(note.trim() || noteTitle.trim() || logo1 || logo2);
 
   const renderAccordion = (list: { q: string; a: string }[], offset: number) => (
     <div className="space-y-0">
@@ -60,12 +64,23 @@ export default function SearchFaq({ data, location = '', province = '' }: Search
 
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-white">
-      <div className={hasNote ? 'grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8' : 'grid grid-cols-1 md:grid-cols-2 gap-x-10'}>
+      <div className={hasPanel ? 'grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8' : 'grid grid-cols-1 md:grid-cols-2 gap-x-10'}>
         {renderAccordion(left, 0)}
         {renderAccordion(right, half)}
-        {hasNote && (
-          <div className="bg-[#77e1fb] rounded-[2rem] p-6 sm:p-8">
-            <p className="text-sm text-[#191e3b] leading-relaxed text-justify">{fill(note)}</p>
+        {hasPanel && (
+          <div className="bg-[#77e1fb] rounded-[2rem] p-6 sm:p-8 flex flex-col items-center justify-center text-center">
+            {noteTitle && (
+              <h2 className="text-xl sm:text-2xl font-bold text-[#191e3b] mb-4" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{fill(noteTitle)}</h2>
+            )}
+            {note && (
+              <p className="text-sm text-[#191e3b] leading-relaxed text-justify mb-6">{fill(note)}</p>
+            )}
+            {(logo1 || logo2) && (
+              <div className="flex items-center justify-center gap-4">
+                {logo1 && <ResolvedImage src={logo1} alt="VRBO" className="h-10 w-auto object-contain" />}
+                {logo2 && <ResolvedImage src={logo2} alt="Expedia" className="h-10 w-auto object-contain" />}
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -168,8 +168,16 @@ export default function AdminSearchPage() {
         {faq && (
           <CollapsibleSection title="5 — FAQ" id="faq" isOpen={openSection === 'faq'} onToggle={() => setOpenSection(openSection === 'faq' ? '' : 'faq')}>
             <p className="text-xs text-slate-400">Accordion between CTA and Inspirations. Use {'{location}'} and {'{province}'} placeholders — they are filled from the URL at render time. When no location is set, {'{location}'} falls back to Canada.</p>
-            <Field label="Right Panel Text (third column)" value={faq.note} onChange={(v) => setFaq({ ...faq, note: v })} textarea />
-            <p className="text-xs text-slate-400">Shown in the tertiary-colour #77e1fb panel on the right, aligned justified.</p>
+            <div>
+              <h4 className="text-sm font-semibold text-slate-600 mb-3">Right Panel (third column)</h4>
+              <Field label="Panel Title (H2)" value={faq.noteTitle} onChange={(v) => setFaq({ ...faq, noteTitle: v })} />
+              <Field label="Panel Text" value={faq.note} onChange={(v) => setFaq({ ...faq, note: v })} textarea />
+              <div className="grid grid-cols-2 gap-4">
+                <ImageUploader label="Logo 1 (VRBO)" value={faq.logo1} onChange={(v) => setFaq({ ...faq, logo1: v })} />
+                <ImageUploader label="Logo 2 (Expedia)" value={faq.logo2} onChange={(v) => setFaq({ ...faq, logo2: v })} />
+              </div>
+              <p className="text-xs text-slate-400">Tertiary-colour #77e1fb panel on the right, centred with logos below the text.</p>
+            </div>
             <div>
               <h4 className="text-sm font-semibold text-slate-600 mb-3">FAQ Items</h4>
               <div className="space-y-3">
