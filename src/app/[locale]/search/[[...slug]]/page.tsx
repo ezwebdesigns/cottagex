@@ -138,7 +138,16 @@ export default async function SearchPage({ params }: Props) {
     console.error('Failed to fetch search_inspirations settings', e);
   }
 
+  let searchFaq: any = null;
+
+  try {
+    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search_faq'));
+    searchFaq = row?.data ?? null;
+  } catch (e) {
+    console.error('Failed to fetch search_faq settings', e);
+  }
+
   const slugStr = slug ? slug.join('/') : '';
 
-  return <SearchTemplate locale={locale} slug={slugStr} hero={hero} searchResults={searchResults} searchCTA={searchCTA} searchInspirations={searchInspirations} cottages={cottages} categories={categories} />;
+  return <SearchTemplate locale={locale} slug={slugStr} hero={hero} searchResults={searchResults} searchCTA={searchCTA} searchInspirations={searchInspirations} searchFaq={searchFaq} cottages={cottages} categories={categories} />;
 }

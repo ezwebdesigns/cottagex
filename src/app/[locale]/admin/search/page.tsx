@@ -16,6 +16,7 @@ export default function AdminSearchPage() {
   const [categories, setCategories] = useState<any>(null);
   const [results, setResults] = useState<any>(null);
   const [cta, setCta] = useState<any>(null);
+  const [faq, setFaq] = useState<any>(null);
   const [inspirations, setInspirations] = useState<any>(null);
 
   const fetchSection = useCallback(async (section: string) => {
@@ -30,6 +31,7 @@ export default function AdminSearchPage() {
     fetchSection('search_categories').then(d => setCategories(d ?? { items: [] }));
     fetchSection('search_results').then(d => setResults(d ?? { title: 'Results', subtitle: 'All locations', sort: 'newest' }));
     fetchSection('search_cta').then(d => setCta(d ?? { title: '', description: '', buttonText: '', buttonLink: '', image: '', imageAlt: '' }));
+    fetchSection('search_faq').then(d => setFaq(d ?? { title: '', subtitle: '', description: '', items: [] }));
     fetchSection('search_inspirations').then(d => setInspirations(d ?? { title: '', items: [] }));
   }, [fetchSection]);
 
@@ -162,9 +164,47 @@ export default function AdminSearchPage() {
           </CollapsibleSection>
         )}
 
-        {/* 5 — Inspirations */}
+        {/* 5 — FAQ */}
+        {faq && (
+          <CollapsibleSection title="5 — FAQ" id="faq" isOpen={openSection === 'faq'} onToggle={() => setOpenSection(openSection === 'faq' ? '' : 'faq')}>
+            <p className="text-xs text-slate-400">Shown between the CTA and Inspirations. FAQ items render in 2 columns of 3 with the same accordion style as the destination Learn More section.</p>
+            <Field label="Title" value={faq.title} onChange={(v) => setFaq({ ...faq, title: v })} />
+            <Field label="Subtitle" value={faq.subtitle} onChange={(v) => setFaq({ ...faq, subtitle: v })} />
+            <Field label="Description" value={faq.description} onChange={(v) => setFaq({ ...faq, description: v })} textarea />
+            <div>
+              <h4 className="text-sm font-semibold text-slate-600 mb-3">FAQ Items</h4>
+              <div className="space-y-3">
+                {faq.items.map((item: any, i: number) => (
+                  <div key={i} className="p-3 border border-slate-100 rounded-2xl space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs font-bold text-slate-400">Question {i + 1}</span>
+                      <button onClick={() => {
+                        const newItems = faq.items.filter((_: any, idx: number) => idx !== i);
+                        setFaq({ ...faq, items: newItems });
+                      }} className="text-xs text-red-500 hover:text-red-700">Remove</button>
+                    </div>
+                    <input placeholder="Question" value={item.q} onChange={(e) => {
+                      const arr = [...faq.items]; arr[i] = { ...arr[i], q: e.target.value };
+                      setFaq({ ...faq, items: arr });
+                    }} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
+                    <textarea placeholder="Answer" value={item.a} onChange={(e) => {
+                      const arr = [...faq.items]; arr[i] = { ...arr[i], a: e.target.value };
+                      setFaq({ ...faq, items: arr });
+                    }} rows={3} className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
+                  </div>
+                ))}
+                <button onClick={() => setFaq({ ...faq, items: [...(faq.items || []), { q: '', a: '' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">
+                  + Add FAQ Item
+                </button>
+              </div>
+            </div>
+            <SaveButton onClick={() => saveSection('search_faq', faq)} saving={saving} />
+          </CollapsibleSection>
+        )}
+
+        {/* 6 — Inspirations */}
         {inspirations && (
-          <CollapsibleSection title="5 — Inspirations" id="inspirations" isOpen={openSection === 'inspirations'} onToggle={() => setOpenSection(openSection === 'inspirations' ? '' : 'inspirations')}>
+          <CollapsibleSection title="6 — Inspirations" id="inspirations" isOpen={openSection === 'inspirations'} onToggle={() => setOpenSection(openSection === 'inspirations' ? '' : 'inspirations')}>
             <Field label="Title" value={inspirations.title} onChange={(v) => setInspirations({ ...inspirations, title: v })} />
             <div>
               <h4 className="text-sm font-semibold text-slate-600 mb-3">Inspiration Items</h4>

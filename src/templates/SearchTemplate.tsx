@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { Home as HomeIcon, Sailboat, Bath, Users, Gem, PawPrint, Heart, Trees, TreePine, Umbrella, Building2, Snowflake, Waves, Footprints, Mountain, Kayak } from 'lucide-react';
 import PropertyCard from '@/components/cottagex/PropertyCard';
 import CTASection from '@/components/cottagex/CTASection';
+import SearchFaq from '@/components/cottagex/SearchFaq';
 import SearchInspirations from '@/components/cottagex/SearchInspirations';
 import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
 
@@ -21,12 +22,13 @@ type SearchTemplateProps = {
   hero?: any;
   searchResults?: any;
   searchCTA?: any;
+  searchFaq?: any;
   searchInspirations?: any;
   cottages?: any[];
   categories?: any[];
 };
 
-export default function SearchTemplate({ locale, slug, hero, searchResults, searchCTA, searchInspirations, cottages, categories }: SearchTemplateProps) {
+export default function SearchTemplate({ locale, slug, hero, searchResults, searchCTA, searchFaq, searchInspirations, cottages, categories }: SearchTemplateProps) {
   const segments = slug.split('/').filter(Boolean);
   const lastSegment = segments[segments.length - 1] || '';
   const fallbackName = lastSegment.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
@@ -110,6 +112,8 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
         imageAlt={searchCTA?.imageAlt}
         fullWidth
       />
+
+      <SearchFaq data={searchFaq} />
 
       <SearchInspirations data={searchInspirations} locale={locale} />
 

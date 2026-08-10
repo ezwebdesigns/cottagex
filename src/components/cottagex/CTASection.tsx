@@ -1,3 +1,5 @@
+import ResolvedImage from '@/components/cottagex/ResolvedImage';
+
 type CTASectionProps = {
   locale: string;
   title?: string;
@@ -37,7 +39,7 @@ export default function CTASection({ locale, title, description, buttonText, but
         </div>
         {image && (
           <div className="relative w-full md:w-[30%] h-64 md:h-auto md:absolute md:right-0 md:inset-y-0 opacity-20 md:opacity-100">
-            <img src={image} alt={imageAlt || title || ''} className="w-full h-full object-cover" loading="lazy" />
+            <ResolvedImage src={image} alt={imageAlt || title || ''} className="w-full h-full object-cover" />
           </div>
         )}
       </div>

@@ -132,6 +132,13 @@ export type SearchInspirations = {
   items: SearchInspirationItem[];
 };
 
+export type SearchFaq = {
+  title: string;
+  subtitle: string;
+  description: string;
+  items: { q: string; a: string }[];
+};
+
 export type HomepageCTA = {
   title: string;
   description: string;
@@ -314,6 +321,12 @@ export const defaultSettings: Record<string, any> = {
   },
   search_inspirations: {
     title: "",
+    items: [],
+  },
+  search_faq: {
+    title: "",
+    subtitle: "",
+    description: "",
     items: [],
   },
   side_menu: {
