@@ -91,7 +91,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
 
       {introDesc && (
         <section className="py-10 sm:py-14 px-4 sm:px-6 lg:px-8 bg-[#f8fafc]">
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
+          <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-16">
             <div className="w-full lg:w-[55%]">
               <h2 className="text-sm font-semibold uppercase tracking-wider text-[#0f51ec] mb-3">{t.destination.overview}</h2>
               <p className="text-base sm:text-lg text-[#191e3b] leading-relaxed" style={{ lineHeight: 1.8 }}>{introDesc}</p>
@@ -99,13 +99,13 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
             {highlights.length > 0 && (
               <div className="w-full lg:w-[45%] grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {highlights.map((item: any, i: number) => (
-                  <div key={i} className="bg-[#191e3b] p-4 sm:p-5 rounded-2xl flex flex-col items-center justify-center gap-3 text-center">
+                  <div key={i} className="bg-[#191e3b] p-4 sm:p-5 rounded-2xl flex flex-col items-start justify-center gap-3 text-left">
                     <div className="p-2.5 bg-white text-[#0f51ec] rounded-xl shrink-0">
                       {highlightIconMap[item.icon] || <Compass size={18} />}
                     </div>
                     <div>
                       <h3 className="font-bold text-sm text-white mb-0.5">{item.title}</h3>
-                      <p className="text-white/60 text-xs leading-relaxed text-justify">{item.description}</p>
+                      <p className="text-white/60 text-xs leading-relaxed text-left">{item.description}</p>
                     </div>
                   </div>
                 ))}
@@ -162,7 +162,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
             </div>
             {ld.learnMore?.image && (
               <div className="w-full md:w-1/2">
-                <img src={ld.learnMore.image} alt={ld.learnMore.imageAlt || ld.learnMore.title} className="w-full rounded-[2rem] object-cover aspect-[4/3]" loading="lazy" />
+                <img src={ld.learnMore.image} alt={ld.learnMore.imageAlt || ld.learnMore.title} className="w-full rounded-[2rem] object-cover max-h-[480px]" loading="lazy" />
               </div>
             )}
           </div>
