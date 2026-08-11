@@ -536,6 +536,7 @@ export default function AdminSettingsPage() {
                         const arr = [...sideMenu.sections]; const items = [...arr[si].items]; items[ii] = { ...items[ii], icon: e.target.value };
                         arr[si] = { ...arr[si], items }; setSideMenu({ ...sideMenu, sections: arr });
                       }} className="px-3 py-1.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20 text-sm">
+                        <option value="">None</option>
                         {['Compass', 'BookOpen', 'Info', 'MapPin', 'Mountain', 'Home', 'TreePine', 'Sailboat', 'Sunrise', 'Globe', 'Heart', 'Star', 'Search', 'Image', 'Settings', 'User'].map(icon => (
                           <option key={icon} value={icon}>{icon}</option>
                         ))}

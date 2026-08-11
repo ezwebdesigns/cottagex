@@ -75,11 +75,11 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: { mobileOpen: 
                   href={href}
                   onClick={mobileOpen ? onMobileClose : undefined}
                   className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-xl font-medium text-sm transition-colors min-h-[44px] ${
-                    active ? 'bg-[#0f51ec]/10 text-[#0f51ec]' : 'text-[#191e3b] hover:bg-slate-50'
+                    active ? 'text-[#0f51ec] font-semibold' : 'text-[#191e3b] hover:bg-[#0f51ec]/10'
                   }`}
                   title={item.label}
                 >
-                  <Icon className="w-5 h-5 flex-shrink-0" />
+                  {item.icon ? <Icon className="w-5 h-5 flex-shrink-0" /> : <span className="w-5 h-5 flex-shrink-0 text-xs font-bold text-[#191e3b]">{item.label?.charAt(0)?.toUpperCase() || '?'}</span>}
                   <span className={`whitespace-nowrap transition-opacity duration-200 ${mobileOpen || expanded ? 'opacity-100' : 'opacity-0'}`}>{item.label}</span>
                 </Link>
               );
