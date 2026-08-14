@@ -7,12 +7,23 @@ import SearchTemplate from '@/templates/SearchTemplate';
 
 type Props = { params: Promise<{ locale: string; slug?: string[] }> };
 
+const PROVINCE_SLUGS = new Set([
+  'ontario', 'quebec', 'alberta', 'british-columbia', 'nova-scotia',
+  'new-brunswick', 'manitoba', 'saskatchewan', 'pei', 'newfoundland',
+]);
+
+const CATEGORY_IDS = new Set(['lakefront', 'hot-tub', 'family', 'luxury', 'pet-friendly', 'mountain', 'romantic', 'log-cabin', 'countryside', 'secluded', 'beach', 'resort', 'skiing', 'pools', 'hiking', 'coastal', 'waterfront']);
+
 function parseSlug(segments: string[] | undefined): { locationSlug: string | null; querySlug: string | null } {
   if (!segments || segments.length === 0) {
     return { locationSlug: null, querySlug: null };
   }
   if (segments.length === 1) {
-    return { locationSlug: null, querySlug: segments[0] };
+    const seg = segments[0];
+    if (CATEGORY_IDS.has(seg) || seg === 'all') {
+      return { locationSlug: null, querySlug: seg };
+    }
+    return { locationSlug: seg, querySlug: null };
   }
   const locationSlug = segments.slice(0, -1).join('-');
   const querySlug = segments[segments.length - 1];
@@ -25,13 +36,15 @@ function parseSlug(segments: string[] | undefined): { locationSlug: string | nul
 const PROVINCE_NAMES: Record<string, string> = {
   ontario: 'Ontario',
   quebec: 'Quebec',
+  alberta: 'Alberta',
   'british-columbia': 'British Columbia',
   'new-brunswick': 'New Brunswick',
+  'nova-scotia': 'Nova Scotia',
   manitoba: 'Manitoba',
+  saskatchewan: 'Saskatchewan',
   pei: 'Prince Edward Island',
+  newfoundland: 'Newfoundland and Labrador',
 };
-
-const CATEGORY_IDS = new Set(['lakefront', 'hot-tub', 'family', 'luxury', 'pet-friendly', 'mountain', 'romantic', 'log-cabin', 'countryside', 'secluded', 'beach', 'resort', 'skiing', 'pools', 'hiking', 'coastal', 'waterfront']);
 
 function formatTitle(slug: string | null): string {
   if (!slug) return 'Search';
@@ -107,10 +120,13 @@ export default async function SearchPage({ params }: Props) {
 
   try {
     const { getCottages } = await import('@/lib/cottages');
-    if (location) {
-      cottages = await getCottages({ slug: location, limit: 30, sort, categories: querySlug ? [querySlug] : [] });
+    const cats = querySlug && querySlug !== 'all' ? [querySlug] : [];
+    if (location && PROVINCE_SLUGS.has(location)) {
+      cottages = await getCottages({ province: location, limit: 30, sort, categories: cats });
+    } else if (location) {
+      cottages = await getCottages({ slug: location, limit: 30, sort, categories: cats });
     } else {
-      cottages = await getCottages({ limit: 30, sort, categories: querySlug ? [querySlug] : [] });
+      cottages = await getCottages({ limit: 30, sort, categories: cats });
     }
   } catch (e) {
     console.error('Failed to fetch cottages for search', slug, e);
