@@ -72,7 +72,8 @@ export async function getCottages({
   affiliateOnly = false,
 } = {}) {
 
-  const conditions = featuredOnly ? [] : ['available = true']
+  const conditions = ['is_hidden = false']
+  if (!featuredOnly) conditions.push('available = true')
   const params     = []
   let   paramIndex = 1
 
@@ -190,6 +191,7 @@ export async function getCottageBySlugFeatured(slug) {
       FROM affiliatecottages
       WHERE slug = $1
         AND available = true
+        AND is_hidden = false
         AND is_featured = true
       ORDER BY rating DESC NULLS LAST
       LIMIT 1
@@ -224,7 +226,9 @@ export async function getDestinationStats(province = null) {
   let client
   try {
     client = await getPool().connect()
-    const condition = province ? `WHERE province = $1 AND available = true` : `WHERE available = true`
+    const condition = province
+      ? `WHERE province = $1 AND available = true AND is_hidden = false`
+      : `WHERE available = true AND is_hidden = false`
     const params    = province ? [province] : []
 
     const { rows } = await client.query(`

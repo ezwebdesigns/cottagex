@@ -1,24 +1,49 @@
 'use client';
 
-import { useState } from 'react';
-import { Plus, Search, Star, ExternalLink, Pencil, Trash2, X, Upload, ChevronUp, ChevronDown } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { Plus, Search, Star, ExternalLink, Pencil, Trash2, X, Upload, ChevronUp, ChevronDown, Eye, EyeOff } from 'lucide-react';
 import { updateCottage } from '@/lib/actions/cottages';
 import type { Cottage } from './page';
 
-const emptyForm = { property_token: '', name: '', slug: '', photo: '', googleLink: '', source: 'VRBO', affiliateUrl: '', featured: false };
+const emptyForm = { property_token: '', name: '', slug: '', photo: '', googleLink: '', source: 'VRBO', affiliateUrl: '', featured: false, hidden: false };
 
 export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
   const [cottages, setCottages] = useState(initial);
   const [search, setSearch] = useState('');
   const [filterFeatured, setFilterFeatured] = useState('all');
+  const [filterProvince, setFilterProvince] = useState('all');
+  const [filterDestination, setFilterDestination] = useState('all');
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState<string | null>(null);
   const [sortProvince, setSortProvince] = useState<'asc' | 'desc' | null>(null);
 
+  const provinceCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const c of cottages) counts[c.province || '(none)'] = (counts[c.province || '(none)'] || 0) + 1;
+    return counts;
+  }, [cottages]);
+
+  const provinces = useMemo(() => Object.keys(provinceCounts).sort(), [provinceCounts]);
+
+  const destinationCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const c of cottages) {
+      if (filterProvince !== 'all' && c.province !== filterProvince) continue;
+      counts[c.slug || '(none)'] = (counts[c.slug || '(none)'] || 0) + 1;
+    }
+    return counts;
+  }, [cottages, filterProvince]);
+
+  const destinations = useMemo(() => Object.keys(destinationCounts).sort(), [destinationCounts]);
+
   const filtered = cottages.filter(c =>
-    (c.name?.toLowerCase()?.includes(search.toLowerCase()) || c.slug?.includes(search.toLowerCase())) &&
-    (filterFeatured === 'all' || (filterFeatured === 'featured' ? c.is_featured : !c.is_featured))
+    (c.name?.toLowerCase()?.includes(search.toLowerCase()) ||
+     c.slug?.includes(search.toLowerCase()) ||
+     (Array.isArray(c.amenities) && c.amenities.some(a => a.toLowerCase().includes(search.toLowerCase())))) &&
+    (filterFeatured === 'all' || (filterFeatured === 'featured' ? c.is_featured : !c.is_featured)) &&
+    (filterProvince === 'all' || c.province === filterProvince) &&
+    (filterDestination === 'all' || c.slug === filterDestination)
   );
 
   const sorted = sortProvince
@@ -39,6 +64,7 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
       source: c.source || 'VRBO',
       affiliateUrl: c.affiliate_url || '',
       featured: c.is_featured,
+      hidden: c.is_hidden,
     });
     setShowModal(true);
   };
@@ -50,6 +76,7 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
     const res = await updateCottage(form.property_token, {
       affiliate_url: form.affiliateUrl || null,
       is_featured: form.featured,
+      is_hidden: form.hidden,
     });
     setSaving(null);
     if (!res.success) alert('Error: ' + res.error);
@@ -57,6 +84,7 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
       ...c,
       affiliate_url: form.affiliateUrl || null,
       is_featured: form.featured,
+      is_hidden: form.hidden,
       thumbnail: form.photo || c.thumbnail,
       google_link: form.googleLink || c.google_link,
     } : c));
@@ -66,6 +94,11 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
   const toggleFeatured = async (c: Cottage) => {
     setCottages(prev => prev.map(x => x.property_token === c.property_token ? { ...x, is_featured: !x.is_featured } : x));
     await updateCottage(c.property_token, { is_featured: !c.is_featured, affiliate_url: c.affiliate_url });
+  };
+
+  const toggleHidden = async (c: Cottage) => {
+    setCottages(prev => prev.map(x => x.property_token === c.property_token ? { ...x, is_hidden: !x.is_hidden } : x));
+    await updateCottage(c.property_token, { is_hidden: !c.is_hidden });
   };
 
   return (
@@ -91,6 +124,26 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
           <option value="featured">Featured</option>
           <option value="standard">Standard</option>
         </select>
+        <select
+          value={filterProvince}
+          onChange={(e) => { setFilterProvince(e.target.value); setFilterDestination('all'); }}
+          className="px-4 py-2.5 rounded-full border border-slate-200 bg-white text-sm font-medium text-[#191e3b] focus:outline-none focus:ring-2 focus:ring-[#0f51ec]"
+        >
+          <option value="all">All Provinces ({cottages.length})</option>
+          {provinces.map(p => (
+            <option key={p} value={p}>{p.charAt(0).toUpperCase() + p.slice(1)} ({provinceCounts[p]})</option>
+          ))}
+        </select>
+        <select
+          value={filterDestination}
+          onChange={(e) => setFilterDestination(e.target.value)}
+          className="px-4 py-2.5 rounded-full border border-slate-200 bg-white text-sm font-medium text-[#191e3b] focus:outline-none focus:ring-2 focus:ring-[#0f51ec]"
+        >
+          <option value="all">All Destinations ({destinations.length})</option>
+          {destinations.map(d => (
+            <option key={d} value={d}>{d} ({destinationCounts[d]})</option>
+          ))}
+        </select>
         <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#0f51ec] text-white text-sm font-semibold hover:bg-[#0d44c9] transition-colors min-h-[44px]">
           <Plus className="w-4 h-4" /> Add Cottage
         </button>
@@ -110,12 +163,13 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden lg:table-cell">Source</th>
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden lg:table-cell">Links</th>
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Featured</th>
+              <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Status</th>
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider text-right">Actions</th>
             </tr>
           </thead>
           <tbody>
             {sorted.map((c) => (
-              <tr key={c.property_token} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
+              <tr key={c.property_token} className={`border-b border-slate-50 transition-colors ${c.is_hidden ? 'opacity-50 hover:opacity-70' : 'hover:bg-slate-50/50'}`}>
                 <td className="px-4 py-3">
                   {c.thumbnail ? (
                     <img src={c.thumbnail} alt={c.name || ''} className="w-10 h-10 rounded-xl object-cover" />
@@ -124,7 +178,12 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
                   )}
                 </td>
                 <td className="px-4 py-3">
-                  <span className="text-sm font-semibold text-[#191e3b]">{c.name}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-semibold text-[#191e3b]">{c.name}</span>
+                    {c.is_hidden && (
+                      <span className="px-2 py-0.5 rounded-full bg-slate-200 text-slate-600 text-[10px] font-bold uppercase tracking-wide">Hidden</span>
+                    )}
+                  </div>
                 </td>
                 <td className="px-4 py-3 hidden md:table-cell">
                   <code className="text-xs text-slate-500 bg-slate-50 px-2 py-0.5 rounded-md">{c.slug}</code>
@@ -158,6 +217,19 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
                     className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${c.is_featured ? 'bg-amber-100' : 'bg-slate-100'}`}
                   >
                     <Star className={`w-4 h-4 ${c.is_featured ? 'text-amber-500 fill-amber-500' : 'text-slate-400'}`} />
+                  </button>
+                </td>
+                <td className="px-4 py-3">
+                  <button
+                    onClick={() => toggleHidden(c)}
+                    className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${c.is_hidden ? 'bg-slate-200' : 'bg-slate-100'}`}
+                    title={c.is_hidden ? 'Show on website' : 'Hide from website'}
+                  >
+                    {c.is_hidden ? (
+                      <EyeOff className="w-4 h-4 text-slate-500" />
+                    ) : (
+                      <Eye className="w-4 h-4 text-slate-400" />
+                    )}
                   </button>
                 </td>
                 <td className="px-4 py-3">
@@ -276,6 +348,16 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
                   className="w-4 h-4 rounded accent-[#0f51ec]"
                 />
                 <span className="text-sm text-[#191e3b]">Featured cottage</span>
+              </label>
+              {/* Hidden */}
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={form.hidden}
+                  onChange={(e) => setForm({ ...form, hidden: e.target.checked })}
+                  className="w-4 h-4 rounded accent-[#0f51ec]"
+                />
+                <span className="text-sm text-[#191e3b]">Hide from website</span>
               </label>
               {/* Actions */}
               <div className="flex gap-3 pt-2">

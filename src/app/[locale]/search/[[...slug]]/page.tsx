@@ -122,11 +122,11 @@ export default async function SearchPage({ params }: Props) {
     const { getCottages } = await import('@/lib/cottages');
     const cats = querySlug && querySlug !== 'all' ? [querySlug] : [];
     if (location && PROVINCE_SLUGS.has(location)) {
-      cottages = await getCottages({ province: location, limit: 30, sort, categories: cats });
+      cottages = await getCottages({ province: location, limit: 200, sort, categories: cats });
     } else if (location) {
-      cottages = await getCottages({ slug: location, limit: 30, sort, categories: cats });
+      cottages = await getCottages({ slug: location, limit: 200, sort, categories: cats });
     } else {
-      cottages = await getCottages({ limit: 30, sort, categories: cats });
+      cottages = await getCottages({ limit: 200, sort, categories: cats });
     }
   } catch (e) {
     console.error('Failed to fetch cottages for search', slug, e);

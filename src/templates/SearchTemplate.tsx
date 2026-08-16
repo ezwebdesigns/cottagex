@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { Home as HomeIcon, Sailboat, Bath, Users, Gem, PawPrint, Heart, Trees, TreePine, Umbrella, Building2, Snowflake, Waves, Footprints, Mountain, Kayak } from 'lucide-react';
 import PropertyCard from '@/components/cottagex/PropertyCard';
 import CTASection from '@/components/cottagex/CTASection';
@@ -14,6 +14,26 @@ const categoryIconMap: Record<string, React.ElementType> = {
   countryside: Trees, secluded: TreePine, beach: Umbrella, resort: Building2,
   skiing: Snowflake, pools: Waves, hiking: Footprints,
   coastal: Sailboat, waterfront: Kayak,
+};
+
+const CATEGORY_IDS = new Set(['lakefront', 'hot-tub', 'family', 'luxury', 'pet-friendly', 'mountain', 'romantic', 'log-cabin', 'countryside', 'secluded', 'beach', 'resort', 'skiing', 'pools', 'hiking', 'coastal', 'waterfront']);
+
+const PROVINCE_SLUGS = new Set([
+  'ontario', 'quebec', 'alberta', 'british-columbia', 'nova-scotia',
+  'new-brunswick', 'manitoba', 'saskatchewan', 'pei', 'newfoundland',
+]);
+
+const PROVINCE_NAMES: Record<string, string> = {
+  ontario: 'Ontario',
+  quebec: 'Quebec',
+  alberta: 'Alberta',
+  'british-columbia': 'British Columbia',
+  'new-brunswick': 'New Brunswick',
+  'nova-scotia': 'Nova Scotia',
+  manitoba: 'Manitoba',
+  saskatchewan: 'Saskatchewan',
+  pei: 'Prince Edward Island',
+  newfoundland: 'Newfoundland and Labrador',
 };
 
 type SearchTemplateProps = {
@@ -36,11 +56,36 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
   const fallbackName = lastSegment.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   const locName = fallbackName || (segments.length === 0 ? 'Search' : '');
 
+  const activeCategory = CATEGORY_IDS.has(lastSegment) ? lastSegment : null;
+  const categoryLabel = activeCategory
+    ? categories?.find((c: any) => c.id === activeCategory)?.label || fallbackName
+    : null;
+
+  const isProvincePage = segments.some(seg => PROVINCE_SLUGS.has(seg));
+
+  const [filterProvince, setFilterProvince] = useState('all');
+
+  const provinceCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const c of cottages || []) {
+      const p = c.province || '(none)';
+      counts[p] = (counts[p] || 0) + 1;
+    }
+    return counts;
+  }, [cottages]);
+
+  const provinces = Object.keys(provinceCounts).sort();
+
+  const visibleCottages = useMemo(() => {
+    if (filterProvince === 'all') return cottages || [];
+    return (cottages || []).filter(c => (c.province || '(none)') === filterProvince);
+  }, [cottages, filterProvince]);
+
   const heroTitle = hero?.title || (locName ? `${locName} Cottages` : 'Search Cottages');
   const heroSubtitle = hero?.subtitle || '';
 
   const resultCards = useMemo(() => {
-    return (cottages || []).map(c => ({
+    return (visibleCottages || []).map(c => ({
       id: String(c.id),
       name: c.name,
       location: c.province || '',
@@ -55,7 +100,7 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
       baths: c.bathrooms || 0,
       guests: c.sleeps || 0,
     }));
-  }, [cottages]);
+  }, [visibleCottages]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -91,15 +136,34 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
       )}
 
       <section className="py-10 sm:py-14 px-4 sm:px-6 lg:px-8 bg-white">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-1 text-left" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
-          {resultCards.length > 0
-            ? (searchResults?.title || `${resultCards.length} result${resultCards.length > 1 ? 's' : ''} found`)
-            : 'No results found'}
-        </h2>
-        <p className="text-sm text-slate-500 mb-8 text-left">{searchResults?.subtitle || locName || 'All locations'}</p>
+        <div className="flex flex-wrap items-end justify-between gap-3 mb-8">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+              {resultCards.length > 0
+                ? (searchResults?.title || `${resultCards.length} result${resultCards.length > 1 ? 's' : ''} found`)
+                : 'No results found'}
+            </h2>
+            <p className="text-sm text-slate-500 mt-1">{searchResults?.subtitle || locName || 'All locations'}</p>
+          </div>
+          {!isProvincePage && provinces.length > 1 && (
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-medium text-slate-500">Sort by Destination</span>
+              <select
+                value={filterProvince}
+                onChange={(e) => setFilterProvince(e.target.value)}
+                className="px-4 py-2.5 rounded-full border border-slate-200 bg-white text-sm font-medium text-[#191e3b] focus:outline-none focus:ring-2 focus:ring-[#0f51ec]"
+              >
+                <option value="all">All Provinces ({cottages?.length || 0})</option>
+                {provinces.map(p => (
+                  <option key={p} value={p}>{PROVINCE_NAMES[p] || p.charAt(0).toUpperCase() + p.slice(1)} ({provinceCounts[p]})</option>
+                ))}
+              </select>
+            </div>
+          )}
+        </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
           {resultCards.map((chalet) => (
-            <PropertyCard key={chalet.id} chalet={chalet} />
+            <PropertyCard key={chalet.id} chalet={chalet} categoryBadge={categoryLabel || undefined} />
           ))}
         </div>
       </section>

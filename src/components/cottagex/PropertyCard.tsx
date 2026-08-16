@@ -23,11 +23,12 @@ type PropertyCardProps = {
   chalet: Chalet;
   isFavorite?: boolean;
   onToggleFavorite?: (chalet: Chalet) => void;
+  categoryBadge?: string;
 };
 
-export default function PropertyCard({ chalet, isFavorite, onToggleFavorite }: PropertyCardProps) {
+export default function PropertyCard({ chalet, isFavorite, onToggleFavorite, categoryBadge }: PropertyCardProps) {
   const { t } = useTranslations();
-  const badgeLabel = (t.badges as Record<string, string>)[chalet.badge] || chalet.badge;
+  const badgeLabel = categoryBadge || (t.badges as Record<string, string>)[chalet.badge] || chalet.badge;
 
   return (
     <a
