@@ -1,4 +1,4 @@
-import { ArrowRight, Calendar, Clock } from 'lucide-react';
+﻿import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -28,7 +28,7 @@ export default function InspirationSection({ locale, title, description, article
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
           <div className="max-w-2xl">
             {title && (
-              <h2 className="text-3xl sm:text-4xl font-bold text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#191e3b]" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
                 {title}
               </h2>
             )}
@@ -75,7 +75,7 @@ export default function InspirationSection({ locale, title, description, article
                       {article.readTime}
                     </span>
                   </div>
-                  <h3 className="font-bold text-lg text-[#191e3b] leading-tight mb-2 group-hover:text-[#0f51ec] transition-colors" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+                  <h3 className="font-bold text-lg text-[#191e3b] leading-tight mb-2 group-hover:text-[#0f51ec] transition-colors" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
                     {article.title}
                   </h3>
                   <p className="text-sm text-slate-500 leading-relaxed flex-1">{article.excerpt}</p>

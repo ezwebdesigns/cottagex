@@ -62,14 +62,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const query = formatTitle(querySlug);
   const location = formatTitle(locationSlug);
 
-  const title = query && location
+  const hasQuery = !!querySlug;
+  const hasLocation = !!locationSlug;
+
+  const title = hasQuery && hasLocation
     ? `${query} Cottages in ${location} | Chalet Express`
-    : query
+    : hasQuery
       ? `${query} Cottages | Chalet Express`
       : 'Search Canadian Cottage Rentals | Chalet Express';
-  const description = query && location
+  const description = hasQuery && hasLocation
     ? `Find ${query.toLowerCase()} cottages in ${location}. Browse premium vacation rentals across Canada with secure VRBO booking.`
-    : `Search and discover premium cottage rentals across Canada. Browse lake houses, mountain lodges, and wilderness cabins.`;
+    : 'Search and discover premium cottage rentals across Canada. Browse lake houses, mountain lodges, and wilderness cabins.';
 
   const path = slug ? slug.join('/') : '';
   const canonical = `https://chaletexpress.com/${locale}/search${path ? '/' + path : ''}`;
@@ -82,6 +85,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       languages: {
         'en': `https://chaletexpress.com/en/search${path ? '/' + path : ''}`,
         'fr': `https://chaletexpress.com/fr/search${path ? '/' + path : ''}`,
+        'x-default': `https://chaletexpress.com/en/search${path ? '/' + path : ''}`,
       },
     },
     openGraph: {

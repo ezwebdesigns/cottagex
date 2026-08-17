@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import { Radio_Canada } from "next/font/google";
 import { OrganizationSchema, WebSiteSchema } from "@/components/seo/SchemaOrg";
 import "./globals.css";
+
+const radioCanada = Radio_Canada({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-radio-canada",
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const h = await headers();
@@ -32,8 +39,8 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: {
       canonical: `https://chaletexpress.com${pathname}`,
       languages: {
-        "en-CA": `https://chaletexpress.com${enPath}`,
-        "fr-CA": `https://chaletexpress.com${frPath}`,
+        en: `https://chaletexpress.com${enPath}`,
+        fr: `https://chaletexpress.com${frPath}`,
         "x-default": `https://chaletexpress.com${enPath}`,
       },
     },
@@ -46,8 +53,8 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
     },
     robots: {
-      index: true,
-      follow: true,
+      index: !isAdmin,
+      follow: !isAdmin,
     },
   };
 }
@@ -66,12 +73,7 @@ export default async function RootLayout({
 
   if (maintenance) {
     return (
-      <html lang="en" className="h-full antialiased">
-        <head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-          <link href="https://fonts.googleapis.com/css2?family=Radio+Canada:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
-        </head>
+      <html lang="en" className={`${radioCanada.variable} h-full antialiased`}>
         <body className="min-h-full flex flex-col items-center justify-center bg-gray-50">
           <main className="text-center px-4">
             <h1 className="text-5xl font-bold text-gray-900 mb-4">Chalet Express</h1>
@@ -88,13 +90,10 @@ export default async function RootLayout({
   // headers() already called above
 
   return (
-    <html lang={locale} className="h-full antialiased">
+    <html lang={locale} className={`${radioCanada.variable} h-full antialiased`}>
       <head>
         <OrganizationSchema />
         <WebSiteSchema />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Radio+Canada:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-N2MKZ8Z5FV"></script>
         <script dangerouslySetInnerHTML={{
           __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','G-N2MKZ8Z5FV');`

@@ -29,6 +29,14 @@ export function WebSiteSchema() {
     '@type': 'WebSite',
     name: 'Chalet Express',
     url: SITE_URL,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${SITE_URL}/en/search/{search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
   };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }
@@ -58,12 +66,13 @@ export function ArticleSchema({ title, description, image, date, dateModified, u
   url?: string;
   author?: string;
 }) {
+  const absImage = image && !image.startsWith('http') ? `${SITE_URL}${image.startsWith('/') ? '' : '/'}${image}` : image;
   const schema: Record<string, any> = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: title,
     description,
-    image,
+    image: absImage,
     datePublished: date,
     dateModified: dateModified || date,
     author: {
@@ -125,5 +134,59 @@ export function PlaceSchema({ name, description, image, url, address }: {
   if (address) {
     schema.address = { '@type': 'PostalAddress', addressCountry: address };
   }
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
+}
+
+export function ItemListSchema({ items, url }: {
+  items: {
+    name: string;
+    image?: string;
+    url?: string;
+    price?: number;
+    rating?: number;
+    reviews?: number;
+  }[];
+  url: string;
+}) {
+  const listItems = items.slice(0, 50).map((item, i) => {
+    const product: Record<string, any> = {
+      '@type': 'Product',
+      name: item.name,
+      category: 'Vacation Rental',
+    };
+    if (item.image) product.image = item.image;
+    if (item.url) product.url = item.url;
+
+    const offer: Record<string, any> = {
+      '@type': 'Offer',
+      priceCurrency: 'CAD',
+      availability: 'https://schema.org/InStock',
+    };
+    if (item.url) offer.url = item.url;
+    if (item.price != null) offer.price = item.price;
+    product.offers = offer;
+
+    if (item.rating != null) {
+      product.aggregateRating = {
+        '@type': 'AggregateRating',
+        ratingValue: item.rating,
+        reviewCount: item.reviews || 1,
+      };
+    }
+
+    return {
+      '@type': 'ListItem',
+      position: i + 1,
+      item: product,
+    };
+  });
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    url,
+    numberOfItems: items.length,
+    itemListElement: listItems,
+  };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }

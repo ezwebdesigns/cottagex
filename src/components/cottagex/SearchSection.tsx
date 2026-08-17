@@ -1,4 +1,4 @@
-type SearchColumnLink = { text: string; url: string };
+﻿type SearchColumnLink = { text: string; url: string };
 type SearchColumn = { title: string; links: SearchColumnLink[] };
 
 type SearchSectionProps = {
@@ -15,7 +15,7 @@ export default function SearchSection({ locale, title, description, columns }: S
     <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-slate-50">
       <div className="text-center mb-10">
         {title && (
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#191e3b]" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
             {title}
           </h2>
         )}

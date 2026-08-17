@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/admin/'],
+      disallow: ['/api/', '/admin/', '/en/admin/', '/fr/admin/', '/en/login', '/fr/login'],
     },
     sitemap: 'https://chaletexpress.com/sitemap.xml',
   };

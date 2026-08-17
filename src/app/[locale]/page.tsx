@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
+import Image from "next/image";
 import { getCottages } from '@/lib/cottages';
 import { getAllSettings } from '@/lib/cached-settings';
 import { db } from '@/lib/db';
@@ -22,7 +23,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: "Chalet Express - Canadian Cottage Rentals",
     description: "Find your perfect Canadian escape. Premium lake houses and mountain lodges across Canada.",
-    alternates: { canonical: `https://chaletexpress.com/${locale}` },
+    alternates: {
+      canonical: `https://chaletexpress.com/${locale}`,
+      languages: {
+        en: `https://chaletexpress.com/en`,
+        fr: `https://chaletexpress.com/fr`,
+        "x-default": `https://chaletexpress.com/en`,
+      },
+    },
   };
 }
 
@@ -119,7 +127,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       />
 
       <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
-        {destData?.title && <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-1" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+        {destData?.title && <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-1" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
           {destData.title}
         </h2>}
         {destData?.description && <p className="text-sm text-slate-500 mb-6">{destData.description}</p>}
@@ -133,14 +141,17 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   href={link}
                   className="group relative h-40 sm:h-48 rounded-[2rem] overflow-hidden block"
                 >
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.imageAlt || item.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#191e3b]/90 via-[#191e3b]/30 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <h3 className="font-bold text-base sm:text-lg" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{item.name}</h3>
+                    <h3 className="font-bold text-base sm:text-lg" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>{item.name}</h3>
                     <p className="text-xs text-white/70 mt-0.5">{item.properties}</p>
                   </div>
                 </a>

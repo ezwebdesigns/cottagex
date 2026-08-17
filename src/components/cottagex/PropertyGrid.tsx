@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import PropertyCard, { type Chalet } from './PropertyCard';
 
@@ -20,7 +20,7 @@ export default function PropertyGrid({ title, subtitle, chalets, favorites, onTo
       <div className="flex items-end justify-between mb-4 sm:mb-6">
         <div>
           {title && (
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-[#191e3b]" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
               {title}
             </h2>
           )}

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useMemo, useState } from 'react';
 import { Home as HomeIcon, Sailboat, Bath, Users, Gem, PawPrint, Heart, Trees, TreePine, Umbrella, Building2, Snowflake, Waves, Footprints, Mountain, Kayak } from 'lucide-react';
@@ -6,7 +6,7 @@ import PropertyCard from '@/components/cottagex/PropertyCard';
 import CTASection from '@/components/cottagex/CTASection';
 import SearchFaq from '@/components/cottagex/SearchFaq';
 import SearchInspirations from '@/components/cottagex/SearchInspirations';
-import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
+import { BreadcrumbSchema, ItemListSchema } from '@/components/seo/SchemaOrg';
 
 const categoryIconMap: Record<string, React.ElementType> = {
   lakefront: Kayak, 'hot-tub': Bath, family: Users, luxury: Gem,
@@ -109,8 +109,22 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
         { name: locName || 'Search', url: `/${locale}/search/${slug}` },
       ]} />
 
+      {(cottages || []).length > 0 && (
+        <ItemListSchema
+          url={`https://chaletexpress.com/${locale}/search/${slug}`}
+          items={(cottages || []).map((c) => ({
+            name: c.name,
+            image: c.thumbnail || (Array.isArray(c.photos) && c.photos[0]) || undefined,
+            url: c.affiliate_url || c.google_link || undefined,
+            price: c.price_cad ?? undefined,
+            rating: c.rating ?? undefined,
+            reviews: c.reviews ?? undefined,
+          }))}
+        />
+      )}
+
       <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-white text-center">
-        <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{heroTitle}</h1>
+        <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#191e3b]" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>{heroTitle}</h1>
         {heroSubtitle && <p className="text-base sm:text-lg text-slate-500 mt-2 max-w-2xl mx-auto">{heroSubtitle}</p>}
       </section>
 
@@ -138,7 +152,7 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
       <section className="py-10 sm:py-14 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="flex flex-wrap items-end justify-between gap-3 mb-8">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b]" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
               {resultCards.length > 0
                 ? (searchResults?.title || `${resultCards.length} result${resultCards.length > 1 ? 's' : ''} found`)
                 : 'No results found'}

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useMemo } from 'react';
 import { ChevronDown } from 'lucide-react';
@@ -32,7 +32,7 @@ export default function SearchInspirations({ data, locale }: SearchInspirationsP
 
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-slate-50">
-      <h2 className="text-2xl sm:text-3xl font-bold text-center text-[#191e3b] mb-8" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+      <h2 className="text-2xl sm:text-3xl font-bold text-center text-[#191e3b] mb-8" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
         {title}
       </h2>
 

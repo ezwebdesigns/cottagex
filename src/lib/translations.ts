@@ -14,6 +14,11 @@ export const translations = {
       signup: 'Sign Up',
       search: 'Search'
     },
+    notFound: {
+      title: 'Page Not Found',
+      description: 'The page you are looking for doesn\'t exist or has been moved.',
+      backHome: 'Back to Home'
+    },
     hero: {
       title: 'Your Wild Canadian Sanctuary',
       subtitle: 'Discover handpicked chalets across Canada\'s most breathtaking landscapes — from misty Laurentian lakes to the rugged peaks of the Rockies.',
@@ -200,19 +205,24 @@ export const translations = {
     ]
   },
   fr: {
-    nav: {
+nav: {
       explore: 'Explorer',
       ontario: 'Ontario',
       guides: 'Guides & Articles',
       destinations: 'Destinations',
-      about: 'À Propos',
+      about: 'À propos',
       contact: 'Contact',
-      terms: 'Mentions légales',
+      terms: 'Conditions',
       home: 'Accueil',
-      admin: 'Admin',
+      admin: 'Panneau admin',
       login: 'Connexion',
       signup: 'Inscription',
       search: 'Recherche'
+    },
+    notFound: {
+      title: 'Page introuvable',
+      description: 'La page que vous recherchez n\'existe pas ou a été déplacée.',
+      backHome: 'Retour à l\'accueil'
     },
     hero: {
       title: 'Votre sanctuaire sauvage au Canada',

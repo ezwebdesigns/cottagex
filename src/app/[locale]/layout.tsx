@@ -7,10 +7,7 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title: {
-      template: `%s | Chalet Express`,
-      default: `Canadian Cottage Rentals - Chalet Express`,
-    },
+    title: `Canadian Cottage Rentals - Chalet Express`,
     description: "Find your perfect Canadian escape. Premium lake houses and mountain lodges across Canada.",
     openGraph: {
       locale: locale === "fr" ? "fr_CA" : "en_CA",

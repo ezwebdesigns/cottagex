@@ -12,7 +12,15 @@ export function proxy(request: NextRequest) {
 
   if (isStatic) return NextResponse.next()
 
-  if (process.env.MAINTENANCE_MODE !== 'true') return NextResponse.next()
+  // Poser les headers consommés par app/layout.tsx (lang HTML, hreflang,
+  // canonical) — sans eux, <html lang> est "en" sur tout le site.
+  const requestHeaders = new Headers(request.headers)
+  requestHeaders.set('x-pathname', pathname)
+  requestHeaders.set('x-locale', pathname.startsWith('/fr') ? 'fr' : 'en')
+
+  if (process.env.MAINTENANCE_MODE !== 'true') {
+    return NextResponse.next({ request: { headers: requestHeaders } })
+  }
 
   const isAdmin =
     pathname.includes('/admin/') ||
@@ -20,7 +28,7 @@ export function proxy(request: NextRequest) {
     pathname.includes('/register') ||
     pathname.includes('/api/auth')
 
-  if (isAdmin) return NextResponse.next()
+  if (isAdmin) return NextResponse.next({ request: { headers: requestHeaders } })
 
   return NextResponse.rewrite(new URL('/maintenance', request.url))
 }

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { ArrowRight } from 'lucide-react';
 
@@ -16,7 +16,7 @@ export default function CategoryBar({ ctaTitle, ctaDescription, ctaButtonText, c
     <section className="bg-[#0f51ec] py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-6">
         <div className="text-center lg:text-left">
-          {ctaTitle && <h2 className="text-2xl sm:text-3xl font-bold text-white" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+          {ctaTitle && <h2 className="text-2xl sm:text-3xl font-bold text-white" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
             {ctaTitle}
           </h2>}
           {ctaDescription && (

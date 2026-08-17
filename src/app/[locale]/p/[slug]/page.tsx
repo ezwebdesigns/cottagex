@@ -22,7 +22,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: page.title,
     description: page.metaDescription || `Chalet Express - ${page.title}`,
-    alternates: { canonical: `https://chaletexpress.com/${locale}/p/${slug}` },
+    alternates: {
+      canonical: `https://chaletexpress.com/${locale}/p/${slug}`,
+      languages: {
+        en: `https://chaletexpress.com/en/p/${slug}`,
+        fr: `https://chaletexpress.com/fr/p/${slug}`,
+        "x-default": `https://chaletexpress.com/en/p/${slug}`,
+      },
+    },
     openGraph: {
       title: page.title,
       description: page.metaDescription || `Chalet Express - ${page.title}`,

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useRouter } from 'next/navigation';
 import { Calendar, Clock, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -34,7 +34,7 @@ export default function GuidesList({ locale, articles, page, totalPages }: Guide
     <div className="min-h-screen bg-white">
       <div className="bg-gradient-to-b from-[#191e3b] to-[#0f51ec] text-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-3" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-3" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
             {t.guides.title}
           </h1>
           <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto">{t.guides.subtitle}</p>
@@ -81,7 +81,7 @@ export default function GuidesList({ locale, articles, page, totalPages }: Guide
                         {article.readTime}
                       </span>
                     </div>
-                    <h3 className="font-bold text-lg text-[#191e3b] leading-tight mb-2 group-hover:text-[#0f51ec] transition-colors" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+                    <h3 className="font-bold text-lg text-[#191e3b] leading-tight mb-2 group-hover:text-[#0f51ec] transition-colors" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
                       {article.title}
                     </h3>
                     <p className="text-sm text-slate-500 leading-relaxed mb-4 flex-1">{article.excerpt}</p>

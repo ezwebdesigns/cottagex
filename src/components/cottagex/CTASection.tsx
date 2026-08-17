@@ -1,4 +1,4 @@
-import ResolvedImage from '@/components/cottagex/ResolvedImage';
+﻿import ResolvedImage from '@/components/cottagex/ResolvedImage';
 
 type CTASectionProps = {
   locale: string;
@@ -19,7 +19,7 @@ export default function CTASection({ locale, title, description, buttonText, but
       <div className="bg-[#191e3b] rounded-[2rem] overflow-hidden relative flex flex-col md:flex-row items-center">
         <div className="w-full md:w-[70%] p-8 sm:p-12 z-10 text-white">
           {title && (
-            <h2 className="text-2xl sm:text-4xl font-bold mb-4 leading-tight" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+            <h2 className="text-2xl sm:text-4xl font-bold mb-4 leading-tight" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
               {title.split('\n').map((line, i) => (
                 <span key={i}>{line}{i < title.split('\n').length - 1 && <br />}</span>
               ))}

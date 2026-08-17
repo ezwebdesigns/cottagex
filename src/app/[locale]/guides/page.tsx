@@ -11,7 +11,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: "Cottage & Cabin Rental Guides - The Escape Magazine",
     description: "Expert travel guides, packing lists, and local recommendations for Canadian cottage rentals. Discover Muskoka, Mont-Tremblant, Banff and more.",
-    alternates: { canonical: `https://chaletexpress.com/${locale}/guides` },
+    alternates: {
+      canonical: `https://chaletexpress.com/${locale}/guides`,
+      languages: {
+        en: `https://chaletexpress.com/en/guides`,
+        fr: `https://chaletexpress.com/fr/guides`,
+        "x-default": `https://chaletexpress.com/en/guides`,
+      },
+    },
     openGraph: {
       title: "The Escape Magazine - Cottage & Cabin Guides",
       description: "Expert travel guides for Canadian cottage rentals.",

@@ -6,7 +6,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: "Contact - Get in Touch",
     description: "Contact Chalet Express for partnerships, cottage listings, or travel inquiries. We respond within 24 hours.",
-    alternates: { canonical: `https://chaletexpress.com/${locale}/contact` },
+    alternates: {
+      canonical: `https://chaletexpress.com/${locale}/contact`,
+      languages: {
+        en: `https://chaletexpress.com/en/contact`,
+        fr: `https://chaletexpress.com/fr/contact`,
+        "x-default": `https://chaletexpress.com/en/contact`,
+      },
+    },
     openGraph: {
       title: "Contact Chalet Express",
       description: "Get in touch with Canada's cottage rental directory team.",

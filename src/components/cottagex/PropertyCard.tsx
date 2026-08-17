@@ -1,5 +1,6 @@
-'use client';
+﻿'use client';
 
+import Image from 'next/image';
 import { Star, Heart, MapPin, ArrowUpRight } from 'lucide-react';
 import { useTranslations } from '@/lib/useTranslations';
 
@@ -38,10 +39,13 @@ export default function PropertyCard({ chalet, isFavorite, onToggleFavorite, cat
       className="group block rounded-2xl overflow-hidden bg-white border border-slate-100 hover:shadow-md hover:border-slate-200 transition-all"
     >
       <div className="relative aspect-[4/3] overflow-hidden">
-        <img
+        <Image
           src={chalet.image}
           alt={chalet.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
         />
         <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-white/90 backdrop-blur text-[#191e3b] text-[10px] font-semibold">
           {badgeLabel}
@@ -58,7 +62,7 @@ export default function PropertyCard({ chalet, isFavorite, onToggleFavorite, cat
 
       <div className="p-2.5 sm:p-3">
         <div className="flex items-center justify-between gap-1 mb-0.5">
-          <h3 className="font-semibold text-[#191e3b] text-xs sm:text-sm leading-tight truncate" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+          <h3 className="font-semibold text-[#191e3b] text-xs sm:text-sm leading-tight truncate" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
             {chalet.name}
           </h3>
           <div className="flex items-center gap-0.5 flex-shrink-0">

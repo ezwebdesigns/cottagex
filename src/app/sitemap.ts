@@ -12,6 +12,18 @@ const provinces = [
   'saskatchewan', 'manitoba',
 ];
 
+// Slugs CMS qui entrent en collision avec des routes statiques ou
+// les destinations — ils ne doivent pas être indexés séparément.
+const RESERVED_SLUGS = new Set([
+  ...provinces, 'about', 'contact', 'guides', 'terms',
+  'search', 'cottage-country', 'p', 'admin',
+]);
+
+// Pages search majeures (catégories) indexables.
+const SEARCH_PAGES = [
+  '', 'pet-friendly', 'lakefront', 'hot-tub', 'luxury', 'family', 'mountain',
+];
+
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -53,6 +65,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       });
     }
 
+    for (const searchPage of SEARCH_PAGES) {
+      entries.push({
+        url: `${BASE_URL}/${locale}/search${searchPage ? '/' + searchPage : ''}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.7,
+      });
+    }
+
     for (const article of dbArticles) {
       entries.push({
         url: `${BASE_URL}/${locale}/guides/${article.slug}`,
@@ -63,8 +84,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
 
     for (const page of dbPages) {
+      if (RESERVED_SLUGS.has(page.slug)) continue;
       entries.push({
-        url: `${BASE_URL}/${locale}/p/${page.slug}`,
+        url: `${BASE_URL}/${locale}/${page.slug}`,
         lastModified: page.updatedAt || new Date(),
         changeFrequency: 'monthly',
         priority: 0.6,

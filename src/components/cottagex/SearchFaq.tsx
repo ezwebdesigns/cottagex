@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
@@ -70,7 +70,7 @@ export default function SearchFaq({ data, location = '', province = '' }: Search
         {hasPanel && (
           <div className="bg-[#77e1fb] rounded-[2rem] p-6 sm:p-8 flex flex-col items-center justify-center text-center">
             {noteTitle && (
-              <h2 className="text-xl sm:text-2xl font-bold text-[#191e3b] mb-4" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{fill(noteTitle)}</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-[#191e3b] mb-4" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>{fill(noteTitle)}</h2>
             )}
             {note && (
               <p className="text-sm text-[#191e3b] leading-relaxed text-justify mb-6">{fill(note)}</p>

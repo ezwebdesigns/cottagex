@@ -1,11 +1,11 @@
-'use client';
+﻿'use client';
 
 import { useState, useMemo } from 'react';
 import { MapPin, ChevronDown, Waves, Trees, Compass, Star, Snowflake, Mountain, Leaf, Home as HomeIcon } from 'lucide-react';
 import { useTranslations } from '@/lib/useTranslations';
 import PropertyCard from '@/components/cottagex/PropertyCard';
 import CTASection from '@/components/cottagex/CTASection';
-import { BreadcrumbSchema, PlaceSchema } from '@/components/seo/SchemaOrg';
+import { BreadcrumbSchema, PlaceSchema, ItemListSchema } from '@/components/seo/SchemaOrg';
 import Image from 'next/image';
 
 type LocationTemplateProps = {
@@ -73,6 +73,19 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         url={`https://chaletexpress.com/${locale}/cottage-country/${slug}`}
         address={locName}
       />
+      {(cottages || []).length > 0 && (
+        <ItemListSchema
+          url={`https://chaletexpress.com/${locale}/cottage-country/${slug}`}
+          items={(cottages || []).map((c) => ({
+            name: c.name,
+            image: c.thumbnail || (Array.isArray(c.photos) && c.photos[0]) || undefined,
+            url: c.affiliate_url || c.google_link || undefined,
+            price: c.price_cad ?? undefined,
+            rating: c.rating ?? undefined,
+            reviews: c.reviews ?? undefined,
+          }))}
+        />
+      )}
 
       <section className="relative h-64 sm:h-96 overflow-hidden">
         <Image src={heroImage} alt={heroImageAlt} fill className="object-cover" sizes="100vw" priority />
@@ -83,7 +96,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
               <MapPin className="w-4 h-4" />
               {t.nav.destinations}
             </div>
-            <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-2" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{heroTitle}</h1>
+            <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-2" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>{heroTitle}</h1>
             {heroSubtitle && <p className="text-base sm:text-lg text-white/80">{heroSubtitle}</p>}
           </div>
         </div>
@@ -117,7 +130,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
 
       {chaletCards.length > 0 && (
         <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-1" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{t.destination.exploreChalets}</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-1" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>{t.destination.exploreChalets}</h2>
           <p className="text-sm text-slate-500 mb-6">{locName}</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
             {chaletCards.map((chalet) => (
@@ -134,7 +147,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
               {ld.learnMore.subtitle && (
                 <p className="text-sm font-semibold uppercase tracking-wider text-[#0f51ec] mb-2">{ld.learnMore.subtitle}</p>
               )}
-              <h2 className="text-2xl sm:text-3xl font-bold text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{ld.learnMore.title}</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#191e3b]" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>{ld.learnMore.title}</h2>
               {ld.learnMore.description && (
                 <p className="text-slate-500 mt-4 text-sm sm:text-base leading-relaxed">{ld.learnMore.description}</p>
               )}
@@ -183,7 +196,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
       {ld.search?.title && (
         <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-slate-50">
           <div className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#191e3b]" style={{ fontFamily: 'Radio Canada, sans-serif' }}>{ld.search.title}</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#191e3b]" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>{ld.search.title}</h2>
             {ld.search.description && (
               <p className="text-slate-500 mt-2 text-sm sm:text-base">{ld.search.description}</p>
             )}

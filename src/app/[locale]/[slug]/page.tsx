@@ -33,7 +33,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: page.title,
     description: page.metaDescription,
-    alternates: { canonical: `https://chaletexpress.com/${locale}/${slug}` },
+    alternates: {
+      canonical: `https://chaletexpress.com/${locale}/${slug}`,
+      languages: {
+        en: `https://chaletexpress.com/en/${slug}`,
+        fr: `https://chaletexpress.com/fr/${slug}`,
+        "x-default": `https://chaletexpress.com/en/${slug}`,
+      },
+    },
     openGraph: {
       title: page.title,
       description: page.metaDescription,

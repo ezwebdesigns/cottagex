@@ -1,6 +1,7 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { Kayak, Bath, Users, Gem, PawPrint, Mountain, Heart, Home, Trees, TreePine, Umbrella, Building2, Snowflake, Waves, Footprints, Sailboat } from 'lucide-react';
 import { useTranslations } from '@/lib/useTranslations';
 
@@ -72,10 +73,13 @@ export default function Hero({ tag, title, description, image, imageAlt, catItem
           className="absolute inset-0 z-0"
           style={{ transform: `translateY(${scrollY * 0.4}px) scale(1.1)` }}
         >
-          <img
+          <Image
             src={image}
             alt={imageAlt || ''}
-            className="w-full h-full object-cover"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#191e3b]/80 via-[#191e3b]/50 to-[#191e3b]/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#191e3b]/60 to-transparent" />
@@ -99,7 +103,7 @@ export default function Hero({ tag, title, description, image, imageAlt, catItem
             {title && (
               <h1
                 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-4 tracking-tight"
-                style={{ fontFamily: 'Radio Canada, sans-serif', textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}
+                style={{ fontFamily: 'var(--font-radio-canada), sans-serif', textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}
               >
                 {title}
               </h1>

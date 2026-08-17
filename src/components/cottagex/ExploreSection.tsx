@@ -1,3 +1,4 @@
+﻿import Image from 'next/image';
 import { Waves, Trees, Compass, MapPin, Mountain, TreePine, Sunrise, Sailboat, Bath, Users, Gem, Dog, Heart, Home, Umbrella, Building2, MountainSnow, Footprints } from 'lucide-react';
 
 type ExploreItem = { icon: string; title: string; description: string };
@@ -27,7 +28,7 @@ export default function ExploreSection({ title, description, subtitle, image, im
     <section className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20 bg-[#191e3b]">
       <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
         <div className="w-full lg:w-1/2">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white" style={{ fontFamily: 'Radio Canada, sans-serif' }}>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
             {title}
           </h2>
           {subtitle && (
@@ -52,12 +53,16 @@ export default function ExploreSection({ title, description, subtitle, image, im
 
         <div className="w-full lg:w-1/2">
           {image && (
-            <img
-              src={image}
-              alt={imageAlt || title || ''}
-              className="w-full h-full min-h-[300px] lg:min-h-[500px] object-cover rounded-[2rem]"
-              loading="lazy"
-            />
+            <div className="relative min-h-[300px] lg:min-h-[500px] rounded-[2rem] overflow-hidden">
+              <Image
+                src={image}
+                alt={imageAlt || title || ''}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+                loading="lazy"
+              />
+            </div>
           )}
         </div>
       </div>

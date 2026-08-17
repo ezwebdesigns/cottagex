@@ -71,6 +71,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       languages: {
         'en': `https://chaletexpress.com/en/cottage-country/${slug}`,
         'fr': `https://chaletexpress.com/fr/cottage-country/${slug}`,
+        'x-default': `https://chaletexpress.com/en/cottage-country/${slug}`,
       },
     },
     openGraph: {
