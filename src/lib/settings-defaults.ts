@@ -17,12 +17,18 @@ export type HeaderSettings = {
   menuItems: { label: string; href: string }[];
 };
 
+export type FooterSocial = { platform: string; url: string };
+
 export type FooterSettings = {
   description: string;
   logo: string;
+  discoverTitle: string;
+  quickLinksTitle: string;
+  aboutTitle: string;
   discover: { label: string; href: string }[];
   quickLinks: { label: string; href: string }[];
   about: { label: string; href: string }[];
+  socials: FooterSocial[];
 };
 
 export type HomepageHero = {
@@ -174,6 +180,9 @@ export const defaultSettings: Record<string, any> = {
   footer: {
     description: "Curated Canadian cottage rentals. Discover your perfect escape with Chalet Express — your trusted guide to premium lake houses, mountain lodges, and wilderness cabins.",
     logo: "",
+    discoverTitle: "Discover",
+    quickLinksTitle: "Quick Links",
+    aboutTitle: "About",
     discover: [
       { label: "All Cottages", href: "/{locale}" },
       { label: "Ontario Region", href: "/{locale}/cottage-country/ontario" },
@@ -194,6 +203,13 @@ export const defaultSettings: Record<string, any> = {
       { label: "Contact Us", href: "/{locale}/contact" },
       { label: "Affiliation Partnership", href: "/{locale}/contact" },
       { label: "Moderator Portal", href: "/{locale}/admin" },
+    ],
+    socials: [
+      { platform: "Facebook", url: "" },
+      { platform: "Instagram", url: "" },
+      { platform: "TikTok", url: "" },
+      { platform: "X", url: "" },
+      { platform: "Pinterest", url: "" },
     ],
   },
   homepage_hero: {

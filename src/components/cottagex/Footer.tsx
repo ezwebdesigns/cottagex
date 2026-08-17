@@ -1,19 +1,22 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Globe } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from '@/lib/useTranslations';
-
-const socialIcons = [Globe, Globe, Globe];
+import SocialIcon from '@/components/cottagex/SocialIcon';
 
 type FooterLink = { label: string; href: string };
+type FooterSocial = { platform: string; url: string };
 type FooterSettings = {
   description?: string;
   logo?: string;
+  discoverTitle?: string;
+  quickLinksTitle?: string;
+  aboutTitle?: string;
   discover?: FooterLink[];
   quickLinks?: FooterLink[];
   about?: FooterLink[];
+  socials?: FooterSocial[];
 };
 
 export default function Footer() {
@@ -36,6 +39,7 @@ export default function Footer() {
   const discover = footerSettings?.discover ?? [];
   const quickLinks = footerSettings?.quickLinks ?? [];
   const about = footerSettings?.about ?? [];
+  const socials = (footerSettings?.socials ?? []).filter(s => s.url);
   const hasAnyLinks = discover.length > 0 || quickLinks.length > 0 || about.length > 0;
 
   if (!footerSettings) return null;
@@ -54,18 +58,27 @@ export default function Footer() {
               {footerSettings.description && (
                 <p className="text-sm text-white/60 leading-relaxed mb-4">{footerSettings.description}</p>
               )}
-              <div className="flex gap-3">
-                {socialIcons.map((Icon, i) => (
-                  <a key={i} href="#" className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#0f51ec] flex items-center justify-center transition-colors">
-                    <Icon className="w-4 h-4" />
-                  </a>
-                ))}
-              </div>
+              {socials.length > 0 && (
+                <div className="flex gap-3">
+                  {socials.map((s) => (
+                    <a
+                      key={s.platform}
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={s.platform}
+                      className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                    >
+                      <SocialIcon platform={s.platform} className="w-4 h-4" />
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
 
             {discover.length > 0 && (
               <div>
-                <h4 className="text-sm font-semibold text-white/90 mb-3">{t.footer.discover}</h4>
+                <h4 className="text-sm font-semibold text-white/90 mb-3">{footerSettings.discoverTitle || t.footer.discover}</h4>
                 <ul className="space-y-2">
                   {discover.map((item, i) => (
                     <li key={i}>
@@ -83,7 +96,7 @@ export default function Footer() {
 
             {quickLinks.length > 0 && (
               <div>
-                <h4 className="text-sm font-semibold text-white/90 mb-3">{t.footer.support}</h4>
+                <h4 className="text-sm font-semibold text-white/90 mb-3">{footerSettings.quickLinksTitle || t.footer.support}</h4>
                 <ul className="space-y-2">
                   {quickLinks.map((item, i) => (
                     <li key={i}>
@@ -101,7 +114,7 @@ export default function Footer() {
 
             {about.length > 0 && (
               <div>
-                <h4 className="text-sm font-semibold text-white/90 mb-3">{t.footer.company}</h4>
+                <h4 className="text-sm font-semibold text-white/90 mb-3">{footerSettings.aboutTitle || t.footer.company}</h4>
                 <ul className="space-y-2">
                   {about.map((item, i) => (
                     <li key={i}>
@@ -121,9 +134,6 @@ export default function Footer() {
 
         <div className="mt-10 pt-8 border-t border-white/10">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-white/50 text-center sm:text-left max-w-2xl">
-              {t.footer.affiliateNote}
-            </p>
             <p className="text-xs text-white/50 flex-shrink-0">
               © {new Date().getFullYear()} Chalet Express. {t.footer.rights}
             </p>

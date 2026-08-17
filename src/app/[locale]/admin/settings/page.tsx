@@ -445,6 +445,9 @@ export default function AdminSettingsPage() {
           <div className="space-y-4">
             <Field label="Description" value={footer?.description ?? ''} onChange={(v) => setFooter({ ...footer, description: v })} textarea />
             <ImageUploader label="Logo" value={footer?.logo ?? ''} onChange={(v) => setFooter({ ...footer, logo: v })} />
+            <Field label="Discover Column Title" value={footer?.discoverTitle ?? ''} onChange={(v) => setFooter({ ...footer, discoverTitle: v })} />
+            <Field label="Quick Links Column Title" value={footer?.quickLinksTitle ?? ''} onChange={(v) => setFooter({ ...footer, quickLinksTitle: v })} />
+            <Field label="About Column Title" value={footer?.aboutTitle ?? ''} onChange={(v) => setFooter({ ...footer, aboutTitle: v })} />
 
             <div>
               <h4 className="text-sm font-semibold text-slate-600 mb-3">DISCOVER</h4>
@@ -503,6 +506,30 @@ export default function AdminSettingsPage() {
                   </div>
                 ))}
                 <button onClick={() => setFooter({ ...footer, about: [...(footer?.about || []), { label: '', href: '' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">+ Add Link</button>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-semibold text-slate-600 mb-3">SOCIAL LINKS</h4>
+              <p className="text-xs text-slate-400 mb-3">Icons appear below the footer description. Leave a URL empty to hide an icon.</p>
+              <div className="space-y-2">
+                {['Facebook', 'Instagram', 'TikTok', 'X', 'Pinterest'].map((platform) => (
+                  <div key={platform} className="flex gap-2 items-center">
+                    <span className="w-28 text-sm font-medium text-slate-600">{platform}</span>
+                    <input
+                      placeholder="https://..."
+                      value={(footer?.socials ?? []).find((s: any) => s.platform === platform)?.url ?? ''}
+                      onChange={(e) => {
+                        const arr = [...(footer?.socials ?? [])];
+                        const idx = arr.findIndex((s: any) => s.platform === platform);
+                        if (idx >= 0) arr[idx] = { ...arr[idx], url: e.target.value };
+                        else arr.push({ platform, url: e.target.value });
+                        setFooter({ ...footer, socials: arr });
+                      }}
+                      className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
