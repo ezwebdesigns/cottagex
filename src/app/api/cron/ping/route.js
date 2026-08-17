@@ -47,7 +47,11 @@ export async function GET(request) {
           },
         })
 
-        const available = res.ok // 200-299
+        // Un lien est considéré mort uniquement sur un vrai 404/410.
+        // 429 (rate limit), 403, 5xx et redirections = serveur vivant :
+        // le lien existe toujours, on ne pénalise pas le cottage.
+        const dead     = res.status === 404 || res.status === 410
+        const available = !dead
         const pingStatus = res.status
 
         await client.query(`
@@ -65,19 +69,10 @@ export async function GET(request) {
         console.log(`[ping] ${cottage.name?.slice(0, 35).padEnd(35)} → ${pingStatus} ${available ? '✓' : '✗'}`)
 
       } catch (err) {
-        // Timeout ou erreur réseau → marquer indisponible par précaution
-        await client.query(`
-          UPDATE affiliatecottages
-          SET
-            available   = false,
-            ping_status = 0,
-            last_pinged = NOW()
-          WHERE id = $1
-        `, [cottage.id])
-
-        results.unavailable++
+        // Timeout ou erreur réseau : on ne peut pas confirmer que le lien
+        // est mort. On garde available inchangé (précaution inverse).
         results.errors++
-        console.error(`[ping] ${cottage.id} erreur: ${err.message}`)
+        console.error(`[ping] ${cottage.id} erreur réseau (available inchangé): ${err.message}`)
       }
 
       // Petite pause entre les pings pour ne pas surcharger
