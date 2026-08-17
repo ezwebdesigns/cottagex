@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
   const limit    = parseInt(searchParams.get('limit') || '3', 10)
   const sort     = (searchParams.get('sort') || 'rating') as 'rating' | 'price' | 'newest'
   const category     = searchParams.get('category') || ''
-  const featuredOnly = searchParams.get('featured') === 'true'
+  const featuredOnly = searchParams.get('featured') !== 'false'
   const affiliateOnly = searchParams.get('affiliateOnly') === 'true'
 
   if (limit < 1 || limit > 20) {

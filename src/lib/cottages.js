@@ -58,7 +58,7 @@ const CATEGORY_CONDITIONS = {
  * @param {number}  [opts.limit]      - nombre de résultats (défaut: 3)
  * @param {string}  [opts.sort]       - 'rating' | 'price' | 'newest' (défaut: 'rating')
  * @param {string[]}[opts.categories] - ['family','hotTub','lakefront','luxury']
- * @param {boolean} [opts.featuredOnly] - seulement is_featured = true (défaut: false)
+ * @param {boolean} [opts.featuredOnly] - seulement is_featured = true (défaut: true — les chalets standard ne sont jamais affichés sur le frontend)
  * @param {boolean} [opts.affiliateOnly] - seulement ceux avec affiliate_url (défaut: false)
  * @returns {Promise<Array>}
  */
@@ -68,12 +68,12 @@ export async function getCottages({
   limit       = 3,
   sort        = 'rating',
   categories  = [],
-  featuredOnly = false,
+  featuredOnly = true,
   affiliateOnly = false,
 } = {}) {
 
   const conditions = ['is_hidden = false']
-  if (!featuredOnly) conditions.push('available = true')
+  conditions.push('available = true')
   const params     = []
   let   paramIndex = 1
 

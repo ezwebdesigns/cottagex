@@ -44,7 +44,7 @@ const provinceDisplay: Record<string, string> = {
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
 
-  const cottages = await getCottages({ limit: 12, sort: 'rating', featuredOnly: false }).catch(() => []);
+  const cottages = await getCottages({ limit: 12, sort: 'rating' }).catch(() => []);
 
   const settings = await getAllSettings().catch(() => ({} as Record<string, any>));
 
