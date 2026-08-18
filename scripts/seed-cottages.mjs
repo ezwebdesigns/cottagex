@@ -31,8 +31,8 @@ const pool = new Pool({
 
 function nextWeekend() {
   const now = new Date()
-  // Choisit aléatoirement une date dans les 6 prochains mois
-  const daysAhead = Math.floor(Math.random() * 180) + 7 // entre 7 et 187 jours
+  // Choisit aléatoirement une date dans les 12 prochains mois
+  const daysAhead = Math.floor(Math.random() * 365) + 7 // entre 7 et 372 jours
   const checkin = new Date(now)
   checkin.setDate(now.getDate() + daysAhead)
   // Ajuste au vendredi le plus proche
