@@ -7,7 +7,7 @@ import { BreadcrumbSchema, ArticleSchema, FAQPageSchema } from '@/components/seo
 import { CottageShortcode } from '@/components/CottageShortcode';
 import FAQAccordion from '@/components/FAQAccordion';
 import TableOfContents from '@/components/TableOfContents';
-import AdRenderer from '@/components/AdRenderer';
+import SidebarAd from '@/components/SidebarAd';
 import Image from 'next/image';
 import type { TocItem } from '@/lib/extract-toc';
 
@@ -68,10 +68,9 @@ type ArticleStandardProps = {
   toc?: TocItem[];
   enhancedContent?: string;
   recentArticles?: RecentArticle[];
-  adScript?: string;
 };
 
-export default function ArticleStandard({ locale, article, isHtml, toc, enhancedContent, recentArticles, adScript }: ArticleStandardProps) {
+export default function ArticleStandard({ locale, article, isHtml, toc, enhancedContent, recentArticles }: ArticleStandardProps) {
   const router = useRouter();
   const pathname = usePathname();
   const contentHtml = enhancedContent || article.content;
@@ -179,7 +178,7 @@ export default function ArticleStandard({ locale, article, isHtml, toc, enhanced
                 </div>
               </div>
             )}
-            {adScript && <AdRenderer html={adScript} />}
+            <SidebarAd />
           </div>
         </aside>
       </div>

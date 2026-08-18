@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { initialArticles } from '@/lib/mock-data';
 import { db } from '@/lib/db';
-import { articles, siteSettings } from '@/db/schema';
+import { articles } from '@/db/schema';
 import { eq, desc, and, ne } from 'drizzle-orm';
 import { locales } from '@/i18n/routing';
 import ArticleStandard from '@/templates/ArticleStandard';
@@ -137,15 +137,6 @@ async function fetchRecentArticles(excludeSlug: string) {
   }
 }
 
-async function fetchAdScript() {
-  try {
-    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, "ads"));
-    return (row?.data as { sidebarScript?: string })?.sidebarScript || "";
-  } catch {
-    return "";
-  }
-}
-
 export default async function ArticleDetailPage({
   params,
 }: {
@@ -156,14 +147,11 @@ export default async function ArticleDetailPage({
 
   if (!article) notFound();
 
-  const [recentArticles, adScript] = await Promise.all([
-    fetchRecentArticles(slug),
-    fetchAdScript(),
-  ]);
+  const recentArticles = await fetchRecentArticles(slug);
 
   if (article.isListicle) {
-    return <ArticleListicle locale={locale} article={article} toc={article.toc} enhancedContent={article.enhancedContent} recentArticles={recentArticles} adScript={adScript} />;
+    return <ArticleListicle locale={locale} article={article} toc={article.toc} enhancedContent={article.enhancedContent} recentArticles={recentArticles} />;
   }
 
-  return <ArticleStandard locale={locale} article={article} isHtml={(article as any).isHtml} toc={article.toc} enhancedContent={article.enhancedContent} recentArticles={recentArticles} adScript={adScript} />;
+  return <ArticleStandard locale={locale} article={article} isHtml={(article as any).isHtml} toc={article.toc} enhancedContent={article.enhancedContent} recentArticles={recentArticles} />;
 }
