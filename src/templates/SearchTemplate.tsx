@@ -6,6 +6,7 @@ import PropertyCard from '@/components/cottagex/PropertyCard';
 import CTASection from '@/components/cottagex/CTASection';
 import SearchFaq from '@/components/cottagex/SearchFaq';
 import SearchInspirations from '@/components/cottagex/SearchInspirations';
+import CategoryScroller from '@/components/cottagex/CategoryScroller';
 import { BreadcrumbSchema, ItemListSchema } from '@/components/seo/SchemaOrg';
 
 const categoryIconMap: Record<string, React.ElementType> = {
@@ -92,10 +93,12 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
       province: c.province || '',
       price: c.price_cad || 0,
       rating: c.rating || 0,
+      reviews: c.reviews || 0,
       badge: c.type || 'Featured',
       image: c.thumbnail || (Array.isArray(c.photos) && c.photos[0]) || 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=800&q=80',
       description: Array.isArray(c.amenities) ? c.amenities.slice(0, 3).join(' • ') : '',
       vrboUrl: c.affiliate_url || c.google_link || '#',
+      source: c.source,
       beds: c.bedrooms || 0,
       baths: c.bathrooms || 0,
       guests: c.sleeps || 0,
@@ -130,7 +133,7 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
 
       {categories && categories.length > 0 && (
         <section className="pb-8 sm:pb-10 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="flex justify-center gap-4 sm:gap-5 lg:gap-7 overflow-x-auto [&::-webkit-scrollbar]:hidden pb-2" style={{ scrollbarWidth: 'none' }}>
+          <CategoryScroller variant="light" className="flex justify-center gap-4 sm:gap-5 lg:gap-7 overflow-x-auto [&::-webkit-scrollbar]:hidden pb-2" style={{ scrollbarWidth: 'none' }}>
             {categories.map((cat: any) => {
               const Icon = categoryIconMap[cat.id] || Mountain;
               const Wrapper = cat.link ? 'a' : 'div';
@@ -145,7 +148,7 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
                 </Wrapper>
               );
             })}
-          </div>
+          </CategoryScroller>
         </section>
       )}
 

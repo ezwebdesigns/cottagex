@@ -4,10 +4,11 @@ import { useState, useEffect } from 'react';
 import { Globe, Menu } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useTranslations } from '@/lib/useTranslations';
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function Header({ onMenuToggle }: { onMenuToggle?: () => void }) {
-  const { t, lang } = useTranslations();
+  const t = useTranslations();
+  const lang = useLocale();
   const pathname = usePathname();
   const [logo, setLogo] = useState<string | null>(null);
 
@@ -57,7 +58,7 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: () => void }) 
               className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors min-h-[44px]"
             >
               <Globe className="w-4 h-4 text-[#191e3b]" />
-              <span className="text-sm font-semibold text-[#191e3b]">{t.langLabel}</span>
+              <span className="text-sm font-semibold text-[#191e3b]">{t('langLabel')}</span>
             </button>
           </div>
         </div>

@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Kayak, Bath, Users, Gem, PawPrint, Mountain, Heart, Home, Trees, TreePine, Umbrella, Building2, Snowflake, Waves, Footprints, Sailboat } from 'lucide-react';
-import { useTranslations } from '@/lib/useTranslations';
+import CategoryScroller from '@/components/cottagex/CategoryScroller';
 
 const WIDGET_HTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref=""></div><script class="eg-widgets-script" src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"></script>`;
 
@@ -27,7 +27,6 @@ type HeroProps = {
 };
 
 export default function Hero({ tag, title, description, image, imageAlt, catItems }: HeroProps) {
-  const { t } = useTranslations();
   const [scrollY, setScrollY] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -117,7 +116,7 @@ export default function Hero({ tag, title, description, image, imageAlt, catItem
         </div>
 
         {catItems && catItems.length > 0 && (
-          <div className="flex gap-4 sm:gap-5 lg:gap-7 justify-center mt-8 lg:mt-12 overflow-x-auto [&::-webkit-scrollbar]:hidden pb-2" style={{ scrollbarWidth: 'none' }}>
+          <CategoryScroller variant="dark" className="flex gap-4 sm:gap-5 lg:gap-7 justify-center mt-8 lg:mt-12 overflow-x-auto [&::-webkit-scrollbar]:hidden pb-2" style={{ scrollbarWidth: 'none' }}>
             {catItems.map((cat) => {
               const Icon = iconMap[cat.id] || Mountain;
               const Wrapper = cat.link ? 'a' : 'div';
@@ -132,7 +131,7 @@ export default function Hero({ tag, title, description, image, imageAlt, catItem
                 </Wrapper>
               );
             })}
-          </div>
+          </CategoryScroller>
         )}
       </div>
     </section>

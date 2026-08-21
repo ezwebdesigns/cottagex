@@ -107,9 +107,10 @@ export default function ArticleListicle({ locale, article, toc, enhancedContent,
                   const param2 = (parts[i + 1] || '').trim().toLowerCase() || 'rating';
                   const param3 = (parts[i + 2] || '').trim().toLowerCase();
                   const limitStr = parts[i + 3];
-                  const limit = limitStr ? parseInt(limitStr, 10) : (param3 && /^\d+$/.test(param3) ? parseInt(param3) : 6);
+                  const limit = limitStr ? parseInt(limitStr, 10) : (param3 && /^\d+$/.test(param3) ? parseInt(param3, 10) : null);
                   const actualParam3 = limitStr ? param3 : '';
-                  return <CottageShortcode key={i} param1={param1} param2={param2} param3={actualParam3 || undefined} limit={Math.min(limit, 10)} />;
+                  if (limit === null || limit < 1) return null;
+                  return <CottageShortcode key={i} param1={param1} param2={param2} param3={actualParam3 || undefined} limit={limit} />;
                 }
                 return null;
               });

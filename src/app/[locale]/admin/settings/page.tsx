@@ -448,6 +448,7 @@ export default function AdminSettingsPage() {
             <Field label="Discover Column Title" value={footer?.discoverTitle ?? ''} onChange={(v) => setFooter({ ...footer, discoverTitle: v })} />
             <Field label="Quick Links Column Title" value={footer?.quickLinksTitle ?? ''} onChange={(v) => setFooter({ ...footer, quickLinksTitle: v })} />
             <Field label="About Column Title" value={footer?.aboutTitle ?? ''} onChange={(v) => setFooter({ ...footer, aboutTitle: v })} />
+            <Field label="Top Destinations Column Title" value={footer?.topDestinationsTitle ?? ''} onChange={(v) => setFooter({ ...footer, topDestinationsTitle: v })} />
 
             <div>
               <h4 className="text-sm font-semibold text-slate-600 mb-3">DISCOVER</h4>
@@ -506,6 +507,26 @@ export default function AdminSettingsPage() {
                   </div>
                 ))}
                 <button onClick={() => setFooter({ ...footer, about: [...(footer?.about || []), { label: '', href: '' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">+ Add Link</button>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-semibold text-slate-600 mb-3">TOP DESTINATIONS</h4>
+              <div className="space-y-2">
+                {(footer?.topDestinations ?? []).map((item: any, i: number) => (
+                  <div key={i} className="flex gap-2 items-center">
+                    <input placeholder="Label" value={item.label} onChange={(e) => {
+                      const arr = [...footer.topDestinations]; arr[i] = { ...arr[i], label: e.target.value };
+                      setFooter({ ...footer, topDestinations: arr });
+                    }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
+                    <input placeholder="href (use {locale})" value={item.href} onChange={(e) => {
+                      const arr = [...footer.topDestinations]; arr[i] = { ...arr[i], href: e.target.value };
+                      setFooter({ ...footer, topDestinations: arr });
+                    }} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20" />
+                    <button onClick={() => setFooter({ ...footer, topDestinations: footer.topDestinations.filter((_: any, idx: number) => idx !== i) })} className="text-xs text-red-500 hover:text-red-700">Remove</button>
+                  </div>
+                ))}
+                <button onClick={() => setFooter({ ...footer, topDestinations: [...(footer?.topDestinations || []), { label: '', href: '' }] })} className="text-sm text-[#0f51ec] font-semibold hover:underline">+ Add Link</button>
               </div>
             </div>
 

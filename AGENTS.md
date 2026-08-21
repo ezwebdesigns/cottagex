@@ -44,20 +44,22 @@ Replace the current cottage site frontend with a new design from Base44, adapted
 - Contact (`ContactForm.tsx`) — colors migrated, email updated to `socialmediacanada@gmail.com`
 - Build compiles successfully (runtime DB errors only, falls back to defaults)
 
-### Phase 3 ✅ — i18n merge
-- Merged missing keys from `messages/*.json` into `translations.ts` (home, admin, nav.login/signup/admin, footer.newsletter/support)
-- Removed dead `messages/` directory (unused next-intl JSON files)
-- Removed `src/i18n/request.ts` (unused next-intl server loader)
-- Kept `src/i18n/routing.ts` (used by 3 page files for `locales` array)
-- Active system: `TranslationsProvider` context (custom), used by 7+ components
-- Dormant system: `next-intl@^4.12.0` installed but unused in source (safe to remove later)
+### Phase 3 ✅ — i18n migration to next-intl (completed Aug 17 2026)
+- **Active system: next-intl@^4.12.0** — `messages/en.json` + `messages/fr.json`, `createNextIntlPlugin()` in next.config.ts, `src/i18n/request.ts` (getRequestConfig, fallback `en`, manual locale validation via `locales as readonly string[]` since `hasLocale` doesn't exist in 4.12), `src/i18n/routing.ts` (exports `locales`/`defaultLocale` only, **not** `routing`)
+- `src/app/[locale]/layout.tsx` — `NextIntlClientProvider` + `getMessages()`, `setRequestLocale(locale)` REQUIRED (without it requestLocale falls back to `en`), `notFound()` for invalid locales
+- `src/proxy.ts` (Next.js 16 proxy convention, not middleware.ts) — auto locale detection via Accept-Language, redirects `/` → `/en|/fr`, keeps `x-locale`/`x-pathname` headers + maintenance
+- 10 components + `[locale]/not-found.tsx` rewritten to `useTranslations`/`useLocale` (`t('key')`, `t.raw()` for dynamic keys, `t.has()` for optional keys)
+- `src/global.d.ts` — `IntlMessages` typing from `messages/en.json`
+- Deleted: `src/lib/translations.ts`, `src/lib/TranslationsProvider.tsx`, `src/lib/useTranslations.ts`, `src/proxy.js`, dead `messages/` dir, `src/i18n/request.ts` (old next-intl server loader) — rebuilt with current setup
+- Admin lives under `[locale]/admin` → `/en/admin`, `/fr/admin`
+- Note: next-intl peerDeps compatible with next ^16; `t.raw(key: string): any` accepts dynamic keys
 
 ### Phase 4 (Pending) — Data layer
-Connect to `affiliatecottages`, `articles`, `pages` tables (blocked by Supabase data transfer quota)
+Connect to `affiliatecottages`, `articles`, `pages` tables (migrated to NEON)
 
 ## Key Context
-- Supabase: `postgresql://postgres.tqcdlzmlulklnwdnhtwn:Chaletexpress123%40!@aws-1-us-east-2.pooler.supabase.com:5432/postgres`
+- NEON: `postgresql://neondb_owner:npg_Yq5DfVIswFB9@ep-morning-frog-apofbubd-pooler.c-7.us-east-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require`
 - Vercel: project `prj_DDKFU49eV87CnzLS87CwGiB3SsfC`, team `team_VGJquS9c3L59Q2rJsQKPaM4t`
-- 33 cottages seeded in `affiliatecottages` table; `affiliate_url` and `is_featured` are NULL/false
-- `NODE_TLS_REJECT_UNAUTHORIZED=0` needed locally for Supabase SSL
+- 145 cottages in `affiliatecottages` table (NEON production branch)
+- `NODE_TLS_REJECT_UNAUTHORIZED=0` not needed for NEON
 - Base44 Vite source in `public/frontend/src/` for reference

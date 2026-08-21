@@ -163,7 +163,7 @@ export function ItemListSchema({ items, url }: {
       availability: 'https://schema.org/InStock',
     };
     if (item.url) offer.url = item.url;
-    if (item.price != null) offer.price = item.price;
+    if (item.price != null && item.price > 0) offer.price = item.price;
     product.offers = offer;
 
     if (item.rating != null) {

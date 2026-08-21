@@ -1,0 +1,208 @@
+{
+  "nav": {
+    "explore": "Explore",
+    "ontario": "Ontario",
+    "guides": "Guides & Articles",
+    "destinations": "Destinations",
+    "about": "About Us",
+    "contact": "Contact",
+    "terms": "Terms",
+    "home": "Home",
+    "admin": "Admin Panel",
+    "login": "Log In",
+    "signup": "Sign Up",
+    "search": "Search"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for doesn't exist or has been moved.",
+    "backHome": "Back to Home"
+  },
+  "hero": {
+    "title": "Your Wild Canadian Sanctuary",
+    "subtitle": "Discover handpicked chalets across Canada's most breathtaking landscapes — from misty Laurentian lakes to the rugged peaks of the Rockies.",
+    "args": [
+      { "icon": "shield", "text": "Verified VRBO listings" },
+      { "icon": "map", "text": "Curated by province" },
+      { "icon": "heart", "text": "Save your favorites" },
+      { "icon": "trees", "text": "Year-round wilderness" }
+    ],
+    "search": {
+      "title": "Find Your Chalet",
+      "destination": "Where to?",
+      "destinationPlaceholder": "Muskoka, Banff, Tremblant...",
+      "checkIn": "Check in",
+      "checkOut": "Check out",
+      "guests": "Guests",
+      "search": "Search",
+      "guestsLabel": "2 guests"
+    }
+  },
+  "home": {
+    "hero_title": "Find Your Perfect Canadian Escape",
+    "hero_subtitle": "Instantly query and secure verified premium lake houses and mountain lodges.",
+    "trending": "Trending Destinations",
+    "trending_sub": "Discover Canada's most sought-after wilderness corridors.",
+    "browse": "Browse Recommended Cottages",
+    "browse_sub": "Handpicked cabins tailored to your favorite wilderness scenery.",
+    "search_by_city": "Search by City and Category",
+    "search_by_city_sub": "Quickly jump into active curated rentals across major Canadian regions.",
+    "partner_title": "Own a Beautiful Cabin?",
+    "partner_sub": "Expand your booking volume by listing your Canadian property inside our premium recommended guides."
+  },
+  "properties": {
+    "title": "Featured Chalets",
+    "subtitle": "Handpicked escapes across the Canadian wilderness",
+    "perNight": "/ night",
+    "checkPricing": "Check Pricing",
+    "reviews": "{count, plural, one {# review} other {# reviews}}",
+    "viewAll": "View all chalets",
+    "bookOnVrbo": "Book on VRBO"
+  },
+  "badges": {
+    "waterfront": "Waterfront",
+    "remote": "Remote",
+    "mountainView": "Mountain View",
+    "forest": "Forest",
+    "lakeside": "Lakeside",
+    "secluded": "Secluded"
+  },
+  "sidebar": {
+    "menu": "Menu",
+    "favorites": "My Favorites",
+    "noFavorites": "No favorites yet — tap the heart on any chalet!",
+    "weather": "Weather",
+    "contact": "Contact",
+    "follow": "Follow Us",
+    "quickLinks": "Quick Links"
+  },
+  "weather": {
+    "feelsLike": "Feels like",
+    "humidity": "Humidity",
+    "wind": "Wind",
+    "sunny": "Sunny",
+    "cloudy": "Cloudy",
+    "partlyCloudy": "Partly Cloudy",
+    "rainy": "Light Rain",
+    "snowy": "Snowy"
+  },
+  "guides": {
+    "title": "Travel Guides",
+    "subtitle": "Stories, itineraries, and curated lists from the Canadian wild",
+    "readTime": "min read",
+    "backToGuides": "Back to Guides",
+    "by": "by",
+    "published": "Published",
+    "rankedChalets": "Top Ranked Chalets",
+    "estimatedPrice": "Est. price",
+    "bookNow": "Book Now",
+    "viewGuide": "Read Guide",
+    "noArticles": "No articles yet.",
+    "checkBack": "Check back soon for new guides.",
+    "contributor": "Contributor"
+  },
+  "destination": {
+    "overview": "Overview",
+    "features": "Why Visit",
+    "faq": "Frequently Asked Questions",
+    "exploreChalets": "Explore Chalets",
+    "learnMore": "Learn More"
+  },
+  "terms": {
+    "title": "Terms & Affiliate Disclosure",
+    "updated": "Last updated: July 2026",
+    "intro": "Chalet Express is an independent travel directory dedicated to showcasing Canadian chalet rentals. We participate in the VRBO (Expedia Group) Affiliate Program, which means we may earn a commission when you book a stay through links on our site — at no additional cost to you.",
+    "sections": [
+      {
+        "heading": "Affiliate Relationship",
+        "body": "Chalet Express is not a property manager or booking agent. We curate and display chalet listings from VRBO and other partners. When you click a booking button or use the search widget, you will be redirected to VRBO's platform to complete your reservation. We may receive a commission for qualifying bookings made through our affiliate links."
+      },
+      {
+        "heading": "Pricing & Availability",
+        "body": "All prices displayed on Chalet Express are approximate and based on data available at the time of publication. Actual pricing, availability, and property details are subject to change and should be verified directly on VRBO before booking. Chalet Express does not guarantee the accuracy of pricing or availability information."
+      },
+      {
+        "heading": "No Warranty",
+        "body": "Chalet Express provides all information on an \"as is\" basis without warranties of any kind, express or implied. We do not warrant that the information is accurate, complete, or current. Your use of the site and any reliance on its content is at your own risk."
+      },
+      {
+        "heading": "Third-Party Links",
+        "body": "Our site contains links to third-party websites (including VRBO and Expedia Group properties). We are not responsible for the content, privacy policies, or practices of these external sites. Your interactions with third-party websites are solely between you and that website."
+      },
+      {
+        "heading": "Limitation of Liability",
+        "body": "Chalet Express shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from your use of or inability to use the site, including but not limited to booking errors, property misrepresentations, or travel disruptions."
+      },
+      {
+        "heading": "Contact",
+        "body": "For questions about these terms or our affiliate relationships, please reach out via the contact information in our sidebar or footer."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Your gateway to Canada's most extraordinary chalets.",
+    "newsletter_title": "Unlock Exclusive Cottage Deals",
+    "newsletter_sub": "Join our newsletter to receive premium seasonal recommendation lists first.",
+    "discover": "Discover",
+    "explore": "Explore",
+    "company": "Company",
+    "legal": "Legal",
+    "support": "Support & Legal",
+    "topDestinations": "Top Destinations",
+    "affiliateNote": "Chalet Express is a VRBO affiliate. We may earn a commission on bookings made through our links.",
+    "rights": "All rights reserved.",
+    "madeIn": "Made with care in Canada"
+  },
+  "profile": {
+    "title": "Account",
+    "signIn": "Sign In",
+    "trips": "My Trips",
+    "favorites": "Favorites",
+    "help": "Help Center"
+  },
+  "admin": {
+    "login": "Admin Login",
+    "dashboard": "Dashboard",
+    "pages": "Pages",
+    "articles": "Articles",
+    "library": "Library",
+    "messages": "Messages",
+    "create_page": "Create New Page",
+    "create_article": "Create New Article",
+    "standard": "Standard",
+    "listicle": "Listicle",
+    "location": "Location",
+    "published": "Published",
+    "draft": "Draft",
+    "save_draft": "Save as Draft",
+    "publish": "Publish",
+    "save_changes": "Save Changes",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "preview": "Preview"
+  },
+  "langLabel": "FR",
+  "provinces": {
+    "ontario": "Ontario",
+    "quebec": "Quebec",
+    "britishColumbia": "British Columbia",
+    "alberta": "Alberta"
+  },
+  "categories": [
+    { "id": "lakefront", "label": "Lakefront" },
+    { "id": "hot-tub", "label": "Hot Tub" },
+    { "id": "family", "label": "Family" },
+    { "id": "luxury", "label": "Luxury" },
+    { "id": "pet-friendly", "label": "Pet-Friendly" },
+    { "id": "mountain", "label": "Mountain" },
+    { "id": "romantic", "label": "Romantic" },
+    { "id": "log-cabin", "label": "Log Cabin" },
+    { "id": "countryside", "label": "Countryside" },
+    { "id": "secluded", "label": "Secluded" },
+    { "id": "beach", "label": "Beach" },
+    { "id": "resort", "label": "Resort" },
+    { "id": "skiing", "label": "Skiing" },
+    { "id": "pools", "label": "Pools" },
+    { "id": "hiking", "label": "Hiking" }
+  ]
+}

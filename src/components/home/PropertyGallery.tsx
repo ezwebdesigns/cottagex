@@ -5,6 +5,7 @@ import { MapPin, ExternalLink } from 'lucide-react';
 import SourceBadge from '@/components/SourceBadge';
 import StarRating from '@/components/StarRating';
 import { useProductSchemas } from '@/hooks/useProductSchemas';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
 type GalleryTab = { name: string; category: string; shortcode?: string };
@@ -51,6 +52,7 @@ function CardSkeleton() {
 }
 
 function CottageCard({ cottage }: { cottage: any }) {
+  const t = useTranslations();
   const photo = Array.isArray(cottage.photos) && cottage.photos[0] ? cottage.photos[0] : '';
   const badge = cottage.source || (Array.isArray(cottage.amenities) && cottage.amenities[0]) || 'Featured';
   const location = cottage.province ? `${cottage.slug}, ${cottage.province}` : cottage.slug;
@@ -85,11 +87,13 @@ function CottageCard({ cottage }: { cottage: any }) {
 
         <div className="flex flex-col md:flex-row md:items-center justify-between pt-2 md:pt-3 border-t border-slate-100 gap-2">
           <div>
-            {cottage.price_cad && (
+            {cottage.price_cad > 0 ? (
               <>
                 <span className="text-sm md:text-xl font-bold text-[#1F51C6]">${cottage.price_cad}</span>
                 <span className="text-[10px] md:text-sm text-slate-500">/night</span>
               </>
+            ) : (
+              <span className="text-xs md:text-sm font-bold text-[#1F51C6]">{t('properties.checkPricing')}</span>
             )}
           </div>
           <a

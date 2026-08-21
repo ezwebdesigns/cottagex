@@ -5,6 +5,8 @@ import { pages } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import StandardTemplate from '@/templates/StandardTemplate';
 
+export const revalidate = 3600;
+
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
 async function fetchPage(slug: string) {

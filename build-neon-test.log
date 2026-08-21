@@ -1,0 +1,960 @@
+﻿
+> chaletexpress@0.1.0 build
+> next build
+
+Ôû▓ Next.js 16.2.6 (Turbopack)
+- Environments: .env.local, .env.production, .env
+
+  Creating an optimized production build ...
+Ô£ô Compiled successfully in 50s
+  Running TypeScript ...
+  Finished TypeScript in 5.4s ...
+  Collecting page data using 23 workers ...
+node.exe : (node:41796) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as 
+aliases for 'verify-full'.
+Au caractère C:\nvm4w\nodejs\npm.ps1:16 : 5
++     & "$basedir/node$exe"  "$basedir/node_modules/npm/bin/npm-cli.js" ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ((node:41796) Wa... 'verify-full'.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq 
+semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:27028) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 
+'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq 
+semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  Generating static pages using 23 workers (0/86) ...
+(node:34728) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 
+'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq 
+semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3120) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 
+'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq 
+semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:30272) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 
+'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq 
+semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  Generating static pages using 23 workers (21/86) 
+(node:34592) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 
+'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq 
+semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Failed to fetch page data for newfoundland Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: newfoundland
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'newfoundland' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch search_results settings Error: Failed query: select "id", "section", "data", "updated_at" from 
+"site_settings" where "site_settings"."section" = $1
+params: search_results
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:5673) {
+  query: 'select "id", "section", "data", "updated_at" from "site_settings" where "site_settings"."section" = $1',
+  params: [ 'search_results' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:5673) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch page data for ontario Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: ontario
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'ontario' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+  Generating static pages using 23 workers (42/86) 
+Failed to fetch page data for ontario Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: ontario
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'ontario' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch search_results settings Error: Failed query: select "id", "section", "data", "updated_at" from 
+"site_settings" where "site_settings"."section" = $1
+params: search_results
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:5673) {
+  query: 'select "id", "section", "data", "updated_at" from "site_settings" where "site_settings"."section" = $1',
+  params: [ 'search_results' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:5673) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch cottages for search undefined Error: getaddrinfo ENOTFOUND base
+    at async f (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\src_lib_cottages_116gr7i.js:33:11)
+    at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6076) {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'base'
+}
+Failed to fetch page data for quebec Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: quebec
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'quebec' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch page data for quebec Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: quebec
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'quebec' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch cottages for search undefined Error: getaddrinfo ENOTFOUND base
+    at async f (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\src_lib_cottages_116gr7i.js:33:11)
+    at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6076) {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'base'
+}
+Failed to fetch search_hero settings Error: Failed query: select "id", "section", "data", "updated_at" from 
+"site_settings" where "site_settings"."section" = $1
+params: search_hero
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6194) {
+  query: 'select "id", "section", "data", "updated_at" from "site_settings" where "site_settings"."section" = $1',
+  params: [ 'search_hero' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6194) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch page data for alberta Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: alberta
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'alberta' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch page data for alberta Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: alberta
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'alberta' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch search_hero settings Error: Failed query: select "id", "section", "data", "updated_at" from 
+"site_settings" where "site_settings"."section" = $1
+params: search_hero
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6194) {
+  query: 'select "id", "section", "data", "updated_at" from "site_settings" where "site_settings"."section" = $1',
+  params: [ 'search_hero' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6194) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch page data for british-columbia Error: Failed query: select "id", "title", "slug", "template", 
+"content", "seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", 
+"cta_description", "explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", 
+"is_published", "published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: british-columbia
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'british-columbia' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch page data for british-columbia Error: Failed query: select "id", "title", "slug", "template", 
+"content", "seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", 
+"cta_description", "explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", 
+"is_published", "published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: british-columbia
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'british-columbia' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch search_categories Error: Failed query: select "id", "section", "data", "updated_at" from 
+"site_settings" where "site_settings"."section" = $1
+params: search_categories
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6381) {
+  query: 'select "id", "section", "data", "updated_at" from "site_settings" where "site_settings"."section" = $1',
+  params: [ 'search_categories' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6381) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch page data for nova-scotia Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: nova-scotia
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'nova-scotia' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch page data for new-brunswick Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: new-brunswick
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'new-brunswick' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch search_categories Error: Failed query: select "id", "section", "data", "updated_at" from 
+"site_settings" where "site_settings"."section" = $1
+params: search_categories
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6381) {
+  query: 'select "id", "section", "data", "updated_at" from "site_settings" where "site_settings"."section" = $1',
+  params: [ 'search_categories' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6381) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch page data for new-brunswick Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: new-brunswick
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'new-brunswick' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch page data for nova-scotia Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: nova-scotia
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'nova-scotia' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch search_cta settings Error: Failed query: select "id", "section", "data", "updated_at" from 
+"site_settings" where "site_settings"."section" = $1
+params: search_cta
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6669) {
+  query: 'select "id", "section", "data", "updated_at" from "site_settings" where "site_settings"."section" = $1',
+  params: [ 'search_cta' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6669) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch page data for saskatchewan Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: saskatchewan
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'saskatchewan' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch page data for pei Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: pei
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'pei' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch search_cta settings Error: Failed query: select "id", "section", "data", "updated_at" from 
+"site_settings" where "site_settings"."section" = $1
+params: search_cta
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6669) {
+  query: 'select "id", "section", "data", "updated_at" from "site_settings" where "site_settings"."section" = $1',
+  params: [ 'search_cta' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6669) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch page data for manitoba Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: manitoba
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'manitoba' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch page data for saskatchewan Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: saskatchewan
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'saskatchewan' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch search_inspirations settings Error: Failed query: select "id", "section", "data", "updated_at" from 
+"site_settings" where "site_settings"."section" = $1
+params: search_inspirations
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6854) {
+  query: 'select "id", "section", "data", "updated_at" from "site_settings" where "site_settings"."section" = $1',
+  params: [ 'search_inspirations' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6854) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch page data for manitoba Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: manitoba
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'manitoba' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch search_inspirations settings Error: Failed query: select "id", "section", "data", "updated_at" from 
+"site_settings" where "site_settings"."section" = $1
+params: search_inspirations
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6854) {
+  query: 'select "id", "section", "data", "updated_at" from "site_settings" where "site_settings"."section" = $1',
+  params: [ 'search_inspirations' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:6854) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch page data for newfoundland Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: newfoundland
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'newfoundland' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch search_faq settings Error: Failed query: select "id", "section", "data", "updated_at" from 
+"site_settings" where "site_settings"."section" = $1
+params: search_faq
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:7068) {
+  query: 'select "id", "section", "data", "updated_at" from "site_settings" where "site_settings"."section" = $1',
+  params: [ 'search_faq' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:7068) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch search_faq settings Error: Failed query: select "id", "section", "data", "updated_at" from 
+"site_settings" where "site_settings"."section" = $1
+params: search_faq
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:7068) {
+  query: 'select "id", "section", "data", "updated_at" from "site_settings" where "site_settings"."section" = $1',
+  params: [ 'search_faq' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async o (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__0ipznxn._.js:1:7068) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+  Generating static pages using 23 workers (64/86) 
+Failed to fetch page data for pei Error: Failed query: select "id", "title", "slug", "template", "content", 
+"seo_title", "meta_description", "featured_image", "faq", "cta_title", "cta_button", "cta_link", "cta_description", 
+"explore_title", "explore_subtitle", "explore_description", "explore_items", "location_data", "is_published", 
+"published_at", "created_at", "updated_at" from "pages" where "pages"."slug" = $1
+params: pei
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+  query: 'select "id", "title", "slug", "template", "content", "seo_title", "meta_description", "featured_image", 
+"faq", "cta_title", "cta_button", "cta_link", "cta_description", "explore_title", "explore_subtitle", 
+"explore_description", "explore_items", "location_data", "is_published", "published_at", "created_at", "updated_at" 
+from "pages" where "pages"."slug" = $1',
+  params: [ 'pei' ],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async n (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\[root-of-the-server]__007iuk1._.js:1:6037) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch settings: Error: Failed query: select "id", "section", "data", "updated_at" from "site_settings"
+params: 
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0i36zij._.js:3:1737)
+    at async u (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0i36zij._.js:3:19638) {
+  query: 'select "id", "section", "data", "updated_at" from "site_settings"',
+  params: [],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0i36zij._.js:3:1737)
+      at async u (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0i36zij._.js:3:19638) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Failed to fetch settings: Error: Failed query: select "id", "section", "data", "updated_at" from "site_settings"
+params: 
+    at o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41524)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+    at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0i36zij._.js:3:1737)
+    at async u (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0i36zij._.js:3:19638) {
+  query: 'select "id", "section", "data", "updated_at" from "site_settings"',
+  params: [],
+  [cause]: Error: getaddrinfo ENOTFOUND base
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45289)
+      at async o.queryWithCache (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:41499)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0qejbfp._.js:8:45074)
+      at async (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0i36zij._.js:3:1737)
+      at async u (E:\PROJECTS\COTTAGEX\.next\server\chunks\ssr\_0i36zij._.js:3:19638) {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'base'
+  }
+}
+Ô£ô Generating static pages using 23 workers (86/86) in 59s
+  Finalizing page optimization ...
+
+Route (app)                                       Revalidate  Expire
+Ôöî Ôùï /_not-found
+Ôö£ ÔùÅ /[locale]                                             1h      1y
+Ôöé Ôö£ /en                                                   1h      1y
+Ôöé Ôöö /fr                                                   1h      1y
+Ôö£ ãÆ /[locale]/[slug]
+Ôö£ ÔùÅ /[locale]/about
+Ôöé Ôö£ /en/about
+Ôöé Ôöö /fr/about
+Ôö£ ÔùÅ /[locale]/admin
+Ôöé Ôö£ /en/admin
+Ôöé Ôöö /fr/admin
+Ôö£ ÔùÅ /[locale]/admin/articles
+Ôöé Ôö£ /en/admin/articles
+Ôöé Ôöö /fr/admin/articles
+Ôö£ ãÆ /[locale]/admin/articles/[id]/edit
+Ôö£ ÔùÅ /[locale]/admin/articles/new
+Ôöé Ôö£ /en/admin/articles/new
+Ôöé Ôöö /fr/admin/articles/new
+Ôö£ ÔùÅ /[locale]/admin/cottages
+Ôöé Ôö£ /en/admin/cottages
+Ôöé Ôöö /fr/admin/cottages
+Ôö£ ÔùÅ /[locale]/admin/dashboard
+Ôöé Ôö£ /en/admin/dashboard
+Ôöé Ôöö /fr/admin/dashboard
+Ôö£ ÔùÅ /[locale]/admin/destinations
+Ôöé Ôö£ /en/admin/destinations
+Ôöé Ôöö /fr/admin/destinations
+Ôö£ ãÆ /[locale]/admin/destinations/[id]/edit
+Ôö£ ÔùÅ /[locale]/admin/destinations/new
+Ôöé Ôö£ /en/admin/destinations/new
+Ôöé Ôöö /fr/admin/destinations/new
+Ôö£ ÔùÅ /[locale]/admin/library
+Ôöé Ôö£ /en/admin/library
+Ôöé Ôöö /fr/admin/library
+Ôö£ ÔùÅ /[locale]/admin/login
+Ôöé Ôö£ /en/admin/login
+Ôöé Ôöö /fr/admin/login
+Ôö£ ÔùÅ /[locale]/admin/messages
+Ôöé Ôö£ /en/admin/messages
+Ôöé Ôöö /fr/admin/messages
+Ôö£ ÔùÅ /[locale]/admin/pages
+Ôöé Ôö£ /en/admin/pages
+Ôöé Ôöö /fr/admin/pages
+Ôö£ ãÆ /[locale]/admin/pages/[id]/edit
+Ôö£ ÔùÅ /[locale]/admin/pages/new
+Ôöé Ôö£ /en/admin/pages/new
+Ôöé Ôöö /fr/admin/pages/new
+Ôö£ ÔùÅ /[locale]/admin/profile
+Ôöé Ôö£ /en/admin/profile
+Ôöé Ôöö /fr/admin/profile
+Ôö£ ÔùÅ /[locale]/admin/search
+Ôöé Ôö£ /en/admin/search
+Ôöé Ôöö /fr/admin/search
+Ôö£ ÔùÅ /[locale]/admin/settings
+Ôöé Ôö£ /en/admin/settings
+Ôöé Ôöö /fr/admin/settings
+Ôö£ ÔùÅ /[locale]/contact
+Ôöé Ôö£ /en/contact
+Ôöé Ôöö /fr/contact
+Ôö£ ÔùÅ /[locale]/cottage-country/[slug]                      1h      1y
+Ôöé Ôö£ /en/cottage-country/ontario                           1h      1y
+Ôöé Ôö£ /en/cottage-country/quebec                            1h      1y
+Ôöé Ôö£ /en/cottage-country/alberta                           1h      1y
+Ôöé Ôöö [+17 more paths]
+Ôö£ ãÆ /[locale]/guides
+Ôö£ ÔùÅ /[locale]/guides/[slug]                               1h      1y
+Ôöé Ôö£ /en/guides/7-most-beautiful-cottages-ontario          1h      1y
+Ôöé Ôö£ /en/guides/top-5-regions-ontario-fall                 1h      1y
+Ôöé Ôö£ /en/guides/choose-perfect-waterfront-cottage          1h      1y
+Ôöé Ôöö [+3 more paths]
+Ôö£ ãÆ /[locale]/p/[slug]
+Ôö£ ÔùÅ /[locale]/search/[[...slug]]                          1h      1y
+Ôöé Ôö£ /en/search                                            1h      1y
+Ôöé Ôöö /fr/search                                            1h      1y
+Ôö£ ãÆ /api/admin/articles
+Ôö£ ãÆ /api/admin/articles/[id]
+Ôö£ ãÆ /api/admin/library
+Ôö£ ãÆ /api/admin/messages
+Ôö£ ãÆ /api/admin/migrate-images
+Ôö£ ãÆ /api/admin/pages
+Ôö£ ãÆ /api/admin/pages/[id]
+Ôö£ ãÆ /api/admin/settings
+Ôö£ ãÆ /api/admin/upload
+Ôö£ ãÆ /api/auth/[...nextauth]
+Ôö£ ãÆ /api/contact
+Ôö£ ãÆ /api/cottages
+Ôö£ ãÆ /api/cron/ping
+Ôö£ ãÆ /api/cron/sync
+Ôö£ ãÆ /api/library/[id]
+Ôö£ ãÆ /api/search-links
+Ôö£ Ôùï /apple-icon.png
+Ôö£ Ôùï /icon.png
+Ôö£ Ôùï /maintenance
+Ôö£ Ôùï /manifest.webmanifest
+Ôö£ Ôùï /robots.txt
+Ôöö Ôùï /sitemap.xml                                          1h      1y
+
+
+ãÆ Proxy (Middleware)
+
+Ôùï  (Static)   prerendered as static content
+ÔùÅ  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ãÆ  (Dynamic)  server-rendered on demand
+

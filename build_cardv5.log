@@ -1,0 +1,814 @@
+﻿
+> chaletexpress@0.1.0 build
+> next build
+
+Ôû▓ Next.js 16.2.6 (Turbopack)
+- Environments: .env.local, .env
+
+  Creating an optimized production build ...
+Ô£ô Compiled successfully in 10.5s
+  Running TypeScript ...
+  Finished TypeScript in 7.6s ...
+  Collecting page data using 23 workers ...
+node.exe : (node:28304) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS 
+connections and HTTPS requests insecure by disabling certificate verification.
+Au caractère C:\nvm4w\nodejs\npm.ps1:16 : 5
++     & "$basedir/node$exe"  "$basedir/node_modules/npm/bin/npm-cli.js" ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ((node:28304) Wa...e verification.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:24944) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and 
+HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  Generating static pages using 23 workers (0/126) ...
+(node:19980) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and 
+HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:17696) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and 
+HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:38848) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and 
+HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:30960) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and 
+HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [200]
+(node:21276) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and 
+HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31840) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and 
+HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [200]
+  Generating static pages using 23 workers (31/126) 
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["ontario",12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["manitoba",12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["quebec",12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["new-brunswick",12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["pei",12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["british-columbia",12]
+  Generating static pages using 23 workers (62/126) 
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["alberta",12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["nova-scotia",12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["ontario",12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["quebec",12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["alberta",12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["british-columbia",12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["nova-scotia",12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["manitoba",12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["new-brunswick",12]
+  Generating static pages using 23 workers (94/126) 
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["pei",12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12]
+Ô£ô Generating static pages using 23 workers (126/126) in 46s
+  Finalizing page optimization ...
+
+Route (app)                                       Revalidate  Expire
+Ôöî Ôùï /_not-found
+Ôö£ ÔùÅ /[locale]                                             1h      1y
+Ôöé Ôö£ /en                                                   1h      1y
+Ôöé Ôöö /fr                                                   1h      1y
+Ôö£ ãÆ /[locale]/[slug]
+Ôö£ ÔùÅ /[locale]/about
+Ôöé Ôö£ /en/about
+Ôöé Ôöö /fr/about
+Ôö£ ÔùÅ /[locale]/admin
+Ôöé Ôö£ /en/admin
+Ôöé Ôöö /fr/admin
+Ôö£ ÔùÅ /[locale]/admin/articles
+Ôöé Ôö£ /en/admin/articles
+Ôöé Ôöö /fr/admin/articles
+Ôö£ ãÆ /[locale]/admin/articles/[id]/edit
+Ôö£ ÔùÅ /[locale]/admin/articles/new
+Ôöé Ôö£ /en/admin/articles/new
+Ôöé Ôöö /fr/admin/articles/new
+Ôö£ ÔùÅ /[locale]/admin/cottages
+Ôöé Ôö£ /en/admin/cottages
+Ôöé Ôöö /fr/admin/cottages
+Ôö£ ÔùÅ /[locale]/admin/dashboard
+Ôöé Ôö£ /en/admin/dashboard
+Ôöé Ôöö /fr/admin/dashboard
+Ôö£ ÔùÅ /[locale]/admin/destinations
+Ôöé Ôö£ /en/admin/destinations
+Ôöé Ôöö /fr/admin/destinations
+Ôö£ ãÆ /[locale]/admin/destinations/[id]/edit
+Ôö£ ÔùÅ /[locale]/admin/destinations/new
+Ôöé Ôö£ /en/admin/destinations/new
+Ôöé Ôöö /fr/admin/destinations/new
+Ôö£ ÔùÅ /[locale]/admin/library
+Ôöé Ôö£ /en/admin/library
+Ôöé Ôöö /fr/admin/library
+Ôö£ ÔùÅ /[locale]/admin/login
+Ôöé Ôö£ /en/admin/login
+Ôöé Ôöö /fr/admin/login
+Ôö£ ÔùÅ /[locale]/admin/messages
+Ôöé Ôö£ /en/admin/messages
+Ôöé Ôöö /fr/admin/messages
+Ôö£ ÔùÅ /[locale]/admin/pages
+Ôöé Ôö£ /en/admin/pages
+Ôöé Ôöö /fr/admin/pages
+Ôö£ ãÆ /[locale]/admin/pages/[id]/edit
+Ôö£ ÔùÅ /[locale]/admin/pages/new
+Ôöé Ôö£ /en/admin/pages/new
+Ôöé Ôöö /fr/admin/pages/new
+Ôö£ ÔùÅ /[locale]/admin/profile
+Ôöé Ôö£ /en/admin/profile
+Ôöé Ôöö /fr/admin/profile
+Ôö£ ÔùÅ /[locale]/admin/search
+Ôöé Ôö£ /en/admin/search
+Ôöé Ôöö /fr/admin/search
+Ôö£ ÔùÅ /[locale]/admin/settings
+Ôöé Ôö£ /en/admin/settings
+Ôöé Ôöö /fr/admin/settings
+Ôö£ ÔùÅ /[locale]/contact
+Ôöé Ôö£ /en/contact
+Ôöé Ôöö /fr/contact
+Ôö£ ÔùÅ /[locale]/cottage-country/[slug]                      1h      1y
+Ôöé Ôö£ /en/cottage-country/ontario                           1h      1y
+Ôöé Ôö£ /en/cottage-country/quebec                            1h      1y
+Ôöé Ôö£ /en/cottage-country/alberta                           1h      1y
+Ôöé Ôöö [+27 more paths]
+Ôö£ ãÆ /[locale]/guides
+Ôö£ ÔùÅ /[locale]/guides/[slug]                               1h      1y
+Ôöé Ôö£ /en/guides/7-most-beautiful-cottages-ontario          1h      1y
+Ôöé Ôö£ /en/guides/top-5-regions-ontario-fall                 1h      1y
+Ôöé Ôö£ /en/guides/choose-perfect-waterfront-cottage          1h      1y
+Ôöé Ôöö [+33 more paths]
+Ôö£ ãÆ /[locale]/p/[slug]
+Ôö£ ÔùÅ /[locale]/search/[[...slug]]                          1h      1y
+Ôöé Ôö£ /en/search                                            1h      1y
+Ôöé Ôöö /fr/search                                            1h      1y
+Ôö£ ãÆ /api/admin/articles
+Ôö£ ãÆ /api/admin/articles/[id]
+Ôö£ ãÆ /api/admin/library
+Ôö£ ãÆ /api/admin/messages
+Ôö£ ãÆ /api/admin/migrate-images
+Ôö£ ãÆ /api/admin/pages
+Ôö£ ãÆ /api/admin/pages/[id]
+Ôö£ ãÆ /api/admin/settings
+Ôö£ ãÆ /api/admin/upload
+Ôö£ ãÆ /api/auth/[...nextauth]
+Ôö£ ãÆ /api/contact
+Ôö£ ãÆ /api/cottages
+Ôö£ ãÆ /api/cron/ping
+Ôö£ ãÆ /api/cron/sync
+Ôö£ ãÆ /api/library/[id]
+Ôö£ ãÆ /api/search-links
+Ôö£ Ôùï /apple-icon.png
+Ôö£ Ôùï /icon.png
+Ôö£ Ôùï /maintenance
+Ôö£ Ôùï /manifest.webmanifest
+Ôö£ Ôùï /robots.txt
+Ôöö Ôùï /sitemap.xml                                          1h      1y
+
+
+ãÆ Proxy (Middleware)
+
+Ôùï  (Static)   prerendered as static content
+ÔùÅ  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ãÆ  (Dynamic)  server-rendered on demand
+

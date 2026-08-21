@@ -1,0 +1,208 @@
+{
+  "nav": {
+    "explore": "Explorer",
+    "ontario": "Ontario",
+    "guides": "Guides & Articles",
+    "destinations": "Destinations",
+    "about": "À propos",
+    "contact": "Contact",
+    "terms": "Conditions",
+    "home": "Accueil",
+    "admin": "Panneau admin",
+    "login": "Connexion",
+    "signup": "Inscription",
+    "search": "Recherche"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil"
+  },
+  "hero": {
+    "title": "Votre sanctuaire sauvage au Canada",
+    "subtitle": "Découvrez des chalets sélectionnés à travers les paysages les plus époustouflants du Canada — des lacs brumeux des Laurentides aux sommets escarpés des Rocheuses.",
+    "args": [
+      { "icon": "shield", "text": "Annonces VRBO vérifiées" },
+      { "icon": "map", "text": "Sélection par province" },
+      { "icon": "heart", "text": "Sauvegardez vos favoris" },
+      { "icon": "trees", "text": "Nature toute l'année" }
+    ],
+    "search": {
+      "title": "Trouvez votre chalet",
+      "destination": "Où aller ?",
+      "destinationPlaceholder": "Muskoka, Banff, Tremblant...",
+      "checkIn": "Arrivée",
+      "checkOut": "Départ",
+      "guests": "Voyageurs",
+      "search": "Rechercher",
+      "guestsLabel": "2 voyageurs"
+    }
+  },
+  "home": {
+    "hero_title": "Trouvez Votre Évasion Canadienne Parfaite",
+    "hero_subtitle": "Interrogez et réservez instantanément des lacs et chalets de montagne vérifiés.",
+    "trending": "Destinations Tendance",
+    "trending_sub": "Découvrez les corridors sauvages les plus recherchés du Canada.",
+    "browse": "Parcourir les Chalets Recommandés",
+    "browse_sub": "Cabanes sélectionnées adaptées à votre paysage sauvage préféré.",
+    "search_by_city": "Rechercher par Ville et Catégorie",
+    "search_by_city_sub": "Accédez rapidement aux locations organisées dans les principales régions canadiennes.",
+    "partner_title": "Vous Possédez une Belle Cabane ?",
+    "partner_sub": "Développez votre volume de réservations en listant votre propriété canadienne dans nos guides recommandés."
+  },
+  "properties": {
+    "title": "Chalets en vedette",
+    "subtitle": "Escapades sélectionnées dans la nature canadienne",
+    "perNight": "/ nuit",
+    "checkPricing": "Voir les prix",
+    "reviews": "{count, plural, one {# avis} other {# avis}}",
+    "viewAll": "Voir tous les chalets",
+    "bookOnVrbo": "Réserver sur VRBO"
+  },
+  "badges": {
+    "waterfront": "Bord de l'eau",
+    "remote": "Isolé",
+    "mountainView": "Vue montagne",
+    "forest": "Forêt",
+    "lakeside": "Bord du lac",
+    "secluded": "Retraite privée"
+  },
+  "sidebar": {
+    "menu": "Menu",
+    "favorites": "Mes favoris",
+    "noFavorites": "Aucun favori — touchez le cœur sur un chalet !",
+    "weather": "Météo",
+    "contact": "Contact",
+    "follow": "Suivez-nous",
+    "quickLinks": "Liens rapides"
+  },
+  "weather": {
+    "feelsLike": "Ressenti",
+    "humidity": "Humidité",
+    "wind": "Vent",
+    "sunny": "Ensoleillé",
+    "cloudy": "Nuageux",
+    "partlyCloudy": "Partiellement nuageux",
+    "rainy": "Pluie légère",
+    "snowy": "Neigeux"
+  },
+  "guides": {
+    "title": "Guides de voyage",
+    "subtitle": "Récits, itinéraires et listes sélectionnés de la nature canadienne",
+    "readTime": "min de lecture",
+    "backToGuides": "Retour aux guides",
+    "by": "par",
+    "published": "Publié",
+    "rankedChalets": "Chalets les mieux classés",
+    "estimatedPrice": "Prix estimé",
+    "bookNow": "Réserver",
+    "viewGuide": "Lire le guide",
+    "noArticles": "Aucun article pour le moment.",
+    "checkBack": "Revenez bientôt pour de nouveaux guides.",
+    "contributor": "Contributeur"
+  },
+  "destination": {
+    "overview": "Aperçu",
+    "features": "Pourquoi visiter",
+    "faq": "Questions fréquentes",
+    "exploreChalets": "Explorer les chalets",
+    "learnMore": "En savoir plus"
+  },
+  "terms": {
+    "title": "Mentions légales et divulgation d'affiliation",
+    "updated": "Dernière mise à jour : juillet 2026",
+    "intro": "Chalet Express est un annuaire de voyage indépendant dédié à la présentation de chalets canadiens en location. Nous participons au programme d'affiliation VRBO (Expedia Group), ce qui signifie que nous pouvons percevoir une commission lorsque vous réservez un séjour via les liens sur notre site — sans frais supplémentaires pour vous.",
+    "sections": [
+      {
+        "heading": "Relation d'affiliation",
+        "body": "Chalet Express n'est ni gestionnaire de biens ni agent de réservation. Nous sélectionnons et affichons des annonces de chalets provenant de VRBO et d'autres partenaires. Lorsque vous cliquez sur un bouton de réservation ou utilisez le widget de recherche, vous serez redirigé vers la plateforme VRBO pour finaliser votre réservation. Nous pouvons recevoir une commission pour les réservations éligibles effectuées via nos liens d'affiliation."
+      },
+      {
+        "heading": "Prix et disponibilité",
+        "body": "Tous les prix affichés sur Chalet Express sont approximatifs et basés sur les données disponibles au moment de la publication. Les prix réels, la disponibilité et les détails des biens peuvent changer et doivent être vérifiés directement sur VRBO avant la réservation. Chalet Express ne garantit pas l'exactitude des informations de prix ou de disponibilité."
+      },
+      {
+        "heading": "Aucune garantie",
+        "body": "Chalet Express fournit toutes les informations « telles quelles » sans garantie d'aucune sorte, expresse ou implicite. Nous ne garantissons pas que les informations sont exactes, complètes ou à jour. Votre utilisation du site et toute confiance accordée à son contenu sont à vos propres risques."
+      },
+      {
+        "heading": "Liens tiers",
+        "body": "Notre site contient des liens vers des sites web tiers (notamment VRBO et les propriétés du groupe Expedia). Nous ne sommes pas responsables du contenu, des politiques de confidentialité ou des pratiques de ces sites externes. Vos interactions avec les sites web tiers se font uniquement entre vous et ce site."
+      },
+      {
+        "heading": "Limitation de responsabilité",
+        "body": "Chalet Express ne saurait être tenu responsable de tout dommage direct, indirect, accessoire, consécutif ou punitif découlant de votre utilisation ou de votre incapacité à utiliser le site, y compris, sans s'y limiter, les erreurs de réservation, les fausses représentations de biens ou les perturbations de voyage."
+      },
+      {
+        "heading": "Contact",
+        "body": "Pour toute question concernant ces mentions légales ou nos relations d'affiliation, veuillez nous contacter via les informations de contact dans notre barre latérale ou notre pied de page."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Votre porte d'accès vers les chalets les plus extraordinaires du Canada.",
+    "newsletter_title": "Débloquez des Offres Exclusives",
+    "newsletter_sub": "Inscrivez-vous à notre infolettre pour recevoir en premier nos listes de recommandations saisonnières.",
+    "discover": "Découvrir",
+    "explore": "Explorer",
+    "company": "Entreprise",
+    "legal": "Légal",
+    "support": "Support & Légal",
+    "topDestinations": "Destinations populaires",
+    "affiliateNote": "Chalet Express est un affilié VRBO. Nous pouvons percevoir une commission sur les réservations effectuées via nos liens.",
+    "rights": "Tous droits réservés.",
+    "madeIn": "Conçu avec soin au Canada"
+  },
+  "profile": {
+    "title": "Compte",
+    "signIn": "Se connecter",
+    "trips": "Mes voyages",
+    "favorites": "Favoris",
+    "help": "Centre d'aide"
+  },
+  "admin": {
+    "login": "Connexion Admin",
+    "dashboard": "Tableau de Bord",
+    "pages": "Pages",
+    "articles": "Articles",
+    "library": "Bibliothèque",
+    "messages": "Messages",
+    "create_page": "Créer une Page",
+    "create_article": "Créer un Article",
+    "standard": "Standard",
+    "listicle": "Listicle",
+    "location": "Localisation",
+    "published": "Publié",
+    "draft": "Brouillon",
+    "save_draft": "Enregistrer comme Brouillon",
+    "publish": "Publier",
+    "save_changes": "Enregistrer les Modifications",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "preview": "Aperçu"
+  },
+  "langLabel": "EN",
+  "provinces": {
+    "ontario": "Ontario",
+    "quebec": "Québec",
+    "britishColumbia": "Colombie-Britannique",
+    "alberta": "Alberta"
+  },
+  "categories": [
+    { "id": "lakefront", "label": "Lac" },
+    { "id": "hot-tub", "label": "Bain tourbillons" },
+    { "id": "family", "label": "Famille" },
+    { "id": "luxury", "label": "Luxe" },
+    { "id": "pet-friendly", "label": "Animaux" },
+    { "id": "mountain", "label": "Montagne" },
+    { "id": "romantic", "label": "Romantique" },
+    { "id": "log-cabin", "label": "Chalet bois" },
+    { "id": "countryside", "label": "Campagne" },
+    { "id": "secluded", "label": "Isolé" },
+    { "id": "beach", "label": "Plage" },
+    { "id": "resort", "label": "Resort" },
+    { "id": "skiing", "label": "Ski" },
+    { "id": "pools", "label": "Piscines" },
+    { "id": "hiking", "label": "Randonnée" }
+  ]
+}

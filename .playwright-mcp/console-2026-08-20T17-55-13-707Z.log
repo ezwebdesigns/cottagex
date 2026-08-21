@@ -1,0 +1,53 @@
+[    9904ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3101/fr/manifest.webmanifest:0
+[    9936ms] [ERROR] Manifest fetch from http://localhost:3101/fr/manifest.webmanifest failed, code 404 @ http://localhost:3101/en:0
+[   10000ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3101/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[   10015ms] [LOG] [HMR] connected @ http://localhost:3101/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[   10022ms] [LOG] %c%s%c SQL query: background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12] @ http://localhost:3101/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[   11099ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3101/fr/manifest.webmanifest:0
+[   11121ms] [ERROR] Manifest fetch from http://localhost:3101/fr/manifest.webmanifest failed, code 404 @ http://localhost:3101/en:0
+[   14199ms] [WARNING] The resource http://localhost:3101/_next/static/chunks/%5Broot-of-the-server%5D__0ifk-vz._.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3101/en:0
+[   18046ms] [WARNING] The resource http://localhost:3101/_next/static/chunks/%5Broot-of-the-server%5D__0ifk-vz._.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3101/en:0
+[  201011ms] [ERROR] WebSocket connection to 'ws://localhost:3101/_next/webpack-hmr?id=I432OLWqh9fnbWqlvL7Gj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3101/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13322
+[  204322ms] [ERROR] WebSocket connection to 'ws://localhost:3101/_next/webpack-hmr?id=I432OLWqh9fnbWqlvL7Gj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3101/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13322
+[  207651ms] [ERROR] WebSocket connection to 'ws://localhost:3101/_next/webpack-hmr?id=I432OLWqh9fnbWqlvL7Gj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3101/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13322
+[  210962ms] [ERROR] WebSocket connection to 'ws://localhost:3101/_next/webpack-hmr?id=I432OLWqh9fnbWqlvL7Gj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3101/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13322
+[  214292ms] [ERROR] WebSocket connection to 'ws://localhost:3101/_next/webpack-hmr?id=I432OLWqh9fnbWqlvL7Gj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3101/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13322
+[  221634ms] [ERROR] WebSocket connection to 'ws://localhost:3101/_next/webpack-hmr?id=I432OLWqh9fnbWqlvL7Gj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3101/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13322
+[  228964ms] [ERROR] WebSocket connection to 'ws://localhost:3101/_next/webpack-hmr?id=I432OLWqh9fnbWqlvL7Gj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3101/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13322
+[  236297ms] [ERROR] WebSocket connection to 'ws://localhost:3101/_next/webpack-hmr?id=I432OLWqh9fnbWqlvL7Gj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3101/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13322
+[  243620ms] [ERROR] WebSocket connection to 'ws://localhost:3101/_next/webpack-hmr?id=I432OLWqh9fnbWqlvL7Gj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3101/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13322
+[  250976ms] [ERROR] WebSocket connection to 'ws://localhost:3101/_next/webpack-hmr?id=I432OLWqh9fnbWqlvL7Gj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3101/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13322
+[  258337ms] [ERROR] WebSocket connection to 'ws://localhost:3101/_next/webpack-hmr?id=I432OLWqh9fnbWqlvL7Gj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3101/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13322
+[  265743ms] [ERROR] WebSocket connection to 'ws://localhost:3101/_next/webpack-hmr?id=I432OLWqh9fnbWqlvL7Gj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3101/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13322

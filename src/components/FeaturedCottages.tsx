@@ -5,6 +5,7 @@ import { MapPin, ExternalLink } from 'lucide-react';
 import SourceBadge from '@/components/SourceBadge';
 import StarRating from '@/components/StarRating';
 import { useProductSchemas } from '@/hooks/useProductSchemas';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
 type Props = {
@@ -41,6 +42,7 @@ function CardSkeleton() {
 }
 
 function CottageCard({ cottage }: { cottage: any }) {
+  const t = useTranslations();
   const photo = Array.isArray(cottage.photos) && cottage.photos[0] ? cottage.photos[0] : cottage.thumbnail || '';
   const badge = cottage.source || (Array.isArray(cottage.amenities) && cottage.amenities[0]) || 'Featured';
   const location = cottage.province ? `${cottage.slug}, ${cottage.province}` : cottage.slug;
@@ -72,11 +74,13 @@ function CottageCard({ cottage }: { cottage: any }) {
         </div>
         <div className="pt-2 md:pt-4 border-t border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-2">
           <div>
-            {cottage.price_cad && (
+            {cottage.price_cad > 0 ? (
               <>
                 <span className="text-sm md:text-2xl font-black text-[#1F51C6]">${cottage.price_cad}</span>
                 <span className="text-[10px] md:text-xs text-slate-500 font-medium">/night</span>
               </>
+            ) : (
+              <span className="text-xs md:text-sm font-bold text-[#1F51C6]">{t('properties.checkPricing')}</span>
             )}
           </div>
           <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-3 md:px-5 py-1.5 md:py-2.5 rounded-full text-[11px] md:text-sm font-semibold transition-colors inline-flex items-center justify-center gap-1.5 w-full md:w-auto">

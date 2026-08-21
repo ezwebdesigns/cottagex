@@ -1,0 +1,55 @@
+{
+  "timestamp": "2026-08-21T21:12:49.650Z",
+  "checks": [
+    {
+      "name": "Fichier database.json",
+      "pass": true
+    },
+    {
+      "name": "Fichier database.sql",
+      "pass": true
+    },
+    {
+      "name": "Fichier manifest.json",
+      "pass": true
+    },
+    {
+      "name": "Total lignes > 0",
+      "pass": true
+    },
+    {
+      "name": "affiliatecottages >= 100",
+      "pass": true
+    },
+    {
+      "name": "articles > 0",
+      "pass": true
+    },
+    {
+      "name": "pages > 0",
+      "pass": true
+    },
+    {
+      "name": "site_settings > 0",
+      "pass": true
+    },
+    {
+      "name": "library_images > 0",
+      "pass": true
+    },
+    {
+      "name": "database.json valide",
+      "pass": true
+    },
+    {
+      "name": "database.sql contient INSERT",
+      "pass": true
+    }
+  ],
+  "allPass": true,
+  "summary": {
+    "totalChecks": 11,
+    "passed": 11,
+    "failed": 0
+  }
+}

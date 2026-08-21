@@ -1,0 +1,29 @@
+[     642ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/fr/manifest.webmanifest:0
+[     667ms] [ERROR] Manifest fetch from http://localhost:3100/fr/manifest.webmanifest failed, code 404 @ http://localhost:3100/fr:0
+[    1138ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/fr/manifest.webmanifest:0
+[    1170ms] [ERROR] Manifest fetch from http://localhost:3100/fr/manifest.webmanifest failed, code 404 @ http://localhost:3100/fr:0
+[    1209ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/fr/icon.png?icon.0uzedbih61ru6.png=:0
+[  391588ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/_next/image?url=https%3A%2F%2Fimages.trvl-media.com%2Flodging%2F20000000%2F19310000%2F19307800%2F19307715%2Fa5f68522_z.jpg&w=640&q=75:0
+[  391588ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/_next/image?url=https%3A%2F%2Fmedia.vrbo.com%2Flodging%2F92000000%2F91890000%2F91885700%2F91885690%2F5e10826b.jpg&w=640&q=75:0
+[  426142ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/fr/guides?_rsc=EylmaytQesAzsSpi:0
+[  426143ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/fr/guides/canada-cottage-country-a-region-by-region-guide-for-2026?_rsc=EylmaytQesAzsSpi:0
+[  426196ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/fr/guides/bc-cottage-rentals?_rsc=EylmaytQesAzsSpi:0
+[  426381ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/fr/guides/cottage-rentals-in-canada-the-ultimate-guide?_rsc=EylmaytQesAzsSpi:0
+[  426462ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/fr/privacy?_rsc=EylmaytQesAzsSpi:0
+[  427531ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/fr/contact?_rsc=EylmaytQesAzsSpi:0
+[  428476ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/fr/about?_rsc=EylmaytQesAzsSpi:0
+[  428522ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/fr/search/pet-friendly?_rsc=EylmaytQesAzsSpi:0
+[  428716ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/fr/disclaimer?_rsc=EylmaytQesAzsSpi:0
+[  428796ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/fr/search/waterfront?_rsc=EylmaytQesAzsSpi:0
+[  429881ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/fr/terms?_rsc=EylmaytQesAzsSpi:0
+[  430133ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/fr/search?_rsc=EylmaytQesAzsSpi:0
+[  438697ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/fr/guides?_rsc=EylmaytQesAzsSpi:0
+[  635514ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/fr/manifest.webmanifest:0
+[  635537ms] [ERROR] Manifest fetch from http://localhost:3100/fr/manifest.webmanifest failed, code 404 @ http://localhost:3100/en:0
+[  636230ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/fr/manifest.webmanifest:0
+[  636260ms] [ERROR] Manifest fetch from http://localhost:3100/fr/manifest.webmanifest failed, code 404 @ http://localhost:3100/en:0
+[  639293ms] [WARNING] The resource http://localhost:3100/_next/static/chunks/0h.k_pwfmcuk3.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3100/en:0
+[  643448ms] [WARNING] The resource http://localhost:3100/_next/static/chunks/0h.k_pwfmcuk3.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3100/en:0
+[  663736ms] [WARNING] The resource http://localhost:3100/_next/static/chunks/0h.k_pwfmcuk3.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3100/en:0
+[  685676ms] [WARNING] The resource http://localhost:3100/_next/static/chunks/0h.k_pwfmcuk3.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3100/en:0
+[  715950ms] [WARNING] The resource http://localhost:3100/_next/static/chunks/0h.k_pwfmcuk3.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3100/en:0

@@ -1,0 +1,16 @@
+[    1238ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/fr/manifest.webmanifest:0
+[    1289ms] [ERROR] Manifest fetch from http://localhost:3100/fr/manifest.webmanifest failed, code 404 @ http://localhost:3100/en/search/ontario:0
+[    4930ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/fr/manifest.webmanifest:0
+[    4964ms] [ERROR] Manifest fetch from http://localhost:3100/fr/manifest.webmanifest failed, code 404 @ http://localhost:3100/en/search/ontario:0
+[   81716ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/_next/image?url=https%3A%2F%2Fmedia.vrbo.com%2Flodging%2F114000000%2F113960000%2F113956300%2F113956218%2F8221a6ea.jpg&w=640&q=75:0
+[   81717ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/_next/image?url=https%3A%2F%2Fmedia.vrbo.com%2Flodging%2F129000000%2F128150000%2F128144500%2F128144496%2F1e12af0a.jpg&w=640&q=75:0
+[   81850ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/_next/image?url=https%3A%2F%2Fimages.trvl-media.com%2Flodging%2F118000000%2F117400000%2F117390400%2F117390343%2F63e8a34f_z.jpg&w=640&q=75:0
+[   81982ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/en/terms?_rsc=9A1AEcCVX7ybjeLC:0
+[   83776ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/en/search?_rsc=9A1AEcCVX7ybjeLC:0
+[   83783ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/en/privacy?_rsc=9A1AEcCVX7ybjeLC:0
+[   84044ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/en/disclaimer?_rsc=9A1AEcCVX7ybjeLC:0
+[   84316ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/en/cottage-country/british-columbia?_rsc=9A1AEcCVX7ybjeLC:0
+[   86106ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/en/cottage-country/quebec?_rsc=9A1AEcCVX7ybjeLC:0
+[   86106ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/en/guides?_rsc=9A1AEcCVX7ybjeLC:0
+[   86361ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/en/contact?_rsc=9A1AEcCVX7ybjeLC:0
+[   86644ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/en/cottage-country/ontario?_rsc=9A1AEcCVX7ybjeLC:0

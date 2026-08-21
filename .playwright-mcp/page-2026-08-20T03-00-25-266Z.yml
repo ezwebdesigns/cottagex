@@ -1,0 +1,513 @@
+- generic [active] [ref=f6e1]:
+  - generic [ref=f6e2]:
+    - complementary [ref=f6e4]:
+      - link [ref=f6e6] [cursor=pointer]:
+        - /url: /fr
+      - navigation [ref=f6e7]:
+        - generic [ref=f6e8]:
+          - paragraph [ref=f6e9]: Cottage destinations
+          - link "AB" [ref=f6e10] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/cottage-country/alberta
+          - link "BC" [ref=f6e14] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/cottage-country/british-columbia
+          - link "MB" [ref=f6e19] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/cottage-country/manitoba
+          - link "NB" [ref=f6e23] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/cottage-country/new-brunswick
+          - link "NS" [ref=f6e30] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/cottage-country/nova-scotia
+          - link "ON" [ref=f6e34] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/cottage-country/ontario
+          - link "PEI" [ref=f6e39] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/cottage-country/pei
+          - link "QC" [ref=f6e44] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/cottage-country/quebec
+        - generic [ref=f6e48]:
+          - paragraph [ref=f6e49]: Search by destination
+          - link "SEARCH" [ref=f6e50] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/search
+        - generic [ref=f6e55]:
+          - paragraph [ref=f6e56]: Guides & Articles
+          - link "INSPIRATION" [ref=f6e57] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/guides
+    - generic [ref=f6e61]:
+      - banner [ref=f6e62]:
+        - generic [ref=f6e64]:
+          - link [ref=f6e66] [cursor=pointer]:
+            - /url: /fr
+            - img "Chalet Express" [ref=f6e67]
+          - button "EN" [ref=f6e69]
+      - main [ref=f6e74]:
+        - generic [ref=f6e75]:
+          - generic [ref=f6e76]:
+            - img "Canada Cottage Rentals" [ref=f6e78]
+            - generic [ref=f6e81]:
+              - generic [ref=f6e82]:
+                - iframe [ref=f6e87]:
+                  - main [ref=f7e5]:
+                    - article [ref=f7e6]:
+                      - tabpanel [ref=f7e11]:
+                        - generic [ref=f7e14]:
+                          - heading "Search places to stay" [level=1] [ref=f7e17]
+                          - generic [ref=f7e23]:
+                            - generic: Going to
+                            - button "Going to" [ref=f7e24] [cursor=pointer]
+                            - generic: Going to
+                          - generic [ref=f7e28]:
+                            - generic [ref=f7e30]:
+                              - generic: Check-in
+                              - button "Check-in" [ref=f7e31] [cursor=pointer]
+                              - generic: Check-in
+                            - generic [ref=f7e33]:
+                              - generic: Check-out
+                              - button "Check-out" [ref=f7e34] [cursor=pointer]
+                              - generic: Check-out
+                          - generic [ref=f7e36]:
+                            - generic [ref=f7e39]:
+                              - generic [ref=f7e40]: Powered by
+                              - img "Vrbo CA" [ref=f7e42]
+                            - button "Search" [ref=f7e45] [cursor=pointer]
+                - generic [ref=f6e88]:
+                  - generic [ref=f6e89]: Canada Cottage Rentals
+                  - heading "Find Your Perfect Canadian Escape" [level=1] [ref=f6e91]
+                  - paragraph [ref=f6e92]: Explore cottage rentals across Canada and discover unique places to stay in every province.
+              - generic [ref=f6e93]:
+                - generic [ref=f6e94]:
+                  - link "Bord de l'eau" [ref=f6e95] [cursor=pointer]:
+                    - /url: /en/search/waterfront
+                  - link "Spa" [ref=f6e103] [cursor=pointer]:
+                    - /url: /en/search/hot-tub
+                  - link "Famille" [ref=f6e109] [cursor=pointer]:
+                    - /url: /en/search/family
+                  - link "Luxe" [ref=f6e117] [cursor=pointer]:
+                    - /url: /en/search/luxury
+                  - link "Animaux" [ref=f6e123] [cursor=pointer]:
+                    - /url: /en/search/pet-friendly
+                  - link "Montagne" [ref=f6e131] [cursor=pointer]:
+                    - /url: /en/search/mountain
+                  - link "Romantique" [ref=f6e136] [cursor=pointer]:
+                    - /url: /en/search/romantic
+                  - link "Chalet bois" [ref=f6e141] [cursor=pointer]:
+                    - /url: /en/search/log-cabin
+                  - link "Campagne" [ref=f6e147] [cursor=pointer]:
+                    - /url: /en/search/nature
+                  - link "Isolé" [ref=f6e153] [cursor=pointer]:
+                    - /url: /en/search/secluded
+                  - link "Plage" [ref=f6e158] [cursor=pointer]:
+                    - /url: /en/search/beach
+                  - link "Village" [ref=f6e164] [cursor=pointer]:
+                    - /url: /en/search/resort
+                  - link "Ski" [ref=f6e171] [cursor=pointer]:
+                    - /url: /en/search/ski
+                  - link "Lacs" [ref=f6e187] [cursor=pointer]:
+                    - /url: /en/search/lakefront
+                  - link "Randonnée" [ref=f6e195] [cursor=pointer]:
+                    - /url: /en/search/hiking
+                  - link "Côtes" [ref=f6e201] [cursor=pointer]:
+                    - /url: /en/search/coastal
+                - button "Scroll right" [ref=f6e207]
+          - generic [ref=f6e211]:
+            - generic [ref=f6e212]:
+              - 'heading "Save on longer stays: Book 7+ nights & get an average 10% off!" [level=2] [ref=f6e213]'
+              - paragraph [ref=f6e214]: Find deals on thousands of vacation rentals in Canada.
+            - link "Explore Cottages" [ref=f6e215] [cursor=pointer]:
+              - /url: https://vrbo.com/affiliate/XcZW9Ip
+          - generic [ref=f6e218]:
+            - generic [ref=f6e220]:
+              - heading "Featured Chalets" [level=2] [ref=f6e221]
+              - paragraph [ref=f6e222]: Explore handpicked cottage rentals across Canada.
+            - generic [ref=f6e223]:
+              - link "Ski-in, Private Hot Tub, Walk To Village & Lake, Family Friendly! cottage Ski-in, Private Hot Tub, Walk To Village & Lake, Family Friendly! 5 20 avis British Columbia $545/ nuit" [ref=f6e224] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/nSQPtxZ
+                - generic [ref=f6e225]:
+                  - img "Ski-in, Private Hot Tub, Walk To Village & Lake, Family Friendly!" [ref=f6e226]
+                  - generic [ref=f6e227]: cottage
+                - generic [ref=f6e228]:
+                  - generic [ref=f6e229]:
+                    - heading "Ski-in, Private Hot Tub, Walk To Village & Lake, Family Friendly!" [level=3] [ref=f6e230]
+                    - generic [ref=f6e231]:
+                      - generic [ref=f6e234]: "5"
+                      - generic [ref=f6e235]: 20 avis
+                  - generic [ref=f6e236]: British Columbia
+                  - generic [ref=f6e242]:
+                    - generic [ref=f6e243]: $545
+                    - text: / nuit
+              - link "Beautiful country house \"Au Charme Champêtre\" near lake and ski resorts cottage Beautiful country house \"Au Charme Champêtre\" near lake and ski resorts 5 72 avis Quebec Cliquez pour voir les prix" [ref=f6e248] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/IchA3sb
+                - generic [ref=f6e249]:
+                  - img "Beautiful country house \"Au Charme Champêtre\" near lake and ski resorts" [ref=f6e250]
+                  - generic [ref=f6e251]: cottage
+                - generic [ref=f6e252]:
+                  - generic [ref=f6e253]:
+                    - heading "Beautiful country house \"Au Charme Champêtre\" near lake and ski resorts" [level=3] [ref=f6e254]
+                    - generic [ref=f6e255]:
+                      - generic [ref=f6e258]: "5"
+                      - generic [ref=f6e259]: 72 avis
+                  - generic [ref=f6e260]: Quebec
+                  - generic [ref=f6e265]: Cliquez pour voir les prix
+              - link "Private 5-Acre Estate with Pool, Spa, Sauna & Mountain Views cottage Private 5-Acre Estate with Pool, Spa, Sauna & Mountain Views 5 2 avis Quebec Cliquez pour voir les prix" [ref=f6e271] [cursor=pointer]:
+                - /url: https://expedia.com/affiliate/XM3Zaem
+                - generic [ref=f6e272]:
+                  - img "Private 5-Acre Estate with Pool, Spa, Sauna & Mountain Views" [ref=f6e273]
+                  - generic [ref=f6e274]: cottage
+                - generic [ref=f6e275]:
+                  - generic [ref=f6e276]:
+                    - heading "Private 5-Acre Estate with Pool, Spa, Sauna & Mountain Views" [level=3] [ref=f6e277]
+                    - generic [ref=f6e278]:
+                      - generic [ref=f6e281]: "5"
+                      - generic [ref=f6e282]: 2 avis
+                  - generic [ref=f6e283]: Quebec
+                  - generic [ref=f6e288]: Cliquez pour voir les prix
+              - link "Cedar Hills-Sauna and spa in a Scandinavian style chalet mountainside chalet Cedar Hills-Sauna and spa in a Scandinavian style chalet mountainside 5 1 avis Quebec Cliquez pour voir les prix" [ref=f6e294] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/DjdSrbV
+                - generic [ref=f6e295]:
+                  - img "Cedar Hills-Sauna and spa in a Scandinavian style chalet mountainside" [ref=f6e296]
+                  - generic [ref=f6e297]: chalet
+                - generic [ref=f6e298]:
+                  - generic [ref=f6e299]:
+                    - heading "Cedar Hills-Sauna and spa in a Scandinavian style chalet mountainside" [level=3] [ref=f6e300]
+                    - generic [ref=f6e301]:
+                      - generic [ref=f6e304]: "5"
+                      - generic [ref=f6e305]: 1 avis
+                  - generic [ref=f6e306]: Quebec
+                  - generic [ref=f6e311]: Cliquez pour voir les prix
+              - link "5 Bedroom Luxury Ski & Golf Chalet - Private Hot Tub - Prime Ski in Ski Out chalet 5 Bedroom Luxury Ski & Golf Chalet - Private Hot Tub - Prime Ski in Ski Out 5 114 avis Quebec $2161/ nuit" [ref=f6e317] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/vdWjnxt
+                - generic [ref=f6e318]:
+                  - img "5 Bedroom Luxury Ski & Golf Chalet - Private Hot Tub - Prime Ski in Ski Out" [ref=f6e319]
+                  - generic [ref=f6e320]: chalet
+                - generic [ref=f6e321]:
+                  - generic [ref=f6e322]:
+                    - heading "5 Bedroom Luxury Ski & Golf Chalet - Private Hot Tub - Prime Ski in Ski Out" [level=3] [ref=f6e323]
+                    - generic [ref=f6e324]:
+                      - generic [ref=f6e327]: "5"
+                      - generic [ref=f6e328]: 114 avis
+                  - generic [ref=f6e329]: Quebec
+                  - generic [ref=f6e335]:
+                    - generic [ref=f6e336]: $2161
+                    - text: / nuit
+              - link "One of a kind Beach House on Parlee Beach! Sunday to Sunday only during summer. cottage One of a kind Beach House on Parlee Beach! Sunday to Sunday only during summer. 5 8 avis new-brunswick Cliquez pour voir les prix" [ref=f6e341] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/NIj1si3
+                - generic [ref=f6e342]:
+                  - img "One of a kind Beach House on Parlee Beach! Sunday to Sunday only during summer." [ref=f6e343]
+                  - generic [ref=f6e344]: cottage
+                - generic [ref=f6e345]:
+                  - generic [ref=f6e346]:
+                    - heading "One of a kind Beach House on Parlee Beach! Sunday to Sunday only during summer." [level=3] [ref=f6e347]
+                    - generic [ref=f6e348]:
+                      - generic [ref=f6e351]: "5"
+                      - generic [ref=f6e352]: 8 avis
+                  - generic [ref=f6e353]: new-brunswick
+                  - generic [ref=f6e358]: Cliquez pour voir les prix
+              - link "Waterfront in Wasaga Beach (on the Nottawasaga River) any season - 30 night min cottage Waterfront in Wasaga Beach (on the Nottawasaga River) any season - 30 night min 5 4 avis Ontario $549/ nuit" [ref=f6e364] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/SGAe5zx
+                - generic [ref=f6e365]:
+                  - img "Waterfront in Wasaga Beach (on the Nottawasaga River) any season - 30 night min" [ref=f6e366]
+                  - generic [ref=f6e367]: cottage
+                - generic [ref=f6e368]:
+                  - generic [ref=f6e369]:
+                    - heading "Waterfront in Wasaga Beach (on the Nottawasaga River) any season - 30 night min" [level=3] [ref=f6e370]
+                    - generic [ref=f6e371]:
+                      - generic [ref=f6e374]: "5"
+                      - generic [ref=f6e375]: 4 avis
+                  - generic [ref=f6e376]: Ontario
+                  - generic [ref=f6e382]:
+                    - generic [ref=f6e383]: $549
+                    - text: / nuit
+              - link "Ancestrale A few minutes to downtown Quebec city (294363) cottage Ancestrale A few minutes to downtown Quebec city (294363) 5 77 avis Quebec $754/ nuit" [ref=f6e388] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/WCyjGp1
+                - generic [ref=f6e389]:
+                  - img "Ancestrale A few minutes to downtown Quebec city (294363)" [ref=f6e390]
+                  - generic [ref=f6e391]: cottage
+                - generic [ref=f6e392]:
+                  - generic [ref=f6e393]:
+                    - heading "Ancestrale A few minutes to downtown Quebec city (294363)" [level=3] [ref=f6e394]
+                    - generic [ref=f6e395]:
+                      - generic [ref=f6e398]: "5"
+                      - generic [ref=f6e399]: 77 avis
+                  - generic [ref=f6e400]: Quebec
+                  - generic [ref=f6e406]:
+                    - generic [ref=f6e407]: $754
+                    - text: / nuit
+              - link "Maison Émile cottage Maison Émile 5 8 avis Quebec $1648/ nuit" [ref=f6e412] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/3asynEr
+                - generic [ref=f6e413]:
+                  - img "Maison Émile" [ref=f6e414]
+                  - generic [ref=f6e415]: cottage
+                - generic [ref=f6e416]:
+                  - generic [ref=f6e417]:
+                    - heading "Maison Émile" [level=3] [ref=f6e418]
+                    - generic [ref=f6e419]:
+                      - generic [ref=f6e422]: "5"
+                      - generic [ref=f6e423]: 8 avis
+                  - generic [ref=f6e424]: Quebec
+                  - generic [ref=f6e430]:
+                    - generic [ref=f6e431]: $1648
+                    - text: / nuit
+              - link "Blissful Beachfront Bungalow. Beach- Hot tub & Sauna-All Weather Dome-Private cottage Blissful Beachfront Bungalow. Beach- Hot tub & Sauna-All Weather Dome-Private 5 27 avis nova-scotia $668/ nuit" [ref=f6e436] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/jT3iZUH
+                - generic [ref=f6e437]:
+                  - img "Blissful Beachfront Bungalow. Beach- Hot tub & Sauna-All Weather Dome-Private" [ref=f6e438]
+                  - generic [ref=f6e439]: cottage
+                - generic [ref=f6e440]:
+                  - generic [ref=f6e441]:
+                    - heading "Blissful Beachfront Bungalow. Beach- Hot tub & Sauna-All Weather Dome-Private" [level=3] [ref=f6e442]
+                    - generic [ref=f6e443]:
+                      - generic [ref=f6e446]: "5"
+                      - generic [ref=f6e447]: 27 avis
+                  - generic [ref=f6e448]: nova-scotia
+                  - generic [ref=f6e454]:
+                    - generic [ref=f6e455]: $668
+                    - text: / nuit
+              - link "Family Retreat – Hot Tub, Whirlpool, Free Wine, Near Old Quebec & Ski cottage Family Retreat – Hot Tub, Whirlpool, Free Wine, Near Old Quebec & Ski 5 33 avis Quebec $735/ nuit" [ref=f6e460] [cursor=pointer]:
+                - /url: https://expedia.com/affiliate/cO6EmB6
+                - generic [ref=f6e461]:
+                  - img "Family Retreat – Hot Tub, Whirlpool, Free Wine, Near Old Quebec & Ski" [ref=f6e462]
+                  - generic [ref=f6e463]: cottage
+                - generic [ref=f6e464]:
+                  - generic [ref=f6e465]:
+                    - heading "Family Retreat – Hot Tub, Whirlpool, Free Wine, Near Old Quebec & Ski" [level=3] [ref=f6e466]
+                    - generic [ref=f6e467]:
+                      - generic [ref=f6e470]: "5"
+                      - generic [ref=f6e471]: 33 avis
+                  - generic [ref=f6e472]: Quebec
+                  - generic [ref=f6e478]:
+                    - generic [ref=f6e479]: $735
+                    - text: / nuit
+              - link "Serenity at The Cove - Newly Built Duplex! cottage Serenity at The Cove - Newly Built Duplex! 5 15 avis nova-scotia Cliquez pour voir les prix" [ref=f6e484] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/yt19wac
+                - generic [ref=f6e485]:
+                  - img "Serenity at The Cove - Newly Built Duplex!" [ref=f6e486]
+                  - generic [ref=f6e487]: cottage
+                - generic [ref=f6e488]:
+                  - generic [ref=f6e489]:
+                    - heading "Serenity at The Cove - Newly Built Duplex!" [level=3] [ref=f6e490]
+                    - generic [ref=f6e491]:
+                      - generic [ref=f6e494]: "5"
+                      - generic [ref=f6e495]: 15 avis
+                  - generic [ref=f6e496]: nova-scotia
+                  - generic [ref=f6e501]: Cliquez pour voir les prix
+          - generic [ref=f6e507]:
+            - heading "Top Cottage Destinations" [level=2] [ref=f6e508]
+            - paragraph [ref=f6e509]: Discover the most popular cottage areas in Canada
+            - generic [ref=f6e510]:
+              - link [ref=f6e511] [cursor=pointer]:
+                - /url: /en/cottage-country/ontario
+                - img "Muskoka lakes cottage rentals" [ref=f6e512]
+                - generic [ref=f6e514]:
+                  - heading "Muskoka, ON" [level=3] [ref=f6e515]
+                  - paragraph [ref=f6e516]: 350+ cottages on VRBO & Expedia
+              - link [ref=f6e517] [cursor=pointer]:
+                - /url: /en/cottage-country/quebec
+                - img "chalet for rent in Mont-Tremblant" [ref=f6e518]
+                - generic [ref=f6e520]:
+                  - heading "Mont-Tremblant, QC" [level=3] [ref=f6e521]
+                  - paragraph [ref=f6e522]: 450+ cottages on VRBO & Expedia
+              - link [ref=f6e523] [cursor=pointer]:
+                - /url: /en/cottage-country/alberta
+                - img "Rocky Mountain Banff cottage for rent" [ref=f6e524]
+                - generic [ref=f6e526]:
+                  - heading "Banff, AB" [level=3] [ref=f6e527]
+                  - paragraph [ref=f6e528]: 180+ cottages on VRBO & Expedia
+              - link [ref=f6e529] [cursor=pointer]:
+                - /url: /en/cottage-country/quebec
+                - img "chalets rentals in the Charlevoix region of Quebec" [ref=f6e530]
+                - generic [ref=f6e532]:
+                  - heading "Charlevoix, QC" [level=3] [ref=f6e533]
+                  - paragraph [ref=f6e534]: 210+ cottages on VRBO & Expedia
+              - link [ref=f6e535] [cursor=pointer]:
+                - /url: /en/cottage-country/nova-scotia
+                - img "Coastal cottages for rent Cape Breton Island, Nova Scotia" [ref=f6e536]
+                - generic [ref=f6e538]:
+                  - heading "Cape Breton, NS" [level=3] [ref=f6e539]
+                  - paragraph [ref=f6e540]: 250+ cottages on VRBO & Expedia
+              - link [ref=f6e541] [cursor=pointer]:
+                - /url: /en/cottage-country/british-columbia
+                - img "alpine cabins for rent in Whistler" [ref=f6e542]
+                - generic [ref=f6e544]:
+                  - heading "Whistler, BC" [level=3] [ref=f6e545]
+                  - paragraph [ref=f6e546]: 280+ cottages on VRBO & Expedia
+              - link [ref=f6e547] [cursor=pointer]:
+                - /url: /en/cottage-country/ontario
+                - img "cottages for rent in Georgian Bay Ontario" [ref=f6e548]
+                - generic [ref=f6e550]:
+                  - heading "Georgian Bay, ON" [level=3] [ref=f6e551]
+                  - paragraph [ref=f6e552]: 220+ cottages on VRBO & Expedia
+              - link [ref=f6e553] [cursor=pointer]:
+                - /url: /en/cottage-country/pei
+                - img "cottages for rent in PEI" [ref=f6e554]
+                - generic [ref=f6e556]:
+                  - heading "Cavendish, PEI" [level=3] [ref=f6e557]
+                  - paragraph [ref=f6e558]: 170+ cottages on VRBO & Expedia
+          - generic [ref=f6e560]:
+            - generic [ref=f6e561]:
+              - heading "Finding Your Perfect Getaway cottage in Canada" [level=2] [ref=f6e562]
+              - paragraph [ref=f6e563]: We verify and curate high-rated and popular accommodations, pairing travelers with secure booking links on VRBO and Expedia, entirely free of extra fees.
+              - paragraph [ref=f6e564]: Every region of Canada has its own cottage experience. Explore cottage rentals across Canada, compare destinations, and discover peaceful places to relax by the lake, the mountains, or the coast.
+              - generic [ref=f6e565]:
+                - generic [ref=f6e566]:
+                  - heading "Canada Cottage country" [level=3] [ref=f6e571]
+                  - paragraph [ref=f6e572]: Browse Canada's best cottage country destinations and discover lakeside escapes, cozy cabins, and waterfront retreats across every province.
+                - generic [ref=f6e573]:
+                  - heading "The Country of 250,000 Lakes" [level=3] [ref=f6e578]
+                  - paragraph [ref=f6e579]: Boating, paddling, and deep waterfront swimming off high wooden docks beneath gorgeous glowing horizons.
+                - generic [ref=f6e580]:
+                  - heading "Boreal Forests & Parks" [level=3] [ref=f6e585]
+                  - paragraph [ref=f6e586]: Hike along the rugged edges of the Bruce Peninsula trail system or explore the legendary canoe loops of Algonquin Park.
+                - generic [ref=f6e587]:
+                  - heading "Accessible Wilderness" [level=3] [ref=f6e592]
+                  - paragraph [ref=f6e593]: Peaceful, pristine lake houses located within a comfortable 2-to-4 hour scenic drive from Toronto and Ottawa.
+            - img "Canada Cottage country" [ref=f6e596]
+          - generic [ref=f6e598]:
+            - generic [ref=f6e599]:
+              - generic [ref=f6e600]:
+                - heading "Latest Inspiration" [level=2] [ref=f6e601]
+                - paragraph [ref=f6e602]: Expert guides, local tips, and curated stories to help plan your perfect Canadian cottage escape.
+              - link "Voir tous les guides" [ref=f6e603] [cursor=pointer]:
+                - /url: /fr/guides
+            - generic [ref=f6e606]:
+              - 'link "Canada Cottage Country: A Region-by-Region Guide for 2026 Canada Cottage Rentals 9 min read Canada Cottage Country: A Region-by-Region Guide for 2026 Explore Canada cottage country by region. From Ontario lakes to BC cabins and Maritimes coastlines, find the best spot for your 2026 getaway. Lire le guide" [ref=f6e607] [cursor=pointer]':
+                - /url: /fr/guides/canada-cottage-country-a-region-by-region-guide-for-2026
+                - generic [ref=f6e608]:
+                  - 'img "Canada Cottage Country: A Region-by-Region Guide for 2026" [ref=f6e609]'
+                  - generic [ref=f6e610]: Canada Cottage Rentals
+                - generic [ref=f6e611]:
+                  - generic [ref=f6e612]: 9 min read
+                  - 'heading "Canada Cottage Country: A Region-by-Region Guide for 2026" [level=3] [ref=f6e617]'
+                  - paragraph [ref=f6e618]: Explore Canada cottage country by region. From Ontario lakes to BC cabins and Maritimes coastlines, find the best spot for your 2026 getaway.
+                  - generic [ref=f6e619]: Lire le guide
+              - 'link "BC Cottage Rentals: Mountain Cabins, Oceanfront Retreats & Wilderness Escapes BC Cottage Rentals 5 min read BC Cottage Rentals: Mountain Cabins, Oceanfront Retreats & Wilderness Escapes Explore BC cottage rentals from Whistler cabins to Okanagan lakefront and Sunshine Coast retreats. Top regions, seasons, and booking tips for your trip. Lire le guide" [ref=f6e622] [cursor=pointer]':
+                - /url: /fr/guides/bc-cottage-rentals
+                - generic [ref=f6e623]:
+                  - 'img "BC Cottage Rentals: Mountain Cabins, Oceanfront Retreats & Wilderness Escapes" [ref=f6e624]'
+                  - generic [ref=f6e625]: BC Cottage Rentals
+                - generic [ref=f6e626]:
+                  - generic [ref=f6e627]: 5 min read
+                  - 'heading "BC Cottage Rentals: Mountain Cabins, Oceanfront Retreats & Wilderness Escapes" [level=3] [ref=f6e632]'
+                  - paragraph [ref=f6e633]: Explore BC cottage rentals from Whistler cabins to Okanagan lakefront and Sunshine Coast retreats. Top regions, seasons, and booking tips for your trip.
+                  - generic [ref=f6e634]: Lire le guide
+              - 'link "Cottage Rentals in Canada: The Ultimate Guide to Finding Your Perfect Getaway News 8 min read Cottage Rentals in Canada: The Ultimate Guide to Finding Your Perfect Getaway Looking for cottage rentals in Canada? This guide covers the best provinces, price ranges, amenities to look for, and booking tips to find your perfect Canadian getaway. Lire le guide" [ref=f6e637] [cursor=pointer]':
+                - /url: /fr/guides/cottage-rentals-in-canada-the-ultimate-guide
+                - generic [ref=f6e638]:
+                  - 'img "Cottage Rentals in Canada: The Ultimate Guide to Finding Your Perfect Getaway" [ref=f6e639]'
+                  - generic [ref=f6e640]: News
+                - generic [ref=f6e641]:
+                  - generic [ref=f6e642]: 8 min read
+                  - 'heading "Cottage Rentals in Canada: The Ultimate Guide to Finding Your Perfect Getaway" [level=3] [ref=f6e647]'
+                  - paragraph [ref=f6e648]: Looking for cottage rentals in Canada? This guide covers the best provinces, price ranges, amenities to look for, and booking tips to find your perfect Canadian getaway.
+                  - generic [ref=f6e649]: Lire le guide
+          - generic [ref=f6e652]:
+            - generic [ref=f6e653]:
+              - heading "Search by City and Category" [level=2] [ref=f6e654]
+              - paragraph [ref=f6e655]: Quickly jump into active curated rentals across major Canadian regions.
+            - generic [ref=f6e656]:
+              - generic [ref=f6e657]:
+                - heading "Ontario" [level=3] [ref=f6e658]
+                - list [ref=f6e659]:
+                  - listitem [ref=f6e660]:
+                    - link "Cottages in Muskoka" [ref=f6e661] [cursor=pointer]:
+                      - /url: /en/search/muskoka/
+                  - listitem [ref=f6e662]:
+                    - link "Lakefront in Haliburton" [ref=f6e663] [cursor=pointer]:
+                      - /url: /en/search/haliburton/lakefront
+                  - listitem [ref=f6e664]:
+                    - link "Cottages in Kawarthas" [ref=f6e665] [cursor=pointer]:
+                      - /url: /en/search/kawarthas/
+              - generic [ref=f6e666]:
+                - heading "Quebec" [level=3] [ref=f6e667]
+                - list [ref=f6e668]:
+                  - listitem [ref=f6e669]:
+                    - link "Cottages in Mont-Tremblant" [ref=f6e670] [cursor=pointer]:
+                      - /url: /en/search/mont-tremblant/
+                  - listitem [ref=f6e671]:
+                    - link "Cottages in Charlevoix" [ref=f6e672] [cursor=pointer]:
+                      - /url: /en/search/charlevoix/
+                  - listitem [ref=f6e673]:
+                    - link "Cottages in Laurentians" [ref=f6e674] [cursor=pointer]:
+                      - /url: /en/search/laurentians/
+              - generic [ref=f6e675]:
+                - heading "British Columbia" [level=3] [ref=f6e676]
+                - list [ref=f6e677]:
+                  - listitem [ref=f6e678]:
+                    - link "Cottages in Whistler" [ref=f6e679] [cursor=pointer]:
+                      - /url: /en/search/whistler/
+                  - listitem [ref=f6e680]:
+                    - link "Cottages in Vancouver" [ref=f6e681] [cursor=pointer]:
+                      - /url: /en/search/vancouver/
+                  - listitem [ref=f6e682]:
+                    - link "Cottages in Tofino" [ref=f6e683] [cursor=pointer]:
+                      - /url: /en/search/tofino/
+              - generic [ref=f6e684]:
+                - heading "Alberta" [level=3] [ref=f6e685]
+                - list [ref=f6e686]:
+                  - listitem [ref=f6e687]:
+                    - link "Cottages in Banff" [ref=f6e688] [cursor=pointer]:
+                      - /url: /en/search/banff/
+                  - listitem [ref=f6e689]:
+                    - link "Cottages in Jasper" [ref=f6e690] [cursor=pointer]:
+                      - /url: /en/search/jasper/
+                  - listitem [ref=f6e691]:
+                    - link "Cottages in Calgary" [ref=f6e692] [cursor=pointer]:
+                      - /url: /en/search/calgary/
+          - generic [ref=f6e694]:
+            - generic [ref=f6e695]:
+              - heading "Explore top destinations and book your ideal vacation stay." [level=2] [ref=f6e696]
+              - paragraph [ref=f6e697]: Find waterfront cottages, cozy cabins, family-friendly vacation homes, and unique retreats in the country's most beautiful destinations.
+              - link "Find more cottages on VRBO" [ref=f6e698] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliates/cottagerentals/vrbo
+            - img "best cottages for rent in Canada" [ref=f6e700]
+      - contentinfo [ref=f6e701]:
+        - generic [ref=f6e702]:
+          - generic [ref=f6e703]:
+            - generic [ref=f6e704]:
+              - img "Logo" [ref=f6e706]
+              - paragraph [ref=f6e707]: Find your perfect Canadian cottage rental. Curated lake houses, mountain lodges, and wilderness cabins across Canada
+              - generic [ref=f6e708]:
+                - link "Facebook" [ref=f6e709] [cursor=pointer]:
+                  - /url: htps://facebook.com/
+                - link "Instagram" [ref=f6e712] [cursor=pointer]:
+                  - /url: htps://instagram.com/
+                - link "TikTok" [ref=f6e715] [cursor=pointer]:
+                  - /url: htps://tiktok.com/
+                - link "X" [ref=f6e718] [cursor=pointer]:
+                  - /url: htps://x.com/
+                - link "Pinterest" [ref=f6e721] [cursor=pointer]:
+                  - /url: htps://pinterest.com/
+            - generic [ref=f6e724]:
+              - heading "DISCOVER" [level=4] [ref=f6e725]
+              - list [ref=f6e726]:
+                - listitem [ref=f6e727]:
+                  - link "Explore Cottages" [ref=f6e728] [cursor=pointer]:
+                    - /url: /fr/search
+                - listitem [ref=f6e729]:
+                  - link "Waterfront Cottages" [ref=f6e730] [cursor=pointer]:
+                    - /url: /fr/search/waterfront
+                - listitem [ref=f6e731]:
+                  - link "Pet-Friendly Cottages" [ref=f6e732] [cursor=pointer]:
+                    - /url: /fr/search/pet-friendly
+            - generic [ref=f6e733]:
+              - heading "QUICK LINKS" [level=4] [ref=f6e734]
+              - list [ref=f6e735]:
+                - listitem [ref=f6e736]:
+                  - link "Terms of Use" [ref=f6e737] [cursor=pointer]:
+                    - /url: /fr/terms
+                - listitem [ref=f6e738]:
+                  - link "Affiliate Disclosure" [ref=f6e739] [cursor=pointer]:
+                    - /url: /fr/disclaimer
+                - listitem [ref=f6e740]:
+                  - link "Privacy Policy" [ref=f6e741] [cursor=pointer]:
+                    - /url: /fr/privacy
+            - generic [ref=f6e742]:
+              - heading "ABOUT" [level=4] [ref=f6e743]
+              - list [ref=f6e744]:
+                - listitem [ref=f6e745]:
+                  - link "About" [ref=f6e746] [cursor=pointer]:
+                    - /url: /fr/about
+                - listitem [ref=f6e747]:
+                  - link "Contact" [ref=f6e748] [cursor=pointer]:
+                    - /url: /fr/contact
+                - listitem [ref=f6e749]:
+                  - link "Guides & Articles" [ref=f6e750] [cursor=pointer]:
+                    - /url: /fr/guides
+          - paragraph [ref=f6e753]: © 2026 Chalet Express. Tous droits réservés.
+  - alert [ref=f6e754]

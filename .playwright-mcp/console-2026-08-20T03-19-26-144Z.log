@@ -1,0 +1,6 @@
+[     545ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/fr/manifest.webmanifest:0
+[     555ms] [ERROR] Manifest fetch from http://localhost:3100/fr/manifest.webmanifest failed, code 404 @ http://localhost:3100/fr:0
+[    1242ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/fr/manifest.webmanifest:0
+[    1274ms] [ERROR] Manifest fetch from http://localhost:3100/fr/manifest.webmanifest failed, code 404 @ http://localhost:3100/fr:0
+[    4485ms] [WARNING] The resource http://localhost:3100/_next/static/chunks/086n74j-r19~j.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3100/fr:0
+[    8280ms] [WARNING] The resource http://localhost:3100/_next/static/chunks/086n74j-r19~j.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3100/fr:0

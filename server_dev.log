@@ -1,0 +1,16 @@
+
+> chaletexpress@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3101
+- Network:       http://192.168.2.156:3101
+- Environments: .env.local, .env
+✓ Ready in 2.0s
+
+ GET /en/images/vrbo3.png 404 in 2.9s (next.js: 2.9s, proxy.ts: 3ms, application-code: 70ms)
+ GET /en/images/vrbo3.png 404 in 31ms (next.js: 5ms, proxy.ts: 3ms, application-code: 23ms)
+(node:18844) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ GET /en/test.txt 404 in 2.9s (next.js: 2.3s, proxy.ts: 2ms, application-code: 574ms)
+[?25h

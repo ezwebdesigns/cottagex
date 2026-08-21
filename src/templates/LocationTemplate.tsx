@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { MapPin, ChevronDown, Waves, Trees, Compass, Star, Snowflake, Mountain, Leaf, Home as HomeIcon } from 'lucide-react';
-import { useTranslations } from '@/lib/useTranslations';
+import { useTranslations } from 'next-intl';
 import PropertyCard from '@/components/cottagex/PropertyCard';
 import CTASection from '@/components/cottagex/CTASection';
 import { BreadcrumbSchema, PlaceSchema, ItemListSchema } from '@/components/seo/SchemaOrg';
@@ -22,7 +22,7 @@ const highlightIconMap: Record<string, React.ReactNode> = {
 };
 
 export default function LocationTemplate({ locale, slug, pageData, name: nameProp, cottages }: LocationTemplateProps) {
-  const { t } = useTranslations();
+  const t = useTranslations();
   const fallbackName = slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   const locName = nameProp?.en || fallbackName;
 
@@ -36,6 +36,8 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
   const heroImageAlt = hero.imageAlt || heroTitle;
 
   const introDesc = intro.description || '';
+  const introSubtitle = intro.subtitle || '';
+  const highlightsTitle = intro.highlightsTitle || '';
   const highlights = intro.highlights || [];
 
   const learnMoreFaq = ld.learnMore?.faq || [];
@@ -50,10 +52,12 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
       province: c.province || '',
       price: c.price_cad || 0,
       rating: c.rating || 0,
+      reviews: c.reviews || 0,
       badge: c.type || 'Featured',
       image: c.thumbnail || (Array.isArray(c.photos) && c.photos[0]) || 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=800&q=80',
       description: Array.isArray(c.amenities) ? c.amenities.slice(0, 3).join(' • ') : '',
       vrboUrl: c.affiliate_url || c.google_link || '#',
+      source: c.source,
       beds: c.bedrooms || 0,
       baths: c.bathrooms || 0,
       guests: c.sleeps || 0,
@@ -94,7 +98,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
           <div className="text-white">
             <div className="flex items-center gap-2 text-[#77e1fb] text-sm font-medium mb-2">
               <MapPin className="w-4 h-4" />
-              {t.nav.destinations}
+              {t('nav.destinations')}
             </div>
             <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-2" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>{heroTitle}</h1>
             {heroSubtitle && <p className="text-base sm:text-lg text-white/80">{heroSubtitle}</p>}
@@ -106,22 +110,26 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
         <section className="py-10 sm:py-14 px-4 sm:px-6 lg:px-8 bg-[#f8fafc]">
           <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-16">
             <div className="w-full lg:w-[55%]">
-              <h2 className="text-sm font-semibold uppercase tracking-wider text-[#0f51ec] mb-3">{t.destination.overview}</h2>
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-[#0f51ec] mb-3">{t('destination.overview')}</h2>
+              {introSubtitle && <p className="text-base font-medium text-[#191e3b] mb-3">{introSubtitle}</p>}
               <p className="text-base sm:text-lg text-[#191e3b] leading-relaxed" style={{ lineHeight: 1.8 }}>{introDesc}</p>
             </div>
             {highlights.length > 0 && (
-              <div className="w-full lg:w-[45%] grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="w-full lg:w-[45%]">
+                {highlightsTitle && <h3 className="text-base font-bold text-[#191e3b] mb-3">{highlightsTitle}</h3>}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {highlights.map((item: any, i: number) => (
                   <div key={i} className="bg-[#191e3b] p-4 sm:p-5 rounded-2xl flex flex-col items-start justify-center gap-3 text-left">
                     <div className="p-2.5 bg-white text-[#0f51ec] rounded-xl shrink-0">
                       {highlightIconMap[item.icon] || <Compass size={18} />}
                     </div>
                     <div>
-                      <h3 className="font-bold text-sm text-white mb-0.5">{item.title}</h3>
+                      <span className="font-bold text-sm text-white mb-0.5 block">{item.title}</span>
                       <p className="text-white/60 text-xs leading-relaxed text-left">{item.description}</p>
                     </div>
                   </div>
                 ))}
+                </div>
               </div>
             )}
           </div>
@@ -130,7 +138,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
 
       {chaletCards.length > 0 && (
         <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-1" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>{t.destination.exploreChalets}</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b] mb-1" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>{t('destination.exploreChalets')}</h2>
           <p className="text-sm text-slate-500 mb-6">{locName}</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
             {chaletCards.map((chalet) => (
@@ -161,7 +169,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
                           onClick={() => setOpenLearnMoreFaq(isOpen ? null : i)}
                           className="flex items-center justify-between w-full py-4 text-left"
                         >
-                          <span className="font-medium text-sm text-[#191e3b] pr-3">{item.q}</span>
+                          <h3 className="font-medium text-sm text-[#191e3b] pr-3">{item.q}</h3>
                           <ChevronDown className={`w-4 h-4 text-[#0f51ec] shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                         </button>
                         <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 pb-4' : 'max-h-0'}`}>
@@ -179,6 +187,13 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
               </div>
             )}
           </div>
+        </section>
+      )}
+
+      {ld.about?.title && ld.about?.content && (
+        <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-[#f8fafc]">
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#191e3b] mb-6" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>{ld.about.title}</h2>
+          <p className="text-justify text-slate-700 max-w-5xl" style={{ lineHeight: 1.8 }}>{ld.about.content}</p>
         </section>
       )}
 

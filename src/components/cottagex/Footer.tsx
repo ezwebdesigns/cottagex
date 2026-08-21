@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useTranslations } from '@/lib/useTranslations';
+import { useTranslations, useLocale } from 'next-intl';
 import SocialIcon from '@/components/cottagex/SocialIcon';
 
 type FooterLink = { label: string; href: string };
@@ -13,14 +13,17 @@ type FooterSettings = {
   discoverTitle?: string;
   quickLinksTitle?: string;
   aboutTitle?: string;
+  topDestinationsTitle?: string;
   discover?: FooterLink[];
   quickLinks?: FooterLink[];
   about?: FooterLink[];
+  topDestinations?: FooterLink[];
   socials?: FooterSocial[];
 };
 
 export default function Footer() {
-  const { t, lang } = useTranslations();
+  const t = useTranslations();
+  const lang = useLocale();
   const [footerSettings, setFooterSettings] = useState<FooterSettings | null>(null);
 
   useEffect(() => {
@@ -39,8 +42,9 @@ export default function Footer() {
   const discover = footerSettings?.discover ?? [];
   const quickLinks = footerSettings?.quickLinks ?? [];
   const about = footerSettings?.about ?? [];
+  const topDestinations = footerSettings?.topDestinations ?? [];
   const socials = (footerSettings?.socials ?? []).filter(s => s.url);
-  const hasAnyLinks = discover.length > 0 || quickLinks.length > 0 || about.length > 0;
+  const hasAnyLinks = discover.length > 0 || quickLinks.length > 0 || about.length > 0 || topDestinations.length > 0;
 
   if (!footerSettings) return null;
 
@@ -48,7 +52,7 @@ export default function Footer() {
     <footer className="bg-[#0f51ec] text-white">
       <div className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         {hasAnyLinks && (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
             <div className="col-span-2 md:col-span-1">
               {footerSettings.logo ? (
                 <div className="flex items-center gap-2 mb-3">
@@ -78,7 +82,7 @@ export default function Footer() {
 
             {discover.length > 0 && (
               <div>
-                <h4 className="text-sm font-semibold text-white/90 mb-3">{footerSettings.discoverTitle || t.footer.discover}</h4>
+                <h4 className="text-sm font-semibold text-white/90 mb-3">{footerSettings.discoverTitle || t('footer.discover')}</h4>
                 <ul className="space-y-2">
                   {discover.map((item, i) => (
                     <li key={i}>
@@ -96,7 +100,7 @@ export default function Footer() {
 
             {quickLinks.length > 0 && (
               <div>
-                <h4 className="text-sm font-semibold text-white/90 mb-3">{footerSettings.quickLinksTitle || t.footer.support}</h4>
+                <h4 className="text-sm font-semibold text-white/90 mb-3">{footerSettings.quickLinksTitle || t('footer.support')}</h4>
                 <ul className="space-y-2">
                   {quickLinks.map((item, i) => (
                     <li key={i}>
@@ -114,9 +118,27 @@ export default function Footer() {
 
             {about.length > 0 && (
               <div>
-                <h4 className="text-sm font-semibold text-white/90 mb-3">{footerSettings.aboutTitle || t.footer.company}</h4>
+                <h4 className="text-sm font-semibold text-white/90 mb-3">{footerSettings.aboutTitle || t('footer.company')}</h4>
                 <ul className="space-y-2">
                   {about.map((item, i) => (
+                    <li key={i}>
+                      <Link
+                        href={interpolate(item.href)}
+                        className="text-sm text-white/60 hover:text-[#77e1fb] transition-colors"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {topDestinations.length > 0 && (
+              <div>
+                <h4 className="text-sm font-semibold text-white/90 mb-3">{footerSettings.topDestinationsTitle || t('footer.topDestinations')}</h4>
+                <ul className="space-y-2">
+                  {topDestinations.map((item, i) => (
                     <li key={i}>
                       <Link
                         href={interpolate(item.href)}
@@ -135,7 +157,7 @@ export default function Footer() {
         <div className="mt-10 pt-8 border-t border-white/10">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs text-white/50 flex-shrink-0">
-              © {new Date().getFullYear()} Chalet Express. {t.footer.rights}
+              © {new Date().getFullYear()} Chalet Express. {t('footer.rights')}
             </p>
           </div>
         </div>

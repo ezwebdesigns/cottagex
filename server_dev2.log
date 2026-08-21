@@ -1,0 +1,177 @@
+
+> chaletexpress@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3101
+- Network:       http://192.168.2.156:3101
+- Environments: .env.local, .env
+✓ Ready in 248ms
+
+(node:12552) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12]
+ GET /en 200 in 10.6s (next.js: 891ms, proxy.ts: 80ms, generate-params: 264ms, application-code: 9.6s)
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12]
+ GET /en 200 in 2.5s (next.js: 11ms, proxy.ts: 4ms, generate-params: 7ms, application-code: 2.5s)
+ GET /fr/manifest.webmanifest 404 in 466ms (next.js: 306ms, proxy.ts: 22ms, application-code: 138ms)
+ GET /fr/manifest.webmanifest 404 in 106ms (next.js: 9ms, proxy.ts: 1698µs, application-code: 95ms)
+ GET /api/admin/settings?section=side_menu 200 in 1108ms (next.js: 797ms, proxy.ts: 3ms, application-code: 307ms)
+ GET /api/admin/settings?section=general 200 in 1150ms (next.js: 813ms, proxy.ts: 3ms, application-code: 334ms)
+ GET /api/admin/settings?section=footer 200 in 1049ms (next.js: 673ms, proxy.ts: 4ms, application-code: 373ms)
+ GET /api/admin/settings?section=general 200 in 78ms (next.js: 2ms, proxy.ts: 3ms, application-code: 73ms)
+ GET /fr/icon.png?icon.0uzedbih61ru6.png= 404 in 163ms (next.js: 9ms, proxy.ts: 2ms, application-code: 152ms)
+ GET /api/library/66 200 in 755ms (next.js: 646ms, proxy.ts: 1896µs, application-code: 107ms)
+ GET /api/library/64 200 in 782ms (next.js: 607ms, proxy.ts: 2ms, application-code: 173ms)
+ GET /api/library/50 200 in 681ms (next.js: 466ms, proxy.ts: 1995µs, application-code: 213ms)
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12]
+ GET /fr/manifest.webmanifest 404 in 101ms (next.js: 9ms, proxy.ts: 1771µs, application-code: 91ms)
+ GET /fr 200 in 2.7s (next.js: 10ms, proxy.ts: 3ms, generate-params: 7ms, application-code: 2.6s)
+ GET /api/admin/settings?section=general 200 in 302ms (next.js: 3ms, proxy.ts: 4ms, application-code: 295ms)
+ GET /api/admin/settings?section=side_menu 200 in 340ms (next.js: 5ms, proxy.ts: 4ms, application-code: 331ms)
+ GET /api/admin/settings?section=footer 200 in 372ms (next.js: 7ms, proxy.ts: 3ms, application-code: 362ms)
+ GET /api/admin/settings?section=general 200 in 108ms (next.js: 7ms, proxy.ts: 2ms, application-code: 98ms)
+ GET /api/library/66 200 in 182ms (next.js: 8ms, proxy.ts: 9ms, application-code: 165ms)
+ GET /api/library/64 200 in 194ms (next.js: 2ms, proxy.ts: 1494µs, application-code: 191ms)
+ GET /api/library/50 200 in 198ms (next.js: 1978µs, proxy.ts: 2ms, application-code: 194ms)
+ GET /fr/manifest.webmanifest 404 in 104ms (next.js: 9ms, proxy.ts: 1344µs, application-code: 94ms)
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12]
+ GET /fr/manifest.webmanifest 404 in 103ms (next.js: 11ms, proxy.ts: 1924µs, application-code: 90ms)
+ GET /en 200 in 10.1s (next.js: 9ms, proxy.ts: 2ms, generate-params: 6ms, application-code: 10.1s)
+ GET /api/admin/settings?section=general 200 in 241ms (next.js: 2ms, proxy.ts: 2ms, application-code: 236ms)
+ GET /api/admin/settings?section=side_menu 200 in 272ms (next.js: 5ms, proxy.ts: 2ms, application-code: 265ms)
+ GET /api/admin/settings?section=footer 200 in 296ms (next.js: 1095µs, proxy.ts: 1687µs, application-code: 293ms)
+ GET /api/admin/settings?section=general 200 in 93ms (next.js: 5ms, proxy.ts: 3ms, application-code: 85ms)
+ GET /api/library/66 200 in 155ms (next.js: 11ms, proxy.ts: 5ms, application-code: 138ms)
+ GET /api/library/64 200 in 154ms (next.js: 3ms, proxy.ts: 1770µs, application-code: 149ms)
+ GET /api/library/50 200 in 163ms (next.js: 2ms, proxy.ts: 1841µs, application-code: 159ms)
+ GET /fr/manifest.webmanifest 404 in 98ms (next.js: 8ms, proxy.ts: 2ms, application-code: 88ms)
+[?25h

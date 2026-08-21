@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
+const locales = ['en', 'fr']
+
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
@@ -8,9 +10,25 @@ export function proxy(request: NextRequest) {
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
     pathname.startsWith('/maintenance') ||
-    pathname === '/favicon.ico'
+    pathname === '/favicon.ico' ||
+    pathname === '/ads.txt' ||
+    pathname === '/logo.png'
 
   if (isStatic) return NextResponse.next()
+
+  // Détection automatique de la langue : redirige / et les chemins sans
+  // préfixe vers la locale préférée du visiteur (Accept-Language).
+  const pathnameHasLocale = locales.some(
+    (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)
+  )
+
+  if (!pathnameHasLocale) {
+    const acceptLanguage = request.headers.get('accept-language') || ''
+    const preferredLocale = acceptLanguage.toLowerCase().startsWith('fr') ? 'fr' : 'en'
+    const url = request.nextUrl.clone()
+    url.pathname = `/${preferredLocale}${pathname === '/' ? '' : pathname}`
+    return NextResponse.redirect(url)
+  }
 
   // Poser les headers consommés par app/layout.tsx (lang HTML, hreflang,
   // canonical) — sans eux, <html lang> est "en" sur tout le site.

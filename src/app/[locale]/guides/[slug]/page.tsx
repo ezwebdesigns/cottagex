@@ -9,6 +9,8 @@ import ArticleStandard from '@/templates/ArticleStandard';
 import ArticleListicle from '@/templates/ArticleListicle';
 import { generateToc, injectHeadingIds } from '@/lib/extract-toc';
 
+export const revalidate = 3600;
+
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
 function formatDate(d: Date | string | null): string {

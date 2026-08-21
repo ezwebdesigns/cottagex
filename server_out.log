@@ -1,0 +1,216 @@
+▲ Next.js 16.2.6
+- Local:         http://localhost:3999
+- Network:       http://192.168.2.156:3999
+✓ Ready in 96ms
+[api/cottages] params: {
+  slug: undefined,
+  limit: 25,
+  sort: 'rating',
+  category: '',
+  featuredOnly: true
+}
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["ontario",25]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["ontario",12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["ontario",12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["ontario",12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["ontario",12]
+[api/cottages] params: {
+  slug: undefined,
+  limit: 12,
+  sort: 'rating',
+  category: '',
+  featuredOnly: true
+}
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["ontario",12]

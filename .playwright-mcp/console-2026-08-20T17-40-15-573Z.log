@@ -1,0 +1,7 @@
+[     587ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/fr/images/vrbo3.png:0
+[     587ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/fr/images/expedia3.png:0
+[     803ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/fr/manifest.webmanifest:0
+[     838ms] [ERROR] Manifest fetch from http://localhost:3100/fr/manifest.webmanifest failed, code 404 @ http://localhost:3100/en:0
+[    2718ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/fr/manifest.webmanifest:0
+[    2761ms] [ERROR] Manifest fetch from http://localhost:3100/fr/manifest.webmanifest failed, code 404 @ http://localhost:3100/en:0
+[    2795ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/fr/icon.png?icon.0uzedbih61ru6.png=:0

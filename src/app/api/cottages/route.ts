@@ -20,9 +20,9 @@ export async function GET(request: NextRequest) {
   const featuredOnly = searchParams.get('featured') !== 'false'
   const affiliateOnly = searchParams.get('affiliateOnly') === 'true'
 
-  if (limit < 1 || limit > 20) {
+  if (!Number.isFinite(limit) || limit < 1) {
     return NextResponse.json(
-      { error: 'limit must be between 1 and 20' },
+      { error: 'limit must be a positive number' },
       { status: 400 }
     )
   }

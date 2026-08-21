@@ -4,6 +4,8 @@ import { articles } from '@/db/schema';
 import { desc, eq } from 'drizzle-orm';
 import GuidesList from '@/components/guides/GuidesList';
 
+export const revalidate = 3600;
+
 type Props = { params: Promise<{ locale: string }>; searchParams: Promise<{ page?: string }> };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {

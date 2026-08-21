@@ -11,7 +11,7 @@ export default function EditDestinationPage() {
   const [title, setTitle] = useState(''); const [slug, setSlug] = useState('');
   const [seoTitle, setSeoTitle] = useState(''); const [metaDescription, setMetaDescription] = useState('');
   const [featuredImage, setFeaturedImage] = useState(''); const [isPublished, setIsPublished] = useState(true);
-  const [locationData, setLocationData] = useState<any>({ hero: {}, intro: { highlights: [] }, featured: {}, cta: {}, search: { columns: [] }, learnMore: { faq: [] } });
+  const [locationData, setLocationData] = useState<any>({ hero: {}, intro: { highlights: [] }, featured: {}, cta: {}, search: { columns: [] }, learnMore: { faq: [] }, about: {} });
   const [loading, setLoading] = useState(true); const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function EditDestinationPage() {
       setTitle(p.title); setSlug(p.slug);
       setSeoTitle(p.seoTitle); setMetaDescription(p.metaDescription);
       setFeaturedImage(p.featuredImage || ''); setIsPublished(p.isPublished);
-      setLocationData(typeof p.locationData === 'object' && p.locationData !== null ? p.locationData : { hero: {}, intro: { highlights: [] }, featured: {}, cta: {}, search: { columns: [] }, learnMore: { faq: [] } });
+      setLocationData(typeof p.locationData === 'object' && p.locationData !== null ? p.locationData : { hero: {}, intro: { highlights: [] }, featured: {}, cta: {}, search: { columns: [] }, learnMore: { faq: [] }, about: {} });
       setLoading(false);
     });
   }, [params.id]);
@@ -170,6 +170,12 @@ export default function EditDestinationPage() {
               <div className="mt-3"><label className="block text-sm font-medium text-slate-700 mb-1">Image Alt Text (SEO)</label><input value={locationData.learnMore?.imageAlt ?? ''} onChange={e => setLocationData({ ...locationData, learnMore: { ...locationData.learnMore, imageAlt: e.target.value } })} maxLength={255} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" placeholder="Describe the image for SEO & accessibility" /></div>
             </div>
           </div>
+        </div>
+
+        <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
+          <h2 className="text-lg font-semibold text-[#191e3b]">About Section</h2>
+          <div><label className="block text-sm font-medium text-slate-700 mb-1">Title</label><input value={locationData.about?.title ?? ''} onChange={e => setLocationData({ ...locationData, about: { ...locationData.about, title: e.target.value } })} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" /></div>
+          <div><label className="block text-sm font-medium text-slate-700 mb-1">Content <span className="text-slate-400 font-normal">(displayed justified, full width)</span></label><textarea value={locationData.about?.content ?? ''} onChange={e => setLocationData({ ...locationData, about: { ...locationData.about, content: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec] h-40" /></div>
         </div>
 
         <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">

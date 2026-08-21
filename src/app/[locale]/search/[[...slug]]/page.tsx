@@ -5,6 +5,8 @@ import { eq } from 'drizzle-orm';
 import { locales } from '@/i18n/routing';
 import SearchTemplate from '@/templates/SearchTemplate';
 
+export const revalidate = 3600;
+
 type Props = { params: Promise<{ locale: string; slug?: string[] }> };
 
 const PROVINCE_SLUGS = new Set([

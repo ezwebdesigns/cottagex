@@ -1,0 +1,610 @@
+
+> chaletexpress@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.2.156:3000
+- Environments: .env.local, .env
+✓ Ready in 255ms
+
+(node:26180) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt
+    FROM affiliatecottages
+    WHERE available = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt
+    FROM affiliatecottages
+    WHERE available = true AND province = $1
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["ontario",6]
+ GET /en/cottage-country/ontario 200 in 1076ms (next.js: 530ms, proxy.ts: 86ms, generate-params: 410ms, application-code: 461ms)
+ GET /en 200 in 1087ms (next.js: 379ms, proxy.ts: 80ms, application-code: 627ms)
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+ GET /api/admin/settings?section=side_menu 200 in 226ms (next.js: 132ms, proxy.ts: 6ms, application-code: 88ms)
+ GET /api/admin/settings?section=general 200 in 229ms (next.js: 142ms, proxy.ts: 6ms, application-code: 81ms)
+ GET /api/admin/settings?section=footer 200 in 228ms (next.js: 204ms, proxy.ts: 6ms, application-code: 18ms)
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+ GET /api/admin/settings?section=general 200 in 10ms (next.js: 2ms, proxy.ts: 4ms, application-code: 4ms)
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+ GET /api/admin/settings?section=general 200 in 19ms (next.js: 3ms, proxy.ts: 7ms, application-code: 9ms)
+ GET /api/admin/settings?section=side_menu 200 in 20ms (next.js: 6ms, proxy.ts: 7ms, application-code: 7ms)
+ GET /api/admin/settings?section=footer 200 in 28ms (next.js: 8ms, proxy.ts: 5ms, application-code: 14ms)
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+ GET /api/admin/settings?section=general 200 in 9ms (next.js: 1900µs, proxy.ts: 3ms, application-code: 4ms)
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt
+    FROM affiliatecottages
+    WHERE available = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12]
+ GET /en 200 in 130ms (next.js: 10ms, proxy.ts: 4ms, application-code: 116ms)
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt
+    FROM affiliatecottages
+    WHERE available = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12]
+ GET /en 200 in 94ms (next.js: 10ms, proxy.ts: 4ms, application-code: 79ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt
+    FROM affiliatecottages
+    WHERE available = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [50]
+ GET /en/search 200 in 917ms (next.js: 783ms, proxy.ts: 6ms, generate-params: 283ms, application-code: 128ms)
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+ GET /api/admin/settings?section=general 200 in 46ms (next.js: 4ms, proxy.ts: 12ms, application-code: 30ms)
+ GET /api/admin/settings?section=side_menu 200 in 46ms (next.js: 10ms, proxy.ts: 11ms, application-code: 25ms)
+ GET /api/admin/settings?section=footer 200 in 45ms (next.js: 17ms, proxy.ts: 9ms, application-code: 19ms)
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+ GET /api/admin/settings?section=general 200 in 13ms (next.js: 2ms, proxy.ts: 6ms, application-code: 5ms)
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt
+    FROM affiliatecottages
+    WHERE available = true AND province = $1
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["ontario",6]
+ GET /en/cottage-country/ontario 200 in 57ms (next.js: 9ms, proxy.ts: 3ms, generate-params: 6ms, application-code: 44ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt
+    FROM affiliatecottages
+    WHERE available = true AND slug = $1
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["britishColumbia",3]
+ GET /en/cottage-country/britishColumbia 200 in 32ms (next.js: 8ms, proxy.ts: 2ms, generate-params: 5ms, application-code: 21ms)
+  Reload env: .env.local
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+✓ Compiled in 591ms
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+⚠ Duplicate page detected. pages\src\proxy.ts and pages\src\proxy.js both resolve to /src/proxy.
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt
+    FROM affiliatecottages
+    WHERE available = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt
+    FROM affiliatecottages
+    WHERE available = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt
+    FROM affiliatecottages
+    WHERE available = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt
+    FROM affiliatecottages
+    WHERE available = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12]
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt
+    FROM affiliatecottages
+    WHERE available = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12]
+ GET /en 200 in 11.8s (next.js: 4ms, proxy.ts: 13ms, application-code: 11.8s)
+ GET /en 200 in 12.5s (next.js: 605ms, proxy.ts: 14ms, application-code: 11.9s)
+ GET /en 200 in 11.8s (next.js: 33ms, proxy.ts: 8ms, application-code: 11.7s)
+ GET /en 200 in 11.8s (next.js: 6ms, proxy.ts: 8ms, application-code: 11.8s)
+ GET /en 200 in 11.8s (next.js: 16ms, proxy.ts: 8ms, application-code: 11.8s)
+✓ Compiled in 75ms
+✓ Compiled in 66ms
+✓ Compiled in 89ms
+⨯ ./src/templates/SearchTemplate.tsx:6:1
+Module not found: Can't resolve '@/components/cottagex/SearchInspirations'
+  [90m4 |[0m [36mimport[0m { [33mHome[0m [36mas[0m [33mHomeIcon[0m, [33mSailboat[0m, [33mBath[0m, [33mUsers[0m, [33mGem[0m, [33mDog[0m, [33mHeart[0m, [33mTreePine[0m, [33mUmbrella[0m, [33mBuil...[0m
+  [90m5 |[0m [36mimport[0m [33mPropertyCard[0m [36mfrom[0m [32m'@/components/cottagex/PropertyCard'[0m;
+[31m[1m>[0m [90m6 |[0m [36mimport[0m [33mSearchInspirations[0m [36mfrom[0m [32m'@/components/cottagex/SearchInspirations'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m7 |[0m [36mimport[0m { [33mBreadcrumbSchema[0m, [33mPlaceSchema[0m } [36mfrom[0m [32m'@/components/seo/SchemaOrg'[0m;
+  [90m8 |[0m
+  [90m9 |[0m [36mconst[0m categoryIconMap: [33mRecord[0m<string, [33mReact[0m.[33mElementType[0m> = {
+
+Import map: aliased to relative './src/components/cottagex/SearchInspirations' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./src/templates/SearchTemplate.tsx
+    ./src/app/[locale]/search/[[...slug]]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/templates/SearchTemplate.tsx:6:1
+Module not found: Can't resolve '@/components/cottagex/SearchInspirations'
+  [90m4 |[0m [36mimport[0m { [33mHome[0m [36mas[0m [33mHomeIcon[0m, [33mSailboat[0m, [33mBath[0m, [33mUsers[0m, [33mGem[0m, [33mDog[0m, [33mHeart[0m, [33mTreePine[0m, [33mUmbrella[0m, [33mBuil...[0m
+  [90m5 |[0m [36mimport[0m [33mPropertyCard[0m [36mfrom[0m [32m'@/components/cottagex/PropertyCard'[0m;
+[31m[1m>[0m [90m6 |[0m [36mimport[0m [33mSearchInspirations[0m [36mfrom[0m [32m'@/components/cottagex/SearchInspirations'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m7 |[0m [36mimport[0m { [33mBreadcrumbSchema[0m, [33mPlaceSchema[0m } [36mfrom[0m [32m'@/components/seo/SchemaOrg'[0m;
+  [90m8 |[0m
+  [90m9 |[0m [36mconst[0m categoryIconMap: [33mRecord[0m<string, [33mReact[0m.[33mElementType[0m> = {
+
+Import map: aliased to relative './src/components/cottagex/SearchInspirations' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./src/templates/SearchTemplate.tsx
+    ./src/app/[locale]/search/[[...slug]]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/templates/SearchTemplate.tsx:6:1
+Module not found: Can't resolve '@/components/cottagex/SearchInspirations'
+  [90m4 |[0m [36mimport[0m { [33mHome[0m [36mas[0m [33mHomeIcon[0m, [33mSailboat[0m, [33mBath[0m, [33mUsers[0m, [33mGem[0m, [33mDog[0m, [33mHeart[0m, [33mTreePine[0m, [33mUmbrella[0m, [33mBuil...[0m
+  [90m5 |[0m [36mimport[0m [33mPropertyCard[0m [36mfrom[0m [32m'@/components/cottagex/PropertyCard'[0m;
+[31m[1m>[0m [90m6 |[0m [36mimport[0m [33mSearchInspirations[0m [36mfrom[0m [32m'@/components/cottagex/SearchInspirations'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m7 |[0m [36mimport[0m { [33mBreadcrumbSchema[0m, [33mPlaceSchema[0m } [36mfrom[0m [32m'@/components/seo/SchemaOrg'[0m;
+  [90m8 |[0m
+  [90m9 |[0m [36mconst[0m categoryIconMap: [33mRecord[0m<string, [33mReact[0m.[33mElementType[0m> = {
+
+Import map: aliased to relative './src/components/cottagex/SearchInspirations' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./src/templates/SearchTemplate.tsx
+    ./src/app/[locale]/search/[[...slug]]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/templates/SearchTemplate.tsx:6:1
+Module not found: Can't resolve '@/components/cottagex/SearchInspirations'
+  [90m4 |[0m [36mimport[0m { [33mHome[0m [36mas[0m [33mHomeIcon[0m, [33mSailboat[0m, [33mBath[0m, [33mUsers[0m, [33mGem[0m, [33mDog[0m, [33mHeart[0m, [33mTreePine[0m, [33mUmbrella[0m, [33mBuil...[0m
+  [90m5 |[0m [36mimport[0m [33mPropertyCard[0m [36mfrom[0m [32m'@/components/cottagex/PropertyCard'[0m;
+[31m[1m>[0m [90m6 |[0m [36mimport[0m [33mSearchInspirations[0m [36mfrom[0m [32m'@/components/cottagex/SearchInspirations'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m7 |[0m [36mimport[0m { [33mBreadcrumbSchema[0m, [33mPlaceSchema[0m } [36mfrom[0m [32m'@/components/seo/SchemaOrg'[0m;
+  [90m8 |[0m
+  [90m9 |[0m [36mconst[0m categoryIconMap: [33mRecord[0m<string, [33mReact[0m.[33mElementType[0m> = {
+
+Import map: aliased to relative './src/components/cottagex/SearchInspirations' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./src/templates/SearchTemplate.tsx
+    ./src/app/[locale]/search/[[...slug]]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+✓ Compiled in 187ms
+
+E:\PROJECTS\COTTAGEX>

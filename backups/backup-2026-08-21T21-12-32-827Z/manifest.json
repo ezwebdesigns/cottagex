@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-08-21T21:12:49.091Z",
+  "databaseUrl": "postgresql://postgres.tqcdlzmlulklnwdnhtwn:****@aws-1-us-east-2.pooler.supabase.com:6543/postgres",
+  "tables": {
+    "affiliatecottages": 145,
+    "articles": 15,
+    "pages": 13,
+    "properties": 0,
+    "site_settings": 23,
+    "library_images": 29,
+    "messages": 0,
+    "search_links": 0,
+    "users": 0,
+    "subscribers": 0,
+    "brands": 0,
+    "category_tags": 0,
+    "home_categories": 0,
+    "category_content": 0,
+    "catalogue_pages": 0,
+    "featured_sections": 0,
+    "home_sections": 0,
+    "hero_banners": 0,
+    "cta_cards": 0,
+    "ad_banners": 0,
+    "b44_products": 0
+  },
+  "totalRows": 225,
+  "storage": {}
+}

@@ -1,0 +1,43 @@
+
+> chaletexpress@0.1.0 start
+> next start
+
+▲ Next.js 16.2.6
+- Local:         http://localhost:3100
+- Network:       http://192.168.2.156:3100
+✓ Ready in 305ms
+(node:42636) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+SQL query: 
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      photos,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND province = $1 AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $2
+   ["ontario",200]

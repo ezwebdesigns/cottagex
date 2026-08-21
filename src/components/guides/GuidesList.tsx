@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { Calendar, Clock, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import { useTranslations } from '@/lib/useTranslations';
+import { useTranslations } from 'next-intl';
 
 type ArticleItem = {
   id: string | number;
@@ -28,24 +28,24 @@ const AVATAR_BASE = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2
 
 export default function GuidesList({ locale, articles, page, totalPages }: GuidesListProps) {
   const router = useRouter();
-  const { t } = useTranslations();
+  const t = useTranslations();
 
   return (
     <div className="min-h-screen bg-white">
       <div className="bg-gradient-to-b from-[#191e3b] to-[#0f51ec] text-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-3" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
-            {t.guides.title}
+            {t('guides.title')}
           </h1>
-          <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto">{t.guides.subtitle}</p>
+          <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto">{t('guides.subtitle')}</p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         {articles.length === 0 ? (
           <div className="text-center py-20 text-slate-400">
-            <p className="text-lg">{t.guides.noArticles || 'No articles yet.'}</p>
-            <p className="text-sm mt-2">{t.guides.checkBack || 'Check back soon for new guides.'}</p>
+            <p className="text-lg">{t.has('guides.noArticles') ? t('guides.noArticles') : 'No articles yet.'}</p>
+            <p className="text-sm mt-2">{t.has('guides.checkBack') ? t('guides.checkBack') : 'Check back soon for new guides.'}</p>
           </div>
         ) : (
           <>
@@ -90,11 +90,11 @@ export default function GuidesList({ locale, articles, page, totalPages }: Guide
                         <img src={AVATAR_BASE} alt={article.author} className="w-8 h-8 rounded-full object-cover" />
                         <div>
                           <p className="text-xs font-semibold text-[#191e3b]">{article.author}</p>
-                          <p className="text-[10px] text-slate-400">{t.guides.contributor || 'Contributor'}</p>
+                          <p className="text-[10px] text-slate-400">{t.has('guides.contributor') ? t('guides.contributor') : 'Contributor'}</p>
                         </div>
                       </div>
                       <span className="flex items-center gap-1 text-xs font-semibold text-[#0f51ec] group-hover:gap-2 transition-all">
-                        {t.guides.viewGuide || 'Read Guide'}
+                        {t.has('guides.viewGuide') ? t('guides.viewGuide') : 'Read Guide'}
                         <ArrowRight className="w-3.5 h-3.5" />
                       </span>
                     </div>
