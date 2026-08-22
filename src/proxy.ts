@@ -37,7 +37,10 @@ export function proxy(request: NextRequest) {
   requestHeaders.set('x-locale', pathname.startsWith('/fr') ? 'fr' : 'en')
 
   if (process.env.MAINTENANCE_MODE !== 'true') {
-    return NextResponse.next({ request: { headers: requestHeaders } })
+    const response = NextResponse.next({ request: { headers: requestHeaders } })
+    // Add cache control to prevent caching issues with locale switching
+    response.headers.set('Cache-Control', 'no-store, must-revalidate')
+    return response
   }
 
   const isAdmin =

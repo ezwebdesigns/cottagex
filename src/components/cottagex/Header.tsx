@@ -25,7 +25,19 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: () => void }) 
 
   const toggleLang = () => {
     const otherLocale = lang === 'en' ? 'fr' : 'en';
-    const newPath = pathname.replace(/^\/(en|fr)/, `/${otherLocale}`);
+    // Handle root path and paths with/without trailing slash
+    let newPath = pathname;
+    if (pathname === '/') {
+      newPath = `/${otherLocale}`;
+    } else if (pathname === '/en' || pathname === '/fr') {
+      newPath = `/${otherLocale}`;
+    } else if (pathname.startsWith('/en/')) {
+      newPath = pathname.replace(/^\/en/, '/fr');
+    } else if (pathname.startsWith('/fr/')) {
+      newPath = pathname.replace(/^\/fr/, '/en');
+    } else {
+      newPath = `/${otherLocale}`;
+    }
     window.location.href = newPath;
   };
 

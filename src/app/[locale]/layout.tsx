@@ -45,6 +45,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
     },
+    icons: {
+      icon: [
+        { url: "/images/favicon.ico", sizes: "any" },
+        { url: "/images/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+        { url: "/images/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      ],
+      apple: [{ url: "/images/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+      other: [
+        { rel: "icon", url: "/images/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+        { rel: "icon", url: "/images/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
+      ],
+    },
   };
 }
 
@@ -68,6 +80,13 @@ export default async function LocaleRootLayout({
   return (
     <html lang={locale} className={`${radioCanada.variable} h-full antialiased`}>
       <head>
+        <link rel="icon" href="/images/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/images/android-chrome-192x192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/images/android-chrome-512x512.png" />
+        <link rel="manifest" href="/manifest.webmanifest" />
         <OrganizationSchema />
         <WebSiteSchema />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-1L93C8YHQX"></script>
