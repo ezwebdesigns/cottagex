@@ -59,7 +59,6 @@ Connect to `affiliatecottages`, `articles`, `pages` tables (migrated to NEON)
 
 ## Key Context
 - NEON: `postgresql://neondb_owner:npg_Yq5DfVIswFB9@ep-morning-frog-apofbubd-pooler.c-7.us-east-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require`
-- Vercel: project `prj_DDKFU49eV87CnzLS87CwGiB3SsfC`, team `team_VGJquS9c3L59Q2rJsQKPaM4t`
 - 145 cottages in `affiliatecottages` table (NEON production branch)
 - `NODE_TLS_REJECT_UNAUTHORIZED=0` not needed for NEON
 - Base44 Vite source in `public/frontend/src/` for reference

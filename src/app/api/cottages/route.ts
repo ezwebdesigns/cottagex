@@ -43,7 +43,6 @@ export async function GET(request: NextRequest) {
       { cottages },
       {
         headers: {
-          // Cache 1h côté CDN Vercel
           'Cache-Control': 'no-cache, no-store, must-revalidate',
         },
       }

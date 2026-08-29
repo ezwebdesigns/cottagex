@@ -173,8 +173,8 @@ ORDER BY slug, name;
 COMMENT ON TABLE affiliatecottages IS
   'Catalogue de cottages canadiens fetché via SerpApi Google Hotels.
    Filtré sur VRBO et Expedia uniquement.
-   Sync mensuelle via Vercel Cron (toute la base).
-   Ping quotidien via Vercel Cron (is_featured = true uniquement).';
+   Sync mensuelle via Netlify Scheduled Functions (toute la base).
+   Ping quotidien via Netlify Scheduled Functions (is_featured = true uniquement).';
 
 COMMENT ON COLUMN affiliatecottages.property_token IS
   'Identifiant unique Google Hotels. Utilisé pour matcher les résultats

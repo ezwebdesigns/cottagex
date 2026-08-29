@@ -1,9 +1,9 @@
 /**
  * /app/api/cron/sync/route.js
  * Cron mensuel — rafraîchit tout le catalogue via SerpApi
- * Planifié via vercel.json : 1er de chaque mois à 6h UTC
+ * Planifié via Netlify Scheduled Functions : 1er de chaque mois à 6h UTC
  *
- * Même logique que seed-cottages.mjs mais en route API Vercel
+ * Même logique que seed-cottages.mjs mais en route API
  */
 
 import { Pool } from 'pg'

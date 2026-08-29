@@ -1,6 +1,6 @@
 /**
  * seed-cottages.mjs
- * Constitue le catalogue dans Supabase (table: affiliatecottages)
+ * Constitue le catalogue dans PostgreSQL/NEON (table: affiliatecottages)
  *
  * Usage:
  *   node --env-file=.env scripts/seed-cottages.mjs
@@ -18,7 +18,7 @@ const { Pool } = pkg
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
 
 const SERPAPI_KEY     = process.env.SERPAPI_KEY  || 'REMPLACE_PAR_TA_CLE'
-const DATABASE_URL    = process.env.DATABASE_URL || 'REMPLACE_PAR_TON_URL_SUPABASE'
+const DATABASE_URL    = process.env.DATABASE_URL || 'REMPLACE_PAR_TON_URL_NEON'
 const ALLOWED_SOURCES = ['Vrbo.com', 'Expedia.com', 'Hotels.com', 'VRBO']
 const ALLOWED_DOMAINS = ['vrbo.com', 'expedia.com']
 
@@ -247,7 +247,7 @@ async function seed() {
 
   console.log(`\n🏕️  Canada Cottage Rentals — Seed`)
   console.log(`📅  Dates        : ${checkin} → ${checkout}`)
-  console.log(`🗄️  Base          : Supabase PostgreSQL`)
+  console.log(`🗄️  Base          : PostgreSQL/NEON`)
   console.log(`🔍  Filtres      : VRBO/Expedia strict (source + google_link)`)
   console.log(`🇨🇦  Mode         : ${targetSlugs.length > 0 ? 'ciblé → ' + targetSlugs.join(', ') : 'complet'}`)
   console.log(`📍  Destinations : ${destinations.length}\n`)

@@ -1,14 +1,13 @@
 /**
  * Script de Backup Complet - Production Cottagex
- * Sauvegarde : Base de données (toutes tables) + Supabase Storage (images admin)
+ * Sauvegarde : Base de données (toutes tables)
  * Usage : node scripts/backup-production.js
- * Prérequis : .env.production créé par `vercel env pull`
+ * Prérequis : .env.production avec DATABASE_URL pointant vers NEON
  */
 
 const fs = require('fs');
 const path = require('path');
 const { Client } = require('pg');
-const { createClient } = require('@supabase/supabase-js');
 require('dotenv').config({ path: '.env.production' });
 
 const BACKUP_DIR = `backups/backup-${new Date().toISOString().replace(/[:.]/g, '-')}`;
@@ -28,7 +27,7 @@ async function main() {
   
   // 1. Vérifier .env.production
   if (!fs.existsSync('.env.production')) {
-    console.error('❌ Fichier .env.production manquant. Lancez : vercel env pull .env.production');
+    console.error('❌ Fichier .env.production manquant. Créez-le avec DATABASE_URL pointant vers NEON.');
     process.exit(1);
   }
   
@@ -42,7 +41,6 @@ async function main() {
   
   // 2. Créer dossier de backup
   fs.mkdirSync(BACKUP_DIR, { recursive: true });
-  fs.mkdirSync(path.join(BACKUP_DIR, 'storage'), { recursive: true });
   console.log(`📁 Dossier backup : ${BACKUP_DIR}`);
   
   // 3. Connexion PostgreSQL
@@ -96,73 +94,17 @@ async function main() {
     timestamp: new Date().toISOString(),
     databaseUrl: databaseUrl.replace(/:[^:@]+@/, ':****@'), // masque password
     tables: counts,
-    totalRows: Object.values(counts).reduce((a, b) => a + b, 0),
-    storage: {}
+    totalRows: Object.values(counts).reduce((a, b) => a + b, 0)
   };
   fs.writeFileSync(path.join(BACKUP_DIR, 'manifest.json'), JSON.stringify(manifest, null, 2));
   
-  // 8. Supabase Storage Backup
-  await backupStorage(BACKUP_DIR, manifest);
-  
-  // 8. Validation
+  // 5. Validation
   await validateBackup(BACKUP_DIR, counts);
   
   await pgClient.end();
   console.log('\n✅ BACKUP TERMINÉ AVEC SUCCÈS');
   console.log(`📁 Dossier : ${BACKUP_DIR}`);
   console.log(`📊 Total lignes : ${manifest.totalRows}`);
-}
-
-async function backupStorage(backupDir, manifest) {
-  console.log('\n📦 Backup Supabase Storage...');
-  
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
-  
-  if (!supabaseUrl || !supabaseKey) {
-    console.log('  ⚠️ Variables Supabase Storage manquantes (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)');
-    console.log('  ℹ️ Ajoutez-les dans .env.production pour backup des images');
-    return;
-  }
-  
-  const supabase = createClient(supabaseUrl, supabaseKey);
-  
-  try {
-    const { data: buckets, error: bucketsError } = await supabase.storage.listBuckets();
-    if (bucketsError) throw bucketsError;
-    
-    for (const bucket of buckets) {
-      console.log(`  📦 Bucket: ${bucket.name}`);
-      const bucketDir = path.join(backupDir, 'storage', bucket.name);
-      fs.mkdirSync(bucketDir, { recursive: true });
-      
-      const { data: files, error: filesError } = await supabase.storage.from(bucket.name).list('', { limit: 10000 });
-      if (filesError) throw filesError;
-      
-      for (const file of files) {
-        const { data: fileData, error: downloadError } = await supabase.storage.from(bucket.name).download(file.name);
-        if (downloadError) {
-          console.log(`    ⚠️ ${file.name}: ${downloadError.message}`);
-          continue;
-        }
-        
-        const arrayBuffer = await fileData.arrayBuffer();
-        const buffer = Buffer.from(arrayBuffer);
-        const filePath = path.join(bucketDir, file.name);
-        fs.writeFileSync(filePath, buffer);
-        console.log(`    ✅ ${file.name} (${(buffer.length/1024).toFixed(1)} KB)`);
-        
-        manifest.storage[`${bucket.name}/${file.name}`] = {
-          size: buffer.length,
-          bucket: bucket.name,
-          name: file.name
-        };
-      }
-    }
-    console.log('✅ Storage backup terminé');
-  } catch (e) {
-    console.log(`  ⚠️ Storage backup échoué: ${e.message}`);
-  }
 }
 
 async function validateBackup(backupDir, counts) {

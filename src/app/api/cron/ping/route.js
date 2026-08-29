@@ -1,7 +1,7 @@
 /**
  * /app/api/cron/ping/route.js
  * Cron quotidien — vérifie les cottages is_featured = true
- * Planifié via vercel.json : tous les jours à 7h UTC
+ * Planifié via Netlify Scheduled Functions : tous les jours à 7h UTC
  *
  * Sécurisé par CRON_SECRET (header Authorization)
  */
@@ -15,7 +15,7 @@ const pool = new Pool({
 
 export async function GET(request) {
 
-  // ── Sécurité : vérifier le secret Vercel Cron ──────────────────────────────
+  // ── Sécurité : vérifier le secret cron ──────────────────────────────
   const authHeader = request.headers.get('authorization')
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return Response.json({ error: 'Unauthorized' }, { status: 401 })
