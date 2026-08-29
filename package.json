@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:seed": "tsx --env-file=.env src/db/seed.ts"
+    "db:seed": "tsx --env-file=.env src/db/seed.ts",
+    "translate": "node scripts/translate-with-deepl.js",
+    "translate:dry": "node scripts/translate-with-deepl.js --dry-run"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.8.8",
@@ -47,7 +49,6 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "axios": "^1.19.0",
-    "deepl-node": "^1.28.0",
     "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",

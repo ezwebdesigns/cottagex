@@ -106,7 +106,7 @@
     "by": "par",
     "published": "Publié",
     "rankedChalets": "Les chalets les mieux notés",
-    "estimatedPrice": "Est. price",
+    "estimatedPrice": "Prix estimé",
     "bookNow": "Réserver maintenant",
     "viewGuide": "Lire le guide",
     "noArticles": "Aucun article pour l'instant.",
@@ -117,7 +117,7 @@
     "overview": "Présentation générale",
     "features": "Pourquoi venir ici ?",
     "faq": "Foire aux questions",
-    "exploreChalets": "Explore Chalets",
+    "exploreChalets": "Découvrir les chalets",
     "learnMore": "En savoir plus"
   },
   "terms": {
