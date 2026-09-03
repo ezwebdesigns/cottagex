@@ -32,6 +32,12 @@ export default function EditArticlePage() {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title, slug, content, excerpt, category, author, featuredImage, imageAlt, seoTitle, seoKeywords, ctaTitle, ctaButton, ctaLink, faq, isPublished })
     });
+    // Invalidate articles cache after save
+    await fetch('/api/admin/cache/invalidate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'articles' }),
+    }).catch(() => {});
     setSaving(false); router.push(`/${locale}/admin/articles`);
   }
 

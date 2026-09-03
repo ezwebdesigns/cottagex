@@ -12,15 +12,19 @@ export default function AdminArticlesPage() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [search, setSearch] = useState('');
 
-  async function load() {
-    try {
-      const res = await fetch('/api/admin/articles');
-      const data = await res.json();
-      setPosts(data.posts || []);
-    } catch { setPosts([]); }
-  }
-
-  useEffect(() => { load(); }, []);
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const res = await fetch('/api/admin/articles');
+        const data = await res.json();
+        if (mounted) setPosts(data.posts || []);
+      } catch {
+        if (mounted) setPosts([]);
+      }
+    })();
+    return () => { mounted = false; };
+  }, []);
 
   async function remove(id: string) {
     if (!confirm('Delete this article?')) return;
@@ -34,7 +38,7 @@ export default function AdminArticlesPage() {
     const res = await fetch(`/api/admin/articles/${id}`);
     if (!res.ok) return;
     const { post } = await res.json();
-    const { id: _, createdAt, updatedAt, publishedAt, ...rest } = post;
+    const { ...rest } = post;
     const createRes = await fetch('/api/admin/articles', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

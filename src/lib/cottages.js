@@ -8,6 +8,7 @@
  */
 
 import { Pool } from 'pg'
+import { getCached, invalidateCottages } from '@/lib/cache'
 
 let pool = null
 function getPool() {
@@ -49,40 +50,41 @@ const CATEGORY_CONDITIONS = {
   waterfront:    `(amenities @> '["Waterfront"]' OR amenities @> '["Beach access"]' OR amenities @> '["Accès à la plage"]' OR name ILIKE '%waterfront%' OR name ILIKE '%lakefront%' OR name ILIKE '%lake front%' OR name ILIKE '%lakeside%' OR name ILIKE '%beachfront%' OR name ILIKE '%oceanfront%' OR name ILIKE '%on the water%' OR name ILIKE '%sea view%')`,
 }
 
-/**
- * getCottages — requête principale
- *
- * @param {object}  [opts]
- * @param {string}  [opts.slug]       - destination slug (ex: 'muskoka')
- * @param {string}  [opts.province]   - province slug (ex: 'ontario')
- * @param {number}  [opts.limit]      - nombre de résultats (défaut: 3)
- * @param {string}  [opts.sort]       - 'rating' | 'price' | 'newest' (défaut: 'rating')
- * @param {string[]}[opts.categories] - ['family','hotTub','lakefront','luxury']
- * @param {boolean} [opts.featuredOnly] - seulement is_featured = true (défaut: true — les chalets standard ne sont jamais affichés sur le frontend)
- * @param {boolean} [opts.affiliateOnly] - seulement ceux avec affiliate_url (défaut: false)
- * @returns {Promise<Array>}
- */
-export async function getCottages({
-  slug        = null,
-  province    = null,
-  limit       = 3,
-  sort        = 'rating',
-  categories  = [],
-  featuredOnly = true,
-  affiliateOnly = false,
-} = {}) {
+const COTTAGES_TTL = 600 // 10 minutes
+
+function buildCacheKey(opts) {
+  const parts = []
+  if (opts.slug && opts.slug !== 'canada') parts.push(`slug:${opts.slug}`)
+  else if (opts.province) parts.push(`province:${opts.province}`)
+  else parts.push('all')
+  parts.push(`sort:${opts.sort || 'rating'}`)
+  parts.push(`limit:${opts.limit || 3}`)
+  parts.push(`featured:${opts.featuredOnly !== false}`)
+  parts.push(`affiliate:${opts.affiliateOnly || false}`)
+  if (opts.categories?.length) parts.push(`cats:${opts.categories.sort().join(',')}`)
+  return `cottages:${parts.join(':')}`
+}
+
+async function fetchCottagesFromDB(opts) {
+  const {
+    slug        = null,
+    province    = null,
+    limit       = 3,
+    sort        = 'rating',
+    categories  = [],
+    featuredOnly = true,
+    affiliateOnly = false,
+  } = opts
 
   const conditions = ['is_hidden = false']
   conditions.push('available = true')
   const params     = []
   let   paramIndex = 1
 
-  // Filtre affiliate_url (gallery uniquement)
   if (affiliateOnly) {
     conditions.push(`affiliate_url IS NOT NULL`)
   }
 
-  // Filtre destination
   if (slug && slug !== 'canada') {
     conditions.push(`slug = $${paramIndex++}`)
     params.push(slug)
@@ -91,34 +93,30 @@ export async function getCottages({
     params.push(province)
   }
 
-  // Filtre featured
   if (featuredOnly) {
     conditions.push(`is_featured = true`)
   }
 
-  // Filtres catégories
   for (const cat of categories) {
     if (CATEGORY_CONDITIONS[cat]) {
       conditions.push(CATEGORY_CONDITIONS[cat])
     }
   }
 
-  // Tri
   const orderBy = sort === 'price'
     ? 'price_cad ASC NULLS LAST'
     : sort === 'newest'
       ? 'created_at DESC NULLS LAST'
       : 'rating DESC NULLS LAST'
 
-  // Limite
-  conditions.push(`LIMIT $${paramIndex++}`)
+  conditions.push(`LIMIT $${params.length + 1}`)
   params.push(limit)
 
   const where = conditions
     .filter(c => !c.startsWith('LIMIT'))
     .join(' AND ')
 
-  const limitClause = `LIMIT $${paramIndex - 1}`
+  const limitClause = `LIMIT $${params.length}`
 
   const query = `
     SELECT
@@ -173,6 +171,11 @@ export async function getCottages({
   } finally {
     if (client) client.release()
   }
+}
+
+export async function getCottages(opts = {}) {
+  const cacheKey = buildCacheKey(opts)
+  return getCached(cacheKey, () => fetchCottagesFromDB(opts), 600) // 10 min TTL
 }
 
 /**
@@ -250,3 +253,5 @@ export async function getDestinationStats(province = null) {
     if (client) client.release()
   }
 }
+
+export { invalidateCottages }

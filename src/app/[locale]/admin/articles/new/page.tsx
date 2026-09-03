@@ -56,7 +56,7 @@ export default function NewArticlePage() {
           </div>
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">Article Type</label>
-            <select value={articleType} onChange={e => setArticleType(e.target.value as any)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]">
+            <select value={articleType} onChange={e => setArticleType(e.target.value as 'standard' | 'listicle')} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]">
               <option value="standard">Standard Article</option>
               <option value="listicle">Listicle (Ranked Items)</option>
             </select>

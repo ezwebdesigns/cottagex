@@ -7,7 +7,8 @@ import AuthGuard from '@/components/cottagex/AuthGuard';
 import {
   LayoutDashboard, FileText, BookOpen, Image as ImageIcon, Mail,
   Settings as SettingsIcon, Building2, MapPin, User, ExternalLink,
-  ChevronLeft, ChevronRight, Menu, LogOut, Mountain, Search
+  ChevronLeft, ChevronRight, Menu, LogOut, Mountain, Search,
+  RefreshCw
 } from 'lucide-react';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -151,6 +152,25 @@ function AdminShell({
               collapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'
             }`}>Visit Website</span>
           </a>
+          <button
+            onClick={async () => {
+              try {
+                const res = await fetch(`/api/admin/cache/clear`, { method: 'POST' });
+                if (res.ok) {
+                  console.log('Cache cleared');
+                }
+              } catch (e) {
+                console.error('Failed to clear cache:', e);
+              }
+            }}
+            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-[#191e3b] hover:bg-orange-50 hover:text-orange-600 transition-colors min-h-[44px]"
+            title="Clear Cache"
+          >
+            <RefreshCw className="w-5 h-5 flex-shrink-0" />
+            <span className={`text-sm font-medium whitespace-nowrap transition-opacity duration-200 ${
+              collapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'
+            }`}>Clear Cache</span>
+          </button>
           <button
             onClick={() => signOut({ callbackUrl: `/${locale}/admin/login` })}
             className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-[#191e3b] hover:bg-red-50 hover:text-red-600 transition-colors min-h-[44px]"

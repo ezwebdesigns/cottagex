@@ -116,7 +116,8 @@ export default async function LocationPage({ params }: Props) {
     const param2 = (match[2] || '').trim().toLowerCase() || 'rating';
     const param3 = (match[3] || '').trim().toLowerCase();
     const limitStr = match[4];
-    const limit = limitStr ? parseInt(limitStr, 10) : (param3 && /^\d+$/.test(param3) ? parseInt(param3, 10) : null);
+    const parsedLimit = limitStr ? parseInt(limitStr, 10) : (param3 && /^\d+$/.test(param3) ? parseInt(param3, 10) : null);
+    const limit = parsedLimit && parsedLimit > 24 ? 24 : parsedLimit;
     const actualParam3 = limitStr ? param3 : '';
 
     if (limit !== null && limit > 0) {

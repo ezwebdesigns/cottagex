@@ -79,7 +79,7 @@ export default function AdminSettingsPage() {
   }, [fetchSection]);
 
 
-  const saveSection = async (section: string, data: any) => {
+const saveSection = async (section: string, data: any) => {
     setSaving(true);
     setSaved(false);
     setError(null);
@@ -87,10 +87,16 @@ export default function AdminSettingsPage() {
       const res = await fetch('/api/admin/settings', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ section, data }),
+        body: JSON.stringify({ section, data, locale }),
       });
       if (res.ok) {
         setSaved(true);
+        // Invalidate settings cache after successful save
+        await fetch('/api/admin/cache/invalidate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'settings' }),
+        }).catch(() => {});
       } else {
         const err = await res.json().catch(() => ({ error: 'Save failed' }));
         setError(err.error || 'Save failed');

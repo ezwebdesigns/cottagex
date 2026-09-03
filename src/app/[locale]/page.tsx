@@ -80,7 +80,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const cta = settings.homepage_cta;
   const ctaBar = settings.homepage_cta_bar;
 
-  const displayChalets: Chalet[] = cottages.map((c) => ({
+  const displayChalets: Chalet[] = cottages.map((c: any) => ({
     id: String(c.id),
     name: c.name,
     location: provinceDisplay[c.province] || c.province || '',

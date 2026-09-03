@@ -42,6 +42,12 @@ export default function EditPagePage() {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title, slug, content, seoTitle, metaDescription, featuredImage, ctaTitle, ctaDescription, ctaButton, ctaLink, exploreTitle, exploreSubtitle, exploreDescription, exploreItems, locationData, faq, isPublished })
     });
+    // Invalidate pages cache after save
+    await fetch('/api/admin/cache/invalidate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'pages' }),
+    }).catch(() => {});
     setSaving(false); router.push(`/${locale}/admin/pages`);
   }
 
