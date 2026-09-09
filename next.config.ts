@@ -5,6 +5,14 @@ const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   reactCompiler: false,
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /scripts\/migrate-images-to-blob\.ts$/,
+      loader: 'ignore-loader',
+    });
+    return config;
+  },
   async redirects() {
     return [
       {

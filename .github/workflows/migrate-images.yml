@@ -28,7 +28,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install --prefer-offline --no-audit
+        run: npm install --include=dev
 
       - name: Run migration script
         run: npx tsx scripts/migrate-images-to-blob.ts
