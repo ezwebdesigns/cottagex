@@ -50,16 +50,24 @@ function t(obj: any, key: string, locale: string): string {
 
 function tObj(obj: any, locale: string): any {
   if (!obj) return obj;
-  const result: any = { ...obj };
-  for (const key of Object.keys(obj)) {
-    if (typeof obj[key] === 'string') {
-      const frKey = `${key}Fr`;
-      if (locale === 'fr' && obj[frKey]) {
-        result[key] = obj[frKey];
+  if (Array.isArray(obj)) {
+    return obj.map(item => tObj(item, locale));
+  }
+  if (typeof obj === 'object') {
+    const result: any = { ...obj };
+    for (const key of Object.keys(obj)) {
+      if (typeof obj[key] === 'string') {
+        const frKey = `${key}Fr`;
+        if (locale === 'fr' && obj[frKey]) {
+          result[key] = obj[frKey];
+        }
+      } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+        result[key] = tObj(obj[key], locale);
       }
     }
+    return result;
   }
-  return result;
+  return obj;
 }
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
@@ -92,7 +100,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   } catch {}
 
   const hero = tObj(settings.homepage_hero, locale);
-  const categories = settings.homepage_categories;
+  const categories = tObj(settings.homepage_categories, locale);
   const featured = tObj(settings.homepage_featured, locale);
   const destData = tObj(settings.homepage_destinations, locale);
   const explore = tObj(settings.homepage_explore, locale);
@@ -121,7 +129,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   const catItems = categories?.items?.map((item: any) => ({
     id: item.id,
-    label: locale === 'fr' ? item.labelFr : item.labelEn,
+    label: item.label,
     link: item.link,
   }));
 
