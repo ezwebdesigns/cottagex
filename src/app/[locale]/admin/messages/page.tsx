@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Mail, Trash2, CheckCheck } from 'lucide-react';
 
 type Message = {
@@ -16,7 +16,7 @@ export default function AdminMessagesPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
 
-  async function fetchMessages() {
+  const fetchMessages = useCallback(async () => {
     try {
       const res = await fetch('/api/admin/messages');
       const data = await res.json();
@@ -26,9 +26,12 @@ export default function AdminMessagesPage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
-  useEffect(() => { fetchMessages(); }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    fetchMessages();
+  }, [fetchMessages]);
 
   async function markRead(id: number) {
     await fetch('/api/admin/messages', {

@@ -15,6 +15,7 @@ import CTASection from '@/components/cottagex/CTASection';
 import type { Chalet } from '@/components/cottagex/PropertyCard';
 
 export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 type Props = { params: Promise<{ locale: string }> };
 

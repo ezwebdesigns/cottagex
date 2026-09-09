@@ -12,7 +12,9 @@ export function proxy(request: NextRequest) {
     pathname.startsWith('/maintenance') ||
     pathname === '/favicon.ico' ||
     pathname === '/ads.txt' ||
-    pathname === '/logo.png'
+    pathname === '/logo.png' ||
+    pathname === '/sitemap.xml' ||
+    pathname === '/robots.txt'
 
   if (isStatic) return NextResponse.next()
 

@@ -42,7 +42,7 @@ export async function DELETE(request: Request) {
   if (unauthorized) return unauthorized;
   const { id } = await request.json();
   if (!id) return NextResponse.json({ error: 'ID required' }, { status: 400 });
-  const [existing] = await db.select().from(libraryImages).where(eq(libraryImages.id, Number(id))).limit(1);
+  await db.select().from(libraryImages).where(eq(libraryImages.id, Number(id))).limit(1);
   const [deleted] = await db.delete(libraryImages).where(eq(libraryImages.id, Number(id))).returning();
   if (!deleted) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   return NextResponse.json({ ok: true });

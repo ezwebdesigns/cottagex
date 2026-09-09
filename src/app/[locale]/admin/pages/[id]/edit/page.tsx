@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import { Plus, X, Eye } from 'lucide-react';
+import { Plus, X, Eye, Languages, Loader2 } from 'lucide-react';
 import TiptapEditor from '@/components/admin/TiptapEditor';
 
 type FAQ = { question: string; answer: string };
@@ -18,9 +18,84 @@ export default function EditPagePage() {
   const [ctaTitle, setCtaTitle] = useState(''); const [ctaDescription, setCtaDescription] = useState(''); const [ctaButton, setCtaButton] = useState(''); const [ctaLink, setCtaLink] = useState('');
   const [exploreTitle, setExploreTitle] = useState(''); const [exploreSubtitle, setExploreSubtitle] = useState(''); const [exploreDescription, setExploreDescription] = useState('');
   const [exploreItems, setExploreItems] = useState<ExploreItem[]>([]);
-  const [locationData, setLocationData] = useState<any>({ hero: {}, intro: { highlights: [] }, featured: {}, explore: { items: [] }, search: {} });
+  const [locationData, setLocationData] = useState({
+  hero: { tag: '', title: '', subtitle: '', image: '', imageAlt: '' },
+  intro: { description: '', highlightsTitle: '', subtitle: '', highlights: [] as { icon: string; title: string; description: string }[] },
+  featured: { title: '', description: '' },
+  explore: { items: [] as { icon: string; title: string; description: string }[] },
+  search: { title: '', description: '' },
+});
   const [faq, setFaq] = useState<FAQ[]>([]);
   const [loading, setLoading] = useState(true); const [saving, setSaving] = useState(false);
+  const [pageLocale, setPageLocale] = useState<'en' | 'fr'>('en');
+  const [translationOf, setTranslationOf] = useState<number | null>(null);
+  const [translating, setTranslating] = useState(false);
+
+  const translatePage = async () => {
+    if (pageLocale !== 'en' || translationOf) return;
+    setTranslating(true);
+    try {
+      const res = await fetch(`/api/admin/pages/${params.id}`);
+      if (!res.ok) return;
+      const { page: full } = await res.json();
+
+      const translate = async (text: string) => {
+        if (!text) return text;
+        const r = await fetch('/api/admin/translate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text, targetLang: 'FR', sourceLang: 'EN' }),
+        });
+        if (!r.ok) return text;
+        const d = await r.json();
+        return d.translated || text;
+      };
+
+      const frSlug = `${slug}-fr`;
+      const translated = {
+        title: await translate(full.title),
+        slug: frSlug,
+        locale: 'fr',
+        translationOf: full.id,
+        template: full.template,
+        content: full.content ? await translate(full.content) : full.content,
+        seoTitle: full.seoTitle ? await translate(full.seoTitle) : full.seoTitle,
+        metaDescription: full.metaDescription ? await translate(full.metaDescription) : full.metaDescription,
+        featuredImage: full.featuredImage,
+        faq: Array.isArray(full.faq) ? await Promise.all(full.faq.map(async (item: FAQ) => ({
+          ...item,
+          question: item.question ? await translate(item.question) : item.question,
+          answer: item.answer ? await translate(item.answer) : item.answer,
+        }))) : full.faq,
+        ctaTitle: full.ctaTitle ? await translate(full.ctaTitle) : full.ctaTitle,
+        ctaButton: full.ctaButton ? await translate(full.ctaButton) : full.ctaButton,
+        ctaLink: full.ctaLink,
+        ctaDescription: full.ctaDescription ? await translate(full.ctaDescription) : full.ctaDescription,
+        exploreTitle: full.exploreTitle ? await translate(full.exploreTitle) : full.exploreTitle,
+        exploreSubtitle: full.exploreSubtitle ? await translate(full.exploreSubtitle) : full.exploreSubtitle,
+        exploreDescription: full.exploreDescription ? await translate(full.exploreDescription) : full.exploreDescription,
+        exploreItems: full.exploreItems,
+        locationData: full.locationData,
+        isPublished: false,
+        publishedAt: null,
+      };
+
+      const createRes = await fetch('/api/admin/pages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(translated),
+      });
+      if (createRes.ok) {
+        const { page: newPage } = await createRes.json();
+        router.push(`/${locale}/admin/pages/${newPage.id}/edit`);
+      } else {
+        alert('Failed to create FR translation — slug may already exist.');
+      }
+    } catch {
+      alert('Translation failed.');
+    }
+    setTranslating(false);
+  };
 
   useEffect(() => {
     fetch(`/api/admin/pages/${params.id}`).then(r => r.json()).then(data => {
@@ -32,7 +107,10 @@ export default function EditPagePage() {
       setExploreTitle(p.exploreTitle || ''); setExploreSubtitle(p.exploreSubtitle || ''); setExploreDescription(p.exploreDescription || '');
       setExploreItems(Array.isArray(p.exploreItems) ? p.exploreItems : []);
       setLocationData(typeof p.locationData === 'object' && p.locationData !== null ? p.locationData : { hero: {}, intro: { highlights: [] }, featured: {}, explore: { items: [] }, search: {} });
-      setFaq(Array.isArray(p.faq) ? p.faq : []); setLoading(false);
+      setFaq(Array.isArray(p.faq) ? p.faq : []);
+      setPageLocale(p.locale || 'en');
+      setTranslationOf(p.translationOf || null);
+      setLoading(false);
     });
   }, [params.id]);
 
@@ -55,7 +133,24 @@ export default function EditPagePage() {
 
   return (
     <div className="max-w-4xl mx-auto p-6 md:p-10">
-      <h1 className="text-2xl font-bold text-[#191e3b] mb-6">Edit Page</h1>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-bold text-[#191e3b] mb-6">Edit Page</h1>
+        {pageLocale === 'en' && !translationOf && (
+          <button
+            onClick={translatePage}
+            disabled={translating}
+            className="px-4 py-2 border border-purple-300 rounded-full text-sm text-purple-600 hover:bg-purple-50 flex items-center gap-1.5 transition-colors disabled:opacity-50"
+            title="Translate to FR"
+          >
+            {translating ? (
+              <Loader2 className="w-4 h-4 text-purple-500 animate-spin" />
+            ) : (
+              <Languages className="w-4 h-4 text-purple-500" />
+            )}
+            Translate to FR
+          </button>
+        )}
+      </div>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
           <div><label className="block text-sm font-medium text-slate-700 mb-1">Title</label><input value={title} onChange={e => setTitle(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" required /></div>
@@ -127,7 +222,7 @@ export default function EditPagePage() {
               <div><label className="block text-sm font-medium text-slate-700 mb-1">Subtitle</label><textarea value={locationData.intro?.subtitle ?? ''} onChange={e => setLocationData({ ...locationData, intro: { ...locationData.intro, subtitle: e.target.value } })} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec] h-20" /></div>
               <div>
                 <h4 className="text-sm font-semibold text-slate-600 mb-3">Highlight Cards</h4>
-                {(locationData.intro?.highlights ?? []).map((item: any, i: number) => (
+                {(locationData.intro?.highlights ?? []).map((item: { icon: string; title: string; description: string }, i: number) => (
                   <div key={i} className="border border-slate-200 rounded-xl p-4 mb-4 space-y-3">
                     <div className="flex gap-2">
                       <select value={item.icon} onChange={(e) => {

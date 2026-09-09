@@ -5,6 +5,7 @@ import { desc, eq } from 'drizzle-orm';
 import GuidesList from '@/components/guides/GuidesList';
 
 export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 type Props = { params: Promise<{ locale: string }>; searchParams: Promise<{ page?: string }> };
 

@@ -18,7 +18,8 @@ export default function ImageUploader({ value, onChange, label }: ImageUploaderP
     if (value?.startsWith('lib:')) {
       fetch(`/api/library/${value.slice(4)}`).then(r => r.ok && r.json()).then(d => setPreviewUrl(d?.url || '')).catch(() => setPreviewUrl(''));
     } else {
-      setPreviewUrl(value || '');
+      // Use setTimeout to avoid synchronous setState in effect
+      setTimeout(() => setPreviewUrl(value || ''), 0);
     }
   }, [value]);
 

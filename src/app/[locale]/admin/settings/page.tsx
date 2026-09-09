@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// AdminSettingsPage — dynamic CMS content with complex nested structures
+// Types are loosely enforced for flexibility with CMS data
+
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';

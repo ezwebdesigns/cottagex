@@ -2,19 +2,33 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import { Plus, Search, Pencil, Trash2, Eye, FileText, Copy } from 'lucide-react';
+import { Plus, Search, Pencil, Trash2, Eye, FileText, Copy, Languages, Loader2 } from 'lucide-react';
 
-type Post = { id: string; title: string; slug: string; excerpt: string; category: string; featuredImage: string; isPublished: boolean; author?: string; date?: string };
+type Post = {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  category: string;
+  featuredImage: string;
+  isPublished: boolean;
+  author?: string;
+  date?: string;
+  locale?: string;
+  translationOf?: number | null;
+};
 
 export default function AdminArticlesPage() {
   const router = useRouter();
   const { locale } = useParams<{ locale: string }>();
   const [posts, setPosts] = useState<Post[]>([]);
   const [search, setSearch] = useState('');
+  const [translatingId, setTranslatingId] = useState<number | null>(null);
 
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     let mounted = true;
-    (async () => {
+    async function fetchPosts() {
       try {
         const res = await fetch('/api/admin/articles');
         const data = await res.json();
@@ -22,14 +36,101 @@ export default function AdminArticlesPage() {
       } catch {
         if (mounted) setPosts([]);
       }
-    })();
+    }
+    fetchPosts();
     return () => { mounted = false; };
   }, []);
+
+  async function translateArticle(a: Post) {
+    const articleId = Number(a.id);
+    setTranslatingId(articleId);
+    try {
+      const res = await fetch(`/api/admin/articles/${a.id}`);
+      if (!res.ok) return;
+      const { post: full } = await res.json();
+
+      const translate = async (text: string) => {
+        if (!text) return text;
+        const r = await fetch('/api/admin/translate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text, targetLang: 'FR', sourceLang: 'EN' }),
+        });
+        if (!r.ok) return text;
+        const d = await r.json();
+        return d.translated || text;
+      };
+
+      const frSlug = `${full.slug}-fr`;
+      const frTitle = await translate(full.title);
+      const frExcerpt = full.excerpt ? await translate(full.excerpt) : full.excerpt;
+      const frContent = full.content ? await translate(full.content) : full.content;
+      const frSeoTitle = full.seoTitle ? await translate(full.seoTitle) : full.seoTitle;
+      const frSeoKeywords = full.seoKeywords ? await translate(full.seoKeywords) : full.seoKeywords;
+      const frCtaTitle = full.ctaTitle ? await translate(full.ctaTitle) : full.ctaTitle;
+      const frCtaButton = full.ctaButton ? await translate(full.ctaButton) : full.ctaButton;
+
+      let frFaq = full.faq;
+      if (Array.isArray(full.faq) && full.faq.length > 0) {
+        frFaq = await Promise.all(
+          full.faq.map(async (item: { question: string; answer: string }) => ({
+            ...item,
+            question: item.question ? await translate(item.question) : item.question,
+            answer: item.answer ? await translate(item.answer) : item.answer,
+          }))
+        );
+      }
+
+      const createRes = await fetch('/api/admin/articles', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: frTitle,
+          slug: frSlug,
+          locale: 'fr',
+          translationOf: full.id,
+          type: full.type,
+          content: frContent,
+          excerpt: frExcerpt,
+          category: full.category,
+          author: full.author,
+          featuredImage: full.featuredImage,
+          imageAlt: full.imageAlt,
+          seoTitle: frSeoTitle,
+          seoKeywords: frSeoKeywords,
+          faq: frFaq,
+          ctaTitle: frCtaTitle,
+          ctaButton: frCtaButton,
+          ctaLink: full.ctaLink,
+          isPublished: false,
+          publishedAt: null,
+        }),
+      });
+
+      if (createRes.ok) {
+        const { post: newPost } = await createRes.json();
+        router.push(`/${locale}/admin/articles/${newPost.id}/edit`);
+      } else {
+        alert('Failed to create FR translation — slug may already exist.');
+      }
+    } catch {
+      alert('Translation failed.');
+    } finally {
+      setTranslatingId(null);
+    }
+  }
 
   async function remove(id: string) {
     if (!confirm('Delete this article?')) return;
     await fetch(`/api/admin/articles/${id}`, { method: 'DELETE' });
-    load();
+    // Refetch posts after delete
+    try {
+      const res = await fetch('/api/admin/articles');
+      const data = await res.json();
+      setPosts(data.posts || []);
+    } catch {
+      setPosts([]);
+    }
   }
 
   async function duplicate(id: string, currentSlug: string) {
@@ -122,6 +223,20 @@ export default function AdminArticlesPage() {
                   >
                     <Eye className="w-3.5 h-3.5" /> Preview
                   </a>
+                )}
+                {!a.translationOf && (a.locale === 'en' || !a.locale) && (
+                  <button
+                    onClick={() => translateArticle(a)}
+                    disabled={translatingId === Number(a.id)}
+                    className="w-9 h-9 rounded-full hover:bg-purple-50 flex items-center justify-center transition-colors"
+                    title="Translate to FR"
+                  >
+                    {translatingId === Number(a.id) ? (
+                      <Loader2 className="w-3.5 h-3.5 text-purple-500 animate-spin" />
+                    ) : (
+                      <Languages className="w-3.5 h-3.5 text-purple-500" />
+                    )}
+                  </button>
                 )}
                 <button
                   onClick={() => router.push(`/${locale}/admin/articles/${a.id}/edit`)}

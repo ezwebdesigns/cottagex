@@ -10,6 +10,7 @@ import ArticleListicle from '@/templates/ArticleListicle';
 import { generateToc, injectHeadingIds } from '@/lib/extract-toc';
 
 export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 

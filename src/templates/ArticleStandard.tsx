@@ -20,7 +20,7 @@ function renderParagraph(text: string, key: number) {
   const parts = text.split(shortcodeRegex);
   return (
     <p key={key} className="text-base md:text-lg">
-      {parts.map((part, i) => {
+      {parts.map((part: string, i: number) => {
         const mod = i % 5;
         if (mod === 0) return part ? <span key={i}>{part}</span> : null;
         if (mod === 1) {
@@ -55,6 +55,7 @@ type ArticleStandardProps = {
     content: string;
     excerpt: string;
     date: string;
+    dateModified?: string;
     readTime: string;
     category: string;
     image: string;
@@ -88,7 +89,7 @@ export default function ArticleStandard({ locale, article, isHtml, toc, enhanced
         description={article.excerpt}
         image={article.image}
         date={article.date}
-        dateModified={(article as any).dateModified}
+        dateModified={article.dateModified}
         author={article.author}
         url={`https://chaletexpress.com${pathname}`}
       />
@@ -131,7 +132,7 @@ export default function ArticleStandard({ locale, article, isHtml, toc, enhanced
                 if (parts.length === 1) {
                   return <div dangerouslySetInnerHTML={{ __html: contentHtml }} />;
                 }
-                return parts.map((part, i) => {
+                return parts.map((part: string, i: number) => {
                   const mod = i % 5;
                   if (mod === 0) {
                     return part ? <div key={i} dangerouslySetInnerHTML={{ __html: part }} /> : null;
@@ -152,7 +153,7 @@ export default function ArticleStandard({ locale, article, isHtml, toc, enhanced
             </div>
           ) : (
             <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed space-y-6 mb-12 w-full overflow-x-hidden break-words [&_pre]:whitespace-pre-wrap [&_code]:break-words">
-              {article.content.split('\n\n').map((paragraph, index) => renderParagraph(paragraph, index))}
+              {article.content.split('\n\n').map((paragraph: string, index: number) => renderParagraph(paragraph, index))}
             </div>
           )}
         </div>
@@ -166,7 +167,7 @@ export default function ArticleStandard({ locale, article, isHtml, toc, enhanced
               <div>
                 <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Recent Guides</h3>
                 <div className="space-y-3">
-                  {recentArticles.map((a) => (
+                  {recentArticles.map((a: RecentArticle) => (
                     <Link key={a.slug} href={`/${locale}/guides/${a.slug}`} className="flex gap-3 group">
                       <div className="w-14 h-14 rounded-xl overflow-hidden bg-slate-100 shrink-0">
                         <img src={a.image} alt={a.title} className="w-full h-full object-cover" />

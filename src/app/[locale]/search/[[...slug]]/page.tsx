@@ -6,6 +6,7 @@ import { locales } from '@/i18n/routing';
 import SearchTemplate from '@/templates/SearchTemplate';
 
 export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 type Props = { params: Promise<{ locale: string; slug?: string[] }> };
 

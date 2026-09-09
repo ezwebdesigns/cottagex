@@ -2,10 +2,22 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import { Plus, X, Eye } from 'lucide-react';
+import { Plus, X, Eye, Languages, Loader2 } from 'lucide-react';
 import TiptapEditor from '@/components/admin/TiptapEditor';
 
 type FAQ = { question: string; answer: string };
+type ListicleItem = {
+  id?: number;
+  articleId?: number;
+  rank?: number;
+  title: string;
+  description?: string;
+  rating?: string;
+  price?: string;
+  image?: string;
+  vibe?: string;
+  vrboLink?: string;
+};
 
 export default function EditArticlePage() {
   const router = useRouter(); const params = useParams(); const locale = params.locale as string;
@@ -15,6 +27,10 @@ export default function EditArticlePage() {
   const [seoTitle, setSeoTitle] = useState(''); const [seoKeywords, setSeoKeywords] = useState(''); const [ctaTitle, setCtaTitle] = useState(''); const [ctaButton, setCtaButton] = useState('');
   const [ctaLink, setCtaLink] = useState(''); const [faq, setFaq] = useState<FAQ[]>([]); const [isPublished, setIsPublished] = useState(true); const [slug, setSlug] = useState('');
   const [loading, setLoading] = useState(true); const [saving, setSaving] = useState(false);
+  const [articleLocale, setArticleLocale] = useState<'en' | 'fr'>('en');
+  const [translationOf, setTranslationOf] = useState<number | null>(null);
+  const [translating, setTranslating] = useState(false);
+  const [listicleItems, setListicleItems] = useState<ListicleItem[]>([]);
 
   useEffect(() => {
     fetch(`/api/admin/articles/${params.id}`).then(r => r.json()).then(d => {
@@ -22,9 +38,90 @@ export default function EditArticlePage() {
       setCategory(p.category); setAuthor(p.author); setFeaturedImage(p.featuredImage || p.imageUrl);
       setImageAlt(p.imageAlt || '');
       setSeoTitle(p.seoTitle); setSeoKeywords(p.seoKeywords || ''); setCtaTitle(p.ctaTitle); setCtaButton(p.ctaButton); setCtaLink(p.ctaLink);
-      setFaq(Array.isArray(p.faq) ? p.faq : []); setIsPublished(p.isPublished); setSlug(p.slug); setLoading(false);
+      setFaq(Array.isArray(p.faq) ? p.faq : []); setIsPublished(p.isPublished); setSlug(p.slug);
+      setArticleLocale(p.locale || 'en');
+      setTranslationOf(p.translationOf || null);
+      if (Array.isArray(d.listicleItems)) setListicleItems(d.listicleItems);
+      setLoading(false);
     });
   }, [params.id]);
+
+  const translateArticle = async () => {
+    if (articleLocale !== 'en' || translationOf) return;
+    setTranslating(true);
+    try {
+      const res = await fetch(`/api/admin/articles/${params.id}`);
+      if (!res.ok) return;
+      const { post: full } = await res.json();
+
+      const translate = async (text: string) => {
+        if (!text) return text;
+        const r = await fetch('/api/admin/translate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text, targetLang: 'FR', sourceLang: 'EN' }),
+        });
+        if (!r.ok) return text;
+        const d = await r.json();
+        return d.translated || text;
+      };
+
+      const frSlug = `${slug}-fr`;
+      const frTitle = await translate(full.title);
+      const frExcerpt = full.excerpt ? await translate(full.excerpt) : full.excerpt;
+      const frContent = full.content ? await translate(full.content) : full.content;
+      const frSeoTitle = full.seoTitle ? await translate(full.seoTitle) : full.seoTitle;
+      const frSeoKeywords = full.seoKeywords ? await translate(full.seoKeywords) : full.seoKeywords;
+      const frCtaTitle = full.ctaTitle ? await translate(full.ctaTitle) : full.ctaTitle;
+      const frCtaButton = full.ctaButton ? await translate(full.ctaButton) : full.ctaButton;
+
+      let frFaq = full.faq;
+      if (Array.isArray(full.faq) && full.faq.length > 0) {
+        frFaq = await Promise.all(
+          full.faq.map(async (item: FAQ) => ({
+            ...item,
+            question: item.question ? await translate(item.question) : item.question,
+            answer: item.answer ? await translate(item.answer) : item.answer,
+          }))
+        );
+      }
+
+      const createRes = await fetch('/api/admin/articles', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: frTitle,
+          slug: frSlug,
+          locale: 'fr',
+          translationOf: full.id,
+          type: full.type,
+          content: frContent,
+          excerpt: frExcerpt,
+          category: full.category,
+          author: full.author,
+          featuredImage: full.featuredImage,
+          imageAlt: full.imageAlt,
+          seoTitle: frSeoTitle,
+          seoKeywords: frSeoKeywords,
+          faq: frFaq,
+          ctaTitle: frCtaTitle,
+          ctaButton: frCtaButton,
+          ctaLink: full.ctaLink,
+          isPublished: false,
+          publishedAt: null,
+        }),
+      });
+      if (createRes.ok) {
+        const { post: newPost } = await createRes.json();
+        router.push(`/${locale}/admin/articles/${newPost.id}/edit`);
+      } else {
+        alert('Failed to create FR translation — slug may already exist.');
+      }
+    } catch {
+      alert('Translation failed.');
+    }
+    setTranslating(false);
+  };
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault(); setSaving(true);
@@ -45,7 +142,24 @@ export default function EditArticlePage() {
 
   return (
     <div className="max-w-4xl mx-auto p-6 md:p-10">
-      <h1 className="text-2xl font-bold text-[#191e3b] mb-6">Edit Article</h1>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-bold text-[#191e3b] mb-6">Edit Article</h1>
+        {articleLocale === 'en' && !translationOf && (
+          <button
+            onClick={translateArticle}
+            disabled={translating}
+            className="px-4 py-2 border border-purple-300 rounded-full text-sm text-purple-600 hover:bg-purple-50 flex items-center gap-1.5 transition-colors disabled:opacity-50"
+            title="Translate to FR"
+          >
+            {translating ? (
+              <Loader2 className="w-4 h-4 text-purple-500 animate-spin" />
+            ) : (
+              <Languages className="w-4 h-4 text-purple-500" />
+            )}
+            Translate to FR
+          </button>
+        )}
+      </div>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
           <div><label className="block text-sm font-medium text-slate-700 mb-1">Title</label><input value={title} onChange={e => setTitle(e.target.value)} className="w-full border border-gray-300 rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]" /></div>

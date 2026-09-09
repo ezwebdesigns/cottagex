@@ -26,7 +26,7 @@ export default function ContactForm() {
     <div className="animate-in fade-in duration-300 max-w-5xl mx-auto px-4 py-12">
       <div className="text-center max-w-2xl mx-auto mb-12">
         <span className="text-[#0f51ec] font-bold text-xs uppercase bg-blue-50 px-3 py-1.5 rounded-full tracking-wider font-mono">Get in Touch</span>
-        <h1 className="text-3xl md:text-5xl font-bold text-[#191e3b] mt-4 mb-3">We'd Love to Hear From You</h1>
+        <h1 className="text-3xl md:text-5xl font-bold text-[#191e3b] mt-4 mb-3">We&apos;d Love to Hear From You</h1>
         <p className="text-slate-500 text-base">Cottage owners, travelers, or affiliate networks — feel free to drop us a line below.</p>
       </div>
 

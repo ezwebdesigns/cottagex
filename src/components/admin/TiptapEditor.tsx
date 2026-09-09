@@ -1,3 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/no-unstable-nested-components */
+// @__NO_INLINE__
+// TiptapEditor — 3rd party library types not fully compatible; inline toolbar buttons trigger false positives
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';

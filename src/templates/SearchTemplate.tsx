@@ -37,18 +37,44 @@ const PROVINCE_NAMES: Record<string, string> = {
   newfoundland: 'Newfoundland and Labrador',
 };
 
+interface Cottage {
+  id: number;
+  name: string;
+  province: string;
+  price_cad: number;
+  rating: number;
+  reviews: number;
+  type: string;
+  thumbnail: string;
+  photos: string[];
+  amenities: string[];
+  affiliate_url: string;
+  google_link: string;
+  source: string;
+  bedrooms: number;
+  bathrooms: number;
+  sleeps: number;
+}
+
+interface Category {
+  id: string;
+  label: string;
+  icon: string;
+  link: string;
+}
+
 type SearchTemplateProps = {
   locale: string;
   slug: string;
-  hero?: any;
-  searchResults?: any;
-  searchCTA?: any;
-  searchFaq?: any;
+  hero?: Record<string, unknown>;
+  searchResults?: Record<string, unknown>;
+  searchCTA?: Record<string, unknown>;
+  searchFaq?: Record<string, unknown>;
   faqLocation?: string;
   faqProvince?: string;
-  searchInspirations?: any;
-  cottages?: any[];
-  categories?: any[];
+  searchInspirations?: Record<string, unknown>;
+  cottages?: Cottage[];
+  categories?: Category[];
 };
 
 export default function SearchTemplate({ locale, slug, hero, searchResults, searchCTA, searchFaq, faqLocation, faqProvince, searchInspirations, cottages, categories }: SearchTemplateProps) {
@@ -59,7 +85,7 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
 
   const activeCategory = CATEGORY_IDS.has(lastSegment) ? lastSegment : null;
   const categoryLabel = activeCategory
-    ? categories?.find((c: any) => c.id === activeCategory)?.label || fallbackName
+    ? categories?.find((c: Category) => c.id === activeCategory)?.label || fallbackName
     : null;
 
   const isProvincePage = segments.some(seg => PROVINCE_SLUGS.has(seg));
@@ -82,8 +108,8 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
     return (cottages || []).filter(c => (c.province || '(none)') === filterProvince);
   }, [cottages, filterProvince]);
 
-  const heroTitle = hero?.title || (locName ? `${locName} Cottages` : 'Search Cottages');
-  const heroSubtitle = hero?.subtitle || '';
+  const heroTitle = (hero?.title as string) || (locName ? `${locName} Cottages` : 'Search Cottages');
+  const heroSubtitle = (hero?.subtitle as string) || '';
 
   const resultCards = useMemo(() => {
     return (visibleCottages || []).map(c => ({
@@ -134,7 +160,7 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
       {categories && categories.length > 0 && (
         <section className="pb-8 sm:pb-10 px-4 sm:px-6 lg:px-8 bg-white">
           <CategoryScroller variant="light" className="flex justify-center gap-4 sm:gap-5 lg:gap-7 overflow-x-auto [&::-webkit-scrollbar]:hidden pb-2" style={{ scrollbarWidth: 'none' }}>
-            {categories.map((cat: any) => {
+            {categories.map((cat: Category) => {
               const Icon = categoryIconMap[cat.id] || Mountain;
               const Wrapper = cat.link ? 'a' : 'div';
               return (
@@ -157,10 +183,10 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
           <div>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#191e3b]" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
               {resultCards.length > 0
-                ? (searchResults?.title || `${resultCards.length} result${resultCards.length > 1 ? 's' : ''} found`)
+                ? ((searchResults?.title as string) || `${resultCards.length} result${resultCards.length > 1 ? 's' : ''} found`)
                 : 'No results found'}
             </h2>
-            <p className="text-sm text-slate-500 mt-1">{searchResults?.subtitle || locName || 'All locations'}</p>
+            <p className="text-sm text-slate-500 mt-1">{(searchResults?.subtitle as string) || locName || 'All locations'}</p>
           </div>
           {!isProvincePage && provinces.length > 1 && (
             <div className="flex items-center gap-2">
@@ -187,18 +213,18 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
 
       <CTASection
         locale={locale}
-        title={searchCTA?.title}
-        description={searchCTA?.description}
-        buttonText={searchCTA?.buttonText}
-        buttonLink={searchCTA?.buttonLink}
-        image={searchCTA?.image}
-        imageAlt={searchCTA?.imageAlt}
+        title={searchCTA?.title as string | undefined}
+        description={searchCTA?.description as string | undefined}
+        buttonText={searchCTA?.buttonText as string | undefined}
+        buttonLink={searchCTA?.buttonLink as string | undefined}
+        image={searchCTA?.image as string | undefined}
+        imageAlt={searchCTA?.imageAlt as string | undefined}
         fullWidth
       />
 
-      <SearchFaq data={searchFaq} location={faqLocation} province={faqProvince} />
+      <SearchFaq data={searchFaq as any} location={faqLocation} province={faqProvince} />
 
-      <SearchInspirations data={searchInspirations} locale={locale} />
+      <SearchInspirations data={searchInspirations as any} locale={locale} />
 
     </div>
   );
