@@ -4,12 +4,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
-  experimental: {
-    reactCompiler: false,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  reactCompiler: false,
   async redirects() {
     return [
       {
