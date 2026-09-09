@@ -28,6 +28,7 @@ async function migrate() {
         const buffer = Buffer.from(b64, 'base64');
 
         const blob = await put(`migrated/${row.id}-${row.name || 'image'}`, buffer, {
+          access: 'private',
           contentType: mime || row.mimetype || 'image/jpeg',
         });
 
