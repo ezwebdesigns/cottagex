@@ -66,18 +66,24 @@ export function ArticleSchema({ title, description, image, date, dateModified, u
   url?: string;
   author?: string;
 }) {
-  const absImage = image && !image.startsWith('http') ? `${SITE_URL}${image.startsWith('/') ? '' : '/'}${image}` : image;
+  const absImage = image && !image.startsWith('http') 
+    ? `${SITE_URL}${image.startsWith('/') ? '' : '/'}${image}` 
+    : image || `${SITE_URL}/og-default.jpg`;
+  
+  const headline = title.length > 110 ? title.substring(0, 107) + '...' : title;
+  
   const schema: Record<string, any> = {
     '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: title,
+    '@type': 'Article',
+    headline,
     description,
-    image: absImage,
-    datePublished: date,
-    dateModified: dateModified || date,
+    image: [absImage],
+    datePublished: new Date(date).toISOString(),
+    dateModified: dateModified ? new Date(dateModified).toISOString() : new Date(date).toISOString(),
     author: {
-      '@type': 'Person',
-      name: author || 'Chalet Express Editorial Team',
+      '@type': 'Organization',
+      name: 'Chalet Express',
+      url: SITE_URL,
     },
     publisher: {
       '@type': 'Organization',

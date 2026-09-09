@@ -42,6 +42,26 @@ const provinceDisplay: Record<string, string> = {
   alberta: 'Alberta',
 };
 
+function t(obj: any, key: string, locale: string): string {
+  if (!obj) return '';
+  const frKey = `${key}Fr`;
+  return locale === 'fr' && obj[frKey] ? obj[frKey] : obj[key] || '';
+}
+
+function tObj(obj: any, locale: string): any {
+  if (!obj) return obj;
+  const result: any = { ...obj };
+  for (const key of Object.keys(obj)) {
+    if (typeof obj[key] === 'string') {
+      const frKey = `${key}Fr`;
+      if (locale === 'fr' && obj[frKey]) {
+        result[key] = obj[frKey];
+      }
+    }
+  }
+  return result;
+}
+
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
 
@@ -66,20 +86,20 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       excerpt: a.excerpt || '',
       image: a.featuredImage || '',
       category: a.category || 'Articles',
-      date: a.publishedAt ? new Date(a.publishedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : '',
-      readTime: `${Math.max(1, Math.ceil((a.content || '').split(/\s+/).length / 200))} min read`,
+      date: a.publishedAt ? new Date(a.publishedAt).toLocaleDateString(locale === 'fr' ? 'fr-CA' : 'en-US', { year: "numeric", month: "long", day: "numeric" }) : '',
+      readTime: `${Math.max(1, Math.ceil((a.content || '').split(/\s+/).length / 200))} min ${locale === 'fr' ? 'lecture' : 'read'}`,
     }));
   } catch {}
 
-  const hero = settings.homepage_hero;
+  const hero = tObj(settings.homepage_hero, locale);
   const categories = settings.homepage_categories;
-  const featured = settings.homepage_featured;
-  const destData = settings.homepage_destinations;
-  const explore = settings.homepage_explore;
-  const inspiration = settings.homepage_inspiration;
-  const search = settings.homepage_search;
-  const cta = settings.homepage_cta;
-  const ctaBar = settings.homepage_cta_bar;
+  const featured = tObj(settings.homepage_featured, locale);
+  const destData = tObj(settings.homepage_destinations, locale);
+  const explore = tObj(settings.homepage_explore, locale);
+  const inspiration = tObj(settings.homepage_inspiration, locale);
+  const search = tObj(settings.homepage_search, locale);
+  const cta = tObj(settings.homepage_cta, locale);
+  const ctaBar = tObj(settings.homepage_cta_bar, locale);
 
   const displayChalets: Chalet[] = cottages.map((c: any) => ({
     id: String(c.id),

@@ -10,7 +10,9 @@ export function proxy(request: NextRequest) {
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
     pathname.startsWith('/maintenance') ||
+    pathname.startsWith('/images/') ||
     pathname === '/favicon.ico' ||
+    pathname === '/manifest.webmanifest' ||
     pathname === '/ads.txt' ||
     pathname === '/logo.png' ||
     pathname === '/sitemap.xml' ||

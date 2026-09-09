@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { requireAuth } from '@/lib/api-auth';
+import { put } from '@vercel/blob';
 
 export async function POST(request: Request) {
   const unauthorized = await requireAuth();
@@ -12,10 +13,13 @@ export async function POST(request: Request) {
     if (!file.type.startsWith('image/')) return NextResponse.json({ error: 'Images only' }, { status: 400 });
 
     const bytes = await file.arrayBuffer();
-    const base64 = Buffer.from(bytes).toString('base64');
-    const dataUrl = `data:${file.type};base64,${base64}`;
+    const blob = await put(file.name, Buffer.from(bytes), {
+      access: 'public',
+      addRandomSuffix: true,
+      contentType: file.type,
+    });
 
-    return NextResponse.json({ url: dataUrl });
+    return NextResponse.json({ url: blob.url });
   } catch {
     return NextResponse.json({ error: 'Upload error' }, { status: 500 });
   }

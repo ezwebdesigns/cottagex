@@ -3,6 +3,7 @@ import { db } from '@/lib/db';
 import { libraryImages } from '@/db/schema';
 import { eq, desc } from 'drizzle-orm';
 import { requireAuth } from '@/lib/api-auth';
+import { put } from '@vercel/blob';
 
 export async function GET() {
   const unauthorized = await requireAuth();
@@ -22,12 +23,15 @@ export async function POST(request: Request) {
     if (file.size > 5 * 1024 * 1024) return NextResponse.json({ error: 'Max 5 MB' }, { status: 400 });
 
     const bytes = await file.arrayBuffer();
-    const base64 = Buffer.from(bytes).toString('base64');
-    const url = `data:${file.type};base64,${base64}`;
+    const blob = await put(file.name, Buffer.from(bytes), {
+      access: 'public',
+      addRandomSuffix: true,
+      contentType: file.type,
+    });
 
     const [image] = await db.insert(libraryImages).values({
       name: file.name,
-      url,
+      url: blob.url,
       mimetype: file.type,
     }).returning();
 
