@@ -10,19 +10,36 @@ const { rows } = await pool.query(
    WHERE url LIKE 'data:%'`
 )
 
+console.log(`Found ${rows.length} images to migrate`)
+
+let migrated = 0
+let errors = 0
+
 for (const img of rows) {
-  const base64Data = img.url.split(',')[1]
-  const buffer = Buffer.from(base64Data, 'base64')
-  const blob = await put(img.name, buffer, {
-    access: 'public',
-    contentType: img.mimetype,
-    storeId: process.env.VERCEL_BLOB_STORE_ID
-  })
-  await pool.query(
-    'UPDATE library_images SET url = $1 WHERE id = $2',
-    [blob.url, img.id]
-  )
-  console.log(`✓ ${img.name} → ${blob.url}`)
+  try {
+    const base64Data = img.url.split(',')[1]
+    if (!base64Data) {
+      console.log(`⚠ ${img.name} (id: ${img.id}) - no base64 data, skipping`)
+      continue
+    }
+    const buffer = Buffer.from(base64Data, 'base64')
+    const blob = await put(img.name, buffer, {
+      access: 'public',
+      contentType: img.mimetype,
+      storeId: process.env.VERCEL_BLOB_STORE_ID
+    })
+    await pool.query(
+      'UPDATE library_images SET url = $1 WHERE id = $2',
+      [blob.url, img.id]
+    )
+    migrated++
+    console.log(`✓ ${img.name} → ${blob.url}`)
+  } catch (err) {
+    errors++
+    console.error(`✗ ${img.name} (id: ${img.id}) failed:`, err.message)
+  }
 }
 
+console.log(`\nDone. Migrated: ${migrated}, Errors: ${errors}`)
 await pool.end()
+process.exit(errors > 0 ? 1 : 0)

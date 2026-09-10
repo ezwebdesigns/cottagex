@@ -11,6 +11,7 @@ permissions:
 env:
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
   BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+  VERCEL_BLOB_STORE_ID: ${{ secrets.VERCEL_BLOB_STORE_ID }}
   MIGRATION_SECRET: ${{ secrets.MIGRATION_SECRET }}
 
 jobs:
@@ -31,4 +32,4 @@ jobs:
         run: npm install --include=dev
 
       - name: Run migration script
-        run: npx tsx scripts/migrate-images-to-blob.ts
+        run: node scripts/migrate-images-to-blob.mjs

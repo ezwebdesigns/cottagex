@@ -29,8 +29,8 @@ export async function PUT(request: Request) {
     }
     await db
       .insert(siteSettings)
-      .values({ section, data })
-      .onConflictDoUpdate({ target: siteSettings.section, set: { data } });
+      .values({ section, data, updatedAt: new Date() })
+      .onConflictDoUpdate({ target: siteSettings.section, set: { data, updatedAt: new Date() } });
     revalidatePath('/', 'layout');
     return NextResponse.json({ success: true });
   } catch (e) {
