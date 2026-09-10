@@ -17,6 +17,7 @@ export async function POST(request: Request) {
       access: 'public',
       addRandomSuffix: true,
       contentType: file.type,
+      storeId: process.env.VERCEL_BLOB_STORE_ID,
     });
 
     return NextResponse.json({ url: blob.url });

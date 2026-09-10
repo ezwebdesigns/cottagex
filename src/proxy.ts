@@ -16,7 +16,11 @@ export function proxy(request: NextRequest) {
     pathname === '/ads.txt' ||
     pathname === '/logo.png' ||
     pathname === '/sitemap.xml' ||
-    pathname === '/robots.txt'
+    pathname === '/robots.txt' ||
+    // Locale-prefixed static files
+    pathname.match(/^\/(en|fr)\/(manifest\.webmanifest|apple-icon|images\/)/) ||
+    pathname === '/fr/apple-icon' ||
+    pathname === '/en/apple-icon';
 
   if (isStatic) return NextResponse.next()
 

@@ -30,7 +30,7 @@ export async function PUT(request: Request) {
     await db
       .insert(siteSettings)
       .values({ section, data })
-      .onConflictDoUpdate({ target: siteSettings.section, set: { data, updatedAt: new Date() } });
+      .onConflictDoUpdate({ target: siteSettings.section, set: { data } });
     revalidatePath('/', 'layout');
     return NextResponse.json({ success: true });
   } catch (e) {
