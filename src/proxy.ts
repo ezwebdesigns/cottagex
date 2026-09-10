@@ -11,16 +11,27 @@ export function proxy(request: NextRequest) {
     pathname.startsWith('/api') ||
     pathname.startsWith('/maintenance') ||
     pathname.startsWith('/images/') ||
+    pathname.startsWith('/android-chrome-') ||
     pathname === '/favicon.ico' ||
+    pathname === '/favicon-16x16.png' ||
+    pathname === '/favicon-32x32.png' ||
+    pathname === '/apple-icon.png' ||
+    pathname === '/apple-touch-icon.png' ||
     pathname === '/manifest.webmanifest' ||
     pathname === '/ads.txt' ||
     pathname === '/logo.png' ||
     pathname === '/sitemap.xml' ||
     pathname === '/robots.txt' ||
     // Locale-prefixed static files
-    pathname.match(/^\/(en|fr)\/(manifest\.webmanifest|apple-icon|images\/)/) ||
+    pathname.match(/^\/(en|fr)\/(manifest\.webmanifest|apple-icon|apple-touch-icon|favicon\.ico|favicon-16x16\.png|favicon-32x32\.png|android-chrome-192x192\.png|android-chrome-512x512\.png|images\/)/) ||
     pathname === '/fr/apple-icon' ||
-    pathname === '/en/apple-icon';
+    pathname === '/en/apple-icon' ||
+    pathname === '/fr/favicon.ico' ||
+    pathname === '/en/favicon.ico' ||
+    pathname === '/fr/apple-touch-icon.png' ||
+    pathname === '/en/apple-touch-icon.png' ||
+    pathname === '/fr/manifest.webmanifest' ||
+    pathname === '/en/manifest.webmanifest';
 
   if (isStatic) return NextResponse.next()
 
