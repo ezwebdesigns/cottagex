@@ -27,11 +27,13 @@ export async function PUT(request: Request) {
     if (!section || !data) {
       return NextResponse.json({ error: 'Invalid section or data' }, { status: 400 });
     }
-    const now = new Date();
     const [result] = await db
       .insert(siteSettings)
-      .values({ section, data, updatedAt: now })
-      .onConflictDoUpdate({ target: siteSettings.section, set: { data, updatedAt: now } })
+      .values({ section, data })
+      .onConflictDoUpdate({
+        target: siteSettings.section,
+        set: { data }
+      })
       .returning();
     revalidatePath('/', 'layout');
     return NextResponse.json({ success: true, data: result });
