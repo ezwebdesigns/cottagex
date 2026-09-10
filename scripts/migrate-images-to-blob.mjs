@@ -5,6 +5,14 @@ const { Pool } = pkg
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL })
 
+const storeId = process.env.VERCEL_BLOB_STORE_ID
+if (!storeId) {
+  console.error('❌ VERCEL_BLOB_STORE_ID not set in environment')
+  process.exit(1)
+}
+
+console.log(`Using Blob Store ID: ${storeId}`)
+
 const { rows } = await pool.query(
   `SELECT id, name, url, mimetype FROM library_images 
    WHERE url LIKE 'data:%'`
@@ -26,7 +34,7 @@ for (const img of rows) {
     const blob = await put(img.name, buffer, {
       access: 'public',
       contentType: img.mimetype,
-      storeId: process.env.VERCEL_BLOB_STORE_ID
+      storeId
     })
     await pool.query(
       'UPDATE library_images SET url = $1 WHERE id = $2',
