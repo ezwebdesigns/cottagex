@@ -28,12 +28,13 @@ export async function PUT(request: Request) {
       return NextResponse.json({ error: 'Invalid section or data' }, { status: 400 });
     }
     const now = new Date();
-    await db
+    const [result] = await db
       .insert(siteSettings)
       .values({ section, data, updatedAt: now })
-      .onConflictDoUpdate({ target: siteSettings.section, set: { data, updatedAt: now } });
+      .onConflictDoUpdate({ target: siteSettings.section, set: { data, updatedAt: now } })
+      .returning();
     revalidatePath('/', 'layout');
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, data: result });
   } catch (e) {
     const message = e instanceof Error ? e.message : 'Unknown error';
     return NextResponse.json({ error: message }, { status: 400 });
