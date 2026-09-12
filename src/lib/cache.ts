@@ -34,3 +34,24 @@ export async function invalidateAll(): Promise<void> {
     await redis.del(...keys)
   }
 }
+
+// Specific cache invalidation functions for backward compatibility
+export async function clearProjectCache(): Promise<void> {
+  await invalidateAll()
+}
+
+export async function invalidateSettings(): Promise<void> {
+  await invalidateCache('settings:*')
+}
+
+export async function invalidateArticles(): Promise<void> {
+  await invalidateCache('articles*')
+}
+
+export async function invalidatePages(): Promise<void> {
+  await invalidateCache('pages*')
+}
+
+export async function invalidateCottages(): Promise<void> {
+  await invalidateCache('cottages*')
+}
