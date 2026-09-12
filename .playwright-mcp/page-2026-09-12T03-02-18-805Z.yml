@@ -1,0 +1,39 @@
+- generic [active] [ref=f5e1]:
+  - alert [ref=f5e2]
+  - generic [ref=f5e3]:
+    - complementary [ref=f5e4]:
+      - generic [ref=f5e5]:
+        - generic: Chaletx
+        - button [ref=f5e9]
+      - navigation [ref=f5e12]:
+        - paragraph [ref=f5e13]: Admin
+        - link "Dashboard" [ref=f5e14] [cursor=pointer]:
+          - /url: /en/admin/dashboard
+        - link "Pages" [ref=f5e20] [cursor=pointer]:
+          - /url: /en/admin/pages
+        - link "Articles" [ref=f5e24] [cursor=pointer]:
+          - /url: /en/admin/articles
+        - link "Library" [ref=f5e27] [cursor=pointer]:
+          - /url: /en/admin/library
+        - link "Messages" [ref=f5e32] [cursor=pointer]:
+          - /url: /en/admin/messages
+        - link "Search" [ref=f5e36] [cursor=pointer]:
+          - /url: /en/admin/search
+        - link "Cottages" [ref=f5e40] [cursor=pointer]:
+          - /url: /en/admin/cottages
+        - link "Destinations" [ref=f5e45] [cursor=pointer]:
+          - /url: /en/admin/destinations
+        - link "Settings" [ref=f5e49] [cursor=pointer]:
+          - /url: /en/admin/settings
+      - generic [ref=f5e53]:
+        - link "Profile" [ref=f5e54] [cursor=pointer]:
+          - /url: /en/admin/profile
+        - link "Visit Website" [ref=f5e58] [cursor=pointer]:
+          - /url: /en
+        - button "Clear Cache" [ref=f5e63]
+        - button "Logout" [ref=f5e69]
+    - generic [ref=f5e73]:
+      - banner [ref=f5e74]:
+        - heading "Admin" [level=2] [ref=f5e75]
+      - main [ref=f5e76]:
+        - generic [ref=f5e77]: Loading...
