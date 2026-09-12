@@ -1,0 +1,12 @@
+[    1130ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/manifest.webmanifest:0
+[    1133ms] [ERROR] Manifest fetch from https://www.chaletexpress.com/fr/manifest.webmanifest failed, code 404 @ https://www.chaletexpress.com/en:0
+[    2809ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/manifest.webmanifest:0
+[    2812ms] [ERROR] Manifest fetch from https://www.chaletexpress.com/fr/manifest.webmanifest failed, code 404 @ https://www.chaletexpress.com/en:0
+[  119163ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/manifest.webmanifest:0
+[  119170ms] [ERROR] Manifest fetch from https://www.chaletexpress.com/fr/manifest.webmanifest failed, code 404 @ https://www.chaletexpress.com/fr:0
+[  119517ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/manifest.webmanifest:0
+[  119519ms] [ERROR] Manifest fetch from https://www.chaletexpress.com/fr/manifest.webmanifest failed, code 404 @ https://www.chaletexpress.com/fr:0
+[  199491ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/manifest.webmanifest:0
+[  199511ms] [ERROR] Manifest fetch from https://www.chaletexpress.com/fr/manifest.webmanifest failed, code 404 @ https://www.chaletexpress.com/en:0
+[  201058ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/manifest.webmanifest:0
+[  201061ms] [ERROR] Manifest fetch from https://www.chaletexpress.com/fr/manifest.webmanifest failed, code 404 @ https://www.chaletexpress.com/en:0

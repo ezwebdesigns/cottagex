@@ -3,11 +3,11 @@
  * Traduit automatiquement en.json → fr.json via DeepL API
  *
  * Usage:
- *   DEEPL_API_KEY=ta_clé node scripts/translate-to-fr.mjs
+ *   DEEPL_KEY=ta_clé node scripts/translate-to-fr.mjs
  *
  * Prérequis:
  *   - Compte DeepL gratuit → https://www.deepl.com/pro-api (500 000 chars/mois gratuits)
- *   - Clé API dans .env : DEEPL_API_KEY=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:fx
+ *   - Clé API dans .env : DEEPL_KEY=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:fx
  *
  * Comportement:
  *   - Traduit uniquement les clés MANQUANTES dans fr.json (safe à relancer)
@@ -20,23 +20,23 @@ import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const DEEPL_KEY = process.env.DEEPL_API_KEY || 'REMPLACE_PAR_TA_CLE_DEEPL'
+const DEEPL_KEY  = process.env.DEEPL_KEY || 'REMPLACE_PAR_TA_CLE_DEEPL'
 
 // Chemins des fichiers — adapter si nécessaire
 const EN_PATH = join(__dirname, '../messages/en.json')
 const FR_PATH = join(__dirname, '../messages/fr.json')
 
-// ─── DEEPL API ────────────────────────────────────────────────────────────────
+// ─── DEEPL API ────────────────────────────────────────────────────────────
 
 async function translateText(text) {
   // Ne pas traduire les strings vides ou avec seulement des variables
   if (!text || text.trim() === '') return text
-
+  
   const res = await fetch('https://api-free.deepl.com/v2/translate', {
     method: 'POST',
     headers: {
       'Authorization': `DeepL-Auth-Key ${DEEPL_KEY}`,
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type':  'application/x-www-form-urlencoded',
     },
     body: new URLSearchParams({
       text,
@@ -44,7 +44,7 @@ async function translateText(text) {
       source_lang: 'EN',
       // Préserve les variables {variable} et {count} sans les traduire
       tag_handling: 'xml',
-      ignore_tags: 'x',
+      ignore_tags:  'x',
     }).toString()
   })
 
@@ -127,7 +127,7 @@ async function main() {
 
   // Identifier les clés manquantes dans fr.json
   const missingKeys = Object.keys(enFlat).filter(key => !frFlat[key])
-  const totalKeys = Object.keys(enFlat).length
+  const totalKeys   = Object.keys(enFlat).length
 
   console.log(`📊 Clés totales dans en.json   : ${totalKeys}`)
   console.log(`✅ Clés déjà dans fr.json      : ${totalKeys - missingKeys.length}`)
@@ -144,8 +144,8 @@ async function main() {
 
   // Traduire clé par clé
   let translated = 0
-  let errors = 0
-  let charsUsed = 0
+  let errors     = 0
+  let charsUsed  = 0
 
   for (const key of missingKeys) {
     const originalText = enFlat[key]

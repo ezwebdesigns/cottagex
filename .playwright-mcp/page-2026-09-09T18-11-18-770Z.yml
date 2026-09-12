@@ -1,0 +1,160 @@
+- generic [active] [ref=f4e1]:
+  - generic [ref=f4e2]:
+    - complementary [ref=f4e4]:
+      - link [ref=f4e6] [cursor=pointer]:
+        - /url: /en
+      - navigation [ref=f4e8]
+    - generic [ref=f4e9]:
+      - banner [ref=f4e10]:
+        - generic [ref=f4e12]:
+          - link "Chalet Express" [ref=f4e14] [cursor=pointer]:
+            - /url: /en
+          - button "FR" [ref=f4e17]
+      - main [ref=f4e22]:
+        - generic [ref=f4e23]:
+          - generic [ref=f4e25]:
+            - heading "Travel Guides" [level=1] [ref=f4e26]
+            - paragraph [ref=f4e27]: Stories, itineraries, and curated lists from the Canadian wild
+          - generic [ref=f4e28]:
+            - generic [ref=f4e29]:
+              - button "7 Best Luxury Chalets in Quebec with Hot Tub (Available Now) Quebec Chalet Rentals 4 min read 7 Best Luxury Chalets in Quebec with Hot Tub (Available Now) Find the 7 best rated luxury chalets in Quebec with hot tubs. Mountain views, premium amenities, verified reviews. Book your perfect escape today. Editorial Team Editorial Team Contributor Read Guide" [ref=f4e30]:
+                - generic [ref=f4e31]:
+                  - img "7 Best Luxury Chalets in Quebec with Hot Tub (Available Now)" [ref=f4e32]
+                  - generic [ref=f4e33]: Quebec Chalet Rentals
+                - generic [ref=f4e34]:
+                  - generic [ref=f4e35]: 4 min read
+                  - heading "7 Best Luxury Chalets in Quebec with Hot Tub (Available Now)" [level=3] [ref=f4e40]
+                  - paragraph [ref=f4e41]: Find the 7 best rated luxury chalets in Quebec with hot tubs. Mountain views, premium amenities, verified reviews. Book your perfect escape today.
+                  - generic [ref=f4e42]:
+                    - generic [ref=f4e43]:
+                      - img "Editorial Team" [ref=f4e44]
+                      - generic [ref=f4e45]:
+                        - paragraph [ref=f4e46]: Editorial Team
+                        - paragraph [ref=f4e47]: Contributor
+                    - generic [ref=f4e48]: Read Guide
+              - button "7 Best Chalet Rentals near Mont-Tremblant Mont-Tremblant Cottage Rentals 4 min read 7 Best Chalet Rentals near Mont-Tremblant Find the 7 best rated chalet rentals near Mont-Tremblant. Ski-in/ski-out or lakeside, verified reviews, and booking tips for your perfect stay. Editorial Team Editorial Team Contributor Read Guide" [ref=f4e51]:
+                - generic [ref=f4e52]:
+                  - img "7 Best Chalet Rentals near Mont-Tremblant" [ref=f4e53]
+                  - generic [ref=f4e54]: Mont-Tremblant Cottage Rentals
+                - generic [ref=f4e55]:
+                  - generic [ref=f4e56]: 4 min read
+                  - heading "7 Best Chalet Rentals near Mont-Tremblant" [level=3] [ref=f4e61]
+                  - paragraph [ref=f4e62]: Find the 7 best rated chalet rentals near Mont-Tremblant. Ski-in/ski-out or lakeside, verified reviews, and booking tips for your perfect stay.
+                  - generic [ref=f4e63]:
+                    - generic [ref=f4e64]:
+                      - img "Editorial Team" [ref=f4e65]
+                      - generic [ref=f4e66]:
+                        - paragraph [ref=f4e67]: Editorial Team
+                        - paragraph [ref=f4e68]: Contributor
+                    - generic [ref=f4e69]: Read Guide
+              - button "7 Luxury Cottage Rentals in Ontario with Hot Tub (2026) Luxury Cottage Rentals 4 min read 7 Luxury Cottage Rentals in Ontario with Hot Tub (2026) Discover the 7 best rated luxury cottage rentals in Ontario with hot tubs. Waterfront views, premium amenities, and verified reviews. Book your escape. Editorial Team Editorial Team Contributor Read Guide" [ref=f4e72]:
+                - generic [ref=f4e73]:
+                  - img "7 Luxury Cottage Rentals in Ontario with Hot Tub (2026)" [ref=f4e74]
+                  - generic [ref=f4e75]: Luxury Cottage Rentals
+                - generic [ref=f4e76]:
+                  - generic [ref=f4e77]: 4 min read
+                  - heading "7 Luxury Cottage Rentals in Ontario with Hot Tub (2026)" [level=3] [ref=f4e82]
+                  - paragraph [ref=f4e83]: Discover the 7 best rated luxury cottage rentals in Ontario with hot tubs. Waterfront views, premium amenities, and verified reviews. Book your escape.
+                  - generic [ref=f4e84]:
+                    - generic [ref=f4e85]:
+                      - img "Editorial Team" [ref=f4e86]
+                      - generic [ref=f4e87]:
+                        - paragraph [ref=f4e88]: Editorial Team
+                        - paragraph [ref=f4e89]: Contributor
+                    - generic [ref=f4e90]: Read Guide
+              - button "7 Best Family Cottage Rentals in Ontario (Kid-Friendly & pet friendly) Ontario Family cottages 4 min read 7 Best Family Cottage Rentals in Ontario (Kid-Friendly & pet friendly) Find the 7 best rated family cottage rentals in Ontario. Kid friendly, pet friendly, and verified by real travelers. Book your summer escape today. Editorial Team Editorial Team Contributor Read Guide" [ref=f4e93]:
+                - generic [ref=f4e94]:
+                  - img "7 Best Family Cottage Rentals in Ontario (Kid-Friendly & pet friendly)" [ref=f4e95]
+                  - generic [ref=f4e96]: Ontario Family cottages
+                - generic [ref=f4e97]:
+                  - generic [ref=f4e98]: 4 min read
+                  - heading "7 Best Family Cottage Rentals in Ontario (Kid-Friendly & pet friendly)" [level=3] [ref=f4e103]
+                  - paragraph [ref=f4e104]: Find the 7 best rated family cottage rentals in Ontario. Kid friendly, pet friendly, and verified by real travelers. Book your summer escape today.
+                  - generic [ref=f4e105]:
+                    - generic [ref=f4e106]:
+                      - img "Editorial Team" [ref=f4e107]
+                      - generic [ref=f4e108]:
+                        - paragraph [ref=f4e109]: Editorial Team
+                        - paragraph [ref=f4e110]: Contributor
+                    - generic [ref=f4e111]: Read Guide
+              - button "7 Best Cottage Rentals in Muskoka for 2026 Ontario Cottage Country 4 min read 7 Best Cottage Rentals in Muskoka for 2026 Discover the 7 best rated cottage rentals in Muskoka for 2026. Verified traveler reviews, real listings, and booking tips to find your perfect lake escape. Editorial Team Editorial Team Contributor Read Guide" [ref=f4e114]:
+                - generic [ref=f4e115]:
+                  - img "7 Best Cottage Rentals in Muskoka for 2026" [ref=f4e116]
+                  - generic [ref=f4e117]: Ontario Cottage Country
+                - generic [ref=f4e118]:
+                  - generic [ref=f4e119]: 4 min read
+                  - heading "7 Best Cottage Rentals in Muskoka for 2026" [level=3] [ref=f4e124]
+                  - paragraph [ref=f4e125]: Discover the 7 best rated cottage rentals in Muskoka for 2026. Verified traveler reviews, real listings, and booking tips to find your perfect lake escape.
+                  - generic [ref=f4e126]:
+                    - generic [ref=f4e127]:
+                      - img "Editorial Team" [ref=f4e128]
+                      - generic [ref=f4e129]:
+                        - paragraph [ref=f4e130]: Editorial Team
+                        - paragraph [ref=f4e131]: Contributor
+                    - generic [ref=f4e132]: Read Guide
+              - 'button "Manitoba Cottage Rentals: Falcon Lake, West Hawk Lake & the Whiteshell Region Manitoba Cottage Rentals 5 min read Manitoba Cottage Rentals: Falcon Lake, West Hawk Lake & the Whiteshell Region Discover Manitoba cottage rentals in the Whiteshell, from Falcon Lake beaches to West Hawk Lake depths. Regions, activities, and booking tips inside. Editorial Team Editorial Team Contributor Read Guide" [ref=f4e135]':
+                - generic [ref=f4e136]:
+                  - 'img "Manitoba Cottage Rentals: Falcon Lake, West Hawk Lake & the Whiteshell Region" [ref=f4e137]'
+                  - generic [ref=f4e138]: Manitoba Cottage Rentals
+                - generic [ref=f4e139]:
+                  - generic [ref=f4e140]: 5 min read
+                  - 'heading "Manitoba Cottage Rentals: Falcon Lake, West Hawk Lake & the Whiteshell Region" [level=3] [ref=f4e145]'
+                  - paragraph [ref=f4e146]: Discover Manitoba cottage rentals in the Whiteshell, from Falcon Lake beaches to West Hawk Lake depths. Regions, activities, and booking tips inside.
+                  - generic [ref=f4e147]:
+                    - generic [ref=f4e148]:
+                      - img "Editorial Team" [ref=f4e149]
+                      - generic [ref=f4e150]:
+                        - paragraph [ref=f4e151]: Editorial Team
+                        - paragraph [ref=f4e152]: Contributor
+                    - generic [ref=f4e153]: Read Guide
+              - 'button "PEI Cottage Rentals: Red Sand Beaches & Seaside Retreats on Prince Edward Island PEI Cottage Rentals 5 min read PEI Cottage Rentals: Red Sand Beaches & Seaside Retreats on Prince Edward Island Find the best PEI cottage rentals for red sand beaches and seaside retreats. Explore the North Shore, Points East, seasons, and booking tips. Editorial Team Editorial Team Contributor Read Guide" [ref=f4e156]':
+                - generic [ref=f4e157]:
+                  - 'img "PEI Cottage Rentals: Red Sand Beaches & Seaside Retreats on Prince Edward Island" [ref=f4e158]'
+                  - generic [ref=f4e159]: PEI Cottage Rentals
+                - generic [ref=f4e160]:
+                  - generic [ref=f4e161]: 5 min read
+                  - 'heading "PEI Cottage Rentals: Red Sand Beaches & Seaside Retreats on Prince Edward Island" [level=3] [ref=f4e166]'
+                  - paragraph [ref=f4e167]: Find the best PEI cottage rentals for red sand beaches and seaside retreats. Explore the North Shore, Points East, seasons, and booking tips.
+                  - generic [ref=f4e168]:
+                    - generic [ref=f4e169]:
+                      - img "Editorial Team" [ref=f4e170]
+                      - generic [ref=f4e171]:
+                        - paragraph [ref=f4e172]: Editorial Team
+                        - paragraph [ref=f4e173]: Contributor
+                    - generic [ref=f4e174]: Read Guide
+              - 'button "New Brunswick Cottage Rentals: Beaches, Forests & Coastal Escapes New Brunswick Cottage Rentals 5 min read New Brunswick Cottage Rentals: Beaches, Forests & Coastal Escapes Explore New Brunswick cottage rentals, from Shediac beach cottages to Acadian Peninsula escapes. Warm shores, areas, and booking tips inside. Editorial Team Editorial Team Contributor Read Guide" [ref=f4e177]':
+                - generic [ref=f4e178]:
+                  - 'img "New Brunswick Cottage Rentals: Beaches, Forests & Coastal Escapes" [ref=f4e179]'
+                  - generic [ref=f4e180]: New Brunswick Cottage Rentals
+                - generic [ref=f4e181]:
+                  - generic [ref=f4e182]: 5 min read
+                  - 'heading "New Brunswick Cottage Rentals: Beaches, Forests & Coastal Escapes" [level=3] [ref=f4e187]'
+                  - paragraph [ref=f4e188]: Explore New Brunswick cottage rentals, from Shediac beach cottages to Acadian Peninsula escapes. Warm shores, areas, and booking tips inside.
+                  - generic [ref=f4e189]:
+                    - generic [ref=f4e190]:
+                      - img "Editorial Team" [ref=f4e191]
+                      - generic [ref=f4e192]:
+                        - paragraph [ref=f4e193]: Editorial Team
+                        - paragraph [ref=f4e194]: Contributor
+                    - generic [ref=f4e195]: Read Guide
+              - 'button "Alberta Cottage Rentals: Mountain Cabins & Lakeside Retreats in the Rockies Alberta Cottage Rentals 5 min read Alberta Cottage Rentals: Mountain Cabins & Lakeside Retreats in the Rockies Find the best Alberta cottage rentals, from Canmore mountain cabins to Sylvan Lake retreats. Explore regions, park access, seasons, and booking tips. Editorial Team Editorial Team Contributor Read Guide" [ref=f4e198]':
+                - generic [ref=f4e199]:
+                  - 'img "Alberta Cottage Rentals: Mountain Cabins & Lakeside Retreats in the Rockies" [ref=f4e200]'
+                  - generic [ref=f4e201]: Alberta Cottage Rentals
+                - generic [ref=f4e202]:
+                  - generic [ref=f4e203]: 5 min read
+                  - 'heading "Alberta Cottage Rentals: Mountain Cabins & Lakeside Retreats in the Rockies" [level=3] [ref=f4e208]'
+                  - paragraph [ref=f4e209]: Find the best Alberta cottage rentals, from Canmore mountain cabins to Sylvan Lake retreats. Explore regions, park access, seasons, and booking tips.
+                  - generic [ref=f4e210]:
+                    - generic [ref=f4e211]:
+                      - img "Editorial Team" [ref=f4e212]
+                      - generic [ref=f4e213]:
+                        - paragraph [ref=f4e214]: Editorial Team
+                        - paragraph [ref=f4e215]: Contributor
+                    - generic [ref=f4e216]: Read Guide
+            - generic [ref=f4e219]:
+              - button [disabled] [ref=f4e220]
+              - button "1" [ref=f4e223]
+              - button "2" [ref=f4e224]
+              - button [ref=f4e225]
+  - button "Open Next.js Dev Tools" [ref=f4e233] [cursor=pointer]

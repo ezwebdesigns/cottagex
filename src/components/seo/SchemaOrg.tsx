@@ -66,37 +66,38 @@ export function ArticleSchema({ title, description, image, date, dateModified, u
   url?: string;
   author?: string;
 }) {
-  const absImage = image && !image.startsWith('http') 
-    ? `${SITE_URL}${image.startsWith('/') ? '' : '/'}${image}` 
-    : image || `${SITE_URL}/og-default.jpg`;
+  const SITE_URL = 'https://chaletexpress.com';
   
+  const absoluteImageUrl = image
+    ? image.startsWith('http')
+      ? image
+      : `https://www.chaletexpress.com${image.startsWith('/') ? '' : '/'}${image}`
+    : 'https://www.chaletexpress.com/og-default.jpg';
+
   const headline = title.length > 110 ? title.substring(0, 107) + '...' : title;
-  
+
   const schema: Record<string, any> = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline,
+    headline: headline,
     description,
-    image: [absImage],
+    image: [absoluteImageUrl],
     datePublished: new Date(date).toISOString(),
     dateModified: dateModified ? new Date(dateModified).toISOString() : new Date(date).toISOString(),
     author: {
       '@type': 'Organization',
       name: 'Chalet Express',
-      url: SITE_URL,
+      url: 'https://www.chaletexpress.com',
     },
     publisher: {
       '@type': 'Organization',
       name: 'Chalet Express',
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}/logo.png`,
+        url: 'https://www.chaletexpress.com/logo.png',
       },
     },
   };
-  if (url) {
-    schema.mainEntityOfPage = { '@type': 'WebPage', '@id': url };
-  }
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }
 
@@ -169,7 +170,7 @@ export function ItemListSchema({ items, url }: {
       availability: 'https://schema.org/InStock',
     };
     if (item.url) offer.url = item.url;
-    if (item.price != null && item.price > 0) offer.price = item.price;
+    if (item.price != null) offer.price = item.price;
     product.offers = offer;
 
     if (item.rating != null) {

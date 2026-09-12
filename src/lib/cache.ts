@@ -1,55 +1,36 @@
-import { redis } from '@/lib/redis'
+import { Redis } from '@upstash/redis'
 
 const PROJECT_PREFIX = 'chaletexpress'
 
-function prefixKey(key: string): string {
-  return `${PROJECT_PREFIX}:${key}`
-}
+export const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+})
 
 export async function getCached<T>(
   key: string,
   fetcher: () => Promise<T>,
   ttlSeconds: number
 ): Promise<T> {
-  const prefixedKey = prefixKey(key)
+  const prefixedKey = `chaletexpress:${key}`
   const cached = await redis.get(prefixedKey)
-  if (cached) {
-    return JSON.parse(cached as string) as T
-  }
+  if (cached) return cached as T
 
   const fresh = await fetcher()
   await redis.setex(prefixedKey, ttlSeconds, JSON.stringify(fresh))
   return fresh
 }
 
-export async function invalidatePrefix(prefix: string): Promise<number> {
-  const keys = await redis.keys(prefixKey(`${prefix}*`))
+export async function invalidateCache(pattern: string): Promise<void> {
+  const keys = await redis.keys(`chaletexpress:${pattern}`)
   if (keys.length > 0) {
-    return await redis.del(...keys)
+    await redis.del(...keys)
   }
-  return 0
 }
 
-export async function clearProjectCache(): Promise<number> {
-  const keys = await redis.keys(prefixKey('*'))
+export async function invalidateAll(): Promise<void> {
+  const keys = await redis.keys('chaletexpress:*')
   if (keys.length > 0) {
-    return await redis.del(...keys)
+    await redis.del(...keys)
   }
-  return 0
-}
-
-export async function invalidateSettings(): Promise<number> {
-  return await invalidatePrefix('settings:')
-}
-
-export async function invalidateArticles(): Promise<number> {
-  return await invalidatePrefix('articles:')
-}
-
-export async function invalidatePages(): Promise<number> {
-  return await invalidatePrefix('pages:')
-}
-
-export async function invalidateCottages(): Promise<number> {
-  return await invalidatePrefix('cottages:')
 }

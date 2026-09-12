@@ -1,7 +1,7 @@
 name: Translate EN to FR (DeepL)
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # manual trigger
   # schedule:
   #   - cron: '0 2 * * 0'  # optional: every Sunday 2 AM
 

@@ -20,12 +20,24 @@
   },
   "hero": {
     "title": "Your Wild Canadian Sanctuary",
-    "subtitle": "Discover handpicked chalets across Canada's most breathtaking landscapes — from misty Laurentian lakes to the rugged peaks of the Rockies.",
+    "subtitle": "Discover handpicked chalets across Canada's most breathtaking landscapes ÔÇö from misty Laurentian lakes to the rugged peaks of the Rockies.",
     "args": [
-      { "icon": "shield", "text": "Verified VRBO listings" },
-      { "icon": "map", "text": "Curated by province" },
-      { "icon": "heart", "text": "Save your favorites" },
-      { "icon": "trees", "text": "Year-round wilderness" }
+      {
+        "icon": "shield",
+        "text": "Verified VRBO listings"
+      },
+      {
+        "icon": "map",
+        "text": "Curated by province"
+      },
+      {
+        "icon": "heart",
+        "text": "Save your favorites"
+      },
+      {
+        "icon": "trees",
+        "text": "Year-round wilderness"
+      }
     ],
     "search": {
       "title": "Find Your Chalet",
@@ -70,7 +82,7 @@
   "sidebar": {
     "menu": "Menu",
     "favorites": "My Favorites",
-    "noFavorites": "No favorites yet — tap the heart on any chalet!",
+    "noFavorites": "No favorites yet ÔÇö tap the heart on any chalet!",
     "weather": "Weather",
     "contact": "Contact",
     "follow": "Follow Us",
@@ -111,7 +123,7 @@
   "terms": {
     "title": "Terms & Affiliate Disclosure",
     "updated": "Last updated: July 2026",
-    "intro": "Chalet Express is an independent travel directory dedicated to showcasing Canadian chalet rentals. We participate in the VRBO (Expedia Group) Affiliate Program, which means we may earn a commission when you book a stay through links on our site — at no additional cost to you.",
+    "intro": "Chalet Express is an independent travel directory dedicated to showcasing Canadian chalet rentals. We participate in the VRBO (Expedia Group) Affiliate Program, which means we may earn a commission when you book a stay through links on our site ÔÇö at no additional cost to you.",
     "sections": [
       {
         "heading": "Affiliate Relationship",
@@ -189,20 +201,65 @@
     "alberta": "Alberta"
   },
   "categories": [
-    { "id": "lakefront", "label": "Lakefront" },
-    { "id": "hot-tub", "label": "Hot Tub" },
-    { "id": "family", "label": "Family" },
-    { "id": "luxury", "label": "Luxury" },
-    { "id": "pet-friendly", "label": "Pet-Friendly" },
-    { "id": "mountain", "label": "Mountain" },
-    { "id": "romantic", "label": "Romantic" },
-    { "id": "log-cabin", "label": "Log Cabin" },
-    { "id": "countryside", "label": "Countryside" },
-    { "id": "secluded", "label": "Secluded" },
-    { "id": "beach", "label": "Beach" },
-    { "id": "resort", "label": "Resort" },
-    { "id": "skiing", "label": "Skiing" },
-    { "id": "pools", "label": "Pools" },
-    { "id": "hiking", "label": "Hiking" }
+    {
+      "id": "lakefront",
+      "label": "Lakefront"
+    },
+    {
+      "id": "hot-tub",
+      "label": "Hot Tub"
+    },
+    {
+      "id": "family",
+      "label": "Family"
+    },
+    {
+      "id": "luxury",
+      "label": "Luxury"
+    },
+    {
+      "id": "pet-friendly",
+      "label": "Pet-Friendly"
+    },
+    {
+      "id": "mountain",
+      "label": "Mountain"
+    },
+    {
+      "id": "romantic",
+      "label": "Romantic"
+    },
+    {
+      "id": "log-cabin",
+      "label": "Log Cabin"
+    },
+    {
+      "id": "countryside",
+      "label": "Countryside"
+    },
+    {
+      "id": "secluded",
+      "label": "Secluded"
+    },
+    {
+      "id": "beach",
+      "label": "Beach"
+    },
+    {
+      "id": "resort",
+      "label": "Resort"
+    },
+    {
+      "id": "skiing",
+      "label": "Skiing"
+    },
+    {
+      "id": "pools",
+      "label": "Pools"
+    },
+    {
+      "id": "hiking",
+      "label": "Hiking"
+    }
   ]
 }

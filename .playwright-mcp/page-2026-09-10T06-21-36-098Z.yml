@@ -1,0 +1,15 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]: Chalet Express
+    - generic [ref=e9]:
+      - heading "Admin Login" [level=1] [ref=e10]
+      - paragraph [ref=e11]: Sign in to manage your content
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - generic [ref=e14]: Username
+          - textbox "admin" [ref=e15]
+        - generic [ref=e16]:
+          - generic [ref=e17]: Password
+          - textbox "••••••••" [ref=e18]
+        - button "Sign in" [ref=e19]
+  - alert [ref=e20]

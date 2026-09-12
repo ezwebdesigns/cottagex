@@ -1,0 +1,131 @@
+- generic [active] [ref=f15e1]:
+  - generic [ref=f15e2]:
+    - complementary [ref=f15e4]:
+      - link [ref=f15e6] [cursor=pointer]:
+        - /url: /en
+      - navigation [ref=f15e8]
+    - generic [ref=f15e9]:
+      - banner [ref=f15e10]:
+        - generic [ref=f15e12]:
+          - link "Chalet Express" [ref=f15e14] [cursor=pointer]:
+            - /url: /en
+          - button "FR" [ref=f15e17]
+      - main [ref=f15e22]:
+        - generic [ref=f15e23]:
+          - generic [ref=f15e24]:
+            - img "Ontario Cottage rental destination" [ref=f15e25]
+            - generic [ref=f15e28]:
+              - generic [ref=f15e29]: Destinations
+              - 'heading "Ontario Cottage Country: Discover Canada''s Favorite Lakeside Escape" [level=1] [ref=f15e33]'
+              - paragraph [ref=f15e34]: From Muskoka to Kawartha Lakes, find unforgettable cottage getaways surrounded by pristine lakes, forests, and year-round outdoor adventures.
+          - generic [ref=f15e36]:
+            - generic [ref=f15e37]:
+              - heading "Overview" [level=2] [ref=f15e38]
+              - paragraph [ref=f15e39]: A destination where nature, relaxation, and adventure come together.
+              - paragraph [ref=f15e40]: Ontario Cottage Country is a beautiful vacation spot near Toronto, Canada. It's known for its lakes and outdoor fun like boating and fishing. Famous areas include Muskoka and Haliburton. People rent cottages here to relax and enjoy nature. It's a peaceful escape from city life.
+            - generic [ref=f15e41]:
+              - heading "Why Ontario is Canada's Cottage Country" [level=3] [ref=f15e42]
+              - generic [ref=f15e43]:
+                - generic [ref=f15e49]:
+                  - generic [ref=f15e50]: Over 250,000 Lakes
+                  - paragraph [ref=f15e51]: Discover endless waterfront destinations across the province.
+                - generic [ref=f15e57]:
+                  - generic [ref=f15e58]: Iconic Cottage Regions
+                  - paragraph [ref=f15e59]: Explore Muskoka, Haliburton, Kawarthas, and Georgian Bay.
+          - generic [ref=f15e61]:
+            - generic [ref=f15e62]:
+              - paragraph [ref=f15e63]: One of the best cottages destination in Canada
+              - heading "Ontario Cottage Country" [level=2] [ref=f15e64]
+              - paragraph [ref=f15e65]: Choosing the right cottage starts with finding the destination that matches your travel style. Looking for luxury waterfront living? Explore Muskoka. Prefer quiet lakes and outdoor adventures? Consider Haliburton or the Kawarthas. From family-friendly cottages and romantic cabins to large waterfront retreats, Ontario offers accommodations for every type of traveler. Browse our guides to discover the best cottage areas, seasonal activities, and travel tips for your next Ontario vacation.
+              - generic [ref=f15e66]:
+                - generic [ref=f15e67]:
+                  - button [ref=f15e68]:
+                    - heading "Where is the best cottage country in Ontario?" [level=3] [ref=f15e69]
+                  - paragraph [ref=f15e72]: The Muskoka region is widely considered the premier cottage destination in Ontario, known for its pristine lakes and luxury properties. However, areas like Kawartha Lakes, Haliburton, and Prince Edward County are also highly sought-after alternatives for a peaceful summer getaway.
+                - generic [ref=f15e73]:
+                  - button [ref=f15e74]:
+                    - heading "How much do cottage rentals cost in Ontario?" [level=3] [ref=f15e75]
+                  - paragraph [ref=f15e78]: Prices vary greatly depending on the location, size, and proximity to the water. A basic off-water cabin might start around $150 per night, while a luxury waterfront cottage for rent in Muskoka can easily exceed $500 to $1,500 per night during the peak summer season.
+                - generic [ref=f15e79]:
+                  - button [ref=f15e80]:
+                    - heading "What is the best time of year to book a cottage in Ontario?" [level=3] [ref=f15e81]
+                  - paragraph [ref=f15e84]: Summer (July and August) is the most popular time for swimming and boating, but booking a cottage for rent in the fall offers spectacular autumn foliage and lower nightly rates. It is highly recommended to book your cottage rentals at least 6 months in advance for prime summer dates.
+                - generic [ref=f15e85]:
+                  - button [ref=f15e86]:
+                    - heading "Are there pet-friendly cottages in Ontario?" [level=3] [ref=f15e87]
+                  - paragraph [ref=f15e90]: Yes, many property owners throughout Ontario's cottage country welcome dogs. When browsing for your next cottage destination, simply use the "pet-friendly" search filter to ensure your furry friend can join the family vacation.
+            - img "Ontario Cottage Country" [ref=f15e92]
+          - generic [ref=f15e93]:
+            - 'heading "Ontario: Canada''s Cottage Country Heartland" [level=2] [ref=f15e94]'
+            - paragraph [ref=f15e95]: "If you've ever dreamed of a classic Canadian lake escape, Ontario is where that dream lives. The province's so-called \"Cottage Country\" — anchored by Muskoka, Haliburton, and the Kawarthas — sits on the Canadian Shield, a landscape of bare granite outcrops, towering pines, and lakes so clear you can see straight to the bottom. People have been making the same Friday-afternoon pilgrimage north from Toronto for generations, and for good reason. Days here run at their own pace. You swim off the dock before breakfast, spend the afternoon in a canoe, and spend the evening around a fire watching the stars come out. Further north, the wilderness gets genuinely wild — the kind of quiet where the only sound is a loon calling across the water. When to Go Summer (July–August) is peak season — warm water, long evenings, full marinas. But September and early October might actually be the best-kept secret in Ontario. The crowds thin out, the maples explode in red and gold, and you can often rent a stunning waterfront property for half the summer rate. A Few Tips The 400 Highway north from Toronto on a Friday afternoon is no joke — leave by noon or plan to arrive Saturday morning. Also worth noting: grocery options get sparse once you're past Huntsville or Haliburton. Stock up before you turn off the main highway. Worth Doing Paddle into Algonquin Provincial Park for at least one night. Cruise the Georgian Bay coastline by boat. Or simply do nothing more strenuous than dropping a line off the dock — Ontario's fishing is genuinely world-class."
+          - generic [ref=f15e98]:
+            - heading "Find Your Perfect Ontario Cottage" [level=2] [ref=f15e99]
+            - paragraph [ref=f15e100]: Start exploring Ontario's most beautiful cottage destinations today. Browse available rentals, compare locations, and book the perfect lakeside escape for your next vacation.
+            - link "Browse more" [ref=f15e101] [cursor=pointer]:
+              - /url: https://vrbo.com/affiliates/cottagerentals/ontario
+          - generic [ref=f15e103]:
+            - generic [ref=f15e104]:
+              - heading "Browse Ontario cottages areas" [level=2] [ref=f15e105]
+              - paragraph [ref=f15e106]: Search By destination
+            - generic [ref=f15e107]:
+              - generic [ref=f15e108]:
+                - heading "Kawartha Lakes" [level=3] [ref=f15e109]
+                - list [ref=f15e110]:
+                  - listitem [ref=f15e111]:
+                    - link "Lakefront Cottages in Kawartha Lakes" [ref=f15e112] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-kawartha-lakes-dateless.d06kQ3F
+                  - listitem [ref=f15e113]:
+                    - link "Family cottages in Kawartha Lakes" [ref=f15e114] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-kawartha-lakes-dateless.fbacxWf
+                  - listitem [ref=f15e115]:
+                    - link "Cottages with hot tub in Kawartha Lakes" [ref=f15e116] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-kawartha-lakes-dateless.z7UVmHa
+                  - listitem [ref=f15e117]:
+                    - link "Pet-friendly cottages in Kawartha Lakes" [ref=f15e118] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-kawartha-lakes-dateless.47djdrS
+              - generic [ref=f15e119]:
+                - heading "Muskoka" [level=3] [ref=f15e120]
+                - list [ref=f15e121]:
+                  - listitem [ref=f15e122]:
+                    - link "Lakefront Cottages in Muskoka" [ref=f15e123] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-muskoka-lakes-dateless.MMSJ8lM
+                  - listitem [ref=f15e124]:
+                    - link "Family cottages in Muskoka" [ref=f15e125] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-muskoka-lakes-dateless.WId6WeH
+                  - listitem [ref=f15e126]:
+                    - link "Cottages with hot tub in Muskoka" [ref=f15e127] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-muskoka-lakes-dateless.bkbaKY8
+                  - listitem [ref=f15e128]:
+                    - link "Pet-friendly cottages in Muskoka" [ref=f15e129] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-muskoka-lakes-dateless.zl7oEO7
+              - generic [ref=f15e130]:
+                - heading "Algonquin Highlands" [level=3] [ref=f15e131]
+                - list [ref=f15e132]:
+                  - listitem [ref=f15e133]:
+                    - link "Lakefront Cottages in Algonquin Highlands" [ref=f15e134] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-algonquin-highlands-dateless.MrN11Ol
+                  - listitem [ref=f15e135]:
+                    - link "Family cottages in Algonquin Highlands" [ref=f15e136] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-algonquin-highlands-dateless.BYrYP40
+                  - listitem [ref=f15e137]:
+                    - link "Cottages with hot tub in Algonquin Highlands" [ref=f15e138] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-algonquin-highlands-dateless.iLacXb8
+                  - listitem [ref=f15e139]:
+                    - link "Pet-friendly cottages in Algonquin Highlands" [ref=f15e140] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-algonquin-highlands-dateless.hlIdakI
+              - generic [ref=f15e141]:
+                - heading "Goergian Bay" [level=3] [ref=f15e142]
+                - list [ref=f15e143]:
+                  - listitem [ref=f15e144]:
+                    - link "Lakefront Cottages in Goergian Bay" [ref=f15e145] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-georgian-bay-dateless.swirJO2
+                  - listitem [ref=f15e146]:
+                    - link "Family cottages in Goergian Bay" [ref=f15e147] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-georgian-bay-dateless.UvhtXU2
+                  - listitem [ref=f15e148]:
+                    - link "Cottages with hot tub in Goergian Bay" [ref=f15e149] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-georgian-bay-dateless.y7t0JOD
+                  - listitem [ref=f15e150]:
+                    - link "Pet-friendly cottages in Goergian Bay" [ref=f15e151] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-georgian-bay-dateless.ujgXO98
+  - button "Open Next.js Dev Tools" [ref=f15e157] [cursor=pointer]

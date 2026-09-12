@@ -1,0 +1,175 @@
+- generic [active] [ref=f6e1]:
+  - generic [ref=f6e2]:
+    - complementary [ref=f6e4]:
+      - link [ref=f6e6] [cursor=pointer]:
+        - /url: /en
+      - navigation [ref=f6e8]:
+        - generic [ref=f6e237]:
+          - paragraph [ref=f6e238]: Cottage destinations
+          - link "AB" [ref=f6e239] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/cottage-country/alberta
+          - link "BC" [ref=f6e243] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/cottage-country/british-columbia
+          - link "MB" [ref=f6e248] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/cottage-country/manitoba
+          - link "NB" [ref=f6e252] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/cottage-country/new-brunswick
+          - link "NS" [ref=f6e259] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/cottage-country/nova-scotia
+          - link "ON" [ref=f6e263] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/cottage-country/ontario
+          - link "PEI" [ref=f6e268] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/cottage-country/pei
+          - link "QC" [ref=f6e273] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/cottage-country/quebec
+        - generic [ref=f6e277]:
+          - paragraph [ref=f6e278]: Search by destination
+          - link "SEARCH" [ref=f6e279] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/search
+        - generic [ref=f6e284]:
+          - paragraph [ref=f6e285]: Guides & Articles
+          - link "INSPIRATION" [ref=f6e286] [cursor=pointer]:
+            - /url: https://www.chaletexpress.com/en/guides
+    - generic [ref=f6e9]:
+      - banner [ref=f6e10]:
+        - generic [ref=f6e12]:
+          - link [ref=f6e14] [cursor=pointer]:
+            - /url: /en
+            - img "Chalet Express" [ref=f6e290]
+          - button "FR" [ref=f6e17]
+      - main [ref=f6e22]:
+        - generic [ref=f6e354]:
+          - button "Back to Guides" [ref=f6e355]
+          - generic [ref=f6e358]:
+            - text: Quebec Chalet Rentals
+            - heading "7 Best Luxury Chalets in Quebec with Hot Tub (Available Now)" [level=1] [ref=f6e359]
+            - generic [ref=f6e360]:
+              - generic [ref=f6e361]:
+                - generic [ref=f6e362]: EC
+                - generic [ref=f6e363]: Editorial Team
+              - generic [ref=f6e364]:
+                - generic [ref=f6e365]: August 13, 2026
+                - generic [ref=f6e368]: 4 min read
+          - img "quebec luxury cottages with hot tub" [ref=f6e373]
+          - generic [ref=f6e376]:
+            - generic [ref=f6e377]:
+              - paragraph [ref=f6e378]: Some getaways are about comfort, and a luxury chalet in Quebec with a hot tub is the definition of it. Mountain views, warm water, and a fireplace inside. It is the kind of trip you book when you need to reset.
+              - paragraph [ref=f6e379]: We pulled together the 7 best rated luxury chalets in Quebec with hot tubs, based on verified reviews from travelers who actually stayed. Every pick is ready to book right now. No filler, no guesswork.
+              - heading [level=2] [ref=f6e380]:
+                - strong [ref=f6e381]: Why Quebec for a Luxury Chalet?
+              - paragraph [ref=f6e382]: Quebec brings something special to luxury rentals. The chalets have their own character, mixing modern design with the warmth of wood, stone, and tradition. No two properties feel the same.
+              - paragraph [ref=f6e383]: The Laurentians are the classic setting, an hour or two from Montreal. Rolling hills, lakes, and ski mountains give you scenery in every direction. Mont-Tremblant adds a lively resort village to the mix. Charlevoix, along the Saint-Laurent, offers river views and a quieter, more refined atmosphere.
+              - paragraph [ref=f6e384]:
+                - text: The four seasons are the real advantage. A hot tub works just as well under a summer sky as it does in a January snowfall. Whatever the date, a luxury chalet in Quebec delivers. For more on the best spots to compare,
+                - link "Quebec cottage country" [ref=f6e385] [cursor=pointer]:
+                  - /url: https://chaletexpress.com/en/cottage-country/quebec
+                - text: has regions worth exploring.
+              - heading [level=2] [ref=f6e386]:
+                - strong [ref=f6e387]: The 7 Best Luxury Chalets in Quebec with Hot Tub
+              - paragraph [ref=f6e388]: Here is the list you came for. We selected these 7 chalets based on verified reviews from travelers who actually stayed, looking at the hot tub, location, amenities, cleanliness, and overall experience. The list is refreshed regularly, so you always see the top rated options available right now.
+              - paragraph
+            - generic [ref=f6e429]:
+              - paragraph
+              - paragraph [ref=f6e430]: Compare the ratings, check the amenities, and book the chalet that fits your stay.
+              - heading [level=2] [ref=f6e431]:
+                - strong [ref=f6e432]: What Makes a Luxury Chalet
+              - paragraph [ref=f6e433]: A hot tub is the starting point, but the details make the difference.
+              - paragraph [ref=f6e434]: The setting matters most. A chalet with a view, over a lake, a river, or a mountain valley, feels different from one tucked into a subdivision. Look for properties that put the landscape at the center.
+              - paragraph [ref=f6e435]: Inside, the classic Quebec chalet look wins. Wood beams, stone fireplaces, and big windows. Modern kitchens, quality bedding, and multiple bathrooms push a chalet into the true luxury tier.
+              - paragraph [ref=f6e436]: Check the extras. Some chalets add saunas, outdoor fireplaces, or private lake access. Others sit close to ski hills, villages, and restaurants. Match the amenities to the trip you are planning.
+              - paragraph [ref=f6e437]: And for winter, confirm the hot tub is heated and ready, and ask how the driveway is cleared. A little planning keeps the luxury feeling intact.
+              - heading [level=2] [ref=f6e438]:
+                - strong [ref=f6e439]: How Much Does a Luxury Chalet Cost?
+              - paragraph [ref=f6e440]: Luxury chalets in Quebec are a step above standard rentals, but the range is wider than people expect.
+              - paragraph [ref=f6e441]: Expect $400 to $800 a night in high season for a top rated chalet with a hot tub. Properties near Mont-Tremblant or with prime waterfront run higher, sometimes past $1,000 a night.
+              - paragraph [ref=f6e442]: Off season, rates often drop to $300 to $500 a night. Winter weekends are popular, which keeps prices firm during ski season. Summer in the Laurentians is busy too.
+              - paragraph [ref=f6e443]: Cleaning fees, hot tub maintenance, and damage deposits are common at this tier. Read the full price breakdown before you commit.
+              - heading [level=2] [ref=f6e444]:
+                - strong [ref=f6e445]: When to Book
+              - paragraph [ref=f6e446]: Quebec luxury chalets follow the seasons, and each one has its own timing.
+              - paragraph [ref=f6e447]: Winter is the peak. Ski weeks and holiday dates from December to March go fast. For a specific property, book by early fall.
+              - paragraph [ref=f6e448]: Summer is the second wave. Families and couples fill the lakeside chalets from late June through August. Popular weekends book weeks ahead.
+              - paragraph [ref=f6e449]: The sweet spots are late spring and fall. Fewer crowds, lower rates, and a hot tub that stays hot whatever the weather. If your dates are flexible, those months give you the most for your money.
+              - heading [level=2] [ref=f6e450]:
+                - strong [ref=f6e451]: Conclusion
+              - paragraph [ref=f6e452]: Quebec luxury chalets with hot tubs deliver the getaway you have been picturing. Mountain views, warm water, and a level of comfort that makes every hour feel intentional. Use the list above, compare the reviews, and book the chalet that fits the occasion.
+              - paragraph [ref=f6e453]: The mountains are waiting.
+          - generic [ref=f6e454]:
+            - heading "Frequently Asked Questions" [level=2] [ref=f6e455]
+            - generic [ref=f6e456]:
+              - button "How much does it cost to rent a luxury chalet in Quebec?" [ref=f6e458]
+              - button "Which regions in Quebec have the best luxury chalets?" [ref=f6e463]
+              - button "Are luxury chalets in Quebec pet friendly?" [ref=f6e468]
+              - button "What is the best season for a luxury chalet in Quebec?" [ref=f6e473]
+          - generic [ref=f6e477]:
+            - heading "Ready to soak under the stars in Quebec?" [level=2] [ref=f6e479]
+            - link "Book on VRBO" [ref=f6e480] [cursor=pointer]:
+              - /url: https://vrbo.com/affiliates/search-monttremblant-dateless.ardIVSa
+      - contentinfo [ref=f6e291]:
+        - generic [ref=f6e292]:
+          - generic [ref=f6e293]:
+            - generic [ref=f6e294]:
+              - img "Logo" [ref=f6e296]
+              - paragraph [ref=f6e297]: Find your perfect Canadian cottage rental. Curated lake houses, mountain lodges, and wilderness cabins across Canada
+              - generic [ref=f6e298]:
+                - link "Facebook" [ref=f6e299] [cursor=pointer]:
+                  - /url: https://facebook.com/
+                - link "Instagram" [ref=f6e302] [cursor=pointer]:
+                  - /url: https://instagram.com/
+                - link "TikTok" [ref=f6e305] [cursor=pointer]:
+                  - /url: https://tiktok.com/
+                - link "X" [ref=f6e308] [cursor=pointer]:
+                  - /url: https://x.com/
+                - link "Pinterest" [ref=f6e311] [cursor=pointer]:
+                  - /url: https://pinterest.com/
+            - generic [ref=f6e314]:
+              - heading "DISCOVER" [level=4] [ref=f6e315]
+              - list [ref=f6e316]:
+                - listitem [ref=f6e317]:
+                  - link "Explore Cottages" [ref=f6e318] [cursor=pointer]:
+                    - /url: /en/search
+                - listitem [ref=f6e319]:
+                  - link "Waterfront Cottages" [ref=f6e320] [cursor=pointer]:
+                    - /url: /en/search/waterfront
+                - listitem [ref=f6e321]:
+                  - link "Pet-Friendly Cottages" [ref=f6e322] [cursor=pointer]:
+                    - /url: /en/search/pet-friendly
+            - generic [ref=f6e323]:
+              - heading "QUICK LINKS" [level=4] [ref=f6e324]
+              - list [ref=f6e325]:
+                - listitem [ref=f6e326]:
+                  - link "Terms of Use" [ref=f6e327] [cursor=pointer]:
+                    - /url: /en/terms
+                - listitem [ref=f6e328]:
+                  - link "Affiliate Disclosure" [ref=f6e329] [cursor=pointer]:
+                    - /url: /en/disclaimer
+                - listitem [ref=f6e330]:
+                  - link "Privacy Policy" [ref=f6e331] [cursor=pointer]:
+                    - /url: /en/privacy
+            - generic [ref=f6e332]:
+              - heading "ABOUT" [level=4] [ref=f6e333]
+              - list [ref=f6e334]:
+                - listitem [ref=f6e335]:
+                  - link "About" [ref=f6e336] [cursor=pointer]:
+                    - /url: /en/about
+                - listitem [ref=f6e337]:
+                  - link "Contact" [ref=f6e338] [cursor=pointer]:
+                    - /url: /en/contact
+                - listitem [ref=f6e339]:
+                  - link "Guides & Articles" [ref=f6e340] [cursor=pointer]:
+                    - /url: /en/guides
+            - generic [ref=f6e341]:
+              - heading "TOP COTTAGE DESTINATIONS" [level=4] [ref=f6e342]
+              - list [ref=f6e343]:
+                - listitem [ref=f6e344]:
+                  - link "Ontario Cottage Country" [ref=f6e345] [cursor=pointer]:
+                    - /url: /en/cottage-country/ontario
+                - listitem [ref=f6e346]:
+                  - link "Quebec Cottage Country" [ref=f6e347] [cursor=pointer]:
+                    - /url: /en/cottage-country/quebec
+                - listitem [ref=f6e348]:
+                  - link "BC Cottage Country" [ref=f6e349] [cursor=pointer]:
+                    - /url: /en/cottage-country/british-columbia
+          - paragraph [ref=f6e352]: © 2026 Chalet Express. All rights reserved.
+  - button "Open Next.js Dev Tools" [ref=f6e233] [cursor=pointer]
+  - alert [ref=f6e353]: 7 Best Luxury Chalets in Quebec with Hot Tub (Available Now) | Chalet Express

@@ -11,13 +11,13 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
   const params = useParams();
   const locale = (params?.locale as string) || 'en';
 
-  if (pathname.endsWith('/admin/login')) return <>{children}</>;
+  const isLoginPage = pathname.endsWith('/admin/login');
 
   useEffect(() => {
-    if (status === 'unauthenticated') {
+    if (status === 'unauthenticated' && !isLoginPage) {
       router.replace(`/${locale}/admin/login`);
     }
-  }, [status, locale, router]);
+  }, [status, locale, router, isLoginPage]);
 
   if (status === 'loading') {
     return (
@@ -30,7 +30,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
     );
   }
 
-  if (!session) return null;
+  if (!session && !isLoginPage) return null;
 
   return <>{children}</>;
 }

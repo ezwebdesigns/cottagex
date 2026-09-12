@@ -1,0 +1,76 @@
+- generic [active] [ref=f1e1]:
+  - alert [ref=f1e6]
+  - generic [ref=f1e7]:
+    - complementary [ref=f1e8]:
+      - generic [ref=f1e9]:
+        - generic: Chaletx
+        - button [ref=f1e10]
+      - navigation [ref=f1e13]:
+        - paragraph [ref=f1e14]: Admin
+        - link "Dashboard" [ref=f1e15] [cursor=pointer]:
+          - /url: /en/admin/dashboard
+        - link "Pages" [ref=f1e21] [cursor=pointer]:
+          - /url: /en/admin/pages
+        - link "Articles" [ref=f1e25] [cursor=pointer]:
+          - /url: /en/admin/articles
+        - link "Library" [ref=f1e28] [cursor=pointer]:
+          - /url: /en/admin/library
+        - link "Messages" [ref=f1e33] [cursor=pointer]:
+          - /url: /en/admin/messages
+        - link "Search" [ref=f1e37] [cursor=pointer]:
+          - /url: /en/admin/search
+        - link "Cottages" [ref=f1e41] [cursor=pointer]:
+          - /url: /en/admin/cottages
+        - link "Destinations" [ref=f1e46] [cursor=pointer]:
+          - /url: /en/admin/destinations
+        - link "Settings" [ref=f1e50] [cursor=pointer]:
+          - /url: /en/admin/settings
+      - generic [ref=f1e54]:
+        - link "Profile" [ref=f1e55] [cursor=pointer]:
+          - /url: /en/admin/profile
+        - link "Visit Website" [ref=f1e59] [cursor=pointer]:
+          - /url: /en
+        - button "Clear Cache" [ref=f1e64]
+        - button "Logout" [ref=f1e70]
+    - generic [ref=f1e74]:
+      - banner [ref=f1e75]:
+        - heading "Admin" [level=2] [ref=f1e76]
+      - main [ref=f1e77]:
+        - generic [ref=f1e78]:
+          - generic [ref=f1e79]:
+            - generic [ref=f1e80]:
+              - heading "Settings" [level=1] [ref=f1e81]
+              - paragraph [ref=f1e82]: Manage your site configuration
+            - generic [ref=f1e147]: "Failed query: insert into \"site_settings\" (\"id\", \"section\", \"data\", \"updated_at\") values (default, $1, $2, $3) on conflict (\"section\") do update set \"data\" = $4, \"updated_at\" = $5 params: general,{\"logo\":\"lib:50\",\"favicon\":\"lib:2\",\"siteName\":\"Chalet Express\",\"siteDescription\":\"Find your perfect Canadian cottage rental. Curated lake houses, mountain lodges, and wilderness cabins across Canada today\"},2026-09-10T06:34:54.974Z,{\"logo\":\"lib:50\",\"favicon\":\"lib:2\",\"siteName\":\"Chalet Express\",\"siteDescription\":\"Find your perfect Canadian cottage rental. Curated lake houses, mountain lodges, and wilderness cabins across Canada today\"},2026-09-10T06:34:54.974Z"
+          - generic [ref=f1e83]:
+            - button "General" [ref=f1e84]
+            - button "Homepage" [ref=f1e88]
+            - button "SEO" [ref=f1e92]
+            - button "Header" [ref=f1e96]
+            - button "Footer" [ref=f1e101]
+            - button "Side Menu" [ref=f1e105]
+            - button "Ads" [ref=f1e107]
+          - generic [ref=f1e111]:
+            - heading "General" [level=2] [ref=f1e112]
+            - generic [ref=f1e113]:
+              - generic [ref=f1e114]:
+                - generic [ref=f1e115]: Site Name
+                - textbox [ref=f1e116]: Chalet Express
+              - generic [ref=f1e117]:
+                - generic [ref=f1e118]: Site Description
+                - textbox [ref=f1e119]: Find your perfect Canadian cottage rental. Curated lake houses, mountain lodges, and wilderness cabins across Canada today
+              - generic [ref=f1e120]:
+                - generic [ref=f1e121]: Logo
+                - generic [ref=f1e122]:
+                  - img "Preview" [ref=f1e124]
+                  - generic [ref=f1e125]:
+                    - generic [ref=f1e126] [cursor=pointer]: Upload
+                    - button "Remove image" [ref=f1e130]
+              - generic [ref=f1e131]:
+                - generic [ref=f1e132]: Favicon
+                - generic [ref=f1e133]:
+                  - img "Preview" [ref=f1e135]
+                  - generic [ref=f1e136]:
+                    - generic [ref=f1e137] [cursor=pointer]: Upload
+                    - button "Remove image" [ref=f1e141]
+            - button "Save" [ref=f1e142]

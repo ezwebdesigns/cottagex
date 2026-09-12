@@ -1,0 +1,1727 @@
+- generic [active] [ref=f11e1]:
+  - generic [ref=f11e2]: This XML file does not appear to have any style information associated with it. The document tree is shown below.
+  - generic [ref=f11e4]:
+    - generic [ref=f11e5]:
+      - generic [ref=f11e6] [cursor=pointer]
+      - generic [ref=f11e7]:
+        - text: <urlset
+        - generic [ref=f11e8]: xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        - text: ">"
+    - generic [ref=f11e9]:
+      - generic [ref=f11e10]:
+        - generic [ref=f11e11]:
+          - generic [ref=f11e12] [cursor=pointer]
+          - generic [ref=f11e13]: <url>
+        - generic [ref=f11e14]:
+          - generic [ref=f11e15]:
+            - generic [ref=f11e16]: <loc>
+            - text: https://chaletexpress.com/en
+            - generic [ref=f11e17]: </loc>
+          - generic [ref=f11e18]:
+            - generic [ref=f11e19]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e20]: </lastmod>
+          - generic [ref=f11e21]:
+            - generic [ref=f11e22]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e23]: </changefreq>
+          - generic [ref=f11e24]:
+            - generic [ref=f11e25]: <priority>
+            - text: "1"
+            - generic [ref=f11e26]: </priority>
+        - generic [ref=f11e27]: </url>
+      - generic [ref=f11e29]:
+        - generic [ref=f11e30]:
+          - generic [ref=f11e31] [cursor=pointer]
+          - generic [ref=f11e32]: <url>
+        - generic [ref=f11e33]:
+          - generic [ref=f11e34]:
+            - generic [ref=f11e35]: <loc>
+            - text: https://chaletexpress.com/en/about
+            - generic [ref=f11e36]: </loc>
+          - generic [ref=f11e37]:
+            - generic [ref=f11e38]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e39]: </lastmod>
+          - generic [ref=f11e40]:
+            - generic [ref=f11e41]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e42]: </changefreq>
+          - generic [ref=f11e43]:
+            - generic [ref=f11e44]: <priority>
+            - text: "0.8"
+            - generic [ref=f11e45]: </priority>
+        - generic [ref=f11e46]: </url>
+      - generic [ref=f11e48]:
+        - generic [ref=f11e49]:
+          - generic [ref=f11e50] [cursor=pointer]
+          - generic [ref=f11e51]: <url>
+        - generic [ref=f11e52]:
+          - generic [ref=f11e53]:
+            - generic [ref=f11e54]: <loc>
+            - text: https://chaletexpress.com/en/contact
+            - generic [ref=f11e55]: </loc>
+          - generic [ref=f11e56]:
+            - generic [ref=f11e57]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e58]: </lastmod>
+          - generic [ref=f11e59]:
+            - generic [ref=f11e60]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e61]: </changefreq>
+          - generic [ref=f11e62]:
+            - generic [ref=f11e63]: <priority>
+            - text: "0.8"
+            - generic [ref=f11e64]: </priority>
+        - generic [ref=f11e65]: </url>
+      - generic [ref=f11e67]:
+        - generic [ref=f11e68]:
+          - generic [ref=f11e69] [cursor=pointer]
+          - generic [ref=f11e70]: <url>
+        - generic [ref=f11e71]:
+          - generic [ref=f11e72]:
+            - generic [ref=f11e73]: <loc>
+            - text: https://chaletexpress.com/en/guides
+            - generic [ref=f11e74]: </loc>
+          - generic [ref=f11e75]:
+            - generic [ref=f11e76]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e77]: </lastmod>
+          - generic [ref=f11e78]:
+            - generic [ref=f11e79]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e80]: </changefreq>
+          - generic [ref=f11e81]:
+            - generic [ref=f11e82]: <priority>
+            - text: "0.8"
+            - generic [ref=f11e83]: </priority>
+        - generic [ref=f11e84]: </url>
+      - generic [ref=f11e86]:
+        - generic [ref=f11e87]:
+          - generic [ref=f11e88] [cursor=pointer]
+          - generic [ref=f11e89]: <url>
+        - generic [ref=f11e90]:
+          - generic [ref=f11e91]:
+            - generic [ref=f11e92]: <loc>
+            - text: https://chaletexpress.com/en/p/terms
+            - generic [ref=f11e93]: </loc>
+          - generic [ref=f11e94]:
+            - generic [ref=f11e95]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e96]: </lastmod>
+          - generic [ref=f11e97]:
+            - generic [ref=f11e98]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e99]: </changefreq>
+          - generic [ref=f11e100]:
+            - generic [ref=f11e101]: <priority>
+            - text: "0.8"
+            - generic [ref=f11e102]: </priority>
+        - generic [ref=f11e103]: </url>
+      - generic [ref=f11e105]:
+        - generic [ref=f11e106]:
+          - generic [ref=f11e107] [cursor=pointer]
+          - generic [ref=f11e108]: <url>
+        - generic [ref=f11e109]:
+          - generic [ref=f11e110]:
+            - generic [ref=f11e111]: <loc>
+            - text: https://chaletexpress.com/en/cottage-country/ontario
+            - generic [ref=f11e112]: </loc>
+          - generic [ref=f11e113]:
+            - generic [ref=f11e114]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e115]: </lastmod>
+          - generic [ref=f11e116]:
+            - generic [ref=f11e117]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e118]: </changefreq>
+          - generic [ref=f11e119]:
+            - generic [ref=f11e120]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e121]: </priority>
+        - generic [ref=f11e122]: </url>
+      - generic [ref=f11e124]:
+        - generic [ref=f11e125]:
+          - generic [ref=f11e126] [cursor=pointer]
+          - generic [ref=f11e127]: <url>
+        - generic [ref=f11e128]:
+          - generic [ref=f11e129]:
+            - generic [ref=f11e130]: <loc>
+            - text: https://chaletexpress.com/en/cottage-country/quebec
+            - generic [ref=f11e131]: </loc>
+          - generic [ref=f11e132]:
+            - generic [ref=f11e133]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e134]: </lastmod>
+          - generic [ref=f11e135]:
+            - generic [ref=f11e136]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e137]: </changefreq>
+          - generic [ref=f11e138]:
+            - generic [ref=f11e139]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e140]: </priority>
+        - generic [ref=f11e141]: </url>
+      - generic [ref=f11e143]:
+        - generic [ref=f11e144]:
+          - generic [ref=f11e145] [cursor=pointer]
+          - generic [ref=f11e146]: <url>
+        - generic [ref=f11e147]:
+          - generic [ref=f11e148]:
+            - generic [ref=f11e149]: <loc>
+            - text: https://chaletexpress.com/en/cottage-country/british-columbia
+            - generic [ref=f11e150]: </loc>
+          - generic [ref=f11e151]:
+            - generic [ref=f11e152]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e153]: </lastmod>
+          - generic [ref=f11e154]:
+            - generic [ref=f11e155]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e156]: </changefreq>
+          - generic [ref=f11e157]:
+            - generic [ref=f11e158]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e159]: </priority>
+        - generic [ref=f11e160]: </url>
+      - generic [ref=f11e162]:
+        - generic [ref=f11e163]:
+          - generic [ref=f11e164] [cursor=pointer]
+          - generic [ref=f11e165]: <url>
+        - generic [ref=f11e166]:
+          - generic [ref=f11e167]:
+            - generic [ref=f11e168]: <loc>
+            - text: https://chaletexpress.com/en/cottage-country/nova-scotia
+            - generic [ref=f11e169]: </loc>
+          - generic [ref=f11e170]:
+            - generic [ref=f11e171]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e172]: </lastmod>
+          - generic [ref=f11e173]:
+            - generic [ref=f11e174]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e175]: </changefreq>
+          - generic [ref=f11e176]:
+            - generic [ref=f11e177]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e178]: </priority>
+        - generic [ref=f11e179]: </url>
+      - generic [ref=f11e181]:
+        - generic [ref=f11e182]:
+          - generic [ref=f11e183] [cursor=pointer]
+          - generic [ref=f11e184]: <url>
+        - generic [ref=f11e185]:
+          - generic [ref=f11e186]:
+            - generic [ref=f11e187]: <loc>
+            - text: https://chaletexpress.com/en/cottage-country/alberta
+            - generic [ref=f11e188]: </loc>
+          - generic [ref=f11e189]:
+            - generic [ref=f11e190]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e191]: </lastmod>
+          - generic [ref=f11e192]:
+            - generic [ref=f11e193]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e194]: </changefreq>
+          - generic [ref=f11e195]:
+            - generic [ref=f11e196]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e197]: </priority>
+        - generic [ref=f11e198]: </url>
+      - generic [ref=f11e200]:
+        - generic [ref=f11e201]:
+          - generic [ref=f11e202] [cursor=pointer]
+          - generic [ref=f11e203]: <url>
+        - generic [ref=f11e204]:
+          - generic [ref=f11e205]:
+            - generic [ref=f11e206]: <loc>
+            - text: https://chaletexpress.com/en/cottage-country/new-brunswick
+            - generic [ref=f11e207]: </loc>
+          - generic [ref=f11e208]:
+            - generic [ref=f11e209]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e210]: </lastmod>
+          - generic [ref=f11e211]:
+            - generic [ref=f11e212]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e213]: </changefreq>
+          - generic [ref=f11e214]:
+            - generic [ref=f11e215]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e216]: </priority>
+        - generic [ref=f11e217]: </url>
+      - generic [ref=f11e219]:
+        - generic [ref=f11e220]:
+          - generic [ref=f11e221] [cursor=pointer]
+          - generic [ref=f11e222]: <url>
+        - generic [ref=f11e223]:
+          - generic [ref=f11e224]:
+            - generic [ref=f11e225]: <loc>
+            - text: https://chaletexpress.com/en/cottage-country/prince-edward-island
+            - generic [ref=f11e226]: </loc>
+          - generic [ref=f11e227]:
+            - generic [ref=f11e228]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e229]: </lastmod>
+          - generic [ref=f11e230]:
+            - generic [ref=f11e231]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e232]: </changefreq>
+          - generic [ref=f11e233]:
+            - generic [ref=f11e234]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e235]: </priority>
+        - generic [ref=f11e236]: </url>
+      - generic [ref=f11e238]:
+        - generic [ref=f11e239]:
+          - generic [ref=f11e240] [cursor=pointer]
+          - generic [ref=f11e241]: <url>
+        - generic [ref=f11e242]:
+          - generic [ref=f11e243]:
+            - generic [ref=f11e244]: <loc>
+            - text: https://chaletexpress.com/en/cottage-country/saskatchewan
+            - generic [ref=f11e245]: </loc>
+          - generic [ref=f11e246]:
+            - generic [ref=f11e247]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e248]: </lastmod>
+          - generic [ref=f11e249]:
+            - generic [ref=f11e250]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e251]: </changefreq>
+          - generic [ref=f11e252]:
+            - generic [ref=f11e253]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e254]: </priority>
+        - generic [ref=f11e255]: </url>
+      - generic [ref=f11e257]:
+        - generic [ref=f11e258]:
+          - generic [ref=f11e259] [cursor=pointer]
+          - generic [ref=f11e260]: <url>
+        - generic [ref=f11e261]:
+          - generic [ref=f11e262]:
+            - generic [ref=f11e263]: <loc>
+            - text: https://chaletexpress.com/en/cottage-country/manitoba
+            - generic [ref=f11e264]: </loc>
+          - generic [ref=f11e265]:
+            - generic [ref=f11e266]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e267]: </lastmod>
+          - generic [ref=f11e268]:
+            - generic [ref=f11e269]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e270]: </changefreq>
+          - generic [ref=f11e271]:
+            - generic [ref=f11e272]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e273]: </priority>
+        - generic [ref=f11e274]: </url>
+      - generic [ref=f11e276]:
+        - generic [ref=f11e277]:
+          - generic [ref=f11e278] [cursor=pointer]
+          - generic [ref=f11e279]: <url>
+        - generic [ref=f11e280]:
+          - generic [ref=f11e281]:
+            - generic [ref=f11e282]: <loc>
+            - text: https://chaletexpress.com/en/search
+            - generic [ref=f11e283]: </loc>
+          - generic [ref=f11e284]:
+            - generic [ref=f11e285]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e286]: </lastmod>
+          - generic [ref=f11e287]:
+            - generic [ref=f11e288]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e289]: </changefreq>
+          - generic [ref=f11e290]:
+            - generic [ref=f11e291]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e292]: </priority>
+        - generic [ref=f11e293]: </url>
+      - generic [ref=f11e295]:
+        - generic [ref=f11e296]:
+          - generic [ref=f11e297] [cursor=pointer]
+          - generic [ref=f11e298]: <url>
+        - generic [ref=f11e299]:
+          - generic [ref=f11e300]:
+            - generic [ref=f11e301]: <loc>
+            - text: https://chaletexpress.com/en/search/pet-friendly
+            - generic [ref=f11e302]: </loc>
+          - generic [ref=f11e303]:
+            - generic [ref=f11e304]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e305]: </lastmod>
+          - generic [ref=f11e306]:
+            - generic [ref=f11e307]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e308]: </changefreq>
+          - generic [ref=f11e309]:
+            - generic [ref=f11e310]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e311]: </priority>
+        - generic [ref=f11e312]: </url>
+      - generic [ref=f11e314]:
+        - generic [ref=f11e315]:
+          - generic [ref=f11e316] [cursor=pointer]
+          - generic [ref=f11e317]: <url>
+        - generic [ref=f11e318]:
+          - generic [ref=f11e319]:
+            - generic [ref=f11e320]: <loc>
+            - text: https://chaletexpress.com/en/search/lakefront
+            - generic [ref=f11e321]: </loc>
+          - generic [ref=f11e322]:
+            - generic [ref=f11e323]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e324]: </lastmod>
+          - generic [ref=f11e325]:
+            - generic [ref=f11e326]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e327]: </changefreq>
+          - generic [ref=f11e328]:
+            - generic [ref=f11e329]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e330]: </priority>
+        - generic [ref=f11e331]: </url>
+      - generic [ref=f11e333]:
+        - generic [ref=f11e334]:
+          - generic [ref=f11e335] [cursor=pointer]
+          - generic [ref=f11e336]: <url>
+        - generic [ref=f11e337]:
+          - generic [ref=f11e338]:
+            - generic [ref=f11e339]: <loc>
+            - text: https://chaletexpress.com/en/search/hot-tub
+            - generic [ref=f11e340]: </loc>
+          - generic [ref=f11e341]:
+            - generic [ref=f11e342]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e343]: </lastmod>
+          - generic [ref=f11e344]:
+            - generic [ref=f11e345]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e346]: </changefreq>
+          - generic [ref=f11e347]:
+            - generic [ref=f11e348]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e349]: </priority>
+        - generic [ref=f11e350]: </url>
+      - generic [ref=f11e352]:
+        - generic [ref=f11e353]:
+          - generic [ref=f11e354] [cursor=pointer]
+          - generic [ref=f11e355]: <url>
+        - generic [ref=f11e356]:
+          - generic [ref=f11e357]:
+            - generic [ref=f11e358]: <loc>
+            - text: https://chaletexpress.com/en/search/luxury
+            - generic [ref=f11e359]: </loc>
+          - generic [ref=f11e360]:
+            - generic [ref=f11e361]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e362]: </lastmod>
+          - generic [ref=f11e363]:
+            - generic [ref=f11e364]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e365]: </changefreq>
+          - generic [ref=f11e366]:
+            - generic [ref=f11e367]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e368]: </priority>
+        - generic [ref=f11e369]: </url>
+      - generic [ref=f11e371]:
+        - generic [ref=f11e372]:
+          - generic [ref=f11e373] [cursor=pointer]
+          - generic [ref=f11e374]: <url>
+        - generic [ref=f11e375]:
+          - generic [ref=f11e376]:
+            - generic [ref=f11e377]: <loc>
+            - text: https://chaletexpress.com/en/search/family
+            - generic [ref=f11e378]: </loc>
+          - generic [ref=f11e379]:
+            - generic [ref=f11e380]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e381]: </lastmod>
+          - generic [ref=f11e382]:
+            - generic [ref=f11e383]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e384]: </changefreq>
+          - generic [ref=f11e385]:
+            - generic [ref=f11e386]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e387]: </priority>
+        - generic [ref=f11e388]: </url>
+      - generic [ref=f11e390]:
+        - generic [ref=f11e391]:
+          - generic [ref=f11e392] [cursor=pointer]
+          - generic [ref=f11e393]: <url>
+        - generic [ref=f11e394]:
+          - generic [ref=f11e395]:
+            - generic [ref=f11e396]: <loc>
+            - text: https://chaletexpress.com/en/search/mountain
+            - generic [ref=f11e397]: </loc>
+          - generic [ref=f11e398]:
+            - generic [ref=f11e399]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e400]: </lastmod>
+          - generic [ref=f11e401]:
+            - generic [ref=f11e402]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e403]: </changefreq>
+          - generic [ref=f11e404]:
+            - generic [ref=f11e405]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e406]: </priority>
+        - generic [ref=f11e407]: </url>
+      - generic [ref=f11e409]:
+        - generic [ref=f11e410]:
+          - generic [ref=f11e411] [cursor=pointer]
+          - generic [ref=f11e412]: <url>
+        - generic [ref=f11e413]:
+          - generic [ref=f11e414]:
+            - generic [ref=f11e415]: <loc>
+            - text: https://chaletexpress.com/en/guides/cottage-rentals-in-canada-the-ultimate-guide
+            - generic [ref=f11e416]: </loc>
+          - generic [ref=f11e417]:
+            - generic [ref=f11e418]: <lastmod>
+            - text: 2026-08-17T22:40:29.265Z
+            - generic [ref=f11e419]: </lastmod>
+          - generic [ref=f11e420]:
+            - generic [ref=f11e421]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e422]: </changefreq>
+          - generic [ref=f11e423]:
+            - generic [ref=f11e424]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e425]: </priority>
+        - generic [ref=f11e426]: </url>
+      - generic [ref=f11e428]:
+        - generic [ref=f11e429]:
+          - generic [ref=f11e430] [cursor=pointer]
+          - generic [ref=f11e431]: <url>
+        - generic [ref=f11e432]:
+          - generic [ref=f11e433]:
+            - generic [ref=f11e434]: <loc>
+            - text: https://chaletexpress.com/en/guides/canada-cottage-country-a-region-by-region-guide-for-2026
+            - generic [ref=f11e435]: </loc>
+          - generic [ref=f11e436]:
+            - generic [ref=f11e437]: <lastmod>
+            - text: 2026-08-17T22:40:38.682Z
+            - generic [ref=f11e438]: </lastmod>
+          - generic [ref=f11e439]:
+            - generic [ref=f11e440]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e441]: </changefreq>
+          - generic [ref=f11e442]:
+            - generic [ref=f11e443]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e444]: </priority>
+        - generic [ref=f11e445]: </url>
+      - generic [ref=f11e447]:
+        - generic [ref=f11e448]:
+          - generic [ref=f11e449] [cursor=pointer]
+          - generic [ref=f11e450]: <url>
+        - generic [ref=f11e451]:
+          - generic [ref=f11e452]:
+            - generic [ref=f11e453]: <loc>
+            - text: https://chaletexpress.com/en/guides/bc-cottage-rentals
+            - generic [ref=f11e454]: </loc>
+          - generic [ref=f11e455]:
+            - generic [ref=f11e456]: <lastmod>
+            - text: 2026-08-17T22:44:46.317Z
+            - generic [ref=f11e457]: </lastmod>
+          - generic [ref=f11e458]:
+            - generic [ref=f11e459]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e460]: </changefreq>
+          - generic [ref=f11e461]:
+            - generic [ref=f11e462]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e463]: </priority>
+        - generic [ref=f11e464]: </url>
+      - generic [ref=f11e466]:
+        - generic [ref=f11e467]:
+          - generic [ref=f11e468] [cursor=pointer]
+          - generic [ref=f11e469]: <url>
+        - generic [ref=f11e470]:
+          - generic [ref=f11e471]:
+            - generic [ref=f11e472]: <loc>
+            - text: https://chaletexpress.com/en/guides/nova-scotia-cottage-rentals
+            - generic [ref=f11e473]: </loc>
+          - generic [ref=f11e474]:
+            - generic [ref=f11e475]: <lastmod>
+            - text: 2026-08-17T22:46:44.735Z
+            - generic [ref=f11e476]: </lastmod>
+          - generic [ref=f11e477]:
+            - generic [ref=f11e478]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e479]: </changefreq>
+          - generic [ref=f11e480]:
+            - generic [ref=f11e481]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e482]: </priority>
+        - generic [ref=f11e483]: </url>
+      - generic [ref=f11e485]:
+        - generic [ref=f11e486]:
+          - generic [ref=f11e487] [cursor=pointer]
+          - generic [ref=f11e488]: <url>
+        - generic [ref=f11e489]:
+          - generic [ref=f11e490]:
+            - generic [ref=f11e491]: <loc>
+            - text: https://chaletexpress.com/en/guides/quebec-cottage-rentals
+            - generic [ref=f11e492]: </loc>
+          - generic [ref=f11e493]:
+            - generic [ref=f11e494]: <lastmod>
+            - text: 2026-08-17T22:44:10.247Z
+            - generic [ref=f11e495]: </lastmod>
+          - generic [ref=f11e496]:
+            - generic [ref=f11e497]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e498]: </changefreq>
+          - generic [ref=f11e499]:
+            - generic [ref=f11e500]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e501]: </priority>
+        - generic [ref=f11e502]: </url>
+      - generic [ref=f11e504]:
+        - generic [ref=f11e505]:
+          - generic [ref=f11e506] [cursor=pointer]
+          - generic [ref=f11e507]: <url>
+        - generic [ref=f11e508]:
+          - generic [ref=f11e509]:
+            - generic [ref=f11e510]: <loc>
+            - text: https://chaletexpress.com/en/guides/pei-cottage-rentals
+            - generic [ref=f11e511]: </loc>
+          - generic [ref=f11e512]:
+            - generic [ref=f11e513]: <lastmod>
+            - text: 2026-08-17T22:50:10.873Z
+            - generic [ref=f11e514]: </lastmod>
+          - generic [ref=f11e515]:
+            - generic [ref=f11e516]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e517]: </changefreq>
+          - generic [ref=f11e518]:
+            - generic [ref=f11e519]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e520]: </priority>
+        - generic [ref=f11e521]: </url>
+      - generic [ref=f11e523]:
+        - generic [ref=f11e524]:
+          - generic [ref=f11e525] [cursor=pointer]
+          - generic [ref=f11e526]: <url>
+        - generic [ref=f11e527]:
+          - generic [ref=f11e528]:
+            - generic [ref=f11e529]: <loc>
+            - text: https://chaletexpress.com/en/guides/alberta-cottage-rentals
+            - generic [ref=f11e530]: </loc>
+          - generic [ref=f11e531]:
+            - generic [ref=f11e532]: <lastmod>
+            - text: 2026-08-17T22:48:16.024Z
+            - generic [ref=f11e533]: </lastmod>
+          - generic [ref=f11e534]:
+            - generic [ref=f11e535]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e536]: </changefreq>
+          - generic [ref=f11e537]:
+            - generic [ref=f11e538]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e539]: </priority>
+        - generic [ref=f11e540]: </url>
+      - generic [ref=f11e542]:
+        - generic [ref=f11e543]:
+          - generic [ref=f11e544] [cursor=pointer]
+          - generic [ref=f11e545]: <url>
+        - generic [ref=f11e546]:
+          - generic [ref=f11e547]:
+            - generic [ref=f11e548]: <loc>
+            - text: https://chaletexpress.com/en/guides/new-brunswick-cottage-rentals
+            - generic [ref=f11e549]: </loc>
+          - generic [ref=f11e550]:
+            - generic [ref=f11e551]: <lastmod>
+            - text: 2026-08-17T22:49:42.324Z
+            - generic [ref=f11e552]: </lastmod>
+          - generic [ref=f11e553]:
+            - generic [ref=f11e554]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e555]: </changefreq>
+          - generic [ref=f11e556]:
+            - generic [ref=f11e557]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e558]: </priority>
+        - generic [ref=f11e559]: </url>
+      - generic [ref=f11e561]:
+        - generic [ref=f11e562]:
+          - generic [ref=f11e563] [cursor=pointer]
+          - generic [ref=f11e564]: <url>
+        - generic [ref=f11e565]:
+          - generic [ref=f11e566]:
+            - generic [ref=f11e567]: <loc>
+            - text: https://chaletexpress.com/en/guides/7-best-family-cottage-rentals-in-ontario
+            - generic [ref=f11e568]: </loc>
+          - generic [ref=f11e569]:
+            - generic [ref=f11e570]: <lastmod>
+            - text: 2026-08-18T01:25:41.636Z
+            - generic [ref=f11e571]: </lastmod>
+          - generic [ref=f11e572]:
+            - generic [ref=f11e573]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e574]: </changefreq>
+          - generic [ref=f11e575]:
+            - generic [ref=f11e576]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e577]: </priority>
+        - generic [ref=f11e578]: </url>
+      - generic [ref=f11e580]:
+        - generic [ref=f11e581]:
+          - generic [ref=f11e582] [cursor=pointer]
+          - generic [ref=f11e583]: <url>
+        - generic [ref=f11e584]:
+          - generic [ref=f11e585]:
+            - generic [ref=f11e586]: <loc>
+            - text: https://chaletexpress.com/en/guides/7-best-cottage-rentals-in-muskoka
+            - generic [ref=f11e587]: </loc>
+          - generic [ref=f11e588]:
+            - generic [ref=f11e589]: <lastmod>
+            - text: 2026-08-18T01:21:41.049Z
+            - generic [ref=f11e590]: </lastmod>
+          - generic [ref=f11e591]:
+            - generic [ref=f11e592]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e593]: </changefreq>
+          - generic [ref=f11e594]:
+            - generic [ref=f11e595]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e596]: </priority>
+        - generic [ref=f11e597]: </url>
+      - generic [ref=f11e599]:
+        - generic [ref=f11e600]:
+          - generic [ref=f11e601] [cursor=pointer]
+          - generic [ref=f11e602]: <url>
+        - generic [ref=f11e603]:
+          - generic [ref=f11e604]:
+            - generic [ref=f11e605]: <loc>
+            - text: https://chaletexpress.com/en/guides/manitoba-cottage-rentals
+            - generic [ref=f11e606]: </loc>
+          - generic [ref=f11e607]:
+            - generic [ref=f11e608]: <lastmod>
+            - text: 2026-08-18T01:54:02.826Z
+            - generic [ref=f11e609]: </lastmod>
+          - generic [ref=f11e610]:
+            - generic [ref=f11e611]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e612]: </changefreq>
+          - generic [ref=f11e613]:
+            - generic [ref=f11e614]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e615]: </priority>
+        - generic [ref=f11e616]: </url>
+      - generic [ref=f11e618]:
+        - generic [ref=f11e619]:
+          - generic [ref=f11e620] [cursor=pointer]
+          - generic [ref=f11e621]: <url>
+        - generic [ref=f11e622]:
+          - generic [ref=f11e623]:
+            - generic [ref=f11e624]: <loc>
+            - text: https://chaletexpress.com/en/guides/7-luxury-chalets-quebec-hot-tub
+            - generic [ref=f11e625]: </loc>
+          - generic [ref=f11e626]:
+            - generic [ref=f11e627]: <lastmod>
+            - text: 2026-08-18T01:35:59.974Z
+            - generic [ref=f11e628]: </lastmod>
+          - generic [ref=f11e629]:
+            - generic [ref=f11e630]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e631]: </changefreq>
+          - generic [ref=f11e632]:
+            - generic [ref=f11e633]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e634]: </priority>
+        - generic [ref=f11e635]: </url>
+      - generic [ref=f11e637]:
+        - generic [ref=f11e638]:
+          - generic [ref=f11e639] [cursor=pointer]
+          - generic [ref=f11e640]: <url>
+        - generic [ref=f11e641]:
+          - generic [ref=f11e642]:
+            - generic [ref=f11e643]: <loc>
+            - text: https://chaletexpress.com/en/guides/ontario-cottage-rentals-everything-you-need-to-know
+            - generic [ref=f11e644]: </loc>
+          - generic [ref=f11e645]:
+            - generic [ref=f11e646]: <lastmod>
+            - text: 2026-08-17T22:43:19.750Z
+            - generic [ref=f11e647]: </lastmod>
+          - generic [ref=f11e648]:
+            - generic [ref=f11e649]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e650]: </changefreq>
+          - generic [ref=f11e651]:
+            - generic [ref=f11e652]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e653]: </priority>
+        - generic [ref=f11e654]: </url>
+      - generic [ref=f11e656]:
+        - generic [ref=f11e657]:
+          - generic [ref=f11e658] [cursor=pointer]
+          - generic [ref=f11e659]: <url>
+        - generic [ref=f11e660]:
+          - generic [ref=f11e661]:
+            - generic [ref=f11e662]: <loc>
+            - text: https://chaletexpress.com/en/guides/7-best-chalet-rentals-mont-tremblant
+            - generic [ref=f11e663]: </loc>
+          - generic [ref=f11e664]:
+            - generic [ref=f11e665]: <lastmod>
+            - text: 2026-08-18T03:22:58.743Z
+            - generic [ref=f11e666]: </lastmod>
+          - generic [ref=f11e667]:
+            - generic [ref=f11e668]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e669]: </changefreq>
+          - generic [ref=f11e670]:
+            - generic [ref=f11e671]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e672]: </priority>
+        - generic [ref=f11e673]: </url>
+      - generic [ref=f11e675]:
+        - generic [ref=f11e676]:
+          - generic [ref=f11e677] [cursor=pointer]
+          - generic [ref=f11e678]: <url>
+        - generic [ref=f11e679]:
+          - generic [ref=f11e680]:
+            - generic [ref=f11e681]: <loc>
+            - text: https://chaletexpress.com/en/guides/7-luxury-cottage-rentals-ontario-hot-tub
+            - generic [ref=f11e682]: </loc>
+          - generic [ref=f11e683]:
+            - generic [ref=f11e684]: <lastmod>
+            - text: 2026-08-18T01:43:15.010Z
+            - generic [ref=f11e685]: </lastmod>
+          - generic [ref=f11e686]:
+            - generic [ref=f11e687]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e688]: </changefreq>
+          - generic [ref=f11e689]:
+            - generic [ref=f11e690]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e691]: </priority>
+        - generic [ref=f11e692]: </url>
+      - generic [ref=f11e694]:
+        - generic [ref=f11e695]:
+          - generic [ref=f11e696] [cursor=pointer]
+          - generic [ref=f11e697]: <url>
+        - generic [ref=f11e698]:
+          - generic [ref=f11e699]:
+            - generic [ref=f11e700]: <loc>
+            - text: https://chaletexpress.com/en/privacy
+            - generic [ref=f11e701]: </loc>
+          - generic [ref=f11e702]:
+            - generic [ref=f11e703]: <lastmod>
+            - text: 2026-07-04T18:05:39.332Z
+            - generic [ref=f11e704]: </lastmod>
+          - generic [ref=f11e705]:
+            - generic [ref=f11e706]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e707]: </changefreq>
+          - generic [ref=f11e708]:
+            - generic [ref=f11e709]: <priority>
+            - text: "0.6"
+            - generic [ref=f11e710]: </priority>
+        - generic [ref=f11e711]: </url>
+      - generic [ref=f11e713]:
+        - generic [ref=f11e714]:
+          - generic [ref=f11e715] [cursor=pointer]
+          - generic [ref=f11e716]: <url>
+        - generic [ref=f11e717]:
+          - generic [ref=f11e718]:
+            - generic [ref=f11e719]: <loc>
+            - text: https://chaletexpress.com/en/disclaimer
+            - generic [ref=f11e720]: </loc>
+          - generic [ref=f11e721]:
+            - generic [ref=f11e722]: <lastmod>
+            - text: 2026-07-04T18:06:33.220Z
+            - generic [ref=f11e723]: </lastmod>
+          - generic [ref=f11e724]:
+            - generic [ref=f11e725]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e726]: </changefreq>
+          - generic [ref=f11e727]:
+            - generic [ref=f11e728]: <priority>
+            - text: "0.6"
+            - generic [ref=f11e729]: </priority>
+        - generic [ref=f11e730]: </url>
+      - generic [ref=f11e732]:
+        - generic [ref=f11e733]:
+          - generic [ref=f11e734] [cursor=pointer]
+          - generic [ref=f11e735]: <url>
+        - generic [ref=f11e736]:
+          - generic [ref=f11e737]:
+            - generic [ref=f11e738]: <loc>
+            - text: https://chaletexpress.com/en/pei
+            - generic [ref=f11e739]: </loc>
+          - generic [ref=f11e740]:
+            - generic [ref=f11e741]: <lastmod>
+            - text: 2026-08-21T23:55:29.713Z
+            - generic [ref=f11e742]: </lastmod>
+          - generic [ref=f11e743]:
+            - generic [ref=f11e744]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e745]: </changefreq>
+          - generic [ref=f11e746]:
+            - generic [ref=f11e747]: <priority>
+            - text: "0.6"
+            - generic [ref=f11e748]: </priority>
+        - generic [ref=f11e749]: </url>
+      - generic [ref=f11e751]:
+        - generic [ref=f11e752]:
+          - generic [ref=f11e753] [cursor=pointer]
+          - generic [ref=f11e754]: <url>
+        - generic [ref=f11e755]:
+          - generic [ref=f11e756]:
+            - generic [ref=f11e757]: <loc>
+            - text: https://chaletexpress.com/fr
+            - generic [ref=f11e758]: </loc>
+          - generic [ref=f11e759]:
+            - generic [ref=f11e760]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e761]: </lastmod>
+          - generic [ref=f11e762]:
+            - generic [ref=f11e763]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e764]: </changefreq>
+          - generic [ref=f11e765]:
+            - generic [ref=f11e766]: <priority>
+            - text: "1"
+            - generic [ref=f11e767]: </priority>
+        - generic [ref=f11e768]: </url>
+      - generic [ref=f11e770]:
+        - generic [ref=f11e771]:
+          - generic [ref=f11e772] [cursor=pointer]
+          - generic [ref=f11e773]: <url>
+        - generic [ref=f11e774]:
+          - generic [ref=f11e775]:
+            - generic [ref=f11e776]: <loc>
+            - text: https://chaletexpress.com/fr/about
+            - generic [ref=f11e777]: </loc>
+          - generic [ref=f11e778]:
+            - generic [ref=f11e779]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e780]: </lastmod>
+          - generic [ref=f11e781]:
+            - generic [ref=f11e782]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e783]: </changefreq>
+          - generic [ref=f11e784]:
+            - generic [ref=f11e785]: <priority>
+            - text: "0.8"
+            - generic [ref=f11e786]: </priority>
+        - generic [ref=f11e787]: </url>
+      - generic [ref=f11e789]:
+        - generic [ref=f11e790]:
+          - generic [ref=f11e791] [cursor=pointer]
+          - generic [ref=f11e792]: <url>
+        - generic [ref=f11e793]:
+          - generic [ref=f11e794]:
+            - generic [ref=f11e795]: <loc>
+            - text: https://chaletexpress.com/fr/contact
+            - generic [ref=f11e796]: </loc>
+          - generic [ref=f11e797]:
+            - generic [ref=f11e798]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e799]: </lastmod>
+          - generic [ref=f11e800]:
+            - generic [ref=f11e801]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e802]: </changefreq>
+          - generic [ref=f11e803]:
+            - generic [ref=f11e804]: <priority>
+            - text: "0.8"
+            - generic [ref=f11e805]: </priority>
+        - generic [ref=f11e806]: </url>
+      - generic [ref=f11e808]:
+        - generic [ref=f11e809]:
+          - generic [ref=f11e810] [cursor=pointer]
+          - generic [ref=f11e811]: <url>
+        - generic [ref=f11e812]:
+          - generic [ref=f11e813]:
+            - generic [ref=f11e814]: <loc>
+            - text: https://chaletexpress.com/fr/guides
+            - generic [ref=f11e815]: </loc>
+          - generic [ref=f11e816]:
+            - generic [ref=f11e817]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e818]: </lastmod>
+          - generic [ref=f11e819]:
+            - generic [ref=f11e820]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e821]: </changefreq>
+          - generic [ref=f11e822]:
+            - generic [ref=f11e823]: <priority>
+            - text: "0.8"
+            - generic [ref=f11e824]: </priority>
+        - generic [ref=f11e825]: </url>
+      - generic [ref=f11e827]:
+        - generic [ref=f11e828]:
+          - generic [ref=f11e829] [cursor=pointer]
+          - generic [ref=f11e830]: <url>
+        - generic [ref=f11e831]:
+          - generic [ref=f11e832]:
+            - generic [ref=f11e833]: <loc>
+            - text: https://chaletexpress.com/fr/p/terms
+            - generic [ref=f11e834]: </loc>
+          - generic [ref=f11e835]:
+            - generic [ref=f11e836]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e837]: </lastmod>
+          - generic [ref=f11e838]:
+            - generic [ref=f11e839]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e840]: </changefreq>
+          - generic [ref=f11e841]:
+            - generic [ref=f11e842]: <priority>
+            - text: "0.8"
+            - generic [ref=f11e843]: </priority>
+        - generic [ref=f11e844]: </url>
+      - generic [ref=f11e846]:
+        - generic [ref=f11e847]:
+          - generic [ref=f11e848] [cursor=pointer]
+          - generic [ref=f11e849]: <url>
+        - generic [ref=f11e850]:
+          - generic [ref=f11e851]:
+            - generic [ref=f11e852]: <loc>
+            - text: https://chaletexpress.com/fr/cottage-country/ontario
+            - generic [ref=f11e853]: </loc>
+          - generic [ref=f11e854]:
+            - generic [ref=f11e855]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e856]: </lastmod>
+          - generic [ref=f11e857]:
+            - generic [ref=f11e858]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e859]: </changefreq>
+          - generic [ref=f11e860]:
+            - generic [ref=f11e861]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e862]: </priority>
+        - generic [ref=f11e863]: </url>
+      - generic [ref=f11e865]:
+        - generic [ref=f11e866]:
+          - generic [ref=f11e867] [cursor=pointer]
+          - generic [ref=f11e868]: <url>
+        - generic [ref=f11e869]:
+          - generic [ref=f11e870]:
+            - generic [ref=f11e871]: <loc>
+            - text: https://chaletexpress.com/fr/cottage-country/quebec
+            - generic [ref=f11e872]: </loc>
+          - generic [ref=f11e873]:
+            - generic [ref=f11e874]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e875]: </lastmod>
+          - generic [ref=f11e876]:
+            - generic [ref=f11e877]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e878]: </changefreq>
+          - generic [ref=f11e879]:
+            - generic [ref=f11e880]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e881]: </priority>
+        - generic [ref=f11e882]: </url>
+      - generic [ref=f11e884]:
+        - generic [ref=f11e885]:
+          - generic [ref=f11e886] [cursor=pointer]
+          - generic [ref=f11e887]: <url>
+        - generic [ref=f11e888]:
+          - generic [ref=f11e889]:
+            - generic [ref=f11e890]: <loc>
+            - text: https://chaletexpress.com/fr/cottage-country/british-columbia
+            - generic [ref=f11e891]: </loc>
+          - generic [ref=f11e892]:
+            - generic [ref=f11e893]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e894]: </lastmod>
+          - generic [ref=f11e895]:
+            - generic [ref=f11e896]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e897]: </changefreq>
+          - generic [ref=f11e898]:
+            - generic [ref=f11e899]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e900]: </priority>
+        - generic [ref=f11e901]: </url>
+      - generic [ref=f11e903]:
+        - generic [ref=f11e904]:
+          - generic [ref=f11e905] [cursor=pointer]
+          - generic [ref=f11e906]: <url>
+        - generic [ref=f11e907]:
+          - generic [ref=f11e908]:
+            - generic [ref=f11e909]: <loc>
+            - text: https://chaletexpress.com/fr/cottage-country/nova-scotia
+            - generic [ref=f11e910]: </loc>
+          - generic [ref=f11e911]:
+            - generic [ref=f11e912]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e913]: </lastmod>
+          - generic [ref=f11e914]:
+            - generic [ref=f11e915]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e916]: </changefreq>
+          - generic [ref=f11e917]:
+            - generic [ref=f11e918]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e919]: </priority>
+        - generic [ref=f11e920]: </url>
+      - generic [ref=f11e922]:
+        - generic [ref=f11e923]:
+          - generic [ref=f11e924] [cursor=pointer]
+          - generic [ref=f11e925]: <url>
+        - generic [ref=f11e926]:
+          - generic [ref=f11e927]:
+            - generic [ref=f11e928]: <loc>
+            - text: https://chaletexpress.com/fr/cottage-country/alberta
+            - generic [ref=f11e929]: </loc>
+          - generic [ref=f11e930]:
+            - generic [ref=f11e931]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e932]: </lastmod>
+          - generic [ref=f11e933]:
+            - generic [ref=f11e934]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e935]: </changefreq>
+          - generic [ref=f11e936]:
+            - generic [ref=f11e937]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e938]: </priority>
+        - generic [ref=f11e939]: </url>
+      - generic [ref=f11e941]:
+        - generic [ref=f11e942]:
+          - generic [ref=f11e943] [cursor=pointer]
+          - generic [ref=f11e944]: <url>
+        - generic [ref=f11e945]:
+          - generic [ref=f11e946]:
+            - generic [ref=f11e947]: <loc>
+            - text: https://chaletexpress.com/fr/cottage-country/new-brunswick
+            - generic [ref=f11e948]: </loc>
+          - generic [ref=f11e949]:
+            - generic [ref=f11e950]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e951]: </lastmod>
+          - generic [ref=f11e952]:
+            - generic [ref=f11e953]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e954]: </changefreq>
+          - generic [ref=f11e955]:
+            - generic [ref=f11e956]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e957]: </priority>
+        - generic [ref=f11e958]: </url>
+      - generic [ref=f11e960]:
+        - generic [ref=f11e961]:
+          - generic [ref=f11e962] [cursor=pointer]
+          - generic [ref=f11e963]: <url>
+        - generic [ref=f11e964]:
+          - generic [ref=f11e965]:
+            - generic [ref=f11e966]: <loc>
+            - text: https://chaletexpress.com/fr/cottage-country/prince-edward-island
+            - generic [ref=f11e967]: </loc>
+          - generic [ref=f11e968]:
+            - generic [ref=f11e969]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e970]: </lastmod>
+          - generic [ref=f11e971]:
+            - generic [ref=f11e972]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e973]: </changefreq>
+          - generic [ref=f11e974]:
+            - generic [ref=f11e975]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e976]: </priority>
+        - generic [ref=f11e977]: </url>
+      - generic [ref=f11e979]:
+        - generic [ref=f11e980]:
+          - generic [ref=f11e981] [cursor=pointer]
+          - generic [ref=f11e982]: <url>
+        - generic [ref=f11e983]:
+          - generic [ref=f11e984]:
+            - generic [ref=f11e985]: <loc>
+            - text: https://chaletexpress.com/fr/cottage-country/saskatchewan
+            - generic [ref=f11e986]: </loc>
+          - generic [ref=f11e987]:
+            - generic [ref=f11e988]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e989]: </lastmod>
+          - generic [ref=f11e990]:
+            - generic [ref=f11e991]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e992]: </changefreq>
+          - generic [ref=f11e993]:
+            - generic [ref=f11e994]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e995]: </priority>
+        - generic [ref=f11e996]: </url>
+      - generic [ref=f11e998]:
+        - generic [ref=f11e999]:
+          - generic [ref=f11e1000] [cursor=pointer]
+          - generic [ref=f11e1001]: <url>
+        - generic [ref=f11e1002]:
+          - generic [ref=f11e1003]:
+            - generic [ref=f11e1004]: <loc>
+            - text: https://chaletexpress.com/fr/cottage-country/manitoba
+            - generic [ref=f11e1005]: </loc>
+          - generic [ref=f11e1006]:
+            - generic [ref=f11e1007]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e1008]: </lastmod>
+          - generic [ref=f11e1009]:
+            - generic [ref=f11e1010]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e1011]: </changefreq>
+          - generic [ref=f11e1012]:
+            - generic [ref=f11e1013]: <priority>
+            - text: "0.9"
+            - generic [ref=f11e1014]: </priority>
+        - generic [ref=f11e1015]: </url>
+      - generic [ref=f11e1017]:
+        - generic [ref=f11e1018]:
+          - generic [ref=f11e1019] [cursor=pointer]
+          - generic [ref=f11e1020]: <url>
+        - generic [ref=f11e1021]:
+          - generic [ref=f11e1022]:
+            - generic [ref=f11e1023]: <loc>
+            - text: https://chaletexpress.com/fr/search
+            - generic [ref=f11e1024]: </loc>
+          - generic [ref=f11e1025]:
+            - generic [ref=f11e1026]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e1027]: </lastmod>
+          - generic [ref=f11e1028]:
+            - generic [ref=f11e1029]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e1030]: </changefreq>
+          - generic [ref=f11e1031]:
+            - generic [ref=f11e1032]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1033]: </priority>
+        - generic [ref=f11e1034]: </url>
+      - generic [ref=f11e1036]:
+        - generic [ref=f11e1037]:
+          - generic [ref=f11e1038] [cursor=pointer]
+          - generic [ref=f11e1039]: <url>
+        - generic [ref=f11e1040]:
+          - generic [ref=f11e1041]:
+            - generic [ref=f11e1042]: <loc>
+            - text: https://chaletexpress.com/fr/search/pet-friendly
+            - generic [ref=f11e1043]: </loc>
+          - generic [ref=f11e1044]:
+            - generic [ref=f11e1045]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e1046]: </lastmod>
+          - generic [ref=f11e1047]:
+            - generic [ref=f11e1048]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e1049]: </changefreq>
+          - generic [ref=f11e1050]:
+            - generic [ref=f11e1051]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1052]: </priority>
+        - generic [ref=f11e1053]: </url>
+      - generic [ref=f11e1055]:
+        - generic [ref=f11e1056]:
+          - generic [ref=f11e1057] [cursor=pointer]
+          - generic [ref=f11e1058]: <url>
+        - generic [ref=f11e1059]:
+          - generic [ref=f11e1060]:
+            - generic [ref=f11e1061]: <loc>
+            - text: https://chaletexpress.com/fr/search/lakefront
+            - generic [ref=f11e1062]: </loc>
+          - generic [ref=f11e1063]:
+            - generic [ref=f11e1064]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e1065]: </lastmod>
+          - generic [ref=f11e1066]:
+            - generic [ref=f11e1067]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e1068]: </changefreq>
+          - generic [ref=f11e1069]:
+            - generic [ref=f11e1070]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1071]: </priority>
+        - generic [ref=f11e1072]: </url>
+      - generic [ref=f11e1074]:
+        - generic [ref=f11e1075]:
+          - generic [ref=f11e1076] [cursor=pointer]
+          - generic [ref=f11e1077]: <url>
+        - generic [ref=f11e1078]:
+          - generic [ref=f11e1079]:
+            - generic [ref=f11e1080]: <loc>
+            - text: https://chaletexpress.com/fr/search/hot-tub
+            - generic [ref=f11e1081]: </loc>
+          - generic [ref=f11e1082]:
+            - generic [ref=f11e1083]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e1084]: </lastmod>
+          - generic [ref=f11e1085]:
+            - generic [ref=f11e1086]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e1087]: </changefreq>
+          - generic [ref=f11e1088]:
+            - generic [ref=f11e1089]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1090]: </priority>
+        - generic [ref=f11e1091]: </url>
+      - generic [ref=f11e1093]:
+        - generic [ref=f11e1094]:
+          - generic [ref=f11e1095] [cursor=pointer]
+          - generic [ref=f11e1096]: <url>
+        - generic [ref=f11e1097]:
+          - generic [ref=f11e1098]:
+            - generic [ref=f11e1099]: <loc>
+            - text: https://chaletexpress.com/fr/search/luxury
+            - generic [ref=f11e1100]: </loc>
+          - generic [ref=f11e1101]:
+            - generic [ref=f11e1102]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e1103]: </lastmod>
+          - generic [ref=f11e1104]:
+            - generic [ref=f11e1105]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e1106]: </changefreq>
+          - generic [ref=f11e1107]:
+            - generic [ref=f11e1108]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1109]: </priority>
+        - generic [ref=f11e1110]: </url>
+      - generic [ref=f11e1112]:
+        - generic [ref=f11e1113]:
+          - generic [ref=f11e1114] [cursor=pointer]
+          - generic [ref=f11e1115]: <url>
+        - generic [ref=f11e1116]:
+          - generic [ref=f11e1117]:
+            - generic [ref=f11e1118]: <loc>
+            - text: https://chaletexpress.com/fr/search/family
+            - generic [ref=f11e1119]: </loc>
+          - generic [ref=f11e1120]:
+            - generic [ref=f11e1121]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e1122]: </lastmod>
+          - generic [ref=f11e1123]:
+            - generic [ref=f11e1124]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e1125]: </changefreq>
+          - generic [ref=f11e1126]:
+            - generic [ref=f11e1127]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1128]: </priority>
+        - generic [ref=f11e1129]: </url>
+      - generic [ref=f11e1131]:
+        - generic [ref=f11e1132]:
+          - generic [ref=f11e1133] [cursor=pointer]
+          - generic [ref=f11e1134]: <url>
+        - generic [ref=f11e1135]:
+          - generic [ref=f11e1136]:
+            - generic [ref=f11e1137]: <loc>
+            - text: https://chaletexpress.com/fr/search/mountain
+            - generic [ref=f11e1138]: </loc>
+          - generic [ref=f11e1139]:
+            - generic [ref=f11e1140]: <lastmod>
+            - text: 2026-09-09T18:13:42.655Z
+            - generic [ref=f11e1141]: </lastmod>
+          - generic [ref=f11e1142]:
+            - generic [ref=f11e1143]: <changefreq>
+            - text: weekly
+            - generic [ref=f11e1144]: </changefreq>
+          - generic [ref=f11e1145]:
+            - generic [ref=f11e1146]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1147]: </priority>
+        - generic [ref=f11e1148]: </url>
+      - generic [ref=f11e1150]:
+        - generic [ref=f11e1151]:
+          - generic [ref=f11e1152] [cursor=pointer]
+          - generic [ref=f11e1153]: <url>
+        - generic [ref=f11e1154]:
+          - generic [ref=f11e1155]:
+            - generic [ref=f11e1156]: <loc>
+            - text: https://chaletexpress.com/fr/guides/cottage-rentals-in-canada-the-ultimate-guide
+            - generic [ref=f11e1157]: </loc>
+          - generic [ref=f11e1158]:
+            - generic [ref=f11e1159]: <lastmod>
+            - text: 2026-08-17T22:40:29.265Z
+            - generic [ref=f11e1160]: </lastmod>
+          - generic [ref=f11e1161]:
+            - generic [ref=f11e1162]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1163]: </changefreq>
+          - generic [ref=f11e1164]:
+            - generic [ref=f11e1165]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1166]: </priority>
+        - generic [ref=f11e1167]: </url>
+      - generic [ref=f11e1169]:
+        - generic [ref=f11e1170]:
+          - generic [ref=f11e1171] [cursor=pointer]
+          - generic [ref=f11e1172]: <url>
+        - generic [ref=f11e1173]:
+          - generic [ref=f11e1174]:
+            - generic [ref=f11e1175]: <loc>
+            - text: https://chaletexpress.com/fr/guides/canada-cottage-country-a-region-by-region-guide-for-2026
+            - generic [ref=f11e1176]: </loc>
+          - generic [ref=f11e1177]:
+            - generic [ref=f11e1178]: <lastmod>
+            - text: 2026-08-17T22:40:38.682Z
+            - generic [ref=f11e1179]: </lastmod>
+          - generic [ref=f11e1180]:
+            - generic [ref=f11e1181]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1182]: </changefreq>
+          - generic [ref=f11e1183]:
+            - generic [ref=f11e1184]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1185]: </priority>
+        - generic [ref=f11e1186]: </url>
+      - generic [ref=f11e1188]:
+        - generic [ref=f11e1189]:
+          - generic [ref=f11e1190] [cursor=pointer]
+          - generic [ref=f11e1191]: <url>
+        - generic [ref=f11e1192]:
+          - generic [ref=f11e1193]:
+            - generic [ref=f11e1194]: <loc>
+            - text: https://chaletexpress.com/fr/guides/bc-cottage-rentals
+            - generic [ref=f11e1195]: </loc>
+          - generic [ref=f11e1196]:
+            - generic [ref=f11e1197]: <lastmod>
+            - text: 2026-08-17T22:44:46.317Z
+            - generic [ref=f11e1198]: </lastmod>
+          - generic [ref=f11e1199]:
+            - generic [ref=f11e1200]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1201]: </changefreq>
+          - generic [ref=f11e1202]:
+            - generic [ref=f11e1203]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1204]: </priority>
+        - generic [ref=f11e1205]: </url>
+      - generic [ref=f11e1207]:
+        - generic [ref=f11e1208]:
+          - generic [ref=f11e1209] [cursor=pointer]
+          - generic [ref=f11e1210]: <url>
+        - generic [ref=f11e1211]:
+          - generic [ref=f11e1212]:
+            - generic [ref=f11e1213]: <loc>
+            - text: https://chaletexpress.com/fr/guides/nova-scotia-cottage-rentals
+            - generic [ref=f11e1214]: </loc>
+          - generic [ref=f11e1215]:
+            - generic [ref=f11e1216]: <lastmod>
+            - text: 2026-08-17T22:46:44.735Z
+            - generic [ref=f11e1217]: </lastmod>
+          - generic [ref=f11e1218]:
+            - generic [ref=f11e1219]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1220]: </changefreq>
+          - generic [ref=f11e1221]:
+            - generic [ref=f11e1222]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1223]: </priority>
+        - generic [ref=f11e1224]: </url>
+      - generic [ref=f11e1226]:
+        - generic [ref=f11e1227]:
+          - generic [ref=f11e1228] [cursor=pointer]
+          - generic [ref=f11e1229]: <url>
+        - generic [ref=f11e1230]:
+          - generic [ref=f11e1231]:
+            - generic [ref=f11e1232]: <loc>
+            - text: https://chaletexpress.com/fr/guides/quebec-cottage-rentals
+            - generic [ref=f11e1233]: </loc>
+          - generic [ref=f11e1234]:
+            - generic [ref=f11e1235]: <lastmod>
+            - text: 2026-08-17T22:44:10.247Z
+            - generic [ref=f11e1236]: </lastmod>
+          - generic [ref=f11e1237]:
+            - generic [ref=f11e1238]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1239]: </changefreq>
+          - generic [ref=f11e1240]:
+            - generic [ref=f11e1241]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1242]: </priority>
+        - generic [ref=f11e1243]: </url>
+      - generic [ref=f11e1245]:
+        - generic [ref=f11e1246]:
+          - generic [ref=f11e1247] [cursor=pointer]
+          - generic [ref=f11e1248]: <url>
+        - generic [ref=f11e1249]:
+          - generic [ref=f11e1250]:
+            - generic [ref=f11e1251]: <loc>
+            - text: https://chaletexpress.com/fr/guides/pei-cottage-rentals
+            - generic [ref=f11e1252]: </loc>
+          - generic [ref=f11e1253]:
+            - generic [ref=f11e1254]: <lastmod>
+            - text: 2026-08-17T22:50:10.873Z
+            - generic [ref=f11e1255]: </lastmod>
+          - generic [ref=f11e1256]:
+            - generic [ref=f11e1257]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1258]: </changefreq>
+          - generic [ref=f11e1259]:
+            - generic [ref=f11e1260]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1261]: </priority>
+        - generic [ref=f11e1262]: </url>
+      - generic [ref=f11e1264]:
+        - generic [ref=f11e1265]:
+          - generic [ref=f11e1266] [cursor=pointer]
+          - generic [ref=f11e1267]: <url>
+        - generic [ref=f11e1268]:
+          - generic [ref=f11e1269]:
+            - generic [ref=f11e1270]: <loc>
+            - text: https://chaletexpress.com/fr/guides/alberta-cottage-rentals
+            - generic [ref=f11e1271]: </loc>
+          - generic [ref=f11e1272]:
+            - generic [ref=f11e1273]: <lastmod>
+            - text: 2026-08-17T22:48:16.024Z
+            - generic [ref=f11e1274]: </lastmod>
+          - generic [ref=f11e1275]:
+            - generic [ref=f11e1276]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1277]: </changefreq>
+          - generic [ref=f11e1278]:
+            - generic [ref=f11e1279]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1280]: </priority>
+        - generic [ref=f11e1281]: </url>
+      - generic [ref=f11e1283]:
+        - generic [ref=f11e1284]:
+          - generic [ref=f11e1285] [cursor=pointer]
+          - generic [ref=f11e1286]: <url>
+        - generic [ref=f11e1287]:
+          - generic [ref=f11e1288]:
+            - generic [ref=f11e1289]: <loc>
+            - text: https://chaletexpress.com/fr/guides/new-brunswick-cottage-rentals
+            - generic [ref=f11e1290]: </loc>
+          - generic [ref=f11e1291]:
+            - generic [ref=f11e1292]: <lastmod>
+            - text: 2026-08-17T22:49:42.324Z
+            - generic [ref=f11e1293]: </lastmod>
+          - generic [ref=f11e1294]:
+            - generic [ref=f11e1295]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1296]: </changefreq>
+          - generic [ref=f11e1297]:
+            - generic [ref=f11e1298]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1299]: </priority>
+        - generic [ref=f11e1300]: </url>
+      - generic [ref=f11e1302]:
+        - generic [ref=f11e1303]:
+          - generic [ref=f11e1304] [cursor=pointer]
+          - generic [ref=f11e1305]: <url>
+        - generic [ref=f11e1306]:
+          - generic [ref=f11e1307]:
+            - generic [ref=f11e1308]: <loc>
+            - text: https://chaletexpress.com/fr/guides/7-best-family-cottage-rentals-in-ontario
+            - generic [ref=f11e1309]: </loc>
+          - generic [ref=f11e1310]:
+            - generic [ref=f11e1311]: <lastmod>
+            - text: 2026-08-18T01:25:41.636Z
+            - generic [ref=f11e1312]: </lastmod>
+          - generic [ref=f11e1313]:
+            - generic [ref=f11e1314]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1315]: </changefreq>
+          - generic [ref=f11e1316]:
+            - generic [ref=f11e1317]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1318]: </priority>
+        - generic [ref=f11e1319]: </url>
+      - generic [ref=f11e1321]:
+        - generic [ref=f11e1322]:
+          - generic [ref=f11e1323] [cursor=pointer]
+          - generic [ref=f11e1324]: <url>
+        - generic [ref=f11e1325]:
+          - generic [ref=f11e1326]:
+            - generic [ref=f11e1327]: <loc>
+            - text: https://chaletexpress.com/fr/guides/7-best-cottage-rentals-in-muskoka
+            - generic [ref=f11e1328]: </loc>
+          - generic [ref=f11e1329]:
+            - generic [ref=f11e1330]: <lastmod>
+            - text: 2026-08-18T01:21:41.049Z
+            - generic [ref=f11e1331]: </lastmod>
+          - generic [ref=f11e1332]:
+            - generic [ref=f11e1333]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1334]: </changefreq>
+          - generic [ref=f11e1335]:
+            - generic [ref=f11e1336]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1337]: </priority>
+        - generic [ref=f11e1338]: </url>
+      - generic [ref=f11e1340]:
+        - generic [ref=f11e1341]:
+          - generic [ref=f11e1342] [cursor=pointer]
+          - generic [ref=f11e1343]: <url>
+        - generic [ref=f11e1344]:
+          - generic [ref=f11e1345]:
+            - generic [ref=f11e1346]: <loc>
+            - text: https://chaletexpress.com/fr/guides/manitoba-cottage-rentals
+            - generic [ref=f11e1347]: </loc>
+          - generic [ref=f11e1348]:
+            - generic [ref=f11e1349]: <lastmod>
+            - text: 2026-08-18T01:54:02.826Z
+            - generic [ref=f11e1350]: </lastmod>
+          - generic [ref=f11e1351]:
+            - generic [ref=f11e1352]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1353]: </changefreq>
+          - generic [ref=f11e1354]:
+            - generic [ref=f11e1355]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1356]: </priority>
+        - generic [ref=f11e1357]: </url>
+      - generic [ref=f11e1359]:
+        - generic [ref=f11e1360]:
+          - generic [ref=f11e1361] [cursor=pointer]
+          - generic [ref=f11e1362]: <url>
+        - generic [ref=f11e1363]:
+          - generic [ref=f11e1364]:
+            - generic [ref=f11e1365]: <loc>
+            - text: https://chaletexpress.com/fr/guides/7-luxury-chalets-quebec-hot-tub
+            - generic [ref=f11e1366]: </loc>
+          - generic [ref=f11e1367]:
+            - generic [ref=f11e1368]: <lastmod>
+            - text: 2026-08-18T01:35:59.974Z
+            - generic [ref=f11e1369]: </lastmod>
+          - generic [ref=f11e1370]:
+            - generic [ref=f11e1371]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1372]: </changefreq>
+          - generic [ref=f11e1373]:
+            - generic [ref=f11e1374]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1375]: </priority>
+        - generic [ref=f11e1376]: </url>
+      - generic [ref=f11e1378]:
+        - generic [ref=f11e1379]:
+          - generic [ref=f11e1380] [cursor=pointer]
+          - generic [ref=f11e1381]: <url>
+        - generic [ref=f11e1382]:
+          - generic [ref=f11e1383]:
+            - generic [ref=f11e1384]: <loc>
+            - text: https://chaletexpress.com/fr/guides/ontario-cottage-rentals-everything-you-need-to-know
+            - generic [ref=f11e1385]: </loc>
+          - generic [ref=f11e1386]:
+            - generic [ref=f11e1387]: <lastmod>
+            - text: 2026-08-17T22:43:19.750Z
+            - generic [ref=f11e1388]: </lastmod>
+          - generic [ref=f11e1389]:
+            - generic [ref=f11e1390]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1391]: </changefreq>
+          - generic [ref=f11e1392]:
+            - generic [ref=f11e1393]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1394]: </priority>
+        - generic [ref=f11e1395]: </url>
+      - generic [ref=f11e1397]:
+        - generic [ref=f11e1398]:
+          - generic [ref=f11e1399] [cursor=pointer]
+          - generic [ref=f11e1400]: <url>
+        - generic [ref=f11e1401]:
+          - generic [ref=f11e1402]:
+            - generic [ref=f11e1403]: <loc>
+            - text: https://chaletexpress.com/fr/guides/7-best-chalet-rentals-mont-tremblant
+            - generic [ref=f11e1404]: </loc>
+          - generic [ref=f11e1405]:
+            - generic [ref=f11e1406]: <lastmod>
+            - text: 2026-08-18T03:22:58.743Z
+            - generic [ref=f11e1407]: </lastmod>
+          - generic [ref=f11e1408]:
+            - generic [ref=f11e1409]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1410]: </changefreq>
+          - generic [ref=f11e1411]:
+            - generic [ref=f11e1412]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1413]: </priority>
+        - generic [ref=f11e1414]: </url>
+      - generic [ref=f11e1416]:
+        - generic [ref=f11e1417]:
+          - generic [ref=f11e1418] [cursor=pointer]
+          - generic [ref=f11e1419]: <url>
+        - generic [ref=f11e1420]:
+          - generic [ref=f11e1421]:
+            - generic [ref=f11e1422]: <loc>
+            - text: https://chaletexpress.com/fr/guides/7-luxury-cottage-rentals-ontario-hot-tub
+            - generic [ref=f11e1423]: </loc>
+          - generic [ref=f11e1424]:
+            - generic [ref=f11e1425]: <lastmod>
+            - text: 2026-08-18T01:43:15.010Z
+            - generic [ref=f11e1426]: </lastmod>
+          - generic [ref=f11e1427]:
+            - generic [ref=f11e1428]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1429]: </changefreq>
+          - generic [ref=f11e1430]:
+            - generic [ref=f11e1431]: <priority>
+            - text: "0.7"
+            - generic [ref=f11e1432]: </priority>
+        - generic [ref=f11e1433]: </url>
+      - generic [ref=f11e1435]:
+        - generic [ref=f11e1436]:
+          - generic [ref=f11e1437] [cursor=pointer]
+          - generic [ref=f11e1438]: <url>
+        - generic [ref=f11e1439]:
+          - generic [ref=f11e1440]:
+            - generic [ref=f11e1441]: <loc>
+            - text: https://chaletexpress.com/fr/privacy
+            - generic [ref=f11e1442]: </loc>
+          - generic [ref=f11e1443]:
+            - generic [ref=f11e1444]: <lastmod>
+            - text: 2026-07-04T18:05:39.332Z
+            - generic [ref=f11e1445]: </lastmod>
+          - generic [ref=f11e1446]:
+            - generic [ref=f11e1447]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1448]: </changefreq>
+          - generic [ref=f11e1449]:
+            - generic [ref=f11e1450]: <priority>
+            - text: "0.6"
+            - generic [ref=f11e1451]: </priority>
+        - generic [ref=f11e1452]: </url>
+      - generic [ref=f11e1454]:
+        - generic [ref=f11e1455]:
+          - generic [ref=f11e1456] [cursor=pointer]
+          - generic [ref=f11e1457]: <url>
+        - generic [ref=f11e1458]:
+          - generic [ref=f11e1459]:
+            - generic [ref=f11e1460]: <loc>
+            - text: https://chaletexpress.com/fr/disclaimer
+            - generic [ref=f11e1461]: </loc>
+          - generic [ref=f11e1462]:
+            - generic [ref=f11e1463]: <lastmod>
+            - text: 2026-07-04T18:06:33.220Z
+            - generic [ref=f11e1464]: </lastmod>
+          - generic [ref=f11e1465]:
+            - generic [ref=f11e1466]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1467]: </changefreq>
+          - generic [ref=f11e1468]:
+            - generic [ref=f11e1469]: <priority>
+            - text: "0.6"
+            - generic [ref=f11e1470]: </priority>
+        - generic [ref=f11e1471]: </url>
+      - generic [ref=f11e1473]:
+        - generic [ref=f11e1474]:
+          - generic [ref=f11e1475] [cursor=pointer]
+          - generic [ref=f11e1476]: <url>
+        - generic [ref=f11e1477]:
+          - generic [ref=f11e1478]:
+            - generic [ref=f11e1479]: <loc>
+            - text: https://chaletexpress.com/fr/pei
+            - generic [ref=f11e1480]: </loc>
+          - generic [ref=f11e1481]:
+            - generic [ref=f11e1482]: <lastmod>
+            - text: 2026-08-21T23:55:29.713Z
+            - generic [ref=f11e1483]: </lastmod>
+          - generic [ref=f11e1484]:
+            - generic [ref=f11e1485]: <changefreq>
+            - text: monthly
+            - generic [ref=f11e1486]: </changefreq>
+          - generic [ref=f11e1487]:
+            - generic [ref=f11e1488]: <priority>
+            - text: "0.6"
+            - generic [ref=f11e1489]: </priority>
+        - generic [ref=f11e1490]: </url>
+    - generic [ref=f11e1492]: </urlset>
