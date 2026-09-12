@@ -1,0 +1,291 @@
+- generic [active] [ref=f5e1]:
+  - generic [ref=f5e2]:
+    - complementary [ref=f5e4]:
+      - link [ref=f5e6] [cursor=pointer]:
+        - /url: /en
+      - navigation [ref=f5e8]
+    - generic [ref=f5e9]:
+      - banner [ref=f5e10]:
+        - generic [ref=f5e12]:
+          - link "Chalet Express" [ref=f5e14] [cursor=pointer]:
+            - /url: /en
+          - button "FR" [ref=f5e17]
+      - main [ref=f5e22]:
+        - generic [ref=f5e23]:
+          - generic [ref=f5e24]:
+            - img "Ontario Cottage rental destination" [ref=f5e25]
+            - generic [ref=f5e28]:
+              - generic [ref=f5e29]: Destinations
+              - 'heading "Ontario Cottage Country: Discover Canada''s Favorite Lakeside Escape" [level=1] [ref=f5e33]'
+              - paragraph [ref=f5e34]: From Muskoka to Kawartha Lakes, find unforgettable cottage getaways surrounded by pristine lakes, forests, and year-round outdoor adventures.
+          - generic [ref=f5e36]:
+            - generic [ref=f5e37]:
+              - heading "Overview" [level=2] [ref=f5e38]
+              - paragraph [ref=f5e39]: A destination where nature, relaxation, and adventure come together.
+              - paragraph [ref=f5e40]: Ontario Cottage Country is a beautiful vacation spot near Toronto, Canada. It's known for its lakes and outdoor fun like boating and fishing. Famous areas include Muskoka and Haliburton. People rent cottages here to relax and enjoy nature. It's a peaceful escape from city life.
+            - generic [ref=f5e41]:
+              - heading "Why Ontario is Canada's Cottage Country" [level=3] [ref=f5e42]
+              - generic [ref=f5e43]:
+                - generic [ref=f5e49]:
+                  - generic [ref=f5e50]: Over 250,000 Lakes
+                  - paragraph [ref=f5e51]: Discover endless waterfront destinations across the province.
+                - generic [ref=f5e57]:
+                  - generic [ref=f5e58]: Iconic Cottage Regions
+                  - paragraph [ref=f5e59]: Explore Muskoka, Haliburton, Kawarthas, and Georgian Bay.
+          - generic [ref=f5e60]:
+            - heading "Explore Chalets" [level=2] [ref=f5e61]
+            - paragraph [ref=f5e62]: Ontario
+            - generic [ref=f5e63]:
+              - link "Modern tiny home in Muskoka - Mary Lake! cottage VRBO Modern tiny home in Muskoka - Mary Lake! Ontario (1 review) $659/ night" [ref=f5e64] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/DOEeGop
+                - generic [ref=f5e65]:
+                  - img "Modern tiny home in Muskoka - Mary Lake!" [ref=f5e66]
+                  - generic [ref=f5e67]: cottage
+                  - img "VRBO" [ref=f5e68]
+                - generic [ref=f5e69]:
+                  - heading "Modern tiny home in Muskoka - Mary Lake!" [level=3] [ref=f5e70]
+                  - generic [ref=f5e71]: Ontario
+                  - generic [ref=f5e76]: (1 review)
+                  - generic [ref=f5e89]:
+                    - generic [ref=f5e90]: $659
+                    - text: / night
+              - link "Spacious, waterfront home surrounded by trees with large dock & games room. cottage VRBO Spacious, waterfront home surrounded by trees with large dock & games room. Ontario (9 reviews) Check Pricing" [ref=f5e95] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/tRgULEG
+                - generic [ref=f5e96]:
+                  - img "Spacious, waterfront home surrounded by trees with large dock & games room." [ref=f5e97]
+                  - generic [ref=f5e98]: cottage
+                  - img "VRBO" [ref=f5e99]
+                - generic [ref=f5e100]:
+                  - heading "Spacious, waterfront home surrounded by trees with large dock & games room." [level=3] [ref=f5e101]
+                  - generic [ref=f5e102]: Ontario
+                  - generic [ref=f5e107]: (9 reviews)
+                  - generic [ref=f5e119]: Check Pricing
+              - link "Waterfront in Wasaga Beach (on the Nottawasaga River) any season - 30 night min cottage VRBO Waterfront in Wasaga Beach (on the Nottawasaga River) any season - 30 night min Ontario (4 reviews) $549/ night" [ref=f5e121] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/SGAe5zx
+                - generic [ref=f5e122]:
+                  - img "Waterfront in Wasaga Beach (on the Nottawasaga River) any season - 30 night min" [ref=f5e123]
+                  - generic [ref=f5e124]: cottage
+                  - img "VRBO" [ref=f5e125]
+                - generic [ref=f5e126]:
+                  - heading "Waterfront in Wasaga Beach (on the Nottawasaga River) any season - 30 night min" [level=3] [ref=f5e127]
+                  - generic [ref=f5e128]: Ontario
+                  - generic [ref=f5e133]: (4 reviews)
+                  - generic [ref=f5e146]:
+                    - generic [ref=f5e147]: $549
+                    - text: / night
+              - link "By the Lake! 2 Bedroom Unit with Fire Pit & Games cottage VRBO By the Lake! 2 Bedroom Unit with Fire Pit & Games Ontario (1 review) $300/ night" [ref=f5e152] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/Ld2EhMQ
+                - generic [ref=f5e153]:
+                  - img "By the Lake! 2 Bedroom Unit with Fire Pit & Games" [ref=f5e154]
+                  - generic [ref=f5e155]: cottage
+                  - img "VRBO" [ref=f5e156]
+                - generic [ref=f5e157]:
+                  - heading "By the Lake! 2 Bedroom Unit with Fire Pit & Games" [level=3] [ref=f5e158]
+                  - generic [ref=f5e159]: Ontario
+                  - generic [ref=f5e164]: (1 review)
+                  - generic [ref=f5e177]:
+                    - generic [ref=f5e178]: $300
+                    - text: / night
+              - link "Red Berry Lodge - Waterfront & Pet Friendly! cottage VRBO Red Berry Lodge - Waterfront & Pet Friendly! Ontario (6 reviews) $569/ night" [ref=f5e183] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/V96Xazj
+                - generic [ref=f5e184]:
+                  - img "Red Berry Lodge - Waterfront & Pet Friendly!" [ref=f5e185]
+                  - generic [ref=f5e186]: cottage
+                  - img "VRBO" [ref=f5e187]
+                - generic [ref=f5e188]:
+                  - heading "Red Berry Lodge - Waterfront & Pet Friendly!" [level=3] [ref=f5e189]
+                  - generic [ref=f5e190]: Ontario
+                  - generic [ref=f5e195]: (6 reviews)
+                  - generic [ref=f5e208]:
+                    - generic [ref=f5e209]: $569
+                    - text: / night
+              - link "Pine Point- Rustic Waterfront 2 bedroom Cottage cottage VRBO Pine Point- Rustic Waterfront 2 bedroom Cottage Ontario (49 reviews) $403/ night" [ref=f5e214] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/Igg6OAo
+                - generic [ref=f5e215]:
+                  - img "Pine Point- Rustic Waterfront 2 bedroom Cottage" [ref=f5e216]
+                  - generic [ref=f5e217]: cottage
+                  - img "VRBO" [ref=f5e218]
+                - generic [ref=f5e219]:
+                  - heading "Pine Point- Rustic Waterfront 2 bedroom Cottage" [level=3] [ref=f5e220]
+                  - generic [ref=f5e221]: Ontario
+                  - generic [ref=f5e226]: (49 reviews)
+                  - generic [ref=f5e239]:
+                    - generic [ref=f5e240]: $403
+                    - text: / night
+              - link "The Hidden Porch at Sir Sam's (hot tub & sauna) cottage VRBO The Hidden Porch at Sir Sam's (hot tub & sauna) Ontario (18 reviews) $728/ night" [ref=f5e245] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/3KRWUYz
+                - generic [ref=f5e246]:
+                  - img "The Hidden Porch at Sir Sam's (hot tub & sauna)" [ref=f5e247]
+                  - generic [ref=f5e248]: cottage
+                  - img "VRBO" [ref=f5e249]
+                - generic [ref=f5e250]:
+                  - heading "The Hidden Porch at Sir Sam's (hot tub & sauna)" [level=3] [ref=f5e251]
+                  - generic [ref=f5e252]: Ontario
+                  - generic [ref=f5e257]: (18 reviews)
+                  - generic [ref=f5e270]:
+                    - generic [ref=f5e271]: $728
+                    - text: / night
+              - link "2 BEDRM WATERFRONT COTTAGE, CANOE, KAYAKS, WIFI cottage VRBO 2 BEDRM WATERFRONT COTTAGE, CANOE, KAYAKS, WIFI Ontario (8 reviews) $435/ night" [ref=f5e276] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/oei3F0K
+                - generic [ref=f5e277]:
+                  - img "2 BEDRM WATERFRONT COTTAGE, CANOE, KAYAKS, WIFI" [ref=f5e278]
+                  - generic [ref=f5e279]: cottage
+                  - img "VRBO" [ref=f5e280]
+                - generic [ref=f5e281]:
+                  - heading "2 BEDRM WATERFRONT COTTAGE, CANOE, KAYAKS, WIFI" [level=3] [ref=f5e282]
+                  - generic [ref=f5e283]: Ontario
+                  - generic [ref=f5e288]: (8 reviews)
+                  - generic [ref=f5e301]:
+                    - generic [ref=f5e302]: $435
+                    - text: / night
+              - link "Tree top Living in the heart of cottage country. Stunning 4 season cottage. cottage VRBO Tree top Living in the heart of cottage country. Stunning 4 season cottage. Ontario (8 reviews) $645/ night" [ref=f5e307] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/PzftWEj
+                - generic [ref=f5e308]:
+                  - img "Tree top Living in the heart of cottage country. Stunning 4 season cottage." [ref=f5e309]
+                  - generic [ref=f5e310]: cottage
+                  - img "VRBO" [ref=f5e311]
+                - generic [ref=f5e312]:
+                  - heading "Tree top Living in the heart of cottage country. Stunning 4 season cottage." [level=3] [ref=f5e313]
+                  - generic [ref=f5e314]: Ontario
+                  - generic [ref=f5e319]: (8 reviews)
+                  - generic [ref=f5e332]:
+                    - generic [ref=f5e333]: $645
+                    - text: / night
+              - link "Balsam Resort - Cottage Condo - Balsam Resort - Cottage Condo cottage VRBO Balsam Resort - Cottage Condo - Balsam Resort - Cottage Condo Ontario (5 reviews) $509/ night" [ref=f5e338] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/VN2awIT
+                - generic [ref=f5e339]:
+                  - img "Balsam Resort - Cottage Condo - Balsam Resort - Cottage Condo" [ref=f5e340]
+                  - generic [ref=f5e341]: cottage
+                  - img "VRBO" [ref=f5e342]
+                - generic [ref=f5e343]:
+                  - heading "Balsam Resort - Cottage Condo - Balsam Resort - Cottage Condo" [level=3] [ref=f5e344]
+                  - generic [ref=f5e345]: Ontario
+                  - generic [ref=f5e350]: (5 reviews)
+                  - generic [ref=f5e363]:
+                    - generic [ref=f5e364]: $509
+                    - text: / night
+              - link "2 bedroom Waterfront Cottage in Wasaga - Ash Lane Cottages cottage VRBO 2 bedroom Waterfront Cottage in Wasaga - Ash Lane Cottages Ontario (28 reviews) $433/ night" [ref=f5e369] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/4OZTHLD
+                - generic [ref=f5e370]:
+                  - img "2 bedroom Waterfront Cottage in Wasaga - Ash Lane Cottages" [ref=f5e371]
+                  - generic [ref=f5e372]: cottage
+                  - img "VRBO" [ref=f5e373]
+                - generic [ref=f5e374]:
+                  - heading "2 bedroom Waterfront Cottage in Wasaga - Ash Lane Cottages" [level=3] [ref=f5e375]
+                  - generic [ref=f5e376]: Ontario
+                  - generic [ref=f5e381]: (28 reviews)
+                  - generic [ref=f5e394]:
+                    - generic [ref=f5e395]: $433
+                    - text: / night
+              - link "Vacation Inn Townhomes cottage Vacation Inn Townhomes Ontario (10 reviews) $457/ night" [ref=f5e400] [cursor=pointer]:
+                - /url: https://expedia.com/affiliate/NJWD0QY
+                - generic [ref=f5e401]:
+                  - img "Vacation Inn Townhomes" [ref=f5e402]
+                  - generic [ref=f5e403]: cottage
+                - generic [ref=f5e404]:
+                  - heading "Vacation Inn Townhomes" [level=3] [ref=f5e405]
+                  - generic [ref=f5e406]: Ontario
+                  - generic [ref=f5e411]: (10 reviews)
+                  - generic [ref=f5e424]:
+                    - generic [ref=f5e425]: $457
+                    - text: / night
+          - generic [ref=f5e431]:
+            - generic [ref=f5e432]:
+              - paragraph [ref=f5e433]: One of the best cottages destination in Canada
+              - heading "Ontario Cottage Country" [level=2] [ref=f5e434]
+              - paragraph [ref=f5e435]: Choosing the right cottage starts with finding the destination that matches your travel style. Looking for luxury waterfront living? Explore Muskoka. Prefer quiet lakes and outdoor adventures? Consider Haliburton or the Kawarthas. From family-friendly cottages and romantic cabins to large waterfront retreats, Ontario offers accommodations for every type of traveler. Browse our guides to discover the best cottage areas, seasonal activities, and travel tips for your next Ontario vacation.
+              - generic [ref=f5e436]:
+                - generic [ref=f5e437]:
+                  - button [ref=f5e438]:
+                    - heading "Where is the best cottage country in Ontario?" [level=3] [ref=f5e439]
+                  - paragraph [ref=f5e442]: The Muskoka region is widely considered the premier cottage destination in Ontario, known for its pristine lakes and luxury properties. However, areas like Kawartha Lakes, Haliburton, and Prince Edward County are also highly sought-after alternatives for a peaceful summer getaway.
+                - generic [ref=f5e443]:
+                  - button [ref=f5e444]:
+                    - heading "How much do cottage rentals cost in Ontario?" [level=3] [ref=f5e445]
+                  - paragraph [ref=f5e448]: Prices vary greatly depending on the location, size, and proximity to the water. A basic off-water cabin might start around $150 per night, while a luxury waterfront cottage for rent in Muskoka can easily exceed $500 to $1,500 per night during the peak summer season.
+                - generic [ref=f5e449]:
+                  - button [ref=f5e450]:
+                    - heading "What is the best time of year to book a cottage in Ontario?" [level=3] [ref=f5e451]
+                  - paragraph [ref=f5e454]: Summer (July and August) is the most popular time for swimming and boating, but booking a cottage for rent in the fall offers spectacular autumn foliage and lower nightly rates. It is highly recommended to book your cottage rentals at least 6 months in advance for prime summer dates.
+                - generic [ref=f5e455]:
+                  - button [ref=f5e456]:
+                    - heading "Are there pet-friendly cottages in Ontario?" [level=3] [ref=f5e457]
+                  - paragraph [ref=f5e460]: Yes, many property owners throughout Ontario's cottage country welcome dogs. When browsing for your next cottage destination, simply use the "pet-friendly" search filter to ensure your furry friend can join the family vacation.
+            - generic:
+              - img "Ontario Cottage Country"
+          - generic [ref=f5e461]:
+            - 'heading "Ontario: Canada''s Cottage Country Heartland" [level=2] [ref=f5e462]'
+            - paragraph [ref=f5e463]: "If you've ever dreamed of a classic Canadian lake escape, Ontario is where that dream lives. The province's so-called \"Cottage Country\" — anchored by Muskoka, Haliburton, and the Kawarthas — sits on the Canadian Shield, a landscape of bare granite outcrops, towering pines, and lakes so clear you can see straight to the bottom. People have been making the same Friday-afternoon pilgrimage north from Toronto for generations, and for good reason. Days here run at their own pace. You swim off the dock before breakfast, spend the afternoon in a canoe, and spend the evening around a fire watching the stars come out. Further north, the wilderness gets genuinely wild — the kind of quiet where the only sound is a loon calling across the water. When to Go Summer (July–August) is peak season — warm water, long evenings, full marinas. But September and early October might actually be the best-kept secret in Ontario. The crowds thin out, the maples explode in red and gold, and you can often rent a stunning waterfront property for half the summer rate. A Few Tips The 400 Highway north from Toronto on a Friday afternoon is no joke — leave by noon or plan to arrive Saturday morning. Also worth noting: grocery options get sparse once you're past Huntsville or Haliburton. Stock up before you turn off the main highway. Worth Doing Paddle into Algonquin Provincial Park for at least one night. Cruise the Georgian Bay coastline by boat. Or simply do nothing more strenuous than dropping a line off the dock — Ontario's fishing is genuinely world-class."
+          - generic [ref=f5e465]:
+            - generic [ref=f5e466]:
+              - heading "Find Your Perfect Ontario Cottage" [level=2] [ref=f5e467]
+              - paragraph [ref=f5e468]: Start exploring Ontario's most beautiful cottage destinations today. Browse available rentals, compare locations, and book the perfect lakeside escape for your next vacation.
+              - link "Browse more" [ref=f5e469] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliates/cottagerentals/ontario
+            - img "Canada for rent" [ref=f5e471]
+          - generic [ref=f5e472]:
+            - generic [ref=f5e473]:
+              - heading "Browse Ontario cottages areas" [level=2] [ref=f5e474]
+              - paragraph [ref=f5e475]: Search By destination
+            - generic [ref=f5e476]:
+              - generic [ref=f5e477]:
+                - heading "Kawartha Lakes" [level=3] [ref=f5e478]
+                - list [ref=f5e479]:
+                  - listitem [ref=f5e480]:
+                    - link "Lakefront Cottages in Kawartha Lakes" [ref=f5e481] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-kawartha-lakes-dateless.d06kQ3F
+                  - listitem [ref=f5e482]:
+                    - link "Family cottages in Kawartha Lakes" [ref=f5e483] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-kawartha-lakes-dateless.fbacxWf
+                  - listitem [ref=f5e484]:
+                    - link "Cottages with hot tub in Kawartha Lakes" [ref=f5e485] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-kawartha-lakes-dateless.z7UVmHa
+                  - listitem [ref=f5e486]:
+                    - link "Pet-friendly cottages in Kawartha Lakes" [ref=f5e487] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-kawartha-lakes-dateless.47djdrS
+              - generic [ref=f5e488]:
+                - heading "Muskoka" [level=3] [ref=f5e489]
+                - list [ref=f5e490]:
+                  - listitem [ref=f5e491]:
+                    - link "Lakefront Cottages in Muskoka" [ref=f5e492] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-muskoka-lakes-dateless.MMSJ8lM
+                  - listitem [ref=f5e493]:
+                    - link "Family cottages in Muskoka" [ref=f5e494] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-muskoka-lakes-dateless.WId6WeH
+                  - listitem [ref=f5e495]:
+                    - link "Cottages with hot tub in Muskoka" [ref=f5e496] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-muskoka-lakes-dateless.bkbaKY8
+                  - listitem [ref=f5e497]:
+                    - link "Pet-friendly cottages in Muskoka" [ref=f5e498] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-muskoka-lakes-dateless.zl7oEO7
+              - generic [ref=f5e499]:
+                - heading "Algonquin Highlands" [level=3] [ref=f5e500]
+                - list [ref=f5e501]:
+                  - listitem [ref=f5e502]:
+                    - link "Lakefront Cottages in Algonquin Highlands" [ref=f5e503] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-algonquin-highlands-dateless.MrN11Ol
+                  - listitem [ref=f5e504]:
+                    - link "Family cottages in Algonquin Highlands" [ref=f5e505] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-algonquin-highlands-dateless.BYrYP40
+                  - listitem [ref=f5e506]:
+                    - link "Cottages with hot tub in Algonquin Highlands" [ref=f5e507] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-algonquin-highlands-dateless.iLacXb8
+                  - listitem [ref=f5e508]:
+                    - link "Pet-friendly cottages in Algonquin Highlands" [ref=f5e509] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-algonquin-highlands-dateless.hlIdakI
+              - generic [ref=f5e510]:
+                - heading "Goergian Bay" [level=3] [ref=f5e511]
+                - list [ref=f5e512]:
+                  - listitem [ref=f5e513]:
+                    - link "Lakefront Cottages in Goergian Bay" [ref=f5e514] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-georgian-bay-dateless.swirJO2
+                  - listitem [ref=f5e515]:
+                    - link "Family cottages in Goergian Bay" [ref=f5e516] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-georgian-bay-dateless.UvhtXU2
+                  - listitem [ref=f5e517]:
+                    - link "Cottages with hot tub in Goergian Bay" [ref=f5e518] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-georgian-bay-dateless.y7t0JOD
+                  - listitem [ref=f5e519]:
+                    - link "Pet-friendly cottages in Goergian Bay" [ref=f5e520] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-georgian-bay-dateless.ujgXO98
+  - alert [ref=f5e521]

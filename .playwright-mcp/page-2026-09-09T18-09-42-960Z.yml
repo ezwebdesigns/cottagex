@@ -1,0 +1,46 @@
+- generic [ref=e2]:
+  - complementary [ref=e4]:
+    - link [ref=e6] [cursor=pointer]:
+      - /url: /en
+    - navigation [ref=e8]
+  - generic [ref=e9]:
+    - banner [ref=e10]:
+      - generic [ref=e12]:
+        - link "Chalet Express" [ref=e14] [cursor=pointer]:
+          - /url: /en
+        - button "FR" [ref=e17]
+    - main [ref=e22]:
+      - generic [ref=e30]:
+        - link "View all guides" [ref=e32] [cursor=pointer]:
+          - /url: /en/guides
+        - generic [ref=e35]:
+          - 'link "Canada Cottage Country: A Region-by-Region Guide for 2026 Canada Cottage Rentals 9 min read Canada Cottage Country: A Region-by-Region Guide for 2026 Explore Canada cottage country by region. From Ontario lakes to BC cabins and Maritimes coastlines, find the best spot for your 2026 getaway. Read Guide" [ref=e36] [cursor=pointer]':
+            - /url: /en/guides/canada-cottage-country-a-region-by-region-guide-for-2026
+            - generic [ref=e37]:
+              - 'img "Canada Cottage Country: A Region-by-Region Guide for 2026" [ref=e38]'
+              - generic [ref=e39]: Canada Cottage Rentals
+            - generic [ref=e40]:
+              - generic [ref=e41]: 9 min read
+              - 'heading "Canada Cottage Country: A Region-by-Region Guide for 2026" [level=3] [ref=e46]'
+              - paragraph [ref=e47]: Explore Canada cottage country by region. From Ontario lakes to BC cabins and Maritimes coastlines, find the best spot for your 2026 getaway.
+              - generic [ref=e48]: Read Guide
+          - 'link "BC Cottage Rentals: Mountain Cabins, Oceanfront Retreats & Wilderness Escapes BC Cottage Rentals 5 min read BC Cottage Rentals: Mountain Cabins, Oceanfront Retreats & Wilderness Escapes Explore BC cottage rentals from Whistler cabins to Okanagan lakefront and Sunshine Coast retreats. Top regions, seasons, and booking tips for your trip. Read Guide" [ref=e51] [cursor=pointer]':
+            - /url: /en/guides/bc-cottage-rentals
+            - generic [ref=e52]:
+              - 'img "BC Cottage Rentals: Mountain Cabins, Oceanfront Retreats & Wilderness Escapes" [ref=e53]'
+              - generic [ref=e54]: BC Cottage Rentals
+            - generic [ref=e55]:
+              - generic [ref=e56]: 5 min read
+              - 'heading "BC Cottage Rentals: Mountain Cabins, Oceanfront Retreats & Wilderness Escapes" [level=3] [ref=e61]'
+              - paragraph [ref=e62]: Explore BC cottage rentals from Whistler cabins to Okanagan lakefront and Sunshine Coast retreats. Top regions, seasons, and booking tips for your trip.
+              - generic [ref=e63]: Read Guide
+          - 'link "Cottage Rentals in Canada: The Ultimate Guide to Finding Your Perfect Getaway News 8 min read Cottage Rentals in Canada: The Ultimate Guide to Finding Your Perfect Getaway Looking for cottage rentals in Canada? This guide covers the best provinces, price ranges, amenities to look for, and booking tips to find your perfect Canadian getaway. Read Guide" [ref=e66] [cursor=pointer]':
+            - /url: /en/guides/cottage-rentals-in-canada-the-ultimate-guide
+            - generic [ref=e67]:
+              - 'img "Cottage Rentals in Canada: The Ultimate Guide to Finding Your Perfect Getaway" [ref=e68]'
+              - generic [ref=e69]: News
+            - generic [ref=e70]:
+              - generic [ref=e71]: 8 min read
+              - 'heading "Cottage Rentals in Canada: The Ultimate Guide to Finding Your Perfect Getaway" [level=3] [ref=e76]'
+              - paragraph [ref=e77]: Looking for cottage rentals in Canada? This guide covers the best provinces, price ranges, amenities to look for, and booking tips to find your perfect Canadian getaway.
+              - generic [ref=e78]: Read Guide

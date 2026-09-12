@@ -1,0 +1,123 @@
+- generic [active] [ref=f4e1]:
+  - generic [ref=f4e2]:
+    - complementary [ref=f4e4]:
+      - link [ref=f4e6] [cursor=pointer]:
+        - /url: /en
+      - navigation [ref=f4e8]
+    - generic [ref=f4e9]:
+      - banner [ref=f4e10]:
+        - generic [ref=f4e12]:
+          - link "Chalet Express" [ref=f4e14] [cursor=pointer]:
+            - /url: /en
+          - button "FR" [ref=f4e17]
+      - main [ref=f4e22]:
+        - generic [ref=f4e23]:
+          - generic [ref=f4e24]:
+            - heading "Find your perfect getaway cottage" [level=1] [ref=f4e25]
+            - paragraph [ref=f4e26]: Search Cottages for rent across Canada
+          - generic [ref=f4e28]:
+            - generic [ref=f4e29]:
+              - link "Waterfront" [ref=f4e30] [cursor=pointer]:
+                - /url: /en/search/waterfront
+              - link "Family" [ref=f4e38] [cursor=pointer]:
+                - /url: /en/search/family
+              - link "Hot Tub" [ref=f4e46] [cursor=pointer]:
+                - /url: /en/search/hot-tub
+              - link "Coastal" [ref=f4e52] [cursor=pointer]:
+                - /url: /en/search/coastal
+              - link "Luxury" [ref=f4e58] [cursor=pointer]:
+                - /url: /en/search/luxury
+              - link "Pet-Friendly" [ref=f4e64] [cursor=pointer]:
+                - /url: /en/search/pet-friendly
+              - link "Mountain" [ref=f4e72] [cursor=pointer]:
+                - /url: /en/search/mountain
+              - link "Romantic" [ref=f4e77] [cursor=pointer]:
+                - /url: /en/search/romantic
+              - link "Log Cabin" [ref=f4e82] [cursor=pointer]:
+                - /url: /en/search/log-cabin
+              - link "Secluded" [ref=f4e88] [cursor=pointer]:
+                - /url: /en/search/secluded
+              - link "Beach" [ref=f4e93] [cursor=pointer]:
+                - /url: /en/search/beach
+              - link "Resort" [ref=f4e99] [cursor=pointer]:
+                - /url: /en/search/resort
+              - link "Skiing" [ref=f4e106] [cursor=pointer]:
+                - /url: /en/search/skiing
+              - link "Hiking" [ref=f4e122] [cursor=pointer]:
+                - /url: /en/search/hiking
+            - button "Scroll right" [ref=f4e128]
+          - generic [ref=f4e133]:
+            - heading "No results found" [level=2] [ref=f4e134]
+            - paragraph [ref=f4e135]: High rated accomodations
+          - generic [ref=f4e138]:
+            - heading "By the lakes. Near the beach. Pet friendly. Kids friendly. Find the perfect stays for every occasion." [level=2] [ref=f4e139]
+            - paragraph [ref=f4e140]: "You have access to a wide selection of accommodations: cabins, cottages, large houses, and much more. Each rental offers little extras to make your vacation unforgettable. You can enjoy a large yard for your dog, a pool, a hot tub, or a grill for outdoor dining, all while feeling right at home. The best part is that there are options for every budget. You can even save money during your stay by cooking your own meals in the fully equipped kitchens."
+            - link "Find more cottages on VRBO" [ref=f4e141] [cursor=pointer]:
+              - /url: https://vrbo.com/affiliates/cottagerentals/vrbo
+          - generic [ref=f4e144]:
+            - generic [ref=f4e145]:
+              - generic [ref=f4e146]:
+                - button "Vacation Rentals in Canada" [ref=f4e147]
+                - paragraph [ref=f4e151]: Canada is home to a growing selection of lakefront cottages and cozy cabins that fit every budget. From private hot tubs to family-sized layouts, each rental offers comfort and modern amenities. Browse curated listings and book directly through trusted partners for the best rates.
+              - generic [ref=f4e152]:
+                - button "Finding Canada cottage rentals" [ref=f4e153]
+                - paragraph [ref=f4e157]: Searching for cottages in Canada is easy with Chalet Express. Filter by lakefront access, hot tubs, pet-friendly stays, or luxury. Our curated collection links you straight to secure booking on VRBO or Expedia, so comparing and reserving your perfect escape takes just minutes.
+              - generic [ref=f4e158]:
+                - button "When is the Best Time to Explore Canada" [ref=f4e159]
+                - paragraph [ref=f4e163]: Summer and fall are the most popular seasons in Canada with warm lake days and spectacular foliage. Winter turns nearby trails into snowy playgrounds. Book weekends and holidays early, when demand is highest, to secure the best cabin in Canada.
+              - generic [ref=f4e164]:
+                - button "Tips for travelers who want to explore Canada" [ref=f4e165]
+                - paragraph [ref=f4e169]: Pack for changing weather, bring bug spray in summer, and reserve early for long weekends. Rent a car to reach hidden lakes, ask locals for trail recommendations, and leave time to simply relax by the water. A little planning makes your Canada trip unforgettable.
+            - generic [ref=f4e170]:
+              - generic [ref=f4e171]:
+                - button "Why Canada is a top destination" [ref=f4e172]
+                - paragraph [ref=f4e176]: With its sparkling lakes, forested trails, and welcoming communities, Canada offers the perfect mix of adventure and relaxation. Year-round activities, stunning scenery, and easy access make it one of Canada's favorite cottage destinations for families and couples alike.
+              - generic [ref=f4e177]:
+                - button "Book your vacation rental in Canada using chaletexpress.com" [ref=f4e178]
+                - paragraph [ref=f4e182]: chaletexpress.com offers a wide selection of vacation rentals in Canada to suit every budget. All of these properties feature comfortable rooms, modern amenities, and exceptional service. Book now on vrbo.ca or expedia.ca to take advantage of the best rates and special offers."
+              - generic [ref=f4e183]:
+                - button "What are some popular activities in Canada ?" [ref=f4e184]
+                - paragraph [ref=f4e188]: Canada offers endless ways to relax and play. Swim and paddle across lakes, fish off a private dock, hike scenic forest trails, or explore charming nearby towns. In winter, enjoy snowshoeing, skiing, and cozy nights by the fire. There is something for every traveler, every season.
+              - generic [ref=f4e189]:
+                - button "How much does it cost on average to rent a cottage in Canada?" [ref=f4e190]
+                - paragraph [ref=f4e194]: The average cost to rent a cottage in Canada depends on season, size, and amenities, ranging from budget-friendly cabins to luxury waterfront estates. Summer weekends and holidays command premium rates. Booking early, travelling mid-week, or visiting during shoulder seasons helps you secure the best value on chaletexpress.com.
+            - generic [ref=f4e195]:
+              - heading "Book with confidence" [level=2] [ref=f4e196]
+              - paragraph [ref=f4e197]: You can find great offers and discounts on weekly and monthly rentals on Vrbo and Expedia, making longer stays more cost-effective.
+          - generic [ref=f4e198]:
+            - heading "More destination ideas" [level=2] [ref=f4e199]
+            - generic [ref=f4e200]:
+              - button "Ontario" [ref=f4e201]
+              - button "British Columbia" [ref=f4e202]
+              - button "Quebec" [ref=f4e203]
+              - button "New Brunswick" [ref=f4e204]
+              - button "Manitoba" [ref=f4e205]
+              - button "PEI" [ref=f4e206]
+              - button "Alberta" [ref=f4e207]
+            - generic [ref=f4e208]:
+              - link [ref=f4e209] [cursor=pointer]:
+                - /url: /en/search/muskoka/lakefront
+                - paragraph [ref=f4e210]: Muskoka
+                - paragraph [ref=f4e211]: Lakefront
+              - link [ref=f4e212] [cursor=pointer]:
+                - /url: /en/search/wasaga-beach
+                - paragraph [ref=f4e213]: Wasaga Beach
+                - paragraph [ref=f4e214]: Waterfront
+              - link [ref=f4e215] [cursor=pointer]:
+                - /url: /en/search/haliburton
+                - paragraph [ref=f4e216]: Haliburton
+                - paragraph [ref=f4e217]: Lakefront
+              - link [ref=f4e218] [cursor=pointer]:
+                - /url: /en/search/kawarthas
+                - paragraph [ref=f4e219]: Kawarthas
+                - paragraph [ref=f4e220]: Lakefront
+              - link [ref=f4e221] [cursor=pointer]:
+                - /url: /en/search/tobermory
+                - paragraph [ref=f4e222]: Tobermory
+                - paragraph [ref=f4e223]: Waterfront
+              - link [ref=f4e224] [cursor=pointer]:
+                - /url: /en/search/prince-edward-county
+                - paragraph [ref=f4e225]: Prince Edward County
+                - paragraph [ref=f4e226]: Lakefront
+            - button "Show more" [ref=f4e228]
+  - alert [ref=f4e231]

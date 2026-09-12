@@ -1,0 +1,9 @@
+[    1754ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/manifest.webmanifest:0
+[    1765ms] [ERROR] Manifest fetch from https://www.chaletexpress.com/fr/manifest.webmanifest failed, code 404 @ https://www.chaletexpress.com/en:0
+[    3172ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/manifest.webmanifest:0
+[    3174ms] [ERROR] Manifest fetch from https://www.chaletexpress.com/fr/manifest.webmanifest failed, code 404 @ https://www.chaletexpress.com/en:0
+[    3232ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/images/favicon.ico:0
+[    3300ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/images/favicon-32x32.png:0
+[    3371ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/images/favicon-16x16.png:0
+[    3438ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/images/android-chrome-192x192.png:0
+[    3505ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/images/android-chrome-512x512.png:0

@@ -17,6 +17,7 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'images.trvl-media.com' },
       { protocol: 'https', hostname: 'vrbo.com' },
       { protocol: 'https', hostname: 'expedia.com' },
+      { protocol: 'https', hostname: 'vlnh9d6siarbizgq.public.blob.vercel-storage.com' },
     ],
     formats: ['image/webp'],
     minimumCacheTTL: 604800,

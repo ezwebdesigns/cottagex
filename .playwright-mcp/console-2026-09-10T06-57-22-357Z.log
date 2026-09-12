@@ -1,0 +1,6 @@
+[     564ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/apple-icon:0
+[     571ms] [WARNING] Error while trying to use the following icon from the Manifest: https://www.chaletexpress.com/apple-icon (Download error or resource isn't a valid image) @ https://www.chaletexpress.com/en/admin/settings:0
+[     704ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://qteoayvaigrmbryq.private.blob.vercel-storage.com/migrated/2-logo-chaletexpress-fav.png:0
+[    1215ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://qteoayvaigrmbryq.private.blob.vercel-storage.com/migrated/2-logo-chaletexpress-fav.png:0
+[    1235ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://qteoayvaigrmbryq.private.blob.vercel-storage.com/migrated/50-migrated:0
+[  479399ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://www.chaletexpress.com/api/admin/settings:0

@@ -1,0 +1,21 @@
+- generic [active] [ref=f5e1]:
+  - button "Open Next.js Dev Tools" [ref=f5e7] [cursor=pointer]
+  - generic [ref=f5e11]:
+    - complementary [ref=f5e13]:
+      - link [ref=f5e15] [cursor=pointer]:
+        - /url: /en
+      - navigation [ref=f5e17]
+    - generic [ref=f5e18]:
+      - banner [ref=f5e19]:
+        - generic [ref=f5e21]:
+          - link "Chalet Express" [ref=f5e23] [cursor=pointer]:
+            - /url: /en
+          - button "FR" [ref=f5e26]
+      - main [ref=f5e31]:
+        - generic [ref=f5e32]:
+          - generic [ref=f5e33]: "404"
+          - heading "Page Not Found" [level=1] [ref=f5e35]
+          - paragraph [ref=f5e36]: The page you are looking for doesn't exist or has been moved.
+          - link "Back to Home" [ref=f5e37] [cursor=pointer]:
+            - /url: .
+  - alert [ref=f5e38]

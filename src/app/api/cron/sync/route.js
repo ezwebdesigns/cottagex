@@ -55,10 +55,14 @@ const DESTINATIONS = [
 
 function nextWeekend() {
   const now = new Date()
-  const day = now.getDay()
-  const daysToFriday = (5 - day + 7) % 7 || 7
+  // Choisit aléatoirement une date dans les 12 prochains mois
+  const daysAhead = Math.floor(Math.random() * 365) + 7 // entre 7 et 372 jours
   const checkin = new Date(now)
-  checkin.setDate(now.getDate() + daysToFriday)
+  checkin.setDate(now.getDate() + daysAhead)
+  // Ajuste au vendredi le plus proche
+  const dayOfWeek = checkin.getDay()
+  const daysToFriday = (5 - dayOfWeek + 7) % 7 || 7
+  checkin.setDate(checkin.getDate() + daysToFriday)
   const checkout = new Date(checkin)
   checkout.setDate(checkin.getDate() + 2)
   return {

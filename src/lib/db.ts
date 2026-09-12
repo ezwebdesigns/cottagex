@@ -5,7 +5,7 @@ import * as schema from '@/db/schema';
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL!,
   ssl: { rejectUnauthorized: false },
-  max: 1,
+  max: 10,
 });
 
 export const db = drizzle({ client: pool, schema });

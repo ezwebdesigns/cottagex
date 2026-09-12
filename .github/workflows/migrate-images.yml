@@ -1,0 +1,35 @@
+name: Migrate Images to Vercel Blob
+
+on:
+  workflow_dispatch:  # manual trigger
+  # schedule:
+  #   - cron: '0 2 * * 0'  # optional: every Sunday 2 AM
+
+permissions:
+  contents: read
+
+env:
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+  VERCEL_BLOB_STORE_ID: ${{ secrets.VERCEL_BLOB_STORE_ID }}
+  MIGRATION_SECRET: ${{ secrets.MIGRATION_SECRET }}
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install --include=dev
+
+      - name: Run migration script
+        run: node scripts/migrate-images-to-blob.mjs

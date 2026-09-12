@@ -1,0 +1,235 @@
+- generic [active] [ref=f9e1]:
+  - generic [ref=f9e2]:
+    - complementary [ref=f9e4]:
+      - link [ref=f9e6] [cursor=pointer]:
+        - /url: /en
+      - navigation [ref=f9e8]
+    - generic [ref=f9e9]:
+      - banner [ref=f9e10]:
+        - generic [ref=f9e12]:
+          - link "Chalet Express" [ref=f9e14] [cursor=pointer]:
+            - /url: /en
+          - button "FR" [ref=f9e17]
+      - main [ref=f9e22]:
+        - generic [ref=f9e23]:
+          - generic [ref=f9e24]:
+            - img "Canada Cottage Rentals" [ref=f9e26]
+            - generic [ref=f9e29]:
+              - generic [ref=f9e31]:
+                - generic [ref=f9e32]: Canada Cottage Rentals
+                - heading "Find Your Perfect Canadian Escape" [level=1] [ref=f9e34]
+                - paragraph [ref=f9e35]: Explore cottage rentals across Canada and discover unique places to stay in every province.
+              - generic [ref=f9e36]:
+                - generic [ref=f9e37]:
+                  - link "Waterfront" [ref=f9e38] [cursor=pointer]:
+                    - /url: /en/search/waterfront
+                  - link "Hot Tub" [ref=f9e46] [cursor=pointer]:
+                    - /url: /en/search/hot-tub
+                  - link "Family" [ref=f9e52] [cursor=pointer]:
+                    - /url: /en/search/family
+                  - link "Luxury" [ref=f9e60] [cursor=pointer]:
+                    - /url: /en/search/luxury
+                  - link "Pet Friendly" [ref=f9e66] [cursor=pointer]:
+                    - /url: /en/search/pet-friendly
+                  - link "Mountain" [ref=f9e74] [cursor=pointer]:
+                    - /url: /en/search/mountain
+                  - link "Romantic" [ref=f9e79] [cursor=pointer]:
+                    - /url: /en/search/romantic
+                  - link "Log Cabin" [ref=f9e84] [cursor=pointer]:
+                    - /url: /en/search/log-cabin
+                  - link "Countryside" [ref=f9e90] [cursor=pointer]:
+                    - /url: /en/search/nature
+                  - link "Secluded" [ref=f9e96] [cursor=pointer]:
+                    - /url: /en/search/secluded
+                  - link "Beach" [ref=f9e101] [cursor=pointer]:
+                    - /url: /en/search/beach
+                  - link "Resort" [ref=f9e107] [cursor=pointer]:
+                    - /url: /en/search/resort
+                  - link "Skiing" [ref=f9e114] [cursor=pointer]:
+                    - /url: /en/search/ski
+                  - link "Lakefront" [ref=f9e130] [cursor=pointer]:
+                    - /url: /en/search/lakefront
+                  - link "Hiking" [ref=f9e138] [cursor=pointer]:
+                    - /url: /en/search/hiking
+                  - link "Coastal" [ref=f9e144] [cursor=pointer]:
+                    - /url: /en/search/coastal
+                - button "Scroll right" [ref=f9e150]
+          - generic [ref=f9e154]:
+            - generic [ref=f9e155]:
+              - 'heading "Save on longer stays: Book 7+ nights & get an average 10% off!" [level=2] [ref=f9e156]'
+              - paragraph [ref=f9e157]: Find deals on thousands of vacation rentals in Canada.
+            - link "Explore Cottages" [ref=f9e158] [cursor=pointer]:
+              - /url: https://vrbo.com/affiliate/XcZW9Ip
+          - generic [ref=f9e163]:
+            - heading "Featured Chalets" [level=2] [ref=f9e164]
+            - paragraph [ref=f9e165]: Explore handpicked cottage rentals across Canada.
+          - generic [ref=f9e166]:
+            - heading "Top Cottage Destinations" [level=2] [ref=f9e167]
+            - paragraph [ref=f9e168]: Discover the most popular cottage areas in Canada
+            - generic [ref=f9e169]:
+              - link [ref=f9e170] [cursor=pointer]:
+                - /url: /en/cottage-country/ontario
+                - img "Muskoka lakes cottage rentals" [ref=f9e171]
+                - generic [ref=f9e173]:
+                  - heading "Muskoka, ON" [level=3] [ref=f9e174]
+                  - paragraph [ref=f9e175]: 350+ cottages on VRBO & Expedia
+              - link [ref=f9e176] [cursor=pointer]:
+                - /url: /en/cottage-country/quebec
+                - img "chalet for rent in Mont-Tremblant" [ref=f9e177]
+                - generic [ref=f9e179]:
+                  - heading "Mont-Tremblant, QC" [level=3] [ref=f9e180]
+                  - paragraph [ref=f9e181]: 450+ cottages on VRBO & Expedia
+              - link [ref=f9e182] [cursor=pointer]:
+                - /url: /en/cottage-country/alberta
+                - img "Rocky Mountain Banff cottage for rent" [ref=f9e183]
+                - generic [ref=f9e185]:
+                  - heading "Banff, AB" [level=3] [ref=f9e186]
+                  - paragraph [ref=f9e187]: 180+ cottages on VRBO & Expedia
+              - link [ref=f9e188] [cursor=pointer]:
+                - /url: /en/cottage-country/quebec
+                - img "chalets rentals in the Charlevoix region of Quebec" [ref=f9e189]
+                - generic [ref=f9e191]:
+                  - heading "Charlevoix, QC" [level=3] [ref=f9e192]
+                  - paragraph [ref=f9e193]: 210+ cottages on VRBO & Expedia
+              - link [ref=f9e194] [cursor=pointer]:
+                - /url: /en/cottage-country/nova-scotia
+                - img "Coastal cottages for rent Cape Breton Island, Nova Scotia" [ref=f9e195]
+                - generic [ref=f9e197]:
+                  - heading "Cape Breton, NS" [level=3] [ref=f9e198]
+                  - paragraph [ref=f9e199]: 250+ cottages on VRBO & Expedia
+              - link [ref=f9e200] [cursor=pointer]:
+                - /url: /en/cottage-country/british-columbia
+                - img "alpine cabins for rent in Whistler" [ref=f9e201]
+                - generic [ref=f9e203]:
+                  - heading "Whistler, BC" [level=3] [ref=f9e204]
+                  - paragraph [ref=f9e205]: 280+ cottages on VRBO & Expedia
+              - link [ref=f9e206] [cursor=pointer]:
+                - /url: /en/cottage-country/ontario
+                - img "cottages for rent in Georgian Bay Ontario" [ref=f9e207]
+                - generic [ref=f9e209]:
+                  - heading "Georgian Bay, ON" [level=3] [ref=f9e210]
+                  - paragraph [ref=f9e211]: 220+ cottages on VRBO & Expedia
+              - link [ref=f9e212] [cursor=pointer]:
+                - /url: /en/cottage-country/pei
+                - img "cottages for rent in PEI" [ref=f9e213]
+                - generic [ref=f9e215]:
+                  - heading "Cavendish, PEI" [level=3] [ref=f9e216]
+                  - paragraph [ref=f9e217]: 170+ cottages on VRBO & Expedia
+          - generic [ref=f9e219]:
+            - generic [ref=f9e220]:
+              - heading "Finding Your Perfect Getaway cottage in Canada" [level=2] [ref=f9e221]
+              - paragraph [ref=f9e222]: We verify and curate high-rated and popular accommodations, pairing travelers with secure booking links on VRBO and Expedia, entirely free of extra fees.
+              - paragraph [ref=f9e223]: Every region of Canada has its own cottage experience. Explore cottage rentals across Canada, compare destinations, and discover peaceful places to relax by the lake, the mountains, or the coast.
+              - generic [ref=f9e224]:
+                - generic [ref=f9e225]:
+                  - heading "Canada Cottage country" [level=3] [ref=f9e230]
+                  - paragraph [ref=f9e231]: Browse Canada's best cottage country destinations and discover lakeside escapes, cozy cabins, and waterfront retreats across every province.
+                - generic [ref=f9e232]:
+                  - heading "The Country of 250,000 Lakes" [level=3] [ref=f9e237]
+                  - paragraph [ref=f9e238]: Boating, paddling, and deep waterfront swimming off high wooden docks beneath gorgeous glowing horizons.
+                - generic [ref=f9e239]:
+                  - heading "Boreal Forests & Parks" [level=3] [ref=f9e244]
+                  - paragraph [ref=f9e245]: Hike along the rugged edges of the Bruce Peninsula trail system or explore the legendary canoe loops of Algonquin Park.
+                - generic [ref=f9e246]:
+                  - heading "Accessible Wilderness" [level=3] [ref=f9e251]
+                  - paragraph [ref=f9e252]: Peaceful, pristine lake houses located within a comfortable 2-to-4 hour scenic drive from Toronto and Ottawa.
+            - img "Canada Cottage country" [ref=f9e255]
+          - generic [ref=f9e257]:
+            - generic [ref=f9e258]:
+              - generic [ref=f9e259]:
+                - heading "Latest Inspiration" [level=2] [ref=f9e260]
+                - paragraph [ref=f9e261]: Expert guides, local tips, and curated stories to help plan your perfect Canadian cottage escape.
+              - link "View all guides" [ref=f9e262] [cursor=pointer]:
+                - /url: /en/guides
+            - generic [ref=f9e265]:
+              - 'link "Canada Cottage Country: A Region-by-Region Guide for 2026 Canada Cottage Rentals 9 min read Canada Cottage Country: A Region-by-Region Guide for 2026 Explore Canada cottage country by region. From Ontario lakes to BC cabins and Maritimes coastlines, find the best spot for your 2026 getaway. Read Guide" [ref=f9e266] [cursor=pointer]':
+                - /url: /en/guides/canada-cottage-country-a-region-by-region-guide-for-2026
+                - generic [ref=f9e267]:
+                  - 'img "Canada Cottage Country: A Region-by-Region Guide for 2026" [ref=f9e268]'
+                  - generic [ref=f9e269]: Canada Cottage Rentals
+                - generic [ref=f9e270]:
+                  - generic [ref=f9e271]: 9 min read
+                  - 'heading "Canada Cottage Country: A Region-by-Region Guide for 2026" [level=3] [ref=f9e276]'
+                  - paragraph [ref=f9e277]: Explore Canada cottage country by region. From Ontario lakes to BC cabins and Maritimes coastlines, find the best spot for your 2026 getaway.
+                  - generic [ref=f9e278]: Read Guide
+              - 'link "BC Cottage Rentals: Mountain Cabins, Oceanfront Retreats & Wilderness Escapes BC Cottage Rentals 5 min read BC Cottage Rentals: Mountain Cabins, Oceanfront Retreats & Wilderness Escapes Explore BC cottage rentals from Whistler cabins to Okanagan lakefront and Sunshine Coast retreats. Top regions, seasons, and booking tips for your trip. Read Guide" [ref=f9e281] [cursor=pointer]':
+                - /url: /en/guides/bc-cottage-rentals
+                - generic [ref=f9e282]:
+                  - 'img "BC Cottage Rentals: Mountain Cabins, Oceanfront Retreats & Wilderness Escapes" [ref=f9e283]'
+                  - generic [ref=f9e284]: BC Cottage Rentals
+                - generic [ref=f9e285]:
+                  - generic [ref=f9e286]: 5 min read
+                  - 'heading "BC Cottage Rentals: Mountain Cabins, Oceanfront Retreats & Wilderness Escapes" [level=3] [ref=f9e291]'
+                  - paragraph [ref=f9e292]: Explore BC cottage rentals from Whistler cabins to Okanagan lakefront and Sunshine Coast retreats. Top regions, seasons, and booking tips for your trip.
+                  - generic [ref=f9e293]: Read Guide
+              - 'link "Cottage Rentals in Canada: The Ultimate Guide to Finding Your Perfect Getaway News 8 min read Cottage Rentals in Canada: The Ultimate Guide to Finding Your Perfect Getaway Looking for cottage rentals in Canada? This guide covers the best provinces, price ranges, amenities to look for, and booking tips to find your perfect Canadian getaway. Read Guide" [ref=f9e296] [cursor=pointer]':
+                - /url: /en/guides/cottage-rentals-in-canada-the-ultimate-guide
+                - generic [ref=f9e297]:
+                  - 'img "Cottage Rentals in Canada: The Ultimate Guide to Finding Your Perfect Getaway" [ref=f9e298]'
+                  - generic [ref=f9e299]: News
+                - generic [ref=f9e300]:
+                  - generic [ref=f9e301]: 8 min read
+                  - 'heading "Cottage Rentals in Canada: The Ultimate Guide to Finding Your Perfect Getaway" [level=3] [ref=f9e306]'
+                  - paragraph [ref=f9e307]: Looking for cottage rentals in Canada? This guide covers the best provinces, price ranges, amenities to look for, and booking tips to find your perfect Canadian getaway.
+                  - generic [ref=f9e308]: Read Guide
+          - generic [ref=f9e311]:
+            - generic [ref=f9e312]:
+              - heading "Search by City and Category" [level=2] [ref=f9e313]
+              - paragraph [ref=f9e314]: Quickly jump into active curated rentals across major Canadian regions.
+            - generic [ref=f9e315]:
+              - generic [ref=f9e316]:
+                - heading "Ontario" [level=3] [ref=f9e317]
+                - list [ref=f9e318]:
+                  - listitem [ref=f9e319]:
+                    - link "Cottages in Muskoka" [ref=f9e320] [cursor=pointer]:
+                      - /url: /en/search/muskoka/
+                  - listitem [ref=f9e321]:
+                    - link "Lakefront in Haliburton" [ref=f9e322] [cursor=pointer]:
+                      - /url: /en/search/haliburton/lakefront
+                  - listitem [ref=f9e323]:
+                    - link "Cottages in Kawarthas" [ref=f9e324] [cursor=pointer]:
+                      - /url: /en/search/kawarthas/
+              - generic [ref=f9e325]:
+                - heading "Quebec" [level=3] [ref=f9e326]
+                - list [ref=f9e327]:
+                  - listitem [ref=f9e328]:
+                    - link "Cottages in Mont-Tremblant" [ref=f9e329] [cursor=pointer]:
+                      - /url: /en/search/mont-tremblant/
+                  - listitem [ref=f9e330]:
+                    - link "Cottages in Charlevoix" [ref=f9e331] [cursor=pointer]:
+                      - /url: /en/search/charlevoix/
+                  - listitem [ref=f9e332]:
+                    - link "Cottages in Laurentians" [ref=f9e333] [cursor=pointer]:
+                      - /url: /en/search/laurentians/
+              - generic [ref=f9e334]:
+                - heading "British Columbia" [level=3] [ref=f9e335]
+                - list [ref=f9e336]:
+                  - listitem [ref=f9e337]:
+                    - link "Cottages in Whistler" [ref=f9e338] [cursor=pointer]:
+                      - /url: /en/search/whistler/
+                  - listitem [ref=f9e339]:
+                    - link "Cottages in Vancouver" [ref=f9e340] [cursor=pointer]:
+                      - /url: /en/search/vancouver/
+                  - listitem [ref=f9e341]:
+                    - link "Cottages in Tofino" [ref=f9e342] [cursor=pointer]:
+                      - /url: /en/search/tofino/
+              - generic [ref=f9e343]:
+                - heading "Alberta" [level=3] [ref=f9e344]
+                - list [ref=f9e345]:
+                  - listitem [ref=f9e346]:
+                    - link "Cottages in Banff" [ref=f9e347] [cursor=pointer]:
+                      - /url: /en/search/banff/
+                  - listitem [ref=f9e348]:
+                    - link "Cottages in Jasper" [ref=f9e349] [cursor=pointer]:
+                      - /url: /en/search/jasper/
+                  - listitem [ref=f9e350]:
+                    - link "Cottages in Calgary" [ref=f9e351] [cursor=pointer]:
+                      - /url: /en/search/calgary/
+          - generic [ref=f9e353]:
+            - generic [ref=f9e354]:
+              - heading "Explore top destinations and book your ideal vacation stay." [level=2] [ref=f9e355]
+              - paragraph [ref=f9e356]: Find waterfront cottages, cozy cabins, family-friendly vacation homes, and unique retreats in the country's most beautiful destinations.
+              - link "Find more cottages on VRBO" [ref=f9e357] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliates/cottagerentals/vrbo
+            - img "best cottages for rent in Canada" [ref=f9e359]
+  - alert [ref=f9e360]

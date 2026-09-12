@@ -66,31 +66,38 @@ export function ArticleSchema({ title, description, image, date, dateModified, u
   url?: string;
   author?: string;
 }) {
-  const absImage = image && !image.startsWith('http') ? `${SITE_URL}${image.startsWith('/') ? '' : '/'}${image}` : image;
+  const SITE_URL = 'https://chaletexpress.com';
+  
+  const absoluteImageUrl = image
+    ? image.startsWith('http')
+      ? image
+      : `https://www.chaletexpress.com${image.startsWith('/') ? '' : '/'}${image}`
+    : 'https://www.chaletexpress.com/og-default.jpg';
+
+  const headline = title.length > 110 ? title.substring(0, 107) + '...' : title;
+
   const schema: Record<string, any> = {
     '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: title,
+    '@type': 'Article',
+    headline: headline,
     description,
-    image: absImage,
-    datePublished: date,
-    dateModified: dateModified || date,
+    image: [absoluteImageUrl],
+    datePublished: new Date(date).toISOString(),
+    dateModified: dateModified ? new Date(dateModified).toISOString() : new Date(date).toISOString(),
     author: {
-      '@type': 'Person',
-      name: author || 'Chalet Express Editorial Team',
+      '@type': 'Organization',
+      name: 'Chalet Express',
+      url: 'https://www.chaletexpress.com',
     },
     publisher: {
       '@type': 'Organization',
       name: 'Chalet Express',
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}/logo.png`,
+        url: 'https://www.chaletexpress.com/logo.png',
       },
     },
   };
-  if (url) {
-    schema.mainEntityOfPage = { '@type': 'WebPage', '@id': url };
-  }
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }
 

@@ -1,0 +1,33 @@
+- generic [active] [ref=f17e1]:
+  - generic [ref=f17e2]:
+    - complementary [ref=f17e4]:
+      - link [ref=f17e6] [cursor=pointer]:
+        - /url: /en
+      - navigation [ref=f17e8]
+    - generic [ref=f17e9]:
+      - banner [ref=f17e10]:
+        - generic [ref=f17e12]:
+          - link "Chalet Express" [ref=f17e14] [cursor=pointer]:
+            - /url: /en
+          - button "FR" [ref=f17e17]
+      - main [ref=f17e22]:
+        - generic [ref=f17e23]:
+          - generic [ref=f17e24]:
+            - text: Get in Touch
+            - heading "We'd Love to Hear From You" [level=1] [ref=f17e25]
+            - paragraph [ref=f17e26]: Cottage owners, travelers, or affiliate networks — feel free to drop us a line below.
+          - generic [ref=f17e27]:
+            - heading "Send a Message" [level=3] [ref=f17e28]
+            - generic [ref=f17e32]:
+              - generic [ref=f17e33]:
+                - generic [ref=f17e34]: Your Name
+                - textbox "e.g. Jean Dupont" [ref=f17e35]
+              - generic [ref=f17e36]:
+                - generic [ref=f17e37]: Email Address
+                - textbox "e.g. jean@example.com" [ref=f17e38]
+              - generic [ref=f17e39]:
+                - generic [ref=f17e40]: Message Content
+                - textbox "How can we help? Partnerships, listings, feedback..." [ref=f17e41]
+              - button "Send Message" [ref=f17e42]
+  - button "Open Next.js Dev Tools" [ref=f17e48] [cursor=pointer]
+  - alert [ref=f17e52]

@@ -1,0 +1,13 @@
+[    2301ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://www.chaletexpress.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fwechalet-media-production%2Fmedia%2F699607%2Fconversions%2F699607-full.jpg&w=640&q=75:0
+[    2483ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/manifest.webmanifest:0
+[    2489ms] [ERROR] Manifest fetch from https://www.chaletexpress.com/fr/manifest.webmanifest failed, code 404 @ https://www.chaletexpress.com/en:0
+[    4003ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/manifest.webmanifest:0
+[    4007ms] [ERROR] Manifest fetch from https://www.chaletexpress.com/fr/manifest.webmanifest failed, code 404 @ https://www.chaletexpress.com/en:0
+[  149283ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/manifest.webmanifest:0
+[  149291ms] [ERROR] Manifest fetch from https://www.chaletexpress.com/fr/manifest.webmanifest failed, code 404 @ https://www.chaletexpress.com/fr:0
+[  150984ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/manifest.webmanifest:0
+[  150986ms] [ERROR] Manifest fetch from https://www.chaletexpress.com/fr/manifest.webmanifest failed, code 404 @ https://www.chaletexpress.com/fr:0
+[  314839ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/manifest.webmanifest:0
+[  314840ms] [ERROR] Manifest fetch from https://www.chaletexpress.com/fr/manifest.webmanifest failed, code 404 @ https://www.chaletexpress.com/en:0
+[  316545ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.chaletexpress.com/fr/manifest.webmanifest:0
+[  316546ms] [ERROR] Manifest fetch from https://www.chaletexpress.com/fr/manifest.webmanifest failed, code 404 @ https://www.chaletexpress.com/en:0
