@@ -30,7 +30,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
 
   return (
     <div className="border-l-2 border-[#0f51ec]/20 pl-5">
-      <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Contents</h3>
+      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Contents</p>
       <nav className="space-y-1">
         {items.map((item) => (
           <a

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { db } from '@/lib/db';
 import { pages } from '@/db/schema';
-import { eq } from 'drizzle-orm';
+import { eq, and, inArray } from 'drizzle-orm';
+import { getCached } from '@/lib/cache';
 import { locales } from '@/i18n/routing';
 import LocationTemplate from '@/templates/LocationTemplate';
 
@@ -56,18 +57,43 @@ export async function generateStaticParams() {
     dbSlugs = rows.map(r => r.slug);
   } catch {}
 
-  const allSlugs = [...PROVINCE_SLUGS, ...dbSlugs];
+  const allSlugs = [...new Set([...PROVINCE_SLUGS, ...dbSlugs])];
 
   return locales.flatMap(locale =>
     allSlugs.map(slug => ({ locale, slug }))
   );
 }
 
+async function fetchPageRow(slug: string, locale: string) {
+  // Shared getCached key between generateMetadata and the page below:
+  // one DB hit total instead of two.
+  const rows = await getCached<any[]>(`pages:by-slug:${locale}:${slug}`, () =>
+    db.select().from(pages).where(
+      and(
+        eq(pages.slug, slug),
+        eq(pages.isPublished, true),
+        inArray(pages.locale, locale === 'fr' ? ['fr', 'en'] : ['en']),
+      ),
+    ).limit(2),
+  300);
+  return rows.find((r: any) => r.locale === locale) || rows.find((r: any) => r.locale === 'en') || null;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const name = getName(slug);
+  // Unknown non-province slugs with no CMS row render a thin fallback page.
+  // With loading.tsx in the tree, Next 16 streams it as HTTP 200
+  // (vercel/next.js#93008), so noindex here is what keeps them out of Google.
+  let isUnknown = false;
+  try {
+    const row = await fetchPageRow(slug, locale);
+    isUnknown = !row && !PROVINCE_SLUGS.has(slug);
+  } catch {
+    isUnknown = false;
+  }
   const title = locale === 'fr'
-    ? `Location de chalets à ${name.fr} | Chalet Express`
+    ? `Location de chalets à ${name.fr}`
     : `Cottages to Rent in ${name.en} - Canadian Cottage Rentals`;
   const description = locale === 'fr'
     ? `Trouvez le chalet idéal à ${name.fr}. Comparez les locations de vacances et réservez en toute sécurité sur VRBO et Expedia.`
@@ -75,9 +101,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const canonical = `https://chaletexpress.com/${locale}/cottage-country/${slug}`;
 
+  // OG image: the page's own hero image when available (cached via the
+  // same key the page component uses), generic fallback otherwise.
+  let ogImage = 'https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=1200';
+  try {
+    const row = await fetchPageRow(slug, locale);
+    const hero = (row?.locationData as any)?.hero?.image;
+    if (typeof hero === 'string' && (hero.startsWith('http') || hero.startsWith('/'))) ogImage = hero;
+  } catch {}
+
   return {
     title,
     description,
+    ...(isUnknown ? { robots: { index: false, follow: false } } : {}),
     alternates: {
       canonical,
       languages: {
@@ -87,11 +123,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     },
     openGraph: {
+      type: 'website',
+      siteName: 'Chalet Express',
+      url: canonical,
       title,
       description,
       locale: locale === 'fr' ? 'fr_CA' : 'en_CA',
       images: [{
-        url: 'https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=1200',
+        url: ogImage,
         width: 1200,
         height: 630,
       }],
@@ -104,8 +143,8 @@ export default async function LocationPage({ params }: Props) {
   let cottages: any[] = [];
   let pageData = null;
   try {
-    const [row] = await db.select().from(pages).where(eq(pages.slug, slug));
-    pageData = row ?? null;
+    // Locale-preferred page row with EN fallback (shared cache with metadata).
+    pageData = await fetchPageRow(slug, locale);
   } catch (e) {
     console.error('Failed to fetch page data for', slug, e);
   }

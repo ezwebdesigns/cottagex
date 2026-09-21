@@ -1,10 +1,15 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
 import { Pool } from 'pg';
+import { invalidateCottages } from '@/lib/cache';
 
+const connectionString = process.env.DATABASE_URL;
+// Local Supabase has no SSL; remote DBs (Supabase Cloud/Neon) require it.
+const isLocalDb = /localhost|127\.0\.0\.1/.test(connectionString || '');
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
+  connectionString,
+  ...(isLocalDb ? {} : { ssl: { rejectUnauthorized: false } }),
 });
 
 export async function updateCottage(
@@ -38,6 +43,8 @@ export async function updateCottage(
       values
     );
 
+    try { await invalidateCottages(); } catch {}
+    revalidatePath('/', 'layout');
     return { success: true };
   } catch (error: any) {
     console.error('updateCottage error:', error);

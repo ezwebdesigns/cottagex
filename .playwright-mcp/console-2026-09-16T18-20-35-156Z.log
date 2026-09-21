@@ -1,0 +1,298 @@
+[    2105ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[    2117ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[    2513ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[    2637ms] [LOG] [Fast Refresh] done in 225ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  735579ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  735662ms] [LOG] [Fast Refresh] done in 186ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  819267ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[  831131ms] [LOG] [Fast Refresh] done in 11964ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1185218ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1185838ms] [LOG] [Fast Refresh] done in 552ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1186016ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1186108ms] [LOG] [Fast Refresh] done in 193ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1186301ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1186481ms] [LOG] [Fast Refresh] done in 282ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1186957ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1186958ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1187132ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1187415ms] [LOG] [Fast Refresh] done in 393ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1313193ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1313428ms] [LOG] [Fast Refresh] done in 317ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1313571ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1313726ms] [LOG] [Fast Refresh] done in 259ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1314633ms] [LOG] %c%s%c SQL query: background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      -- First photo only: every consumer uses thumbnail || photos[0].
+      -- Transferring full HD photo arrays (KBs/row) on every cache MISS
+      -- is pure Supabase egress waste. Portable across jsonb/text columns.
+      NULLIF(photos::text, '')::jsonb ->> 0 AS cover_photo,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1314983ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1315021ms] [LOG] [Fast Refresh] done in 142ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1315441ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1315777ms] [LOG] [Fast Refresh] done in 436ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1325469ms] [LOG] %c%s%c SQL query: background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      -- First photo only: every consumer uses thumbnail || photos[0].
+      -- Transferring full HD photo arrays (KBs/row) on every cache MISS
+      -- is pure Supabase egress waste. Portable across jsonb/text columns.
+      NULLIF(photos::text, '')::jsonb ->> 0 AS cover_photo,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1328780ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1328889ms] [LOG] [Fast Refresh] done in 219ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1329166ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1329222ms] [LOG] [Fast Refresh] done in 156ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1329492ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1329535ms] [LOG] [Fast Refresh] done in 146ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1329820ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1329862ms] [LOG] [Fast Refresh] done in 147ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1330143ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1330229ms] [LOG] [Fast Refresh] done in 190ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1330490ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1330540ms] [LOG] [Fast Refresh] done in 156ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1330808ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1330860ms] [LOG] [Fast Refresh] done in 154ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1331143ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1331183ms] [LOG] [Fast Refresh] done in 145ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1331206ms] [LOG] %c%s%c SQL query: background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      -- First photo only: every consumer uses thumbnail || photos[0].
+      -- Transferring full HD photo arrays (KBs/row) on every cache MISS
+      -- is pure Supabase egress waste. Portable across jsonb/text columns.
+      NULLIF(photos::text, '')::jsonb ->> 0 AS cover_photo,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1331628ms] [LOG] %c%s%c SQL query: background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      -- First photo only: every consumer uses thumbnail || photos[0].
+      -- Transferring full HD photo arrays (KBs/row) on every cache MISS
+      -- is pure Supabase egress waste. Portable across jsonb/text columns.
+      NULLIF(photos::text, '')::jsonb ->> 0 AS cover_photo,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1335012ms] [LOG] %c%s%c SQL query: background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      -- First photo only: every consumer uses thumbnail || photos[0].
+      -- Transferring full HD photo arrays (KBs/row) on every cache MISS
+      -- is pure Supabase egress waste. Portable across jsonb/text columns.
+      NULLIF(photos::text, '')::jsonb ->> 0 AS cover_photo,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1336774ms] [LOG] %c%s%c SQL query: background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      -- First photo only: every consumer uses thumbnail || photos[0].
+      -- Transferring full HD photo arrays (KBs/row) on every cache MISS
+      -- is pure Supabase egress waste. Portable across jsonb/text columns.
+      NULLIF(photos::text, '')::jsonb ->> 0 AS cover_photo,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1339849ms] [LOG] %c%s%c SQL query: background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   
+    SELECT
+      id,
+      slug,
+      province,
+      name,
+      type,
+      source,
+      thumbnail,
+      -- First photo only: every consumer uses thumbnail || photos[0].
+      -- Transferring full HD photo arrays (KBs/row) on every cache MISS
+      -- is pure Supabase egress waste. Portable across jsonb/text columns.
+      NULLIF(photos::text, '')::jsonb ->> 0 AS cover_photo,
+      lat,
+      lng,
+      price_cad,
+      price_before_taxes,
+      rating,
+      reviews,
+      sleeps,
+      bedrooms,
+      bathrooms,
+      amenities,
+      check_in_time,
+      check_out_time,
+      google_link,
+      affiliate_url,
+      is_featured,
+      available,
+      image_alt,
+      created_at
+    FROM affiliatecottages
+    WHERE is_hidden = false AND available = true AND is_featured = true
+    ORDER BY rating DESC NULLS LAST
+    LIMIT $1
+   [12] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1480661ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1480662ms] [LOG] [Fast Refresh] done in 109ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1564445ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477
+[ 1564450ms] [LOG] [Fast Refresh] done in 109ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2477

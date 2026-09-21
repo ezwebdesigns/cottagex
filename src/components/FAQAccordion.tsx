@@ -10,16 +10,17 @@ type FAQItem = {
 
 type FAQAccordionProps = {
   items: FAQItem[];
+  locale?: string;
 };
 
-export default function FAQAccordion({ items }: FAQAccordionProps) {
+export default function FAQAccordion({ items, locale }: FAQAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   if (!items || items.length === 0) return null;
 
   return (
     <div className="mb-12">
-      <h2 className="text-2xl md:text-3xl font-bold text-[#0B1B40] mb-6">Frequently Asked Questions</h2>
+      <h2 className="text-2xl md:text-3xl font-bold text-[#0B1B40] mb-6">{locale === 'fr' ? 'Foire aux questions' : 'Frequently Asked Questions'}</h2>
       <div className="space-y-3">
         {items.map((item, i) => {
           const isOpen = openIndex === i;

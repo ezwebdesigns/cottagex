@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Calendar, Clock, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
@@ -51,9 +52,9 @@ export default function GuidesList({ locale, articles, page, totalPages }: Guide
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
               {articles.map((article) => (
-                <button
+                <Link
                   key={article.id}
-                  onClick={() => router.push(`/${locale}/guides/${article.slug}`)}
+                  href={`/${locale}/guides/${article.slug}`}
                   className="group text-left rounded-[2rem] overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col"
                 >
                   <div className="relative h-52 overflow-hidden">
@@ -81,9 +82,9 @@ export default function GuidesList({ locale, articles, page, totalPages }: Guide
                         {article.readTime}
                       </span>
                     </div>
-                    <h3 className="font-bold text-lg text-[#191e3b] leading-tight mb-2 group-hover:text-[#0f51ec] transition-colors" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
+                    <h2 className="font-bold text-lg text-[#191e3b] leading-tight mb-2 group-hover:text-[#0f51ec] transition-colors" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
                       {article.title}
-                    </h3>
+                    </h2>
                     <p className="text-sm text-slate-500 leading-relaxed mb-4 flex-1">{article.excerpt}</p>
                     <div className="flex items-center justify-between pt-3 border-t border-slate-100">
                       <div className="flex items-center gap-2">
@@ -97,9 +98,9 @@ export default function GuidesList({ locale, articles, page, totalPages }: Guide
                         {t.has('guides.viewGuide') ? t('guides.viewGuide') : 'Read Guide'}
                         <ArrowRight className="w-3.5 h-3.5" />
                       </span>
+                      </div>
                     </div>
-                  </div>
-                </button>
+                  </Link>
               ))}
             </div>
 

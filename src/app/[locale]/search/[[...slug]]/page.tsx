@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { db } from '@/lib/db';
-import { siteSettings } from '@/db/schema';
-import { eq } from 'drizzle-orm';
 import { locales } from '@/i18n/routing';
+import { getAllSettings } from '@/lib/cached-settings';
 import SearchTemplate from '@/templates/SearchTemplate';
 
 export const revalidate = 3600;
@@ -68,21 +66,55 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const hasQuery = !!querySlug;
   const hasLocation = !!locationSlug;
 
+  // FR templates are hand-written (slugs stay EN; DeepL can't translate
+  // dynamic URL segments at runtime).
+  const isFr = locale === 'fr';
   const title = hasQuery && hasLocation
-    ? `${query} Cottages in ${location} | Chalet Express`
+    ? (isFr ? `${query} — Chalets à ${location}` : `${query} Cottages in ${location}`)
     : hasQuery
-      ? `${query} Cottages | Chalet Express`
-      : 'Search Canadian Cottage Rentals | Chalet Express';
+      ? (isFr ? `Chalets ${query}` : `${query} Cottages`)
+      : (isFr ? 'Recherche de chalets au Canada' : 'Search Canadian Cottage Rentals');
   const description = hasQuery && hasLocation
-    ? `Find ${query.toLowerCase()} cottages in ${location}. Browse premium vacation rentals across Canada with secure VRBO booking.`
-    : 'Search and discover premium cottage rentals across Canada. Browse lake houses, mountain lodges, and wilderness cabins.';
+    ? (isFr
+      ? `Trouvez des chalets ${query.toLowerCase()} à ${location}. Parcourez les locations de vacances haut de gamme au Canada avec réservation sécurisée VRBO.`
+      : `Find ${query.toLowerCase()} cottages in ${location}. Browse premium vacation rentals across Canada with secure VRBO booking.`)
+    : (isFr
+      ? `Recherchez et découvrez des locations de chalets haut de gamme partout au Canada. Maisons au bord d'un lac, chalets de montagne et cabanes en pleine nature.`
+      : 'Search and discover premium cottage rentals across Canada. Browse lake houses, mountain lodges, and wilderness cabins.');
 
   const path = slug ? slug.join('/') : '';
   const canonical = `https://chaletexpress.com/${locale}/search${path ? '/' + path : ''}`;
 
+  // Noindex thin/empty result pages: a query with zero cottages is a
+  // "No results found" page with generic meta — not worth crawling.
+  // Fail OPEN (index) when the check itself errors.
+  let hasResults = true;
+  let probe: any[] = [];
+  try {
+    const { getCottages } = await import('@/lib/cottages');
+    const loc = locationSlug === 'canada' ? null : locationSlug;
+    const probeCats = querySlug && querySlug !== 'all' ? [querySlug] : [];
+    if (loc && PROVINCE_SLUGS.has(loc)) {
+      probe = await getCottages({ province: loc, limit: 1, categories: probeCats });
+    } else if (loc) {
+      probe = await getCottages({ slug: loc, limit: 1, categories: probeCats });
+    } else {
+      probe = await getCottages({ limit: 1, categories: probeCats });
+    }
+    hasResults = probe.length > 0;
+  } catch {
+    hasResults = true;
+  }
+  // OG image: first result's cover when available, generic fallback otherwise.
+  const probeRow = probe[0] as any;
+  const probeImage = probeRow
+    ? (probeRow.thumbnail || (Array.isArray(probeRow.photos) && probeRow.photos[0]) || null)
+    : null;
+
   return {
     title,
     description,
+    robots: hasResults ? undefined : { index: false, follow: true },
     alternates: {
       canonical,
       languages: {
@@ -96,7 +128,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       locale: locale === 'fr' ? 'fr_CA' : 'en_CA',
       images: [{
-        url: 'https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=1200',
+        url: probeImage || 'https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=1200',
         width: 1200,
         height: 630,
       }],
@@ -116,12 +148,14 @@ export default async function SearchPage({ params }: Props) {
 
   const location = locationSlug === 'canada' ? null : locationSlug;
 
+  // Single cached settings fetch (was 6 sequential selects).
+  let allSettings: Record<string, any> = {};
   try {
-    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search_results'));
-    searchResults = row?.data ?? null;
+    allSettings = await getAllSettings(locale);
   } catch (e) {
-    console.error('Failed to fetch search_results settings', e);
+    console.error('Failed to fetch search settings', e);
   }
+  searchResults = allSettings.search_results ?? null;
 
   const sort = searchResults?.sort === 'rating' ? 'rating' : 'newest';
 
@@ -139,47 +173,20 @@ export default async function SearchPage({ params }: Props) {
     console.error('Failed to fetch cottages for search', slug, e);
   }
 
-  try {
-    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search_hero'));
-    hero = row?.data ?? null;
-  } catch (e) {
-    console.error('Failed to fetch search_hero settings', e);
-  }
+  hero = allSettings.search_hero ?? null;
 
-  try {
-    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search_categories'));
-    const raw: any[] = (row?.data as any)?.items ?? [];
-    categories = raw.map((item: any) => ({
-      id: item.id,
-      label: locale === 'fr' ? item.labelFr : item.labelEn,
-      link: item.link || `/${locale}/search/${item.id}`,
-    }));
-  } catch (e) {
-    console.error('Failed to fetch search_categories', e);
-  }
+  const raw: any[] = allSettings.search_categories?.items ?? [];
+  categories = raw.map((item: any) => ({
+    id: item.id,
+    label: locale === 'fr' ? item.labelFr : item.labelEn,
+    link: item.link || `/${locale}/search/${item.id}`,
+  }));
 
-  try {
-    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search_cta'));
-    searchCTA = row?.data ?? null;
-  } catch (e) {
-    console.error('Failed to fetch search_cta settings', e);
-  }
+  searchCTA = allSettings.search_cta ?? null;
 
-  try {
-    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search_inspirations'));
-    searchInspirations = row?.data ?? null;
-  } catch (e) {
-    console.error('Failed to fetch search_inspirations settings', e);
-  }
+  searchInspirations = allSettings.search_inspirations ?? null;
 
-  let searchFaq: any = null;
-
-  try {
-    const [row] = await db.select().from(siteSettings).where(eq(siteSettings.section, 'search_faq'));
-    searchFaq = row?.data ?? null;
-  } catch (e) {
-    console.error('Failed to fetch search_faq settings', e);
-  }
+  const searchFaq: any = allSettings.search_faq ?? null;
 
   const slugStr = slug ? slug.join('/') : '';
 

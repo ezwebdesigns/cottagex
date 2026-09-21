@@ -1,4 +1,6 @@
-﻿type SearchColumnLink = { text: string; url: string };
+﻿import SmartLink from '@/components/cottagex/SmartLink';
+
+type SearchColumnLink = { text: string; url: string };
 type SearchColumn = { title: string; links: SearchColumnLink[] };
 
 type SearchSectionProps = {
@@ -32,7 +34,7 @@ export default function SearchSection({ locale, title, description, columns }: S
               <ul className="space-y-2">
                 {(col.links || []).map((link, li) => (
                   <li key={li}>
-                    <a href={link.url} className="text-sm text-[#0f51ec] hover:underline">{link.text}</a>
+                    <SmartLink href={link.url} locale={locale} className="text-sm text-[#0f51ec] hover:underline">{link.text}</SmartLink>
                   </li>
                 ))}
               </ul>

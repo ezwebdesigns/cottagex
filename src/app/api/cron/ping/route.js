@@ -8,9 +8,12 @@
 
 import { Pool } from 'pg'
 
+const connectionString = process.env.DATABASE_URL
+// Local Supabase has no SSL; remote DBs require it.
+const isLocalDb = /localhost|127\.0\.0\.1/.test(connectionString || '')
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
+  connectionString,
+  ...(isLocalDb ? {} : { ssl: { rejectUnauthorized: false } }),
 })
 
 export async function GET(request) {
@@ -84,6 +87,12 @@ export async function GET(request) {
   }
 
   console.log(`[ping] Terminé — ${JSON.stringify(results)}`)
+
+  // Availability flags changed → drop cached cottage queries (best-effort).
+  try {
+    const { invalidateCottages } = await import('@/lib/cache')
+    await invalidateCottages()
+  } catch {}
 
   return Response.json({
     success: true,

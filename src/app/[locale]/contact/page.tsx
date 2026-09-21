@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import ContactForm from '@/components/contact/ContactForm';
+import { seoFor } from '@/lib/seo-meta';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  const meta = seoFor('contact', locale);
   return {
-    title: "Contact - Get in Touch",
-    description: "Contact Chalet Express for partnerships, cottage listings, or travel inquiries. We respond within 24 hours.",
+    title: meta.title,
+    description: meta.description,
     alternates: {
       canonical: `https://chaletexpress.com/${locale}/contact`,
       languages: {
@@ -16,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     openGraph: {
       title: "Contact Chalet Express",
-      description: "Get in touch with Canada's cottage rental directory team.",
+      description: meta.description,
     },
   };
 }

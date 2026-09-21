@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { db } from '@/lib/db';
 import { pages } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { requireAuth } from '@/lib/api-auth';
+import { invalidatePages } from '@/lib/cache';
 
 export async function GET(
   _request: Request,
@@ -29,6 +31,8 @@ export async function PATCH(
     .where(eq(pages.id, id))
     .returning();
   if (!page) return NextResponse.json({ error: 'Not found' }, { status: 404 });
+  try { await invalidatePages(); } catch {}
+  revalidatePath('/', 'layout');
   return NextResponse.json({ page });
 }
 
@@ -41,5 +45,7 @@ export async function DELETE(
   const { id } = await params;
   const [deleted] = await db.delete(pages).where(eq(pages.id, id)).returning();
   if (!deleted) return NextResponse.json({ error: 'Not found' }, { status: 404 });
+  try { await invalidatePages(); } catch {}
+  revalidatePath('/', 'layout');
   return NextResponse.json({ success: true });
 }

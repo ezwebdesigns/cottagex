@@ -67,7 +67,7 @@ export default function SearchByCity({ title = "Search by City and Category", de
                       <a
                         href={item.url}
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="sponsored nofollow noopener noreferrer"
                         className="text-[#1F51C6] hover:text-[#163FA3] text-xs font-normal hover:underline block transition-colors line-clamp-1"
                       >
                         {item.label}
@@ -105,7 +105,7 @@ export default function SearchByCity({ title = "Search by City and Category", de
                   key={idx}
                   href={item.url}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="sponsored nofollow noopener noreferrer"
                   className="bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-[#1F51C6] p-3 rounded-full text-xs font-normal border border-slate-100 transition-colors text-center"
                 >
                   {item.label}

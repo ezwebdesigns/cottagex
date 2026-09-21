@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { BreadcrumbSchema, FAQPageSchema } from '@/components/seo/SchemaOrg';
 import FAQAccordion from '@/components/FAQAccordion';
 import Image from 'next/image';
+import { qualifyExternalLinks } from '@/lib/qualify-links';
 
 type StandardTemplateProps = {
   pageData: {
@@ -18,12 +19,13 @@ type StandardTemplateProps = {
 
 export default function StandardTemplate({ pageData }: StandardTemplateProps) {
   const pathname = usePathname();
+  const localePrefix = pathname?.startsWith('/fr') ? '/fr' : '/en';
 
   if (pageData.type === 'terms') {
     return (
       <div className="animate-in fade-in duration-300 max-w-4xl mx-auto px-4 py-12">
         <BreadcrumbSchema items={[
-          { name: 'Home', url: '/' },
+          { name: 'Home', url: localePrefix },
           { name: 'Terms of Service', url: pathname },
         ]} />
         <div className="bg-white p-8 md:p-12 rounded-[2rem] border border-slate-100 shadow-sm">
@@ -49,7 +51,7 @@ export default function StandardTemplate({ pageData }: StandardTemplateProps) {
     return (
       <div className="animate-in fade-in duration-300 max-w-5xl mx-auto px-4 py-12">
         <BreadcrumbSchema items={[
-          { name: 'Home', url: '/' },
+          { name: 'Home', url: localePrefix },
           { name: 'About', url: pathname },
         ]} />
         <div className="text-center max-w-2xl mx-auto mb-12">
@@ -84,17 +86,17 @@ export default function StandardTemplate({ pageData }: StandardTemplateProps) {
   return (
     <div className="animate-in fade-in duration-300 max-w-4xl mx-auto px-4 py-12">
       <BreadcrumbSchema items={[
-        { name: 'Home', url: '/' },
+        { name: 'Home', url: localePrefix },
         { name: pageData.title, url: pathname },
       ]} />
       <div className="bg-white p-8 md:p-12 rounded-[2rem] border border-slate-100 shadow-sm">
         <h1 className="text-3xl font-extrabold text-[#191e3b] mb-6">{pageData.title}</h1>
-        <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: pageData.content }} />
+        <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: qualifyExternalLinks(pageData.content) }} />
       </div>
       {pageData.faq && pageData.faq.length > 0 && (
         <div className="mt-8">
           <FAQPageSchema items={pageData.faq} />
-          <FAQAccordion items={pageData.faq} />
+          <FAQAccordion items={pageData.faq} locale={pathname?.startsWith('/fr') ? 'fr' : 'en'} />
         </div>
       )}
     </div>

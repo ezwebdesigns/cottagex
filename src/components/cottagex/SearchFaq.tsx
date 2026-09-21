@@ -8,9 +8,10 @@ type SearchFaqProps = {
   data?: any;
   location?: string;
   province?: string;
+  locale?: string;
 };
 
-export default function SearchFaq({ data, location = '', province = '' }: SearchFaqProps) {
+export default function SearchFaq({ data, location = '', province = '', locale = 'en' }: SearchFaqProps) {
   const items: { q: string; a: string }[] = data?.items || [];
   const note = data?.note || '';
   const noteTitle = data?.noteTitle || '';
@@ -27,9 +28,20 @@ export default function SearchFaq({ data, location = '', province = '' }: Search
       out = out.replace(/\{province\}/g, province);
     } else {
       out = out
-        .replace(/,?\s*(?:in\s+)?\{province\}\s*,?/g, ' ')
+        .replace(/,?\s*(?:in\s+|dans\s+(?:la\s+)?)?\{province\}\s*,?/g, ' ')
         .replace(/\s{2,}/g, ' ')
         .trim();
+    }
+    if (locale === 'fr') {
+      // French contractions: "à Canada" → "au Canada", "de Canada" → "du Canada".
+      // NOTE: no leading \b — it never matches before "à" (non-ASCII, and \b
+      // is ASCII-only without the /u flag). Other locations are bare proper
+      // nouns (Muskoka, Québec…) where "à" is already correct.
+      out = out
+        .replace(/(^|[\s>"'(])à Canada/g, '$1au Canada')
+        .replace(/(^|[\s>"'(])À Canada/g, '$1Au Canada')
+        .replace(/(^|[\s>"'(])de Canada/g, '$1du Canada')
+        .replace(/(^|[\s>"'(])De Canada/g, '$1Du Canada');
     }
     return out;
   };

@@ -1,4 +1,4 @@
-import { pgTable, serial, text, integer, decimal, boolean, json, timestamp, varchar, uuid } from 'drizzle-orm/pg-core';
+import { pgTable, serial, text, integer, decimal, boolean, json, timestamp, varchar, uuid, unique } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
   id: serial('id').primaryKey(),
@@ -32,7 +32,7 @@ export const properties = pgTable('properties', {
 export const pages = pgTable('pages', {
   id: uuid('id').defaultRandom().primaryKey(),
   title: varchar('title', { length: 255 }).notNull(),
-  slug: varchar('slug', { length: 255 }).notNull().unique(),
+  slug: varchar('slug', { length: 255 }).notNull(),
   template: varchar('template', { length: 50 }).default('standard').notNull(),
   content: text('content').default(''),
   seoTitle: varchar('seo_title', { length: 255 }),
@@ -48,16 +48,20 @@ export const pages = pgTable('pages', {
   exploreDescription: text('explore_description'),
   exploreItems: json('explore_items').default([]),
   locationData: json('location_data').default({}),
+  locale: varchar('locale', { length: 10 }).default('en').notNull(),
+  translationOf: uuid('translation_of'),
   isPublished: boolean('is_published').default(true),
   publishedAt: timestamp('published_at'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
-});
+}, (t) => [
+  unique('pages_slug_locale_unique').on(t.slug, t.locale),
+]);
 
 export const articles = pgTable('articles', {
   id: serial('id').primaryKey(),
   title: varchar('title', { length: 255 }).notNull(),
-  slug: varchar('slug', { length: 255 }).notNull().unique(),
+  slug: varchar('slug', { length: 255 }).notNull(),
   type: varchar('type', { length: 50 }).default('standard').notNull(),
   content: text('content').default(''),
   excerpt: text('excerpt'),
@@ -67,6 +71,8 @@ export const articles = pgTable('articles', {
   imageAlt: varchar('image_alt', { length: 255 }),
   seoTitle: varchar('seo_title', { length: 255 }),
   seoKeywords: text('seo_keywords'),
+  locale: varchar('locale', { length: 10 }).default('en').notNull(),
+  translationOf: integer('translation_of'),
   faq: json('faq').default([]),
   ctaTitle: varchar('cta_title', { length: 255 }),
   ctaButton: varchar('cta_button', { length: 255 }),
@@ -75,7 +81,9 @@ export const articles = pgTable('articles', {
   publishedAt: timestamp('published_at'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
-});
+}, (t) => [
+  unique('articles_slug_locale_unique').on(t.slug, t.locale),
+]);
 
 export const listicleItems = pgTable('listicle_items', {
   id: serial('id').primaryKey(),
@@ -119,6 +127,7 @@ export const siteSettings = pgTable('site_settings', {
   id: serial('id').primaryKey(),
   section: varchar('section', { length: 100 }).notNull().unique(),
   data: json('data').notNull().default({}),
+  locale: varchar('locale', { length: 10 }).default('en').notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
 

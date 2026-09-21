@@ -1,9 +1,12 @@
 import { Pool } from 'pg';
 import { CottageTable } from './cottage-table';
 
+const connectionString = process.env.DATABASE_URL;
+// Local Supabase has no SSL; remote DBs require it.
+const isLocalDb = /localhost|127\.0\.0\.1/.test(connectionString || '');
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
+  connectionString,
+  ...(isLocalDb ? {} : { ssl: { rejectUnauthorized: false } }),
 });
 
 export type Cottage = {

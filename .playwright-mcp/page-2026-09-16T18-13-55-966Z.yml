@@ -1,0 +1,381 @@
+- generic [ref=f2e2]:
+  - complementary [ref=f2e4]:
+    - link [ref=f2e6] [cursor=pointer]:
+      - /url: /fr
+    - navigation [ref=f2e8]
+  - generic [ref=f2e9]:
+    - banner [ref=f2e10]:
+      - generic [ref=f2e12]:
+        - link "Chalet Express" [ref=f2e14] [cursor=pointer]:
+          - /url: /fr
+        - button "EN" [ref=f2e17]
+    - main [ref=f2e22]:
+      - generic [ref=f2e23]:
+        - generic [ref=f2e24]:
+          - img "Locations de chalets au Canada" [ref=f2e26]
+          - generic [ref=f2e29]:
+            - generic [ref=f2e31]:
+              - generic [ref=f2e32]: Locations de chalets au Canada
+              - heading "Trouvez votre escapade canadienne idéale" [level=1] [ref=f2e34]
+              - paragraph [ref=f2e35]: Découvrez des locations de gîtes à travers le Canada et trouvez des hébergements uniques dans chaque province.
+            - generic [ref=f2e37]:
+              - link "Bord de l'eau" [ref=f2e38] [cursor=pointer]:
+                - /url: /en/search/waterfront
+              - link "Spa" [ref=f2e43] [cursor=pointer]:
+                - /url: /en/search/hot-tub
+              - link "Famille" [ref=f2e48] [cursor=pointer]:
+                - /url: /en/search/family
+              - link "Luxe" [ref=f2e53] [cursor=pointer]:
+                - /url: /en/search/luxury
+              - link "Animaux" [ref=f2e58] [cursor=pointer]:
+                - /url: /en/search/pet-friendly
+              - link "Montagne" [ref=f2e63] [cursor=pointer]:
+                - /url: /en/search/mountain
+              - link "Romantique" [ref=f2e68] [cursor=pointer]:
+                - /url: /en/search/romantic
+              - link "Chalet bois" [ref=f2e73] [cursor=pointer]:
+                - /url: /en/search/log-cabin
+              - link "Campagne" [ref=f2e78] [cursor=pointer]:
+                - /url: /en/search/nature
+              - link "Isolé" [ref=f2e83] [cursor=pointer]:
+                - /url: /en/search/secluded
+              - link "Plage" [ref=f2e88] [cursor=pointer]:
+                - /url: /en/search/beach
+              - link "Village" [ref=f2e93] [cursor=pointer]:
+                - /url: /en/search/resort
+              - link "Ski" [ref=f2e98] [cursor=pointer]:
+                - /url: /en/search/ski
+              - link "Lacs" [ref=f2e103] [cursor=pointer]:
+                - /url: /en/search/lakefront
+              - link "Randonnée" [ref=f2e108] [cursor=pointer]:
+                - /url: /en/search/hiking
+              - link "Côtes" [ref=f2e113] [cursor=pointer]:
+                - /url: /en/search/coastal
+        - generic [ref=f2e119]:
+          - generic [ref=f2e120]:
+            - 'heading "Faites des économies sur les séjours prolongés : réservez 7 nuits ou plus et bénéficiez d''une réduction moyenne de 10 % !" [level=2] [ref=f2e121]'
+            - paragraph [ref=f2e122]: Découvrez des offres sur des milliers de locations de vacances au Canada.
+          - link "Découvrez nos gîtes" [ref=f2e123] [cursor=pointer]:
+            - /url: https://vrbo.com/affiliate/XcZW9Ip
+        - generic [ref=f2e126]:
+          - generic [ref=f2e128]:
+            - heading "Chalets à la une" [level=2] [ref=f2e129]
+            - paragraph [ref=f2e130]: Découvrez une sélection de gîtes à louer dans tout le Canada.
+          - generic [ref=f2e131]:
+            - link "Tranquil riverside Abode cottage VRBO Tranquil riverside Abode pei (1 avis) $673/ nuit" [ref=f2e132] [cursor=pointer]:
+              - /url: https://vrbo.com/affiliate/SNxzcrg
+              - generic [ref=f2e133]:
+                - img "Tranquil riverside Abode" [ref=f2e134]
+                - generic [ref=f2e135]: cottage
+                - img "VRBO" [ref=f2e136]
+              - generic [ref=f2e137]:
+                - heading "Tranquil riverside Abode" [level=3] [ref=f2e138]
+                - generic [ref=f2e139]: pei
+                - generic [ref=f2e144]: (1 avis)
+                - generic [ref=f2e157]:
+                  - generic [ref=f2e158]: $673
+                  - text: / nuit
+            - link "Serenity at The Cove - Newly Built Duplex! cottage VRBO Serenity at The Cove - Newly Built Duplex! nova-scotia (15 avis) Consulter les tarifs" [ref=f2e163] [cursor=pointer]:
+              - /url: https://vrbo.com/affiliate/yt19wac
+              - generic [ref=f2e164]:
+                - img "Serenity at The Cove - Newly Built Duplex!" [ref=f2e165]
+                - generic [ref=f2e166]: cottage
+                - img "VRBO" [ref=f2e167]
+              - generic [ref=f2e168]:
+                - heading "Serenity at The Cove - Newly Built Duplex!" [level=3] [ref=f2e169]
+                - generic [ref=f2e170]: nova-scotia
+                - generic [ref=f2e175]: (15 avis)
+                - generic [ref=f2e187]: Consulter les tarifs
+            - link "Tiny Home| Full Kitchen | Sleeps 4 + Work Desk. Relax, explore Acadian Peninsula cottage Expedia Tiny Home| Full Kitchen | Sleeps 4 + Work Desk. Relax, explore Acadian Peninsula new-brunswick (2 avis) $195/ nuit" [ref=f2e189] [cursor=pointer]:
+              - /url: https://expedia.com/affiliate/C4gdMBX
+              - generic [ref=f2e190]:
+                - img "Tiny Home| Full Kitchen | Sleeps 4 + Work Desk. Relax, explore Acadian Peninsula" [ref=f2e191]
+                - generic [ref=f2e192]: cottage
+                - img "Expedia" [ref=f2e193]
+              - generic [ref=f2e194]:
+                - heading "Tiny Home| Full Kitchen | Sleeps 4 + Work Desk. Relax, explore Acadian Peninsula" [level=3] [ref=f2e195]
+                - generic [ref=f2e196]: new-brunswick
+                - generic [ref=f2e201]: (2 avis)
+                - generic [ref=f2e214]:
+                  - generic [ref=f2e215]: $195
+                  - text: / nuit
+            - link "Oceanfront Cottage with Awesome Views, 2 min. to Beach, near Cabot Trail & Park cottage VRBO Oceanfront Cottage with Awesome Views, 2 min. to Beach, near Cabot Trail & Park nova-scotia (106 avis) Consulter les tarifs" [ref=f2e220] [cursor=pointer]:
+              - /url: https://vrbo.com/affiliate/ZzubIbb
+              - generic [ref=f2e221]:
+                - img "Oceanfront Cottage with Awesome Views, 2 min. to Beach, near Cabot Trail & Park" [ref=f2e222]
+                - generic [ref=f2e223]: cottage
+                - img "VRBO" [ref=f2e224]
+              - generic [ref=f2e225]:
+                - heading "Oceanfront Cottage with Awesome Views, 2 min. to Beach, near Cabot Trail & Park" [level=3] [ref=f2e226]
+                - generic [ref=f2e227]: nova-scotia
+                - generic [ref=f2e232]: (106 avis)
+                - generic [ref=f2e244]: Consulter les tarifs
+            - link "Tiny Home| Full Kitchen | Sleeps 4 + Work Desk. Relax, explore Acadian Peninsula cottage VRBO Tiny Home| Full Kitchen | Sleeps 4 + Work Desk. Relax, explore Acadian Peninsula new-brunswick (2 avis) $195/ nuit" [ref=f2e246] [cursor=pointer]:
+              - /url: https://vrbo.com/affiliate/mlPNRwn
+              - generic [ref=f2e247]:
+                - img "Tiny Home| Full Kitchen | Sleeps 4 + Work Desk. Relax, explore Acadian Peninsula" [ref=f2e248]
+                - generic [ref=f2e249]: cottage
+                - img "VRBO" [ref=f2e250]
+              - generic [ref=f2e251]:
+                - heading "Tiny Home| Full Kitchen | Sleeps 4 + Work Desk. Relax, explore Acadian Peninsula" [level=3] [ref=f2e252]
+                - generic [ref=f2e253]: new-brunswick
+                - generic [ref=f2e258]: (2 avis)
+                - generic [ref=f2e271]:
+                  - generic [ref=f2e272]: $195
+                  - text: / nuit
+            - link "R&R Executive Suite, Private Entrance, Sleeps 4, Hot Tub with pond/green view cottage VRBO R&R Executive Suite, Private Entrance, Sleeps 4, Hot Tub with pond/green view Alberta (41 avis) $303/ nuit" [ref=f2e277] [cursor=pointer]:
+              - /url: https://vrbo.com/affiliate/Mp5tSG0
+              - generic [ref=f2e278]:
+                - img "R&R Executive Suite, Private Entrance, Sleeps 4, Hot Tub with pond/green view" [ref=f2e279]
+                - generic [ref=f2e280]: cottage
+                - img "VRBO" [ref=f2e281]
+              - generic [ref=f2e282]:
+                - heading "R&R Executive Suite, Private Entrance, Sleeps 4, Hot Tub with pond/green view" [level=3] [ref=f2e283]
+                - generic [ref=f2e284]: Alberta
+                - generic [ref=f2e289]: (41 avis)
+                - generic [ref=f2e302]:
+                  - generic [ref=f2e303]: $303
+                  - text: / nuit
+            - link "3 Crows Cabin in Blairmore 3 Bedroom 1 1/2 Bath AC and Hottub cottage VRBO 3 Crows Cabin in Blairmore 3 Bedroom 1 1/2 Bath AC and Hottub Alberta (30 avis) $652/ nuit" [ref=f2e308] [cursor=pointer]:
+              - /url: https://vrbo.com/affiliate/MVzAojA
+              - generic [ref=f2e309]:
+                - img "3 Crows Cabin in Blairmore 3 Bedroom 1 1/2 Bath AC and Hottub" [ref=f2e310]
+                - generic [ref=f2e311]: cottage
+                - img "VRBO" [ref=f2e312]
+              - generic [ref=f2e313]:
+                - heading "3 Crows Cabin in Blairmore 3 Bedroom 1 1/2 Bath AC and Hottub" [level=3] [ref=f2e314]
+                - generic [ref=f2e315]: Alberta
+                - generic [ref=f2e320]: (30 avis)
+                - generic [ref=f2e333]:
+                  - generic [ref=f2e334]: $652
+                  - text: / nuit
+            - link "Stay at the Peaceful Bay Getaway! This is a private entry guest suite + 3 beds! cottage VRBO Stay at the Peaceful Bay Getaway! This is a private entry guest suite + 3 beds! manitoba (14 avis) $176/ nuit" [ref=f2e339] [cursor=pointer]:
+              - /url: https://vrbo.com/affiliate/qO0KlYj
+              - generic [ref=f2e340]:
+                - img "Stay at the Peaceful Bay Getaway! This is a private entry guest suite + 3 beds!" [ref=f2e341]
+                - generic [ref=f2e342]: cottage
+                - img "VRBO" [ref=f2e343]
+              - generic [ref=f2e344]:
+                - heading "Stay at the Peaceful Bay Getaway! This is a private entry guest suite + 3 beds!" [level=3] [ref=f2e345]
+                - generic [ref=f2e346]: manitoba
+                - generic [ref=f2e351]: (14 avis)
+                - generic [ref=f2e364]:
+                  - generic [ref=f2e365]: $176
+                  - text: / nuit
+            - link "Chalet au Kalibu chalet VRBO Chalet au Kalibu new-brunswick (6 avis) Consulter les tarifs" [ref=f2e370] [cursor=pointer]:
+              - /url: https://vrbo.com/affiliate/vncOckF
+              - generic [ref=f2e371]:
+                - img "Chalet au Kalibu" [ref=f2e372]
+                - generic [ref=f2e373]: chalet
+                - img "VRBO" [ref=f2e374]
+              - generic [ref=f2e375]:
+                - heading "Chalet au Kalibu" [level=3] [ref=f2e376]
+                - generic [ref=f2e377]: new-brunswick
+                - generic [ref=f2e382]: (6 avis)
+                - generic [ref=f2e394]: Consulter les tarifs
+            - link "Blissful Beachfront Bungalow. Beach- Hot tub & Sauna-All Weather Dome-Private cottage VRBO Blissful Beachfront Bungalow. Beach- Hot tub & Sauna-All Weather Dome-Private nova-scotia (27 avis) $668/ nuit" [ref=f2e396] [cursor=pointer]:
+              - /url: https://vrbo.com/affiliate/jT3iZUH
+              - generic [ref=f2e397]:
+                - img "Blissful Beachfront Bungalow. Beach- Hot tub & Sauna-All Weather Dome-Private" [ref=f2e398]
+                - generic [ref=f2e399]: cottage
+                - img "VRBO" [ref=f2e400]
+              - generic [ref=f2e401]:
+                - heading "Blissful Beachfront Bungalow. Beach- Hot tub & Sauna-All Weather Dome-Private" [level=3] [ref=f2e402]
+                - generic [ref=f2e403]: nova-scotia
+                - generic [ref=f2e408]: (27 avis)
+                - generic [ref=f2e421]:
+                  - generic [ref=f2e422]: $668
+                  - text: / nuit
+            - link "Urban Cottage Oasis, Sunnyside cottage VRBO Urban Cottage Oasis, Sunnyside Alberta (105 avis) $348/ nuit" [ref=f2e427] [cursor=pointer]:
+              - /url: https://vrbo.com/affiliate/kKHvy3Y
+              - generic [ref=f2e428]:
+                - img "Urban Cottage Oasis, Sunnyside" [ref=f2e429]
+                - generic [ref=f2e430]: cottage
+                - img "VRBO" [ref=f2e431]
+              - generic [ref=f2e432]:
+                - heading "Urban Cottage Oasis, Sunnyside" [level=3] [ref=f2e433]
+                - generic [ref=f2e434]: Alberta
+                - generic [ref=f2e439]: (105 avis)
+                - generic [ref=f2e452]:
+                  - generic [ref=f2e453]: $348
+                  - text: / nuit
+            - link "Tranquil riverside Abode cottage Expedia Tranquil riverside Abode pei (1 avis) $673/ nuit" [ref=f2e458] [cursor=pointer]:
+              - /url: https://expedia.com/affiliate/fV2yXbY
+              - generic [ref=f2e459]:
+                - img "Tranquil riverside Abode" [ref=f2e460]
+                - generic [ref=f2e461]: cottage
+                - img "Expedia" [ref=f2e462]
+              - generic [ref=f2e463]:
+                - heading "Tranquil riverside Abode" [level=3] [ref=f2e464]
+                - generic [ref=f2e465]: pei
+                - generic [ref=f2e470]: (1 avis)
+                - generic [ref=f2e483]:
+                  - generic [ref=f2e484]: $673
+                  - text: / nuit
+        - generic [ref=f2e489]:
+          - heading "Les meilleures destinations pour des séjours en gîte rural" [level=2] [ref=f2e490]
+          - paragraph [ref=f2e491]: Découvrez les régions de gîtes les plus prisées du Canada
+          - generic [ref=f2e492]:
+            - link [ref=f2e493] [cursor=pointer]:
+              - /url: /en/cottage-country/ontario
+              - img "Location de chalets au bord des lacs de Muskoka" [ref=f2e494]
+              - generic [ref=f2e496]:
+                - heading "Muskoka, ON" [level=3] [ref=f2e497]
+                - paragraph [ref=f2e498]: Plus de 350 gîtes sur VRBO et Expedia
+            - link [ref=f2e499] [cursor=pointer]:
+              - /url: /en/cottage-country/quebec
+              - img "chalet à louer à Mont-Tremblant" [ref=f2e500]
+              - generic [ref=f2e502]:
+                - heading "Mont-Tremblant, QC" [level=3] [ref=f2e503]
+                - paragraph [ref=f2e504]: Plus de 450 gîtes sur VRBO et Expedia
+            - link [ref=f2e505] [cursor=pointer]:
+              - /url: /en/cottage-country/alberta
+              - img "Location d'un chalet à Banff, dans les Rocheuses" [ref=f2e506]
+              - generic [ref=f2e508]:
+                - heading "Banff, Alberta" [level=3] [ref=f2e509]
+                - paragraph [ref=f2e510]: Plus de 180 gîtes sur VRBO et Expedia
+            - link [ref=f2e511] [cursor=pointer]:
+              - /url: /en/cottage-country/quebec
+              - img "location de chalets dans la région de Charlevoix, au Québec" [ref=f2e512]
+              - generic [ref=f2e514]:
+                - heading "Charlevoix, QC" [level=3] [ref=f2e515]
+                - paragraph [ref=f2e516]: Plus de 210 gîtes sur VRBO et Expedia
+            - link [ref=f2e517] [cursor=pointer]:
+              - /url: /en/cottage-country/nova-scotia
+              - img "Gîtes côtiers à louer sur l'île du Cap-Breton, en Nouvelle-Écosse" [ref=f2e518]
+              - generic [ref=f2e520]:
+                - heading "Cap-Breton, Nouvelle-Écosse" [level=3] [ref=f2e521]
+                - paragraph [ref=f2e522]: Plus de 250 gîtes sur VRBO et Expedia
+            - link [ref=f2e523] [cursor=pointer]:
+              - /url: /en/cottage-country/british-columbia
+              - img "chalets de montagne à louer à Whistler" [ref=f2e524]
+              - generic [ref=f2e526]:
+                - heading "Whistler, Colombie-Britannique" [level=3] [ref=f2e527]
+                - paragraph [ref=f2e528]: Plus de 280 gîtes sur VRBO et Expedia
+            - link [ref=f2e529] [cursor=pointer]:
+              - /url: /en/cottage-country/ontario
+              - img "gîtes à louer dans la baie Georgienne, en Ontario" [ref=f2e530]
+              - generic [ref=f2e532]:
+                - heading "Georgian Bay, Ontario" [level=3] [ref=f2e533]
+                - paragraph [ref=f2e534]: Plus de 220 gîtes sur VRBO et Expedia
+            - link [ref=f2e535] [cursor=pointer]:
+              - /url: /en/cottage-country/pei
+              - img "gîtes à louer à l'Île-du-Prince-Édouard" [ref=f2e536]
+              - generic [ref=f2e538]:
+                - heading "Cavendish, Île-du-Prince-Édouard" [level=3] [ref=f2e539]
+                - paragraph [ref=f2e540]: Plus de 170 gîtes sur VRBO et Expedia
+        - generic [ref=f2e542]:
+          - generic [ref=f2e543]:
+            - heading "Trouvez le gîte idéal pour vos vacances au Canada" [level=2] [ref=f2e544]
+            - paragraph [ref=f2e545]: Nous vérifions et sélectionnons des hébergements très bien notés et très prisés, en proposant aux voyageurs des liens de réservation sécurisés sur VRBO et Expedia, sans aucun frais supplémentaire.
+            - paragraph [ref=f2e546]: Chaque région du Canada offre une expérience unique en matière de gîtes. Découvrez les locations de gîtes à travers le Canada, comparez les destinations et trouvez des endroits paisibles pour vous détendre au bord d'un lac, à la montagne ou en bord de mer.
+            - generic [ref=f2e547]:
+              - generic [ref=f2e548]:
+                - heading "Le Canada, pays des chalets" [level=3] [ref=f2e553]
+                - paragraph [ref=f2e554]: Parcourez les meilleures destinations de vacances à la campagne au Canada et découvrez des escapades au bord des lacs, des chalets chaleureux et des lieux de détente au bord de l'eau dans toutes les provinces.
+              - generic [ref=f2e555]:
+                - heading "Le pays aux 250 000 lacs" [level=3] [ref=f2e560]
+                - paragraph [ref=f2e561]: Faire du bateau, pagayer et nager en pleine eau au large de hauts pontons en bois, sous de magnifiques horizons chatoyants.
+              - generic [ref=f2e562]:
+                - heading "Forêts boréales et parcs" [level=3] [ref=f2e567]
+                - paragraph [ref=f2e568]: Partez en randonnée le long des reliefs escarpés du réseau de sentiers de la péninsule Bruce ou partez à la découverte des légendaires circuits en canoë du parc Algonquin.
+              - generic [ref=f2e569]:
+                - heading "Nature sauvage accessible à tous" [level=3] [ref=f2e574]
+                - paragraph [ref=f2e575]: Des maisons au bord d'un lac paisible et préservé, situées à une distance raisonnable de Toronto et d'Ottawa, soit entre 2 et 4 heures de route à travers des paysages magnifiques.
+          - img "Le Canada, pays des chalets" [ref=f2e578]
+        - generic [ref=f2e580]:
+          - generic [ref=f2e581]:
+            - generic [ref=f2e582]:
+              - heading "Dernières sources d'inspiration" [level=2] [ref=f2e583]
+              - paragraph [ref=f2e584]: Des guides d'experts, des conseils d'initiés et des récits triés sur le volet pour vous aider à organiser votre escapade idéale dans un chalet canadien.
+            - link "Voir tous les guides" [ref=f2e585] [cursor=pointer]:
+              - /url: /fr/guides
+          - generic [ref=f2e588]:
+            - 'link "7 chalets luxueux au Québec avec spa (disponibles dès maintenant) Quebec Chalet Rentals 5 min lecture 7 chalets luxueux au Québec avec spa (disponibles dès maintenant) Découvrez 7 chalets luxueux au Québec avec spa : vue sur la montagne, équipements haut de gamme et avis vérifiés. Réservez votre escapade de rêve. Lire le guide" [ref=f2e589] [cursor=pointer]':
+              - /url: /fr/guides/7-luxury-chalets-quebec-hot-tub
+              - generic [ref=f2e590]:
+                - img "7 chalets luxueux au Québec avec spa (disponibles dès maintenant)" [ref=f2e591]
+                - generic [ref=f2e592]: Quebec Chalet Rentals
+              - generic [ref=f2e593]:
+                - generic [ref=f2e594]: 5 min lecture
+                - heading "7 chalets luxueux au Québec avec spa (disponibles dès maintenant)" [level=3] [ref=f2e599]
+                - paragraph [ref=f2e600]: "Découvrez 7 chalets luxueux au Québec avec spa : vue sur la montagne, équipements haut de gamme et avis vérifiés. Réservez votre escapade de rêve."
+                - generic [ref=f2e601]: Lire le guide
+            - 'link "7 locations de chalets à Muskoka pour 2026 Ontario Cottage Country 5 min lecture 7 locations de chalets à Muskoka pour 2026 Découvrez 7 locations de chalets à Muskoka pour 2026 : avis de voyageurs vérifiés, annonces authentiques et conseils pour votre escapade au bord du lac. Lire le guide" [ref=f2e604] [cursor=pointer]':
+              - /url: /fr/guides/7-best-cottage-rentals-in-muskoka
+              - generic [ref=f2e605]:
+                - img "7 locations de chalets à Muskoka pour 2026" [ref=f2e606]
+                - generic [ref=f2e607]: Ontario Cottage Country
+              - generic [ref=f2e608]:
+                - generic [ref=f2e609]: 5 min lecture
+                - heading "7 locations de chalets à Muskoka pour 2026" [level=3] [ref=f2e614]
+                - paragraph [ref=f2e615]: "Découvrez 7 locations de chalets à Muskoka pour 2026 : avis de voyageurs vérifiés, annonces authentiques et conseils pour votre escapade au bord du lac."
+                - generic [ref=f2e616]: Lire le guide
+            - 'link "Locations de chalets à l''Île-du-Prince-Édouard : plages de sable rouge et bord de mer PEI Cottage Rentals 6 min lecture Locations de chalets à l''Île-du-Prince-Édouard : plages de sable rouge et bord de mer Découvrez les meilleures locations de gîtes à l''Île-du-Prince-Édouard pour profiter des plages de sable rouge et des escapades en bord de mer. Explorez la Côte-Nord, la région de Points East, les différentes saisons et nos conseils de réservation. Lire le guide" [ref=f2e619] [cursor=pointer]':
+              - /url: /fr/guides/pei-cottage-rentals
+              - generic [ref=f2e620]:
+                - 'img "Locations de chalets à l''Île-du-Prince-Édouard : plages de sable rouge et bord de mer" [ref=f2e621]'
+                - generic [ref=f2e622]: PEI Cottage Rentals
+              - generic [ref=f2e623]:
+                - generic [ref=f2e624]: 6 min lecture
+                - 'heading "Locations de chalets à l''Île-du-Prince-Édouard : plages de sable rouge et bord de mer" [level=3] [ref=f2e629]'
+                - paragraph [ref=f2e630]: Découvrez les meilleures locations de gîtes à l'Île-du-Prince-Édouard pour profiter des plages de sable rouge et des escapades en bord de mer. Explorez la Côte-Nord, la région de Points East, les différentes saisons et nos conseils de réservation.
+                - generic [ref=f2e631]: Lire le guide
+        - generic [ref=f2e634]:
+          - generic [ref=f2e635]:
+            - heading "Recherche par ville et par catégorie" [level=2] [ref=f2e636]
+            - paragraph [ref=f2e637]: Accédez rapidement à une sélection de locations en cours dans les principales régions du Canada.
+          - generic [ref=f2e638]:
+            - generic [ref=f2e639]:
+              - heading "Ontario" [level=3] [ref=f2e640]
+              - list [ref=f2e641]:
+                - listitem [ref=f2e642]:
+                  - link "Gîtes à Muskoka" [ref=f2e643] [cursor=pointer]:
+                    - /url: /en/search/muskoka
+                - listitem [ref=f2e644]:
+                  - link "Au bord du lac à Haliburton" [ref=f2e645] [cursor=pointer]:
+                    - /url: /en/search/haliburton/lakefront
+                - listitem [ref=f2e646]:
+                  - link "Gîtes dans la région des Kawarthas" [ref=f2e647] [cursor=pointer]:
+                    - /url: /en/search/kawarthas
+            - generic [ref=f2e648]:
+              - heading "Québec" [level=3] [ref=f2e649]
+              - list [ref=f2e650]:
+                - listitem [ref=f2e651]:
+                  - link "Cottages in Mont-Tremblant" [ref=f2e652] [cursor=pointer]:
+                    - /url: /en/search/mont-tremblant
+                - listitem [ref=f2e653]:
+                  - link "Gîtes à Charlevoix" [ref=f2e654] [cursor=pointer]:
+                    - /url: /en/search/charlevoix
+                - listitem [ref=f2e655]:
+                  - link "Gîtes dans les Laurentides" [ref=f2e656] [cursor=pointer]:
+                    - /url: /en/search/laurentians
+            - generic [ref=f2e657]:
+              - heading "Colombie-Britannique" [level=3] [ref=f2e658]
+              - list [ref=f2e659]:
+                - listitem [ref=f2e660]:
+                  - link "Gîtes à Whistler" [ref=f2e661] [cursor=pointer]:
+                    - /url: /en/search/whistler
+                - listitem [ref=f2e662]:
+                  - link "Gîtes à Vancouver" [ref=f2e663] [cursor=pointer]:
+                    - /url: /en/search/vancouver
+                - listitem [ref=f2e664]:
+                  - link "Gîtes à Tofino" [ref=f2e665] [cursor=pointer]:
+                    - /url: /en/search/tofino
+            - generic [ref=f2e666]:
+              - heading "Alberta" [level=3] [ref=f2e667]
+              - list [ref=f2e668]:
+                - listitem [ref=f2e669]:
+                  - link "Gîtes à Banff" [ref=f2e670] [cursor=pointer]:
+                    - /url: /en/search/banff
+                - listitem [ref=f2e671]:
+                  - link "Gîtes à Jasper" [ref=f2e672] [cursor=pointer]:
+                    - /url: /en/search/jasper
+                - listitem [ref=f2e673]:
+                  - link "Gîtes à Calgary" [ref=f2e674] [cursor=pointer]:
+                    - /url: /en/search/calgary
+        - generic [ref=f2e677]:
+          - heading "Découvrez les destinations phares et réservez le séjour de vos rêves." [level=2] [ref=f2e678]
+          - paragraph [ref=f2e679]: Découvrez des gîtes au bord de l'eau, des chalets chaleureux, des maisons de vacances idéales pour les familles et des lieux de séjour uniques dans les plus belles destinations du pays.
+          - link "Découvrez d'autres gîtes sur VRBO" [ref=f2e680] [cursor=pointer]:
+            - /url: https://vrbo.com/affiliates/cottagerentals/vrbo

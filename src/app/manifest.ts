@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Chalet Express - Canadian Cottage Rentals",
     short_name: "Chalet Express",
     description:
-      "Find your perfect Canadian escape. Premium lake houses and mountain lodges across Canada.",
+      "Find your perfect Canadian cottage rental. Trouvez votre chalet idéal au Canada.",
     start_url: "/en",
     display: "standalone",
     background_color: "#ffffff",

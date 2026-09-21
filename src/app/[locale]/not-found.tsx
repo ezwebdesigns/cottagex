@@ -1,10 +1,14 @@
 'use client';
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTranslations } from 'next-intl';
 
 export default function LocaleNotFound() {
   const t = useTranslations();
+  // 404 responses are never indexed by crawlers; no metadata needed here.
+  const pathname = usePathname();
+  const homeHref = pathname?.startsWith('/fr') ? '/fr' : '/en';
 
   return (
     <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 text-center">
@@ -16,7 +20,7 @@ export default function LocaleNotFound() {
       </h1>
       <p className="mb-8 max-w-md text-[#191e3b]/60">{t('notFound.description')}</p>
       <Link
-        href="."
+        href={homeHref}
         className="rounded-full bg-[#0f51ec] px-8 py-3 font-semibold text-white transition-colors hover:bg-[#0a3ec2]"
       >
         {t('notFound.backHome')}

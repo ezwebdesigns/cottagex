@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Compass, BookOpen, MapPin, Info, Mountain, Home, TreePine, Sailboat, Sunrise, Globe, Heart, Star, Search, Image, Settings as SettingsIcon, User, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { localizeHref } from '@/components/cottagex/SmartLink';
 
 const iconMap: Record<string, any> = {
   Compass, BookOpen, MapPin, Info, Mountain, Home, TreePine, Sailboat, Sunrise, Globe, Heart, Star, Search, Image, Settings: SettingsIcon, User,
@@ -18,7 +19,7 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: { mobileOpen: 
   const [menuSections, setMenuSections] = useState<{ title: string; items: { label: string; icon: string; href: string }[] }[]>([]);
 
   useEffect(() => {
-    fetch('/api/admin/settings?section=general').then(r => r.json()).then(d => {
+    fetch(`/api/admin/settings?section=general&locale=${lang}`).then(r => r.json()).then(d => {
       const raw = d.data?.favicon ?? null;
       if (raw && raw.startsWith('lib:')) {
         fetch(`/api/library/${raw.slice(4)}`).then(r => r.ok && r.json()).then(d => { setFavicon(d?.url || ''); setLoading(false); }).catch(() => { setFavicon(''); setLoading(false); });
@@ -27,10 +28,10 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: { mobileOpen: 
         setLoading(false);
       }
     }).catch(() => setLoading(false));
-    fetch('/api/admin/settings?section=side_menu').then(r => r.json()).then(d => { if (d.data?.sections) setMenuSections(d.data.sections); }).catch(() => {});
-  }, []);
+    fetch(`/api/admin/settings?section=side_menu&locale=${lang}`).then(r => r.json()).then(d => { if (d.data?.sections) setMenuSections(d.data.sections); }).catch(() => {});
+  }, [lang]);
 
-  const interpolate = (text: string) => text?.replace(/\{locale\}/g, lang);
+  const interpolate = (text: string) => localizeHref(text?.replace(/\{locale\}/g, lang) ?? '', lang);
 
   const isActive = (href: string) => {
     const resolved = interpolate(href);

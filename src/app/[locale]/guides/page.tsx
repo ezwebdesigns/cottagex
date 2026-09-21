@@ -1,19 +1,24 @@
 import type { Metadata } from "next";
-import { db } from '@/lib/db';
-import { articles } from '@/db/schema';
-import { desc, eq } from 'drizzle-orm';
+import { getPublishedArticles } from '@/lib/cached-settings';
 import GuidesList from '@/components/guides/GuidesList';
+import { BreadcrumbSchema } from '@/components/seo/SchemaOrg';
+import { seoFor } from '@/lib/seo-meta';
 
 export const revalidate = 3600;
 export const dynamic = 'force-dynamic';
 
 type Props = { params: Promise<{ locale: string }>; searchParams: Promise<{ page?: string }> };
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { locale } = await params;
+  const { page: pageStr } = await searchParams;
+  const page = Math.max(1, parseInt(pageStr || '1', 10) || 1);
+  const meta = seoFor('guides', locale);
+  // Paginated listing pages get distinct titles (canonical stays /guides).
+  const title = page > 1 ? `${meta.title} — Page ${page}` : meta.title;
   return {
-    title: "Cottage & Cabin Rental Guides - The Escape Magazine",
-    description: "Expert travel guides, packing lists, and local recommendations for Canadian cottage rentals. Discover Muskoka, Mont-Tremblant, Banff and more.",
+    title,
+    description: meta.description,
     alternates: {
       canonical: `https://chaletexpress.com/${locale}/guides`,
       languages: {
@@ -24,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     openGraph: {
       title: "The Escape Magazine - Cottage & Cabin Guides",
-      description: "Expert travel guides for Canadian cottage rentals.",
+      description: meta.description,
       images: [{ url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1200", width: 1200, height: 630 }],
     },
   };
@@ -38,7 +43,8 @@ export default async function GuidesPage({ params, searchParams }: Props) {
 
   let dbArticles: any[] = [];
   try {
-    dbArticles = await db.select().from(articles).where(eq(articles.isPublished, true)).orderBy(desc(articles.createdAt));
+    // Locale-preferred listing (FR siblings win, EN fallback).
+    dbArticles = await getPublishedArticles(locale);
   } catch (e) {
     console.error('Failed to fetch articles:', e);
   }
@@ -62,5 +68,13 @@ export default async function GuidesPage({ params, searchParams }: Props) {
   const start = (page - 1) * perPage;
   const paged = combined.slice(start, start + perPage);
 
-  return <GuidesList locale={locale} articles={paged} page={page} totalPages={totalPages} />;
+  return (
+    <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: `/${locale}` },
+        { name: 'Guides', url: `/${locale}/guides` },
+      ]} />
+      <GuidesList locale={locale} articles={paged} page={page} totalPages={totalPages} />
+    </>
+  );
 }

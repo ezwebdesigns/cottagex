@@ -1,4 +1,5 @@
 ﻿import ResolvedImage from '@/components/cottagex/ResolvedImage';
+import SmartLink from '@/components/cottagex/SmartLink';
 
 type CTASectionProps = {
   locale: string;
@@ -29,12 +30,13 @@ export default function CTASection({ locale, title, description, buttonText, but
             <p className="text-white/60 mb-8 text-sm sm:text-base leading-relaxed">{description}</p>
           )}
           {buttonText && buttonLink && (
-            <a
+            <SmartLink
               href={buttonLink.replace('{locale}', locale)}
+              locale={locale}
               className="inline-flex items-center gap-2 bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-6 py-3 rounded-full font-semibold text-sm transition-colors shadow-md"
             >
               {buttonText}
-            </a>
+            </SmartLink>
           )}
         </div>
         {image && (

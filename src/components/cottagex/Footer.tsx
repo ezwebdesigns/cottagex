@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
+import { localizeHref } from '@/components/cottagex/SmartLink';
 import SocialIcon from '@/components/cottagex/SocialIcon';
 
 type FooterLink = { label: string; href: string };
@@ -27,7 +28,7 @@ export default function Footer() {
   const [footerSettings, setFooterSettings] = useState<FooterSettings | null>(null);
 
   useEffect(() => {
-    fetch('/api/admin/settings?section=footer').then(r => r.json()).then(d => {
+    fetch(`/api/admin/settings?section=footer&locale=${lang}`).then(r => r.json()).then(d => {
       const raw = d.data ?? null;
       if (raw?.logo?.startsWith('lib:')) {
         fetch(`/api/library/${raw.logo.slice(4)}`).then(r => r.ok && r.json()).then(d => setFooterSettings({ ...raw, logo: d?.url || '' })).catch(() => setFooterSettings(raw));
@@ -35,9 +36,9 @@ export default function Footer() {
         setFooterSettings(raw);
       }
     }).catch(() => {});
-  }, []);
+  }, [lang]);
 
-  const interpolate = (href: string) => href?.replace(/\{locale\}/g, lang) ?? '#';
+  const interpolate = (href: string) => localizeHref(href?.replace(/\{locale\}/g, lang) ?? '#', lang);
 
   const discover = footerSettings?.discover ?? [];
   const quickLinks = footerSettings?.quickLinks ?? [];
@@ -56,7 +57,7 @@ export default function Footer() {
             <div className="col-span-2 md:col-span-1">
               {footerSettings.logo ? (
                 <div className="flex items-center gap-2 mb-3">
-                  <img src={footerSettings.logo} alt="Logo" className="h-8 w-auto" />
+                  <img src={footerSettings.logo} alt="Chalet Express logo" className="h-8 w-auto" />
                 </div>
               ) : null}
               {footerSettings.description && (

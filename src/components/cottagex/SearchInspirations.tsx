@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { ChevronDown } from 'lucide-react';
+import SmartLink from '@/components/cottagex/SmartLink';
 
 type SearchInspirationsProps = {
   data: {
@@ -56,14 +57,15 @@ export default function SearchInspirations({ data, locale }: SearchInspirationsP
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
         {filtered.map((item, i) => (
-          <a
+          <SmartLink
             key={i}
             href={item.link}
+            locale={locale}
             className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-100 hover:shadow-md transition-shadow group"
           >
             <p className="text-sm sm:text-base font-semibold text-[#191e3b] group-hover:text-[#0f51ec] transition-colors">{item.city}</p>
             <p className="text-xs text-slate-400 mt-0.5">{item.category}</p>
-          </a>
+          </SmartLink>
         ))}
       </div>
 

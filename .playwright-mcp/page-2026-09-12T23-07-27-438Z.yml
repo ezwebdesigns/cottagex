@@ -1,0 +1,14 @@
+- generic [active] [ref=f14e1]:
+  - generic [ref=f14e2]:
+    - complementary [ref=f14e4]:
+      - link "CE" [ref=f14e6] [cursor=pointer]:
+        - /url: /fr
+      - navigation [ref=f14e8]
+    - generic [ref=f14e9]:
+      - banner [ref=f14e10]:
+        - generic [ref=f14e12]:
+          - link "Chalet Express" [ref=f14e14] [cursor=pointer]:
+            - /url: /fr
+          - button "EN" [ref=f14e17]
+      - main [ref=f14e22]
+  - alert [ref=f14e29]

@@ -1,0 +1,19 @@
+- generic [active] [ref=f4e1]:
+  - generic [ref=f4e2]:
+    - complementary [ref=f4e4]:
+      - link "CE" [ref=f4e6] [cursor=pointer]:
+        - /url: /en
+      - navigation [ref=f4e8]
+    - generic [ref=f4e9]:
+      - banner [ref=f4e10]:
+        - generic [ref=f4e12]:
+          - link "Chalet Express" [ref=f4e14] [cursor=pointer]:
+            - /url: /en
+          - button "FR" [ref=f4e17]
+      - main [ref=f4e22]:
+        - generic [ref=f4e24]:
+          - img "Ontario" [ref=f4e25]
+          - generic [ref=f4e28]:
+            - generic [ref=f4e29]: Destinations
+            - heading "Ontario" [level=1] [ref=f4e33]
+  - alert [ref=f4e34]

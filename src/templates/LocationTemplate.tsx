@@ -5,7 +5,9 @@ import { MapPin, ChevronDown, Waves, Trees, Compass, Star, Snowflake, Mountain, 
 import { useTranslations } from 'next-intl';
 import PropertyCard from '@/components/cottagex/PropertyCard';
 import CTASection from '@/components/cottagex/CTASection';
-import { BreadcrumbSchema, PlaceSchema, ItemListSchema } from '@/components/seo/SchemaOrg';
+import SmartLink from '@/components/cottagex/SmartLink';
+import MapSection from '@/components/cottagex/MapSection';
+import { BreadcrumbSchema, PlaceSchema, ItemListSchema, FAQPageSchema } from '@/components/seo/SchemaOrg';
 import Image from 'next/image';
 
 type LocationTemplateProps = {
@@ -61,6 +63,8 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
       beds: c.bedrooms || 0,
       baths: c.bathrooms || 0,
       guests: c.sleeps || 0,
+      lat: c.lat ?? null,
+      lng: c.lng ?? null,
     }));
   }, [cottages, locName]);
 
@@ -87,6 +91,14 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
             price: c.price_cad ?? undefined,
             rating: c.rating ?? undefined,
             reviews: c.reviews ?? undefined,
+          }))}
+        />
+      )}
+      {learnMoreFaq.length > 0 && (
+        <FAQPageSchema
+          items={learnMoreFaq.map((item: any) => ({
+            question: item.q || '',
+            answer: item.a || '',
           }))}
         />
       )}
@@ -142,9 +154,10 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
           <p className="text-sm text-slate-500 mb-6">{locName}</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
             {chaletCards.map((chalet) => (
-              <PropertyCard key={chalet.id} chalet={chalet} />
+              <PropertyCard key={chalet.id} chalet={chalet} withSchema={false} />
             ))}
           </div>
+          <MapSection chalets={chaletCards} locale={locale} />
         </section>
       )}
 
@@ -169,7 +182,7 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
                           onClick={() => setOpenLearnMoreFaq(isOpen ? null : i)}
                           className="flex items-center justify-between w-full py-4 text-left"
                         >
-                          <h3 className="font-medium text-sm text-[#191e3b] pr-3">{item.q}</h3>
+                          <span className="font-medium text-sm text-[#191e3b] pr-3">{item.q}</span>
                           <ChevronDown className={`w-4 h-4 text-[#0f51ec] shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                         </button>
                         <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 pb-4' : 'max-h-0'}`}>
@@ -224,12 +237,13 @@ export default function LocationTemplate({ locale, slug, pageData, name: namePro
                   <ul className="space-y-2">
                     {(col.links || []).map((link: any, li: number) => (
                       <li key={li}>
-                        <a
+                        <SmartLink
                           href={link.url}
+                          locale={locale}
                           className="text-sm text-[#0f51ec] hover:underline"
                         >
                           {link.text}
-                        </a>
+                        </SmartLink>
                       </li>
                     ))}
                   </ul>

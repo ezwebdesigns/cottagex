@@ -58,11 +58,11 @@ export default function AdminSettingsPage() {
   const [openHomeSection, setOpenHomeSection] = useState<string>('hero');
 
   const fetchSection = useCallback(async (section: string) => {
-    const res = await fetch(`/api/admin/settings?section=${section}`);
+    const res = await fetch(`/api/admin/settings?section=${section}&locale=${locale}`);
     if (!res.ok) return null;
     const json = await res.json();
     return json.data;
-  }, []);
+  }, [locale]);
 
   useEffect(() => {
     fetchSection('general').then(setGeneral);

@@ -55,6 +55,7 @@ export default function AdminDestinationsPage() {
             <thead>
               <tr className="border-b border-slate-200 bg-slate-50 text-left text-slate-500 font-medium">
                 <th className="px-5 py-3">Title</th>
+                <th className="px-5 py-3">Lang</th>
                 <th className="px-5 py-3">Slug</th>
                 <th className="px-5 py-3">Status</th>
                 <th className="px-5 py-3 text-right">Actions</th>
@@ -64,6 +65,11 @@ export default function AdminDestinationsPage() {
               {destinations.map((dest) => (
                 <tr key={dest.id} className="border-b border-slate-100 hover:bg-slate-50">
                   <td className="px-5 py-4 font-medium text-[#191e3b]">{dest.title}</td>
+                  <td className="px-5 py-4">
+                    <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${dest.locale === 'fr' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700'}`}>
+                      {dest.locale?.toUpperCase() || 'EN'}
+                    </span>
+                  </td>
                   <td className="px-5 py-4 text-slate-500 text-xs font-mono">{dest.slug}</td>
                   <td className="px-5 py-4">
                     <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${dest.isPublished ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-500'}`}>

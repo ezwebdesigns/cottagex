@@ -1,0 +1,20 @@
+- generic [active] [ref=f13e1]:
+  - generic [ref=f13e2]:
+    - complementary [ref=f13e4]:
+      - link [ref=f13e6] [cursor=pointer]:
+        - /url: /fr
+      - navigation [ref=f13e8]
+    - generic [ref=f13e9]:
+      - banner [ref=f13e10]:
+        - generic [ref=f13e12]:
+          - link "Chalet Express" [ref=f13e14] [cursor=pointer]:
+            - /url: /fr
+          - button "EN" [ref=f13e17]
+      - main [ref=f13e22]:
+        - generic [ref=f13e23]:
+          - generic [ref=f13e24]: "404"
+          - heading "Page introuvable" [level=1] [ref=f13e26]
+          - paragraph [ref=f13e27]: La page que vous recherchez n'existe pas ou a ├®t├® d├®plac├®e.
+          - link "Retour ├á la page d'accueil" [ref=f13e28] [cursor=pointer]:
+            - /url: .
+  - alert [ref=f13e29]

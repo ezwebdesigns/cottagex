@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Kayak, Bath, Users, Gem, PawPrint, Mountain, Heart, Home, Trees, TreePine, Umbrella, Building2, Snowflake, Waves, Footprints, Sailboat } from 'lucide-react';
 import CategoryScroller from '@/components/cottagex/CategoryScroller';
+import SmartLink from '@/components/cottagex/SmartLink';
 
 const WIDGET_HTML = `<div class="eg-widget" data-widget="search" data-program="ca-vrbo" data-lobs="stays" data-network="pz" data-camref="1100lpG3d" data-pubref=""></div><script class="eg-widgets-script" src="https://creator.expediagroup.com/products/widgets/assets/eg-widgets.js"></script>`;
 
@@ -24,9 +25,10 @@ type HeroProps = {
   image?: string;
   imageAlt?: string;
   catItems?: CatItem[];
+  locale?: string;
 };
 
-export default function Hero({ tag, title, description, image, imageAlt, catItems }: HeroProps) {
+export default function Hero({ tag, title, description, image, imageAlt, catItems, locale }: HeroProps) {
   const [scrollY, setScrollY] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -74,7 +76,7 @@ export default function Hero({ tag, title, description, image, imageAlt, catItem
         >
           <Image
             src={image}
-            alt={imageAlt || ''}
+            alt={imageAlt || title || 'Canadian cottage rentals'}
             fill
             priority
             sizes="100vw"
@@ -119,16 +121,15 @@ export default function Hero({ tag, title, description, image, imageAlt, catItem
           <CategoryScroller variant="dark" className="flex gap-4 sm:gap-5 lg:gap-7 justify-center mt-8 lg:mt-12 overflow-x-auto [&::-webkit-scrollbar]:hidden pb-2" style={{ scrollbarWidth: 'none' }}>
             {catItems.map((cat) => {
               const Icon = iconMap[cat.id] || Mountain;
-              const Wrapper = cat.link ? 'a' : 'div';
               return (
-                <Wrapper key={cat.id} href={cat.link} className="flex flex-col items-center gap-1.5 flex-shrink-0 group min-w-[56px] sm:min-w-[64px]">
+                <SmartLink key={cat.id} href={cat.link} locale={locale} className="flex flex-col items-center gap-1.5 flex-shrink-0 group min-w-[56px] sm:min-w-[64px]">
                   <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl border border-white/20 bg-transparent group-hover:bg-[#0f51ec] flex items-center justify-center transition-colors">
                     <Icon className="w-5 h-5 text-white transition-colors" strokeWidth={1.5} />
                   </div>
                   <span className="text-[10px] sm:text-xs font-medium text-white/80 group-hover:text-white transition-colors text-center">
                     {cat.label}
                   </span>
-                </Wrapper>
+                </SmartLink>
               );
             })}
           </CategoryScroller>

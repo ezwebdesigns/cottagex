@@ -29,14 +29,6 @@ export function WebSiteSchema() {
     '@type': 'WebSite',
     name: 'Chalet Express',
     url: SITE_URL,
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${SITE_URL}/en/search/{search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
   };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }
@@ -57,7 +49,7 @@ export function BreadcrumbSchema({ items }: { items: Crumb[] }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }
 
-export function ArticleSchema({ title, description, image, date, dateModified, url, author }: {
+export function ArticleSchema({ title, description, image, date, dateModified, url, author, inLanguage }: {
   title: string;
   description: string;
   image: string;
@@ -65,39 +57,46 @@ export function ArticleSchema({ title, description, image, date, dateModified, u
   dateModified?: string;
   url?: string;
   author?: string;
+  inLanguage?: string;
 }) {
-  const SITE_URL = 'https://chaletexpress.com';
-  
   const absoluteImageUrl = image
     ? image.startsWith('http')
       ? image
-      : `https://www.chaletexpress.com${image.startsWith('/') ? '' : '/'}${image}`
-    : 'https://www.chaletexpress.com/og-default.jpg';
+      : `${SITE_URL}${image.startsWith('/') ? '' : '/'}${image}`
+    : `${SITE_URL}/og-default.jpg`;
 
   const headline = title.length > 110 ? title.substring(0, 107) + '...' : title;
+
+  // Plain-text description only: callers must pass excerpt, never HTML.
+  const plainDescription = description ? description.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim() : '';
+
+  // A named human author becomes a Person. Generic brand/team labels
+  // stay an Organization (a "Person: Editorial Team" would be misleading).
+  const isGeneric = !author || author === 'Chalet Express' || /editorial team/i.test(author);
+  const authorNode = !isGeneric
+    ? { '@type': 'Person', name: author }
+    : { '@type': 'Organization', name: 'Chalet Express', url: SITE_URL };
 
   const schema: Record<string, any> = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: headline,
-    description,
+    description: plainDescription,
     image: [absoluteImageUrl],
     datePublished: new Date(date).toISOString(),
     dateModified: dateModified ? new Date(dateModified).toISOString() : new Date(date).toISOString(),
-    author: {
-      '@type': 'Organization',
-      name: 'Chalet Express',
-      url: 'https://www.chaletexpress.com',
-    },
+    inLanguage: inLanguage || 'en-CA',
+    author: authorNode,
     publisher: {
       '@type': 'Organization',
       name: 'Chalet Express',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.chaletexpress.com/logo.png',
+        url: `${SITE_URL}/logo.png`,
       },
     },
   };
+  if (url) schema.mainEntityOfPage = { '@type': 'WebPage', '@id': url };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }
 
@@ -139,7 +138,8 @@ export function PlaceSchema({ name, description, image, url, address }: {
     },
   };
   if (address) {
-    schema.address = { '@type': 'PostalAddress', addressCountry: address };
+    // address here is a locality name (e.g. "Muskoka"), not a country.
+    schema.address = { '@type': 'PostalAddress', addressLocality: address, addressCountry: 'CA' };
   }
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }

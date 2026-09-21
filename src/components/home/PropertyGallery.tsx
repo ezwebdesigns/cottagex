@@ -99,7 +99,7 @@ function CottageCard({ cottage }: { cottage: any }) {
           <a
             href={bookingUrl}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="sponsored nofollow noopener noreferrer"
             className="bg-[#1F51C6] hover:bg-[#163FA3] text-white px-3 md:px-4 py-1.5 md:py-2 rounded-full text-[11px] md:text-sm font-semibold transition-colors inline-flex items-center justify-center gap-1 w-full md:w-auto"
           >
             Check Availability <ExternalLink size={10} />

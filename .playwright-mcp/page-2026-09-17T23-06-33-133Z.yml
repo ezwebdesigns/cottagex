@@ -1,0 +1,235 @@
+- generic [active] [ref=f4e1]:
+  - button "Open Next.js Dev Tools" [ref=f4e11] [cursor=pointer]
+  - alert [ref=f4e15]
+  - generic [ref=f4e16]:
+    - complementary [ref=f4e17]:
+      - generic [ref=f4e18]:
+        - generic: Chaletx
+        - button [ref=f4e19]
+      - navigation [ref=f4e22]:
+        - paragraph [ref=f4e23]: Admin
+        - link "Dashboard" [ref=f4e24] [cursor=pointer]:
+          - /url: /en/admin/dashboard
+        - link "Pages" [ref=f4e30] [cursor=pointer]:
+          - /url: /en/admin/pages
+        - link "Articles" [ref=f4e34] [cursor=pointer]:
+          - /url: /en/admin/articles
+        - link "Library" [ref=f4e37] [cursor=pointer]:
+          - /url: /en/admin/library
+        - link "Messages" [ref=f4e42] [cursor=pointer]:
+          - /url: /en/admin/messages
+        - link "Search" [ref=f4e46] [cursor=pointer]:
+          - /url: /en/admin/search
+        - link "Cottages" [ref=f4e50] [cursor=pointer]:
+          - /url: /en/admin/cottages
+        - link "Destinations" [ref=f4e55] [cursor=pointer]:
+          - /url: /en/admin/destinations
+        - link "Settings" [ref=f4e59] [cursor=pointer]:
+          - /url: /en/admin/settings
+      - generic [ref=f4e63]:
+        - link "Profile" [ref=f4e64] [cursor=pointer]:
+          - /url: /en/admin/profile
+        - link "Visit Website" [ref=f4e68] [cursor=pointer]:
+          - /url: /en
+        - button "Clear Cache" [ref=f4e73]
+        - button "Logout" [ref=f4e79]
+    - generic [ref=f4e83]:
+      - banner [ref=f4e84]:
+        - heading "Admin" [level=2] [ref=f4e85]
+        - generic [ref=f4e86]:
+          - generic "You are editing the EN version — visible on /en/… Remember to mirror on FR if needed (no auto-sync)." [ref=f4e87]: EN
+          - generic [ref=f4e88]:
+            - link "EN" [ref=f4e89] [cursor=pointer]:
+              - /url: /en/admin/destinations
+            - link "FR" [ref=f4e90] [cursor=pointer]:
+              - /url: /fr/admin/destinations
+      - main [ref=f4e91]:
+        - generic [ref=f4e92]:
+          - generic [ref=f4e93]:
+            - heading "Destinations" [level=1] [ref=f4e94]
+            - button "Create New Destination" [ref=f4e95]
+          - table [ref=f4e98]:
+            - rowgroup [ref=f4e99]:
+              - row [ref=f4e100]:
+                - columnheader "Title" [ref=f4e101]
+                - columnheader "Lang" [ref=f4e102]
+                - columnheader "Slug" [ref=f4e103]
+                - columnheader "Status" [ref=f4e104]
+                - columnheader "Actions" [ref=f4e105]
+            - rowgroup [ref=f4e106]:
+              - row [ref=f4e107]:
+                - cell "Manitoba" [ref=f4e108]
+                - cell "FR" [ref=f4e109]
+                - cell "manitoba" [ref=f4e110]
+                - cell "Published" [ref=f4e111]
+                - cell [ref=f4e112]:
+                  - generic [ref=f4e113]:
+                    - button [ref=f4e114]
+                    - button [ref=f4e118]
+                    - button "Duplicate" [ref=f4e122]
+                    - button [ref=f4e126]
+              - row [ref=f4e130]:
+                - cell "Île-du-Prince-Édouard" [ref=f4e131]
+                - cell "FR" [ref=f4e132]
+                - cell "pei" [ref=f4e133]
+                - cell "Published" [ref=f4e134]
+                - cell [ref=f4e135]:
+                  - generic [ref=f4e136]:
+                    - button [ref=f4e137]
+                    - button [ref=f4e141]
+                    - button "Duplicate" [ref=f4e145]
+                    - button [ref=f4e149]
+              - row [ref=f4e153]:
+                - cell "Alberta" [ref=f4e154]
+                - cell "FR" [ref=f4e155]
+                - cell "alberta" [ref=f4e156]
+                - cell "Published" [ref=f4e157]
+                - cell [ref=f4e158]:
+                  - generic [ref=f4e159]:
+                    - button [ref=f4e160]
+                    - button [ref=f4e164]
+                    - button "Duplicate" [ref=f4e168]
+                    - button [ref=f4e172]
+              - row [ref=f4e176]:
+                - cell "Nouvelle-Écosse" [ref=f4e177]
+                - cell "FR" [ref=f4e178]
+                - cell "nova-scotia" [ref=f4e179]
+                - cell "Published" [ref=f4e180]
+                - cell [ref=f4e181]:
+                  - generic [ref=f4e182]:
+                    - button [ref=f4e183]
+                    - button [ref=f4e187]
+                    - button "Duplicate" [ref=f4e191]
+                    - button [ref=f4e195]
+              - row [ref=f4e199]:
+                - cell "Colombie-Britannique" [ref=f4e200]
+                - cell "FR" [ref=f4e201]
+                - cell "british-columbia" [ref=f4e202]
+                - cell "Published" [ref=f4e203]
+                - cell [ref=f4e204]:
+                  - generic [ref=f4e205]:
+                    - button [ref=f4e206]
+                    - button [ref=f4e210]
+                    - button "Duplicate" [ref=f4e214]
+                    - button [ref=f4e218]
+              - row [ref=f4e222]:
+                - cell "Nouveau-Brunswick" [ref=f4e223]
+                - cell "FR" [ref=f4e224]
+                - cell "new-brunswick" [ref=f4e225]
+                - cell "Published" [ref=f4e226]
+                - cell [ref=f4e227]:
+                  - generic [ref=f4e228]:
+                    - button [ref=f4e229]
+                    - button [ref=f4e233]
+                    - button "Duplicate" [ref=f4e237]
+                    - button [ref=f4e241]
+              - row [ref=f4e245]:
+                - cell "Québec" [ref=f4e246]
+                - cell "FR" [ref=f4e247]
+                - cell "quebec" [ref=f4e248]
+                - cell "Published" [ref=f4e249]
+                - cell [ref=f4e250]:
+                  - generic [ref=f4e251]:
+                    - button [ref=f4e252]
+                    - button [ref=f4e256]
+                    - button "Duplicate" [ref=f4e260]
+                    - button [ref=f4e264]
+              - row [ref=f4e268]:
+                - cell "Ontario" [ref=f4e269]
+                - cell "FR" [ref=f4e270]
+                - cell "ontario" [ref=f4e271]
+                - cell "Published" [ref=f4e272]
+                - cell [ref=f4e273]:
+                  - generic [ref=f4e274]:
+                    - button [ref=f4e275]
+                    - button [ref=f4e279]
+                    - button "Duplicate" [ref=f4e283]
+                    - button [ref=f4e287]
+              - row [ref=f4e291]:
+                - cell "Manitoba" [ref=f4e292]
+                - cell "EN" [ref=f4e293]
+                - cell "manitoba" [ref=f4e294]
+                - cell "Published" [ref=f4e295]
+                - cell [ref=f4e296]:
+                  - generic [ref=f4e297]:
+                    - button [ref=f4e298]
+                    - button [ref=f4e302]
+                    - button "Duplicate" [ref=f4e306]
+                    - button [ref=f4e310]
+              - row [ref=f4e314]:
+                - cell "Prince Edward Island" [ref=f4e315]
+                - cell "EN" [ref=f4e316]
+                - cell "pei" [ref=f4e317]
+                - cell "Published" [ref=f4e318]
+                - cell [ref=f4e319]:
+                  - generic [ref=f4e320]:
+                    - button [ref=f4e321]
+                    - button [ref=f4e325]
+                    - button "Duplicate" [ref=f4e329]
+                    - button [ref=f4e333]
+              - row [ref=f4e337]:
+                - cell "Alberta" [ref=f4e338]
+                - cell "EN" [ref=f4e339]
+                - cell "alberta" [ref=f4e340]
+                - cell "Published" [ref=f4e341]
+                - cell [ref=f4e342]:
+                  - generic [ref=f4e343]:
+                    - button [ref=f4e344]
+                    - button [ref=f4e348]
+                    - button "Duplicate" [ref=f4e352]
+                    - button [ref=f4e356]
+              - row [ref=f4e360]:
+                - cell "Nova Scotia" [ref=f4e361]
+                - cell "EN" [ref=f4e362]
+                - cell "nova-scotia" [ref=f4e363]
+                - cell "Published" [ref=f4e364]
+                - cell [ref=f4e365]:
+                  - generic [ref=f4e366]:
+                    - button [ref=f4e367]
+                    - button [ref=f4e371]
+                    - button "Duplicate" [ref=f4e375]
+                    - button [ref=f4e379]
+              - row [ref=f4e383]:
+                - cell "British Columbia" [ref=f4e384]
+                - cell "EN" [ref=f4e385]
+                - cell "british-columbia" [ref=f4e386]
+                - cell "Published" [ref=f4e387]
+                - cell [ref=f4e388]:
+                  - generic [ref=f4e389]:
+                    - button [ref=f4e390]
+                    - button [ref=f4e394]
+                    - button "Duplicate" [ref=f4e398]
+                    - button [ref=f4e402]
+              - row [ref=f4e406]:
+                - cell "New Brunswick" [ref=f4e407]
+                - cell "EN" [ref=f4e408]
+                - cell "new-brunswick" [ref=f4e409]
+                - cell "Published" [ref=f4e410]
+                - cell [ref=f4e411]:
+                  - generic [ref=f4e412]:
+                    - button [ref=f4e413]
+                    - button [ref=f4e417]
+                    - button "Duplicate" [ref=f4e421]
+                    - button [ref=f4e425]
+              - row [ref=f4e429]:
+                - cell "Quebec" [ref=f4e430]
+                - cell "EN" [ref=f4e431]
+                - cell "quebec" [ref=f4e432]
+                - cell "Published" [ref=f4e433]
+                - cell [ref=f4e434]:
+                  - generic [ref=f4e435]:
+                    - button [ref=f4e436]
+                    - button [ref=f4e440]
+                    - button "Duplicate" [ref=f4e444]
+                    - button [ref=f4e448]
+              - row [ref=f4e452]:
+                - cell "Ontario" [ref=f4e453]
+                - cell "EN" [ref=f4e454]
+                - cell "ontario" [ref=f4e455]
+                - cell "Published" [ref=f4e456]
+                - cell [ref=f4e457]:
+                  - generic [ref=f4e458]:
+                    - button [ref=f4e459]
+                    - button [ref=f4e463]
+                    - button "Duplicate" [ref=f4e467]
+                    - button [ref=f4e471]

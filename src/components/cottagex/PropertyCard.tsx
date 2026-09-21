@@ -22,6 +22,8 @@ export type Chalet = {
   baths: number;
   guests: number;
   source?: string;
+  lat?: number | null;
+  lng?: number | null;
 };
 
 type PropertyCardProps = {
@@ -29,9 +31,12 @@ type PropertyCardProps = {
   isFavorite?: boolean;
   onToggleFavorite?: (chalet: Chalet) => void;
   categoryBadge?: string;
+  // Set false when the parent page already covers these cottages with an
+  // ItemList schema (e.g. LocationTemplate) — avoids duplicate entities.
+  withSchema?: boolean;
 };
 
-export default function PropertyCard({ chalet, isFavorite, onToggleFavorite, categoryBadge }: PropertyCardProps) {
+export default function PropertyCard({ chalet, isFavorite, onToggleFavorite, categoryBadge, withSchema = true }: PropertyCardProps) {
   const t = useTranslations();
   const badgeLabel = categoryBadge || (t.raw('badges') as Record<string, string>)[chalet.badge] || chalet.badge;
   const sourceLower = (chalet.source || '').toLowerCase();
@@ -67,7 +72,7 @@ export default function PropertyCard({ chalet, isFavorite, onToggleFavorite, cat
     <a
       href={chalet.vrboUrl}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="sponsored nofollow noopener noreferrer"
       className="group block rounded-2xl overflow-hidden bg-white border border-slate-100 hover:shadow-md hover:border-slate-200 transition-all"
     >
       <div className="relative aspect-[4/3] overflow-hidden">
@@ -75,7 +80,7 @@ export default function PropertyCard({ chalet, isFavorite, onToggleFavorite, cat
           src={chalet.image}
           alt={chalet.name}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 16vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
@@ -148,7 +153,9 @@ export default function PropertyCard({ chalet, isFavorite, onToggleFavorite, cat
           )}
         </div>
       </div>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      {withSchema && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      )}
     </a>
   );
 }

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { initialArticles } from '@/lib/mock-data';
+import { notFound } from "next/navigation";import { initialArticles } from '@/lib/mock-data';
 import { db } from '@/lib/db';
 import { articles } from '@/db/schema';
-import { eq, desc, and, ne } from 'drizzle-orm';
+import { eq, and, inArray } from 'drizzle-orm';
+import { getCached } from '@/lib/cache';
 import { locales } from '@/i18n/routing';
+import { getPublishedArticles } from '@/lib/cached-settings';
+import { auth } from '@/lib/auth';
 import ArticleStandard from '@/templates/ArticleStandard';
 import ArticleListicle from '@/templates/ArticleListicle';
 import { generateToc, injectHeadingIds } from '@/lib/extract-toc';
@@ -41,7 +43,20 @@ export async function generateStaticParams() {
   );
 }
 
-async function fetchArticle(slug: string) {
+/** Admin preview (?preview=1): view unpublished drafts. Requires a
+ * logged-in admin session; preview hits use a separate short-TTL cache
+ * key so drafts never leak into the public cache. */
+async function canPreview(searchParams?: { [key: string]: string | string[] | undefined }): Promise<boolean> {
+  if (searchParams?.preview !== '1') return false;
+  try {
+    const session = await auth();
+    return !!session?.user;
+  } catch {
+    return false;
+  }
+}
+
+async function fetchArticle(slug: string, locale: string, preview = false) {
   const mock = initialArticles.find(a => a.slug === slug);
   if (mock) {
     const content = mock.content || "";
@@ -49,7 +64,18 @@ async function fetchArticle(slug: string) {
   }
 
   try {
-    const [dbArticle] = await db.select().from(articles).where(eq(articles.slug, slug)).limit(1);
+    // Locale-preferred row with EN fallback, cached 5 min and shared
+    // between generateMetadata and the page via the same key.
+    const rows = await getCached<any[]>(`articles:by-slug:${locale}:${slug}${preview ? ':preview' : ''}`, () =>
+      db.select().from(articles).where(
+        and(
+          eq(articles.slug, slug),
+          ...(preview ? [] : [eq(articles.isPublished, true)]),
+          inArray(articles.locale, locale === 'fr' ? ['fr', 'en'] : ['en']),
+        ),
+      ).limit(2),
+    preview ? 60 : 300);
+    const dbArticle = rows.find((r: any) => r.locale === locale) || rows.find((r: any) => r.locale === 'en');
     if (!dbArticle) return null;
 
     const content = dbArticle.content || "";
@@ -64,6 +90,9 @@ async function fetchArticle(slug: string) {
       enhancedContent,
       excerpt: dbArticle.excerpt || "",
       date: formatDate(dbArticle.publishedAt || dbArticle.createdAt),
+      // Raw ISO dates for valid OG article:published_time (formatted date is not ISO).
+      publishedIso: (dbArticle.publishedAt || dbArticle.createdAt || null)?.toISOString?.() || null,
+      updatedIso: dbArticle.updatedAt?.toISOString?.() || null,
       dateModified: formatDate(dbArticle.updatedAt),
       readTime: computeReadTime(content),
       category: dbArticle.category || "Articles",
@@ -85,13 +114,28 @@ async function fetchArticle(slug: string) {
   }
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props & {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}): Promise<Metadata> {
   const { locale, slug } = await params;
-  const article = await fetchArticle(slug);
-  if (!article) return { title: "Article Not Found" };
+  const preview = await canPreview(await searchParams);
+  const article = await fetchArticle(slug, locale, preview);
+  // NOTE: do NOT call notFound() here — it would prevent this noindex
+  // metadata from applying (Next 16 streams 200 with loading.tsx present,
+  // see vercel/next.js#93008). The page below calls notFound() for the UI;
+  // this robots tag is what keeps missing slugs out of Google.
+  if (!article) {
+    return { title: "Article Not Found", robots: { index: false, follow: false } };
+  }
+  const description = article.excerpt
+    || `${article.title} — Practical advice and curated picks from Chalet Express guides.`;
+  const image = article.image && article.image !== '/placeholder.jpg'
+    ? article.image
+    : 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1200';
   return {
-    title: article.title,
-    description: article.excerpt,
+    // Prefer the CMS SEO title when set; template appends "| Chalet Express".
+    title: (article as any).seoTitle || article.title,
+    description,
     alternates: {
       canonical: `https://chaletexpress.com/${locale}/guides/${slug}`,
       languages: {
@@ -101,40 +145,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     },
     openGraph: {
-      title: article.title,
-      description: article.excerpt,
+      title: (article as any).seoTitle || article.title,
+      description,
       type: "article",
-      publishedTime: article.date,
-      images: [{ url: article.image, width: 1200, height: 630 }],
+      publishedTime: (article as any).publishedIso || undefined,
+      images: [{ url: image, width: 1200, height: 630 }],
     },
+    ...(preview ? { robots: { index: false, follow: false } } : {}),
   };
 }
 
-async function fetchRecentArticles(excludeSlug: string) {
+async function fetchRecentArticles(excludeSlug: string, locale: string) {
   try {
-    const rows = await db
-      .select({
-        slug: articles.slug,
-        title: articles.title,
-        excerpt: articles.excerpt,
-        featuredImage: articles.featuredImage,
-        category: articles.category,
-        publishedAt: articles.publishedAt,
-        createdAt: articles.createdAt,
-      })
-      .from(articles)
-      .where(and(eq(articles.isPublished, true), ne(articles.slug, excludeSlug)))
-      .orderBy(desc(articles.publishedAt))
-      .limit(3);
-
-    return rows.map((r) => ({
-      slug: r.slug,
-      title: r.title,
-      excerpt: r.excerpt || "",
-      image: r.featuredImage || "/placeholder.jpg",
-      category: r.category || "Articles",
-      date: formatDate(r.publishedAt || r.createdAt),
-    }));
+    const all = await getPublishedArticles(locale);
+    return all
+      .filter((r: any) => r.slug !== excludeSlug)
+      .slice(0, 3)
+      .map((r: any) => ({
+        slug: r.slug,
+        title: r.title,
+        excerpt: r.excerpt || "",
+        image: r.featuredImage || "/placeholder.jpg",
+        category: r.category || "Articles",
+        date: formatDate(r.publishedAt || r.createdAt),
+      }));
   } catch {
     return [];
   }
@@ -142,15 +176,18 @@ async function fetchRecentArticles(excludeSlug: string) {
 
 export default async function ArticleDetailPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string; slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { locale, slug } = await params;
-  const article = await fetchArticle(slug);
+  const preview = await canPreview(await searchParams);
+  const article = await fetchArticle(slug, locale, preview);
 
   if (!article) notFound();
 
-  const recentArticles = await fetchRecentArticles(slug);
+  const recentArticles = await fetchRecentArticles(slug, locale);
 
   if (article.isListicle) {
     return <ArticleListicle locale={locale} article={article} toc={article.toc} enhancedContent={article.enhancedContent} recentArticles={recentArticles} />;

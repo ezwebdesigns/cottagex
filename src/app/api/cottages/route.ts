@@ -28,7 +28,6 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    console.log('[api/cottages] params:', { slug, limit, sort, category, featuredOnly })
     const cottages = await getCottages({
       slug,
       province,
@@ -39,11 +38,14 @@ export async function GET(request: NextRequest) {
       affiliateOnly,
     })
 
+    // Cacheable at the edge: the underlying getCottages() result is
+    // already cached server-side for 600s, so mirror that TTL here.
+    // (Previously no-store: every shortcode re-fetched over HTTP.)
     return NextResponse.json(
       { cottages },
       {
         headers: {
-          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Cache-Control': 'public, s-maxage=600, stale-while-revalidate=300',
         },
       }
     )

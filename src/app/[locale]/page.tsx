@@ -2,9 +2,7 @@
 import Image from "next/image";
 import { getCottages } from '@/lib/cottages';
 import { getAllSettings } from '@/lib/cached-settings';
-import { db } from '@/lib/db';
-import { articles } from '@/db/schema';
-import { desc, eq } from 'drizzle-orm';
+import { getRecentArticles } from '@/lib/cached-settings';
 import Hero from '@/components/cottagex/Hero';
 import CategoryBar from '@/components/cottagex/CategoryBar';
 import PropertyGrid from '@/components/cottagex/PropertyGrid';
@@ -13,6 +11,7 @@ import SearchSection from '@/components/cottagex/SearchSection';
 import InspirationSection from '@/components/cottagex/InspirationSection';
 import CTASection from '@/components/cottagex/CTASection';
 import type { Chalet } from '@/components/cottagex/PropertyCard';
+import { seoFor } from '@/lib/seo-meta';
 
 export const revalidate = 3600;
 export const dynamic = 'force-dynamic';
@@ -21,9 +20,20 @@ type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
+  const meta = seoFor('home', locale);
   return {
-    title: "Chalet Express - Canadian Cottage Rentals",
-    description: "Find your perfect Canadian escape. Premium lake houses and mountain lodges across Canada.",
+    title: meta.title,
+    description: meta.description,
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      locale: locale === 'fr' ? 'fr_CA' : 'en_CA',
+      images: [{
+        url: 'https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=1200',
+        width: 1200,
+        height: 630,
+      }],
+    },
     alternates: {
       canonical: `https://chaletexpress.com/${locale}`,
       languages: {
@@ -75,29 +85,15 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   const cottages = await getCottages({ limit: 12, sort: 'rating' }).catch(() => []);
 
-  const settings = await getAllSettings().catch(() => ({} as Record<string, any>));
+  const settings = await getAllSettings(locale).catch(() => ({} as Record<string, any>));
 
   let recentArticles: any[] = [];
   try {
-    const rows = await db.select({
-      slug: articles.slug,
-      title: articles.title,
-      excerpt: articles.excerpt,
-      featuredImage: articles.featuredImage,
-      category: articles.category,
-      publishedAt: articles.publishedAt,
-      content: articles.content,
-    }).from(articles).where(eq(articles.isPublished, true)).orderBy(desc(articles.publishedAt)).limit(3);
-    recentArticles = rows.map(a => ({
-      slug: a.slug,
-      title: a.title,
-      excerpt: a.excerpt || '',
-      image: a.featuredImage || '',
-      category: a.category || 'Articles',
-      date: a.publishedAt ? new Date(a.publishedAt).toLocaleDateString(locale === 'fr' ? 'fr-CA' : 'en-US', { year: "numeric", month: "long", day: "numeric" }) : '',
-      readTime: `${Math.max(1, Math.ceil((a.content || '').split(/\s+/).length / 200))} min ${locale === 'fr' ? 'lecture' : 'read'}`,
-    }));
-  } catch {}
+    // Cached (articles:recent) — replaces the previous uncached select.
+    recentArticles = await getRecentArticles(locale, 3);
+  } catch {
+    recentArticles = [];
+  }
 
   const hero = tObj(settings.homepage_hero, locale);
   const categories = tObj(settings.homepage_categories, locale);
@@ -125,11 +121,15 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     beds: c.bedrooms || 0,
     baths: c.bathrooms || 0,
     guests: c.sleeps || 0,
+    lat: c.lat ?? null,
+    lng: c.lng ?? null,
   }));
 
   const catItems = categories?.items?.map((item: any) => ({
     id: item.id,
-    label: item.label,
+    label: locale === 'fr'
+      ? (item.labelFr || item.labelEn || item.label)
+      : (item.labelEn || item.labelFr || item.label),
     link: item.link,
   }));
 
@@ -142,6 +142,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         image={hero?.image}
         imageAlt={hero?.imageAlt}
         catItems={catItems}
+        locale={locale}
       />
       <CategoryBar
         ctaTitle={ctaBar?.title}

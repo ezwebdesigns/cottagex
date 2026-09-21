@@ -10,6 +10,7 @@ import TableOfContents from '@/components/TableOfContents';
 import SidebarAd from '@/components/SidebarAd';
 import Image from 'next/image';
 import type { TocItem } from '@/lib/extract-toc';
+import { qualifyExternalLinks } from '@/lib/qualify-links';
 
 const shortcodeRegex = /\[([a-z0-9-]+),\s*([a-z0-9-]+)(?:,\s*([a-z0-9-]+))?(?:,\s*(\d+))?\]/;
 
@@ -75,7 +76,7 @@ type ArticleStandardProps = {
 export default function ArticleStandard({ locale, article, isHtml, toc, enhancedContent, recentArticles }: ArticleStandardProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const contentHtml = enhancedContent || article.content;
+  const contentHtml = qualifyExternalLinks(enhancedContent || article.content);
 
   return (
     <div className="animate-in fade-in duration-300 max-w-7xl mx-auto px-4 py-10 overflow-x-hidden min-w-0">
@@ -92,6 +93,7 @@ export default function ArticleStandard({ locale, article, isHtml, toc, enhanced
         dateModified={article.dateModified}
         author={article.author}
         url={`https://chaletexpress.com${pathname}`}
+        inLanguage={locale === 'fr' ? 'fr-CA' : 'en-CA'}
       />
       <button
         onClick={() => router.push(`/${locale}/guides`)}
@@ -165,7 +167,7 @@ export default function ArticleStandard({ locale, article, isHtml, toc, enhanced
             )}
             {recentArticles && recentArticles.length > 0 && (
               <div>
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Recent Guides</h3>
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Recent Guides</p>
                 <div className="space-y-3">
                   {recentArticles.map((a: RecentArticle) => (
                     <Link key={a.slug} href={`/${locale}/guides/${a.slug}`} className="flex gap-3 group">
@@ -189,7 +191,7 @@ export default function ArticleStandard({ locale, article, isHtml, toc, enhanced
       {article.faq && article.faq.length > 0 && (
         <>
           <FAQPageSchema items={article.faq} />
-          <FAQAccordion items={article.faq} />
+          <FAQAccordion items={article.faq} locale={locale} />
         </>)}
 
       <div className="bg-[#191e3b] rounded-[2rem] p-8 text-white mt-16 flex flex-col md:flex-row items-center justify-between gap-6">
@@ -201,7 +203,7 @@ export default function ArticleStandard({ locale, article, isHtml, toc, enhanced
           <a
             href={article.ctaLink}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="sponsored nofollow noopener noreferrer"
             className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-6 py-3 rounded-full font-bold transition-colors whitespace-nowrap text-sm"
           >
             {article.ctaButton || 'Learn More'}

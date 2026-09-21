@@ -1,0 +1,20 @@
+- generic [active] [ref=f18e1]:
+  - generic [ref=f18e2]:
+    - complementary [ref=f18e4]:
+      - link [ref=f18e6] [cursor=pointer]:
+        - /url: /fr
+      - navigation [ref=f18e8]
+    - generic [ref=f18e9]:
+      - banner [ref=f18e10]:
+        - generic [ref=f18e12]:
+          - link "Chalet Express" [ref=f18e14] [cursor=pointer]:
+            - /url: /fr
+          - button "EN" [ref=f18e17]
+      - main [ref=f18e22]:
+        - generic [ref=f18e26]:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - iframe
+  - alert [ref=f18e29]

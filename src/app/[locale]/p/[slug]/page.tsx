@@ -18,7 +18,10 @@ type Props = { params: Promise<{ locale: string; slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const page = staticPages[slug];
-  if (!page) return { title: "Page Not Found" };
+  // NOTE: no notFound() call here — with loading.tsx in the tree, Next 16
+  // streams HTTP 200 anyway (vercel/next.js#93008). This robots tag is what
+  // keeps unknown slugs out of Google; the page below calls notFound() for UI.
+  if (!page) return { title: "Page Not Found", robots: { index: false, follow: false } };
   return {
     title: page.title,
     description: page.metaDescription || `Chalet Express - ${page.title}`,

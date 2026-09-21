@@ -1,0 +1,486 @@
+- generic [active] [ref=f12e1]:
+  - generic [ref=f12e2]:
+    - complementary [ref=f12e4]:
+      - link [ref=f12e6] [cursor=pointer]:
+        - /url: /fr
+      - navigation [ref=f12e7]:
+        - generic [ref=f12e8]:
+          - paragraph [ref=f12e9]: Destinations chalets
+          - link "AB" [ref=f12e10] [cursor=pointer]:
+            - /url: /fr/cottage-country/alberta
+          - link "BC" [ref=f12e14] [cursor=pointer]:
+            - /url: /fr/cottage-country/british-columbia
+          - link "MB" [ref=f12e19] [cursor=pointer]:
+            - /url: /fr/cottage-country/manitoba
+          - link "NB" [ref=f12e23] [cursor=pointer]:
+            - /url: /fr/cottage-country/new-brunswick
+          - link "NS" [ref=f12e30] [cursor=pointer]:
+            - /url: /fr/cottage-country/nova-scotia
+          - link "ON" [ref=f12e34] [cursor=pointer]:
+            - /url: /fr/cottage-country/ontario
+          - link "PEI" [ref=f12e39] [cursor=pointer]:
+            - /url: /fr/cottage-country/pei
+          - link "QC" [ref=f12e44] [cursor=pointer]:
+            - /url: /fr/cottage-country/quebec
+        - generic [ref=f12e48]:
+          - paragraph [ref=f12e49]: Recherche par destination
+          - link "SEARCH" [ref=f12e50] [cursor=pointer]:
+            - /url: /fr/search
+        - generic [ref=f12e55]:
+          - paragraph [ref=f12e56]: Guides & Articles
+          - link "INSPIRATION" [ref=f12e57] [cursor=pointer]:
+            - /url: /fr/guides
+    - generic [ref=f12e61]:
+      - banner [ref=f12e62]:
+        - generic [ref=f12e64]:
+          - link [ref=f12e66] [cursor=pointer]:
+            - /url: /fr
+            - img "Chalet Express" [ref=f12e67]
+          - button "EN" [ref=f12e69]
+      - main [ref=f12e74]:
+        - generic [ref=f12e75]:
+          - generic [ref=f12e76]:
+            - heading "Trouvez le chalet idéal pour votre escapade" [level=1] [ref=f12e77]
+            - paragraph [ref=f12e78]: Rechercher des chalets à louer partout au Canada
+          - generic [ref=f12e80]:
+            - generic [ref=f12e81]:
+              - link "Bord de l'eau" [ref=f12e82] [cursor=pointer]:
+                - /url: /en/search/waterfront
+              - link "Famille" [ref=f12e87] [cursor=pointer]:
+                - /url: /en/search/family
+              - link "Spa" [ref=f12e92] [cursor=pointer]:
+                - /url: /en/search/hot-tub
+              - link "Côtier" [ref=f12e97] [cursor=pointer]:
+                - /url: /en/search/coastal
+              - link "Luxe" [ref=f12e102] [cursor=pointer]:
+                - /url: /en/search/luxury
+              - link "Animaux" [ref=f12e107] [cursor=pointer]:
+                - /url: /en/search/pet-friendly
+              - link "Montagne" [ref=f12e112] [cursor=pointer]:
+                - /url: /en/search/mountain
+              - link "Romantique" [ref=f12e117] [cursor=pointer]:
+                - /url: /en/search/romantic
+              - link "Chalet bois rond" [ref=f12e122] [cursor=pointer]:
+                - /url: /en/search/log-cabin
+              - link "Privé" [ref=f12e127] [cursor=pointer]:
+                - /url: /en/search/secluded
+              - link "Plage" [ref=f12e132] [cursor=pointer]:
+                - /url: /en/search/beach
+              - link "Village" [ref=f12e137] [cursor=pointer]:
+                - /url: /en/search/resort
+              - link "Ski" [ref=f12e142] [cursor=pointer]:
+                - /url: /en/search/skiing
+              - link "Randonné" [ref=f12e147] [cursor=pointer]:
+                - /url: /en/search/hiking
+            - button "Scroll right" [ref=f12e152]
+          - generic [ref=f12e155]:
+            - generic [ref=f12e156]:
+              - generic [ref=f12e157]:
+                - heading "Les meilleurs chalets selon les voyageurs" [level=2] [ref=f12e158]
+                - paragraph [ref=f12e159]: Hébergements très bien notés
+              - generic [ref=f12e160]:
+                - generic [ref=f12e161]: Trier par destination
+                - combobox [ref=f12e162]:
+                  - option "Toutes les provinces (20)" [selected]
+                  - option "Colombie-Britannique (3)"
+                  - option "Manitoba (1)"
+                  - option "Nouveau-Brunswick (5)"
+                  - option "Nouvelle-Écosse (2)"
+                  - option "Ontario (1)"
+                  - option "Île-du-Prince-Édouard (2)"
+                  - option "Québec (6)"
+            - generic [ref=f12e163]:
+              - link "An ideal place to unwind, any time of year! cottage VRBO An ideal place to unwind, any time of year! manitoba (5 avis) $283/ nuit" [ref=f12e164] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/qCV23fd
+                - generic [ref=f12e165]:
+                  - img "An ideal place to unwind, any time of year!" [ref=f12e166]
+                  - generic [ref=f12e167]: cottage
+                  - img "VRBO" [ref=f12e168]
+                - generic [ref=f12e169]:
+                  - heading "An ideal place to unwind, any time of year!" [level=3] [ref=f12e170]
+                  - generic [ref=f12e171]: manitoba
+                  - generic [ref=f12e176]: (5 avis)
+                  - generic [ref=f12e189]:
+                    - generic [ref=f12e190]: $283
+                    - text: / nuit
+              - 'link "Coastal Escape: Fully Renovated, Modern and Charming Waterfront Cottage cottage VRBO Coastal Escape: Fully Renovated, Modern and Charming Waterfront Cottage pei (3 avis) Consulter les tarifs" [ref=f12e195] [cursor=pointer]':
+                - /url: https://vrbo.com/affiliate/1OvjLCv
+                - generic [ref=f12e196]:
+                  - 'img "Coastal Escape: Fully Renovated, Modern and Charming Waterfront Cottage" [ref=f12e197]'
+                  - generic [ref=f12e198]: cottage
+                  - img "VRBO" [ref=f12e199]
+                - generic [ref=f12e200]:
+                  - 'heading "Coastal Escape: Fully Renovated, Modern and Charming Waterfront Cottage" [level=3] [ref=f12e201]'
+                  - generic [ref=f12e202]: pei
+                  - generic [ref=f12e207]: (3 avis)
+                  - generic [ref=f12e219]: Consulter les tarifs
+              - link "Whispering Meadows Manor is a 4 bedroom 1.5 bath country home cottage VRBO Whispering Meadows Manor is a 4 bedroom 1.5 bath country home pei (6 avis) Consulter les tarifs" [ref=f12e221] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/9ShWBdh
+                - generic [ref=f12e222]:
+                  - img "Whispering Meadows Manor is a 4 bedroom 1.5 bath country home" [ref=f12e223]
+                  - generic [ref=f12e224]: cottage
+                  - img "VRBO" [ref=f12e225]
+                - generic [ref=f12e226]:
+                  - heading "Whispering Meadows Manor is a 4 bedroom 1.5 bath country home" [level=3] [ref=f12e227]
+                  - generic [ref=f12e228]: pei
+                  - generic [ref=f12e233]: (6 avis)
+                  - generic [ref=f12e245]: Consulter les tarifs
+              - link "High-end haven where Serenity meets Style and Fun| 5mins to airport| 5 car slots cottage VRBO High-end haven where Serenity meets Style and Fun| 5mins to airport| 5 car slots new-brunswick 0 $469/ nuit" [ref=f12e247] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/nSkb3Oe
+                - generic [ref=f12e248]:
+                  - img "High-end haven where Serenity meets Style and Fun| 5mins to airport| 5 car slots" [ref=f12e249]
+                  - generic [ref=f12e250]: cottage
+                  - img "VRBO" [ref=f12e251]
+                - generic [ref=f12e252]:
+                  - heading "High-end haven where Serenity meets Style and Fun| 5mins to airport| 5 car slots" [level=3] [ref=f12e253]
+                  - generic [ref=f12e254]: new-brunswick
+                  - generic [ref=f12e259]: "0"
+                  - generic [ref=f12e271]:
+                    - generic [ref=f12e272]: $469
+                    - text: / nuit
+              - link "Befitting Crown Suite cottage VRBO Befitting Crown Suite new-brunswick (4 avis) $135/ nuit" [ref=f12e277] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/X2Zemw2
+                - generic [ref=f12e278]:
+                  - img "Befitting Crown Suite" [ref=f12e279]
+                  - generic [ref=f12e280]: cottage
+                  - img "VRBO" [ref=f12e281]
+                - generic [ref=f12e282]:
+                  - heading "Befitting Crown Suite" [level=3] [ref=f12e283]
+                  - generic [ref=f12e284]: new-brunswick
+                  - generic [ref=f12e289]: (4 avis)
+                  - generic [ref=f12e302]:
+                    - generic [ref=f12e303]: $135
+                    - text: / nuit
+              - link "Covered Bridge Guest Suite- Two minutes from Sussex! cottage VRBO Covered Bridge Guest Suite- Two minutes from Sussex! new-brunswick (1 avis) Consulter les tarifs" [ref=f12e308] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/PCUJ7bB
+                - generic [ref=f12e309]:
+                  - img "Covered Bridge Guest Suite- Two minutes from Sussex!" [ref=f12e310]
+                  - generic [ref=f12e311]: cottage
+                  - img "VRBO" [ref=f12e312]
+                - generic [ref=f12e313]:
+                  - heading "Covered Bridge Guest Suite- Two minutes from Sussex!" [level=3] [ref=f12e314]
+                  - generic [ref=f12e315]: new-brunswick
+                  - generic [ref=f12e320]: (1 avis)
+                  - generic [ref=f12e332]: Consulter les tarifs
+              - link "Welcome to our modern cozy three bedroom cottage located in Pointe-du-Chene cottage VRBO Welcome to our modern cozy three bedroom cottage located in Pointe-du-Chene new-brunswick (9 avis) $439/ nuit" [ref=f12e334] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/WxqhqtQ
+                - generic [ref=f12e335]:
+                  - img "Welcome to our modern cozy three bedroom cottage located in Pointe-du-Chene" [ref=f12e336]
+                  - generic [ref=f12e337]: cottage
+                  - img "VRBO" [ref=f12e338]
+                - generic [ref=f12e339]:
+                  - heading "Welcome to our modern cozy three bedroom cottage located in Pointe-du-Chene" [level=3] [ref=f12e340]
+                  - generic [ref=f12e341]: new-brunswick
+                  - generic [ref=f12e346]: (9 avis)
+                  - generic [ref=f12e359]:
+                    - generic [ref=f12e360]: $439
+                    - text: / nuit
+              - link "Beachfront RetreatStunning ViewsPaddleRelax cottage VRBO Beachfront RetreatStunning ViewsPaddleRelax new-brunswick (3 avis) $680/ nuit" [ref=f12e365] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/EvgCtdC
+                - generic [ref=f12e366]:
+                  - img "Beachfront RetreatStunning ViewsPaddleRelax" [ref=f12e367]
+                  - generic [ref=f12e368]: cottage
+                  - img "VRBO" [ref=f12e369]
+                - generic [ref=f12e370]:
+                  - heading "Beachfront RetreatStunning ViewsPaddleRelax" [level=3] [ref=f12e371]
+                  - generic [ref=f12e372]: new-brunswick
+                  - generic [ref=f12e377]: (3 avis)
+                  - generic [ref=f12e390]:
+                    - generic [ref=f12e391]: $680
+                    - text: / nuit
+              - link "Oceanfront House with Amazing Views! cottage VRBO Oceanfront House with Amazing Views! nova-scotia (1 avis) $298/ nuit" [ref=f12e396] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/MqqZJyg
+                - generic [ref=f12e397]:
+                  - img "Oceanfront House with Amazing Views!" [ref=f12e398]
+                  - generic [ref=f12e399]: cottage
+                  - img "VRBO" [ref=f12e400]
+                - generic [ref=f12e401]:
+                  - heading "Oceanfront House with Amazing Views!" [level=3] [ref=f12e402]
+                  - generic [ref=f12e403]: nova-scotia
+                  - generic [ref=f12e408]: (1 avis)
+                  - generic [ref=f12e421]:
+                    - generic [ref=f12e422]: $298
+                    - text: / nuit
+              - link "Beachfront luxury home w/Hot tub cottage VRBO Beachfront luxury home w/Hot tub nova-scotia (1 avis) $1007/ nuit" [ref=f12e427] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/MjTU8B1
+                - generic [ref=f12e428]:
+                  - img "Beachfront luxury home w/Hot tub" [ref=f12e429]
+                  - generic [ref=f12e430]: cottage
+                  - img "VRBO" [ref=f12e431]
+                - generic [ref=f12e432]:
+                  - heading "Beachfront luxury home w/Hot tub" [level=3] [ref=f12e433]
+                  - generic [ref=f12e434]: nova-scotia
+                  - generic [ref=f12e439]: (1 avis)
+                  - generic [ref=f12e452]:
+                    - generic [ref=f12e453]: $1007
+                    - text: / nuit
+              - link "Ski-in, Private Hot Tub, Walk To Village & Lake, Family Friendly! cottage VRBO Ski-in, Private Hot Tub, Walk To Village & Lake, Family Friendly! british-columbia (20 avis) $545/ nuit" [ref=f12e458] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/nSQPtxZ
+                - generic [ref=f12e459]:
+                  - img "Ski-in, Private Hot Tub, Walk To Village & Lake, Family Friendly!" [ref=f12e460]
+                  - generic [ref=f12e461]: cottage
+                  - img "VRBO" [ref=f12e462]
+                - generic [ref=f12e463]:
+                  - heading "Ski-in, Private Hot Tub, Walk To Village & Lake, Family Friendly!" [level=3] [ref=f12e464]
+                  - generic [ref=f12e465]: british-columbia
+                  - generic [ref=f12e470]: (20 avis)
+                  - generic [ref=f12e483]:
+                    - generic [ref=f12e484]: $545
+                    - text: / nuit
+              - link "Affordable Luxury! Inviting Ski in/Out Two Bedroom Townhouse chalet VRBO Affordable Luxury! Inviting Ski in/Out Two Bedroom Townhouse british-columbia (249 avis) $303/ nuit" [ref=f12e489] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/WIqvFq6
+                - generic [ref=f12e490]:
+                  - img "Affordable Luxury! Inviting Ski in/Out Two Bedroom Townhouse" [ref=f12e491]
+                  - generic [ref=f12e492]: chalet
+                  - img "VRBO" [ref=f12e493]
+                - generic [ref=f12e494]:
+                  - heading "Affordable Luxury! Inviting Ski in/Out Two Bedroom Townhouse" [level=3] [ref=f12e495]
+                  - generic [ref=f12e496]: british-columbia
+                  - generic [ref=f12e501]: (249 avis)
+                  - generic [ref=f12e514]:
+                    - generic [ref=f12e515]: $303
+                    - text: / nuit
+              - link "Cedar Hills-Sauna and spa in a Scandinavian style chalet mountainside chalet VRBO Cedar Hills-Sauna and spa in a Scandinavian style chalet mountainside quebec (1 avis) Consulter les tarifs" [ref=f12e520] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/DjdSrbV
+                - generic [ref=f12e521]:
+                  - img "Cedar Hills-Sauna and spa in a Scandinavian style chalet mountainside" [ref=f12e522]
+                  - generic [ref=f12e523]: chalet
+                  - img "VRBO" [ref=f12e524]
+                - generic [ref=f12e525]:
+                  - heading "Cedar Hills-Sauna and spa in a Scandinavian style chalet mountainside" [level=3] [ref=f12e526]
+                  - generic [ref=f12e527]: quebec
+                  - generic [ref=f12e532]: (1 avis)
+                  - generic [ref=f12e544]: Consulter les tarifs
+              - link "5 minutes from the ski slopes! Shuttle included. Town house, close to everything. cottage VRBO 5 minutes from the ski slopes! Shuttle included. Town house, close to everything. quebec 0 Consulter les tarifs" [ref=f12e546] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/X6bYNLr
+                - generic [ref=f12e547]:
+                  - img "5 minutes from the ski slopes! Shuttle included. Town house, close to everything." [ref=f12e548]
+                  - generic [ref=f12e549]: cottage
+                  - img "VRBO" [ref=f12e550]
+                - generic [ref=f12e551]:
+                  - heading "5 minutes from the ski slopes! Shuttle included. Town house, close to everything." [level=3] [ref=f12e552]
+                  - generic [ref=f12e553]: quebec
+                  - generic [ref=f12e558]: "0"
+                  - generic [ref=f12e569]: Consulter les tarifs
+              - link "Maison Émile cottage VRBO Maison Émile quebec (8 avis) $1648/ nuit" [ref=f12e571] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/3asynEr
+                - generic [ref=f12e572]:
+                  - img "Maison Émile" [ref=f12e573]
+                  - generic [ref=f12e574]: cottage
+                  - img "VRBO" [ref=f12e575]
+                - generic [ref=f12e576]:
+                  - heading "Maison Émile" [level=3] [ref=f12e577]
+                  - generic [ref=f12e578]: quebec
+                  - generic [ref=f12e583]: (8 avis)
+                  - generic [ref=f12e596]:
+                    - generic [ref=f12e597]: $1648
+                    - text: / nuit
+              - link "Family Retreat – Hot Tub, Whirlpool, Free Wine, Near Old Quebec & Ski cottage Expedia Family Retreat – Hot Tub, Whirlpool, Free Wine, Near Old Quebec & Ski quebec (33 avis) $735/ nuit" [ref=f12e602] [cursor=pointer]:
+                - /url: https://expedia.com/affiliate/cO6EmB6
+                - generic [ref=f12e603]:
+                  - img "Family Retreat – Hot Tub, Whirlpool, Free Wine, Near Old Quebec & Ski" [ref=f12e604]
+                  - generic [ref=f12e605]: cottage
+                  - img "Expedia" [ref=f12e606]
+                - generic [ref=f12e607]:
+                  - heading "Family Retreat – Hot Tub, Whirlpool, Free Wine, Near Old Quebec & Ski" [level=3] [ref=f12e608]
+                  - generic [ref=f12e609]: quebec
+                  - generic [ref=f12e614]: (33 avis)
+                  - generic [ref=f12e627]:
+                    - generic [ref=f12e628]: $735
+                    - text: / nuit
+              - link "Large Tremblant Ski and Golf Chalet cottage VRBO Large Tremblant Ski and Golf Chalet quebec (140 avis) $1693/ nuit" [ref=f12e633] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/gQb8gV7
+                - generic [ref=f12e634]:
+                  - img "Large Tremblant Ski and Golf Chalet" [ref=f12e635]
+                  - generic [ref=f12e636]: cottage
+                  - img "VRBO" [ref=f12e637]
+                - generic [ref=f12e638]:
+                  - heading "Large Tremblant Ski and Golf Chalet" [level=3] [ref=f12e639]
+                  - generic [ref=f12e640]: quebec
+                  - generic [ref=f12e645]: (140 avis)
+                  - generic [ref=f12e658]:
+                    - generic [ref=f12e659]: $1693
+                    - text: / nuit
+              - link "LE-SENTIER chalet VRBO LE-SENTIER quebec 0 $504/ nuit" [ref=f12e664] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/qV3TbPX
+                - generic [ref=f12e665]:
+                  - img "LE-SENTIER" [ref=f12e666]
+                  - generic [ref=f12e667]: chalet
+                  - img "VRBO" [ref=f12e668]
+                - generic [ref=f12e669]:
+                  - heading "LE-SENTIER" [level=3] [ref=f12e670]
+                  - generic [ref=f12e671]: quebec
+                  - generic [ref=f12e676]: "0"
+                  - generic [ref=f12e688]:
+                    - generic [ref=f12e689]: $504
+                    - text: / nuit
+              - link "The Hidden Porch at Sir Sam's (hot tub & sauna) cottage VRBO The Hidden Porch at Sir Sam's (hot tub & sauna) ontario (18 avis) $728/ nuit" [ref=f12e694] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/3KRWUYz
+                - generic [ref=f12e695]:
+                  - img "The Hidden Porch at Sir Sam's (hot tub & sauna)" [ref=f12e696]
+                  - generic [ref=f12e697]: cottage
+                  - img "VRBO" [ref=f12e698]
+                - generic [ref=f12e699]:
+                  - heading "The Hidden Porch at Sir Sam's (hot tub & sauna)" [level=3] [ref=f12e700]
+                  - generic [ref=f12e701]: ontario
+                  - generic [ref=f12e706]: (18 avis)
+                  - generic [ref=f12e719]:
+                    - generic [ref=f12e720]: $728
+                    - text: / nuit
+              - link "Luxury Suite Located Downtown Kelowna Minutes away from the beach with Patio cottage VRBO Luxury Suite Located Downtown Kelowna Minutes away from the beach with Patio british-columbia (4 avis) $454/ nuit" [ref=f12e725] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/VCT2rU7
+                - generic [ref=f12e726]:
+                  - img "Luxury Suite Located Downtown Kelowna Minutes away from the beach with Patio" [ref=f12e727]
+                  - generic [ref=f12e728]: cottage
+                  - img "VRBO" [ref=f12e729]
+                - generic [ref=f12e730]:
+                  - heading "Luxury Suite Located Downtown Kelowna Minutes away from the beach with Patio" [level=3] [ref=f12e731]
+                  - generic [ref=f12e732]: british-columbia
+                  - generic [ref=f12e737]: (4 avis)
+                  - generic [ref=f12e750]:
+                    - generic [ref=f12e751]: $454
+                    - text: / nuit
+          - generic [ref=f12e757]:
+            - generic [ref=f12e758]:
+              - heading "Au bord des lacs. Près de la plage. Animaux acceptés. Adapté aux enfants. Trouvez le séjour idéal pour chaque occasion." [level=2] [ref=f12e759]
+              - paragraph [ref=f12e760]: "Vous avez accès à un large choix de hébergements : chalets, chalets, grandes maisons et bien plus encore. Chaque location propose des petits plus pour rendre vos vacances inoubliables. Vous pourrez profiter d'un grand jardin pour votre chien, d'une piscine, d'un spa ou d'un barbecue pour vos repas en plein air, tout en vous sentant comme chez vous. Et le meilleur dans tout ça, c'est qu'il y en a pour tous les budgets. Vous pouvez même faire des économies pendant votre séjour en préparant vous-même vos repas dans les cuisines entièrement équipées."
+              - link "Découvrez d'autres chalets sur VRBO" [ref=f12e761] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliates/cottagerentals/vrbo
+            - img "réserver un chalet sur VRBO" [ref=f12e763]
+          - generic [ref=f12e765]:
+            - generic [ref=f12e766]:
+              - generic [ref=f12e767]:
+                - button "Locations de vacances à Canada" [ref=f12e768]
+                - paragraph [ref=f12e772]: Canada, dans la propose un choix toujours plus vaste de chalets au bord du lac et de chalets chaleureux adaptés à tous les budgets. Des spas privés aux aménagements adaptés aux familles, chaque location offre confort et équipements modernes. Parcourez nos annonces triées sur le volet et réservez directement auprès de partenaires de confiance pour bénéficier des meilleurs tarifs.
+              - generic [ref=f12e773]:
+                - button "Rechercher des locations de chalets à Canada" [ref=f12e774]
+                - paragraph [ref=f12e778]: Rechercher des chalets à Canada, dans la c'est facile avec Chalet Express. Affinez votre recherche en fonction de l'accès au bord d'un lac, des spas, des séjours acceptant les animaux ou du luxe. Notre sélection soigneusement choisie vous redirige directement vers une réservation sécurisée sur VRBO ou Expedia. Vous n'aurez ainsi besoin que de quelques minutes pour comparer les offres et réserver votre escapade idéale.
+              - generic [ref=f12e779]:
+                - button "Quel est le meilleur moment pour découvrir Canada ?" [ref=f12e780]
+                - paragraph [ref=f12e784]: L'été et l'automne sont les saisons les plus prisées à Canada, dans la avec leurs journées chaudes au bord du lac et leurs couleurs automnales spectaculaires. En hiver, les sentiers des environs se transforment en véritables terrains de jeux enneigés. Réservez vos week-ends et vos vacances à l'avance, lorsque la demande est la plus forte, pour être sûr d'obtenir le meilleur chalet à Canada.
+              - generic [ref=f12e785]:
+                - button "Conseils pour les voyageurs qui souhaitent découvrir Canada" [ref=f12e786]
+                - paragraph [ref=f12e790]: Préparez-vous à des changements de temps, emportez un spray anti-moustiques en été et réservez tôt pour les longs week-ends. Louez une voiture pour découvrir des lacs cachés, demandez aux habitants de vous recommander des sentiers de randonnée et prévoyez du temps pour simplement vous détendre au bord de l'eau. Un peu d'organisation suffira à rendre votre séjour à Canada, dans la inoubliable.
+            - generic [ref=f12e791]:
+              - generic [ref=f12e792]:
+                - button "Pourquoi Canada est une destination incontournable" [ref=f12e793]
+                - paragraph [ref=f12e797]: Avec ses lacs scintillants, ses sentiers forestiers et ses communautés accueillantes, Canada, dans la offre un mélange parfait d'aventure et de détente. Ses activités disponibles toute l'année, ses paysages époustouflants et sa facilité d'accès en font l'une des destinations de vacances préférées au Canada, tant pour les familles que pour les couples.
+              - generic [ref=f12e798]:
+                - button "Réservez votre location de vacances à Canada via chaletexpress.com" [ref=f12e799]
+                - paragraph [ref=f12e803]: chaletexpress.com propose un large choix de locations de vacances à Canada, adaptées à tous les budgets. Toutes ces propriétés disposent de chambres confortables, d'équipements modernes et d'un service exceptionnel. Réservez dès maintenant sur VRBO.ca ou Expedia.ca pour profiter des meilleurs tarifs et des offres spéciales. »
+              - generic [ref=f12e804]:
+                - button "Quelles sont les activités les plus populaires à Canada, dans la ?" [ref=f12e805]
+                - paragraph [ref=f12e809]: Canada offre une infinité de possibilités pour se détendre et s'amuser. Nagez et pagayez sur les lacs de la pêchez depuis un ponton privé, parcourez des sentiers forestiers pittoresques ou partez à la découverte des charmantes villes des environs. En hiver, adonnez-vous aux joies de la raquette, du ski et des soirées douillettes au coin du feu. Il y en a pour tous les goûts, quelle que soit la saison.
+              - generic [ref=f12e810]:
+                - button "Combien coûte en moyenne la location d'un chalet à Canada ?" [ref=f12e811]
+                - paragraph [ref=f12e815]: Le prix moyen de la location d'un chalet à Canada varie en fonction de la saison, de la taille et des équipements proposés, allant des chalets abordables aux propriétés de luxe en bord de mer. Les week-ends d'été et les jours fériés sont soumis à des tarifs majorés. En réservant à l'avance, en voyageant en milieu de semaine ou en venant pendant les saisons intermédiaires, vous pourrez profiter des meilleurs rapports qualité-prix sur chaletexpress.com.
+            - generic [ref=f12e816]:
+              - heading "Réservez en toute confiance" [level=2] [ref=f12e817]
+              - paragraph [ref=f12e818]: Vous trouverez des offres exceptionnelles et des réductions sur les locations à la semaine et au mois sur VRBO et Expedia, ce qui rend les séjours de longue durée plus avantageux.
+              - generic [ref=f12e819]:
+                - img "VRBO"
+                - img "Expedia"
+          - generic [ref=f12e820]:
+            - heading "D'autres idées de destinations" [level=2] [ref=f12e821]
+            - generic [ref=f12e822]:
+              - button "Ontario" [ref=f12e823]
+              - button "Colombie-Britannique" [ref=f12e824]
+              - button "Québec" [ref=f12e825]
+              - button "Nouveau-Brunswick" [ref=f12e826]
+              - button "Manitoba" [ref=f12e827]
+              - button "Île-du-Prince-Édouard" [ref=f12e828]
+              - button "Alberta" [ref=f12e829]
+            - generic [ref=f12e830]:
+              - link [ref=f12e831] [cursor=pointer]:
+                - /url: /fr/search/muskoka/lakefront
+                - paragraph [ref=f12e832]: Muskoka
+                - paragraph [ref=f12e833]: Au bord du lac
+              - link [ref=f12e834] [cursor=pointer]:
+                - /url: /fr/search/wasaga-beach
+                - paragraph [ref=f12e835]: Wasaga Beach
+                - paragraph [ref=f12e836]: Front de mer
+              - link [ref=f12e837] [cursor=pointer]:
+                - /url: /fr/search/haliburton
+                - paragraph [ref=f12e838]: Haliburton
+                - paragraph [ref=f12e839]: Au bord du lac
+              - link [ref=f12e840] [cursor=pointer]:
+                - /url: /fr/search/kawarthas
+                - paragraph [ref=f12e841]: Kawarthas
+                - paragraph [ref=f12e842]: Au bord du lac
+              - link [ref=f12e843] [cursor=pointer]:
+                - /url: /fr/search/tobermory
+                - paragraph [ref=f12e844]: Tobermory
+                - paragraph [ref=f12e845]: Front de mer
+              - link [ref=f12e846] [cursor=pointer]:
+                - /url: /fr/search/prince-edward-county
+                - paragraph [ref=f12e847]: Comté de Prince Edward
+                - paragraph [ref=f12e848]: Au bord du lac
+            - button "Show more" [ref=f12e850]
+      - contentinfo [ref=f12e853]:
+        - generic [ref=f12e854]:
+          - generic [ref=f12e855]:
+            - generic [ref=f12e856]:
+              - img "Chalet Express logo" [ref=f12e858]
+              - paragraph [ref=f12e859]: Trouvez la location de chalet canadien qui vous convient le mieux. Une sélection de maisons au bord d'un lac, de chalets de montagne et de chalets en pleine nature à travers tout le Canada
+              - generic [ref=f12e860]:
+                - link "Facebook" [ref=f12e861] [cursor=pointer]:
+                  - /url: https://facebook.com/
+                - link "Instagram" [ref=f12e864] [cursor=pointer]:
+                  - /url: https://instagram.com/
+                - link "TikTok" [ref=f12e867] [cursor=pointer]:
+                  - /url: https://tiktok.com/
+                - link "X" [ref=f12e870] [cursor=pointer]:
+                  - /url: https://x.com/
+                - link "Pinterest" [ref=f12e873] [cursor=pointer]:
+                  - /url: https://pinterest.com/
+            - generic [ref=f12e876]:
+              - heading "DÉCOUVREZ" [level=4] [ref=f12e877]
+              - list [ref=f12e878]:
+                - listitem [ref=f12e879]:
+                  - link "Découvrez nos chalets" [ref=f12e880] [cursor=pointer]:
+                    - /url: /fr/search
+                - listitem [ref=f12e881]:
+                  - link "Chalets au bord de l'eau" [ref=f12e882] [cursor=pointer]:
+                    - /url: /fr/search/waterfront
+                - listitem [ref=f12e883]:
+                  - link "Chalets acceptant les animaux de compagnie" [ref=f12e884] [cursor=pointer]:
+                    - /url: /fr/search/pet-friendly
+            - generic [ref=f12e885]:
+              - heading "LIENS RAPIDES" [level=4] [ref=f12e886]
+              - list [ref=f12e887]:
+                - listitem [ref=f12e888]:
+                  - link "Conditions d'utilisation" [ref=f12e889] [cursor=pointer]:
+                    - /url: /fr/terms
+                - listitem [ref=f12e890]:
+                  - link "Déclaration relative aux liens d'affiliation" [ref=f12e891] [cursor=pointer]:
+                    - /url: /fr/disclaimer
+                - listitem [ref=f12e892]:
+                  - link "Politique de confidentialité" [ref=f12e893] [cursor=pointer]:
+                    - /url: /fr/privacy
+            - generic [ref=f12e894]:
+              - heading "À PROPOS" [level=4] [ref=f12e895]
+              - list [ref=f12e896]:
+                - listitem [ref=f12e897]:
+                  - link "À propos" [ref=f12e898] [cursor=pointer]:
+                    - /url: /fr/about
+                - listitem [ref=f12e899]:
+                  - link "Contact" [ref=f12e900] [cursor=pointer]:
+                    - /url: /fr/contact
+                - listitem [ref=f12e901]:
+                  - link "Guides & Articles" [ref=f12e902] [cursor=pointer]:
+                    - /url: /fr/guides
+            - generic [ref=f12e903]:
+              - heading "LES MEILLEURES DESTINATIONS POUR DES SÉJOURS EN GÎTE RURAL" [level=4] [ref=f12e904]
+              - list [ref=f12e905]:
+                - listitem [ref=f12e906]:
+                  - link "La région des chalets de l'Ontario" [ref=f12e907] [cursor=pointer]:
+                    - /url: /fr/chalet-country/ontario
+                - listitem [ref=f12e908]:
+                  - link "La région des chalets du Québec" [ref=f12e909] [cursor=pointer]:
+                    - /url: /fr/chalet-country/quebec
+                - listitem [ref=f12e910]:
+                  - link "La région des chalets de la Colombie-Britannique" [ref=f12e911] [cursor=pointer]:
+                    - /url: /fr/chalet-country/british-columbia
+          - paragraph [ref=f12e914]: © 2026 Chalet Express. Tous droits r├®serv├®s.
+  - button "Open Next.js Dev Tools" [ref=f12e920] [cursor=pointer]
+  - alert [ref=f12e924]

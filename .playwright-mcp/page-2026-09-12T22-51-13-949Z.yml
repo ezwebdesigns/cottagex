@@ -1,0 +1,38 @@
+- generic [active] [ref=f11e1]:
+  - generic [ref=f11e2]:
+    - complementary [ref=f11e4]:
+      - link "CE" [ref=f11e6] [cursor=pointer]:
+        - /url: /fr
+      - navigation [ref=f11e8]
+    - generic [ref=f11e9]:
+      - banner [ref=f11e10]:
+        - generic [ref=f11e12]:
+          - link "Chalet Express" [ref=f11e14] [cursor=pointer]:
+            - /url: /fr
+          - button "EN" [ref=f11e17]
+      - main [ref=f11e22]:
+        - iframe [ref=f11e31]:
+          - main [ref=f12e5]:
+            - article [ref=f12e6]:
+              - tabpanel [ref=f12e11]:
+                - generic [ref=f12e14]:
+                  - heading "Search places to stay" [level=1] [ref=f12e17]
+                  - generic [ref=f12e23]:
+                    - generic: Going to
+                    - button "Going to" [ref=f12e24] [cursor=pointer]
+                    - generic [aria-hidden]: Going to
+                  - generic [ref=f12e28]:
+                    - generic [ref=f12e30]:
+                      - generic: Check-in
+                      - button "Check-in" [ref=f12e31] [cursor=pointer]
+                      - generic [aria-hidden]: Check-in
+                    - generic [ref=f12e33]:
+                      - generic: Check-out
+                      - button "Check-out" [ref=f12e34] [cursor=pointer]
+                      - generic [aria-hidden]: Check-out
+                  - generic [ref=f12e36]:
+                    - generic [ref=f12e39]:
+                      - generic [ref=f12e40]: Powered by
+                      - img "Vrbo CA" [ref=f12e42]
+                    - button "Search" [ref=f12e45] [cursor=pointer]
+  - alert [ref=f11e34]

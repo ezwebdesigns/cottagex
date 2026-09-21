@@ -10,6 +10,7 @@ import TableOfContents from '@/components/TableOfContents';
 import SidebarAd from '@/components/SidebarAd';
 import Image from 'next/image';
 import type { TocItem } from '@/lib/extract-toc';
+import { qualifyExternalLinks } from '@/lib/qualify-links';
 
 const shortcodeRegex = /\[([a-z0-9-]+),\s*([a-z0-9-]+)(?:,\s*([a-z0-9-]+))?(?:,\s*(\d+))?\]/;
 
@@ -27,6 +28,8 @@ type ArticleListicleProps = {
   article: {
     title: string;
     content: string;
+    excerpt?: string;
+    author?: string;
     date: string;
     readTime: string;
     category: string;
@@ -42,7 +45,7 @@ type ArticleListicleProps = {
 export default function ArticleListicle({ locale, article, toc, enhancedContent, recentArticles }: ArticleListicleProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const contentHtml = enhancedContent || article.content;
+  const contentHtml = qualifyExternalLinks(enhancedContent || article.content);
 
   return (
     <div className="animate-in fade-in duration-300 max-w-7xl mx-auto px-4 py-10">
@@ -53,11 +56,13 @@ export default function ArticleListicle({ locale, article, toc, enhancedContent,
       ]} />
       <ArticleSchema
         title={article.title}
-        description={article.content}
+        description={article.excerpt || ''}
         image={article.image}
         date={article.date}
         dateModified={(article as any).dateModified}
         url={`https://chaletexpress.com${pathname}`}
+        author={article.author}
+        inLanguage={locale === 'fr' ? 'fr-CA' : 'en-CA'}
       />
       <button
         onClick={() => router.push(`/${locale}/guides`)}
@@ -125,7 +130,7 @@ export default function ArticleListicle({ locale, article, toc, enhancedContent,
             )}
             {recentArticles && recentArticles.length > 0 && (
               <div>
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Recent Guides</h3>
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Recent Guides</p>
                 <div className="space-y-3">
                   {recentArticles.map((a) => (
                     <Link key={a.slug} href={`/${locale}/guides/${a.slug}`} className="flex gap-3 group">
@@ -156,7 +161,7 @@ export default function ArticleListicle({ locale, article, toc, enhancedContent,
       {article.faq && article.faq.length > 0 && (
         <>
           <FAQPageSchema items={article.faq} />
-          <FAQAccordion items={article.faq} />
+          <FAQAccordion items={article.faq} locale={locale} />
         </>
       )}
 

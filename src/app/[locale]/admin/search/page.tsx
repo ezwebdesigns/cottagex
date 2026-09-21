@@ -20,11 +20,11 @@ export default function AdminSearchPage() {
   const [inspirations, setInspirations] = useState<any>(null);
 
   const fetchSection = useCallback(async (section: string) => {
-    const res = await fetch(`/api/admin/settings?section=${section}`);
+    const res = await fetch(`/api/admin/settings?section=${section}&locale=${locale}`);
     if (!res.ok) return null;
     const json = await res.json();
     return json.data;
-  }, []);
+  }, [locale]);
 
   useEffect(() => {
     fetchSection('search_hero').then(d => setHero(d ?? { title: '', subtitle: '' }));
@@ -43,7 +43,7 @@ export default function AdminSearchPage() {
       const res = await fetch('/api/admin/settings', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ section, data }),
+        body: JSON.stringify({ section, data, locale }),
       });
       if (res.ok) {
         setSaved(true);

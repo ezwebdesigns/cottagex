@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { db } from '@/lib/db';
 import { articles } from '@/db/schema';
 import { desc } from 'drizzle-orm';
 import { requireAuth } from '@/lib/api-auth';
+import { invalidateArticles } from '@/lib/cache';
 
 export async function GET() {
   const unauthorized = await requireAuth();
@@ -36,6 +38,8 @@ export async function POST(request: Request) {
       isPublished: body.isPublished ?? true,
       publishedAt: body.isPublished ? new Date() : null,
     }).returning();
+    try { await invalidateArticles(); } catch {}
+    revalidatePath('/', 'layout');
     return NextResponse.json({ post }, { status: 201 });
   } catch (error) {
     console.error('POST /api/admin/articles', error);

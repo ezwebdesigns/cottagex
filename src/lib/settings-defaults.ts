@@ -216,7 +216,7 @@ export const defaultSettings: Record<string, any> = {
     tag: "Official VRBO Affiliate Search",
     title: "Find Your Perfect Canadian Escape",
     description: "Instantly query and secure verified premium lake houses and mountain lodges.",
-    image: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&q=80&w=2000",
+    image: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&q=80&w=1536",
     imageAlt: "Aerial view of a pristine Canadian lake surrounded by pine forest and cottages at sunset",
   },
   homepage_destinations: {

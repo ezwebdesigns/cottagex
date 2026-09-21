@@ -54,8 +54,11 @@ Replace the current cottage site frontend with a new design from Base44, adapted
 - Admin lives under `[locale]/admin` → `/en/admin`, `/fr/admin`
 - Note: next-intl peerDeps compatible with next ^16; `t.raw(key: string): any` accepts dynamic keys
 
-### Phase 4 (Pending) — Data layer
-Connect to `affiliatecottages`, `articles`, `pages` tables (migrated to NEON)
+### Phase 4 (In progress) — Data layer
+- `pages` prod imported locally (Sep 2026): 13 EN rows via `scripts/import-pages-sql.mjs` (staging `pages_staging`, int id→uuid, `\\"` JSON fix on ontario.location_data), 13 FR siblings via `scripts/translate-pages-fr.js` (~42k chars DeepL)
+- 16.6 Mo base64 embarqué dans `pages.location_data` migré vers Blob public via `scripts/migrate-page-images.mjs` (18 uploadées, 6 dédupliquées) — volume traduisible 17 Mo → 70 Ko
+- Guard `about/page.tsx`: CMS row à contenu vide ignorée (fallback hardcodé préservé)
+- Connect to `affiliatecottages`, `articles` tables (migrated to NEON)
 
 ## Key Context
 - NEON: `postgresql://neondb_owner:npg_Yq5DfVIswFB9@ep-morning-frog-apofbubd-pooler.c-7.us-east-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require`

@@ -1,0 +1,16 @@
+- generic [active] [ref=f2e1]:
+  - button "Open Next.js Dev Tools" [ref=f2e11] [cursor=pointer]
+  - alert [ref=f2e15]
+  - generic [ref=f2e17]:
+    - generic [ref=f2e18]: Chalet Express
+    - generic [ref=f2e23]:
+      - heading "Admin Login" [level=1] [ref=f2e24]
+      - paragraph [ref=f2e25]: Sign in to manage your content
+      - generic [ref=f2e26]:
+        - generic [ref=f2e27]:
+          - generic [ref=f2e28]: Username
+          - textbox "admin" [ref=f2e29]
+        - generic [ref=f2e30]:
+          - generic [ref=f2e31]: Password
+          - textbox "••••••••" [ref=f2e32]
+        - button "Sign in" [ref=f2e33]

@@ -261,5 +261,19 @@
       "id": "hiking",
       "label": "Hiking"
     }
-  ]
+  ],
+  "contact": {
+    "badge": "Get in Touch",
+    "title": "We'd Love to Hear From You",
+    "subtitle": "Cottage owners, travelers, or affiliate networks — feel free to drop us a line below.",
+    "formTitle": "Send a Message",
+    "success": "Success! Your message has been received by our moderation panel. We will reply shortly.",
+    "nameLabel": "Your Name",
+    "namePlaceholder": "e.g. Jean Dupont",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "e.g. jean@example.com",
+    "messageLabel": "Message Content",
+    "messagePlaceholder": "How can we help? Partnerships, listings, feedback...",
+    "submit": "Send Message"
+  }
 }

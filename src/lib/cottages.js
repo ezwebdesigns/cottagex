@@ -8,14 +8,17 @@
  */
 
 import { Pool } from 'pg'
-import { getCached, invalidateCottages } from '@/lib/cache'
+import { getCached } from '@/lib/cache'
 
 let pool = null
 function getPool() {
   if (!pool) {
+    // Local Supabase (127.0.0.1 / localhost) has no SSL; remote DBs need it.
+    const cs = process.env.DATABASE_URL || ''
+    const useSsl = !/localhost|127\.0\.0\.1/.test(cs)
     pool = new Pool({
       connectionString: process.env.DATABASE_URL,
-      ssl: { rejectUnauthorized: false },
+      ...(useSsl ? { ssl: { rejectUnauthorized: false } } : {}),
     })
   }
   return pool
@@ -127,7 +130,10 @@ async function fetchCottagesFromDB(opts) {
       type,
       source,
       thumbnail,
-      photos,
+      -- First photo only: every consumer uses thumbnail || photos[0].
+      -- Transferring full HD photo arrays (KBs/row) on every cache MISS
+      -- is pure Supabase egress waste. Portable across jsonb/text columns.
+      NULLIF(photos::text, '')::jsonb ->> 0 AS cover_photo,
       lat,
       lng,
       price_cad,
@@ -155,7 +161,6 @@ async function fetchCottagesFromDB(opts) {
   let client
   try {
     client = await getPool().connect()
-    console.log('SQL query:', query, JSON.stringify(params))
     const { rows } = await client.query(query, params)
     return rows.map(row => ({
       ...row,
@@ -163,9 +168,12 @@ async function fetchCottagesFromDB(opts) {
       price_cad: row.price_cad ? parseInt(row.price_cad)   : null,
       reviews:   row.reviews   ? parseInt(row.reviews)     : null,
       sleeps:    row.sleeps    ? parseInt(row.sleeps)      : null,
-      bedrooms:  row.bedrooms  ? parseInt(row.bedrooms)    : null,
-      bathrooms: row.bathrooms ? parseInt(row.bathrooms)   : null,
-      photos:    typeof row.photos    === 'string' ? JSON.parse(row.photos)    : row.photos    || [],
+      bedrooms:  row.bedrooms  ? parseInt(row.bedrooms)  : null,
+      bathrooms: row.bathrooms ? parseInt(row.bathrooms) : null,
+      // node-pg returns NUMERIC as string — coerce for map/consumers.
+      lat:       row.lat != null && row.lat !== '' ? parseFloat(row.lat) : null,
+      lng:       row.lng != null && row.lng !== '' ? parseFloat(row.lng) : null,
+      photos:    row.cover_photo ? [row.cover_photo] : [],
       amenities: typeof row.amenities === 'string' ? JSON.parse(row.amenities) : row.amenities || [],
     }))
   } finally {
@@ -173,85 +181,25 @@ async function fetchCottagesFromDB(opts) {
   }
 }
 
+const VALID_SORTS = new Set(['rating', 'price', 'newest'])
+const MAX_LIMIT = 48
+
 export async function getCottages(opts = {}) {
-  const cacheKey = buildCacheKey(opts)
-  return getCached(cacheKey, () => fetchCottagesFromDB(opts), 600) // 10 min TTL
-}
-
-/**
- * getCottageBySlugFeatured — pour l'affichage homepage
- * Retourne 1 cottage featured par destination (avec fallback)
- *
- * @param {string} slug
- * @returns {Promise<object|null>}
- */
-export async function getCottageBySlugFeatured(slug) {
-  let client
-  try {
-    client = await getPool().connect()
-    const { rows } = await client.query(`
-      SELECT *
-      FROM affiliatecottages
-      WHERE slug = $1
-        AND available = true
-        AND is_hidden = false
-        AND is_featured = true
-      ORDER BY rating DESC NULLS LAST
-      LIMIT 1
-    `, [slug])
-
-    if (rows.length === 0) return null
-    const row = rows[0]
-    return {
-      ...row,
-      rating:    row.rating    ? parseFloat(row.rating)    : null,
-      price_cad: row.price_cad ? parseInt(row.price_cad)   : null,
-      reviews:   row.reviews   ? parseInt(row.reviews)     : null,
-      sleeps:    row.sleeps    ? parseInt(row.sleeps)      : null,
-      bedrooms:  row.bedrooms  ? parseInt(row.bedrooms)    : null,
-      bathrooms: row.bathrooms ? parseInt(row.bathrooms)   : null,
-      photos:    typeof row.photos    === 'string' ? JSON.parse(row.photos)    : row.photos    || [],
-      amenities: typeof row.amenities === 'string' ? JSON.parse(row.amenities) : row.amenities || [],
-    }
-  } finally {
-    if (client) client.release()
+  // Normalize BEFORE key building + fetch: bounds cache cardinality
+  // (unknown slugs/cats/sorts/limits used to create unique 10-min keys
+  // and could trigger giant LIMIT scans, e.g. ?limit=999999).
+  const cats = Array.isArray(opts.categories)
+    ? [...new Set(opts.categories)].filter((c) => CATEGORY_CONDITIONS[c]).sort()
+    : []
+  const normalized = {
+    slug: opts.slug || null,
+    province: opts.province || null,
+    limit: Math.min(Math.max(parseInt(opts.limit) || 3, 1), MAX_LIMIT),
+    sort: VALID_SORTS.has(opts.sort) ? opts.sort : 'rating',
+    categories: cats,
+    featuredOnly: opts.featuredOnly !== false,
+    affiliateOnly: !!opts.affiliateOnly,
   }
+    const cacheKey = buildCacheKey(normalized)
+  return getCached(cacheKey, () => fetchCottagesFromDB(normalized), 600, { emptyTtlSeconds: 60 })
 }
-
-/**
- * getDestinationStats — pour les pages province
- * Retourne le nombre de cottages disponibles par destination
- *
- * @param {string} province
- * @returns {Promise<Array>}
- */
-export async function getDestinationStats(province = null) {
-  let client
-  try {
-    client = await getPool().connect()
-    const condition = province
-      ? `WHERE province = $1 AND available = true AND is_hidden = false`
-      : `WHERE available = true AND is_hidden = false`
-    const params    = province ? [province] : []
-
-    const { rows } = await client.query(`
-      SELECT
-        slug,
-        province,
-        COUNT(*)                                  AS total,
-        ROUND(AVG(rating)::numeric, 1)            AS avg_rating,
-        MIN(price_cad)                            AS min_price,
-        MAX(last_synced)                          AS last_synced
-      FROM affiliatecottages
-      ${condition}
-      GROUP BY slug, province
-      ORDER BY province, slug
-    `, params)
-
-    return rows
-  } finally {
-    if (client) client.release()
-  }
-}
-
-export { invalidateCottages }

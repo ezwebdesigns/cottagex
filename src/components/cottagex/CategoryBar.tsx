@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import { ArrowRight } from 'lucide-react';
+import SmartLink from '@/components/cottagex/SmartLink';
 
 type CategoryBarProps = {
   ctaTitle?: string;
@@ -24,13 +25,13 @@ export default function CategoryBar({ ctaTitle, ctaDescription, ctaButtonText, c
           )}
         </div>
         {ctaButtonText && ctaButtonLink && (
-          <a
+          <SmartLink
             href={ctaButtonLink}
             className="inline-flex items-center gap-2 bg-white text-[#0f51ec] px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors shrink-0"
           >
             {ctaButtonText}
             <ArrowRight size={18} />
-          </a>
+          </SmartLink>
         )}
       </div>
     </section>

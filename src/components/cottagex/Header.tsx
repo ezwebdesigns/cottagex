@@ -13,7 +13,7 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: () => void }) 
   const [logo, setLogo] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/api/admin/settings?section=general').then(r => r.json()).then(d => {
+    fetch(`/api/admin/settings?section=general&locale=${lang}`).then(r => r.json()).then(d => {
       const raw = d.data?.logo ?? null;
       if (raw && raw.startsWith('lib:')) {
         fetch(`/api/library/${raw.slice(4)}`).then(r => r.ok && r.json()).then(d => setLogo(d?.url || '')).catch(() => setLogo(''));
@@ -21,7 +21,7 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: () => void }) 
         setLogo(raw);
       }
     }).catch(() => {});
-  }, []);
+  }, [lang]);
 
   const toggleLang = () => {
     const otherLocale = lang === 'en' ? 'fr' : 'en';

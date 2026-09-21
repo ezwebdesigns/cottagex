@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { db } from '@/lib/db';
 import { libraryImages } from '@/db/schema';
 import { eq, desc } from 'drizzle-orm';
 import { requireAuth } from '@/lib/api-auth';
+import { invalidateSettings } from '@/lib/cache';
 import { put } from '@vercel/blob';
 
 export async function GET() {
@@ -36,6 +38,9 @@ export async function POST(request: Request) {
       mimetype: file.type,
     }).returning();
 
+    // Library URLs feed resolveLibRefs inside the cached settings blob.
+    try { await invalidateSettings(); } catch {}
+    revalidatePath('/', 'layout');
     return NextResponse.json({ image }, { status: 201 });
   } catch {
     return NextResponse.json({ error: 'Upload error' }, { status: 500 });
@@ -50,5 +55,7 @@ export async function DELETE(request: Request) {
   await db.select().from(libraryImages).where(eq(libraryImages.id, Number(id))).limit(1);
   const [deleted] = await db.delete(libraryImages).where(eq(libraryImages.id, Number(id))).returning();
   if (!deleted) return NextResponse.json({ error: 'Not found' }, { status: 404 });
+  try { await invalidateSettings(); } catch {}
+  revalidatePath('/', 'layout');
   return NextResponse.json({ ok: true });
 }
