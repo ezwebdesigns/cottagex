@@ -4,7 +4,7 @@ import { db } from '@/lib/db';
 import { articles, pages } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 
-const BASE_URL = 'https://chaletexpress.com';
+const BASE_URL = 'https://www.chaletexpress.com';
 
 // Must match PROVINCE_SLUGS in cottage-country/[slug]/page.tsx — every
 // entry here must resolve to a real route, otherwise the sitemap lists 404s.
@@ -50,18 +50,54 @@ function localized(
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries: MetadataRoute.Sitemap = [];
+  const urlMap = new Map<string, Entry>();
+
+  function addEntry(entry: Entry) {
+    const existing = urlMap.get(entry.url);
+    if (!existing || !existing.lastModified || !entry.lastModified) {
+      urlMap.set(entry.url, entry);
+      return;
+    }
+    // Keep the entry with the most recent lastModified
+    if (entry.lastModified > existing.lastModified) {
+      urlMap.set(entry.url, entry);
+    }
+  }
+
+  function addEntries(entries: Entry[]) {
+    for (const entry of entries) {
+      addEntry(entry);
+    }
+  }
+
+  function localized(
+    path: string,
+    opts: { changeFrequency: Entry['changeFrequency']; priority: number; lastModified?: Date },
+  ): Entry[] {
+    const languages: Record<string, string> = {};
+    for (const locale of locales as readonly string[]) {
+      languages[locale] = `${BASE_URL}/${locale}${path}`;
+    }
+    return (locales as readonly string[]).map((locale) => ({
+      url: `${BASE_URL}/${locale}${path}`,
+      ...(opts.lastModified ? { lastModified: opts.lastModified } : {}),
+      changeFrequency: opts.changeFrequency,
+      priority: opts.priority,
+      alternates: { languages },
+    }));
+  }
 
   // Static routes (lastmod omitted: they change with deploys, not on a schedule).
   for (const route of ['', '/about', '/contact', '/guides', '/p/terms']) {
-    entries.push(...localized(route, { changeFrequency: 'monthly', priority: route === '' ? 1.0 : 0.8 }));
+    addEntries(localized(route, { changeFrequency: 'monthly', priority: route === '' ? 1.0 : 0.8 }));
   }
 
   for (const province of provinces) {
-    entries.push(...localized(`/cottage-country/${province}`, { changeFrequency: 'weekly', priority: 0.9 }));
+    addEntries(localized(`/cottage-country/${province}`, { changeFrequency: 'weekly', priority: 0.9 }));
   }
 
   for (const searchPage of SEARCH_PAGES) {
-    entries.push(...localized(`/search${searchPage ? '/' + searchPage : ''}`, { changeFrequency: 'weekly', priority: 0.7 }));
+    addEntries(localized(`/search${searchPage ? '/' + searchPage : ''}`, { changeFrequency: 'weekly', priority: 0.7 }));
   }
 
   try {
@@ -70,7 +106,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .from(articles)
       .where(eq(articles.isPublished, true));
     for (const article of dbArticles) {
-      entries.push(...localized(`/guides/${article.slug}`, {
+      addEntries(localized(`/guides/${article.slug}`, {
         changeFrequency: 'monthly',
         priority: 0.7,
         lastModified: article.updatedAt || undefined,
@@ -85,7 +121,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .where(eq(pages.isPublished, true));
     for (const page of dbPages) {
       if (RESERVED_SLUGS.has(page.slug)) continue;
-      entries.push(...localized(`/${page.slug}`, {
+      addEntries(localized(`/${page.slug}`, {
         changeFrequency: 'monthly',
         priority: 0.6,
         lastModified: page.updatedAt || undefined,
@@ -93,5 +129,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   } catch {}
 
-  return entries;
+  return Array.from(urlMap.values());
 }

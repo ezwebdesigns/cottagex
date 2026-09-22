@@ -35,13 +35,13 @@ export async function generateMetadata(): Promise<Metadata> {
       template: "%s | Chalet Express",
     },
     description: "Find your perfect Canadian escape. Premium lake houses and mountain lodges across Canada.",
-    metadataBase: new URL("https://chaletexpress.com"),
+    metadataBase: new URL("https://www.chaletexpress.com"),
     alternates: {
-      canonical: `https://chaletexpress.com${pathname}`,
+      canonical: `https://www.chaletexpress.com${pathname}`,
       languages: {
-        en: `https://chaletexpress.com${enPath}`,
-        fr: `https://chaletexpress.com${frPath}`,
-        "x-default": `https://chaletexpress.com${enPath}`,
+        en: `https://www.chaletexpress.com${enPath}`,
+        fr: `https://www.chaletexpress.com${frPath}`,
+        "x-default": `https://www.chaletexpress.com${enPath}`,
       },
     },
     openGraph: {

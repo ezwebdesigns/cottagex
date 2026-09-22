@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       template: "%s | Chalet Express",
     },
     description: "Find your perfect Canadian escape. Premium lake houses and mountain lodges across Canada.",
-    metadataBase: new URL("https://chaletexpress.com"),
+    metadataBase: new URL("https://www.chaletexpress.com"),
     // NOTE: no `alternates.canonical` here on purpose — the root layout
     // builds a per-page canonical from the x-pathname header, and a static
     // `/{locale}` canonical here would override it with a wrong value.
