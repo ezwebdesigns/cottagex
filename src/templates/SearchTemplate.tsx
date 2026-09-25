@@ -1,7 +1,7 @@
 ﻿'use client';
 
 import { useMemo, useState } from 'react';
-import { Home as HomeIcon, Sailboat, Bath, Users, Gem, PawPrint, Heart, Trees, TreePine, Umbrella, Building2, Snowflake, Mountain, Leaf } from 'lucide-react';
+import { Home as HomeIcon, Sailboat, Bath, Users, Gem, PawPrint, Heart, Trees, TreePine, Umbrella, Building2, Snowflake, Waves, Footprints, Mountain, Kayak } from 'lucide-react';
 import PropertyCard from '@/components/cottagex/PropertyCard';
 import CTASection from '@/components/cottagex/CTASection';
 import SearchFaq from '@/components/cottagex/SearchFaq';
