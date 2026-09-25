@@ -39,6 +39,8 @@ type ArticleListicleProps = {
   toc?: TocItem[];
   enhancedContent?: string;
   recentArticles?: RecentArticle[];
+  cottagesMap?: Map<string, any[]>;
+  pathname?: string;
 };
 
 export default function ArticleListicle({ locale, article, toc, enhancedContent, recentArticles, cottagesMap, pathname }: ArticleListicleProps) {
@@ -49,7 +51,7 @@ export default function ArticleListicle({ locale, article, toc, enhancedContent,
       <BreadcrumbSchema items={[
         { name: 'Home', url: `/${locale}` },
         { name: 'Guides', url: `/${locale}/guides` },
-        { name: article.title, url: pathname },
+        { name: article.title, url: pathname ?? `/${locale}/guides` },
       ]} />
       <ArticleSchema
         title={article.title}
@@ -57,7 +59,7 @@ export default function ArticleListicle({ locale, article, toc, enhancedContent,
         image={article.image}
         date={article.date}
         dateModified={(article as any).dateModified}
-        url={`https://chaletexpress.com${pathname}`}
+        url={`https://chaletexpress.com${pathname ?? `/${locale}/guides`}`}
         author={article.author}
         inLanguage={locale === 'fr' ? 'fr-CA' : 'en-CA'}
       />

@@ -44,7 +44,7 @@ export default async function AboutPage({ params }: Props) {
           inArray(pages.locale, locale === 'fr' ? ['fr', 'en'] : ['en']),
         ),
       ).limit(2),
-    300);
+    3600);
     const row = rows.find((r: any) => r.locale === locale) || rows.find((r: any) => r.locale === 'en');
     // An empty CMS row (title only, no content — as imported from prod for
     // 'about') must not blank out the hardcoded fallback below.

@@ -5,7 +5,7 @@ import { resolveLibRefs } from '@/lib/resolve-lib-refs'
 import { desc, eq } from 'drizzle-orm'
 import { getCached, invalidateSettings } from '@/lib/cache'
 
-const SETTINGS_TTL = 600 // 10 minutes (settings change rarely; admin saves invalidate)
+const SETTINGS_TTL = 3600 // 1 hour (settings change rarely; admin saves invalidate)
 
 async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
   try {
@@ -62,7 +62,7 @@ export async function getPublishedArticles(locale: string): Promise<any[]> {
     } catch {
       return [];
     }
-  }, 300);
+  }, 3600);
 }
 
 export async function getRecentArticles(locale: string, limit = 3): Promise<any[]> {
@@ -89,7 +89,7 @@ export async function getRecentArticles(locale: string, limit = 3): Promise<any[
     } catch {
       return [];
     }
-  }, 300) // 5 min TTL
+  }, 3600) // 1 hour TTL (admin article saves invalidate)
 }
 
 export { invalidateSettings }

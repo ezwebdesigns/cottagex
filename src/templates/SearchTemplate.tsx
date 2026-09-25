@@ -93,6 +93,7 @@ type SearchTemplateProps = {
   searchInspirations?: Record<string, unknown>;
   cottages?: Cottage[];
   categories?: Category[];
+  totalFeaturedCount?: number;
 };
 
 export default function SearchTemplate({ locale, slug, hero, searchResults, searchCTA, searchFaq, faqLocation, faqProvince, searchInspirations, cottages, categories, totalFeaturedCount }: SearchTemplateProps) {
@@ -107,6 +108,9 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
     : null;
 
   const isProvincePage = segments.some(seg => PROVINCE_SLUGS.has(seg));
+
+  const [filterProvince, setFilterProvince] = useState('all');
+  const [filters, setFilters] = useState(EMPTY_FILTERS);
 
   const heroTitle = (hero?.title as string) || (locName ? `${locName} Cottages` : 'Search Cottages');
   const heroSubtitle = (hero?.subtitle as string) || '';
@@ -176,6 +180,8 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
 
   const resultCards = useMemo(() => {
     return (visibleCottages || []).map(c => ({
+      id: String(c.id),
+      name: c.name,
       location: c.province || '',
       province: c.province || '',
       price: c.price_cad || 0,

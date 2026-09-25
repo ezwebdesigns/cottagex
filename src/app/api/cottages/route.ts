@@ -39,13 +39,12 @@ export async function GET(request: NextRequest) {
     })
 
     // Cacheable at the edge: the underlying getCottages() result is
-    // already cached server-side for 600s, so mirror that TTL here.
-    // (Previously no-store: every shortcode re-fetched over HTTP.)
+    // already cached server-side for 24h, so mirror a long TTL here.
     return NextResponse.json(
       { cottages },
       {
         headers: {
-          'Cache-Control': 'public, s-maxage=600, stale-while-revalidate=300',
+          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
         },
       }
     )

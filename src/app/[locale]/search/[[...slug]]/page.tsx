@@ -165,11 +165,11 @@ export default async function SearchPage({ params }: Props) {
     const cats = querySlug && querySlug !== 'all' ? [querySlug] : [];
     let probe: any[] = [];
     if (location && PROVINCE_SLUGS.has(location)) {
-      probe = await getCottages({ province: location, limit: 1, categories: probeCats, featuredOnly: false });
+      probe = await getCottages({ province: location, limit: 1, categories: cats, featuredOnly: false });
     } else if (location) {
-      probe = await getCottages({ slug: location, limit: 1, categories: probeCats, featuredOnly: false });
+      probe = await getCottages({ slug: location, limit: 1, categories: cats, featuredOnly: false });
     } else {
-      probe = await getCottages({ limit: 1, categories: probeCats, featuredOnly: false });
+      probe = await getCottages({ limit: 1, categories: cats, featuredOnly: false });
     }
     const hasResults = probe.length > 0;
     
@@ -205,12 +205,11 @@ export default async function SearchPage({ params }: Props) {
   const faqLocation = faqRawLocation ? formatTitle(faqRawLocation) : 'Canada';
   const faqProvince = faqRawLocation ? PROVINCE_NAMES[faqRawLocation] || PROVINCE_NAMES[cottages[0]?.province] || '' : '';
 
-  // Fetch total featured count for "All Provinces" dropdown
+  // Total featured count for the "All Provinces" dropdown (COUNT, not a sample).
   let totalFeaturedCount = 0;
   try {
-    const { getCottages } = await import('@/lib/cottages');
-    const allFeatured = await getCottages({ limit: 1, featuredOnly: true });
-    totalFeaturedCount = allFeatured.length;
+    const { getCottagesCount } = await import('@/lib/cottages');
+    totalFeaturedCount = await getCottagesCount({ featuredOnly: true });
   } catch (e) {
     console.error('Failed to fetch total featured count:', e);
   }

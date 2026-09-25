@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { searchLinks } from '@/db/schema';
 import { asc, eq, and } from 'drizzle-orm';
+import { getCached } from '@/lib/cache';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -9,18 +10,24 @@ export async function GET(request: NextRequest) {
   const type = searchParams.get('type');
 
   try {
-    const conditions = [];
-    if (city) conditions.push(eq(searchLinks.city, city));
-    if (type) conditions.push(eq(searchLinks.type, type));
+    const rows = await getCached(
+      `search-links:${city || 'all'}:${type || 'all'}`,
+      async () => {
+        const conditions = [];
+        if (city) conditions.push(eq(searchLinks.city, city));
+        if (type) conditions.push(eq(searchLinks.type, type));
 
-    const query = db
-      .select()
-      .from(searchLinks)
-      .orderBy(asc(searchLinks.city), asc(searchLinks.id));
+        const query = db
+          .select()
+          .from(searchLinks)
+          .orderBy(asc(searchLinks.city), asc(searchLinks.id));
 
-    const rows = conditions.length
-      ? await query.where(and(...conditions))
-      : await query;
+        return conditions.length
+          ? await query.where(and(...conditions))
+          : await query;
+      },
+      86400,
+    );
 
     return NextResponse.json(rows, {
       headers: {

@@ -186,7 +186,7 @@ const MAX_LIMIT = 48
 
 export async function getCottages(opts = {}) {
   // Normalize BEFORE key building + fetch: bounds cache cardinality
-  // (unknown slugs/cats/sorts/limits used to create unique 10-min keys
+  // (unknown slugs/cats/sorts/limits used to create unique 24h keys
   // and could trigger giant LIMIT scans, e.g. ?limit=999999).
   const cats = Array.isArray(opts.categories)
     ? [...new Set(opts.categories)].filter((c) => CATEGORY_CONDITIONS[c]).sort()
@@ -202,4 +202,53 @@ export async function getCottages(opts = {}) {
   }
   const cacheKey = buildCacheKey(normalized)
   return getCached(cacheKey, () => fetchCottagesFromDB(normalized), 86400, { emptyTtlSeconds: 60 })
+}
+
+export async function getCottagesCount(opts = {}) {
+  const cats = Array.isArray(opts.categories)
+    ? [...new Set(opts.categories)].filter((c) => CATEGORY_CONDITIONS[c]).sort()
+    : []
+  const normalized = {
+    slug: opts.slug || null,
+    province: opts.province || null,
+    categories: cats,
+    featuredOnly: opts.featuredOnly !== false,
+    affiliateOnly: !!opts.affiliateOnly,
+  }
+  const parts = []
+  if (normalized.slug && normalized.slug !== 'canada') parts.push(`slug:${normalized.slug}`)
+  else if (normalized.province) parts.push(`province:${normalized.province}`)
+  else parts.push('all')
+  if (normalized.categories.length) parts.push(`cats:${normalized.categories.join(',')}`)
+  parts.push(`feat:${normalized.featuredOnly}`)
+  const cacheKey = `cottages-count:${parts.join(':')}`
+
+  return getCached(cacheKey, async () => {
+    const conditions = ['is_hidden = false', 'available = true']
+    const params = []
+    let i = 1
+    if (normalized.affiliateOnly) conditions.push('affiliate_url IS NOT NULL')
+    if (normalized.slug && normalized.slug !== 'canada') {
+      conditions.push(`slug = $${i++}`)
+      params.push(normalized.slug)
+    } else if (normalized.province) {
+      conditions.push(`province = $${i++}`)
+      params.push(normalized.province)
+    }
+    if (normalized.featuredOnly) conditions.push('is_featured = true')
+    for (const cat of normalized.categories) {
+      if (CATEGORY_CONDITIONS[cat]) conditions.push(CATEGORY_CONDITIONS[cat])
+    }
+    let client
+    try {
+      client = await getPool().connect()
+      const { rows } = await client.query(
+        `SELECT COUNT(*)::int AS total FROM affiliatecottages WHERE ${conditions.join(' AND ')}`,
+        params,
+      )
+      return rows[0]?.total ?? 0
+    } finally {
+      if (client) client.release()
+    }
+  }, 86400, { emptyTtlSeconds: 60 })
 }

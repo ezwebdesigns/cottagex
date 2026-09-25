@@ -12,7 +12,7 @@ import { getCottagesForShortcode } from '@/lib/shortcode-cottages';
 
 const shortcodeRegex = /\[([a-z0-9-]+),\s*([a-z0-9-]+)(?:,\s*([a-z0-9-]+))?(?:,\s*(\d+))?\]/;
 
-function renderParagraph(text: string, key: number) {
+function renderParagraph(text: string, key: number, cottagesMap?: Map<string, any[]>) {
   if (!shortcodeRegex.test(text)) {
     return <p key={key} className="text-base md:text-lg">{text}</p>;
   }
@@ -30,7 +30,8 @@ function renderParagraph(text: string, key: number) {
           const limit = limitStr ? parseInt(limitStr, 10) : (param3 && /^\d+$/.test(param3) ? parseInt(param3, 10) : null);
           const actualParam3 = limitStr ? param3 : '';
           if (limit === null || limit < 1) return null;
-          return <CottageShortcode key={i} param1={param1} param2={param2} param3={actualParam3 || undefined} limit={limit} />;
+          const cottages = cottagesMap ? getCottagesForShortcode(cottagesMap, { param1, param2, param3: actualParam3, limit }) : [];
+          return <CottageShortcode key={i} cottages={cottages} />;
         }
         return null;
       })}
@@ -70,6 +71,8 @@ type ArticleStandardProps = {
   toc?: TocItem[];
   enhancedContent?: string;
   recentArticles?: RecentArticle[];
+  cottagesMap?: Map<string, any[]>;
+  pathname?: string;
 };
 
 export default function ArticleStandard({ locale, article, isHtml, toc, enhancedContent, recentArticles, cottagesMap, pathname }: ArticleStandardProps) {
@@ -80,7 +83,7 @@ export default function ArticleStandard({ locale, article, isHtml, toc, enhanced
       <BreadcrumbSchema items={[
         { name: 'Home', url: `/${locale}` },
         { name: 'Guides', url: `/${locale}/guides` },
-        { name: article.title, url: pathname },
+        { name: article.title, url: pathname ?? `/${locale}/guides` },
       ]} />
       <ArticleSchema
         title={article.title}
@@ -89,7 +92,7 @@ export default function ArticleStandard({ locale, article, isHtml, toc, enhanced
         date={article.date}
         dateModified={article.dateModified}
         author={article.author}
-        url={`https://chaletexpress.com${pathname}`}
+        url={`https://chaletexpress.com${pathname ?? `/${locale}/guides`}`}
         inLanguage={locale === 'fr' ? 'fr-CA' : 'en-CA'}
       />
       <Link
@@ -153,7 +156,7 @@ export default function ArticleStandard({ locale, article, isHtml, toc, enhanced
             </div>
           ) : (
             <div className="prose prose-lg text-slate-700 max-w-none leading-relaxed space-y-6 mb-12 w-full overflow-x-hidden break-words [&_pre]:whitespace-pre-wrap [&_code]:break-words">
-              {article.content.split('\n\n').map((paragraph: string, index: number) => renderParagraph(paragraph, index))}
+              {article.content.split('\n\n').map((paragraph: string, index: number) => renderParagraph(paragraph, index, cottagesMap))}
             </div>
           )}
         </div>

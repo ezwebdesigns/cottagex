@@ -23,7 +23,7 @@ async function canPreview(searchParams?: { [key: string]: string | string[] | un
 
 async function fetchPage(slug: string, locale: string, preview = false) {
   try {
-    // Cached 5 min, shared between generateMetadata and the page.
+    // Cached 1h, shared between generateMetadata and the page.
     // Locale-preferred row with EN fallback. Preview uses its own
     // short-TTL key so drafts never leak into the public cache.
     const rows = await getCached<any[]>(`pages:by-slug:${locale}:${slug}${preview ? ':preview' : ''}`, () =>
@@ -34,7 +34,7 @@ async function fetchPage(slug: string, locale: string, preview = false) {
           inArray(pages.locale, locale === 'fr' ? ['fr', 'en'] : ['en']),
         ),
       ).limit(2),
-    preview ? 60 : 300);
+    preview ? 60 : 3600);
     const [page] = [rows.find((r: any) => r.locale === locale) || rows.find((r: any) => r.locale === 'en')];
     if (!page || !page.isPublished) return null;
 

@@ -68,7 +68,7 @@ async function fetchArticle(slug: string, locale: string, preview = false) {
   }
 
   try {
-    // Locale-preferred row with EN fallback, cached 5 min and shared
+    // Locale-preferred row with EN fallback, cached 1h and shared
     // between generateMetadata and the page via the same key.
     const rows = await getCached<any[]>(`articles:by-slug:${locale}:${slug}${preview ? ':preview' : ''}`, () =>
       db.select().from(articles).where(
@@ -78,7 +78,7 @@ async function fetchArticle(slug: string, locale: string, preview = false) {
           inArray(articles.locale, locale === 'fr' ? ['fr', 'en'] : ['en']),
         ),
       ).limit(2),
-    preview ? 60 : 300);
+    preview ? 60 : 3600);
     const dbArticle = rows.find((r: any) => r.locale === locale) || rows.find((r: any) => r.locale === 'en');
     if (!dbArticle) return null;
 
@@ -196,9 +196,10 @@ export default async function ArticleDetailPage({
 
   const recentArticles = await fetchRecentArticles(slug, locale);
 
+  const pathname = `/${locale}/guides/${slug}`;
   if (article.isListicle) {
-    return <ArticleListicle locale={locale} article={article} toc={article.toc} enhancedContent={article.enhancedContent} recentArticles={recentArticles} cottagesMap={article.cottagesMap} />;
+    return <ArticleListicle locale={locale} article={article} toc={article.toc} enhancedContent={article.enhancedContent} recentArticles={recentArticles} cottagesMap={article.cottagesMap} pathname={pathname} />;
   }
 
-  return <ArticleStandard locale={locale} article={article} isHtml={(article as any).isHtml} toc={article.toc} enhancedContent={article.enhancedContent} recentArticles={recentArticles} cottagesMap={article.cottagesMap} />;
+  return <ArticleStandard locale={locale} article={article} isHtml={(article as any).isHtml} toc={article.toc} enhancedContent={article.enhancedContent} recentArticles={recentArticles} cottagesMap={article.cottagesMap} pathname={pathname} />;
 }

@@ -12,13 +12,20 @@ export interface ShortcodeParams {
 export function extractShortcodes(content: string): ShortcodeParams[] {
   const shortcodes: ShortcodeParams[] = [];
   let match;
-  
+
   while ((match = shortcodeRegex.exec(content)) !== null) {
     const [, param1, param2, param3, limitStr] = match;
-    const limit = limitStr ? parseInt(limitStr, 10) : undefined;
-    shortcodes.push({ param1, param2, param3, limit });
+    // Même règle que dans les templates : un 3e segment numérique
+    // (ex. [ontario, rating, 6]) est le LIMIT, pas une catégorie.
+    let p3: string | undefined = param3;
+    let limit: number | undefined = limitStr ? parseInt(limitStr, 10) : undefined;
+    if (limit === undefined && p3 && /^\d+$/.test(p3)) {
+      limit = parseInt(p3, 10);
+      p3 = undefined;
+    }
+    shortcodes.push({ param1, param2, param3: p3, limit });
   }
-  
+
   return shortcodes;
 }
 

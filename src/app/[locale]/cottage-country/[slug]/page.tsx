@@ -75,7 +75,7 @@ async function fetchPageRow(slug: string, locale: string) {
         inArray(pages.locale, locale === 'fr' ? ['fr', 'en'] : ['en']),
       ),
     ).limit(2),
-  300);
+  3600);
   return rows.find((r: any) => r.locale === locale) || rows.find((r: any) => r.locale === 'en') || null;
 }
 
