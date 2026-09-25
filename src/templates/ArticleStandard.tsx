@@ -1,7 +1,4 @@
-'use client';
-
 import { ArrowLeft, CalendarDays, Clock } from 'lucide-react';
-import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { BreadcrumbSchema, ArticleSchema, FAQPageSchema } from '@/components/seo/SchemaOrg';
 import { CottageShortcode } from '@/components/CottageShortcode';
@@ -11,6 +8,7 @@ import SidebarAd from '@/components/SidebarAd';
 import Image from 'next/image';
 import type { TocItem } from '@/lib/extract-toc';
 import { qualifyExternalLinks } from '@/lib/qualify-links';
+import { getCottagesForShortcode } from '@/lib/shortcode-cottages';
 
 const shortcodeRegex = /\[([a-z0-9-]+),\s*([a-z0-9-]+)(?:,\s*([a-z0-9-]+))?(?:,\s*(\d+))?\]/;
 
@@ -66,6 +64,7 @@ type ArticleStandardProps = {
     ctaButton?: string;
     ctaLink?: string;
     faq?: { question: string; answer: string }[];
+    cottagesMap?: Map<string, any[]>;
   };
   isHtml?: boolean;
   toc?: TocItem[];
@@ -73,7 +72,7 @@ type ArticleStandardProps = {
   recentArticles?: RecentArticle[];
 };
 
-export default function ArticleStandard({ locale, article, isHtml, toc, enhancedContent, recentArticles }: ArticleStandardProps) {
+export default function ArticleStandard({ locale, article, isHtml, toc, enhancedContent, recentArticles, cottagesMap }: ArticleStandardProps) {
   const router = useRouter();
   const pathname = usePathname();
   const contentHtml = qualifyExternalLinks(enhancedContent || article.content);
@@ -147,7 +146,8 @@ export default function ArticleStandard({ locale, article, isHtml, toc, enhanced
                     const limit = limitStr ? parseInt(limitStr, 10) : (param3 && /^\d+$/.test(param3) ? parseInt(param3, 10) : null);
                     const actualParam3 = limitStr ? param3 : '';
                     if (limit === null || limit < 1) return null;
-                    return <CottageShortcode key={i} param1={param1} param2={param2} param3={actualParam3 || undefined} limit={limit} />;
+                    const cottages = cottagesMap ? getCottagesForShortcode(cottagesMap, { param1, param2, param3: actualParam3, limit }) : [];
+                    return <CottageShortcode key={i} cottages={cottages} limit={limit} />;
                   }
                   return null;
                 });

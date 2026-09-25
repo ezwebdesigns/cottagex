@@ -1,0 +1,55 @@
+- generic [active] [ref=f27e1]:
+  - alert [ref=f27e6]
+  - generic [ref=f27e7]:
+    - complementary [ref=f27e8]:
+      - generic [ref=f27e9]:
+        - generic: Chaletx
+        - button [ref=f27e13]
+      - navigation [ref=f27e16]:
+        - paragraph [ref=f27e17]: Admin
+        - link "Dashboard" [ref=f27e18] [cursor=pointer]:
+          - /url: /en/admin/dashboard
+        - link "Pages" [ref=f27e24] [cursor=pointer]:
+          - /url: /en/admin/pages
+        - link "Articles" [ref=f27e28] [cursor=pointer]:
+          - /url: /en/admin/articles
+        - link "Library" [ref=f27e31] [cursor=pointer]:
+          - /url: /en/admin/library
+        - link "Messages" [ref=f27e36] [cursor=pointer]:
+          - /url: /en/admin/messages
+        - link "Search" [ref=f27e40] [cursor=pointer]:
+          - /url: /en/admin/search
+        - link "Cottages" [ref=f27e44] [cursor=pointer]:
+          - /url: /en/admin/cottages
+        - link "Destinations" [ref=f27e49] [cursor=pointer]:
+          - /url: /en/admin/destinations
+        - link "Settings" [ref=f27e53] [cursor=pointer]:
+          - /url: /en/admin/settings
+      - generic [ref=f27e57]:
+        - link "Profile" [ref=f27e58] [cursor=pointer]:
+          - /url: /en/admin/profile
+        - link "Visit Website" [ref=f27e62] [cursor=pointer]:
+          - /url: /en
+        - button "Clear Cache" [ref=f27e67]
+        - button "Logout" [ref=f27e73]
+    - generic [ref=f27e77]:
+      - banner [ref=f27e78]:
+        - heading "Admin" [level=2] [ref=f27e79]
+        - generic [ref=f27e80]:
+          - generic "You are editing the EN version — visible on /en/… Remember to mirror on FR if needed (no auto-sync)." [ref=f27e81]: EN
+          - generic [ref=f27e82]:
+            - link "EN" [ref=f27e83] [cursor=pointer]:
+              - /url: /en/admin/pages
+            - link "FR" [ref=f27e84] [cursor=pointer]:
+              - /url: /fr/admin/pages
+      - main [ref=f27e85]:
+        - generic [ref=f27e86]:
+          - generic [ref=f27e87]:
+            - heading "Pages" [level=1] [ref=f27e88]
+            - generic [ref=f27e89]:
+              - generic [ref=f27e90]:
+                - button "All" [ref=f27e91]
+                - button "EN" [ref=f27e92]
+                - button "FR" [ref=f27e93]
+              - button "Create New Page" [ref=f27e94]
+          - paragraph [ref=f27e97]: No pages yet.

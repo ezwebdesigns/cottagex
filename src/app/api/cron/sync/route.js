@@ -275,6 +275,41 @@ export async function GET(request) {
     await invalidateCottages()
   } catch {}
 
+  // Cache warming: pre-populate cache for all destination slugs.
+  try {
+    const { getCottages } = await import('@/lib/cottages')
+    const DESTINATION_SLUGS = DESTINATIONS.map(d => d.slug)
+    console.log(`[sync] Warming cache for ${DESTINATION_SLUGS.length} destinations...`)
+    
+    for (const slug of DESTINATION_SLUGS) {
+      try {
+        // Warm cache for province-based destinations
+        const dest = DESTINATIONS.find(d => d.slug === slug)
+        if (dest) {
+          await getCottages({
+            province: dest.province,
+            limit: 24,
+            sort: 'rating',
+            categories: [],
+          })
+        } else {
+          // Fallback for slug-based destinations
+          await getCottages({
+            slug,
+            limit: 24,
+            sort: 'rating',
+            categories: [],
+          })
+        }
+      } catch (e) {
+        console.warn(`[sync] Cache warm failed for ${slug}:`, e.message)
+      }
+    }
+    console.log(`[sync] Cache warming completed`)
+  } catch (e) {
+    console.warn('[sync] Cache warming failed:', e.message)
+  }
+
   return Response.json({
     success: true,
     timestamp: new Date().toISOString(),

@@ -1,0 +1,8 @@
+[     233ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ chrome-error://chromewebdata/:0
+[   15027ms] [ERROR] Access to fetch at 'https://cottagex.vercel.app/api/admin/cache/clear' from origin 'null' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ chrome-error://chromewebdata/:0
+[   15027ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://cottagex.vercel.app/api/admin/cache/clear:0
+[   15027ms] [ERROR] TypeError: Failed to fetch
+    at eval (eval at <anonymous> (eval at evaluate (:367:30)), <anonymous>:1:8)
+    at eval (eval at evaluate (:367:30), <anonymous>:4:50)
+    at UtilityScript.evaluate (<anonymous>:369:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44) @ :0

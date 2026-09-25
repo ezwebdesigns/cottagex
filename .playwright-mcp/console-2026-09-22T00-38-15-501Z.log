@@ -1,0 +1,2 @@
+[     677ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://cottagex.vercel.app/api/library/2:0
+[    1677ms] [LOG] shortcode params: slug=mont-tremblant&limit=7&sort=rating @ https://cottagex.vercel.app/_next/static/chunks/0z5wtqfq_7s1c.js?dpl=dpl_4o7iDDZu6rREkw58Um1sgFxxQ1sX:2

@@ -1,0 +1,46 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e6]
+  - generic [ref=e7]:
+    - complementary [ref=e8]:
+      - generic [ref=e9]:
+        - generic: Chaletx
+        - button [ref=e13]
+      - navigation [ref=e16]:
+        - paragraph [ref=e17]: Admin
+        - link "Dashboard" [ref=e18] [cursor=pointer]:
+          - /url: /en/admin/dashboard
+        - link "Pages" [ref=e24] [cursor=pointer]:
+          - /url: /en/admin/pages
+        - link "Articles" [ref=e28] [cursor=pointer]:
+          - /url: /en/admin/articles
+        - link "Library" [ref=e31] [cursor=pointer]:
+          - /url: /en/admin/library
+        - link "Messages" [ref=e36] [cursor=pointer]:
+          - /url: /en/admin/messages
+        - link "Search" [ref=e40] [cursor=pointer]:
+          - /url: /en/admin/search
+        - link "Cottages" [ref=e44] [cursor=pointer]:
+          - /url: /en/admin/cottages
+        - link "Destinations" [ref=e49] [cursor=pointer]:
+          - /url: /en/admin/destinations
+        - link "Settings" [ref=e53] [cursor=pointer]:
+          - /url: /en/admin/settings
+      - generic [ref=e57]:
+        - link "Profile" [ref=e58] [cursor=pointer]:
+          - /url: /en/admin/profile
+        - link "Visit Website" [ref=e62] [cursor=pointer]:
+          - /url: /en
+        - button "Clear Cache" [ref=e67]
+        - button "Logout" [ref=e73]
+    - generic [ref=e77]:
+      - banner [ref=e78]:
+        - heading "Admin" [level=2] [ref=e79]
+        - generic [ref=e80]:
+          - generic "You are editing the EN version — visible on /en/… Remember to mirror on FR if needed (no auto-sync)." [ref=e81]: EN
+          - generic [ref=e82]:
+            - link "EN" [ref=e83] [cursor=pointer]:
+              - /url: /en/admin/settings
+            - link "FR" [ref=e84] [cursor=pointer]:
+              - /url: /fr/admin/settings
+      - main [ref=e85]:
+        - generic [ref=e86]: Loading...

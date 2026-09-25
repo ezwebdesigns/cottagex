@@ -1,0 +1,404 @@
+- generic [active] [ref=f7e1]:
+  - alert [ref=f7e6]
+  - generic [ref=f7e7]:
+    - complementary [ref=f7e8]:
+      - generic [ref=f7e9]:
+        - generic: Chaletx
+        - button [ref=f7e10]
+      - navigation [ref=f7e13]:
+        - paragraph [ref=f7e14]: Admin
+        - link "Dashboard" [ref=f7e15] [cursor=pointer]:
+          - /url: /fr/admin/dashboard
+        - link "Pages" [ref=f7e21] [cursor=pointer]:
+          - /url: /fr/admin/pages
+        - link "Articles" [ref=f7e25] [cursor=pointer]:
+          - /url: /fr/admin/articles
+        - link "Library" [ref=f7e28] [cursor=pointer]:
+          - /url: /fr/admin/library
+        - link "Messages" [ref=f7e33] [cursor=pointer]:
+          - /url: /fr/admin/messages
+        - link "Search" [ref=f7e37] [cursor=pointer]:
+          - /url: /fr/admin/search
+        - link "Cottages" [ref=f7e41] [cursor=pointer]:
+          - /url: /fr/admin/cottages
+        - link "Destinations" [ref=f7e46] [cursor=pointer]:
+          - /url: /fr/admin/destinations
+        - link "Settings" [ref=f7e50] [cursor=pointer]:
+          - /url: /fr/admin/settings
+      - generic [ref=f7e54]:
+        - link "Profile" [ref=f7e55] [cursor=pointer]:
+          - /url: /fr/admin/profile
+        - link "Visit Website" [ref=f7e59] [cursor=pointer]:
+          - /url: /fr
+        - button "Clear Cache" [ref=f7e64]
+        - button "Logout" [ref=f7e70]
+    - generic [ref=f7e74]:
+      - banner [ref=f7e75]:
+        - heading "Admin" [level=2] [ref=f7e76]
+        - generic [ref=f7e77]:
+          - generic "Vous éditez la version FR — visible sur /fr/… Pensez à reporter sur EN si besoin (pas de synchro auto)." [ref=f7e78]: FR
+          - generic [ref=f7e79]:
+            - link "EN" [ref=f7e80] [cursor=pointer]:
+              - /url: /en/admin/articles
+            - link "FR" [ref=f7e81] [cursor=pointer]:
+              - /url: /fr/admin/articles
+      - main [ref=f7e82]:
+        - generic [ref=f7e83]:
+          - generic [ref=f7e84]:
+            - heading "Articles" [level=1] [ref=f7e85]
+            - paragraph [ref=f7e86]: Manage your travel guides and blog posts
+          - generic [ref=f7e87]:
+            - textbox "Search articles..." [ref=f7e92]
+            - button "New Article" [ref=f7e93]
+          - generic [ref=f7e95]:
+            - generic [ref=f7e96]:
+              - generic [ref=f7e97]:
+                - generic [ref=f7e98]: Quebec Chalet Rentals
+                - generic [ref=f7e99]: Published
+              - heading "7 chalets luxueux au Québec avec spa (disponibles dès maintenant)" [level=3] [ref=f7e101]
+              - paragraph [ref=f7e102]: by Editorial Team
+              - generic [ref=f7e103]:
+                - link "Preview" [ref=f7e104] [cursor=pointer]:
+                  - /url: /fr/guides/7-luxury-chalets-quebec-hot-tub?preview=true
+                - button [ref=f7e108]
+                - button "Duplicate" [ref=f7e112]
+                - button [ref=f7e116]
+            - generic [ref=f7e120]:
+              - generic [ref=f7e121]:
+                - generic [ref=f7e122]: Ontario Cottage Country
+                - generic [ref=f7e123]: Published
+              - heading "7 locations de chalets à Muskoka pour 2026" [level=3] [ref=f7e125]
+              - paragraph [ref=f7e126]: by Editorial Team
+              - generic [ref=f7e127]:
+                - link "Preview" [ref=f7e128] [cursor=pointer]:
+                  - /url: /fr/guides/7-best-cottage-rentals-in-muskoka?preview=true
+                - button [ref=f7e132]
+                - button "Duplicate" [ref=f7e136]
+                - button [ref=f7e140]
+            - generic [ref=f7e144]:
+              - generic [ref=f7e145]:
+                - generic [ref=f7e146]: PEI Cottage Rentals
+                - generic [ref=f7e147]: Published
+              - 'heading "Locations de chalets à l''Île-du-Prince-Édouard : plages de sable rouge et bord de mer" [level=3] [ref=f7e149]'
+              - paragraph [ref=f7e150]: by Editorial Team
+              - generic [ref=f7e151]:
+                - link "Preview" [ref=f7e152] [cursor=pointer]:
+                  - /url: /fr/guides/pei-cottage-rentals?preview=true
+                - button [ref=f7e156]
+                - button "Duplicate" [ref=f7e160]
+                - button [ref=f7e164]
+            - generic [ref=f7e168]:
+              - generic [ref=f7e169]:
+                - generic [ref=f7e170]: Mont-Tremblant Cottage Rentals
+                - generic [ref=f7e171]: Published
+              - heading "7 chalets à louer près de Mont-Tremblant" [level=3] [ref=f7e173]
+              - paragraph [ref=f7e174]: by Editorial Team
+              - generic [ref=f7e175]:
+                - link "Preview" [ref=f7e176] [cursor=pointer]:
+                  - /url: /fr/guides/7-best-chalet-rentals-mont-tremblant?preview=true
+                - button [ref=f7e180]
+                - button "Duplicate" [ref=f7e184]
+                - button [ref=f7e188]
+            - generic [ref=f7e192]:
+              - generic [ref=f7e193]:
+                - generic [ref=f7e194]: Luxury Cottage Rentals
+                - generic [ref=f7e195]: Published
+              - heading "7 chalets luxueux en Ontario avec spa (2026)" [level=3] [ref=f7e197]
+              - paragraph [ref=f7e198]: by Editorial Team
+              - generic [ref=f7e199]:
+                - link "Preview" [ref=f7e200] [cursor=pointer]:
+                  - /url: /fr/guides/7-luxury-cottage-rentals-ontario-hot-tub?preview=true
+                - button [ref=f7e204]
+                - button "Duplicate" [ref=f7e208]
+                - button [ref=f7e212]
+            - generic [ref=f7e216]:
+              - generic [ref=f7e217]:
+                - generic [ref=f7e218]: Ontario Family cottages
+                - generic [ref=f7e219]: Published
+              - heading "7 chalets familiaux en Ontario (enfants et animaux acceptés)" [level=3] [ref=f7e221]
+              - paragraph [ref=f7e222]: by Editorial Team
+              - generic [ref=f7e223]:
+                - link "Preview" [ref=f7e224] [cursor=pointer]:
+                  - /url: /fr/guides/7-best-family-cottage-rentals-in-ontario?preview=true
+                - button [ref=f7e228]
+                - button "Duplicate" [ref=f7e232]
+                - button [ref=f7e236]
+            - generic [ref=f7e240]:
+              - generic [ref=f7e241]:
+                - generic [ref=f7e242]: Manitoba Cottage Rentals
+                - generic [ref=f7e243]: Published
+              - 'heading "Locations de chalets au Manitoba : Falcon Lake, West Hawk Lake et la région de Whiteshell" [level=3] [ref=f7e245]'
+              - paragraph [ref=f7e246]: by Editorial Team
+              - generic [ref=f7e247]:
+                - link "Preview" [ref=f7e248] [cursor=pointer]:
+                  - /url: /fr/guides/manitoba-cottage-rentals?preview=true
+                - button [ref=f7e252]
+                - button "Duplicate" [ref=f7e256]
+                - button [ref=f7e260]
+            - generic [ref=f7e264]:
+              - generic [ref=f7e265]:
+                - generic [ref=f7e266]: New Brunswick Cottage Rentals
+                - generic [ref=f7e267]: Published
+              - 'heading "Locations de chalets au Nouveau-Brunswick : plages, forêts et escapades côtières" [level=3] [ref=f7e269]'
+              - paragraph [ref=f7e270]: by Editorial Team
+              - generic [ref=f7e271]:
+                - link "Preview" [ref=f7e272] [cursor=pointer]:
+                  - /url: /fr/guides/new-brunswick-cottage-rentals?preview=true
+                - button [ref=f7e276]
+                - button "Duplicate" [ref=f7e280]
+                - button [ref=f7e284]
+            - generic [ref=f7e288]:
+              - generic [ref=f7e289]:
+                - generic [ref=f7e290]: Alberta Cottage Rentals
+                - generic [ref=f7e291]: Published
+              - 'heading "Locations de chalets en Alberta : chalets de montagne et refuges au bord d''un lac dans les Rocheuses" [level=3] [ref=f7e293]'
+              - paragraph [ref=f7e294]: by Editorial Team
+              - generic [ref=f7e295]:
+                - link "Preview" [ref=f7e296] [cursor=pointer]:
+                  - /url: /fr/guides/alberta-cottage-rentals?preview=true
+                - button [ref=f7e300]
+                - button "Duplicate" [ref=f7e304]
+                - button [ref=f7e308]
+            - generic [ref=f7e312]:
+              - generic [ref=f7e313]:
+                - generic [ref=f7e314]: Nova Scotia Cottage Rentals
+                - generic [ref=f7e315]: Published
+              - 'heading "Locations de chalets en Nouvelle-Écosse : le Cap-Breton, la Côte-Sud et au-delà" [level=3] [ref=f7e317]'
+              - paragraph [ref=f7e318]: by Editorial Team
+              - generic [ref=f7e319]:
+                - link "Preview" [ref=f7e320] [cursor=pointer]:
+                  - /url: /fr/guides/nova-scotia-cottage-rentals?preview=true
+                - button [ref=f7e324]
+                - button "Duplicate" [ref=f7e328]
+                - button [ref=f7e332]
+            - generic [ref=f7e336]:
+              - generic [ref=f7e337]:
+                - generic [ref=f7e338]: BC Cottage Rentals
+                - generic [ref=f7e339]: Published
+              - 'heading "Locations de chalets en Colombie-Britannique : chalets de montagne, résidences en bord de mer et escapades en pleine nature" [level=3] [ref=f7e341]'
+              - paragraph [ref=f7e342]: by Editorial Team
+              - generic [ref=f7e343]:
+                - link "Preview" [ref=f7e344] [cursor=pointer]:
+                  - /url: /fr/guides/bc-cottage-rentals?preview=true
+                - button [ref=f7e348]
+                - button "Duplicate" [ref=f7e352]
+                - button [ref=f7e356]
+            - generic [ref=f7e360]:
+              - generic [ref=f7e361]:
+                - generic [ref=f7e362]: Quebec Cottage Rentals
+                - generic [ref=f7e363]: Published
+              - 'heading "Locations de chalets au Québec : chalets, chalets de ski et résidences au bord d''un lac" [level=3] [ref=f7e365]'
+              - paragraph [ref=f7e366]: by Editorial Team
+              - generic [ref=f7e367]:
+                - link "Preview" [ref=f7e368] [cursor=pointer]:
+                  - /url: /fr/guides/quebec-cottage-rentals?preview=true
+                - button [ref=f7e372]
+                - button "Duplicate" [ref=f7e376]
+                - button [ref=f7e380]
+            - generic [ref=f7e384]:
+              - generic [ref=f7e385]:
+                - generic [ref=f7e386]: Ontario Cottage Rentals
+                - generic [ref=f7e387]: Published
+              - 'heading "Location de chalets en Ontario : tout ce qu''il faut savoir avant de réserver" [level=3] [ref=f7e389]'
+              - paragraph [ref=f7e390]: by Editorial Team
+              - generic [ref=f7e391]:
+                - link "Preview" [ref=f7e392] [cursor=pointer]:
+                  - /url: /fr/guides/ontario-cottage-rentals-everything-you-need-to-know?preview=true
+                - button [ref=f7e396]
+                - button "Duplicate" [ref=f7e400]
+                - button [ref=f7e404]
+            - generic [ref=f7e408]:
+              - generic [ref=f7e409]:
+                - generic [ref=f7e410]: Quebec Chalet Rentals
+                - generic [ref=f7e411]: Published
+              - heading "7 Best Luxury Chalets in Quebec with Hot Tub (Available Now)" [level=3] [ref=f7e413]
+              - paragraph [ref=f7e414]: by Editorial Team
+              - generic [ref=f7e415]:
+                - link "Preview" [ref=f7e416] [cursor=pointer]:
+                  - /url: /fr/guides/7-luxury-chalets-quebec-hot-tub?preview=true
+                - button "Translate to FR" [ref=f7e420]
+                - button [ref=f7e425]
+                - button "Duplicate" [ref=f7e429]
+                - button [ref=f7e433]
+            - generic [ref=f7e437]:
+              - generic [ref=f7e438]:
+                - generic [ref=f7e439]: Mont-Tremblant Cottage Rentals
+                - generic [ref=f7e440]: Published
+              - heading "7 Best Chalet Rentals near Mont-Tremblant" [level=3] [ref=f7e442]
+              - paragraph [ref=f7e443]: by Editorial Team
+              - generic [ref=f7e444]:
+                - link "Preview" [ref=f7e445] [cursor=pointer]:
+                  - /url: /fr/guides/7-best-chalet-rentals-mont-tremblant?preview=true
+                - button "Translate to FR" [ref=f7e449]
+                - button [ref=f7e454]
+                - button "Duplicate" [ref=f7e458]
+                - button [ref=f7e462]
+            - generic [ref=f7e466]:
+              - generic [ref=f7e467]:
+                - generic [ref=f7e468]: Luxury Cottage Rentals
+                - generic [ref=f7e469]: Published
+              - heading "7 Luxury Cottage Rentals in Ontario with Hot Tub (2026)" [level=3] [ref=f7e471]
+              - paragraph [ref=f7e472]: by Editorial Team
+              - generic [ref=f7e473]:
+                - link "Preview" [ref=f7e474] [cursor=pointer]:
+                  - /url: /fr/guides/7-luxury-cottage-rentals-ontario-hot-tub?preview=true
+                - button "Translate to FR" [ref=f7e478]
+                - button [ref=f7e483]
+                - button "Duplicate" [ref=f7e487]
+                - button [ref=f7e491]
+            - generic [ref=f7e495]:
+              - generic [ref=f7e496]:
+                - generic [ref=f7e497]: Ontario Family cottages
+                - generic [ref=f7e498]: Published
+              - heading "7 Best Family Cottage Rentals in Ontario (Kid-Friendly & pet friendly)" [level=3] [ref=f7e500]
+              - paragraph [ref=f7e501]: by Editorial Team
+              - generic [ref=f7e502]:
+                - link "Preview" [ref=f7e503] [cursor=pointer]:
+                  - /url: /fr/guides/7-best-family-cottage-rentals-in-ontario?preview=true
+                - button "Translate to FR" [ref=f7e507]
+                - button [ref=f7e512]
+                - button "Duplicate" [ref=f7e516]
+                - button [ref=f7e520]
+            - generic [ref=f7e524]:
+              - generic [ref=f7e525]:
+                - generic [ref=f7e526]: Ontario Cottage Country
+                - generic [ref=f7e527]: Published
+              - heading "7 Best Cottage Rentals in Muskoka for 2026" [level=3] [ref=f7e529]
+              - paragraph [ref=f7e530]: by Editorial Team
+              - generic [ref=f7e531]:
+                - link "Preview" [ref=f7e532] [cursor=pointer]:
+                  - /url: /fr/guides/7-best-cottage-rentals-in-muskoka?preview=true
+                - button "Translate to FR" [ref=f7e536]
+                - button [ref=f7e541]
+                - button "Duplicate" [ref=f7e545]
+                - button [ref=f7e549]
+            - generic [ref=f7e553]:
+              - generic [ref=f7e554]:
+                - generic [ref=f7e555]: Manitoba Cottage Rentals
+                - generic [ref=f7e556]: Published
+              - 'heading "Manitoba Cottage Rentals: Falcon Lake, West Hawk Lake & the Whiteshell Region" [level=3] [ref=f7e558]'
+              - paragraph [ref=f7e559]: by Editorial Team
+              - generic [ref=f7e560]:
+                - link "Preview" [ref=f7e561] [cursor=pointer]:
+                  - /url: /fr/guides/manitoba-cottage-rentals?preview=true
+                - button "Translate to FR" [ref=f7e565]
+                - button [ref=f7e570]
+                - button "Duplicate" [ref=f7e574]
+                - button [ref=f7e578]
+            - generic [ref=f7e582]:
+              - generic [ref=f7e583]:
+                - generic [ref=f7e584]: PEI Cottage Rentals
+                - generic [ref=f7e585]: Published
+              - 'heading "PEI Cottage Rentals: Red Sand Beaches & Seaside Retreats on Prince Edward Island" [level=3] [ref=f7e587]'
+              - paragraph [ref=f7e588]: by Editorial Team
+              - generic [ref=f7e589]:
+                - link "Preview" [ref=f7e590] [cursor=pointer]:
+                  - /url: /fr/guides/pei-cottage-rentals?preview=true
+                - button "Translate to FR" [ref=f7e594]
+                - button [ref=f7e599]
+                - button "Duplicate" [ref=f7e603]
+                - button [ref=f7e607]
+            - generic [ref=f7e611]:
+              - generic [ref=f7e612]:
+                - generic [ref=f7e613]: New Brunswick Cottage Rentals
+                - generic [ref=f7e614]: Published
+              - 'heading "New Brunswick Cottage Rentals: Beaches, Forests & Coastal Escapes" [level=3] [ref=f7e616]'
+              - paragraph [ref=f7e617]: by Editorial Team
+              - generic [ref=f7e618]:
+                - link "Preview" [ref=f7e619] [cursor=pointer]:
+                  - /url: /fr/guides/new-brunswick-cottage-rentals?preview=true
+                - button "Translate to FR" [ref=f7e623]
+                - button [ref=f7e628]
+                - button "Duplicate" [ref=f7e632]
+                - button [ref=f7e636]
+            - generic [ref=f7e640]:
+              - generic [ref=f7e641]:
+                - generic [ref=f7e642]: Alberta Cottage Rentals
+                - generic [ref=f7e643]: Published
+              - 'heading "Alberta Cottage Rentals: Mountain Cabins & Lakeside Retreats in the Rockies" [level=3] [ref=f7e645]'
+              - paragraph [ref=f7e646]: by Editorial Team
+              - generic [ref=f7e647]:
+                - link "Preview" [ref=f7e648] [cursor=pointer]:
+                  - /url: /fr/guides/alberta-cottage-rentals?preview=true
+                - button "Translate to FR" [ref=f7e652]
+                - button [ref=f7e657]
+                - button "Duplicate" [ref=f7e661]
+                - button [ref=f7e665]
+            - generic [ref=f7e669]:
+              - generic [ref=f7e670]:
+                - generic [ref=f7e671]: Nova Scotia Cottage Rentals
+                - generic [ref=f7e672]: Published
+              - 'heading "Nova Scotia Cottage Rentals: Cape Breton, the South Shore & Beyond" [level=3] [ref=f7e674]'
+              - paragraph [ref=f7e675]: by Editorial Team
+              - generic [ref=f7e676]:
+                - link "Preview" [ref=f7e677] [cursor=pointer]:
+                  - /url: /fr/guides/nova-scotia-cottage-rentals?preview=true
+                - button "Translate to FR" [ref=f7e681]
+                - button [ref=f7e686]
+                - button "Duplicate" [ref=f7e690]
+                - button [ref=f7e694]
+            - generic [ref=f7e698]:
+              - generic [ref=f7e699]:
+                - generic [ref=f7e700]: BC Cottage Rentals
+                - generic [ref=f7e701]: Published
+              - 'heading "BC Cottage Rentals: Mountain Cabins, Oceanfront Retreats & Wilderness Escapes" [level=3] [ref=f7e703]'
+              - paragraph [ref=f7e704]: by Editorial Team
+              - generic [ref=f7e705]:
+                - link "Preview" [ref=f7e706] [cursor=pointer]:
+                  - /url: /fr/guides/bc-cottage-rentals?preview=true
+                - button "Translate to FR" [ref=f7e710]
+                - button [ref=f7e715]
+                - button "Duplicate" [ref=f7e719]
+                - button [ref=f7e723]
+            - generic [ref=f7e727]:
+              - generic [ref=f7e728]:
+                - generic [ref=f7e729]: Quebec Cottage Rentals
+                - generic [ref=f7e730]: Published
+              - 'heading "Quebec Cottage Rentals: Chalets, Ski Lodges & Lakeside Retreats" [level=3] [ref=f7e732]'
+              - paragraph [ref=f7e733]: by Editorial Team
+              - generic [ref=f7e734]:
+                - link "Preview" [ref=f7e735] [cursor=pointer]:
+                  - /url: /fr/guides/quebec-cottage-rentals?preview=true
+                - button "Translate to FR" [ref=f7e739]
+                - button [ref=f7e744]
+                - button "Duplicate" [ref=f7e748]
+                - button [ref=f7e752]
+            - generic [ref=f7e756]:
+              - generic [ref=f7e757]:
+                - generic [ref=f7e758]: Ontario Cottage Rentals
+                - generic [ref=f7e759]: Published
+              - 'heading "Ontario Cottage Rentals: Everything You Need to Know Before You Book" [level=3] [ref=f7e761]'
+              - paragraph [ref=f7e762]: by Editorial Team
+              - generic [ref=f7e763]:
+                - link "Preview" [ref=f7e764] [cursor=pointer]:
+                  - /url: /fr/guides/ontario-cottage-rentals-everything-you-need-to-know?preview=true
+                - button "Translate to FR" [ref=f7e768]
+                - button [ref=f7e773]
+                - button "Duplicate" [ref=f7e777]
+                - button [ref=f7e781]
+            - generic [ref=f7e785]:
+              - generic [ref=f7e786]:
+                - generic [ref=f7e787]: Canada Cottage Rentals
+                - generic [ref=f7e788]: Published
+              - 'heading "Canada Cottage Country: A Region-by-Region Guide for 2026" [level=3] [ref=f7e790]'
+              - paragraph [ref=f7e791]: by Editorial Team
+              - generic [ref=f7e792]:
+                - link "Preview" [ref=f7e793] [cursor=pointer]:
+                  - /url: /fr/guides/canada-cottage-country-a-region-by-region-guide-for-2026?preview=true
+                - button "Translate to FR" [ref=f7e797]
+                - button [ref=f7e802]
+                - button "Duplicate" [ref=f7e806]
+                - button [ref=f7e810]
+            - generic [ref=f7e814]:
+              - generic [ref=f7e815]:
+                - generic [ref=f7e816]: News
+                - generic [ref=f7e817]: Published
+              - 'heading "Cottage Rentals in Canada: The Ultimate Guide to Finding Your Perfect Getaway" [level=3] [ref=f7e819]'
+              - paragraph [ref=f7e820]: by Editorial Team
+              - generic [ref=f7e821]:
+                - link "Preview" [ref=f7e822] [cursor=pointer]:
+                  - /url: /fr/guides/cottage-rentals-in-canada-the-ultimate-guide?preview=true
+                - button "Translate to FR" [ref=f7e826]
+                - button [ref=f7e831]
+                - button "Duplicate" [ref=f7e835]
+                - button [ref=f7e839]

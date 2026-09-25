@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";import { initialArticles } from '@/lib/mock-data';
+import { notFound } from "next/navigation";
+import { initialArticles } from '@/lib/mock-data';
 import { db } from '@/lib/db';
 import { articles } from '@/db/schema';
 import { eq, and, inArray } from 'drizzle-orm';
@@ -10,6 +11,7 @@ import { auth } from '@/lib/auth';
 import ArticleStandard from '@/templates/ArticleStandard';
 import ArticleListicle from '@/templates/ArticleListicle';
 import { generateToc, injectHeadingIds } from '@/lib/extract-toc';
+import { extractShortcodes, fetchCottagesForShortcodes, getCottagesForShortcode } from '@/lib/shortcode-cottages';
 
 export const revalidate = 3600;
 export const dynamic = 'force-dynamic';
@@ -60,7 +62,9 @@ async function fetchArticle(slug: string, locale: string, preview = false) {
   const mock = initialArticles.find(a => a.slug === slug);
   if (mock) {
     const content = mock.content || "";
-    return { ...mock, toc: generateToc(content), enhancedContent: injectHeadingIds(content) };
+    const shortcodes = extractShortcodes(content);
+    const cottagesMap = await fetchCottagesForShortcodes(shortcodes);
+    return { ...mock, toc: generateToc(content), enhancedContent: injectHeadingIds(content), cottagesMap };
   }
 
   try {
@@ -81,6 +85,8 @@ async function fetchArticle(slug: string, locale: string, preview = false) {
     const content = dbArticle.content || "";
     const toc = content ? generateToc(content) : [];
     const enhancedContent = content ? injectHeadingIds(content) : "";
+    const shortcodes = extractShortcodes(content);
+    const cottagesMap = await fetchCottagesForShortcodes(shortcodes);
 
     return {
       id: dbArticle.id,
@@ -107,6 +113,7 @@ async function fetchArticle(slug: string, locale: string, preview = false) {
       toc,
       isHtml: true,
       isListicle: dbArticle.type === "listicle",
+      cottagesMap,
     };
   } catch (e) {
     console.error("Failed to fetch article:", e);
@@ -190,8 +197,8 @@ export default async function ArticleDetailPage({
   const recentArticles = await fetchRecentArticles(slug, locale);
 
   if (article.isListicle) {
-    return <ArticleListicle locale={locale} article={article} toc={article.toc} enhancedContent={article.enhancedContent} recentArticles={recentArticles} />;
+    return <ArticleListicle locale={locale} article={article} toc={article.toc} enhancedContent={article.enhancedContent} recentArticles={recentArticles} cottagesMap={article.cottagesMap} />;
   }
 
-  return <ArticleStandard locale={locale} article={article} isHtml={(article as any).isHtml} toc={article.toc} enhancedContent={article.enhancedContent} recentArticles={recentArticles} />;
+  return <ArticleStandard locale={locale} article={article} isHtml={(article as any).isHtml} toc={article.toc} enhancedContent={article.enhancedContent} recentArticles={recentArticles} cottagesMap={article.cottagesMap} />;
 }

@@ -53,17 +53,13 @@ const CATEGORY_CONDITIONS = {
   waterfront:    `(amenities @> '["Waterfront"]' OR amenities @> '["Beach access"]' OR amenities @> '["Accès à la plage"]' OR name ILIKE '%waterfront%' OR name ILIKE '%lakefront%' OR name ILIKE '%lake front%' OR name ILIKE '%lakeside%' OR name ILIKE '%beachfront%' OR name ILIKE '%oceanfront%' OR name ILIKE '%on the water%' OR name ILIKE '%sea view%')`,
 }
 
-const COTTAGES_TTL = 600 // 10 minutes
+const COTTAGES_TTL = 86400 // 24 hours
 
 function buildCacheKey(opts) {
   const parts = []
   if (opts.slug && opts.slug !== 'canada') parts.push(`slug:${opts.slug}`)
   else if (opts.province) parts.push(`province:${opts.province}`)
   else parts.push('all')
-  parts.push(`sort:${opts.sort || 'rating'}`)
-  parts.push(`limit:${opts.limit || 3}`)
-  parts.push(`featured:${opts.featuredOnly !== false}`)
-  parts.push(`affiliate:${opts.affiliateOnly || false}`)
   if (opts.categories?.length) parts.push(`cats:${opts.categories.sort().join(',')}`)
   return `cottages:${parts.join(':')}`
 }
@@ -200,6 +196,6 @@ export async function getCottages(opts = {}) {
     featuredOnly: opts.featuredOnly !== false,
     affiliateOnly: !!opts.affiliateOnly,
   }
-    const cacheKey = buildCacheKey(normalized)
-  return getCached(cacheKey, () => fetchCottagesFromDB(normalized), 600, { emptyTtlSeconds: 60 })
+  const cacheKey = buildCacheKey(normalized)
+  return getCached(cacheKey, () => fetchCottagesFromDB(normalized), 86400, { emptyTtlSeconds: 60 })
 }

@@ -1,0 +1,280 @@
+- generic [active] [ref=f4e1]:
+  - generic [ref=f4e2]:
+    - complementary [ref=f4e4]:
+      - link "CE" [ref=f4e6] [cursor=pointer]:
+        - /url: /fr
+      - navigation [ref=f4e8]:
+        - generic [ref=f4e9]:
+          - paragraph [ref=f4e10]: Destinations chalets
+          - link "AB" [ref=f4e11] [cursor=pointer]:
+            - /url: /fr/cottage-country/alberta
+          - link "BC" [ref=f4e15] [cursor=pointer]:
+            - /url: /fr/cottage-country/british-columbia
+          - link "MB" [ref=f4e20] [cursor=pointer]:
+            - /url: /fr/cottage-country/manitoba
+          - link "NB" [ref=f4e24] [cursor=pointer]:
+            - /url: /fr/cottage-country/new-brunswick
+          - link "NS" [ref=f4e31] [cursor=pointer]:
+            - /url: /fr/cottage-country/nova-scotia
+          - link "ON" [ref=f4e35] [cursor=pointer]:
+            - /url: /fr/cottage-country/ontario
+          - link "PEI" [ref=f4e40] [cursor=pointer]:
+            - /url: /fr/cottage-country/pei
+          - link "QC" [ref=f4e45] [cursor=pointer]:
+            - /url: /fr/cottage-country/quebec
+        - generic [ref=f4e49]:
+          - paragraph [ref=f4e50]: Recherche par destination
+          - link "SEARCH" [ref=f4e51] [cursor=pointer]:
+            - /url: /fr/search
+        - generic [ref=f4e56]:
+          - paragraph [ref=f4e57]: Guides & Articles
+          - link "INSPIRATION" [ref=f4e58] [cursor=pointer]:
+            - /url: /fr/guides
+    - generic [ref=f4e62]:
+      - banner [ref=f4e63]:
+        - generic [ref=f4e65]:
+          - link [ref=f4e67] [cursor=pointer]:
+            - /url: /fr
+            - img "Chalet Express" [ref=f4e68]
+          - button "EN" [ref=f4e70]
+      - main [ref=f4e75]:
+        - generic [ref=f4e76]:
+          - button "Back to Guides" [ref=f4e77]
+          - generic [ref=f4e80]:
+            - text: Mont-Tremblant Cottage Rentals
+            - heading "7 chalets à louer près de Mont-Tremblant" [level=1] [ref=f4e81]
+            - generic [ref=f4e82]:
+              - generic [ref=f4e83]:
+                - generic [ref=f4e84]: EC
+                - generic [ref=f4e85]: Editorial Team
+              - generic [ref=f4e86]:
+                - generic [ref=f4e87]: September 16, 2026
+                - generic [ref=f4e90]: 5 min read
+          - img "Les meilleures locations de chalets près de Mont-Tremblant" [ref=f4e95]
+          - generic [ref=f4e98]:
+            - generic [ref=f4e99]:
+              - paragraph [ref=f4e100]: Un chalet près de Mont-Tremblant, c'est l'escapade hivernale québécoise par excellence. Vous vous réveillez face à la vue sur les montagnes, vous skiez toute la journée et vous terminez la soirée dans un spa ou au coin du feu. Que vous soyez skieur ou non, difficile de trouver mieux.
+              - paragraph [ref=f4e101]: Nous avons sélectionné 7 chalets sélectionnés avec soin près de Mont-Tremblant, en nous basant sur les avis vérifiés de voyageurs qui y ont réellement séjourné. Que vous recherchiez des pistes à deux pas ou un havre de paix au bord d'un lac, vous trouverez la location qui vous convient dans cette liste.
+              - heading [level=2] [ref=f4e102]:
+                - strong [ref=f4e103]: Pourquoi Mont-Tremblant ?
+              - paragraph [ref=f4e104]: Mont-Tremblant est la station la plus célèbre du Québec, et l’offre de chalets aux alentours est tout aussi riche. Le village piétonnier au pied de la montagne est animé toute l’année, avec des restaurants, des boutiques et des événements à chaque saison.
+              - paragraph [ref=f4e105]: La montagne elle-même est surtout connue pour le ski. Avec plus de 100 pistes réparties sur un vaste domaine bien entretenu, elle fait le bonheur des familles comme des skieurs confirmés. Mais l’hiver n’est qu’une facette de cette destination. L’été est propice à la randonnée, au canoë et au golf. L’automne offre quant à lui certains des plus beaux panoramas colorés de la province.
+              - paragraph [ref=f4e106]:
+                - text: Les lacs qui entourent la montagne viennent parachever le tableau. Le lac Supérieur, le lac Mercier et la région environnante proposent des chalets au bord de l’eau, où l’on profite de matins paisibles et d’un accès facile à toutes les activités. C’est une destination idéale en toute saison. Pour avoir une vue d’ensemble de
+                - link "la location de chalets au Québec" [ref=f4e107] [cursor=pointer]:
+                  - /url: https://chaletexpress.com/en/cottage-country/quebec
+                - text: ", Tremblant est l’une des meilleures régions à prendre en compte."
+              - heading [level=2] [ref=f4e108]:
+                - strong [ref=f4e109]: 7 chalets à louer près de Mont-Tremblant
+              - paragraph [ref=f4e110]: Voici la liste que vous attendiez. Nous avons sélectionné ces 7 chalets en nous basant sur les avis vérifiés de voyageurs qui y ont réellement séjourné, en tenant compte de l’emplacement, de l’accès aux pistes de ski, du confort, de la propreté et du rapport qualité-prix. La liste est mise à jour régulièrement, afin que vous puissiez toujours consulter les options sélectionnées avec soin actuellement disponibles.
+              - paragraph
+            - generic [ref=f4e111]:
+              - generic [ref=f4e112]:
+                - generic [ref=f4e113]:
+                  - img "5 Bedroom Luxury Ski & Golf Chalet - Private Hot Tub - Prime Ski in Ski Out" [ref=f4e114]
+                  - generic [ref=f4e115]: "#1"
+                - generic [ref=f4e116]:
+                  - generic [ref=f4e117]:
+                    - generic [ref=f4e118]:
+                      - generic [ref=f4e119]: Balcony
+                      - generic [ref=f4e120]: "5.0"
+                    - heading "5 Bedroom Luxury Ski & Golf Chalet - Private Hot Tub - Prime Ski in Ski Out" [level=3] [ref=f4e133]
+                    - generic [ref=f4e134]: quebec
+                  - generic [ref=f4e139]:
+                    - generic [ref=f4e140]:
+                      - paragraph [ref=f4e141]: ESTIMATED RATE
+                      - generic [ref=f4e142]: $2161
+                      - text: / night
+                    - link "Check Availability" [ref=f4e143] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliate/vdWjnxt
+              - generic [ref=f4e148]:
+                - generic [ref=f4e149]:
+                  - img "La Canopée | Spa | Piscine privée&chauffée| Plein-air Mont-Blanc/Mont-Tremblant" [ref=f4e150]
+                  - generic [ref=f4e151]: "#2"
+                - generic [ref=f4e152]:
+                  - generic [ref=f4e153]:
+                    - generic [ref=f4e154]:
+                      - generic [ref=f4e155]: Air conditioning
+                      - generic [ref=f4e156]: "5.0"
+                    - heading "La Canopée | Spa | Piscine privée&chauffée| Plein-air Mont-Blanc/Mont-Tremblant" [level=3] [ref=f4e169]
+                    - generic [ref=f4e170]: quebec
+                  - generic [ref=f4e175]:
+                    - generic [ref=f4e176]:
+                      - paragraph [ref=f4e177]: ESTIMATED RATE
+                      - generic [ref=f4e178]: $1919
+                      - text: / night
+                    - link "Check Availability" [ref=f4e179] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliate/IFvbT9f
+              - generic [ref=f4e184]:
+                - generic [ref=f4e185]:
+                  - img "Large Tremblant Ski and Golf Chalet" [ref=f4e186]
+                  - generic [ref=f4e187]: "#3"
+                - generic [ref=f4e188]:
+                  - generic [ref=f4e189]:
+                    - generic [ref=f4e190]:
+                      - generic [ref=f4e191]: Air conditioning
+                      - generic [ref=f4e192]: "4.9"
+                    - heading "Large Tremblant Ski and Golf Chalet" [level=3] [ref=f4e205]
+                    - generic [ref=f4e206]: quebec
+                  - generic [ref=f4e211]:
+                    - generic [ref=f4e212]:
+                      - paragraph [ref=f4e213]: ESTIMATED RATE
+                      - generic [ref=f4e214]: $1693
+                      - text: / night
+                    - link "Check Availability" [ref=f4e215] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliate/gQb8gV7
+              - generic [ref=f4e220]:
+                - generic [ref=f4e221]:
+                  - img "Chalet Bois Rond Avec Spa - Foyer (Tremblant) / Accès Au Lac" [ref=f4e222]
+                  - generic [ref=f4e223]: "#4"
+                - generic [ref=f4e224]:
+                  - generic [ref=f4e225]:
+                    - generic [ref=f4e226]:
+                      - generic [ref=f4e227]: Air conditioning
+                      - generic [ref=f4e228]: "4.8"
+                    - heading "Chalet Bois Rond Avec Spa - Foyer (Tremblant) / Accès Au Lac" [level=3] [ref=f4e241]
+                    - generic [ref=f4e242]: quebec
+                  - generic [ref=f4e247]:
+                    - generic [ref=f4e248]:
+                      - paragraph [ref=f4e249]: ESTIMATED RATE
+                      - generic [ref=f4e250]: $2555
+                      - text: / night
+                    - link "Check Availability" [ref=f4e251] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliate/ASUDXia
+              - generic [ref=f4e256]:
+                - generic [ref=f4e257]:
+                  - img "Amazing Lake/Mountain View 5min to Tremblant (6)" [ref=f4e258]
+                  - generic [ref=f4e259]: "#5"
+                - generic [ref=f4e260]:
+                  - generic [ref=f4e261]:
+                    - generic [ref=f4e262]:
+                      - generic [ref=f4e263]: Air conditioning
+                      - generic [ref=f4e264]: "4.7"
+                    - heading "Amazing Lake/Mountain View 5min to Tremblant (6)" [level=3] [ref=f4e277]
+                    - generic [ref=f4e278]: quebec
+                  - generic [ref=f4e283]:
+                    - generic [ref=f4e284]:
+                      - paragraph [ref=f4e285]: ESTIMATED RATE
+                      - generic [ref=f4e286]: $386
+                      - text: / night
+                    - link "Check Availability" [ref=f4e287] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliate/nQqszpH
+              - generic [ref=f4e292]:
+                - generic [ref=f4e293]:
+                  - img "Chalet Mont Blanc Ski&Golf&Nature&ComfortAwait CITQ 297392" [ref=f4e294]
+                  - generic [ref=f4e295]: "#6"
+                - generic [ref=f4e296]:
+                  - generic [ref=f4e297]:
+                    - generic [ref=f4e298]:
+                      - generic [ref=f4e299]: Air conditioning
+                      - generic [ref=f4e300]: "4.7"
+                    - heading "Chalet Mont Blanc Ski&Golf&Nature&ComfortAwait CITQ 297392" [level=3] [ref=f4e313]
+                    - generic [ref=f4e314]: quebec
+                  - generic [ref=f4e319]:
+                    - generic [ref=f4e320]:
+                      - paragraph [ref=f4e321]: ESTIMATED RATE
+                      - generic [ref=f4e322]: $884
+                      - text: / night
+                    - link "Check Availability" [ref=f4e323] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliate/nUx4nDj
+            - generic [ref=f4e328]:
+              - paragraph
+              - paragraph [ref=f4e329]: Comparez les notes, vérifiez l’emplacement et réservez le chalet qui correspond à vos projets. Réservez directement depuis l’annonce.
+              - heading [level=2] [ref=f4e330]:
+                - strong [ref=f4e331]: Accès direct aux pistes ou au bord du lac
+              - paragraph [ref=f4e332]: Le choix le plus important lorsque vous réservez près de Tremblant est de déterminer où vous souhaitez séjourner.
+              - paragraph [ref=f4e333]: "Les chalets «ski-in/ski-out» sont situés directement sur les pistes ou à quelques pas des remontées mécaniques. Vous gagnez du temps le matin, vous évitez la navette et vous rentrez pour le déjeuner sans manquer une seule descente. Les conditions d’enneigement sont importantes : assurez-vous donc que l’accès est garanti aux dates de votre séjour."
+              - paragraph [ref=f4e334]: Les chalets au bord du lac privilégient le calme au détriment de l’accès aux pistes. Ils sont situés au bord des lacs qui entourent la montagne et offrent des vues et une tranquillité que le village de la station ne peut pas proposer. Il faut faire quelques minutes de route pour aller skier, mais vous retrouvez ensuite le calme, le bord de l’eau et souvent un meilleur prix.
+              - paragraph [ref=f4e335]: Pensez à votre groupe. Les skieurs invétérés privilégient l’accès direct aux pistes. Les familles qui souhaitent allier ski et détente préfèrent souvent les chalets au bord du lac. Les deux options sont excellentes, mais correspondent à des séjours différents.
+              - heading [level=2] [ref=f4e336]:
+                - strong [ref=f4e337]: Combien coûte un chalet à Mont-Tremblant ?
+              - paragraph [ref=f4e338]: Mont-Tremblant est le marché des chalets le plus cher du Québec, mais les prix varient considérablement.
+              - paragraph [ref=f4e339]: En hiver, comptez entre 300 et 600 dollars par nuit pour un chalet de qualité, les propriétés « ski-in/ski-out » se situant dans le haut de cette fourchette. Les semaines de vacances, comme Noël et les vacances de printemps, sont plus chères. Les tarifs baissent en été, souvent entre 250 et 450 dollars par nuit.
+              - paragraph [ref=f4e340]: Les chalets au bord des lacs ont tendance à coûter plus cher que ceux situés à l’intérieur des terres, surtout s’ils disposent d’un ponton ou d’un spa. Les frais de ménage et les cautions sont courants ; veillez donc à bien vérifier le prix total avant de réserver.
+              - heading [level=2] [ref=f4e341]:
+                - strong [ref=f4e342]: Quand réserver
+              - paragraph [ref=f4e343]: L’hiver est la haute saison. Les semaines de ski, de décembre à mars, se remplissent rapidement, et les dates de fêtes sont complètes plusieurs mois à l’avance. Pour avoir le plus grand choix, réservez dès le début de l’automne.
+              - paragraph [ref=f4e344]: Les vacances de printemps sont particulièrement prisées, car les familles de toute la région affluent vers la montagne. Réservez tôt si vos dates sont fixes.
+              - paragraph [ref=f4e345]: L’été et l’automne sont des périodes plus calmes et plus abordables. La station reste animée, les lacs sont chauds dès juillet, et il est souvent possible de trouver de bons chalets à la dernière minute. Si vous souhaitez profiter des joies du ski à moindre coût, envisagez la fin mars ou le début avril, lorsque les conditions sont encore correctes et que les tarifs baissent.
+              - heading [level=2] [ref=f4e346]:
+                - strong [ref=f4e347]: Conclusion
+              - paragraph [ref=f4e348]: Les chalets de Mont-Tremblant offrent le meilleur de la vie de station au Québec. Skiez toute la journée, pagayez sur un lac le soir ou détendez-vous sous les étoiles. Utilisez la liste ci-dessus, comparez les avis et réservez le chalet qui convient à votre groupe.
+              - paragraph [ref=f4e349]: La montagne vous attend.
+          - generic [ref=f4e350]:
+            - heading "Foire aux questions" [level=2] [ref=f4e351]
+            - generic [ref=f4e352]:
+              - button "Combien coûte la location d'un chalet près de Mont-Tremblant ?" [ref=f4e354]
+              - button "Est-ce que l'accès direct aux pistes vaut le coup à Mont-Tremblant ?" [ref=f4e359]
+              - button "Quelle est la meilleure période pour visiter Mont-Tremblant ?" [ref=f4e364]
+              - button "Les chalets de Mont-Tremblant acceptent-ils les animaux de compagnie ?" [ref=f4e369]
+          - generic [ref=f4e373]:
+            - heading "Prêt à réserver votre escapade à Mont-Tremblant ?" [level=2] [ref=f4e375]
+            - link "Réserver sur VRBO" [ref=f4e376] [cursor=pointer]:
+              - /url: https://vrbo.com/affiliates/search-monttremblant-dateless.EYMYC8c
+      - contentinfo [ref=f4e377]:
+        - generic [ref=f4e378]:
+          - generic [ref=f4e379]:
+            - generic [ref=f4e380]:
+              - img "Chalet Express logo" [ref=f4e382]
+              - paragraph [ref=f4e383]: Trouvez la location de chalet canadien qui vous convient le mieux. Une sélection de maisons au bord d'un lac, de chalets de montagne et de chalets en pleine nature à travers tout le Canada
+              - generic [ref=f4e384]:
+                - link "Facebook" [ref=f4e385] [cursor=pointer]:
+                  - /url: https://facebook.com/
+                - link "Instagram" [ref=f4e388] [cursor=pointer]:
+                  - /url: https://instagram.com/
+                - link "TikTok" [ref=f4e391] [cursor=pointer]:
+                  - /url: https://tiktok.com/
+                - link "X" [ref=f4e394] [cursor=pointer]:
+                  - /url: https://x.com/
+                - link "Pinterest" [ref=f4e397] [cursor=pointer]:
+                  - /url: https://pinterest.com/
+            - generic [ref=f4e400]:
+              - heading "DÉCOUVREZ" [level=4] [ref=f4e401]
+              - list [ref=f4e402]:
+                - listitem [ref=f4e403]:
+                  - link "Découvrez nos chalets" [ref=f4e404] [cursor=pointer]:
+                    - /url: /fr/search
+                - listitem [ref=f4e405]:
+                  - link "Chalets au bord de l'eau" [ref=f4e406] [cursor=pointer]:
+                    - /url: /fr/search/waterfront
+                - listitem [ref=f4e407]:
+                  - link "Chalets acceptant les animaux de compagnie" [ref=f4e408] [cursor=pointer]:
+                    - /url: /fr/search/pet-friendly
+            - generic [ref=f4e409]:
+              - heading "LIENS RAPIDES" [level=4] [ref=f4e410]
+              - list [ref=f4e411]:
+                - listitem [ref=f4e412]:
+                  - link "Conditions d'utilisation" [ref=f4e413] [cursor=pointer]:
+                    - /url: /fr/terms
+                - listitem [ref=f4e414]:
+                  - link "Déclaration relative aux liens d'affiliation" [ref=f4e415] [cursor=pointer]:
+                    - /url: /fr/disclaimer
+                - listitem [ref=f4e416]:
+                  - link "Politique de confidentialité" [ref=f4e417] [cursor=pointer]:
+                    - /url: /fr/privacy
+            - generic [ref=f4e418]:
+              - heading "À PROPOS" [level=4] [ref=f4e419]
+              - list [ref=f4e420]:
+                - listitem [ref=f4e421]:
+                  - link "À propos" [ref=f4e422] [cursor=pointer]:
+                    - /url: /fr/about
+                - listitem [ref=f4e423]:
+                  - link "Contact" [ref=f4e424] [cursor=pointer]:
+                    - /url: /fr/contact
+                - listitem [ref=f4e425]:
+                  - link "Guides & Articles" [ref=f4e426] [cursor=pointer]:
+                    - /url: /fr/guides
+            - generic [ref=f4e427]:
+              - heading "LES MEILLEURES DESTINATIONS POUR DES SÉJOURS EN GÎTE RURAL" [level=4] [ref=f4e428]
+              - list [ref=f4e429]:
+                - listitem [ref=f4e430]:
+                  - link "La région des chalets de l'Ontario" [ref=f4e431] [cursor=pointer]:
+                    - /url: /fr/chalet-country/ontario
+                - listitem [ref=f4e432]:
+                  - link "La région des chalets du Québec" [ref=f4e433] [cursor=pointer]:
+                    - /url: /fr/chalet-country/quebec
+                - listitem [ref=f4e434]:
+                  - link "La région des chalets de la Colombie-Britannique" [ref=f4e435] [cursor=pointer]:
+                    - /url: /fr/chalet-country/british-columbia
+          - paragraph [ref=f4e438]: © 2026 Chalet Express. Tous droits réservés.
+  - alert [ref=f4e439]

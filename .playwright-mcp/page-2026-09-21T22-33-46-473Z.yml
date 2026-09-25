@@ -1,0 +1,50 @@
+- generic [active] [ref=f24e1]:
+  - alert [ref=f24e6]
+  - generic [ref=f24e7]:
+    - complementary [ref=f24e8]:
+      - generic [ref=f24e9]:
+        - generic: Chaletx
+        - button [ref=f24e13]
+      - navigation [ref=f24e16]:
+        - paragraph [ref=f24e17]: Admin
+        - link "Dashboard" [ref=f24e18] [cursor=pointer]:
+          - /url: /en/admin/dashboard
+        - link "Pages" [ref=f24e24] [cursor=pointer]:
+          - /url: /en/admin/pages
+        - link "Articles" [ref=f24e28] [cursor=pointer]:
+          - /url: /en/admin/articles
+        - link "Library" [ref=f24e31] [cursor=pointer]:
+          - /url: /en/admin/library
+        - link "Messages" [ref=f24e36] [cursor=pointer]:
+          - /url: /en/admin/messages
+        - link "Search" [ref=f24e40] [cursor=pointer]:
+          - /url: /en/admin/search
+        - link "Cottages" [ref=f24e44] [cursor=pointer]:
+          - /url: /en/admin/cottages
+        - link "Destinations" [ref=f24e49] [cursor=pointer]:
+          - /url: /en/admin/destinations
+        - link "Settings" [ref=f24e53] [cursor=pointer]:
+          - /url: /en/admin/settings
+      - generic [ref=f24e57]:
+        - link "Profile" [ref=f24e58] [cursor=pointer]:
+          - /url: /en/admin/profile
+        - link "Visit Website" [ref=f24e62] [cursor=pointer]:
+          - /url: /en
+        - button "Clear Cache" [ref=f24e67]
+        - button "Logout" [ref=f24e73]
+    - generic [ref=f24e77]:
+      - banner [ref=f24e78]:
+        - heading "Admin" [level=2] [ref=f24e79]
+        - generic [ref=f24e80]:
+          - generic "You are editing the EN version — visible on /en/… Remember to mirror on FR if needed (no auto-sync)." [ref=f24e81]: EN
+          - generic [ref=f24e82]:
+            - link "EN" [ref=f24e83] [cursor=pointer]:
+              - /url: /en/admin/destinations
+            - link "FR" [ref=f24e84] [cursor=pointer]:
+              - /url: /fr/admin/destinations
+      - main [ref=f24e85]:
+        - generic [ref=f24e86]:
+          - generic [ref=f24e87]:
+            - heading "Destinations" [level=1] [ref=f24e88]
+            - button "Create New Destination" [ref=f24e89]
+          - paragraph [ref=f24e92]: No destinations yet.

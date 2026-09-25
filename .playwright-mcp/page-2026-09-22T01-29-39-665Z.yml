@@ -1,0 +1,94 @@
+- generic [active] [ref=f1e1]:
+  - alert [ref=f1e6]
+  - generic [ref=f1e7]:
+    - complementary [ref=f1e8]:
+      - generic [ref=f1e9]:
+        - generic: Chaletx
+        - button [ref=f1e10]
+      - navigation [ref=f1e13]:
+        - paragraph [ref=f1e14]: Admin
+        - link "Dashboard" [ref=f1e15] [cursor=pointer]:
+          - /url: /en/admin/dashboard
+        - link "Pages" [ref=f1e21] [cursor=pointer]:
+          - /url: /en/admin/pages
+        - link "Articles" [ref=f1e25] [cursor=pointer]:
+          - /url: /en/admin/articles
+        - link "Library" [ref=f1e28] [cursor=pointer]:
+          - /url: /en/admin/library
+        - link "Messages" [ref=f1e33] [cursor=pointer]:
+          - /url: /en/admin/messages
+        - link "Search" [ref=f1e37] [cursor=pointer]:
+          - /url: /en/admin/search
+        - link "Cottages" [ref=f1e41] [cursor=pointer]:
+          - /url: /en/admin/cottages
+        - link "Destinations" [ref=f1e46] [cursor=pointer]:
+          - /url: /en/admin/destinations
+        - link "Settings" [ref=f1e50] [cursor=pointer]:
+          - /url: /en/admin/settings
+      - generic [ref=f1e54]:
+        - link "Profile" [ref=f1e55] [cursor=pointer]:
+          - /url: /en/admin/profile
+        - link "Visit Website" [ref=f1e59] [cursor=pointer]:
+          - /url: /en
+        - button "Clear Cache" [ref=f1e64]
+        - button "Logout" [ref=f1e70]
+    - generic [ref=f1e74]:
+      - banner [ref=f1e75]:
+        - heading "Admin" [level=2] [ref=f1e76]
+        - generic [ref=f1e77]:
+          - generic "You are editing the EN version — visible on /en/… Remember to mirror on FR if needed (no auto-sync)." [ref=f1e78]: EN
+          - generic [ref=f1e79]:
+            - link "EN" [ref=f1e80] [cursor=pointer]:
+              - /url: /en/admin/dashboard
+            - link "FR" [ref=f1e81] [cursor=pointer]:
+              - /url: /fr/admin/dashboard
+      - main [ref=f1e82]:
+        - generic [ref=f1e83]:
+          - generic [ref=f1e84]:
+            - heading "Dashboard" [level=1] [ref=f1e85]
+            - paragraph [ref=f1e86]: Welcome back — here's what's happening
+          - generic [ref=f1e87]:
+            - generic [ref=f1e88]:
+              - paragraph [ref=f1e93]: "145"
+              - generic [ref=f1e94]:
+                - paragraph [ref=f1e95]: Total Cottages
+                - generic [ref=f1e96]: "0"
+            - generic [ref=f1e97]:
+              - paragraph [ref=f1e102]: "15"
+              - generic [ref=f1e103]:
+                - paragraph [ref=f1e104]: Articles
+                - generic [ref=f1e105]: "0"
+            - generic [ref=f1e106]:
+              - paragraph [ref=f1e111]: "9"
+              - paragraph [ref=f1e113]: Destinations
+            - generic [ref=f1e114]:
+              - paragraph [ref=f1e119]: "0"
+              - generic [ref=f1e120]:
+                - paragraph [ref=f1e121]: Messages
+                - generic [ref=f1e122]: "0"
+          - paragraph [ref=f1e123]: "Redis ops this month: 2 317 (~0.5% of free tier)"
+          - generic [ref=f1e124]:
+            - heading "Performance (30 days)" [level=3] [ref=f1e125]
+            - generic [ref=f1e126]:
+              - generic [ref=f1e132]:
+                - paragraph [ref=f1e133]:
+                  - text: 1 175
+                  - generic [ref=f1e134]: +230.1%
+                - paragraph [ref=f1e135]: Page Views
+              - generic [ref=f1e143]:
+                - paragraph [ref=f1e144]:
+                  - text: "51"
+                  - generic [ref=f1e145]: +466.7%
+                - paragraph [ref=f1e146]: Visitors
+              - generic [ref=f1e151]:
+                - paragraph [ref=f1e152]: 132 +340
+                - paragraph [ref=f1e153]: Sessions
+              - generic [ref=f1e159]:
+                - paragraph [ref=f1e160]:
+                  - text: 0.5%
+                  - generic [ref=f1e161]: +172.7%
+                - paragraph [ref=f1e162]: Bounce Rate
+          - generic [ref=f1e163]:
+            - button "Add Cottage" [ref=f1e164]
+            - button "Write Article" [ref=f1e170]
+            - button "View Messages" [ref=f1e176]

@@ -1,0 +1,3 @@
+[     340ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://cottagex.vercel.app/api/admin/pages:0
+[     333ms] SyntaxError: Failed to execute 'json' on 'Response': Unexpected end of JSON input
+    at https://cottagex.vercel.app/_next/static/chunks/0oqvhj8vpzz9v.js?dpl=dpl_CCjAbc4X2bZTtY8p6FRQSfFJALty:1:2071

@@ -1,0 +1,404 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - complementary [ref=f3e4]:
+      - link "CE" [ref=f3e6] [cursor=pointer]:
+        - /url: /fr
+      - navigation [ref=f3e8]:
+        - generic [ref=f3e9]:
+          - paragraph [ref=f3e10]: Destinations chalets
+          - link "AB" [ref=f3e11] [cursor=pointer]:
+            - /url: /fr/cottage-country/alberta
+          - link "BC" [ref=f3e15] [cursor=pointer]:
+            - /url: /fr/cottage-country/british-columbia
+          - link "MB" [ref=f3e20] [cursor=pointer]:
+            - /url: /fr/cottage-country/manitoba
+          - link "NB" [ref=f3e24] [cursor=pointer]:
+            - /url: /fr/cottage-country/new-brunswick
+          - link "NS" [ref=f3e31] [cursor=pointer]:
+            - /url: /fr/cottage-country/nova-scotia
+          - link "ON" [ref=f3e35] [cursor=pointer]:
+            - /url: /fr/cottage-country/ontario
+          - link "PEI" [ref=f3e40] [cursor=pointer]:
+            - /url: /fr/cottage-country/pei
+          - link "QC" [ref=f3e45] [cursor=pointer]:
+            - /url: /fr/cottage-country/quebec
+        - generic [ref=f3e49]:
+          - paragraph [ref=f3e50]: Recherche par destination
+          - link "SEARCH" [ref=f3e51] [cursor=pointer]:
+            - /url: /fr/search
+        - generic [ref=f3e56]:
+          - paragraph [ref=f3e57]: Guides & Articles
+          - link "INSPIRATION" [ref=f3e58] [cursor=pointer]:
+            - /url: /fr/guides
+    - generic [ref=f3e62]:
+      - banner [ref=f3e63]:
+        - generic [ref=f3e65]:
+          - link [ref=f3e67] [cursor=pointer]:
+            - /url: /fr
+            - img "Chalet Express" [ref=f3e68]
+          - button "EN" [ref=f3e70]
+      - main [ref=f3e75]:
+        - generic [ref=f3e76]:
+          - generic [ref=f3e77]:
+            - img "Destination de location de chalets en Ontario" [ref=f3e78]
+            - generic [ref=f3e81]:
+              - generic [ref=f3e82]: Destinations
+              - 'heading "La région des chalets de l''Ontario : découvrez la destination lacustre préférée des Canadiens" [level=1] [ref=f3e86]'
+              - paragraph [ref=f3e87]: De Muskoka aux lacs Kawartha, découvrez des séjours inoubliables dans des chalets nichés au cœur de lacs cristallins, de forêts et d'activités de plein air tout au long de l'année.
+          - generic [ref=f3e89]:
+            - generic [ref=f3e90]:
+              - heading "Présentation générale" [level=2] [ref=f3e91]
+              - paragraph [ref=f3e92]: Une destination où se mêlent nature, détente et aventure.
+              - paragraph [ref=f3e93]: La région des chalets de l'Ontario est un magnifique lieu de villégiature situé près de Toronto, au Canada. Elle est réputée pour ses lacs et ses activités de plein air, telles que la navigation de plaisance et la pêche. Parmi les destinations les plus connues, on peut citer Muskoka et Haliburton. Les visiteurs y louent des chalets pour se détendre et profiter de la nature. C'est un havre de paix qui permet de s'évader de la vie urbaine.
+            - generic [ref=f3e94]:
+              - heading "Pourquoi l'Ontario est la région des maisons de campagne du Canada" [level=3] [ref=f3e95]
+              - generic [ref=f3e96]:
+                - generic [ref=f3e102]:
+                  - generic [ref=f3e103]: Plus de 250 000 lacs
+                  - paragraph [ref=f3e104]: Découvrez une multitude de destinations au bord de l'eau dans toute la province.
+                - generic [ref=f3e110]:
+                  - generic [ref=f3e111]: Régions aux chalets emblématiques
+                  - paragraph [ref=f3e112]: Partez à la découverte de Muskoka, Haliburton, Kawarthas et de la baie Georgienne.
+          - generic [ref=f3e113]:
+            - heading "Découvrir les chalets" [level=2] [ref=f3e114]
+            - paragraph [ref=f3e115]: Ontario
+            - generic [ref=f3e116]:
+              - link "Spacious, waterfront home surrounded by trees with large dock & games room. cottage VRBO Spacious, waterfront home surrounded by trees with large dock & games room. Ontario (9 avis) Consulter les tarifs" [ref=f3e117] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/tRgULEG
+                - generic [ref=f3e118]:
+                  - img "Spacious, waterfront home surrounded by trees with large dock & games room." [ref=f3e119]
+                  - generic [ref=f3e120]: cottage
+                  - img "VRBO" [ref=f3e121]
+                - generic [ref=f3e122]:
+                  - heading "Spacious, waterfront home surrounded by trees with large dock & games room." [level=3] [ref=f3e123]
+                  - generic [ref=f3e124]: Ontario
+                  - generic [ref=f3e129]: (9 avis)
+                  - generic [ref=f3e141]: Consulter les tarifs
+              - link "Modern tiny home in Muskoka - Mary Lake! cottage VRBO Modern tiny home in Muskoka - Mary Lake! Ontario (1 avis) $659/ nuit" [ref=f3e143] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/DOEeGop
+                - generic [ref=f3e144]:
+                  - img "Modern tiny home in Muskoka - Mary Lake!" [ref=f3e145]
+                  - generic [ref=f3e146]: cottage
+                  - img "VRBO" [ref=f3e147]
+                - generic [ref=f3e148]:
+                  - heading "Modern tiny home in Muskoka - Mary Lake!" [level=3] [ref=f3e149]
+                  - generic [ref=f3e150]: Ontario
+                  - generic [ref=f3e155]: (1 avis)
+                  - generic [ref=f3e168]:
+                    - generic [ref=f3e169]: $659
+                    - text: / nuit
+              - link "Waterfront in Wasaga Beach (on the Nottawasaga River) any season - 30 night min cottage VRBO Waterfront in Wasaga Beach (on the Nottawasaga River) any season - 30 night min Ontario (4 avis) $549/ nuit" [ref=f3e174] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/SGAe5zx
+                - generic [ref=f3e175]:
+                  - img "Waterfront in Wasaga Beach (on the Nottawasaga River) any season - 30 night min" [ref=f3e176]
+                  - generic [ref=f3e177]: cottage
+                  - img "VRBO" [ref=f3e178]
+                - generic [ref=f3e179]:
+                  - heading "Waterfront in Wasaga Beach (on the Nottawasaga River) any season - 30 night min" [level=3] [ref=f3e180]
+                  - generic [ref=f3e181]: Ontario
+                  - generic [ref=f3e186]: (4 avis)
+                  - generic [ref=f3e199]:
+                    - generic [ref=f3e200]: $549
+                    - text: / nuit
+              - link "Red Berry Lodge - Waterfront & Pet Friendly! cottage VRBO Red Berry Lodge - Waterfront & Pet Friendly! Ontario (6 avis) $569/ nuit" [ref=f3e205] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/V96Xazj
+                - generic [ref=f3e206]:
+                  - img "Red Berry Lodge - Waterfront & Pet Friendly!" [ref=f3e207]
+                  - generic [ref=f3e208]: cottage
+                  - img "VRBO" [ref=f3e209]
+                - generic [ref=f3e210]:
+                  - heading "Red Berry Lodge - Waterfront & Pet Friendly!" [level=3] [ref=f3e211]
+                  - generic [ref=f3e212]: Ontario
+                  - generic [ref=f3e217]: (6 avis)
+                  - generic [ref=f3e230]:
+                    - generic [ref=f3e231]: $569
+                    - text: / nuit
+              - link "By the Lake! 2 Bedroom Unit with Fire Pit & Games cottage VRBO By the Lake! 2 Bedroom Unit with Fire Pit & Games Ontario (1 avis) $300/ nuit" [ref=f3e236] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/Ld2EhMQ
+                - generic [ref=f3e237]:
+                  - img "By the Lake! 2 Bedroom Unit with Fire Pit & Games" [ref=f3e238]
+                  - generic [ref=f3e239]: cottage
+                  - img "VRBO" [ref=f3e240]
+                - generic [ref=f3e241]:
+                  - heading "By the Lake! 2 Bedroom Unit with Fire Pit & Games" [level=3] [ref=f3e242]
+                  - generic [ref=f3e243]: Ontario
+                  - generic [ref=f3e248]: (1 avis)
+                  - generic [ref=f3e261]:
+                    - generic [ref=f3e262]: $300
+                    - text: / nuit
+              - link "Pine Point- Rustic Waterfront 2 bedroom Cottage cottage VRBO Pine Point- Rustic Waterfront 2 bedroom Cottage Ontario (49 avis) $403/ nuit" [ref=f3e267] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/Igg6OAo
+                - generic [ref=f3e268]:
+                  - img "Pine Point- Rustic Waterfront 2 bedroom Cottage" [ref=f3e269]
+                  - generic [ref=f3e270]: cottage
+                  - img "VRBO" [ref=f3e271]
+                - generic [ref=f3e272]:
+                  - heading "Pine Point- Rustic Waterfront 2 bedroom Cottage" [level=3] [ref=f3e273]
+                  - generic [ref=f3e274]: Ontario
+                  - generic [ref=f3e279]: (49 avis)
+                  - generic [ref=f3e292]:
+                    - generic [ref=f3e293]: $403
+                    - text: / nuit
+              - link "The Hidden Porch at Sir Sam's (hot tub & sauna) cottage VRBO The Hidden Porch at Sir Sam's (hot tub & sauna) Ontario (18 avis) $728/ nuit" [ref=f3e298] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/3KRWUYz
+                - generic [ref=f3e299]:
+                  - img "The Hidden Porch at Sir Sam's (hot tub & sauna)" [ref=f3e300]
+                  - generic [ref=f3e301]: cottage
+                  - img "VRBO" [ref=f3e302]
+                - generic [ref=f3e303]:
+                  - heading "The Hidden Porch at Sir Sam's (hot tub & sauna)" [level=3] [ref=f3e304]
+                  - generic [ref=f3e305]: Ontario
+                  - generic [ref=f3e310]: (18 avis)
+                  - generic [ref=f3e323]:
+                    - generic [ref=f3e324]: $728
+                    - text: / nuit
+              - link "2 BEDRM WATERFRONT COTTAGE, CANOE, KAYAKS, WIFI cottage VRBO 2 BEDRM WATERFRONT COTTAGE, CANOE, KAYAKS, WIFI Ontario (8 avis) $435/ nuit" [ref=f3e329] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/oei3F0K
+                - generic [ref=f3e330]:
+                  - img "2 BEDRM WATERFRONT COTTAGE, CANOE, KAYAKS, WIFI" [ref=f3e331]
+                  - generic [ref=f3e332]: cottage
+                  - img "VRBO" [ref=f3e333]
+                - generic [ref=f3e334]:
+                  - heading "2 BEDRM WATERFRONT COTTAGE, CANOE, KAYAKS, WIFI" [level=3] [ref=f3e335]
+                  - generic [ref=f3e336]: Ontario
+                  - generic [ref=f3e341]: (8 avis)
+                  - generic [ref=f3e354]:
+                    - generic [ref=f3e355]: $435
+                    - text: / nuit
+              - link "Tree top Living in the heart of cottage country. Stunning 4 season cottage. cottage VRBO Tree top Living in the heart of cottage country. Stunning 4 season cottage. Ontario (8 avis) $645/ nuit" [ref=f3e360] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/PzftWEj
+                - generic [ref=f3e361]:
+                  - img "Tree top Living in the heart of cottage country. Stunning 4 season cottage." [ref=f3e362]
+                  - generic [ref=f3e363]: cottage
+                  - img "VRBO" [ref=f3e364]
+                - generic [ref=f3e365]:
+                  - heading "Tree top Living in the heart of cottage country. Stunning 4 season cottage." [level=3] [ref=f3e366]
+                  - generic [ref=f3e367]: Ontario
+                  - generic [ref=f3e372]: (8 avis)
+                  - generic [ref=f3e385]:
+                    - generic [ref=f3e386]: $645
+                    - text: / nuit
+              - link "Balsam Resort - Cottage Condo - Balsam Resort - Cottage Condo cottage VRBO Balsam Resort - Cottage Condo - Balsam Resort - Cottage Condo Ontario (5 avis) $509/ nuit" [ref=f3e391] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/VN2awIT
+                - generic [ref=f3e392]:
+                  - img "Balsam Resort - Cottage Condo - Balsam Resort - Cottage Condo" [ref=f3e393]
+                  - generic [ref=f3e394]: cottage
+                  - img "VRBO" [ref=f3e395]
+                - generic [ref=f3e396]:
+                  - heading "Balsam Resort - Cottage Condo - Balsam Resort - Cottage Condo" [level=3] [ref=f3e397]
+                  - generic [ref=f3e398]: Ontario
+                  - generic [ref=f3e403]: (5 avis)
+                  - generic [ref=f3e416]:
+                    - generic [ref=f3e417]: $509
+                    - text: / nuit
+              - link "2 bedroom Waterfront Cottage in Wasaga - Ash Lane Cottages cottage VRBO 2 bedroom Waterfront Cottage in Wasaga - Ash Lane Cottages Ontario (28 avis) $433/ nuit" [ref=f3e422] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliate/4OZTHLD
+                - generic [ref=f3e423]:
+                  - img "2 bedroom Waterfront Cottage in Wasaga - Ash Lane Cottages" [ref=f3e424]
+                  - generic [ref=f3e425]: cottage
+                  - img "VRBO" [ref=f3e426]
+                - generic [ref=f3e427]:
+                  - heading "2 bedroom Waterfront Cottage in Wasaga - Ash Lane Cottages" [level=3] [ref=f3e428]
+                  - generic [ref=f3e429]: Ontario
+                  - generic [ref=f3e434]: (28 avis)
+                  - generic [ref=f3e447]:
+                    - generic [ref=f3e448]: $433
+                    - text: / nuit
+              - link "Vacation Inn Townhomes cottage Vacation Inn Townhomes Ontario (10 avis) $457/ nuit" [ref=f3e453] [cursor=pointer]:
+                - /url: https://expedia.com/affiliate/NJWD0QY
+                - generic [ref=f3e454]:
+                  - img "Vacation Inn Townhomes" [ref=f3e455]
+                  - generic [ref=f3e456]: cottage
+                - generic [ref=f3e457]:
+                  - heading "Vacation Inn Townhomes" [level=3] [ref=f3e458]
+                  - generic [ref=f3e459]: Ontario
+                  - generic [ref=f3e464]: (10 avis)
+                  - generic [ref=f3e477]:
+                    - generic [ref=f3e478]: $457
+                    - text: / nuit
+            - generic [ref=f3e483]:
+              - heading "Explorer sur la carte" [level=3] [ref=f3e484]
+              - generic [ref=f3e486]:
+                - generic:
+                  - generic:
+                    - button "•" [ref=f3e487] [cursor=pointer]
+                    - button "$659" [ref=f3e489] [cursor=pointer]
+                    - button "$549" [ref=f3e491] [cursor=pointer]
+                    - button "$569" [ref=f3e493] [cursor=pointer]
+                    - button "$300" [ref=f3e495] [cursor=pointer]
+                    - button "$403" [ref=f3e497] [cursor=pointer]
+                    - button "$728" [ref=f3e499] [cursor=pointer]
+                    - button "$435" [ref=f3e501] [cursor=pointer]
+                    - button "$645" [ref=f3e503] [cursor=pointer]
+                    - button "$509" [ref=f3e505] [cursor=pointer]
+                    - button "$433" [ref=f3e507] [cursor=pointer]
+                    - button "$457" [ref=f3e509] [cursor=pointer]
+                - generic:
+                  - generic [ref=f3e511]:
+                    - button "Zoom in" [ref=f3e512] [cursor=pointer]: +
+                    - button "Zoom out" [ref=f3e513] [cursor=pointer]: −
+                  - generic [ref=f3e514]:
+                    - link "Leaflet" [ref=f3e515] [cursor=pointer]:
+                      - /url: https://leafletjs.com
+                    - text: "| ©"
+                    - link "OpenStreetMap" [ref=f3e520] [cursor=pointer]:
+                      - /url: https://www.openstreetmap.org/copyright
+          - generic [ref=f3e522]:
+            - generic [ref=f3e523]:
+              - paragraph [ref=f3e524]: L'une des meilleures destinations pour les chalets au Canada
+              - heading "La région des chalets de l'Ontario" [level=2] [ref=f3e525]
+              - paragraph [ref=f3e526]: Pour choisir le chalet idéal, il faut d’abord trouver la destination qui correspond à votre style de voyage. Vous recherchez un cadre de vie luxueux au bord de l’eau ? Découvrez Muskoka. Vous préférez les lacs tranquilles et les aventures en plein air ? Pensez à Haliburton ou aux Kawarthas. Des chalets adaptés aux familles aux chalets romantiques, en passant par les grandes résidences au bord de l’eau, l’Ontario propose des hébergements pour tous les types de voyageurs. Parcourez nos guides pour découvrir les meilleures régions de chalets, les activités saisonnières et des conseils de voyage pour vos prochaines vacances en Ontario.
+              - generic [ref=f3e527]:
+                - generic [ref=f3e528]:
+                  - button "Où se trouve la plus belle région de chalets de l'Ontario ?" [ref=f3e529]
+                  - paragraph [ref=f3e533]: La région de Muskoka est largement considérée comme la destination de prédilection pour les résidences secondaires en Ontario, réputée pour ses lacs cristallins et ses propriétés de luxe. Cependant, des régions telles que Kawartha Lakes, Haliburton et le comté de Prince Edward constituent également des alternatives très prisées pour une escapade estivale au calme.
+                - generic [ref=f3e534]:
+                  - button "Combien coûte la location d'un chalet en Ontario ?" [ref=f3e535]
+                  - paragraph [ref=f3e539]: Les prix varient considérablement en fonction de l'emplacement, de la taille et de la proximité du plan d'eau. Le prix d'un chalet basique situé à l'écart du plan d'eau peut commencer à environ 150 dollars par nuit, tandis que celui d'un chalet de luxe en bord de lac à louer à Muskoka peut facilement dépasser les 500 à 1 500 dollars par nuit pendant la haute saison estivale.
+                - generic [ref=f3e540]:
+                  - button "Quelle est la meilleure période de l'année pour réserver un chalet en Ontario ?" [ref=f3e541]
+                  - paragraph [ref=f3e545]: L'été (juillet et août) est la période la plus prisée pour la baignade et la navigation de plaisance, mais réserver un chalet à l'automne vous permettra de profiter d'un magnifique feuillage automnal et de tarifs à la nuitée plus avantageux. Il est vivement recommandé de réserver votre chalet au moins six mois à l'avance pour les dates les plus prisées de l'été.
+                - generic [ref=f3e546]:
+                  - button "Y a-t-il des chalets acceptant les animaux de compagnie en Ontario ?" [ref=f3e547]
+                  - paragraph [ref=f3e551]: Oui, de nombreux propriétaires dans toute la région des résidences secondaires de l'Ontario acceptent les chiens. Lorsque vous recherchez votre prochaine destination de vacances à la campagne, il vous suffit d'utiliser le filtre de recherche « animaux acceptés » pour vous assurer que votre compagnon à quatre pattes pourra vous accompagner pendant vos vacances en famille.
+            - generic:
+              - img "La région des chalets de l'Ontario"
+          - generic [ref=f3e553]:
+            - generic [ref=f3e554]:
+              - heading "Trouvez le chalet de vos rêves en Ontario" [level=2] [ref=f3e555]
+              - paragraph [ref=f3e556]: Commencez dès aujourd'hui à découvrir les plus belles destinations de chalets ruraux de l'Ontario. Parcourez les locations disponibles, comparez les emplacements et réservez l'escapade au bord d'un lac idéale pour vos prochaines vacances.
+              - link "En savoir plus" [ref=f3e557] [cursor=pointer]:
+                - /url: https://vrbo.com/affiliates/cottagerentals/ontario
+            - img "Le Canada à louer" [ref=f3e559]
+          - generic [ref=f3e560]:
+            - generic [ref=f3e561]:
+              - heading "Découvrir les régions de chalets ruraux en Ontario" [level=2] [ref=f3e562]
+              - paragraph [ref=f3e563]: Recherche par destination
+            - generic [ref=f3e564]:
+              - generic [ref=f3e565]:
+                - heading "Lacs Kawartha" [level=3] [ref=f3e566]
+                - list [ref=f3e567]:
+                  - listitem [ref=f3e568]:
+                    - link "Chalets au bord du lac à Kawartha Lakes" [ref=f3e569] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-kawartha-lakes-dateless.d06kQ3F
+                  - listitem [ref=f3e570]:
+                    - link "Chalets familiaux à Kawartha Lakes" [ref=f3e571] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-kawartha-lakes-dateless.fbacxWf
+                  - listitem [ref=f3e572]:
+                    - link "Chalets avec spa à Kawartha Lakes" [ref=f3e573] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-kawartha-lakes-dateless.z7UVmHa
+                  - listitem [ref=f3e574]:
+                    - link "Chalets acceptant les animaux à Kawartha Lakes" [ref=f3e575] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-kawartha-lakes-dateless.47djdrS
+              - generic [ref=f3e576]:
+                - heading "Muskoka" [level=3] [ref=f3e577]
+                - list [ref=f3e578]:
+                  - listitem [ref=f3e579]:
+                    - link "Chalets au bord du lac à Muskoka" [ref=f3e580] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-muskoka-lakes-dateless.MMSJ8lM
+                  - listitem [ref=f3e581]:
+                    - link "Chalets familiaux à Muskoka" [ref=f3e582] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-muskoka-lakes-dateless.WId6WeH
+                  - listitem [ref=f3e583]:
+                    - link "Chalets avec spa à Muskoka" [ref=f3e584] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-muskoka-lakes-dateless.bkbaKY8
+                  - listitem [ref=f3e585]:
+                    - link "Chalets acceptant les animaux à Muskoka" [ref=f3e586] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-muskoka-lakes-dateless.zl7oEO7
+              - generic [ref=f3e587]:
+                - heading "Hautes Terres algonquines" [level=3] [ref=f3e588]
+                - list [ref=f3e589]:
+                  - listitem [ref=f3e590]:
+                    - link "Chalets au bord du lac dans les Algonquin Highlands" [ref=f3e591] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-algonquin-highlands-dateless.MrN11Ol
+                  - listitem [ref=f3e592]:
+                    - link "Chalets familiaux dans les Hautes-Terres d'Algonquin" [ref=f3e593] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-algonquin-highlands-dateless.BYrYP40
+                  - listitem [ref=f3e594]:
+                    - link "Chalets avec spa dans les Algonquin Highlands" [ref=f3e595] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-algonquin-highlands-dateless.iLacXb8
+                  - listitem [ref=f3e596]:
+                    - link "Chalets acceptant les animaux de compagnie dans les Hautes-Terres d'Algonquin" [ref=f3e597] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-algonquin-highlands-dateless.hlIdakI
+              - generic [ref=f3e598]:
+                - heading "Baie de Goergian" [level=3] [ref=f3e599]
+                - list [ref=f3e600]:
+                  - listitem [ref=f3e601]:
+                    - link "Chalets au bord du lac à Georgian Bay" [ref=f3e602] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-georgian-bay-dateless.swirJO2
+                  - listitem [ref=f3e603]:
+                    - link "Chalets familiaux à Goergian Bay" [ref=f3e604] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-georgian-bay-dateless.UvhtXU2
+                  - listitem [ref=f3e605]:
+                    - link "Chalets avec spa à Georgian Bay" [ref=f3e606] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-georgian-bay-dateless.y7t0JOD
+                  - listitem [ref=f3e607]:
+                    - link "Chalets acceptant les animaux à Goergian Bay" [ref=f3e608] [cursor=pointer]:
+                      - /url: https://vrbo.com/affiliates/search-georgian-bay-dateless.ujgXO98
+      - contentinfo [ref=f3e609]:
+        - generic [ref=f3e610]:
+          - generic [ref=f3e611]:
+            - generic [ref=f3e612]:
+              - img "Chalet Express logo" [ref=f3e614]
+              - paragraph [ref=f3e615]: Trouvez la location de chalet canadien qui vous convient le mieux. Une sélection de maisons au bord d'un lac, de chalets de montagne et de chalets en pleine nature à travers tout le Canada
+              - generic [ref=f3e616]:
+                - link "Facebook" [ref=f3e617] [cursor=pointer]:
+                  - /url: https://facebook.com/
+                - link "Instagram" [ref=f3e620] [cursor=pointer]:
+                  - /url: https://instagram.com/
+                - link "TikTok" [ref=f3e623] [cursor=pointer]:
+                  - /url: https://tiktok.com/
+                - link "X" [ref=f3e626] [cursor=pointer]:
+                  - /url: https://x.com/
+                - link "Pinterest" [ref=f3e629] [cursor=pointer]:
+                  - /url: https://pinterest.com/
+            - generic [ref=f3e632]:
+              - heading "DÉCOUVREZ" [level=4] [ref=f3e633]
+              - list [ref=f3e634]:
+                - listitem [ref=f3e635]:
+                  - link "Découvrez nos chalets" [ref=f3e636] [cursor=pointer]:
+                    - /url: /fr/search
+                - listitem [ref=f3e637]:
+                  - link "Chalets au bord de l'eau" [ref=f3e638] [cursor=pointer]:
+                    - /url: /fr/search/waterfront
+                - listitem [ref=f3e639]:
+                  - link "Chalets acceptant les animaux de compagnie" [ref=f3e640] [cursor=pointer]:
+                    - /url: /fr/search/pet-friendly
+            - generic [ref=f3e641]:
+              - heading "LIENS RAPIDES" [level=4] [ref=f3e642]
+              - list [ref=f3e643]:
+                - listitem [ref=f3e644]:
+                  - link "Conditions d'utilisation" [ref=f3e645] [cursor=pointer]:
+                    - /url: /fr/terms
+                - listitem [ref=f3e646]:
+                  - link "Déclaration relative aux liens d'affiliation" [ref=f3e647] [cursor=pointer]:
+                    - /url: /fr/disclaimer
+                - listitem [ref=f3e648]:
+                  - link "Politique de confidentialité" [ref=f3e649] [cursor=pointer]:
+                    - /url: /fr/privacy
+            - generic [ref=f3e650]:
+              - heading "À PROPOS" [level=4] [ref=f3e651]
+              - list [ref=f3e652]:
+                - listitem [ref=f3e653]:
+                  - link "À propos" [ref=f3e654] [cursor=pointer]:
+                    - /url: /fr/about
+                - listitem [ref=f3e655]:
+                  - link "Contact" [ref=f3e656] [cursor=pointer]:
+                    - /url: /fr/contact
+                - listitem [ref=f3e657]:
+                  - link "Guides & Articles" [ref=f3e658] [cursor=pointer]:
+                    - /url: /fr/guides
+            - generic [ref=f3e659]:
+              - heading "LES MEILLEURES DESTINATIONS POUR DES SÉJOURS EN GÎTE RURAL" [level=4] [ref=f3e660]
+              - list [ref=f3e661]:
+                - listitem [ref=f3e662]:
+                  - link "La région des chalets de l'Ontario" [ref=f3e663] [cursor=pointer]:
+                    - /url: /fr/chalet-country/ontario
+                - listitem [ref=f3e664]:
+                  - link "La région des chalets du Québec" [ref=f3e665] [cursor=pointer]:
+                    - /url: /fr/chalet-country/quebec
+                - listitem [ref=f3e666]:
+                  - link "La région des chalets de la Colombie-Britannique" [ref=f3e667] [cursor=pointer]:
+                    - /url: /fr/chalet-country/british-columbia
+          - paragraph [ref=f3e670]: © 2026 Chalet Express. Tous droits réservés.
+  - alert [ref=f3e671]

@@ -1,0 +1,7 @@
+[      96ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ chrome-error://chromewebdata/:0
+[   11436ms] [ERROR] Fetch API cannot load chrome-error://chromewebdata/api/admin/cache/clear. URL scheme "chrome-error" is not supported. @ :0
+[   11436ms] [ERROR] TypeError: Failed to fetch
+    at eval (eval at <anonymous> (eval at evaluate (:367:30)), <anonymous>:1:8)
+    at eval (eval at evaluate (:367:30), <anonymous>:4:50)
+    at UtilityScript.evaluate (<anonymous>:369:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44) @ :0
