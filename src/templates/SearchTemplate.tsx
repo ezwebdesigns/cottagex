@@ -1,7 +1,7 @@
 ﻿'use client';
 
 import { useMemo, useState } from 'react';
-import { Home as HomeIcon, Sailboat, Bath, Users, Gem, PawPrint, Heart, Trees, TreePine, Umbrella, Building2, Snowflake, Waves, Footprints, Mountain, Kayak } from 'lucide-react';
+import { Home as HomeIcon, Sailboat, Bath, Users, Gem, PawPrint, Heart, Trees, TreePine, Umbrella, Building2, Snowflake, Mountain, Leaf } from 'lucide-react';
 import PropertyCard from '@/components/cottagex/PropertyCard';
 import CTASection from '@/components/cottagex/CTASection';
 import SearchFaq from '@/components/cottagex/SearchFaq';
@@ -95,7 +95,7 @@ type SearchTemplateProps = {
   categories?: Category[];
 };
 
-export default function SearchTemplate({ locale, slug, hero, searchResults, searchCTA, searchFaq, faqLocation, faqProvince, searchInspirations, cottages, categories }: SearchTemplateProps) {
+export default function SearchTemplate({ locale, slug, hero, searchResults, searchCTA, searchFaq, faqLocation, faqProvince, searchInspirations, cottages, categories, totalFeaturedCount }: SearchTemplateProps) {
   const segments = slug.split('/').filter(Boolean);
   const lastSegment = segments[segments.length - 1] || '';
   const fallbackName = lastSegment.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
@@ -108,8 +108,8 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
 
   const isProvincePage = segments.some(seg => PROVINCE_SLUGS.has(seg));
 
-  const [filterProvince, setFilterProvince] = useState('all');
-  const [filters, setFilters] = useState(EMPTY_FILTERS);
+  const heroTitle = (hero?.title as string) || (locName ? `${locName} Cottages` : 'Search Cottages');
+  const heroSubtitle = (hero?.subtitle as string) || '';
 
   const priceCeil = useMemo(() => {
     const prices = (cottages || []).map((c) => c.price_cad || 0).filter((p) => p > 0);
@@ -174,13 +174,8 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
     return sorted;
   }, [cottages, filterProvince, filters]);
 
-  const heroTitle = (hero?.title as string) || (locName ? `${locName} Cottages` : 'Search Cottages');
-  const heroSubtitle = (hero?.subtitle as string) || '';
-
   const resultCards = useMemo(() => {
     return (visibleCottages || []).map(c => ({
-      id: String(c.id),
-      name: c.name,
       location: c.province || '',
       province: c.province || '',
       price: c.price_cad || 0,
@@ -277,7 +272,7 @@ export default function SearchTemplate({ locale, slug, hero, searchResults, sear
                 onChange={(e) => setFilterProvince(e.target.value)}
                 className="px-4 py-2.5 rounded-full border border-slate-200 bg-white text-sm font-medium text-[#191e3b] focus:outline-none focus:ring-2 focus:ring-[#0f51ec]"
               >
-                <option value="all">{locale === 'fr' ? `Toutes les provinces (${cottages?.length || 0})` : `All Provinces (${cottages?.length || 0})`}</option>
+                <option value="all">{locale === 'fr' ? `Toutes les provinces (${totalFeaturedCount})` : `All Provinces (${totalFeaturedCount})`}</option>
                 {provinces.map(p => {
                   const names = locale === 'fr' ? PROVINCE_NAMES_FR : PROVINCE_NAMES;
                   return (

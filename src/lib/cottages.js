@@ -61,6 +61,10 @@ function buildCacheKey(opts) {
   else if (opts.province) parts.push(`province:${opts.province}`)
   else parts.push('all')
   if (opts.categories?.length) parts.push(`cats:${opts.categories.sort().join(',')}`)
+  parts.push(`limit:${opts.limit || 3}`)
+  parts.push(`sort:${opts.sort || 'rating'}`)
+  parts.push(`feat:${opts.featuredOnly !== false}`)
+  parts.push(`aff:${opts.affiliateOnly || false}`)
   return `cottages:${parts.join(':')}`
 }
 

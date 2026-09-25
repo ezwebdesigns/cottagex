@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { locales } from '@/i18n/routing';
 import { getAllSettings } from '@/lib/cached-settings';
+import { getCottages } from '@/lib/cottages';
 import SearchTemplate from '@/templates/SearchTemplate';
 
 export const revalidate = 3600;
@@ -164,11 +165,11 @@ export default async function SearchPage({ params }: Props) {
     const cats = querySlug && querySlug !== 'all' ? [querySlug] : [];
     let probe: any[] = [];
     if (location && PROVINCE_SLUGS.has(location)) {
-      probe = await getCottages({ province: location, limit: 1, categories: cats });
+      probe = await getCottages({ province: location, limit: 1, categories: probeCats, featuredOnly: false });
     } else if (location) {
-      probe = await getCottages({ slug: location, limit: 1, categories: cats });
+      probe = await getCottages({ slug: location, limit: 1, categories: probeCats, featuredOnly: false });
     } else {
-      probe = await getCottages({ limit: 1, categories: cats });
+      probe = await getCottages({ limit: 1, categories: probeCats, featuredOnly: false });
     }
     const hasResults = probe.length > 0;
     
@@ -204,5 +205,15 @@ export default async function SearchPage({ params }: Props) {
   const faqLocation = faqRawLocation ? formatTitle(faqRawLocation) : 'Canada';
   const faqProvince = faqRawLocation ? PROVINCE_NAMES[faqRawLocation] || PROVINCE_NAMES[cottages[0]?.province] || '' : '';
 
-  return <SearchTemplate locale={locale} slug={slugStr} hero={hero} searchResults={searchResults} searchCTA={searchCTA} searchInspirations={searchInspirations} searchFaq={searchFaq} faqLocation={faqLocation} faqProvince={faqProvince} cottages={cottages} categories={categories} />;
+  // Fetch total featured count for "All Provinces" dropdown
+  let totalFeaturedCount = 0;
+  try {
+    const { getCottages } = await import('@/lib/cottages');
+    const allFeatured = await getCottages({ limit: 1, featuredOnly: true });
+    totalFeaturedCount = allFeatured.length;
+  } catch (e) {
+    console.error('Failed to fetch total featured count:', e);
+  }
+
+  return <SearchTemplate locale={locale} slug={slugStr} hero={hero} searchResults={searchResults} searchCTA={searchCTA} searchInspirations={searchInspirations} searchFaq={searchFaq} faqLocation={faqLocation} faqProvince={faqProvince} cottages={cottages} categories={categories} totalFeaturedCount={totalFeaturedCount} />;
 }

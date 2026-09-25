@@ -52,7 +52,7 @@ export async function fetchCottagesForShortcodes(
         slug: isProvince ? null : sc.param1,
         sort: sc.param2,
         limit: sc.limit,
-        featuredOnly: sc.param2 === 'featured',
+        featuredOnly: true,
         categories: sc.param2 && !['rating', 'price', 'newest', 'featured'].includes(sc.param2) ? [sc.param2] : [],
       });
       results.set(key, cottages);
