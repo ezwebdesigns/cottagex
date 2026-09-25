@@ -41,9 +41,7 @@ type ArticleListicleProps = {
   recentArticles?: RecentArticle[];
 };
 
-export default function ArticleListicle({ locale, article, toc, enhancedContent, recentArticles, cottagesMap }: ArticleListicleProps) {
-  const router = useRouter();
-  const pathname = usePathname();
+export default function ArticleListicle({ locale, article, toc, enhancedContent, recentArticles, cottagesMap, pathname }: ArticleListicleProps) {
   const contentHtml = qualifyExternalLinks(enhancedContent || article.content);
 
   return (
@@ -63,12 +61,12 @@ export default function ArticleListicle({ locale, article, toc, enhancedContent,
         author={article.author}
         inLanguage={locale === 'fr' ? 'fr-CA' : 'en-CA'}
       />
-      <button
-        onClick={() => router.push(`/${locale}/guides`)}
+      <Link
+        href={`/${locale}/guides`}
         className="inline-flex items-center gap-2 text-slate-500 hover:text-[#0f51ec] font-semibold text-sm mb-8 transition-colors bg-white px-4 py-2 rounded-full border border-slate-100 shadow-sm"
       >
         <ArrowLeft size={16} /> Back to Guides
-      </button>
+      </Link>
 
       <div className="mb-8">
         <span className="text-xs font-bold text-[#0f51ec] uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full">
@@ -170,9 +168,9 @@ export default function ArticleListicle({ locale, article, toc, enhancedContent,
           <h2 className="text-xl font-bold mb-2">Inspired by this reading?</h2>
           <p className="text-blue-200 text-sm">Find and compare your dream cottage across Canada now.</p>
         </div>
-        <button onClick={() => router.push(`/${locale}`)} className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-6 py-3 rounded-full font-bold transition-colors whitespace-nowrap text-sm">
+        <Link href={`/${locale}`} className="bg-[#0f51ec] hover:bg-[#0d44c9] text-white px-6 py-3 rounded-full font-bold transition-colors whitespace-nowrap text-sm">
           Back to Homepage
-        </button>
+        </Link>
       </div>
     </div>
   );
