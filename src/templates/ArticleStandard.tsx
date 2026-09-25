@@ -145,7 +145,7 @@ export default function ArticleStandard({ locale, article, isHtml, toc, enhanced
                     const actualParam3 = limitStr ? param3 : '';
                     if (limit === null || limit < 1) return null;
                     const cottages = cottagesMap ? getCottagesForShortcode(cottagesMap, { param1, param2, param3: actualParam3, limit }) : [];
-                    return <CottageShortcode key={i} cottages={cottages} limit={limit} />;
+                    return <CottageShortcode key={i} cottages={cottages} />;
                   }
                   return null;
                 });
