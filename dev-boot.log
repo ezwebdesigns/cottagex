@@ -1,0 +1,886 @@
+
+> chaletexpress@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.2.156:3000
+- Environments: .env
+✓ Ready in 2.8s
+⚠ Slow filesystem detected. The benchmark took 1126ms. If E:\PROJECTS\COTTAGEX\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+○ Compiling proxy ...
+
+○ Compiling /[locale]/search/[[...slug]] ...
+[Upstash Redis] The 'url' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] The 'token' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] The 'url' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] The 'token' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] The 'url' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] The 'token' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+(node:4300) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ GET /api/admin/settings?section=footer&locale=en 200 in 3.5s (next.js: 3.5s, proxy.ts: 13ms, application-code: 55ms)
+ GET /api/admin/settings?section=side_menu&locale=en 200 in 3.6s (next.js: 3.5s, proxy.ts: 16ms, application-code: 42ms)
+ GET /api/admin/settings?section=general&locale=en 200 in 3.6s (next.js: 3.5s, proxy.ts: 16ms, application-code: 38ms)
+ GET /api/admin/settings?section=general&locale=en 200 in 15ms (next.js: 4ms, proxy.ts: 4ms, application-code: 7ms)
+Failed to fetch settings: Error: Failed query: select "id", "section", "data", "locale", "updated_at" from "site_settings"
+params: 
+    at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+  10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+  11 |   try {
+> 12 |     const rows = await db.select().from(siteSettings)
+     |                  ^
+  13 |     // Per-section locale preference with EN fallback. FR rows share the
+  14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+  15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+  query: 'select "id", "section", "data", "locale", "updated_at" from "site_settings"',
+  params: [],
+  [cause]: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+      at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+      at async getCached (src\lib\cache.ts:47:17)
+      at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+    10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+    11 |   try {
+  > 12 |     const rows = await db.select().from(siteSettings)
+       |                  ^
+    13 |     // Per-section locale preference with EN fallback. FR rows share the
+    14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+    15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+  }
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch settings: Error: Failed query: select "id", "section", "data", "locale", "updated_at" from "site_settings"
+params: 
+    at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+  10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+  11 |   try {
+> 12 |     const rows = await db.select().from(siteSettings)
+     |                  ^
+  13 |     // Per-section locale preference with EN fallback. FR rows share the
+  14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+  15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+  query: 'select "id", "section", "data", "locale", "updated_at" from "site_settings"',
+  params: [],
+  [cause]: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+      at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+      at async getCached (src\lib\cache.ts:47:17)
+      at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+    10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+    11 |   try {
+  > 12 |     const rows = await db.select().from(siteSettings)
+       |                  ^
+    13 |     // Per-section locale preference with EN fallback. FR rows share the
+    14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+    15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+  }
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch settings: Error: Failed query: select "id", "section", "data", "locale", "updated_at" from "site_settings"
+params: 
+    at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+  10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+  11 |   try {
+> 12 |     const rows = await db.select().from(siteSettings)
+     |                  ^
+  13 |     // Per-section locale preference with EN fallback. FR rows share the
+  14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+  15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+  query: 'select "id", "section", "data", "locale", "updated_at" from "site_settings"',
+  params: [],
+  [cause]: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+      at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+      at async getCached (src\lib\cache.ts:47:17)
+      at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+    10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+    11 |   try {
+  > 12 |     const rows = await db.select().from(siteSettings)
+       |                  ^
+    13 |     // Per-section locale preference with EN fallback. FR rows share the
+    14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+    15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+  }
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch cottages for search undefined Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async fetchCottagesFromDB (src\lib\cottages.js:163:14)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:172:15)
+  161 |   let client
+  162 |   try {
+> 163 |     client = await getPool().connect()
+      |              ^
+  164 |     const { rows } = await client.query(query, params)
+  165 |     return rows.map(row => ({
+  166 |       ...row, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch cottages for search undefined Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async fetchCottagesFromDB (src\lib\cottages.js:163:14)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:172:15)
+  161 |   let client
+  162 |   try {
+> 163 |     client = await getPool().connect()
+      |              ^
+  164 |     const { rows } = await client.query(query, params)
+  165 |     return rows.map(row => ({
+  166 |       ...row, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch cottages for search undefined Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async fetchCottagesFromDB (src\lib\cottages.js:163:14)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:172:15)
+  161 |   let client
+  162 |   try {
+> 163 |     client = await getPool().connect()
+      |              ^
+  164 |     const { rows } = await client.query(query, params)
+  165 |     return rows.map(row => ({
+  166 |       ...row, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch total featured count: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async emptyTtlSeconds (src\lib\cottages.js:244:16)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:212:26)
+  242 |     let client
+  243 |     try {
+> 244 |       client = await getPool().connect()
+      |                ^
+  245 |       const { rows } = await client.query(
+  246 |         `SELECT COUNT(*)::int AS total FROM affiliatecottages WHERE ${conditions.join(' A...
+  247 |         params, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+Failed to fetch total featured count: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async emptyTtlSeconds (src\lib\cottages.js:244:16)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:212:26)
+  242 |     let client
+  243 |     try {
+> 244 |       client = await getPool().connect()
+      |                ^
+  245 |       const { rows } = await client.query(
+  246 |         `SELECT COUNT(*)::int AS total FROM affiliatecottages WHERE ${conditions.join(' A...
+  247 |         params, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+Failed to fetch total featured count: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async emptyTtlSeconds (src\lib\cottages.js:244:16)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:212:26)
+  242 |     let client
+  243 |     try {
+> 244 |       client = await getPool().connect()
+      |                ^
+  245 |       const { rows } = await client.query(
+  246 |         `SELECT COUNT(*)::int AS total FROM affiliatecottages WHERE ${conditions.join(' A...
+  247 |         params, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+⨯ ReferenceError: Kayak is not defined
+    at module evaluation (src\templates\SearchTemplate.tsx:16:14)
+  14 |
+  15 | const categoryIconMap: Record<string, React.ElementType> = {
+> 16 |   lakefront: Kayak, 'hot-tub': Bath, family: Users, luxury: Gem,
+     |              ^
+  17 |   'pet-friendly': PawPrint, mountain: Mountain, romantic: Heart, 'log-cabin': HomeIcon,
+  18 |   countryside: Trees, secluded: TreePine, beach: Umbrella, resort: Building2,
+  19 |   skiing: Snowflake, pools: Waves, hiking: Footprints, {
+  digest: '2858822681'
+}
+ GET /en/search 200 in 63s (next.js: 41s, proxy.ts: 3ms, generate-params: 2.1s, application-code: 21.3s)
+⨯ ReferenceError: Kayak is not defined
+    at module evaluation (src\templates\SearchTemplate.tsx:16:14)
+  14 |
+  15 | const categoryIconMap: Record<string, React.ElementType> = {
+> 16 |   lakefront: Kayak, 'hot-tub': Bath, family: Users, luxury: Gem,
+     |              ^
+  17 |   'pet-friendly': PawPrint, mountain: Mountain, romantic: Heart, 'log-cabin': HomeIcon,
+  18 |   countryside: Trees, secluded: TreePine, beach: Umbrella, resort: Building2,
+  19 |   skiing: Snowflake, pools: Waves, hiking: Footprints, {
+  digest: '2858822681'
+}
+⨯ ReferenceError: Kayak is not defined
+    at module evaluation (src\templates\SearchTemplate.tsx:16:14)
+  14 |
+  15 | const categoryIconMap: Record<string, React.ElementType> = {
+> 16 |   lakefront: Kayak, 'hot-tub': Bath, family: Users, luxury: Gem,
+     |              ^
+  17 |   'pet-friendly': PawPrint, mountain: Mountain, romantic: Heart, 'log-cabin': HomeIcon,
+  18 |   countryside: Trees, secluded: TreePine, beach: Umbrella, resort: Building2,
+  19 |   skiing: Snowflake, pools: Waves, hiking: Footprints, {
+  digest: '2858822681'
+}
+ GET /en/search 200 in 2.2min (next.js: 110s, proxy.ts: 6ms, generate-params: 2.3s, application-code: 21.3s)
+[browser] Uncaught ReferenceError: Kayak is not defined
+    at module evaluation (src/templates/SearchTemplate.tsx:16:14)
+    at SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:217:10)
+  14 |
+  15 | const categoryIconMap: Record<string, React.ElementType> = {
+> 16 |   lakefront: Kayak, 'hot-tub': Bath, family: Users, luxury: Gem,
+     |              ^
+  17 |   'pet-friendly': PawPrint, mountain: Mountain, romantic: Heart, 'log-cabin': HomeIcon,
+  18 |   countryside: Trees, secluded: TreePine, beach: Umbrella, resort: Building2,
+  19 |   skiing: Snowflake, pools: Waves, hiking: Footprints,
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] The 'url' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] The 'token' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+Failed to fetch settings: Error: Failed query: select "id", "section", "data", "locale", "updated_at" from "site_settings"
+params: 
+    at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+  10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+  11 |   try {
+> 12 |     const rows = await db.select().from(siteSettings)
+     |                  ^
+  13 |     // Per-section locale preference with EN fallback. FR rows share the
+  14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+  15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+  query: 'select "id", "section", "data", "locale", "updated_at" from "site_settings"',
+  params: [],
+  [cause]: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+      at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+      at async getCached (src\lib\cache.ts:47:17)
+      at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+    10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+    11 |   try {
+  > 12 |     const rows = await db.select().from(siteSettings)
+       |                  ^
+    13 |     // Per-section locale preference with EN fallback. FR rows share the
+    14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+    15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+  }
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch cottages for search undefined Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async fetchCottagesFromDB (src\lib\cottages.js:163:14)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:172:15)
+  161 |   let client
+  162 |   try {
+> 163 |     client = await getPool().connect()
+      |              ^
+  164 |     const { rows } = await client.query(query, params)
+  165 |     return rows.map(row => ({
+  166 |       ...row, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch total featured count: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async emptyTtlSeconds (src\lib\cottages.js:244:16)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:212:26)
+  242 |     let client
+  243 |     try {
+> 244 |       client = await getPool().connect()
+      |                ^
+  245 |       const { rows } = await client.query(
+  246 |         `SELECT COUNT(*)::int AS total FROM affiliatecottages WHERE ${conditions.join(' A...
+  247 |         params, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+⨯ ReferenceError: Kayak is not defined
+    at module evaluation (src\templates\SearchTemplate.tsx:16:14)
+  14 |
+  15 | const categoryIconMap: Record<string, React.ElementType> = {
+> 16 |   lakefront: Kayak, 'hot-tub': Bath, family: Users, luxury: Gem,
+     |              ^
+  17 |   'pet-friendly': PawPrint, mountain: Mountain, romantic: Heart, 'log-cabin': HomeIcon,
+  18 |   countryside: Trees, secluded: TreePine, beach: Umbrella, resort: Building2,
+  19 |   skiing: Snowflake, pools: Waves, hiking: Footprints, {
+  digest: '2858822681'
+}
+ GET /en/search 200 in 17.5s (next.js: 15ms, proxy.ts: 5ms, generate-params: 6ms, application-code: 17.5s)
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] The 'url' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] The 'token' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+Failed to fetch settings: Error: Failed query: select "id", "section", "data", "locale", "updated_at" from "site_settings"
+params: 
+    at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+  10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+  11 |   try {
+> 12 |     const rows = await db.select().from(siteSettings)
+     |                  ^
+  13 |     // Per-section locale preference with EN fallback. FR rows share the
+  14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+  15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+  query: 'select "id", "section", "data", "locale", "updated_at" from "site_settings"',
+  params: [],
+  [cause]: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+      at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+      at async getCached (src\lib\cache.ts:47:17)
+      at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+    10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+    11 |   try {
+  > 12 |     const rows = await db.select().from(siteSettings)
+       |                  ^
+    13 |     // Per-section locale preference with EN fallback. FR rows share the
+    14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+    15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+  }
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch cottages for search undefined Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async fetchCottagesFromDB (src\lib\cottages.js:163:14)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:172:15)
+  161 |   let client
+  162 |   try {
+> 163 |     client = await getPool().connect()
+      |              ^
+  164 |     const { rows } = await client.query(query, params)
+  165 |     return rows.map(row => ({
+  166 |       ...row, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch total featured count: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async emptyTtlSeconds (src\lib\cottages.js:244:16)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:212:26)
+  242 |     let client
+  243 |     try {
+> 244 |       client = await getPool().connect()
+      |                ^
+  245 |       const { rows } = await client.query(
+  246 |         `SELECT COUNT(*)::int AS total FROM affiliatecottages WHERE ${conditions.join(' A...
+  247 |         params, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+⨯ ReferenceError: Kayak is not defined
+    at module evaluation (src\templates\SearchTemplate.tsx:16:14)
+  14 |
+  15 | const categoryIconMap: Record<string, React.ElementType> = {
+> 16 |   lakefront: Kayak, 'hot-tub': Bath, family: Users, luxury: Gem,
+     |              ^
+  17 |   'pet-friendly': PawPrint, mountain: Mountain, romantic: Heart, 'log-cabin': HomeIcon,
+  18 |   countryside: Trees, secluded: TreePine, beach: Umbrella, resort: Building2,
+  19 |   skiing: Snowflake, pools: Waves, hiking: Footprints, {
+  digest: '2858822681'
+}
+ GET /en/search 200 in 17.5s (next.js: 11ms, proxy.ts: 3ms, generate-params: 5ms, application-code: 17.5s)
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] The 'url' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] The 'token' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+Failed to fetch settings: Error: Failed query: select "id", "section", "data", "locale", "updated_at" from "site_settings"
+params: 
+    at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+  10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+  11 |   try {
+> 12 |     const rows = await db.select().from(siteSettings)
+     |                  ^
+  13 |     // Per-section locale preference with EN fallback. FR rows share the
+  14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+  15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+  query: 'select "id", "section", "data", "locale", "updated_at" from "site_settings"',
+  params: [],
+  [cause]: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+      at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+      at async getCached (src\lib\cache.ts:47:17)
+      at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+    10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+    11 |   try {
+  > 12 |     const rows = await db.select().from(siteSettings)
+       |                  ^
+    13 |     // Per-section locale preference with EN fallback. FR rows share the
+    14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+    15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+  }
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch cottages for search undefined Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async fetchCottagesFromDB (src\lib\cottages.js:163:14)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:172:15)
+  161 |   let client
+  162 |   try {
+> 163 |     client = await getPool().connect()
+      |              ^
+  164 |     const { rows } = await client.query(query, params)
+  165 |     return rows.map(row => ({
+  166 |       ...row, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch total featured count: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async emptyTtlSeconds (src\lib\cottages.js:244:16)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:212:26)
+  242 |     let client
+  243 |     try {
+> 244 |       client = await getPool().connect()
+      |                ^
+  245 |       const { rows } = await client.query(
+  246 |         `SELECT COUNT(*)::int AS total FROM affiliatecottages WHERE ${conditions.join(' A...
+  247 |         params, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+⨯ ReferenceError: Kayak is not defined
+    at module evaluation (src\templates\SearchTemplate.tsx:16:14)
+  14 |
+  15 | const categoryIconMap: Record<string, React.ElementType> = {
+> 16 |   lakefront: Kayak, 'hot-tub': Bath, family: Users, luxury: Gem,
+     |              ^
+  17 |   'pet-friendly': PawPrint, mountain: Mountain, romantic: Heart, 'log-cabin': HomeIcon,
+  18 |   countryside: Trees, secluded: TreePine, beach: Umbrella, resort: Building2,
+  19 |   skiing: Snowflake, pools: Waves, hiking: Footprints, {
+  digest: '2858822681'
+}
+ GET /en/search 200 in 17.5s (next.js: 10ms, proxy.ts: 3ms, generate-params: 5ms, application-code: 17.5s)
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] The 'url' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] The 'token' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+Failed to fetch settings: Error: Failed query: select "id", "section", "data", "locale", "updated_at" from "site_settings"
+params: 
+    at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+  10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+  11 |   try {
+> 12 |     const rows = await db.select().from(siteSettings)
+     |                  ^
+  13 |     // Per-section locale preference with EN fallback. FR rows share the
+  14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+  15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+  query: 'select "id", "section", "data", "locale", "updated_at" from "site_settings"',
+  params: [],
+  [cause]: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+      at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+      at async getCached (src\lib\cache.ts:47:17)
+      at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+    10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+    11 |   try {
+  > 12 |     const rows = await db.select().from(siteSettings)
+       |                  ^
+    13 |     // Per-section locale preference with EN fallback. FR rows share the
+    14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+    15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+  }
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch cottages for search undefined Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async fetchCottagesFromDB (src\lib\cottages.js:163:14)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:172:15)
+  161 |   let client
+  162 |   try {
+> 163 |     client = await getPool().connect()
+      |              ^
+  164 |     const { rows } = await client.query(query, params)
+  165 |     return rows.map(row => ({
+  166 |       ...row, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch total featured count: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async emptyTtlSeconds (src\lib\cottages.js:244:16)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:212:26)
+  242 |     let client
+  243 |     try {
+> 244 |       client = await getPool().connect()
+      |                ^
+  245 |       const { rows } = await client.query(
+  246 |         `SELECT COUNT(*)::int AS total FROM affiliatecottages WHERE ${conditions.join(' A...
+  247 |         params, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+⨯ ReferenceError: Kayak is not defined
+    at module evaluation (src\templates\SearchTemplate.tsx:16:14)
+  14 |
+  15 | const categoryIconMap: Record<string, React.ElementType> = {
+> 16 |   lakefront: Kayak, 'hot-tub': Bath, family: Users, luxury: Gem,
+     |              ^
+  17 |   'pet-friendly': PawPrint, mountain: Mountain, romantic: Heart, 'log-cabin': HomeIcon,
+  18 |   countryside: Trees, secluded: TreePine, beach: Umbrella, resort: Building2,
+  19 |   skiing: Snowflake, pools: Waves, hiking: Footprints, {
+  digest: '2858822681'
+}
+ GET /en/search 200 in 17.5s (next.js: 11ms, proxy.ts: 5ms, generate-params: 5ms, application-code: 17.5s)
+✓ Compiled in 481ms
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload when ./src/templates/SearchTemplate.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[Upstash Redis] The 'url' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] The 'token' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] The 'url' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] The 'token' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] The 'url' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] The 'token' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+ GET /api/admin/settings?section=general&locale=en 200 in 116ms (next.js: 66ms, proxy.ts: 7ms, application-code: 42ms)
+ GET /api/admin/settings?section=side_menu&locale=en 200 in 116ms (next.js: 78ms, proxy.ts: 8ms, application-code: 30ms)
+ GET /api/admin/settings?section=footer&locale=en 200 in 115ms (next.js: 84ms, proxy.ts: 7ms, application-code: 23ms)
+ GET /api/admin/settings?section=general&locale=en 200 in 14ms (next.js: 5ms, proxy.ts: 3ms, application-code: 6ms)
+Failed to fetch settings: Error: Failed query: select "id", "section", "data", "locale", "updated_at" from "site_settings"
+params: 
+    at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+  10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+  11 |   try {
+> 12 |     const rows = await db.select().from(siteSettings)
+     |                  ^
+  13 |     // Per-section locale preference with EN fallback. FR rows share the
+  14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+  15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+  query: 'select "id", "section", "data", "locale", "updated_at" from "site_settings"',
+  params: [],
+  [cause]: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+      at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+      at async getCached (src\lib\cache.ts:47:17)
+      at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+    10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+    11 |   try {
+  > 12 |     const rows = await db.select().from(siteSettings)
+       |                  ^
+    13 |     // Per-section locale preference with EN fallback. FR rows share the
+    14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+    15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+  }
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch cottages for search undefined Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async fetchCottagesFromDB (src\lib\cottages.js:163:14)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:172:15)
+  161 |   let client
+  162 |   try {
+> 163 |     client = await getPool().connect()
+      |              ^
+  164 |     const { rows } = await client.query(query, params)
+  165 |     return rows.map(row => ({
+  166 |       ...row, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch total featured count: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async emptyTtlSeconds (src\lib\cottages.js:244:16)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:212:26)
+  242 |     let client
+  243 |     try {
+> 244 |       client = await getPool().connect()
+      |                ^
+  245 |       const { rows } = await client.query(
+  246 |         `SELECT COUNT(*)::int AS total FROM affiliatecottages WHERE ${conditions.join(' A...
+  247 |         params, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+ GET /en/search 200 in 17.5s (next.js: 124ms, proxy.ts: 5ms, generate-params: 5ms, application-code: 17.4s)
+[Upstash Redis] The 'url' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] The 'token' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+Failed to fetch settings: Error: Failed query: select "id", "section", "data", "locale", "updated_at" from "site_settings"
+params: 
+    at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+  10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+  11 |   try {
+> 12 |     const rows = await db.select().from(siteSettings)
+     |                  ^
+  13 |     // Per-section locale preference with EN fallback. FR rows share the
+  14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+  15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+  query: 'select "id", "section", "data", "locale", "updated_at" from "site_settings"',
+  params: [],
+  [cause]: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+      at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+      at async getCached (src\lib\cache.ts:47:17)
+      at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+    10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+    11 |   try {
+  > 12 |     const rows = await db.select().from(siteSettings)
+       |                  ^
+    13 |     // Per-section locale preference with EN fallback. FR rows share the
+    14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+    15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+  }
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+✓ Finished filesystem cache database compaction in 14.8s
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch cottages for search undefined Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async fetchCottagesFromDB (src\lib\cottages.js:163:14)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:172:15)
+  161 |   let client
+  162 |   try {
+> 163 |     client = await getPool().connect()
+      |              ^
+  164 |     const { rows } = await client.query(query, params)
+  165 |     return rows.map(row => ({
+  166 |       ...row, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch total featured count: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async emptyTtlSeconds (src\lib\cottages.js:244:16)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:212:26)
+  242 |     let client
+  243 |     try {
+> 244 |       client = await getPool().connect()
+      |                ^
+  245 |       const { rows } = await client.query(
+  246 |         `SELECT COUNT(*)::int AS total FROM affiliatecottages WHERE ${conditions.join(' A...
+  247 |         params, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+ GET /en/search 200 in 17.4s (next.js: 12ms, proxy.ts: 3ms, generate-params: 5ms, application-code: 17.3s)
+[Upstash Redis] The 'url' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] The 'token' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+ GET /en/guides 200 in 9.2s (next.js: 454ms, proxy.ts: 3ms, generate-params: 373ms, application-code: 8.7s)
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+ GET /api/admin/settings?section=general&locale=en 200 in 50ms (next.js: 6ms, proxy.ts: 10ms, application-code: 35ms)
+ GET /api/admin/settings?section=side_menu&locale=en 200 in 50ms (next.js: 11ms, proxy.ts: 10ms, application-code: 29ms)
+ GET /api/admin/settings?section=footer&locale=en 200 in 51ms (next.js: 17ms, proxy.ts: 10ms, application-code: 24ms)
+ GET /api/admin/settings?section=general&locale=en 200 in 12ms (next.js: 4ms, proxy.ts: 3ms, application-code: 5ms)
+[Upstash Redis] The 'url' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+[Upstash Redis] The 'token' property is missing or undefined in your Redis config. To create a database instantly (no signup needed), run: curl -X POST https://upstash.com/start-redis
+Failed to fetch settings: Error: Failed query: select "id", "section", "data", "locale", "updated_at" from "site_settings"
+params: 
+    at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+  10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+  11 |   try {
+> 12 |     const rows = await db.select().from(siteSettings)
+     |                  ^
+  13 |     // Per-section locale preference with EN fallback. FR rows share the
+  14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+  15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+  query: 'select "id", "section", "data", "locale", "updated_at" from "site_settings"',
+  params: [],
+  [cause]: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+      at async fetchAllSettingsFromDB (src\lib\cached-settings.ts:12:18)
+      at async getCached (src\lib\cache.ts:47:17)
+      at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:155:19)
+    10 | async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
+    11 |   try {
+  > 12 |     const rows = await db.select().from(siteSettings)
+       |                  ^
+    13 |     // Per-section locale preference with EN fallback. FR rows share the
+    14 |     // same `section` key, so merge explicitly instead of last-write-wins.
+    15 |     const bySection = new Map<string, { en?: any; fr?: any }>(); {
+    errno: -3008,
+    code: 'ENOTFOUND',
+    syscall: 'getaddrinfo',
+    hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+  }
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch cottages for search undefined Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async fetchCottagesFromDB (src\lib\cottages.js:163:14)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:172:15)
+  161 |   let client
+  162 |   try {
+> 163 |     client = await getPool().connect()
+      |              ^
+  164 |     const { rows } = await client.query(query, params)
+  165 |     return rows.map(row => ({
+  166 |       ...row, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+[Upstash Redis] Redis client was initialized without url or token. Failed to execute command.
+Failed to fetch total featured count: Error: getaddrinfo ENOTFOUND db.tqcdlzmlulklnwdnhtwn.supabase.co
+    at async emptyTtlSeconds (src\lib\cottages.js:244:16)
+    at async getCached (src\lib\cache.ts:47:17)
+    at async SearchPage (src\app\[locale]\search\[[...slug]]\page.tsx:212:26)
+  242 |     let client
+  243 |     try {
+> 244 |       client = await getPool().connect()
+      |                ^
+  245 |       const { rows } = await client.query(
+  246 |         `SELECT COUNT(*)::int AS total FROM affiliatecottages WHERE ${conditions.join(' A...
+  247 |         params, {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.tqcdlzmlulklnwdnhtwn.supabase.co'
+}
+ GET /en/search 200 in 17.3s (next.js: 14ms, proxy.ts: 5ms, generate-params: 7ms, application-code: 17.3s)

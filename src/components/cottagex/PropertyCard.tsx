@@ -34,9 +34,11 @@ type PropertyCardProps = {
   // Set false when the parent page already covers these cottages with an
   // ItemList schema (e.g. LocationTemplate) — avoids duplicate entities.
   withSchema?: boolean;
+  // Compact density for narrow article columns (shortcode card grids).
+  compact?: boolean;
 };
 
-export default function PropertyCard({ chalet, isFavorite, onToggleFavorite, categoryBadge, withSchema = true }: PropertyCardProps) {
+export default function PropertyCard({ chalet, isFavorite, onToggleFavorite, categoryBadge, withSchema = true, compact = false }: PropertyCardProps) {
   const t = useTranslations();
   const badgeLabel = categoryBadge || (t.raw('badges') as Record<string, string>)[chalet.badge] || chalet.badge;
   const sourceLower = (chalet.source || '').toLowerCase();
@@ -117,8 +119,8 @@ export default function PropertyCard({ chalet, isFavorite, onToggleFavorite, cat
         )}
       </div>
 
-      <div className="p-2.5 sm:p-3">
-        <h3 className="font-semibold text-[#191e3b] text-xs sm:text-sm leading-tight truncate mb-0.5" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
+      <div className={compact ? 'p-2' : 'p-2.5 sm:p-3'}>
+        <h3 className={`font-semibold text-[#191e3b] leading-tight truncate mb-0.5 ${compact ? 'text-[11px]' : 'text-xs sm:text-sm'}`} style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
           {chalet.name}
         </h3>
         <div className="flex items-center gap-0.5 text-slate-400 mb-1.5">
@@ -137,14 +139,14 @@ export default function PropertyCard({ chalet, isFavorite, onToggleFavorite, cat
           <div className="min-w-0">
             {chalet.price > 0 && (
               <>
-                <span className="text-sm font-bold text-[#191e3b]">${chalet.price}</span>
+                <span className={`font-bold text-[#191e3b] ${compact ? 'text-xs' : 'text-sm'}`}>${chalet.price}</span>
                 <span className="text-[10px] text-slate-400">{t('properties.perNight')}</span>
               </>
             )}
           </div>
           {chalet.price > 0 ? (
-            <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#0f51ec] text-white group-hover:bg-[#0d44c9] transition-colors">
-              <ArrowUpRight className="w-3.5 h-3.5" />
+            <span className={`flex items-center justify-center rounded-full bg-[#0f51ec] text-white group-hover:bg-[#0d44c9] transition-colors ${compact ? 'w-6 h-6' : 'w-7 h-7'}`}>
+              <ArrowUpRight className={compact ? 'w-3 h-3' : 'w-3.5 h-3.5'} />
             </span>
           ) : (
             <span className="ml-auto px-3 py-1.5 rounded-full bg-[#0f51ec] text-white text-[11px] font-semibold group-hover:bg-[#0d44c9] transition-colors">

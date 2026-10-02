@@ -8,34 +8,31 @@ import SidebarAd from '@/components/SidebarAd';
 import Image from 'next/image';
 import type { TocItem } from '@/lib/extract-toc';
 import { qualifyExternalLinks } from '@/lib/qualify-links';
-import { getCottagesForShortcode } from '@/lib/shortcode-cottages';
+import { getCottagesForShortcode, parseSplitShortcode } from '@/lib/shortcode-cottages';
 
-const shortcodeRegex = /\[([a-z0-9-]+),\s*([a-z0-9-]+)(?:,\s*([a-z0-9-]+))?(?:,\s*(\d+))?\]/;
+const shortcodeRegex = /\[([a-z0-9-]+),\s*([a-z0-9-]+)(?:,\s*([a-z0-9-]+))?(?:,\s*(\d+))?(?:,\s*(cards|grid|list))?\]/;
 
 function renderParagraph(text: string, key: number, cottagesMap?: Map<string, any[]>) {
   if (!shortcodeRegex.test(text)) {
     return <p key={key} className="text-base md:text-lg">{text}</p>;
   }
   const parts = text.split(shortcodeRegex);
+  const hasShortcode = parts.length > 1;
+  const Wrapper = hasShortcode ? 'div' : 'p';
   return (
-    <p key={key} className="text-base md:text-lg">
+    <Wrapper key={key} className="text-base md:text-lg">
       {parts.map((part: string, i: number) => {
-        const mod = i % 5;
+        const mod = i % 6;
         if (mod === 0) return part ? <span key={i}>{part}</span> : null;
         if (mod === 1) {
-          const param1 = part.trim().toLowerCase();
-          const param2 = (parts[i + 1] || '').trim().toLowerCase() || 'rating';
-          const param3 = (parts[i + 2] || '').trim().toLowerCase();
-          const limitStr = parts[i + 3];
-          const limit = limitStr ? parseInt(limitStr, 10) : (param3 && /^\d+$/.test(param3) ? parseInt(param3, 10) : null);
-          const actualParam3 = limitStr ? param3 : '';
-          if (limit === null || limit < 1) return null;
-          const cottages = cottagesMap ? getCottagesForShortcode(cottagesMap, { param1, param2, param3: actualParam3, limit }) : [];
-          return <CottageShortcode key={i} cottages={cottages} />;
+          const parsed = parseSplitShortcode(parts, i);
+          if (!parsed) return null;
+          const cottages = cottagesMap ? getCottagesForShortcode(cottagesMap, parsed) : [];
+          return <CottageShortcode key={i} cottages={cottages} layout={parsed.layout} />;
         }
         return null;
       })}
-    </p>
+    </Wrapper>
   );
 }
 
@@ -135,20 +132,15 @@ export default function ArticleStandard({ locale, article, isHtml, toc, enhanced
                   return <div dangerouslySetInnerHTML={{ __html: contentHtml }} />;
                 }
                 return parts.map((part: string, i: number) => {
-                  const mod = i % 5;
+                  const mod = i % 6;
                   if (mod === 0) {
                     return part ? <div key={i} dangerouslySetInnerHTML={{ __html: part }} /> : null;
                   }
                   if (mod === 1) {
-                    const param1 = part.trim().toLowerCase();
-                    const param2 = (parts[i + 1] || '').trim().toLowerCase() || 'rating';
-                    const param3 = (parts[i + 2] || '').trim().toLowerCase();
-                    const limitStr = parts[i + 3];
-                    const limit = limitStr ? parseInt(limitStr, 10) : (param3 && /^\d+$/.test(param3) ? parseInt(param3, 10) : null);
-                    const actualParam3 = limitStr ? param3 : '';
-                    if (limit === null || limit < 1) return null;
-                    const cottages = cottagesMap ? getCottagesForShortcode(cottagesMap, { param1, param2, param3: actualParam3, limit }) : [];
-                    return <CottageShortcode key={i} cottages={cottages} />;
+                    const parsed = parseSplitShortcode(parts, i);
+                    if (!parsed) return null;
+                    const cottages = cottagesMap ? getCottagesForShortcode(cottagesMap, parsed) : [];
+                    return <CottageShortcode key={i} cottages={cottages} layout={parsed.layout} />;
                   }
                   return null;
                 });
