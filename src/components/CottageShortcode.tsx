@@ -58,7 +58,7 @@ export function CottageShortcode({ cottages, layout = 'list' }: CottageShortcode
 
   if (layout === 'cards') {
     return (
-      <div className="my-6 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+      <div className="not-prose my-6 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {chaletCards.map((chalet) => (
           <PropertyCard key={chalet.id} chalet={chalet} compact withSchema={false} />
         ))}
@@ -67,7 +67,7 @@ export function CottageShortcode({ cottages, layout = 'list' }: CottageShortcode
   }
 
   return (
-    <div className="my-6 space-y-4">
+    <div className="not-prose my-6 space-y-4">
       {cottages.map((cottage, i) => (
         <ListicleCard
           key={cottage.id}
