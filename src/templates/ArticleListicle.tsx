@@ -5,6 +5,8 @@ import { CottageShortcode } from '@/components/CottageShortcode';
 import FAQAccordion from '@/components/FAQAccordion';
 import TableOfContents from '@/components/TableOfContents';
 import SidebarAd from '@/components/SidebarAd';
+import ArticleExplorer from '@/components/ArticleExplorer';
+import SidebarWidget from '@/components/SidebarWidget';
 import Image from 'next/image';
 import type { TocItem } from '@/lib/extract-toc';
 import { qualifyExternalLinks } from '@/lib/qualify-links';
@@ -142,6 +144,8 @@ export default function ArticleListicle({ locale, article, toc, enhancedContent,
               </div>
             )}
             <SidebarAd />
+            <ArticleExplorer locale={locale} category={article.category} />
+            <SidebarWidget locale={locale} />
           </div>
         </aside>
       </div>
