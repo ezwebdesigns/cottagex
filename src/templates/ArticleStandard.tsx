@@ -180,6 +180,7 @@ export default function ArticleStandard({ locale, article, isHtml, toc, enhanced
             )}
             <SidebarAd />
             <ArticleExplorer locale={locale} category={article.category} />
+            <SidebarAd scriptKey="sidebarScript2" />
             <SidebarWidget locale={locale} />
           </div>
         </aside>

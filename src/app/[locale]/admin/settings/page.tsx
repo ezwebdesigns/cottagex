@@ -638,6 +638,17 @@ const saveSection = async (section: string, data: any) => {
               />
               <p className="text-xs text-slate-400 mt-1">This script will render in the article sidebar below the Table of Contents and recent articles.</p>
             </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-600 mb-1">Sidebar Ad Script 2</label>
+              <textarea
+                value={ads?.sidebarScript2 ?? ''}
+                onChange={(e) => setAds({ ...ads, sidebarScript2: e.target.value })}
+                rows={8}
+                placeholder="Paste your second ad script here..."
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0f51ec]/20 focus:border-[#0f51ec] font-mono text-sm"
+              />
+              <p className="text-xs text-slate-400 mt-1">This script will render in the article sidebar right after the Explore block.</p>
+            </div>
           </div>
           <SaveButton onClick={() => saveSection('ads', ads)} saving={saving} />
         </div>

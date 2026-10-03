@@ -22,6 +22,26 @@ export default function AdRenderer({ html }: { html: string }) {
     });
 
     ref.current.appendChild(fragment);
+
+    // Les scripts d'affiliation Expedia scannent la page à DOMContentLoaded.
+    // Comme le HTML arrive ici après le chargement (fetch settings), on
+    // re-déclenche l'init comme le Hero, sinon la bannière reste vide.
+    const checkInit = setInterval(() => {
+      const done =
+        (window as any).eg?.widgets?.loaded ||
+        ref.current?.querySelector('iframe');
+      if (done) {
+        clearInterval(checkInit);
+      } else if (document.readyState !== 'loading') {
+        window.dispatchEvent(new Event('DOMContentLoaded'));
+      }
+    }, 300);
+    const stopAfter = window.setTimeout(() => clearInterval(checkInit), 10000);
+
+    return () => {
+      window.clearInterval(checkInit);
+      window.clearTimeout(stopAfter);
+    };
   }, [html]);
 
   if (!html) return null;

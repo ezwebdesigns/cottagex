@@ -145,6 +145,7 @@ export default function ArticleListicle({ locale, article, toc, enhancedContent,
             )}
             <SidebarAd />
             <ArticleExplorer locale={locale} category={article.category} />
+            <SidebarAd scriptKey="sidebarScript2" />
             <SidebarWidget locale={locale} />
           </div>
         </aside>
