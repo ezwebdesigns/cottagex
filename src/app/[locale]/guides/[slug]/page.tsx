@@ -68,7 +68,7 @@ async function fetchArticle(slug: string, locale: string, preview = false) {
   }
 
   try {
-    // Locale-preferred row with EN fallback, cached 1h and shared
+    // Locale-preferred row with EN fallback, cached 24h and shared
     // between generateMetadata and the page via the same key.
     const rows = await getCached<any[]>(`articles:by-slug:${locale}:${slug}${preview ? ':preview' : ''}`, () =>
       db.select().from(articles).where(
@@ -78,7 +78,7 @@ async function fetchArticle(slug: string, locale: string, preview = false) {
           inArray(articles.locale, locale === 'fr' ? ['fr', 'en'] : ['en']),
         ),
       ).limit(2),
-    preview ? 60 : 3600);
+    preview ? 60 : 86400);
     const dbArticle = rows.find((r: any) => r.locale === locale) || rows.find((r: any) => r.locale === 'en');
     if (!dbArticle) return null;
 

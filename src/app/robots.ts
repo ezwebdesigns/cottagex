@@ -3,6 +3,10 @@ import type { MetadataRoute } from 'next';
 // Bots/scrapers aggressively crawling or training AI models.
 // Merged from the former public/robots.txt (deleted: Next.js serves this
 // file for /robots.txt, the static one was never served).
+// AI policy: citation bots are ALLOWED (ChatGPT-User, Claude-Web,
+// PerplexityBot) so our content can be cited with links; training
+// crawlers stay BLOCKED (GPTBot, CCBot, anthropic-ai) so our content
+// is not absorbed into models without attribution.
 const BLOCKED_BOTS = [
   'AhrefsBot',
   'SemrushBot',
@@ -22,10 +26,8 @@ const BLOCKED_BOTS = [
   'Exabot',
   'SeznamBot',
   'GPTBot',
-  'ChatGPT-User',
   'CCBot',
   'anthropic-ai',
-  'Claude-Web',
 ];
 
 export default function robots(): MetadataRoute.Robots {
