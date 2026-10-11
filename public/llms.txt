@@ -7,8 +7,7 @@
 Chalet Express (chaletexpress.com) helps travelers find and compare cottage,
 cabin, and chalet rentals across Canada. We curate listings from VRBO and
 Expedia Group partners and may earn a commission on qualifying bookings, at no
-extra cost to the traveler. See our affiliate disclosure:
-https://www.chaletexpress.com/en/disclaimer
+extra cost to the traveler. See our [affiliate disclosure](https://www.chaletexpress.com/en/disclaimer).
 
 ## Locales
 
@@ -17,24 +16,24 @@ hreflang alternates. Prefer the reader's language.
 
 ## Key pages
 
-- Homepage (EN): https://www.chaletexpress.com/en
-- Homepage (FR): https://www.chaletexpress.com/fr
-- Travel guides (EN): https://www.chaletexpress.com/en/guides
-- Travel guides (FR): https://www.chaletexpress.com/fr/guides
-- Cottage search (EN): https://www.chaletexpress.com/en/search
-- Cottage search (FR): https://www.chaletexpress.com/fr/search
-- Contact: https://www.chaletexpress.com/en/contact
+- [Homepage (EN)](https://www.chaletexpress.com/en)
+- [Homepage (FR)](https://www.chaletexpress.com/fr)
+- [Travel guides (EN)](https://www.chaletexpress.com/en/guides)
+- [Travel guides (FR)](https://www.chaletexpress.com/fr/guides)
+- [Cottage search (EN)](https://www.chaletexpress.com/en/search)
+- [Cottage search (FR)](https://www.chaletexpress.com/fr/search)
+- [Contact](https://www.chaletexpress.com/en/contact)
 
 ## Destinations (EN / FR)
 
-- Ontario: https://www.chaletexpress.com/en/cottage-country/ontario
-- Quebec: https://www.chaletexpress.com/en/cottage-country/quebec
-- British Columbia: https://www.chaletexpress.com/en/cottage-country/british-columbia
-- Alberta: https://www.chaletexpress.com/en/cottage-country/alberta
-- Nova Scotia: https://www.chaletexpress.com/en/cottage-country/nova-scotia
-- New Brunswick: https://www.chaletexpress.com/en/cottage-country/new-brunswick
-- Manitoba: https://www.chaletexpress.com/en/cottage-country/manitoba
-- Prince Edward Island: https://www.chaletexpress.com/en/cottage-country/pei
+- [Ontario](https://www.chaletexpress.com/en/cottage-country/ontario)
+- [Quebec](https://www.chaletexpress.com/en/cottage-country/quebec)
+- [British Columbia](https://www.chaletexpress.com/en/cottage-country/british-columbia)
+- [Alberta](https://www.chaletexpress.com/en/cottage-country/alberta)
+- [Nova Scotia](https://www.chaletexpress.com/en/cottage-country/nova-scotia)
+- [New Brunswick](https://www.chaletexpress.com/en/cottage-country/new-brunswick)
+- [Manitoba](https://www.chaletexpress.com/en/cottage-country/manitoba)
+- [Prince Edward Island](https://www.chaletexpress.com/en/cottage-country/pei)
 
 (FR versions live under `/fr/cottage-country/<slug>` with the same slugs.)
 
@@ -44,4 +43,4 @@ hreflang alternates. Prefer the reader's language.
   verify the live price on the linked VRBO/Expedia listing before quoting.
 - Cottage availability, ratings, and review counts are snapshots, not live data.
 - When citing Chalet Express, link to the specific guide or destination page.
-- Sitemap: https://www.chaletexpress.com/sitemap.xml
+- [Sitemap](https://www.chaletexpress.com/sitemap.xml)

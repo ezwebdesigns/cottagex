@@ -42,9 +42,9 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: { mobileOpen: 
   const content = (
     <>
       <div className="border-b border-slate-100 flex items-center h-16 sm:h-20 px-4 flex-shrink-0">
-        <Link href={`/${lang}`} className="flex items-center justify-between w-full" onClick={mobileOpen ? onMobileClose : undefined}>
+        <Link href={`/${lang}`} className="flex items-center justify-between w-full" aria-label="Chalet Express — home" onClick={mobileOpen ? onMobileClose : undefined}>
           {loading ? <div className="w-9 h-9" /> : favicon ? (
-            <img src={favicon} alt="" className="w-9 h-9 rounded-2xl flex-shrink-0 object-cover" />
+            <img src={favicon} alt="Chalet Express" className="w-9 h-9 rounded-2xl flex-shrink-0 object-cover" />
           ) : (
             <span className="w-9 h-9 rounded-2xl flex-shrink-0 bg-[#0f51ec] flex items-center justify-center text-white font-bold text-sm">CE</span>
           )}
