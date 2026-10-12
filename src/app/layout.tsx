@@ -36,6 +36,9 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description: "Find your perfect Canadian escape. Premium lake houses and mountain lodges across Canada.",
     metadataBase: new URL("https://www.chaletexpress.com"),
+    verification: {
+      google: "yz9bZoUjZoCaW-GNRrHOKML8dJjNSu00Egdknc3wrQw",
+    },
     alternates: {
       canonical: `https://www.chaletexpress.com${pathname}`,
       languages: {
