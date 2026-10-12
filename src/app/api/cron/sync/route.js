@@ -91,14 +91,14 @@ const DESTINATIONS = [
 
 function nextWeekend() {
   const now = new Date()
-  // Choisit aléatoirement une date dans les 12 prochains mois
-  const daysAhead = Math.floor(Math.random() * 365) + 7 // entre 7 et 372 jours
+  // Date de référence DÉTERMINISTE : 2e vendredi à +90 jours, checkout +2 nuits.
+  // Indispensable au recensement : des dates aléatoires feraient varier les
+  // résultats d'un sync à l'autre et rendraient les absences inexploitables.
   const checkin = new Date(now)
-  checkin.setDate(now.getDate() + daysAhead)
-  // Ajuste au vendredi le plus proche
+  checkin.setDate(now.getDate() + 90)
   const dayOfWeek = checkin.getDay()
   const daysToFriday = (5 - dayOfWeek + 7) % 7 || 7
-  checkin.setDate(checkin.getDate() + daysToFriday)
+  checkin.setDate(checkin.getDate() + daysToFriday + 7)
   const checkout = new Date(checkin)
   checkout.setDate(checkin.getDate() + 2)
   return {
@@ -187,6 +187,7 @@ async function upsert(client, c) {
       amenities          = EXCLUDED.amenities,
       google_link        = EXCLUDED.google_link,
       available          = true,
+      missed_syncs       = 0,
       last_synced        = CURRENT_DATE
       -- affiliate_url non touché : préserve tes deep links manuels
   `, [
@@ -211,10 +212,13 @@ export async function GET(request) {
   }
 
   const { checkin, checkout } = nextWeekend()
+  const dryRun = new URL(request.url).searchParams.get('dry-run') === '1'
   const client = await pool.connect()
-  const results = { destinations: 0, fetched: 0, inserted: 0, updated: 0, errors: 0 }
+  const results = { destinations: 0, fetched: 0, inserted: 0, updated: 0, errors: 0, missed: 0, purged: 0 }
+  const seenTokens = new Set()
+  const okSlugs = new Set()
 
-  console.log(`[sync] Démarrage — ${checkin} → ${checkout}`)
+  console.log(`[sync] Démarrage — ${checkin} → ${checkout}${dryRun ? ' (DRY-RUN, aucune écriture)' : ''}`)
 
   try {
     for (const dest of DESTINATIONS) {
@@ -246,6 +250,8 @@ export async function GET(request) {
 
         for (const prop of filtered) {
           const cottage = transform(prop, dest)
+          seenTokens.add(cottage.property_token)
+          if (dryRun) { results.updated++; continue }
           const { rows } = await client.query(
             'SELECT id FROM affiliatecottages WHERE property_token = $1',
             [cottage.property_token]
@@ -254,6 +260,7 @@ export async function GET(request) {
           rows.length === 0 ? results.inserted++ : results.updated++
         }
 
+        okSlugs.add(dest.slug)
         results.destinations++
         console.log(`[sync] ${dest.slug.padEnd(22)} → ${filtered.length} valides`)
         await new Promise(r => setTimeout(r, 1200))
@@ -267,9 +274,53 @@ export async function GET(request) {
     client.release()
   }
 
+  // ── Purge automatique ──────────────────────────────────────────────────
+  // Les tokens DB non revus ce mois-ci (destinations fetchées OK uniquement)
+  // gagnent +1 missed_syncs ; à 3 absences consécutives → available = false.
+  // Jamais de DELETE : affiliate_url et travail manuel préservés.
+  let purgedTokens = []
+  if (!dryRun) {
+    try {
+      const { rows: dbRows } = await pool.query(
+        'SELECT property_token, slug, missed_syncs FROM affiliatecottages'
+      )
+      const missing = dbRows
+        .filter(r => !seenTokens.has(r.property_token) && okSlugs.has(r.slug))
+        .map(r => r.property_token)
+      results.missed = missing.length
+      if (missing.length > 0) {
+        await pool.query(
+          'UPDATE affiliatecottages SET missed_syncs = missed_syncs + 1 WHERE property_token = ANY($1)',
+          [missing]
+        )
+      }
+      const { rows: purged } = await pool.query(
+        `UPDATE affiliatecottages SET available = false
+         WHERE missed_syncs >= 3 AND available = true
+         RETURNING property_token`
+      )
+      results.purged = purged.length
+      purgedTokens = purged.map(r => r.property_token)
+      console.log(`[sync] Purge — ${missing.length} absents, ${purged.length} désactivés`)
+    } catch (err) {
+      console.error(`[sync] Purge erreur: ${err.message}`)
+    }
+  } else {
+    const { rows: dbRows } = await pool.query(
+      'SELECT property_token, slug, missed_syncs FROM affiliatecottages'
+    )
+    const missing = dbRows.filter(r => !seenTokens.has(r.property_token) && okSlugs.has(r.slug))
+    results.missed = missing.length
+    purgedTokens = missing.filter(r => (r.missed_syncs + 1) >= 3).map(r => r.property_token)
+    results.purged = purgedTokens.length
+    console.log(`[sync] DRY-RUN — ${missing.length} absents, ${purgedTokens.length} seraient désactivés`)
+  }
+
   console.log(`[sync] Terminé — ${JSON.stringify(results)}`)
 
   // Catalogue changed → drop cached cottage queries (best-effort).
+  // Dry-run : aucune écriture, rien à invalider ni à réchauffer.
+  if (!dryRun) {
   try {
     const { invalidateCottages } = await import('@/lib/cache')
     await invalidateCottages()
@@ -309,12 +360,15 @@ export async function GET(request) {
   } catch (e) {
     console.warn('[sync] Cache warming failed:', e.message)
   }
+  } // ← fin du bloc !dryRun
 
   return Response.json({
     success: true,
+    dryRun,
     timestamp: new Date().toISOString(),
     checkin,
     checkout,
+    purgedTokens: purgedTokens.slice(0, 50),
     ...results,
   })
 }

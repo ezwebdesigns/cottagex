@@ -164,6 +164,7 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden lg:table-cell">Links</th>
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Featured</th>
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Status</th>
+              <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden xl:table-cell">Sync</th>
               <th className="px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider text-right">Actions</th>
             </tr>
           </thead>
@@ -231,6 +232,18 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
                       <Eye className="w-4 h-4 text-slate-400" />
                     )}
                   </button>
+                </td>
+                <td className="px-4 py-3 hidden xl:table-cell">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-xs text-slate-500">
+                      {c.last_synced ? new Date(c.last_synced).toISOString().split('T')[0] : '—'}
+                    </span>
+                    {(c.missed_syncs ?? 0) > 0 && (
+                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide w-fit ${c.available === false ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'}`}>
+                        {c.available === false ? 'auto-off' : `absent ×${c.missed_syncs}`}
+                      </span>
+                    )}
+                  </div>
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center justify-end gap-1">
