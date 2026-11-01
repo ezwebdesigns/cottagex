@@ -1,0 +1,352 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e4]:
+      - link [ref=e6] [cursor=pointer]:
+        - /url: /en
+      - navigation [ref=e7]:
+        - generic [ref=e8]:
+          - paragraph [ref=e9]: Cottage destinations
+          - link "AB" [ref=e10] [cursor=pointer]:
+            - /url: /en/cottage-country/alberta
+          - link "BC" [ref=e14] [cursor=pointer]:
+            - /url: /en/cottage-country/british-columbia
+          - link "MB" [ref=e19] [cursor=pointer]:
+            - /url: /en/cottage-country/manitoba
+          - link "NB" [ref=e23] [cursor=pointer]:
+            - /url: /en/cottage-country/new-brunswick
+          - link "NS" [ref=e30] [cursor=pointer]:
+            - /url: /en/cottage-country/nova-scotia
+          - link "ON" [ref=e34] [cursor=pointer]:
+            - /url: /en/cottage-country/ontario
+          - link "PEI" [ref=e39] [cursor=pointer]:
+            - /url: /en/cottage-country/pei
+          - link "QC" [ref=e44] [cursor=pointer]:
+            - /url: /en/cottage-country/quebec
+        - generic [ref=e48]:
+          - paragraph [ref=e49]: Search by destination
+          - link "SEARCH" [ref=e50] [cursor=pointer]:
+            - /url: /en/search
+        - generic [ref=e55]:
+          - paragraph [ref=e56]: Guides & Articles
+          - link "INSPIRATION" [ref=e57] [cursor=pointer]:
+            - /url: /en/guides
+    - generic [ref=e61]:
+      - banner [ref=e62]:
+        - generic [ref=e64]:
+          - link [ref=e66] [cursor=pointer]:
+            - /url: /en
+            - img "Chalet Express" [ref=e67]
+          - button "FR" [ref=e69]
+      - main [ref=e74]:
+        - generic [ref=e75]:
+          - link "Back to Guides" [ref=e76] [cursor=pointer]:
+            - /url: /en/guides
+          - generic [ref=e79]:
+            - text: Mont-Tremblant Cottage Rentals
+            - heading "7 Best Chalet Rentals near Mont-Tremblant" [level=1] [ref=e80]
+            - generic [ref=e81]:
+              - generic [ref=e82]:
+                - generic [ref=e83]: EC
+                - generic [ref=e84]: Editorial Team
+              - generic [ref=e85]:
+                - generic [ref=e86]: August 14, 2026
+                - generic [ref=e89]: 4 min read
+          - img "Best Chalet Rentals near Mont-Tremblant" [ref=e94]
+          - generic [ref=e95]:
+            - generic [ref=e97]:
+              - generic [ref=e98]:
+                - paragraph [ref=e99]: A chalet near Mont-Tremblant is the classic Quebec winter escape. You wake up to mountain views, ski all day, and end the night in a hot tub or by the fire. For skiers and non-skiers alike, it is hard to beat.
+                - paragraph [ref=e100]: We pulled together the 7 best rated chalet rentals near Mont-Tremblant, based on verified reviews from travelers who actually stayed. Whether you want slopes at the door or a quiet lakeside retreat, the right property is on this list.
+                - heading [level=2] [ref=e101]:
+                  - strong [ref=e102]: Why Mont-Tremblant?
+                - paragraph [ref=e103]: Mont-Tremblant is the most famous resort in Quebec, and the chalet scene around it is just as strong. The pedestrian village at the base of the mountain is lively year round, with restaurants, shops, and events at every season.
+                - paragraph [ref=e104]: The mountain itself is best known for skiing. Over 100 trails across a big, well maintained mountain make it a favorite for families and experts alike. But winter is only part of the story. Summer brings hiking, canoeing, and golf. Fall delivers some of the best colors in the province.
+                - paragraph [ref=e105]:
+                  - text: The lakes around the mountain seal the deal. Lac Supérieur, Lac Mercier, and the surrounding region offer waterfront chalets with quiet mornings and easy access to everything. It is a destination that works every single season. For the wider picture of
+                  - link "Quebec cottage rentals" [ref=e106] [cursor=pointer]:
+                    - /url: https://chaletexpress.com/en/cottage-country/quebec
+                  - text: ", Tremblant is one of the top regions to compare."
+                - heading [level=2] [ref=e107]:
+                  - strong [ref=e108]: The 7 Best Chalet Rentals near Mont-Tremblant
+                - paragraph [ref=e109]: Here is the list you came for. We selected these 7 chalets based on verified reviews from travelers who actually stayed, looking at location, ski access, comfort, cleanliness, and value. The list is refreshed regularly, so you always see the top rated options currently available.
+                - paragraph
+              - generic [ref=e110]:
+                - generic [ref=e111]:
+                  - generic [ref=e112]:
+                    - img "5 Bedroom Luxury Ski & Golf Chalet - Private Hot Tub - Prime Ski in Ski Out" [ref=e113]
+                    - generic [ref=e114]: "#1"
+                  - generic [ref=e115]:
+                    - generic [ref=e116]:
+                      - generic [ref=e117]:
+                        - generic [ref=e118]: Balcony
+                        - generic [ref=e119]: "5.0"
+                      - heading "5 Bedroom Luxury Ski & Golf Chalet - Private Hot Tub - Prime Ski in Ski Out" [level=3] [ref=e132]
+                      - generic [ref=e133]: quebec
+                    - generic [ref=e138]:
+                      - generic [ref=e139]:
+                        - paragraph [ref=e140]: ESTIMATED RATE
+                        - generic [ref=e141]: $2531
+                        - text: / night
+                      - link "Check Availability" [ref=e142] [cursor=pointer]:
+                        - /url: https://vrbo.com/affiliate/vdWjnxt
+                - generic [ref=e147]:
+                  - generic [ref=e148]:
+                    - img "Large Tremblant Ski and Golf Chalet" [ref=e149]
+                    - generic [ref=e150]: "#2"
+                  - generic [ref=e151]:
+                    - generic [ref=e152]:
+                      - generic [ref=e153]:
+                        - generic [ref=e154]: Air conditioning
+                        - generic [ref=e155]: "5.0"
+                      - heading "Large Tremblant Ski and Golf Chalet" [level=3] [ref=e168]
+                      - generic [ref=e169]: quebec
+                    - generic [ref=e174]:
+                      - generic [ref=e175]:
+                        - paragraph [ref=e176]: ESTIMATED RATE
+                        - generic [ref=e177]: $1992
+                        - text: / night
+                      - link "Check Availability" [ref=e178] [cursor=pointer]:
+                        - /url: https://vrbo.com/affiliate/gQb8gV7
+                - generic [ref=e183]:
+                  - generic [ref=e184]:
+                    - img "La Canopée | Spa | Piscine privée&chauffée| Plein-air Mont-Blanc/Mont-Tremblant" [ref=e185]
+                    - generic [ref=e186]: "#3"
+                  - generic [ref=e187]:
+                    - generic [ref=e188]:
+                      - generic [ref=e189]:
+                        - generic [ref=e190]: Air conditioning
+                        - generic [ref=e191]: "5.0"
+                      - heading "La Canopée | Spa | Piscine privée&chauffée| Plein-air Mont-Blanc/Mont-Tremblant" [level=3] [ref=e204]
+                      - generic [ref=e205]: quebec
+                    - generic [ref=e210]:
+                      - generic [ref=e211]:
+                        - paragraph [ref=e212]: ESTIMATED RATE
+                        - generic [ref=e213]: $1919
+                        - text: / night
+                      - link "Check Availability" [ref=e214] [cursor=pointer]:
+                        - /url: https://vrbo.com/affiliate/IFvbT9f
+                - generic [ref=e219]:
+                  - generic [ref=e220]:
+                    - img "Chalet Bois Rond Avec Spa - Foyer (Tremblant) / Accès Au Lac" [ref=e221]
+                    - generic [ref=e222]: "#4"
+                  - generic [ref=e223]:
+                    - generic [ref=e224]:
+                      - generic [ref=e225]:
+                        - generic [ref=e226]: Air conditioning
+                        - generic [ref=e227]: "4.8"
+                      - heading "Chalet Bois Rond Avec Spa - Foyer (Tremblant) / Accès Au Lac" [level=3] [ref=e240]
+                      - generic [ref=e241]: quebec
+                    - generic [ref=e246]:
+                      - generic [ref=e247]:
+                        - paragraph [ref=e248]: ESTIMATED RATE
+                        - generic [ref=e249]: $2555
+                        - text: / night
+                      - link "Check Availability" [ref=e250] [cursor=pointer]:
+                        - /url: https://vrbo.com/affiliate/ASUDXia
+                - generic [ref=e255]:
+                  - generic [ref=e256]:
+                    - img "Amazing Lake/Mountain View 5min to Tremblant (6)" [ref=e257]
+                    - generic [ref=e258]: "#5"
+                  - generic [ref=e259]:
+                    - generic [ref=e260]:
+                      - generic [ref=e261]:
+                        - generic [ref=e262]: Air conditioning
+                        - generic [ref=e263]: "4.7"
+                      - heading "Amazing Lake/Mountain View 5min to Tremblant (6)" [level=3] [ref=e276]
+                      - generic [ref=e277]: quebec
+                    - generic [ref=e282]:
+                      - generic [ref=e283]:
+                        - paragraph [ref=e284]: ESTIMATED RATE
+                        - generic [ref=e285]: $386
+                        - text: / night
+                      - link "Check Availability" [ref=e286] [cursor=pointer]:
+                        - /url: https://vrbo.com/affiliate/nQqszpH
+                - generic [ref=e291]:
+                  - generic [ref=e292]:
+                    - img "Chalet Mont Blanc Ski&Golf&Nature&ComfortAwait CITQ 297392" [ref=e293]
+                    - generic [ref=e294]: "#6"
+                  - generic [ref=e295]:
+                    - generic [ref=e296]:
+                      - generic [ref=e297]:
+                        - generic [ref=e298]: Air conditioning
+                        - generic [ref=e299]: "4.7"
+                      - heading "Chalet Mont Blanc Ski&Golf&Nature&ComfortAwait CITQ 297392" [level=3] [ref=e312]
+                      - generic [ref=e313]: quebec
+                    - generic [ref=e318]:
+                      - generic [ref=e319]:
+                        - paragraph [ref=e320]: ESTIMATED RATE
+                        - generic [ref=e321]: $884
+                        - text: / night
+                      - link "Check Availability" [ref=e322] [cursor=pointer]:
+                        - /url: https://vrbo.com/affiliate/nUx4nDj
+              - generic [ref=e327]:
+                - paragraph
+                - paragraph [ref=e328]: Compare the ratings, check the location, and book the chalet that fits your plans. Book directly through the listing.
+                - heading [level=2] [ref=e329]:
+                  - strong [ref=e330]: Ski-In/Ski-Out vs Lakeside
+                - paragraph [ref=e331]: The biggest choice when booking near Tremblant is where you want to be.
+                - paragraph [ref=e332]: Ski-in/ski-out chalets sit right on the slopes or a short walk from the lifts. You save time in the morning, skip the shuttle, and head back for lunch without missing a run. Snow conditions matter, so confirm access is reliable on the dates you plan to visit.
+                - paragraph [ref=e333]: Lakeside chalets trade slope access for calm. They sit on the lakes around the mountain, with views and quiet that the resort village cannot offer. You drive a few minutes to ski, but you come home to peace, waterfront, and often a better price.
+                - paragraph [ref=e334]: Think about your group. Die hard skiers lean ski-in/ski-out. Families mixing skiing with relaxing often prefer lakeside. Both are excellent, just different trips.
+                - heading [level=2] [ref=e335]:
+                  - strong [ref=e336]: How Much Does a Mont-Tremblant Chalet Cost?
+                - paragraph [ref=e337]: Mont-Tremblant is the priciest chalet market in Quebec, but there is a wide range.
+                - paragraph [ref=e338]: In winter, expect $300 to $600 a night for a good chalet, with ski-in/ski-out properties at the top of that range. Holiday weeks like Christmas and spring break run higher. Summer rates drop, often to $250 to $450 a night.
+                - paragraph [ref=e339]: Waterfront chalets on the lakes tend to cost more than inland ones, especially with a dock or spa. Cleaning fees and damage deposits are standard, so read the full price before booking.
+                - heading [level=2] [ref=e340]:
+                  - strong [ref=e341]: When to Book
+                - paragraph [ref=e342]: Winter is the peak season. Ski weeks from December to March fill fast, and holiday dates sell out months ahead. For the best selection, book by early fall.
+                - paragraph [ref=e343]: Spring break is especially busy, since families from across the region descend on the mountain. Reserve early if your dates are fixed.
+                - paragraph [ref=e344]: Summer and fall are easier and more affordable. The resort stays lively, the lakes are warm by July, and you can often find good chalets with short notice. If you want the ski experience at a lower price, consider late March or early April when conditions are still decent and rates drop.
+                - heading [level=2] [ref=e345]:
+                  - strong [ref=e346]: Conclusion
+                - paragraph [ref=e347]: Mont-Tremblant chalets deliver the best of Quebec's resort life. Ski all day, paddle a lake in the evening, or soak under the stars. Use the list above, compare the reviews, and book the chalet that fits your group.
+                - paragraph [ref=e348]: The mountain is waiting.
+            - complementary [ref=e349]:
+              - generic [ref=e350]:
+                - generic [ref=e351]:
+                  - paragraph [ref=e352]: Contents
+                  - navigation [ref=e353]:
+                    - link "Why Mont-Tremblant?" [ref=e354] [cursor=pointer]:
+                      - /url: "#why-mont-tremblant"
+                    - link "The 7 Best Chalet Rentals near Mont-Tremblant" [ref=e355] [cursor=pointer]:
+                      - /url: "#the-7-best-chalet-rentals-near-mont-tremblant"
+                    - link "Ski-In/Ski-Out vs Lakeside" [ref=e356] [cursor=pointer]:
+                      - /url: "#ski-inski-out-vs-lakeside"
+                    - link "How Much Does a Mont-Tremblant Chalet Cost?" [ref=e357] [cursor=pointer]:
+                      - /url: "#how-much-does-a-mont-tremblant-chalet-cost"
+                    - link "When to Book" [ref=e358] [cursor=pointer]:
+                      - /url: "#when-to-book"
+                    - link "Conclusion" [ref=e359] [cursor=pointer]:
+                      - /url: "#conclusion"
+                - generic [ref=e360]:
+                  - paragraph [ref=e361]: Recent Guides
+                  - generic [ref=e362]:
+                    - link [ref=e363] [cursor=pointer]:
+                      - /url: /en/guides/7-best-cottage-rentals-nova-scotia-south-shore
+                      - img "7 Best Oceanfront Cottage Rentals on Nova Scotia's South Shore" [ref=e365]
+                      - generic [ref=e366]:
+                        - paragraph [ref=e367]: 7 Best Oceanfront Cottage Rentals on Nova Scotia's South Shore
+                        - paragraph [ref=e368]: October 3, 2026
+                    - link [ref=e369] [cursor=pointer]:
+                      - /url: /en/guides/best-cottage-rentals-at-sylvan-lake-alberta-2026
+                      - img "7 Best Cottage Rentals at Sylvan Lake, Alberta (2026)" [ref=e371]
+                      - generic [ref=e372]:
+                        - paragraph [ref=e373]: 7 Best Cottage Rentals at Sylvan Lake, Alberta (2026)
+                        - paragraph [ref=e374]: October 3, 2026
+                    - link [ref=e375] [cursor=pointer]:
+                      - /url: /en/guides/7-best-cottage-rentals-okanagan
+                      - img "7 Best Cottage Rentals in the Okanagan Valley (Lakefront & Winery Views)" [ref=e377]
+                      - generic [ref=e378]:
+                        - paragraph [ref=e379]: 7 Best Cottage Rentals in the Okanagan Valley (Lakefront & Winery Views)
+                        - paragraph [ref=e380]: October 2, 2026
+                - generic [ref=e381]:
+                  - paragraph [ref=e382]: Explore more
+                  - list [ref=e383]:
+                    - listitem [ref=e384]:
+                      - link "Cottages in Quebec" [ref=e385] [cursor=pointer]:
+                        - /url: /en/cottage-country/quebec
+                    - listitem [ref=e386]:
+                      - link "Cottages in Ontario" [ref=e387] [cursor=pointer]:
+                        - /url: /en/cottage-country/ontario
+                    - listitem [ref=e388]:
+                      - link "Cottages in British Columbia" [ref=e389] [cursor=pointer]:
+                        - /url: /en/cottage-country/british-columbia
+                    - listitem [ref=e390]:
+                      - link "Lakefront" [ref=e391] [cursor=pointer]:
+                        - /url: /en/search/lakefront
+                    - listitem [ref=e392]:
+                      - link "All guides" [ref=e393] [cursor=pointer]:
+                        - /url: /en/guides
+                - generic [ref=e394]:
+                  - paragraph [ref=e395]: Book now
+                  - iframe [ref=e398]:
+                    - main [ref=f1e5]:
+                      - article [ref=f1e6]:
+                        - tabpanel [ref=f1e11]:
+                          - generic [ref=f1e14]:
+                            - heading "Search places to stay" [level=1] [ref=f1e17]
+                            - generic [ref=f1e23]:
+                              - generic: Going to
+                              - button "Going to" [ref=f1e24] [cursor=pointer]
+                              - generic [aria-hidden]: Going to
+                            - generic [ref=f1e28]:
+                              - generic [ref=f1e30]:
+                                - generic: Check-in
+                                - button "Check-in" [ref=f1e31] [cursor=pointer]
+                                - generic [aria-hidden]: Check-in
+                              - generic [ref=f1e33]:
+                                - generic: Check-out
+                                - button "Check-out" [ref=f1e34] [cursor=pointer]
+                                - generic [aria-hidden]: Check-out
+                            - generic [ref=f1e36]:
+                              - generic [ref=f1e39]:
+                                - generic [ref=f1e40]: Powered by
+                                - img "Vrbo CA" [ref=f1e42]
+                              - button "Search" [ref=f1e45] [cursor=pointer]
+          - generic [ref=e399]:
+            - heading "Frequently Asked Questions" [level=2] [ref=e400]
+            - generic [ref=e401]:
+              - button "How much does it cost to rent a chalet near Mont-Tremblant?" [ref=e403]
+              - button "Is ski-in/ski-out worth it at Mont-Tremblant?" [ref=e408]
+              - button "When is the best time to visit Mont-Tremblant?" [ref=e413]
+              - button "Do Mont-Tremblant chalets allow pets?" [ref=e418]
+          - generic [ref=e422]:
+            - heading "Ready to lock in your Mont-Tremblant escape?" [level=2] [ref=e424]
+            - link "Book on VRBO" [ref=e425] [cursor=pointer]:
+              - /url: https://vrbo.com/affiliates/search-monttremblant-dateless.EYMYC8c
+      - contentinfo [ref=e426]:
+        - generic [ref=e427]:
+          - generic [ref=e428]:
+            - generic [ref=e429]:
+              - img "Chalet Express logo" [ref=e431]
+              - paragraph [ref=e432]: Find your perfect Canadian cottage rental. Curated lake houses, mountain lodges, and wilderness cabins across Canada
+              - generic [ref=e433]:
+                - link "Facebook" [ref=e434] [cursor=pointer]:
+                  - /url: htps://facebook.com/
+                - link "Instagram" [ref=e437] [cursor=pointer]:
+                  - /url: htps://instagram.com/
+                - link "TikTok" [ref=e440] [cursor=pointer]:
+                  - /url: htps://tiktok.com/
+                - link "X" [ref=e443] [cursor=pointer]:
+                  - /url: htps://x.com/
+                - link "Pinterest" [ref=e446] [cursor=pointer]:
+                  - /url: htps://pinterest.com/
+            - generic [ref=e449]:
+              - heading "DISCOVER" [level=4] [ref=e450]
+              - list [ref=e451]:
+                - listitem [ref=e452]:
+                  - link "Explore Cottages" [ref=e453] [cursor=pointer]:
+                    - /url: /en/search
+                - listitem [ref=e454]:
+                  - link "Waterfront Cottages" [ref=e455] [cursor=pointer]:
+                    - /url: /en/search/waterfront
+                - listitem [ref=e456]:
+                  - link "Pet-Friendly Cottages" [ref=e457] [cursor=pointer]:
+                    - /url: /en/search/pet-friendly
+            - generic [ref=e458]:
+              - heading "QUICK LINKS" [level=4] [ref=e459]
+              - list [ref=e460]:
+                - listitem [ref=e461]:
+                  - link "Terms of Use" [ref=e462] [cursor=pointer]:
+                    - /url: /en/terms
+                - listitem [ref=e463]:
+                  - link "Affiliate Disclosure" [ref=e464] [cursor=pointer]:
+                    - /url: /en/disclaimer
+                - listitem [ref=e465]:
+                  - link "Privacy Policy" [ref=e466] [cursor=pointer]:
+                    - /url: /en/privacy
+            - generic [ref=e467]:
+              - heading "ABOUT" [level=4] [ref=e468]
+              - list [ref=e469]:
+                - listitem [ref=e470]:
+                  - link "About" [ref=e471] [cursor=pointer]:
+                    - /url: /en/about
+                - listitem [ref=e472]:
+                  - link "Contact" [ref=e473] [cursor=pointer]:
+                    - /url: /en/contact
+                - listitem [ref=e474]:
+                  - link "Guides & Articles" [ref=e475] [cursor=pointer]:
+                    - /url: /en/guides
+          - paragraph [ref=e478]: © 2026 Chalet Express. All rights reserved.
+  - alert [ref=e479]

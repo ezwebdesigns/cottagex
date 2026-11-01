@@ -1,0 +1,65 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e4]:
+      - link "CE" [ref=e6] [cursor=pointer]:
+        - /url: /en
+      - navigation [ref=e8]
+    - generic [ref=e9]:
+      - banner [ref=e10]:
+        - generic [ref=e12]:
+          - link "Chalet Express" [ref=e14] [cursor=pointer]:
+            - /url: /en
+          - button "FR" [ref=e17]
+      - main [ref=e22]:
+        - generic [ref=e23]:
+          - link "Back to Guides" [ref=e24] [cursor=pointer]:
+            - /url: /en/guides
+          - generic [ref=e27]:
+            - text: Destinations
+            - heading "Top 5 Regions to Rent a Cottage in Ontario This Fall" [level=1] [ref=e28]
+            - generic [ref=e29]:
+              - generic [ref=e30]:
+                - generic [ref=e31]: EC
+                - generic [ref=e32]: Chalet Express Editorial Team
+              - generic [ref=e33]:
+                - generic [ref=e34]: September 12, 2025
+                - generic [ref=e37]: 6 min read
+          - img "Top 5 Regions to Rent a Cottage in Ontario This Fall" [ref=e42]
+          - generic [ref=e43]:
+            - generic [ref=e45]:
+              - paragraph [ref=e46]: Autumn is arguably the most magical season to escape to a Canadian cottage. Forest canopies transform into vivid canvases of gold and scarlet, offering breathtaking backdrops for hiking or lakeside relaxing.
+              - paragraph [ref=e47]: "Here are our recommended fall destinations:"
+              - paragraph [ref=e48]: "- Muskoka: Renowned worldwide for luxury cottaging, Muskoka is quiet and beautiful in the fall. Glass-like lakes mirror the stunning forest foliage. - Bruce Peninsula: Rugged limestone cliffs hovering over turquoise water. Fall is the absolute best time to hike without summer crowds."
+            - complementary [ref=e49]:
+              - generic [ref=e50]:
+                - generic [ref=e51]:
+                  - paragraph [ref=e52]: Explore more
+                  - list [ref=e53]:
+                    - listitem [ref=e54]:
+                      - link "Cottages in Ontario" [ref=e55] [cursor=pointer]:
+                        - /url: /en/cottage-country/ontario
+                    - listitem [ref=e56]:
+                      - link "Cottages in Quebec" [ref=e57] [cursor=pointer]:
+                        - /url: /en/cottage-country/quebec
+                    - listitem [ref=e58]:
+                      - link "Cottages in British Columbia" [ref=e59] [cursor=pointer]:
+                        - /url: /en/cottage-country/british-columbia
+                    - listitem [ref=e60]:
+                      - link "Lakefront" [ref=e61] [cursor=pointer]:
+                        - /url: /en/search/lakefront
+                    - listitem [ref=e62]:
+                      - link "All guides" [ref=e63] [cursor=pointer]:
+                        - /url: /en/guides
+                - generic [ref=e64]:
+                  - paragraph [ref=e65]: Find your chalet
+                  - paragraph [ref=e66]: Compare verified rentals and book securely.
+                  - link "Search" [ref=e67] [cursor=pointer]:
+                    - /url: /en/search
+          - generic [ref=e68]:
+            - generic [ref=e69]:
+              - heading "Inspired by this reading?" [level=2] [ref=e70]
+              - paragraph [ref=e71]: Find and compare your dream cottage across Canada now.
+            - link "Back to Homepage" [ref=e72] [cursor=pointer]:
+              - /url: /en
+  - button "Open Next.js Dev Tools" [ref=e78] [cursor=pointer]
+  - alert [ref=e82]
