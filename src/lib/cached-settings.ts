@@ -48,7 +48,12 @@ export async function getSettingSection(section: string, locale: string = 'en'):
 export async function getPublishedArticles(locale: string): Promise<any[]> {
   return getCached(`articles:list:${locale}`, async () => {
     try {
-      const rows = await db.select().from(articles)
+      const rows = await db.select({
+        id: articles.id, slug: articles.slug, title: articles.title, excerpt: articles.excerpt,
+        category: articles.category, featuredImage: articles.featuredImage, imageAlt: articles.imageAlt,
+        seoTitle: articles.seoTitle, translationOf: articles.translationOf, locale: articles.locale, isPublished: articles.isPublished,
+        publishedAt: articles.publishedAt, createdAt: articles.createdAt, updatedAt: articles.updatedAt,
+      }).from(articles)
         .where(eq(articles.isPublished, true))
         .orderBy(desc(articles.createdAt));
       if (locale !== 'fr') return rows.filter((r) => r.locale !== 'fr');

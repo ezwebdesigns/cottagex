@@ -65,10 +65,18 @@ export async function generateStaticParams() {
 }
 
 async function fetchPageRow(slug: string, locale: string) {
-  // Shared getCached key between generateMetadata and the page below:
-  // one DB hit total instead of two.
-  const rows = await getCached<any[]>(`pages:by-slug:${locale}:${slug}`, () =>
-    db.select().from(pages).where(
+  // Métadonnées seulement (sans le contenu, jusqu'à 4 Mo) : le cache Redis
+  // stocke ce qui est petit ; le corps n'est pas nécessaire pour ce template.
+  const metaRows = await getCached<any[]>(`pages:meta:${locale}:${slug}`, () =>
+    db.select({
+      title: pages.title,
+      seoTitle: pages.seoTitle,
+      metaDescription: pages.metaDescription,
+      faq: pages.faq,
+      locationData: pages.locationData,
+      isPublished: pages.isPublished,
+      updatedAt: pages.updatedAt,
+    }).from(pages).where(
       and(
         eq(pages.slug, slug),
         eq(pages.isPublished, true),
@@ -76,8 +84,10 @@ async function fetchPageRow(slug: string, locale: string) {
       ),
     ).limit(2),
   86400);
-  return rows.find((r: any) => r.locale === locale) || rows.find((r: any) => r.locale === 'en') || null;
+  return metaRows.find((r: any) => r.locale === locale) || metaRows.find((r: any) => r.locale === 'en') || null;
 }
+
+
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;

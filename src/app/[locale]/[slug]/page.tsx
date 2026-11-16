@@ -23,11 +23,21 @@ async function canPreview(searchParams?: { [key: string]: string | string[] | un
 
 async function fetchPage(slug: string, locale: string, preview = false) {
   try {
-    // Cached 24h, shared between generateMetadata and the page.
-    // Locale-preferred row with EN fallback. Preview uses its own
-    // short-TTL key so drafts never leak into the public cache.
-    const rows = await getCached<any[]>(`pages:by-slug:${locale}:${slug}${preview ? ':preview' : ''}`, () =>
-      db.select().from(pages).where(
+    // Métadonnées seulement (sans le contenu, jusqu'à 4 Mo) : le cache
+    // Redis stocke ce qui est petit ; le corps est lu en base à la volée.
+    const metaRows = await getCached<any[]>(`pages:meta:${locale}:${slug}${preview ? ':preview' : ''}`, () =>
+      db.select({
+        slug: pages.slug,
+        title: pages.title,
+        seoTitle: pages.seoTitle,
+        metaDescription: pages.metaDescription,
+        faq: pages.faq,
+        type: pages.template,
+        locale: pages.locale,
+        isPublished: pages.isPublished,
+        updatedAt: pages.updatedAt,
+        locationData: pages.locationData,
+      }).from(pages).where(
         and(
           eq(pages.slug, slug),
           ...(preview ? [] : [eq(pages.isPublished, true)]),
@@ -35,19 +45,41 @@ async function fetchPage(slug: string, locale: string, preview = false) {
         ),
       ).limit(2),
     preview ? 60 : 86400);
-    const [page] = [rows.find((r: any) => r.locale === locale) || rows.find((r: any) => r.locale === 'en')];
+    const [page] = [metaRows.find((r: any) => r.locale === locale) || metaRows.find((r: any) => r.locale === 'en')];
     if (!page || !page.isPublished) return null;
+
+    const content = await getPageContent(slug, locale === 'fr' ? ['fr', 'en'] : ['en'], preview);
 
     return {
       title: page.title,
-      content: page.content || "",
-      type: "default" as const,
+      content: content || "",
+      type: (page.type === 'about' || page.type === 'terms' || page.type === 'default') ? page.type : 'default',
       updatedDate: page.updatedAt ? new Date(page.updatedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : undefined,
       metaDescription: page.metaDescription || undefined,
       faq: (page.faq as { question: string; answer: string }[]) || [],
     };
   } catch (e) {
     console.error("Failed to fetch page:", e);
+    return null;
+  }
+}
+
+// Contenu lu en base directement (pas de cache Redis : pas de blobs volumineux).
+async function getPageContent(slug: string, locales: string[], preview = false) {
+  try {
+    const rows = await db.select({ content: pages.content, isPublished: pages.isPublished }).from(pages).where(
+      and(
+        eq(pages.slug, slug),
+        ...(preview ? [] : [eq(pages.isPublished, true)]),
+        inArray(pages.locale, locales),
+      ),
+    ).limit(1);
+    const row = rows[0];
+    if (!row) return null;
+    if (preview && !row.isPublished) return null;
+    return row.content;
+  } catch (e) {
+    console.error("Failed to fetch page content:", e);
     return null;
   }
 }

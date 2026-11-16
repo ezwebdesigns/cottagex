@@ -68,10 +68,25 @@ async function fetchArticle(slug: string, locale: string, preview = false) {
   }
 
   try {
-    // Locale-preferred row with EN fallback, cached 24h and shared
-    // between generateMetadata and the page via the same key.
-    const rows = await getCached<any[]>(`articles:by-slug:${locale}:${slug}${preview ? ':preview' : ''}`, () =>
-      db.select().from(articles).where(
+    // Métadonnées seulement (sans le contenu) : le cache Redis stocke ce qui est
+    // petit. Le corps est lu en base à la volée (getArticleContent).
+    const metaRows = await getCached<any[]>(`articles:meta:${locale}:${slug}${preview ? ':preview' : ''}`, () =>
+      db.select({
+        id: articles.id,
+        slug: articles.slug,
+        title: articles.title,
+        excerpt: articles.excerpt,
+        category: articles.category,
+        featuredImage: articles.featuredImage,
+        imageAlt: articles.imageAlt,
+        seoTitle: articles.seoTitle,
+        faq: articles.faq,
+        type: articles.type,
+        isPublished: articles.isPublished,
+        publishedAt: articles.publishedAt,
+        createdAt: articles.createdAt,
+        updatedAt: articles.updatedAt,
+      }).from(articles).where(
         and(
           eq(articles.slug, slug),
           ...(preview ? [] : [eq(articles.isPublished, true)]),
@@ -79,10 +94,21 @@ async function fetchArticle(slug: string, locale: string, preview = false) {
         ),
       ).limit(2),
     preview ? 60 : 86400);
-    const dbArticle = rows.find((r: any) => r.locale === locale) || rows.find((r: any) => r.locale === 'en');
+    const dbArticle = metaRows.find((r: any) => r.locale === locale) || metaRows.find((r: any) => r.locale === 'en');
     if (!dbArticle) return null;
 
-    const content = dbArticle.content || "";
+    // Contenu lu en base directement (pas de cache : pas de blobs volumineux).
+    const contentRows = await db.select({ content: articles.content, isPublished: articles.isPublished }).from(articles).where(
+      and(
+        eq(articles.slug, slug),
+        ...(preview ? [] : [eq(articles.isPublished, true)]),
+        inArray(articles.locale, locale === 'fr' ? ['fr', 'en'] : ['en']),
+      ),
+    ).limit(1);
+    const contentRow = contentRows[0];
+    if (!contentRow || (preview && !contentRow.isPublished)) return null;
+    const content = contentRow.content || "";
+
     const toc = content ? generateToc(content) : [];
     const enhancedContent = content ? injectHeadingIds(content) : "";
     const shortcodes = extractShortcodes(content);
