@@ -4,69 +4,85 @@
 import fs from 'fs'
 import path from 'path'
 export const DESTINATIONS: { slug: string; province: string; query: string; hl?: string }[] = [
-  // Ontario
-  { slug: 'muskoka',            province: 'ontario',          query: 'muskoka cottage rentals ontario canada' },
-  { slug: 'kawarthas',          province: 'ontario',          query: 'kawartha lakes ontario cottage vrbo' },
-  { slug: 'haliburton',         province: 'ontario',          query: 'haliburton highlands cottage rentals ontario canada' },
-  { slug: 'georgian-bay',       province: 'ontario',          query: 'georgian bay cottage rentals ontario canada' },
-  { slug: 'prince-edward',      province: 'ontario',          query: 'prince edward county cottage rentals ontario canada' },
+  // Ontario — 6
+  { slug: 'muskoka',         province: 'ontario',          query: 'muskoka cottage rentals ontario canada' },
+  { slug: 'prince-edward',   province: 'ontario',          query: 'prince edward county cottage rentals ontario canada' },
+  { slug: 'blue-mountain',   province: 'ontario',          query: 'blue mountain cottage rentals ontario canada' },
+  { slug: 'haliburton',      province: 'ontario',          query: 'haliburton highlands cottage rentals ontario canada' },
+  { slug: 'georgian-bay',    province: 'ontario',          query: 'georgian bay cottage rentals ontario canada' },
+  { slug: 'kawarthas',       province: 'ontario',          query: 'kawartha lakes ontario cottage rentals canada' },
 
-// FR — court et précis
-{ slug: 'laurentides',    province: 'quebec', query: 'chalet laurentides',    hl: 'fr' },
-{ slug: 'mont-tremblant', province: 'quebec', query: 'chalet mont-tremblant', hl: 'fr' },
-{ slug: 'quebec',         province: 'quebec', query: 'location chalet à louer', hl: 'fr' },
+  // Quebec — 6 (FR + EN sur les plus demandees)
+  { slug: 'quebec',              province: 'quebec', query: 'chalet a louer quebec',            hl: 'fr' },
+  { slug: 'mont-tremblant',      province: 'quebec', query: 'chalet mont tremblant',            hl: 'fr' },
+  { slug: 'laurentides',         province: 'quebec', query: 'chalet laurentides',               hl: 'fr' },
+  { slug: 'charlevoix',          province: 'quebec', query: 'chalet a louer charlevoix',        hl: 'fr' },
+  { slug: 'saguenay-lac-st-jean',province: 'quebec', query: 'chalet a louer saguenay lac st jean', hl: 'fr' },
+  { slug: 'saguenay-lac-st-jean',province: 'quebec', query: 'saguenay chalet rental quebec', hl: 'en' },
+  { slug: 'quebec',              province: 'quebec', query: 'vacation cottage rental quebec',   hl: 'en' },
+  { slug: 'mont-tremblant',      province: 'quebec', query: 'cottage mont tremblant rental',    hl: 'en' },
+  { slug: 'laurentides',         province: 'quebec', query: 'cottage laurentians',              hl: 'en' },
+  { slug: 'magog',               province: 'quebec', query: 'magog lake memphremagog cottage vrbo quebec', hl: 'en' },
 
-// EN — court et précis
-{ slug: 'laurentides',    province: 'quebec', query: 'cottage laurentians',          hl: 'en' },
-{ slug: 'mont-tremblant', province: 'quebec', query: 'cottage mont-tremblant rental', hl: 'en' },
-{ slug: 'quebec',         province: 'quebec', query: 'vacation cottage rental quebec', hl: 'en' },
-{ slug: 'quebec-city',    province: 'quebec', query: 'quebec city vacation rental vrbo canada', hl: 'en' },
-{ slug: 'orford',         province: 'quebec', query: 'orford estrie chalet rental vrbo quebec', hl: 'en' },
-{ slug: 'bromont',        province: 'quebec', query: 'bromont chalet rental vrbo quebec canada', hl: 'en' },
-{ slug: 'magog',          province: 'quebec', query: 'magog lake memphremagog cottage vrbo quebec', hl: 'en' },
-{ slug: 'saint-sauveur',  province: 'quebec', query: 'saint sauveur chalet rental vrbo laurentians', hl: 'en' },
-{ slug: 'ste-adele',      province: 'quebec', query: 'sainte adele chalet rental vrbo laurentians', hl: 'en' },
-{ slug: 'morin-heights',  province: 'quebec', query: 'morin heights chalet rental vrbo quebec', hl: 'en' },
-{ slug: 'sutton',         province: 'quebec', query: 'sutton quebec chalet rental vrbo canada', hl: 'en' },
+  // Colombie-Britannique — 6
+  { slug: 'maple-bay',       province: 'british-columbia', query: 'maple bay cabin rentals bc canada' },
+  { slug: 'whistler',        province: 'british-columbia', query: 'whistler cabin rentals bc canada' },
+  { slug: 'okanagan',        province: 'british-columbia', query: 'okanagan valley cottage rentals bc canada' },
+  { slug: 'tofino',          province: 'british-columbia', query: 'tofino bc cabin rental canada' },
+  { slug: 'sunshine-coast',  province: 'british-columbia', query: 'gibsons bc cabin rental vrbo' },
+  { slug: 'comox-valley',    province: 'british-columbia', query: 'comox valley cabin rentals bc canada' },
 
-  // British Columbia
-  { slug: 'whistler',           province: 'british-columbia', query: 'whistler cabin rentals bc canada' },
-  { slug: 'okanagan',           province: 'british-columbia', query: 'okanagan valley cottage rentals bc canada' },
-  { slug: 'sunshine-coast',     province: 'british-columbia', query: 'gibsons bc cabin rental vrbo' },
-  { slug: 'tofino',             province: 'british-columbia', query: 'tofino bc cabin rental canada' },
+  // Alberta — 6
+  { slug: 'pigeon-lake',     province: 'alberta', query: 'pigeon lake cottage alberta canada' },
+  { slug: 'crowsnest-pass',  province: 'alberta', query: 'crowsnest pass cabin rentals alberta canada' },
+  { slug: 'sylvan-lake',     province: 'alberta', query: 'sylvan lake cottage rentals alberta canada' },
+  { slug: 'gull-lake',       province: 'alberta', query: 'gull lake cottage rental alberta canada' },
+  { slug: 'gull-lake',       province: 'alberta', query: 'gull lake alberta vacation rental' },
+  { slug: 'jasper',          province: 'alberta', query: 'jasper cabin rentals alberta canada' },
+  { slug: 'jasper',          province: 'alberta', query: 'jasper vacation rental alberta' },
+  { slug: 'banff',           province: 'alberta', query: 'banff cabin rentals alberta canada' },
+  { slug: 'banff',           province: 'alberta', query: 'banff vacation rental alberta' },
 
-  // Nova Scotia
-  { slug: 'cape-breton',        province: 'nova-scotia',      query: 'cape breton cottage rentals nova scotia canada' },
-  { slug: 'south-shore-ns',     province: 'nova-scotia',      query: 'south shore cottage rentals nova scotia canada' },
-  { slug: 'digby',              province: 'nova-scotia',      query: 'digby nova scotia cottage rental canada' },
-  { slug: 'yarmouth-ns',        province: 'nova-scotia',      query: 'yarmouth nova scotia cottage rental canada' },
+  // Manitoba — 6
+  { slug: 'falcon-lake',     province: 'manitoba', query: 'falcon lake cottage rentals manitoba canada' },
+  { slug: 'gimli',           province: 'manitoba', query: 'gimli cottage rental manitoba canada' },
+  { slug: 'whiteshell',      province: 'manitoba', query: 'whiteshell provincial park cabin rentals manitoba' },
+  { slug: 'lake-winnipeg',   province: 'manitoba', query: 'lake winnipeg cottage rental manitoba canada' },
+  { slug: 'winnipeg-beach',  province: 'manitoba', query: 'winnipeg beach cottage rental manitoba canada' },
+  { slug: 'clear-lake',      province: 'manitoba', query: 'clear lake cottage rental manitoba canada' },
 
-  // Alberta
-  { slug: 'sylvan-lake',        province: 'alberta',          query: 'sylvan lake cottage rentals alberta canada' },
-  { slug: 'pigeon-lake',        province: 'alberta',          query: 'pigeon lake cottage alberta canada' },
-  { slug: 'gull-lake-ab',       province: 'alberta',          query: 'gull lake cottage rental alberta canada' },
+  // Saskatchewan — 6
+  { slug: 'candle-lake',     province: 'saskatchewan', query: 'candle lake cottage rental saskatchewan' },
+  { slug: 'meadow-lake',     province: 'saskatchewan', query: 'meadow lake saskatchewan cabin rental' },
+  { slug: 'emma-lake',       province: 'saskatchewan', query: 'emma lake cabin rentals saskatchewan' },
+  { slug: 'last-mountain',   province: 'saskatchewan', query: 'last mountain lake saskatchewan cottage rental' },
+  { slug: 'greenwater-lake', province: 'saskatchewan', query: 'greenwater lake cabin rentals saskatchewan' },
+  { slug: 'la-ronge',        province: 'saskatchewan', query: 'la ronge cabin rentals saskatchewan' },
+  { slug: 'la-ronge',        province: 'saskatchewan', query: 'la ronge saskatchewan vacation rental' },
 
-  // New Brunswick
-  { slug: 'acadian-peninsula',  province: 'new-brunswick',    query: 'acadian peninsula cottage rentals new brunswick canada' },
-  { slug: 'shediac',            province: 'new-brunswick',    query: 'shediac cottage rentals new brunswick canada' },
-  { slug: 'fundy-coast',        province: 'new-brunswick',    query: 'bay of fundy cottage rental new brunswick' },
-  { slug: 'st-andrews',         province: 'new-brunswick',    query: 'st andrews nb cottage rental canada' },
-  { slug: 'sussex-nb',          province: 'new-brunswick',    query: 'sussex new brunswick cottage rental' },
-  { slug: 'moncton-nb',         province: 'new-brunswick',    query: 'moncton new brunswick cottage rental canada' },
+  // Nouveau-Brunswick — 6
+  { slug: 'shediac',           province: 'new-brunswick', query: 'shediac cottage rentals new brunswick canada' },
+  { slug: 'fundy-coast',       province: 'new-brunswick', query: 'bay of fundy cottage rental new brunswick' },
+  { slug: 'acadian-peninsula', province: 'new-brunswick', query: 'acadian peninsula cottage rentals new brunswick canada' },
+  { slug: 'st-andrews',        province: 'new-brunswick', query: 'st andrews nb cottage rental canada' },
+  { slug: 'moncton-nb',        province: 'new-brunswick', query: 'moncton new brunswick cottage rental canada' },
+  { slug: 'miramichi',         province: 'new-brunswick', query: 'miramichi cottage rentals new brunswick canada' },
 
-  // PEI
-  { slug: 'pei-north-shore',    province: 'pei',              query: 'north shore cottage rentals pei canada' },
-  { slug: 'pei-points-east',    province: 'pei',              query: 'points east cottage rentals pei canada' },
-  { slug: 'charlottetown',      province: 'pei',              query: 'charlottetown pei cottage rental canada' },
-  { slug: 'victoria-pei',       province: 'pei',              query: 'victoria pei cottage rental canada' },
+  // Nouvelle-Ecosse — 6
+  { slug: 'cape-breton',    province: 'nova-scotia', query: 'cape breton cottage rentals nova scotia canada' },
+  { slug: 'south-shore-ns', province: 'nova-scotia', query: 'south shore cottage rentals nova scotia canada' },
+  { slug: 'digby',          province: 'nova-scotia', query: 'digby nova scotia cottage rental canada' },
+  { slug: 'yarmouth-ns',    province: 'nova-scotia', query: 'yarmouth nova scotia cottage rental canada' },
+  { slug: 'lunenburg',      province: 'nova-scotia', query: 'lunenburg nova scotia cottage rentals canada' },
+  { slug: 'annapolis-valley',province: 'nova-scotia', query: 'annapolis valley cottage rentals nova scotia' },
 
-  // Saskatchewan
-  { slug: 'candle-lake',        province: 'saskatchewan',     query: 'candle lake cottage rental saskatchewan' },
-
-  // Manitoba
-  { slug: 'falcon-lake',        province: 'manitoba',         query: 'falcon lake cottage rentals manitoba canada' },
-  { slug: 'gimli',              province: 'manitoba',         query: 'gimli cottage rental manitoba canada' },
-  { slug: 'lake-winnipeg',      province: 'manitoba',         query: 'lake winnipeg cottage rental manitoba canada' },
+  // PEI — 6
+  { slug: 'charlottetown',   province: 'pei', query: 'charlottetown pei cottage rental canada' },
+  { slug: 'pei-north-shore', province: 'pei', query: 'north shore cottage rentals pei canada' },
+  { slug: 'pei-points-east', province: 'pei', query: 'points east cottage rentals pei canada' },
+  { slug: 'victoria-pei',    province: 'pei', query: 'victoria pei cottage rental canada' },
+  { slug: 'cavendish',       province: 'pei', query: 'cavendish pei cottage rentals canada' },
+  { slug: 'summerside',      province: 'pei', query: 'summerside pei cottage rentals canada' },
 ]
 
 const DFS_BASE = process.env.DATAFORSEO_BASE || 'https://api.dataforseo.com'

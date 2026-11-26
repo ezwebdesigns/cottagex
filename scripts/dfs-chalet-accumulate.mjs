@@ -29,7 +29,7 @@ const FORCE = args.includes('--force')
 const NO_REHOST = args.includes('--no-rehost')
 const citiesArg = args.find((a) => a.startsWith('--cities='))
 const limitArg = args.find((a) => a.startsWith('--limit='))
-const LIMIT = limitArg ? Math.max(1, Number(limitArg.split('=')[1]) || 18) : 18
+const LIMIT = limitArg ? Math.max(1, Number(limitArg.split('=')[1]) || 12) : 12
 const destinations = citiesArg
   ? DESTINATIONS.filter((d) => citiesArg.split('=')[1].split(',').map((s) => s.trim()).includes(d.slug))
   : DESTINATIONS
