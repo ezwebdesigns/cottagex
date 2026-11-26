@@ -10,24 +10,24 @@ type ResolvedImageProps = {
 };
 
 export default function ResolvedImage({ src, alt, className, loading = 'lazy' }: ResolvedImageProps) {
-  const [resolvedSrc, setResolvedSrc] = useState<string>('');
+  // On ne stocke que la résolution asynchrone des références `lib:`.
+  // Les URL directes sont dérivées pendant le rendu (pas de setState dans un effet).
+  const [resolved, setResolved] = useState<{ id: string; url: string }>({ id: '', url: '' });
+  const libId = src?.startsWith('lib:') ? src.slice(4) : '';
 
   useEffect(() => {
+    if (!libId) return;
     let cancelled = false;
-    if (!src) {
-      setResolvedSrc('');
-      return;
-    }
-    if (src.startsWith('lib:')) {
-      fetch(`/api/library/${src.slice(4)}`)
-        .then(r => r.ok ? r.json() : null)
-        .then(d => { if (!cancelled) setResolvedSrc(d?.url || ''); })
-        .catch(() => { if (!cancelled) setResolvedSrc(''); });
-    } else {
-      setResolvedSrc(src);
-    }
+    fetch(`/api/library/${libId}`)
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (!cancelled) setResolved({ id: libId, url: d?.url || '' }); })
+      .catch(() => { if (!cancelled) setResolved({ id: libId, url: '' }); });
     return () => { cancelled = true; };
-  }, [src]);
+  }, [libId]);
+
+  const resolvedSrc = !src ? '' : libId
+    ? (resolved.id === libId ? resolved.url : '')
+    : src;
 
   if (!resolvedSrc) return null;
 

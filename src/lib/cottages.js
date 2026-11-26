@@ -53,7 +53,6 @@ const CATEGORY_CONDITIONS = {
   waterfront:    `(amenities @> '["Waterfront"]' OR amenities @> '["Beach access"]' OR amenities @> '["Accès à la plage"]' OR name ILIKE '%waterfront%' OR name ILIKE '%lakefront%' OR name ILIKE '%lake front%' OR name ILIKE '%lakeside%' OR name ILIKE '%beachfront%' OR name ILIKE '%oceanfront%' OR name ILIKE '%on the water%' OR name ILIKE '%sea view%')`,
 }
 
-const COTTAGES_TTL = 86400 // 24 hours
 
 function buildCacheKey(opts) {
   const parts = []

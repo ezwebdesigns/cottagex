@@ -1,7 +1,7 @@
 ﻿'use client';
 
 import { useState, useMemo } from 'react';
-import { MapPin, ChevronDown, Waves, Trees, Compass, Star, Snowflake, Mountain, Leaf, Home as HomeIcon } from 'lucide-react';
+import { MapPin, ChevronDown, Waves, Trees, Compass, Mountain } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import PropertyCard from '@/components/cottagex/PropertyCard';
 import CTASection from '@/components/cottagex/CTASection';

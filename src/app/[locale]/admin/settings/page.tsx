@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // AdminSettingsPage — dynamic CMS content with complex nested structures
 // Types are loosely enforced for flexibility with CMS data
 
@@ -6,7 +5,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import { Save, Loader2, Settings as SettingsIcon, Home, Search, Image, Megaphone, Globe, Menu, ChevronDown, ChevronUp, Code } from 'lucide-react';
+import { Save, Loader2, Settings as SettingsIcon, Home, Image, Megaphone, Globe, Menu, ChevronDown, ChevronUp, Code } from 'lucide-react';
 import ImageUploader from '@/components/admin/ImageUploader';
 
 type HomepageHero = { tag: string; title: string; description: string; image: string; imageAlt: string };
@@ -110,14 +109,12 @@ const saveSection = async (section: string, data: any) => {
         const err = await res.json().catch(() => ({ error: 'Save failed' }));
         setError(err.error || 'Save failed');
       }
-    } catch (e) {
+    } catch {
       setError('Network error — check console');
     } finally {
       setSaving(false);
     }
   };
-
-  const interpolate = (text: string) => text?.replace(/\{locale\}/g, locale);
 
   if (!general) return <div className="p-10 text-slate-400">Loading...</div>;
 
@@ -687,7 +684,7 @@ function SaveButton({ onClick, saving }: { onClick: () => void; saving: boolean 
   );
 }
 
-function CollapsibleSection({ title, id, isOpen, onToggle, children }: { title: string; id: string; isOpen: boolean; onToggle: () => void; children: React.ReactNode }) {
+function CollapsibleSection({ title, isOpen, onToggle, children }: { title: string; isOpen: boolean; onToggle: () => void; children: React.ReactNode }) {
   return (
     <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
       <button onClick={onToggle} className="w-full flex items-center justify-between px-8 py-4 hover:bg-slate-50 transition-colors">

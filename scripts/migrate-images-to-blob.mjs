@@ -32,9 +32,6 @@ let errors = 0
 
 for (const img of rows) {
   try {
-    let buffer
-    let contentType = img.mimetype
-
     if (img.url.startsWith('data:')) {
       // Base64 data URL
       const match = img.url.match(/^data:([^;]+);base64,(.+)$/)

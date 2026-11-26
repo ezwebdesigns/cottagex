@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Plus, Search, Star, ExternalLink, Pencil, Trash2, X, Upload, ChevronUp, ChevronDown, Eye, EyeOff } from 'lucide-react';
+import { Plus, Search, Star, ExternalLink, Pencil, X, Upload, ChevronUp, ChevronDown, Eye, EyeOff } from 'lucide-react';
 import { updateCottage } from '@/lib/actions/cottages';
 import type { Cottage } from './page';
 

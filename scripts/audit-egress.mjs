@@ -11,7 +11,6 @@ import pg from 'pg'
 
 const url = fs.readFileSync('AGENTS.md', 'utf8').match(/postgresql:\/\/[^\s`]+/)[0]
 const pool = new pg.Pool({ connectionString: url, ssl: { rejectUnauthorized: false } })
-const RE = /data:image\/[a-zA-Z0-9.+-]+;base64,/i
 
 const targets = [
   ['site_settings', 'data'],

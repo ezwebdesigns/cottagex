@@ -66,7 +66,7 @@ export async function GET(request) {
           WHERE id = $3
         `, [available, pingStatus, cottage.id])
 
-        available ? results.available++ : results.unavailable++
+        if (available) results.available++; else results.unavailable++;
         results.pinged++
 
         console.log(`[ping] ${cottage.name?.slice(0, 35).padEnd(35)} → ${pingStatus} ${available ? '✓' : '✗'}`)

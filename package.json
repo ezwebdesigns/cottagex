@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "db:seed": "tsx --env-file=.env src/db/seed.ts"
+    "lint": "eslint"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.8.8",

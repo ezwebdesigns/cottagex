@@ -10,7 +10,7 @@ import { auth } from '@/lib/auth';
 import ArticleStandard from '@/templates/ArticleStandard';
 import ArticleListicle from '@/templates/ArticleListicle';
 import { generateToc, injectHeadingIds } from '@/lib/extract-toc';
-import { extractShortcodes, fetchCottagesForShortcodes, getCottagesForShortcode } from '@/lib/shortcode-cottages';
+import { extractShortcodes, fetchCottagesForShortcodes } from '@/lib/shortcode-cottages';
 
 export const revalidate = 3600;
 export const dynamic = 'force-dynamic';

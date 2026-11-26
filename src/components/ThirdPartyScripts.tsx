@@ -6,7 +6,7 @@ export function ThirdPartyScripts() {
   return (
     <>
       <Script
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
         src="https://www.googletagmanager.com/gtag/js?id=G-1L93C8YHQX"
       />
       <Script

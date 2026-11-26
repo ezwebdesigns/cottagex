@@ -19,26 +19,6 @@ const pool = new Pool({
   ...(isLocalDb ? {} : { ssl: { rejectUnauthorized: false } }),
 })
 
-const ALLOWED_SOURCES = ['Vrbo.com', 'Expedia.com', 'Hotels.com', 'VRBO']
-const ALLOWED_DOMAINS = ['vrbo.com', 'expedia.com']
-
-function nextWeekend() {
-  const now = new Date()
-  // Date de référence DÉTERMINISTE : 2e vendredi à +90 jours, checkout +2 nuits.
-  // Indispensable au recensement : des dates aléatoires feraient varier les
-  // résultats d'un sync à l'autre et rendraient les absences inexploitables.
-  const checkin = new Date(now)
-  checkin.setDate(now.getDate() + 90)
-  const dayOfWeek = checkin.getDay()
-  const daysToFriday = (5 - dayOfWeek + 7) % 7 || 7
-  checkin.setDate(checkin.getDate() + daysToFriday + 7)
-  const checkout = new Date(checkin)
-  checkout.setDate(checkin.getDate() + 2)
-  return {
-    checkin:  checkin.toISOString().split('T')[0],
-    checkout: checkout.toISOString().split('T')[0],
-  }
-}
 
 function isAllowed(item) {
   return !!(item?.hotel_identifier && item?.title)
@@ -140,7 +120,6 @@ export async function GET(request) {
 
   try {
     for (const dest of DESTINATIONS) {
-      const strict = dest.strictLink !== false
       try {
         const items = await dfHotelSearch({
           keyword: dest.query,
@@ -161,7 +140,7 @@ export async function GET(request) {
             [cottage.property_token]
           )
           await upsert(client, cottage)
-          rows.length === 0 ? results.inserted++ : results.updated++
+          if (rows.length === 0) results.inserted++; else results.updated++;
         }
 
         okSlugs.add(dest.slug)

@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
-import { Mail, Trash2, CheckCheck } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Trash2, CheckCheck } from 'lucide-react';
 
 type Message = {
   id: number;
@@ -16,7 +16,7 @@ export default function AdminMessagesPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchMessages = useCallback(async () => {
+  async function fetchMessages() {
     try {
       const res = await fetch('/api/admin/messages');
       const data = await res.json();
@@ -26,12 +26,12 @@ export default function AdminMessagesPage() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    fetchMessages();
-  }, [fetchMessages]);
+    // Différé d'un microtask : les mises à jour d'état ont lieu après le rendu.
+    void Promise.resolve().then(fetchMessages);
+  }, []);
 
   async function markRead(id: number) {
     await fetch('/api/admin/messages', {

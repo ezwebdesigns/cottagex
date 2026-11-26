@@ -89,13 +89,6 @@ function setNestedValue(obj, path, value) {
   current[keys[keys.length - 1]] = value
 }
 
-/**
- * Récupère une valeur dans un objet imbriqué via un chemin pointé
- */
-function getNestedValue(obj, path) {
-  return path.split('.').reduce((acc, key) => acc?.[key], obj)
-}
-
 // ─── MAIN ─────────────────────────────────────────────────────────────────────
 
 async function main() {

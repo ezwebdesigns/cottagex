@@ -29,27 +29,7 @@ export const revalidate = 3600;
 
 type Entry = MetadataRoute.Sitemap[number];
 
-function localized(
-  path: string,
-  opts: { changeFrequency: Entry['changeFrequency']; priority: number; lastModified?: Date },
-): Entry[] {
-  // One entry per locale with hreflang alternates. NOTE: no `new Date()`
-  // here — a moving lastmod makes Google ignore it and wastes crawl budget.
-  const languages: Record<string, string> = {};
-  for (const locale of locales as readonly string[]) {
-    languages[locale] = `${BASE_URL}/${locale}${path}`;
-  }
-  return (locales as readonly string[]).map((locale) => ({
-    url: `${BASE_URL}/${locale}${path}`,
-    ...(opts.lastModified ? { lastModified: opts.lastModified } : {}),
-    changeFrequency: opts.changeFrequency,
-    priority: opts.priority,
-    alternates: { languages },
-  }));
-}
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const entries: MetadataRoute.Sitemap = [];
   const urlMap = new Map<string, Entry>();
 
   function addEntry(entry: Entry) {

@@ -152,9 +152,9 @@ export default function ArticleListicle({ locale, article, toc, enhancedContent,
       </div>
 
       <div className="border-l-4 border-[#0f51ec] pl-4 mb-8 bg-blue-50/50 p-6 rounded-r-2xl">
-        <h2 className="font-bold text-[#191e3b] text-lg mb-2">Editor's Disclaimer:</h2>
+        <h2 className="font-bold text-[#191e3b] text-lg mb-2">Editor&apos;s Disclaimer:</h2>
         <p className="text-sm text-slate-600">
-          Pricing is highly dependent on season and group size. Clicking "Check Availability" routes you directly to verified affiliate landing pages where transactions can be made securely. Happy scouting!
+          Pricing is highly dependent on season and group size. Clicking &quot;Check Availability&quot; routes you directly to verified affiliate landing pages where transactions can be made securely. Happy scouting!
         </p>
       </div>
 

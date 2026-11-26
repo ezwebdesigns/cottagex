@@ -2,10 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import { Plus, X } from 'lucide-react';
-
-type ExploreItem = { icon: string; title: string; description: string };
-
 const EXPLORE_ICONS = ['Waves', 'Trees', 'Compass', 'MapPin', 'Mountain', 'TreePine', 'Sunrise'];
 
 export default function NewDestinationPage() {
@@ -49,7 +45,7 @@ export default function NewDestinationPage() {
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">Featured Image</label>
             <div className="flex items-center gap-3">
-              {featuredImage && <img src={featuredImage} className="w-16 h-16 rounded-full object-cover border" loading="lazy" />}
+              {featuredImage && <img src={featuredImage} alt="" className="w-16 h-16 rounded-full object-cover border" loading="lazy" />}
               <label className="cursor-pointer text-sm text-[#0f51ec] hover:underline">
                 {featuredImage ? 'Change' : 'Upload Image'}
                 <input type="file" accept="image/*" className="hidden" onChange={async (e) => {

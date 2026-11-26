@@ -25,7 +25,6 @@ export default function AdminArticlesPage() {
   const [search, setSearch] = useState('');
   const [translatingId, setTranslatingId] = useState<number | null>(null);
 
-// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     let mounted = true;
     async function fetchPosts() {

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import { db } from '@/lib/db';
 import { pages } from '@/db/schema';
-import { desc, eq } from 'drizzle-orm';
+import { desc } from 'drizzle-orm';
 import { requireAuth } from '@/lib/api-auth';
 import { invalidatePages } from '@/lib/cache';
 

@@ -68,11 +68,12 @@ function AdminShell({
     { label: 'Settings', href: `/${locale}/admin/settings`, icon: SettingsIcon },
   ];
 
-  if (pathname.endsWith('/admin/login')) return <>{children}</>;
-
-  // Clear-cache toast: visible confirmation (auto-dismiss), error state on failure.
+  // Hooks déclarés avant tout retour anticipé (ordre stable entre rendus).
   const [cacheToast, setCacheToast] = useState<{ ok: boolean; msg: string } | null>(null);
   const toastTimer = useRef<number | null>(null);
+
+  if (pathname.endsWith('/admin/login')) return <>{children}</>;
+
   async function handleClearCache() {
     if (toastTimer.current) window.clearTimeout(toastTimer.current);
     try {

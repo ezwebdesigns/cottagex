@@ -25,7 +25,7 @@ export default function AdminDestinationsPage() {
     const res = await fetch(`/api/admin/pages/${id}`);
     if (!res.ok) return;
     const { page } = await res.json();
-    const { id: _, createdAt, updatedAt, publishedAt, ...rest } = page;
+    const { ...rest } = page;
     const createRes = await fetch('/api/admin/pages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

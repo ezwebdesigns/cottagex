@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { locales } from '@/i18n/routing';
 import { getAllSettings } from '@/lib/cached-settings';
-import { getCottages } from '@/lib/cottages';
 import SearchTemplate from '@/templates/SearchTemplate';
 
 export const revalidate = 3600;
@@ -163,16 +162,6 @@ export default async function SearchPage({ params }: Props) {
   try {
     const { getCottages } = await import('@/lib/cottages');
     const cats = querySlug && querySlug !== 'all' ? [querySlug] : [];
-    let probe: any[] = [];
-    if (location && PROVINCE_SLUGS.has(location)) {
-      probe = await getCottages({ province: location, limit: 1, categories: cats, featuredOnly: false });
-    } else if (location) {
-      probe = await getCottages({ slug: location, limit: 1, categories: cats, featuredOnly: false });
-    } else {
-      probe = await getCottages({ limit: 1, categories: cats, featuredOnly: false });
-    }
-    const hasResults = probe.length > 0;
-    
     if (location && PROVINCE_SLUGS.has(location)) {
       cottages = await getCottages({ province: location, limit: 20, sort, categories: cats });
     } else if (location) {

@@ -65,7 +65,7 @@ export default function ListingsMap({ points }: { points: MapPoint[] }) {
       cancelled = true;
       if (map) map.remove();
     };
-  }, [valid.map((p) => p.id).join(',')]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [valid.map((p) => p.id).join(',')]);
 
   if (valid.length === 0) return null;
 

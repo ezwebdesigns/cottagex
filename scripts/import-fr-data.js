@@ -46,7 +46,6 @@ async function main() {
         console.warn(`  WARNING: No EN sibling found for section "${fr.section}"`);
         continue;
       }
-      const enId = enRes.rows[0].id;
 
       // Upsert FR
       await client.query(`
@@ -78,10 +77,9 @@ async function main() {
         console.warn(`  WARNING: No EN sibling found for page slug "${fr.translation_of_slug}"`);
         continue;
       }
-      const enId = enRes.rows[0].id;
 
       // Build column list and values for UPSERT
-      const { translation_of_slug, id: localId, ...pageData } = fr;
+      const pageData = { ...fr };
 
       // Get translation_of ID first
       const translationOfId = fr.translation_of_slug ? (await client.query(
@@ -120,9 +118,8 @@ async function main() {
         console.warn(`  WARNING: No EN sibling found for article slug "${fr.translation_of_slug}"`);
         continue;
       }
-      const enId = enRes.rows[0].id;
 
-const { translation_of_slug, id: localId, ...articleData } = fr;
+const articleData = { ...fr };
 
       // Get translation_of ID first
       const translationOfId = fr.translation_of_slug ? (await client.query(

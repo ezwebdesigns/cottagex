@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { MapPin, ExternalLink } from 'lucide-react';
 import SourceBadge from '@/components/SourceBadge';
 import StarRating from '@/components/StarRating';
@@ -111,14 +111,14 @@ function CottageCard({ cottage }: { cottage: any }) {
 }
 
 export default function PropertyGallery({ title = "Browse Recommended Cottages", description = "Handpicked cabins tailored to your favorite wilderness scenery.", tabs }: PropertyGalleryProps) {
-  const galleryTabs: GalleryTab[] = tabs ?? [
+  const galleryTabs: GalleryTab[] = useMemo(() => tabs ?? [
     { name: 'Cottage rentals in Canada', category: 'Chalets au Canada', shortcode: '[canada, all, 6]' },
     { name: 'Luxury Cottages', category: 'Chalets de luxe', shortcode: '[canada, luxury, 6]' },
     { name: 'Pet Friendly Cottages', category: 'Chalets acceptant les animaux', shortcode: '[canada, pet-friendly, 6]' },
     { name: 'Family Cottage Resorts', category: 'Chalets familiaux', shortcode: '[canada, family, 6]' },
     { name: 'Lakefront Cottages', category: 'Chalets en bord de lac', shortcode: '[canada, lakefront, 6]' },
     { name: 'Cottages with hot tub', category: 'Chalets avec spa', shortcode: '[canada, hot-tub, 6]' },
-  ];
+  ], [tabs]);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [cottages, setCottages] = useState<any[]>([]);
@@ -148,7 +148,8 @@ export default function PropertyGallery({ title = "Browse Recommended Cottages",
   }, []);
 
   useEffect(() => {
-    fetchCottages(galleryTabs[activeIndex]);
+    // Appel différé : les setState de fetchCottages ont lieu après le rendu.
+    void Promise.resolve().then(() => { void fetchCottages(galleryTabs[activeIndex]); });
   }, [activeIndex, galleryTabs, fetchCottages]);
 
   useProductSchemas(cottages);

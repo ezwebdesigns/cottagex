@@ -64,7 +64,7 @@ export default function NewArticlePage() {
           <div><label className="block text-sm font-medium text-slate-700 mb-1">Excerpt</label><textarea value={excerpt} onChange={e => setExcerpt(e.target.value)} className="w-full border border-gray-300 rounded-2xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#0f51ec] h-20" /></div>
           <div><label className="block text-sm font-medium text-slate-700 mb-1">Featured Image</label>
             <div className="flex items-center gap-3">
-              {featuredImage && <img src={featuredImage} className="w-16 h-16 rounded-full object-cover border" loading="lazy" />}
+              {featuredImage && <img src={featuredImage} alt="" className="w-16 h-16 rounded-full object-cover border" loading="lazy" />}
               <label className="cursor-pointer text-sm text-[#0f51ec] hover:underline">
                 {featuredImage ? 'Change' : 'Upload Image'}
                 <input type="file" accept="image/*" className="hidden" onChange={async (e) => {

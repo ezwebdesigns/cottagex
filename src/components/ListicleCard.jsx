@@ -3,7 +3,7 @@
 import { ExternalLink, MapPin } from 'lucide-react';
 import StarRating from '@/components/StarRating';
 
-export default function ListicleCard({ cottage, rank = 1, priority = false }) {
+export default function ListicleCard({ cottage, rank = 1 }) {
   const {
     name,
     thumbnail,
@@ -12,12 +12,10 @@ export default function ListicleCard({ cottage, rank = 1, priority = false }) {
     amenities = [],
     affiliate_url,
     google_link,
-    source,
   } = cottage;
 
   const bookingUrl = affiliate_url || google_link || '#';
   const vibe = amenities.length > 0 ? amenities[0] : null;
-  const sourceLabel = source?.replace('.com', '') || 'Partner';
 
   return (
     <div className="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-md hover:shadow-xl transition-all duration-300 grid grid-cols-1 lg:grid-cols-[2fr_3fr]">

@@ -10,9 +10,6 @@
  * Coût Live : $0.004 par SERP (44 destinations = $0.176) + $0.004 par fiche
  * enrichie via Hotel Info (uniquement les fiches nouvelles ou périmées).
  */
-import fs from 'fs'
-import path from 'path'
-import { fileURLToPath } from 'url'
 import { put } from '@vercel/blob'
 import pg from 'pg'
 import {
@@ -20,7 +17,6 @@ import {
   mapHotelToCottage, locationName, stayDates,
 } from '../src/lib/dataforseo.ts'
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 loadDfsEnv(['E:/PROJECTS/TOOLS/dfs-test/.env.local'])
 
 const args = process.argv.slice(2)
@@ -134,7 +130,7 @@ for (let i = 0; i < entries.length; i++) {
       const params = cols.map((_, k) => `$${k + 1}`).join(',')
       const updates = cols
         .filter((c) => !['id', 'property_token', 'affiliate_url', 'available'].includes(c))
-        .map((c, k) => `${c} = EXCLUDED.${c}`)
+        .map((c) => `${c} = EXCLUDED.${c}`)
         .join(', ')
       await pool.query(
         `INSERT INTO affiliatecottages (${cols.join(',')}) VALUES (${params})

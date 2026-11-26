@@ -52,12 +52,6 @@ const provinceDisplay: Record<string, string> = {
   alberta: 'Alberta',
 };
 
-function t(obj: any, key: string, locale: string): string {
-  if (!obj) return '';
-  const frKey = `${key}Fr`;
-  return locale === 'fr' && obj[frKey] ? obj[frKey] : obj[key] || '';
-}
-
 function tObj(obj: any, locale: string): any {
   if (!obj) return obj;
   if (Array.isArray(obj)) {

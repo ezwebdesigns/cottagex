@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Upload, X, Loader2 } from 'lucide-react';
+import { Upload, Loader2 } from 'lucide-react';
 
 type ImageUploaderProps = {
   value: string;

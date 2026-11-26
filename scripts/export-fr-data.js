@@ -75,7 +75,7 @@ async function main() {
     `);
 
     for (const row of pagesRows.rows) {
-      const { en_id, en_slug, translation_of, ...pageData } = row;
+      const { en_slug, ...pageData } = row;
       result.pages.push({
         ...pageData,
         translation_of_slug: en_slug // Use slug to find EN sibling in prod
@@ -96,7 +96,7 @@ async function main() {
     `);
 
     for (const row of articlesRows.rows) {
-      const { en_id, en_slug, translation_of, ...articleData } = row;
+      const { en_slug, ...articleData } = row;
       result.articles.push({
         ...articleData,
         translation_of_slug: en_slug // Use slug to find EN sibling in prod

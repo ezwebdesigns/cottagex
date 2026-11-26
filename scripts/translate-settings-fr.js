@@ -129,11 +129,6 @@ function setPath(root, path, value) {
   for (let i = 0; i < parts.length - 1; i++) o = o[parts[i]];
   o[parts[parts.length - 1]] = value;
 }
-function toJson(v, dflt) {
-  if (v == null) return dflt;
-  if (typeof v === 'string') return v;
-  return JSON.stringify(v);
-}
 
 async function deepl(texts) {
   const controller = new AbortController();
