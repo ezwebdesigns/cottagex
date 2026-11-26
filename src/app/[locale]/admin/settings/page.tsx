@@ -4,7 +4,7 @@
 
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { Save, Loader2, Settings as SettingsIcon, Home, Search, Image, Megaphone, Globe, Menu, ChevronDown, ChevronUp, Code } from 'lucide-react';
 import ImageUploader from '@/components/admin/ImageUploader';
@@ -57,30 +57,35 @@ export default function AdminSettingsPage() {
 
   const [openHomeSection, setOpenHomeSection] = useState<string>('hero');
 
-  const fetchSection = useCallback(async (section: string) => {
-    const res = await fetch(`/api/admin/settings?section=${section}&locale=${locale}`);
-    if (!res.ok) return null;
-    const json = await res.json();
-    return json.data;
-  }, [locale]);
+
 
   useEffect(() => {
-    fetchSection('general').then(setGeneral);
-    fetchSection('seo').then(setSeo);
-    fetchSection('header').then(setHeader);
-    fetchSection('footer').then(setFooter);
-    fetchSection('homepage_hero').then(setHero);
-    fetchSection('homepage_destinations').then(setDestinations);
-    fetchSection('homepage_search').then(setSearch);
-    fetchSection('homepage_explore').then(setExplore);
-    fetchSection('homepage_inspiration').then(setInspiration);
-    fetchSection('homepage_featured').then(setFeatured);
-    fetchSection('homepage_cta').then(setCta);
-    fetchSection('homepage_cta_bar').then(setCtaBar);
-    fetchSection('homepage_categories').then(setCategories);
-    fetchSection('side_menu').then(setSideMenu);
-    fetchSection('ads').then(setAds);
-  }, [fetchSection]);
+    let alive = true;
+    (async () => {
+      try {
+        const res = await fetch(`/api/admin/settings?all=1&locale=${locale}`);
+        if (!res.ok) return;
+        const d = (await res.json()).data || {};
+        if (!alive) return;
+        setGeneral(d.general ?? null);
+        setSeo(d.seo ?? null);
+        setHeader(d.header ?? null);
+        setFooter(d.footer ?? null);
+        setHero(d.homepage_hero ?? null);
+        setDestinations(d.homepage_destinations ?? null);
+        setSearch(d.homepage_search ?? null);
+        setExplore(d.homepage_explore ?? null);
+        setInspiration(d.homepage_inspiration ?? null);
+        setFeatured(d.homepage_featured ?? null);
+        setCta(d.homepage_cta ?? null);
+        setCtaBar(d.homepage_cta_bar ?? null);
+        setCategories(d.homepage_categories ?? null);
+        setSideMenu(d.side_menu ?? null);
+        setAds(d.ads ?? null);
+      } catch {}
+    })();
+    return () => { alive = false; };
+  }, [locale]);
 
 
 const saveSection = async (section: string, data: any) => {

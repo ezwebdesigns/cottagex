@@ -238,9 +238,9 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
                     <span className="text-xs text-slate-500">
                       {c.last_synced ? new Date(c.last_synced).toISOString().split('T')[0] : '—'}
                     </span>
-                    {(c.missed_syncs ?? 0) > 0 && (
+                    {(c.ping_status ?? 0) > 0 && (
                       <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide w-fit ${c.available === false ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'}`}>
-                        {c.available === false ? 'auto-off' : `absent ×${c.missed_syncs}`}
+                        {c.available === false ? 'auto-off' : `absent ×${c.ping_status}`}
                       </span>
                     )}
                   </div>

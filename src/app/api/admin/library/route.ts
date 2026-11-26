@@ -6,6 +6,7 @@ import { eq, desc } from 'drizzle-orm';
 import { requireAuth } from '@/lib/api-auth';
 import { invalidateSettings } from '@/lib/cache';
 import { put } from '@vercel/blob';
+import { findBase64Fields, base64Error } from '@/lib/no-base64';
 
 export async function GET() {
   const unauthorized = await requireAuth();
@@ -18,6 +19,8 @@ export async function POST(request: Request) {
   const unauthorized = await requireAuth();
   if (unauthorized) return unauthorized;
   try {
+    const embedded = findBase64Fields(Object.fromEntries(formData.entries()));
+    if (embedded.length) return NextResponse.json(base64Error(embedded), { status: 400 });
     const formData = await request.formData();
     const file = formData.get('file') as File | null;
     if (!file) return NextResponse.json({ error: 'No file' }, { status: 400 });

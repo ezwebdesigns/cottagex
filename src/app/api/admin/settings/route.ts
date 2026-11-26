@@ -6,17 +6,35 @@ import { and, eq } from 'drizzle-orm';
 import { requireAuth } from '@/lib/api-auth';
 import { invalidateSettings } from '@/lib/cache';
 import { translateSettingsData } from '@/lib/deepl';
+import { findBase64Fields, base64Error } from '@/lib/no-base64';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const section = searchParams.get('section');
   const locale = searchParams.get('locale') || 'en';
-  if (!section) {
+  const all = searchParams.get('all') === '1';
+  if (!section && !all) {
     return NextResponse.json({ error: 'Missing section' }, { status: 400 });
   }
   try {
+    if (all) {
+      // Un seul aller-retour pour l'admin settings (15 sections).
+      const rows = await db.select().from(siteSettings);
+      const bySection = new Map<string, { en?: any; fr?: any }>();
+      for (const row of rows) {
+        const entry = bySection.get(row.section) || {};
+        if (row.locale === 'fr') entry.fr = row.data;
+        else entry.en = row.data;
+        bySection.set(row.section, entry);
+      }
+      const data: Record<string, any> = {};
+      for (const [key, entry] of bySection) {
+        data[key] = locale === 'fr' ? (entry.fr ?? entry.en) : (entry.en ?? entry.fr);
+      }
+      return NextResponse.json({ data });
+    }
     const [row] = await db.select().from(siteSettings).where(
-      and(eq(siteSettings.section, section), eq(siteSettings.locale, locale))
+      and(eq(siteSettings.section, section!), eq(siteSettings.locale, locale))
     );
     return NextResponse.json({ data: row?.data ?? null });
   } catch {
@@ -31,6 +49,10 @@ export async function PUT(request: Request) {
     const { section, data, locale } = await request.json();
     if (!section || !data) {
       return NextResponse.json({ error: 'Invalid section or data' }, { status: 400 });
+    }
+    const base64Fields = findBase64Fields(data);
+    if (base64Fields.length) {
+      return NextResponse.json(base64Error(base64Fields), { status: 400 });
     }
     // DB constraint is UNIQUE(section, locale) — the conflict target must
     // match it exactly, otherwise Postgres rejects the upsert.
