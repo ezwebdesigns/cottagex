@@ -2,6 +2,7 @@
 // Aucun import `@/` : ce module est importable à la fois par Next et par les
 // scripts Node (`node scripts/dfs-chalet-accumulate.mjs`).
 import fs from 'fs'
+import path from 'path'
 export const DESTINATIONS: { slug: string; province: string; query: string; hl?: string }[] = [
   // Ontario
   { slug: 'muskoka',            province: 'ontario',          query: 'muskoka cottage rentals ontario canada' },
@@ -78,9 +79,12 @@ export function dataforseoEnabled(): boolean {
 // aussi aux scripts locaux de réutiliser le coffre partagé des autres projets
 // sans jamais écrire ni afficher les valeurs.
 export function loadDfsEnv(extraPaths: string[] = []): void {
+  // Construit à l'exécution : un `new URL('../../.env', import.meta.url)` est
+  // interprété par Turbopack comme un import de module et casse la build Vercel.
+  const root = process.cwd()
   const paths = [
-    new URL('../../.env.local', import.meta.url).pathname,
-    new URL('../../.env', import.meta.url).pathname,
+    path.join(root, '.env.local'),
+    path.join(root, '.env'),
     ...extraPaths,
   ]
   for (const p of paths) {
