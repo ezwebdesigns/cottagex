@@ -44,5 +44,5 @@ export default function SmartLink({ href, className, children, target, rel, loca
   const internal = localized.includes('chaletexpress.com')
     ? localized.replace(/^https?:\/\/[^/]+/, '') || '/'
     : localized;
-  return <Link href={internal} className={className}>{children}</Link>;
+  return <Link href={internal} prefetch={false} className={className}>{children}</Link>;
 }

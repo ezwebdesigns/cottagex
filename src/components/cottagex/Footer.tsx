@@ -88,6 +88,7 @@ export default function Footer() {
                   {discover.map((item, i) => (
                     <li key={i}>
                       <Link
+                        prefetch={false}
                         href={interpolate(item.href)}
                         className="text-sm text-white/60 hover:text-[#77e1fb] transition-colors"
                       >
@@ -106,6 +107,7 @@ export default function Footer() {
                   {quickLinks.map((item, i) => (
                     <li key={i}>
                       <Link
+                        prefetch={false}
                         href={interpolate(item.href)}
                         className="text-sm text-white/60 hover:text-[#77e1fb] transition-colors"
                       >
@@ -124,6 +126,7 @@ export default function Footer() {
                   {about.map((item, i) => (
                     <li key={i}>
                       <Link
+                        prefetch={false}
                         href={interpolate(item.href)}
                         className="text-sm text-white/60 hover:text-[#77e1fb] transition-colors"
                       >
@@ -142,6 +145,7 @@ export default function Footer() {
                   {topDestinations.map((item, i) => (
                     <li key={i}>
                       <Link
+                        prefetch={false}
                         href={interpolate(item.href)}
                         className="text-sm text-white/60 hover:text-[#77e1fb] transition-colors"
                       >

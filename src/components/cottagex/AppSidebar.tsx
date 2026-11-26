@@ -5,6 +5,7 @@ import { Compass, BookOpen, MapPin, Info, Mountain, Home, TreePine, Sailboat, Su
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { localizeHref } from '@/components/cottagex/SmartLink';
+import { getGeneralSettings } from '@/lib/client-general-settings';
 
 const iconMap: Record<string, any> = {
   Compass, BookOpen, MapPin, Info, Mountain, Home, TreePine, Sailboat, Sunrise, Globe, Heart, Star, Search, Image, Settings: SettingsIcon, User,
@@ -19,7 +20,7 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: { mobileOpen: 
   const [menuSections, setMenuSections] = useState<{ title: string; items: { label: string; icon: string; href: string }[] }[]>([]);
 
   useEffect(() => {
-    fetch(`/api/admin/settings?section=general&locale=${lang}`).then(r => r.json()).then(d => {
+    getGeneralSettings(lang).then(d => {
       const raw = d.data?.favicon ?? null;
       if (raw && raw.startsWith('lib:')) {
         fetch(`/api/library/${raw.slice(4)}`).then(r => r.ok && r.json()).then(d => { setFavicon(d?.url || ''); setLoading(false); }).catch(() => { setFavicon(''); setLoading(false); });
@@ -42,7 +43,7 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: { mobileOpen: 
   const content = (
     <>
       <div className="border-b border-slate-100 flex items-center h-16 sm:h-20 px-4 flex-shrink-0">
-        <Link href={`/${lang}`} className="flex items-center justify-between w-full" aria-label="Chalet Express — home" onClick={mobileOpen ? onMobileClose : undefined}>
+        <Link href={`/${lang}`} prefetch={false} className="flex items-center justify-between w-full" aria-label="Chalet Express — home" onClick={mobileOpen ? onMobileClose : undefined}>
           {loading ? <div className="w-9 h-9" /> : favicon ? (
             <img src={favicon} alt="Chalet Express" className="w-9 h-9 rounded-2xl flex-shrink-0 object-cover" />
           ) : (
@@ -74,6 +75,7 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: { mobileOpen: 
                 <Link
                   key={`${si}-${ii}`}
                   href={href}
+                  prefetch={false}
                   onClick={mobileOpen ? onMobileClose : undefined}
                   className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-xl font-medium text-sm transition-colors min-h-[44px] ${
                     active ? 'text-[#0f51ec] font-semibold' : 'text-[#191e3b] hover:bg-[#0f51ec]/10'

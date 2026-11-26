@@ -5,6 +5,7 @@ import { Globe, Menu } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
+import { getGeneralSettings } from '@/lib/client-general-settings';
 
 export default function Header({ onMenuToggle }: { onMenuToggle?: () => void }) {
   const t = useTranslations();
@@ -13,7 +14,7 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: () => void }) 
   const [logo, setLogo] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`/api/admin/settings?section=general&locale=${lang}`).then(r => r.json()).then(d => {
+    getGeneralSettings(lang).then(d => {
       const raw = d.data?.logo ?? null;
       if (raw && raw.startsWith('lib:')) {
         fetch(`/api/library/${raw.slice(4)}`).then(r => r.ok && r.json()).then(d => setLogo(d?.url || '')).catch(() => setLogo(''));
@@ -53,7 +54,7 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: () => void }) 
             >
               <Menu className="w-5 h-5 text-[#191e3b]" />
             </button>
-            <Link href={`/${lang}`} className="flex items-center gap-2 group">
+            <Link href={`/${lang}`} prefetch={false} className="flex items-center gap-2 group">
               {logo ? (
                 <img src={logo} alt="Chalet Express" className="h-8 sm:h-9 w-auto" />
               ) : (
