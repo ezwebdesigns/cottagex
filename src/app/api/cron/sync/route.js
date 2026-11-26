@@ -1,12 +1,15 @@
 /**
  * /app/api/cron/sync/route.js
- * Cron mensuel — rafraîchit tout le catalogue via SerpApi
+ * Cron mensuel — rafraîchit tout le catalogue via DataForSEO (Google Hotels)
  * Planifié via Netlify Scheduled Functions : 1er de chaque mois à 6h UTC
  *
  * Même logique que seed-cottages.mjs mais en route API
  */
 
 import { Pool } from 'pg'
+import { put } from '@vercel/blob'
+import { DESTINATIONS } from '@/lib/chalet-destinations'
+import { dfHotelSearch, dfHotelInfo, mapHotelToCottage, locationName, stayDates } from '@/lib/dataforseo'
 
 const connectionString = process.env.DATABASE_URL
 // Local Supabase has no SSL; remote DBs require it.
@@ -18,76 +21,6 @@ const pool = new Pool({
 
 const ALLOWED_SOURCES = ['Vrbo.com', 'Expedia.com', 'Hotels.com', 'VRBO']
 const ALLOWED_DOMAINS = ['vrbo.com', 'expedia.com']
-
-// ─── DESTINATIONS (identique à seed-cottages.mjs) ────────────────────────────
-
-const DESTINATIONS = [
-  // Ontario
-  { slug: 'muskoka',            province: 'ontario',          query: 'muskoka cottage rentals ontario canada' },
-  { slug: 'kawarthas',          province: 'ontario',          query: 'kawartha lakes ontario cottage vrbo' },
-  { slug: 'haliburton',         province: 'ontario',          query: 'haliburton highlands cottage rentals ontario canada' },
-  { slug: 'georgian-bay',       province: 'ontario',          query: 'georgian bay cottage rentals ontario canada' },
-  { slug: 'prince-edward',      province: 'ontario',          query: 'prince edward county cottage rentals ontario canada' },
-
-  // FR — court et précis
-  { slug: 'laurentides',    province: 'quebec', query: 'chalet laurentides',    hl: 'fr' },
-  { slug: 'mont-tremblant', province: 'quebec', query: 'chalet mont-tremblant', hl: 'fr' },
-  { slug: 'quebec',         province: 'quebec', query: 'location chalet à louer', hl: 'fr' },
-
-  // EN — court et précis
-  { slug: 'laurentides',    province: 'quebec', query: 'cottage laurentians',          hl: 'en' },
-  { slug: 'mont-tremblant', province: 'quebec', query: 'cottage mont-tremblant rental', hl: 'en' },
-  { slug: 'quebec',         province: 'quebec', query: 'vacation cottage rental quebec', hl: 'en' },
-  { slug: 'quebec-city',    province: 'quebec', query: 'quebec city vacation rental vrbo canada', hl: 'en' },
-  { slug: 'orford',         province: 'quebec', query: 'orford estrie chalet rental vrbo quebec', hl: 'en' },
-  { slug: 'bromont',        province: 'quebec', query: 'bromont chalet rental vrbo quebec canada', hl: 'en' },
-  { slug: 'magog',          province: 'quebec', query: 'magog lake memphremagog cottage vrbo quebec', hl: 'en' },
-  { slug: 'saint-sauveur',  province: 'quebec', query: 'saint sauveur chalet rental vrbo laurentians', hl: 'en' },
-  { slug: 'ste-adele',      province: 'quebec', query: 'sainte adele chalet rental vrbo laurentians', hl: 'en' },
-  { slug: 'morin-heights',  province: 'quebec', query: 'morin heights chalet rental vrbo quebec', hl: 'en' },
-  { slug: 'sutton',         province: 'quebec', query: 'sutton quebec chalet rental vrbo canada', hl: 'en' },
-
-  // British Columbia
-  { slug: 'whistler',           province: 'british-columbia', query: 'whistler cabin rentals bc canada' },
-  { slug: 'okanagan',           province: 'british-columbia', query: 'okanagan valley cottage rentals bc canada' },
-  { slug: 'sunshine-coast',     province: 'british-columbia', query: 'gibsons bc cabin rental vrbo' },
-  { slug: 'tofino',             province: 'british-columbia', query: 'tofino bc cabin rental canada' },
-
-  // Nova Scotia
-  { slug: 'cape-breton',        province: 'nova-scotia',      query: 'cape breton cottage rentals nova scotia canada' },
-  { slug: 'south-shore-ns',     province: 'nova-scotia',      query: 'south shore cottage rentals nova scotia canada' },
-  { slug: 'digby',              province: 'nova-scotia',      query: 'digby nova scotia cottage rental canada' },
-  { slug: 'yarmouth-ns',        province: 'nova-scotia',      query: 'yarmouth nova scotia cottage rental canada' },
-
-  // Alberta
-  { slug: 'sylvan-lake',        province: 'alberta',          query: 'sylvan lake cottage rentals alberta canada' },
-  { slug: 'pigeon-lake',        province: 'alberta',          query: 'pigeon lake cottage alberta canada' },
-  { slug: 'gull-lake-ab',       province: 'alberta',          query: 'gull lake cottage rental alberta canada' },
-
-  // New Brunswick
-  { slug: 'acadian-peninsula',  province: 'new-brunswick',    query: 'acadian peninsula cottage rentals new brunswick canada' },
-  { slug: 'shediac',            province: 'new-brunswick',    query: 'shediac cottage rentals new brunswick canada' },
-  { slug: 'fundy-coast',        province: 'new-brunswick',    query: 'bay of fundy cottage rental new brunswick' },
-  { slug: 'st-andrews',         province: 'new-brunswick',    query: 'st andrews nb cottage rental canada' },
-  { slug: 'sussex-nb',          province: 'new-brunswick',    query: 'sussex new brunswick cottage rental canada' },
-  { slug: 'moncton-nb',         province: 'new-brunswick',    query: 'moncton new brunswick cottage rental canada' },
-
-  // PEI
-  { slug: 'pei-north-shore',    province: 'pei',              query: 'north shore cottage rentals pei canada' },
-  { slug: 'pei-points-east',    province: 'pei',              query: 'points east cottage rentals pei canada' },
-  { slug: 'charlottetown',      province: 'pei',              query: 'charlottetown pei cottage rental canada' },
-  { slug: 'victoria-pei',       province: 'pei',              query: 'victoria pei cottage rental canada' },
-
-  // Saskatchewan
-  { slug: 'candle-lake',        province: 'saskatchewan',     query: 'candle lake cottage rental saskatchewan' },
-
-  // Manitoba
-  { slug: 'falcon-lake',        province: 'manitoba',         query: 'falcon lake cottage rentals manitoba canada' },
-  { slug: 'gimli',              province: 'manitoba',         query: 'gimli cottage rental manitoba canada' },
-  { slug: 'lake-winnipeg',      province: 'manitoba',         query: 'lake winnipeg cottage rental manitoba canada' },
-]
-
-// ─── HELPERS ─────────────────────────────────────────────────────────────────
 
 function nextWeekend() {
   const now = new Date()
@@ -107,53 +40,37 @@ function nextWeekend() {
   }
 }
 
-function isAllowed(prop, strictLink = true) {
-  const hasAllowedSource = prop.prices?.some(price =>
-    ALLOWED_SOURCES.some(s => price.source?.includes(s))
-  )
-  if (!hasAllowedSource) return false
-  if (strictLink) {
-    return prop.link && ALLOWED_DOMAINS.some(d => prop.link.includes(d))
-  }
-  return !!prop.link
+function isAllowed(item) {
+  return !!(item?.hotel_identifier && item?.title)
 }
 
-function transform(prop, dest) {
-  const allowedPrice  = prop.prices?.find(p => ALLOWED_SOURCES.some(s => p.source?.includes(s)))
-  const info          = prop.essential_info || []
-  const sleeps        = info.find(i => i.startsWith('Sleeps'))?.match(/\d+/)?.[0]     || null
-  const bedrooms      = info.find(i => i.includes('bedroom'))?.match(/\d+/)?.[0]      || null
-  const bathrooms     = info.find(i => i.includes('bathroom'))?.match(/\d+/)?.[0]     || null
-  const sqm           = info.find(i => i.includes('sq m'))?.match(/[\d,]+/)?.[0]      || null
-  const type          = info.find(i => i.startsWith('Entire'))?.replace('Entire ','') || 'cottage'
-
-  return {
-    id:                 `${dest.slug}-${prop.property_token}`,
-    property_token:     prop.property_token,
-    slug:               dest.slug,
-    province:           dest.province,
-    name:               prop.name,
-    type,
-    source:             allowedPrice?.source || prop.prices?.[0]?.source || null,
-    thumbnail:          prop.images?.[0]?.original_image || null,
-    photos:             JSON.stringify((prop.images||[]).map(i => i.original_image).filter(Boolean)),
-    lat:                prop.gps_coordinates?.latitude  || null,
-    lng:                prop.gps_coordinates?.longitude || null,
-    price_cad:          prop.rate_per_night?.extracted_lowest            || null,
-    price_before_taxes: prop.rate_per_night?.extracted_before_taxes_fees || null,
-    rating:             prop.overall_rating ? Math.round(prop.overall_rating * 10) / 10 : null,
-    reviews:            prop.reviews || null,
-    sleeps:             sleeps    ? parseInt(sleeps)              : null,
-    bedrooms:           bedrooms  ? parseInt(bedrooms)            : null,
-    bathrooms:          bathrooms ? parseInt(bathrooms)           : null,
-    sqm:                sqm       ? parseInt(sqm.replace(',','')) : null,
-    amenities:          JSON.stringify(prop.amenities          || []),
-    excluded_amenities: JSON.stringify(prop.excluded_amenities || []),
-    check_in_time:      prop.check_in_time  || null,
-    check_out_time:     prop.check_out_time || null,
-    google_link:        prop.link || null,
-    affiliate_url:      null,
+async function toCottage(item, dest, dates) {
+  const info = await dfHotelInfo(item.hotel_identifier, {
+    location_name: locationName(dest.province),
+    language_code: dest.hl || 'en',
+    ...dates,
+  })
+  const urls = (item?.overview_images || info?.overview_images || []).slice(0, 6)
+  const photos = []
+  for (let i = 0; i < urls.length; i++) {
+    const url = urls[i]
+    if (!/^https?:\/\//i.test(url)) continue
+    if (/\.supabase\.co\/|\.public\.blob\.vercel-storage\.com\//i.test(url)) { photos.push(url); continue }
+    try {
+      if (!process.env.BLOB_READ_WRITE_TOKEN) { photos.push(url); continue }
+      const res = await fetch(url, { signal: AbortSignal.timeout(30000) })
+      if (!res.ok) continue
+      const buf = Buffer.from(await res.arrayBuffer())
+      if (buf.length < 1000) continue
+      const ext = (res.headers.get('content-type') || '').includes('png') ? 'png' : 'jpg'
+      const blob = await put(`places/${item.hotel_identifier}/${i}-${Date.now()}.${ext}`, buf, {
+        access: 'public', addRandomSuffix: true,
+        contentType: ext === 'png' ? 'image/png' : 'image/jpeg',
+      })
+      photos.push(blob.url)
+    } catch { /* photo best-effort : la fiche reste servie sans */ }
   }
+  return mapHotelToCottage(item, info || null, dest, dates, photos)
 }
 
 async function upsert(client, c) {
@@ -187,7 +104,7 @@ async function upsert(client, c) {
       amenities          = EXCLUDED.amenities,
       google_link        = EXCLUDED.google_link,
       available          = true,
-      missed_syncs       = 0,
+      ping_status       = 0,
       last_synced        = CURRENT_DATE
       -- affiliate_url non touché : préserve tes deep links manuels
   `, [
@@ -211,7 +128,8 @@ export async function GET(request) {
     return Response.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  const { checkin, checkout } = nextWeekend()
+  const dates = stayDates()
+  const { check_in: checkin, check_out: checkout } = dates
   const dryRun = new URL(request.url).searchParams.get('dry-run') === '1'
   const client = await pool.connect()
   const results = { destinations: 0, fetched: 0, inserted: 0, updated: 0, errors: 0, missed: 0, purged: 0 }
@@ -224,32 +142,18 @@ export async function GET(request) {
     for (const dest of DESTINATIONS) {
       const strict = dest.strictLink !== false
       try {
-        const params = new URLSearchParams({
-          engine:           'google_hotels',
-          q:                dest.query,
-          gl:               'ca',
-          hl:               dest.hl || 'en',
-          currency:         'CAD',
-          check_in_date:    checkin,
-          check_out_date:   checkout,
-          adults:           '2',
-          vacation_rentals: 'true',
-          property_types:   '4,5',
-          sort_by:          '8',
-          api_key:          process.env.SERPAPI_KEY,
+        const items = await dfHotelSearch({
+          keyword: dest.query,
+          location_name: locationName(dest.province),
+          language_code: dest.hl || 'en',
+          ...dates,
         })
 
-        const res = await fetch(`https://serpapi.com/search.json?${params}`)
-        if (!res.ok) throw new Error(`SerpApi HTTP ${res.status}`)
-        const data = await res.json()
-        if (data.error) throw new Error(data.error)
-
-        const properties = data.properties || []
-        const filtered   = properties.filter(p => isAllowed(p, strict))
+        const filtered = items.filter(isAllowed)
         results.fetched += filtered.length
 
         for (const prop of filtered) {
-          const cottage = transform(prop, dest)
+          const cottage = await toCottage(prop, dest, dates)
           seenTokens.add(cottage.property_token)
           if (dryRun) { results.updated++; continue }
           const { rows } = await client.query(
@@ -276,13 +180,13 @@ export async function GET(request) {
 
   // ── Purge automatique ──────────────────────────────────────────────────
   // Les tokens DB non revus ce mois-ci (destinations fetchées OK uniquement)
-  // gagnent +1 missed_syncs ; à 3 absences consécutives → available = false.
+  // gagnent +1 ping_status ; à 3 absences consécutives → available = false.
   // Jamais de DELETE : affiliate_url et travail manuel préservés.
   let purgedTokens = []
   if (!dryRun) {
     try {
       const { rows: dbRows } = await pool.query(
-        'SELECT property_token, slug, missed_syncs FROM affiliatecottages'
+        'SELECT property_token, slug, ping_status FROM affiliatecottages'
       )
       const missing = dbRows
         .filter(r => !seenTokens.has(r.property_token) && okSlugs.has(r.slug))
@@ -290,13 +194,13 @@ export async function GET(request) {
       results.missed = missing.length
       if (missing.length > 0) {
         await pool.query(
-          'UPDATE affiliatecottages SET missed_syncs = missed_syncs + 1 WHERE property_token = ANY($1)',
+          'UPDATE affiliatecottages SET ping_status = ping_status + 1 WHERE property_token = ANY($1)',
           [missing]
         )
       }
       const { rows: purged } = await pool.query(
         `UPDATE affiliatecottages SET available = false
-         WHERE missed_syncs >= 3 AND available = true
+         WHERE ping_status >= 3 AND available = true
          RETURNING property_token`
       )
       results.purged = purged.length
@@ -307,11 +211,11 @@ export async function GET(request) {
     }
   } else {
     const { rows: dbRows } = await pool.query(
-      'SELECT property_token, slug, missed_syncs FROM affiliatecottages'
+      'SELECT property_token, slug, ping_status FROM affiliatecottages'
     )
     const missing = dbRows.filter(r => !seenTokens.has(r.property_token) && okSlugs.has(r.slug))
     results.missed = missing.length
-    purgedTokens = missing.filter(r => (r.missed_syncs + 1) >= 3).map(r => r.property_token)
+    purgedTokens = missing.filter(r => (r.ping_status + 1) >= 3).map(r => r.property_token)
     results.purged = purgedTokens.length
     console.log(`[sync] DRY-RUN — ${missing.length} absents, ${purgedTokens.length} seraient désactivés`)
   }
