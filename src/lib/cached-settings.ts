@@ -5,6 +5,8 @@ import { resolveLibRefs } from '@/lib/resolve-lib-refs'
 import { desc, eq } from 'drizzle-orm'
 import { getCached, invalidateSettings } from '@/lib/cache'
 
+// Incrémenter pour invalider les anciennes valeurs (ex. images base64 migrées).
+const CACHE_VERSION = 'v2'
 const SETTINGS_TTL = 86400 // 24 hours (settings change rarely; admin saves invalidate; Clear Cache button as emergency lever)
 
 async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
@@ -32,7 +34,7 @@ async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, an
 }
 
 export const getAllSettings = cache(async (locale: string = 'en') => {
-  return getCached(`settings:all:${locale}`, () => fetchAllSettingsFromDB(locale), SETTINGS_TTL)
+  return getCached(`settings:all:${CACHE_VERSION}:${locale}`, () => fetchAllSettingsFromDB(locale), SETTINGS_TTL)
 });
 
 export async function getSettingSection(section: string, locale: string = 'en'): Promise<any> {
@@ -46,7 +48,7 @@ export async function getSettingSection(section: string, locale: string = 'en'):
  * Cached 5 min. Newest first.
  */
 export async function getPublishedArticles(locale: string): Promise<any[]> {
-  return getCached(`articles:list:${locale}`, async () => {
+  return getCached(`articles:list:${CACHE_VERSION}:${locale}`, async () => {
     try {
       const rows = await db.select({
         id: articles.id, slug: articles.slug, title: articles.title, excerpt: articles.excerpt,
@@ -71,7 +73,7 @@ export async function getPublishedArticles(locale: string): Promise<any[]> {
 }
 
 export async function getRecentArticles(locale: string, limit = 3): Promise<any[]> {
-  return getCached(`articles:recent:${locale}:${limit}`, async () => {
+  return getCached(`articles:recent:${CACHE_VERSION}:${locale}:${limit}`, async () => {
     try {
       const all = await getPublishedArticles(locale);
       const rows = all
