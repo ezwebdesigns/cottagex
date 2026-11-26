@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chalet Express — Accueil (prototype Material 3)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* M3 light default (kit Google Material 3) */
+    --m3-primary: #6750A4;
+    --m3-on-primary: #FFFFFF;
+    --m3-primary-container: #E8E0F4;
+    --m3-on-primary-container: #381E4A;
+    --m3-surface: #FFFFFF;
+    --m3-on-surface: #1C1B1F;
+    --m3-on-surface-variant: #5B5B66;
+    --m3-surface-variant: #E8E8EA;
+    --m3-outline: #939399;
+    --m3-outline-variant: #797979;
+    --m3-background: #FFFFFF;
+    --m3-inverse-surface: #1C1B1F;
+    --m3-inverse-on-surface: #E8E8E8;
+    --m3-inverse-primary: #6750A4;
+    --m3-radius: 16px;
+    --m3-gap: 24px;
+    --font: 'Roboto', system-ui, sans-serif;
+    --maxw: 1280px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--m3-surface); color: var(--m3-on-surface); font-family: var(--font); }
+  body { line-height: 1.5; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* App bar */
+  .appbar {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 88px; background: var(--m3-primary); color: var(--m3-on-primary);
+    padding: 0 24px;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; font-size: 22px; font-weight: 700; }
+  .brand svg { flex: 0 0 auto; }
+  .nav { display: flex; gap: 24px; }
+  .nav a { color: var(--m3-on-primary); text-decoration: none; font-size: 16px; font-weight: 500; }
+  .nav a:hover { text-decoration: underline; }
+  .appbar-actions { display: flex; align-items: center; gap: 16px; }
+  .icon-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: var(--m3-radius);
+    border: 1px solid var(--m3-outline); background: transparent; color: var(--m3-on-primary);
+    cursor: pointer;
+  }
+  .avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--m3-on-surface); }
+
+  /* Sections génériques */
+  section { padding: 56px 0; }
+  .section-title {
+    font-size: 32px; font-weight: 700; color: var(--m3-on-surface);
+    margin-bottom: 8px;
+  }
+  .section-sub { color: var(--m3-on-surface-variant); font-size: 16px; max-width: 640px; }
+  .row { display: flex; gap: var(--m3-gap); align-items: center; }
+  .col { flex: 1; }
+  .center { display: flex; justify-content: center; }
+  .gap-sm { gap: 12px; }
+
+  /* Hero */
+  .hero { display: flex; gap: var(--m3-gap); padding-top: 0; }
+  .hero-img-frame {
+    width: 360px; height: 440px; border-radius: var(--m3-radius);
+    overflow: hidden; position: relative; background: var(--m3-surface-variant);
+    flex: 0 0 auto;
+  }
+  .hero-img-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-img-frame .cap { position: absolute; bottom: 12px; left: 12px; font-size: 12px; color: var(--m3-on-surface-variant); background: rgba(0,0,0,.4); padding: 4px 8px; border-radius: 8px; }
+  .hero-play {
+    width: 48px; height: 48px; border-radius: 50%; background: var(--m3-inverse-surface);
+    color: var(--m3-inverse-on-surface); display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin: 16px auto 0;
+  }
+  .hero-desc { font-size: 16px; color: var(--m3-on-surface-variant); max-width: 300px; margin-top: 12px; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    padding: 10px 16px; border-radius: 20px; font-size: 14px; font-weight: 500;
+    background: var(--m3-inverse-surface); color: var(--m3-inverse-on-surface);
+  }
+  .search-row { display: flex; align-items: center; gap: 8px; background: var(--m3-surface-variant); border-radius: var(--m3-radius); padding: 8px 12px; }
+  .search-row svg { flex: 0 0 auto; }
+  .search-row input { flex: 1; border: none; outline: none; background: var(--m3-surface-variant); font: inherit; color: var(--m3-on-surface); }
+
+  /* Cards propriétés */
+  .cards { display: flex; gap: 12px; flex-wrap: wrap; }
+  .prop-card {
+    width: 240px; border-radius: var(--m3-radius); overflow: hidden;
+    background: var(--m3-surface-variant); border: 1px solid var(--m3-outline-variant);
+  }
+  .prop-card img { width: 100%; height: 150px; object-fit: cover; display: block; }
+  .prop-card .body { padding: 12px; }
+  .prop-card h3 { font-size: 14px; font-weight: 700; }
+  .prop-card .meta { font-size: 12px; color: var(--m3-on-surface-variant); }
+  .prop-card .price { font-size: 16px; font-weight: 700; color: var(--m3-primary); }
+
+  /* Button */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 24px; border-radius: 24px; border: none; cursor: pointer;
+    font: inherit; font-weight: 700; text-decoration: none; color: var(--m3-on-primary);
+  }
+  .btn-primary { background: var(--m3-primary); }
+  .btn-primary:hover { background: #5A4797; }
+
+  /* Promo */
+  .promo {
+    background: var(--m3-primary); color: var(--m3-on-primary);
+    padding: 48px 0; text-align: center;
+  }
+  .promo h1 { font-size: 32px; font-weight: 700; }
+  .promo p { font-size: 16px; opacity: .9; margin: 8px 0 24px; }
+  .promo .row { justify-content: center; }
+
+  /* Feature split */
+  .split { display: flex; gap: var(--m3-gap); }
+  .split .col { flex: 1; }
+  .split .img-cell { width: 200px; height: 220px; border-radius: var(--m3-radius); overflow: hidden; background: var(--m3-surface-variant); flex: 0 0 auto; }
+  .split .img-cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .split .img-cell .caps { font-size: 12px; color: var(--m3-on-surface-variant); background: rgba(0,0,0,.4); padding: 4px 8px; border-radius: 8px; }
+
+  /* Host CTA */
+  .cta-host {
+    background: var(--m3-inverse-surface); color: var(--m3-inverse-on-surface);
+    text-align: center; padding: 48px 24px;
+  }
+  .cta-host h1 { font-size: 34px; }
+  .cta-host p { max-width: 640px; margin: 12px auto 24px; color: var(--m3-inverse-on-surface); }
+
+  /* Stats */
+  .stats { display: flex; gap: 16px; }
+  .stat { flex: 1; background: rgba(255,255,255,.08); border-radius: var(--m3-radius); padding: 16px; text-align: center; }
+  .stat .num { font-size: 28px; font-weight: 700; color: var(--m3-inverse-on-surface); }
+  .stat .lbl { font-size: 12px; color: var(--m3-inverse-on-surface); opacity: .7; }
+
+  /* Blog / provinces grid */
+  .grid3, .grid4 { display: grid; gap: 24px; }
+  .grid3 { grid-template-columns: repeat(3, 1fr); }
+  .grid4 { grid-template-columns: repeat(4, 1fr); }
+  .card {
+    border-radius: var(--m3-radius); overflow: hidden;
+    background: var(--m3-surface-variant); border: 1px solid var(--m3-outline-variant);
+  }
+  .card img { width: 100%; height: 160px; object-fit: cover; display: block; }
+  .card .body { padding: 14px; }
+  .card h3 { font-size: 20px; font-weight: 700; }
+
+  /* FAQ accordion */
+  .faq-item {
+    background: var(--m3-surface-variant); border-radius: var(--m3-radius);
+    padding: 16px; margin-bottom: 12px; cursor: pointer;
+  }
+  .faq-item h4 { font-size: 14px; font-weight: 700; }
+  .faq-item .arrow { margin-left: 8px; color: var(--m3-outline); }
+  .faq-item .chevron { display: inline-block; transition: transform .2s; }
+
+  /* Rewards */
+  .rewards { background: var(--m3-inverse-surface); color: var(--m3-inverse-on-surface); text-align: center; padding: 48px 24px; }
+  .rewards h1 { font-size: 34px; }
+  .rewards .row { justify-content: center; }
+
+  /* Footer */
+  .footer { background: var(--m3-inverse-surface); color: var(--m3-inverse-on-surface); padding: 48px 0; }
+  .footer .brand { font-size: 24px; }
+  .footer .slogan { font-size: 12px; color: var(--m3-inverse-on-surface); opacity: .7; }
+  .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 24px; }
+  .footer-col h4 { font-size: 13px; margin-bottom: 8px; }
+  .footer-col a, .footer-col span { display: block; font-size: 12px; color: var(--m3-inverse-on-surface); opacity: .7; text-decoration: none; margin-bottom: 6px; }
+  .footer-bottom { display: flex; justify-content: space-between; font-size: 12px; color: var(--m3-inverse-on-surface); opacity: .5; }
+
+  @media (max-width: 1000px) {
+    .grid4 { grid-template-columns: repeat(2, 1fr); }
+    .hero { flex-direction: column; }
+    .hero-img-frame { width: 100%; height: 260px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="appbar">
+  <div class="brand">
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="2" y="2" width="32" height="32" rx="10" fill="currentColor"/><path d="M12 12h12v7H12z" fill="white"/><circle cx="24" cy="15" r="3" fill="white"/></svg>
+    <span>Chalet Express</span>
+  </div>
+  <nav class="nav">
+    <a href="#">Explore</a>
+    <a href="#">Guides</a>
+    <a href="#">Blog</a>
+    <a href="#">FAQ</a>
+  </nav>
+  <div class="appbar-actions">
+    <button class="icon-btn" aria-label="Rechercher">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </button>
+    <span class="avatar"></span>
+    <button class="icon-btn" aria-label="Coeurs">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <!-- 1 Hero -->
+  <section class="hero">
+    <div class="hero-img-frame">
+      <img src="Cottagexhome-idea.jpg" alt="Photo de couverture (brouillon)">
+      <div class="cap">Photo de couverture — brouillon</div>
+      <div class="hero-play">▶</div>
+    </div>
+    <div class="col">
+      <h1 class="section-title" style="font-size:36px;">Votre prochaine escapade en Québec</h1>
+      <p class="section-sub">Cabanes, chalets, locations de villas : découvrez nos séjours sous l'œil du Nord.</p>
+      <div class="chips">
+        <span class="chip">Cabanes</span><span class="chip">Chalet</span><span class="chip">Locations</span><span class="chip">Montagne</span>
+      </div>
+      <div class="search-row">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Rechercher une destination...">
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 Promo -->
+  <section class="promo">
+    <div class="wrap row">
+      <div>
+        <h1>Save on longer stays</h1>
+        <p>Book 7+ nights &amp; get an average 10% off!</p>
+        <button class="btn btn-primary">Explore Cottages →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 Feature split -->
+  <section class="split">
+    <div class="col">
+      <h2 class="section-title">Plan your perfect desert escape</h2>
+      <p class="section-sub">Des corps de ciel, des sables, des étoiles — commencez à collecter des points dès maintenant.</p>
+      <button class="btn btn-primary">Start your trip →</button>
+    </div>
+    <div class="col gap-sm">
+      <div class="img-cell"><img src="Cottagexhome-idea.jpg" alt=""><div class="caps">Canyon</div></div>
+      <div class="img-cell"><img src="Cottagexhome-idea.jpg" alt=""><div class="caps">Villes</div></div>
+      <div class="img-cell"><img src="Cottagexhome-idea.jpg" alt=""><div class="caps">Plage</div></div>
+    </div>
+  </section>
+
+  <!-- 4 Host CTA -->
+  <section class="cta-host">
+    <h1>Start hosting</h1>
+    <p>Earn with ease. Recrutement simple, paiement en quelques clics, et les meilleurs hôtes partout.</p>
+    <button class="btn" style="background:var(--m3-primary);color:var(--m3-on-primary);">Become a Host</button>
+  </section>
+
+  <!-- 5 About + stats -->
+  <section class="row" style="justify-content:space-between;">
+    <div class="col">
+      <h2 class="section-title">About us</h2>
+      <p class="section-sub">Depuis 2025, un réseau de 30+ villages et 15+ points épiques partout au Canada.</p>
+      <div class="stats">
+        <div class="stat"><div class="num">30+</div><div class="lbl">Villages</div></div>
+        <div class="stat"><div class="num">15+</div><div class="lbl">Peaks</div></div>
+        <div class="stat"><div class="num">8k+</div><div class="lbl">Likes</div></div>
+      </div>
+    </div>
+    <div class="col" style="min-width:300px;">
+      <div class="card" style="height:100%;display:flex;align-items:center;justify-content:center;">
+        <div style="background:var(--m3-inverse-surface);border-radius:var(--m3-radius);padding:32px;text-align:center;">
+          <div style="font-size:64px;font-weight:700;color:var(--m3-inverse-on-surface);">95%</div>
+          <div style="font-size:14px;color:var(--m3-inverse-on-surface);opacity:.7;">Guests say they felt truly connected to nature.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 Blog -->
+  <section class="row">
+    <div class="col" style="flex:1.2;">
+      <h2 class="section-title">Adventures from around the world</h2>
+      <p class="section-sub">Des histoires de voyages pour t'inspirer avant ton prochain séjour.</p>
+    </div>
+    <div class="grid3" style="grid-template-columns:repeat(3,1fr);">
+      <article class="card"><img src="Cottagexhome-idea.jpg" alt=""><div class="body"><h3>Montgolfières</h3><p>Un soir de moonlight…</p></div></article>
+      <article class="card"><img src="Cottagexhome-idea.jpg" alt=""><div class="body"><h3>Ville côtière</h3><p>Aura matutine.</p></div></article>
+      <article class="card"><img src="Cottagexhome-idea.jpg" alt=""><div class="body"><h3>Coucher de soleil</h3><p>Dès que le matin se lève.</p></div></article>
+    </div>
+  </section>
+
+  <!-- 7 FAQ -->
+  <section class="row">
+    <div class="col" style="flex:1.1;">
+      <h2 class="section-title">All you should know before embarking</h2>
+      <div class="faq-item"><h4>What types of trips does Triply offer?</h4><span class="chevron" style="transform:rotate(0deg);">▼</span></div>
+      <div class="faq-item"><h4>How are prices calculated?</h4><span class="chevron" style="transform:rotate(0deg);">▼</span></div>
+      <div class="faq-item"><h4>Can I modify or cancel?</h4><span class="chevron" style="transform:rotate(0deg);">▼</span></div>
+    </div>
+    <div class="col" style="flex:1;">
+      <div class="card" style="height:100%;">
+        <img src="Cottagexhome-idea.jpg" alt="" style="height:220px;object-fit:cover;">
+        <div style="padding:16px;">
+          <h3 style="font-size:20px;">Lake of the mountains</h3>
+          <p style="font-size:14px;color:var(--m3-on-surface-variant);">Une étendue glacée au cœur de la massif.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 Provinces -->
+  <section class="grid4">
+    <div class="card"><img src="Cottagexhome-idea.jpg" alt=""><div class="body"><h3>Ontario</h3><p>Toronto</p></div></div>
+    <div class="card"><img src="Cottagexhome-idea.jpg" alt=""><div class="body"><h3>Québec</h3><p>Montréal</p></div></div>
+    <div class="card"><img src="Cottagexhome-idea.jpg" alt=""><div class="body"><h3>Colombie-Britannique</h3><p>Vancouver</p></div></div>
+    <div class="card"><img src="Cottagexhome-idea.jpg" alt=""><div class="body"><h3>Alberta</h3><p>Edmonton</p></div></div>
+  </section>
+
+  <!-- 9 Rewards -->
+  <section class="rewards">
+    <h1>Book more, save more</h1>
+    <div class="row gap-sm">
+      <div class="stat" style="flex:1;background:rgba(255,255,255,.08);"><div class="num" style="color:var(--m3-inverse-on-surface);">5%</div><div class="lbl">Cashback sur tous les réservations</div></div>
+      <div class="stat" style="flex:1;background:rgba(255,255,255,.08);"><div class="num" style="color:var(--m3-inverse-on-surface);">24h</div><div class="lbl">Accès anticipé aux offres</div></div>
+      <div class="stat" style="flex:1;background:rgba(255,255,255,.08);"><div class="num" style="color:var(--m3-inverse-on-surface);">∞</div><div class="lbl">Sans échéance sur les points</div></div>
+    </div>
+    <button class="btn" style="background:var(--m3-primary);color:var(--m3-on-primary);">Book Now</button>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="brand">Chalet Express</div>
+    <div class="slogan">Stay better. Earn smarter.</div>
+    <div class="footer-grid">
+      <div class="footer-col"><h4>For Guests</h4><a href="#">Search Stays</a><a href="#">How It Works</a><a href="#">Blog</a></div>
+      <div class="footer-col"><h4>For Hosts</h4><a href="#">Hosting Guidelines</a><a href="#">Become a Host</a><a href="#">Guides</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="#">About Us</a><a href="#">Careers</a><a href="#">Legal</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Heavenly. All rights reserved.</span>
+      <span>FR · Terms · Privacy</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -70,22 +70,27 @@ async function fetchArticle(slug: string, locale: string, preview = false) {
   try {
     // Métadonnées seulement (sans le contenu) : le cache Redis stocke ce qui est
     // petit. Le corps est lu en base à la volée (getArticleContent).
-    const metaRows = await getCached<any[]>(`articles:meta:${locale}:${slug}${preview ? ':preview' : ''}`, () =>
+    const metaRows = await getCached<any[]>(`articles:meta:v2:${locale}:${slug}${preview ? ':preview' : ''}`, () =>
       db.select({
         id: articles.id,
         slug: articles.slug,
         title: articles.title,
         excerpt: articles.excerpt,
         category: articles.category,
+        author: articles.author,
         featuredImage: articles.featuredImage,
         imageAlt: articles.imageAlt,
         seoTitle: articles.seoTitle,
         faq: articles.faq,
         type: articles.type,
+        locale: articles.locale,
         isPublished: articles.isPublished,
         publishedAt: articles.publishedAt,
         createdAt: articles.createdAt,
         updatedAt: articles.updatedAt,
+        ctaTitle: articles.ctaTitle,
+        ctaButton: articles.ctaButton,
+        ctaLink: articles.ctaLink,
       }).from(articles).where(
         and(
           eq(articles.slug, slug),
@@ -98,14 +103,14 @@ async function fetchArticle(slug: string, locale: string, preview = false) {
     if (!dbArticle) return null;
 
     // Contenu lu en base directement (pas de cache : pas de blobs volumineux).
-    const contentRows = await db.select({ content: articles.content, isPublished: articles.isPublished }).from(articles).where(
+    const contentRows = await db.select({ locale: articles.locale, content: articles.content, isPublished: articles.isPublished }).from(articles).where(
       and(
         eq(articles.slug, slug),
         ...(preview ? [] : [eq(articles.isPublished, true)]),
         inArray(articles.locale, locale === 'fr' ? ['fr', 'en'] : ['en']),
       ),
-    ).limit(1);
-    const contentRow = contentRows[0];
+    ).limit(2);
+    const contentRow = contentRows.find((r: any) => r.locale === locale) || contentRows.find((r: any) => r.locale === 'en');
     if (!contentRow || (preview && !contentRow.isPublished)) return null;
     const content = contentRow.content || "";
 

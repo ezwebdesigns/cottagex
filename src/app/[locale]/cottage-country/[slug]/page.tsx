@@ -67,8 +67,9 @@ export async function generateStaticParams() {
 async function fetchPageRow(slug: string, locale: string) {
   // Métadonnées seulement (sans le contenu, jusqu'à 4 Mo) : le cache Redis
   // stocke ce qui est petit ; le corps n'est pas nécessaire pour ce template.
-  const metaRows = await getCached<any[]>(`pages:meta:${locale}:${slug}`, () =>
+  const metaRows = await getCached<any[]>(`pages:meta:v2:${locale}:${slug}`, () =>
     db.select({
+      locale: pages.locale,
       title: pages.title,
       seoTitle: pages.seoTitle,
       metaDescription: pages.metaDescription,
@@ -92,22 +93,23 @@ async function fetchPageRow(slug: string, locale: string) {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const name = getName(slug);
+  let row: any = null;
+  try {
+    row = await fetchPageRow(slug, locale);
+  } catch {}
   // Unknown non-province slugs with no CMS row render a thin fallback page.
   // With loading.tsx in the tree, Next 16 streams it as HTTP 200
   // (vercel/next.js#93008), so noindex here is what keeps them out of Google.
-  let isUnknown = false;
-  try {
-    const row = await fetchPageRow(slug, locale);
-    isUnknown = !row && !PROVINCE_SLUGS.has(slug);
-  } catch {
-    isUnknown = false;
-  }
-  const title = locale === 'fr'
+  const isUnknown = !row && !PROVINCE_SLUGS.has(slug);
+  const fallbackTitle = locale === 'fr'
     ? `Location de chalets à ${name.fr}`
     : `Cottages to Rent in ${name.en} - Canadian Cottage Rentals`;
-  const description = locale === 'fr'
+  const fallbackDescription = locale === 'fr'
     ? `Trouvez le chalet idéal à ${name.fr}. Comparez les locations de vacances et réservez en toute sécurité sur VRBO et Expedia.`
     : `Find your perfect cottage escape in ${name.en}. Browse premium lake houses, cabins, and wilderness retreats with secure VRBO booking.`;
+  // CMS SEO fields (dashboard) take precedence over the generated fallbacks.
+  const title = row?.seoTitle || fallbackTitle;
+  const description = row?.metaDescription || fallbackDescription;
 
   const canonical = `https://chaletexpress.com/${locale}/cottage-country/${slug}`;
 
@@ -115,7 +117,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // same key the page component uses), generic fallback otherwise.
   let ogImage = 'https://images.unsplash.com/photo-1475855581690-80accde3ae2b?auto=format&fit=crop&q=80&w=1200';
   try {
-    const row = await fetchPageRow(slug, locale);
     const hero = (row?.locationData as any)?.hero?.image;
     if (typeof hero === 'string' && (hero.startsWith('http') || hero.startsWith('/'))) ogImage = hero;
   } catch {}

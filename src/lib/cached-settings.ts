@@ -2,11 +2,11 @@ import { cache } from 'react'
 import { db } from '@/lib/db'
 import { siteSettings, articles } from '@/db/schema'
 import { resolveLibRefs } from '@/lib/resolve-lib-refs'
-import { desc, eq } from 'drizzle-orm'
+import { desc, eq, inArray } from 'drizzle-orm'
 import { getCached, invalidateSettings } from '@/lib/cache'
 
 // Incrémenter pour invalider les anciennes valeurs (ex. images base64 migrées).
-const CACHE_VERSION = 'v2'
+const CACHE_VERSION = 'v3'
 const SETTINGS_TTL = 86400 // 24 hours (settings change rarely; admin saves invalidate; Clear Cache button as emergency lever)
 
 async function fetchAllSettingsFromDB(locale: string): Promise<Record<string, any>> {
@@ -84,6 +84,14 @@ export async function getRecentArticles(locale: string, limit = 3): Promise<any[
           return db2 - da;
         })
         .slice(0, limit);
+      const ids = rows.map((r: any) => r.id).filter(Boolean);
+      const contents = new Map<number, string>();
+      if (ids.length) {
+        try {
+          const cr = await db.select({ id: articles.id, content: articles.content }).from(articles).where(inArray(articles.id, ids));
+          for (const r of cr) contents.set(r.id, r.content || '');
+        } catch {}
+      }
       return rows.map(a => ({
         slug: a.slug,
         title: a.title,
@@ -91,7 +99,7 @@ export async function getRecentArticles(locale: string, limit = 3): Promise<any[
         image: a.featuredImage || '',
         category: a.category || 'Articles',
         date: a.publishedAt ? new Date(a.publishedAt).toLocaleDateString(locale === 'fr' ? 'fr-CA' : 'en-US', { year: "numeric", month: "long", day: "numeric" }) : '',
-        readTime: `${Math.max(1, Math.ceil((a.content || '').split(/\s+/).length / 200))} min${locale === 'fr' ? ' lecture' : ' read'}`,
+        readTime: `${Math.max(1, Math.ceil((contents.get(a.id) || '').trim().split(/\s+/).filter(Boolean).length / 200))} min${locale === 'fr' ? ' lecture' : ' read'}`,
       }));
     } catch {
       return [];

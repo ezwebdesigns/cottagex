@@ -36,7 +36,6 @@ async function fetchPage(slug: string, locale: string, preview = false) {
         locale: pages.locale,
         isPublished: pages.isPublished,
         updatedAt: pages.updatedAt,
-        locationData: pages.locationData,
       }).from(pages).where(
         and(
           eq(pages.slug, slug),
@@ -52,6 +51,7 @@ async function fetchPage(slug: string, locale: string, preview = false) {
 
     return {
       title: page.title,
+      seoTitle: page.seoTitle || undefined,
       content: content || "",
       type: (page.type === 'about' || page.type === 'terms' || page.type === 'default') ? page.type : 'default',
       updatedDate: page.updatedAt ? new Date(page.updatedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : undefined,
@@ -67,14 +67,14 @@ async function fetchPage(slug: string, locale: string, preview = false) {
 // Contenu lu en base directement (pas de cache Redis : pas de blobs volumineux).
 async function getPageContent(slug: string, locales: string[], preview = false) {
   try {
-    const rows = await db.select({ content: pages.content, isPublished: pages.isPublished }).from(pages).where(
+    const rows = await db.select({ locale: pages.locale, content: pages.content, isPublished: pages.isPublished }).from(pages).where(
       and(
         eq(pages.slug, slug),
         ...(preview ? [] : [eq(pages.isPublished, true)]),
         inArray(pages.locale, locales),
       ),
-    ).limit(1);
-    const row = rows[0];
+    ).limit(2);
+    const row = rows.find((r: any) => r.locale === locales[0]) || rows.find((r: any) => r.locale === 'en') || rows[0];
     if (!row) return null;
     if (preview && !row.isPublished) return null;
     return row.content;
@@ -97,7 +97,7 @@ export async function generateMetadata({ params, searchParams }: Props & {
   const description = page.metaDescription
     || `${page.title} — Practical resources and guides from Chalet Express.`;
   return {
-    title: page.title,
+    title: page.seoTitle || page.title,
     description,
     ...(preview ? { robots: { index: false, follow: false } } : {}),
     alternates: {
