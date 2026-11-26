@@ -66,7 +66,8 @@ export default function EditArticlePage() {
         return d.translated || text;
       };
 
-      const frSlug = `${slug}-fr`;
+      // Same slug as EN so /fr/guides/<slug> serves the translation (hreflang parity).
+      const frSlug = slug;
       const frTitle = await translate(full.title);
       const frExcerpt = full.excerpt ? await translate(full.excerpt) : full.excerpt;
       const frContent = full.content ? await translate(full.content) : full.content;

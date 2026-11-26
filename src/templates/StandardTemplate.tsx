@@ -48,6 +48,26 @@ export default function StandardTemplate({ pageData }: StandardTemplateProps) {
   }
 
   if (pageData.type === 'about') {
+    const cmsContent = (pageData.content || '').trim();
+    if (cmsContent) {
+      return (
+        <div className="animate-in fade-in duration-300 max-w-4xl mx-auto px-4 py-12">
+          <BreadcrumbSchema items={[
+            { name: 'Home', url: localePrefix },
+            { name: 'About', url: pathname },
+          ]} />
+          <div className="bg-white p-8 md:p-12 rounded-[2rem] border border-slate-100 shadow-sm">
+            <h1 className="text-3xl font-extrabold text-[#191e3b] mb-6" style={{ fontFamily: 'var(--font-radio-canada), sans-serif' }}>
+              {pageData.title || 'About Chalet Express'}
+            </h1>
+            <div
+              className="prose prose-lg max-w-none text-slate-600 leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: qualifyExternalLinks(cmsContent) }}
+            />
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="animate-in fade-in duration-300 max-w-5xl mx-auto px-4 py-12">
         <BreadcrumbSchema items={[

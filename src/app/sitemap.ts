@@ -105,11 +105,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .select({ slug: articles.slug, updatedAt: articles.updatedAt })
       .from(articles)
       .where(eq(articles.isPublished, true));
-    for (const article of dbArticles) {
-      addEntries(localized(`/guides/${article.slug}`, {
+    for (const slug of [...new Set(dbArticles.map(a => a.slug))]) {
+      addEntries(localized(`/guides/${slug}`, {
         changeFrequency: 'monthly',
         priority: 0.7,
-        lastModified: article.updatedAt || undefined,
       }));
     }
   } catch {}

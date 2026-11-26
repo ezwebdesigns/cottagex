@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { initialArticles } from '@/lib/mock-data';
 import { db } from '@/lib/db';
 import { articles } from '@/db/schema';
 import { eq, and, inArray } from 'drizzle-orm';
@@ -30,18 +29,14 @@ function computeReadTime(text: string): string {
 }
 
 export async function generateStaticParams() {
-  const mockSlugs = initialArticles.map(a => a.slug);
-
   let dbSlugs: string[] = [];
   try {
     const rows = await db.select({ slug: articles.slug }).from(articles).where(eq(articles.isPublished, true));
     dbSlugs = rows.map(r => r.slug);
   } catch {}
 
-  const allSlugs = [...new Set([...mockSlugs, ...dbSlugs])];
-
   return locales.flatMap(locale =>
-    allSlugs.map(slug => ({ locale, slug }))
+    dbSlugs.map(slug => ({ locale, slug }))
   );
 }
 
@@ -59,14 +54,6 @@ async function canPreview(searchParams?: { [key: string]: string | string[] | un
 }
 
 async function fetchArticle(slug: string, locale: string, preview = false) {
-  const mock = initialArticles.find(a => a.slug === slug);
-  if (mock) {
-    const content = mock.content || "";
-    const shortcodes = extractShortcodes(content);
-    const cottagesMap = await fetchCottagesForShortcodes(shortcodes);
-    return { ...mock, toc: generateToc(content), enhancedContent: injectHeadingIds(content), cottagesMap };
-  }
-
   try {
     // Métadonnées seulement (sans le contenu) : le cache Redis stocke ce qui est
     // petit. Le corps est lu en base à la volée (getArticleContent).

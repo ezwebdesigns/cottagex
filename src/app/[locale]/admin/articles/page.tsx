@@ -61,7 +61,8 @@ export default function AdminArticlesPage() {
         return d.translated || text;
       };
 
-      const frSlug = `${full.slug}-fr`;
+      // Same slug as EN: locale+slug is unique, and hreflang points /fr/guides/<slug>.
+      const frSlug = full.slug;
       const frTitle = await translate(full.title);
       const frExcerpt = full.excerpt ? await translate(full.excerpt) : full.excerpt;
       const frContent = full.content ? await translate(full.content) : full.content;
