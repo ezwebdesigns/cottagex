@@ -57,7 +57,6 @@ CREATE TABLE IF NOT EXISTS affiliatecottages (
   is_featured           BOOLEAN DEFAULT false, -- affiché sur le site → pingé quotidiennement
   last_synced           DATE DEFAULT CURRENT_DATE,
   last_pinged           TIMESTAMPTZ,           -- dernier ping HTTP (quotidien, featured only)
-  ping_status           SMALLINT,              -- DEPRECATED (Phase 2) — conservé pour compatibilité
   last_ping_status      INTEGER,               -- code HTTP du dernier ping (200, 404, 429...)
   absence_count         INTEGER NOT NULL DEFAULT 0, -- absences consécutives au sync mensuel
   availability_reason   TEXT,                  -- NULL | manual | ping_404 | sync_3_absences
@@ -192,9 +191,6 @@ COMMENT ON COLUMN affiliatecottages.is_featured IS
   'true = ce cottage est affiché sur le site.
    Ces cottages sont pingés quotidiennement pour garantir zéro 404.
    Les autres sont uniquement vérifiés lors de la sync mensuelle.';
-
-COMMENT ON COLUMN affiliatecottages.ping_status IS
-  'DEPRECATED (Phase 2). Conserved for backward compatibility only. Use last_ping_status.';
 
 COMMENT ON COLUMN affiliatecottages.last_ping_status IS
   'Code HTTP du dernier ping HEAD sur google_link. 200 = OK, 404 = disparu, 429 = rate limit, NULL = jamais pingé.';

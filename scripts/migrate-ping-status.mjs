@@ -9,25 +9,36 @@ const pool = new Pool({
 
 const client = await pool.connect()
 try {
+  const { rows: legacyCols } = await client.query(`
+    SELECT column_name FROM information_schema.columns
+    WHERE table_name = 'affiliatecottages' AND column_name = 'ping_status'
+  `)
+  const hasLegacy = legacyCols.length > 0
+
   await client.query('BEGIN')
 
   await client.query(`ALTER TABLE affiliatecottages ADD COLUMN IF NOT EXISTS last_ping_status integer`)
   await client.query(`ALTER TABLE affiliatecottages ADD COLUMN IF NOT EXISTS absence_count integer NOT NULL DEFAULT 0`)
   await client.query(`ALTER TABLE affiliatecottages ADD COLUMN IF NOT EXISTS availability_reason text`)
-  await client.query(`COMMENT ON COLUMN affiliatecottages.ping_status IS 'DEPRECATED (Phase 2): use last_ping_status / absence_count / availability_reason'`)
 
-  const backfill = await client.query(`
-    UPDATE affiliatecottages
-    SET last_ping_status = CASE WHEN ping_status BETWEEN 100 AND 599 THEN ping_status END,
-        absence_count = 0,
-        availability_reason = CASE
-          WHEN available = false AND ping_status BETWEEN 100 AND 599 THEN 'ping_404'
-          WHEN available = false THEN 'manual'
-          ELSE NULL
-        END
-    WHERE availability_reason IS NULL AND (ping_status IS NOT NULL OR available = false)
-  `)
-  console.log('Backfilled rows:', backfill.rowCount)
+  if (hasLegacy) {
+    await client.query(`COMMENT ON COLUMN affiliatecottages.ping_status IS 'DEPRECATED (Phase 2): use last_ping_status / absence_count / availability_reason'`)
+
+    const backfill = await client.query(`
+      UPDATE affiliatecottages
+      SET last_ping_status = CASE WHEN ping_status BETWEEN 100 AND 599 THEN ping_status END,
+          absence_count = 0,
+          availability_reason = CASE
+            WHEN available = false AND ping_status BETWEEN 100 AND 599 THEN 'ping_404'
+            WHEN available = false THEN 'manual'
+            ELSE NULL
+          END
+      WHERE availability_reason IS NULL AND (ping_status IS NOT NULL OR available = false)
+    `)
+    console.log('Backfilled rows:', backfill.rowCount)
+  } else {
+    console.log('Legacy ping_status absent — already migrated and column dropped. No backfill needed.')
+  }
 
   await client.query('COMMIT')
 
