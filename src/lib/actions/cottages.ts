@@ -14,7 +14,7 @@ const pool = new Pool({
 
 export async function updateCottage(
   propertyToken: string,
-  data: { affiliate_url?: string | null; is_featured?: boolean; is_hidden?: boolean }
+  data: { affiliate_url?: string | null; is_featured?: boolean; is_hidden?: boolean; available?: boolean }
 ) {
   const client = await pool.connect();
   try {
@@ -33,6 +33,10 @@ export async function updateCottage(
     if (data.is_hidden !== undefined) {
       sets.push(`is_hidden = $${i++}`);
       values.push(data.is_hidden);
+    }
+    if (data.available !== undefined) {
+      sets.push(`available = $${i++}`);
+      values.push(data.available);
     }
 
     if (sets.length === 0) return { success: false, error: 'No fields to update' };
