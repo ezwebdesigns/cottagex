@@ -26,6 +26,7 @@ export type Cottage = {
   absence_count: number;
   availability_reason: string | null;
   thumbnail: string | null;
+  ota_links: unknown;
   amenities: string[];
 };
 
@@ -34,7 +35,7 @@ async function getCottages(): Promise<Cottage[]> {
     const client = await pool.connect();
     try {
       const { rows } = await client.query(
-        `SELECT property_token, name, slug, province, source, google_link, affiliate_url, is_featured, is_hidden, available, last_synced, last_pinged, last_ping_status, absence_count, availability_reason, thumbnail, amenities
+        `SELECT property_token, name, slug, province, source, google_link, affiliate_url, is_featured, is_hidden, available, last_synced, last_pinged, last_ping_status, absence_count, availability_reason, thumbnail, ota_links, amenities
          FROM affiliatecottages ORDER BY is_featured DESC, name ASC`
       );
       return rows;

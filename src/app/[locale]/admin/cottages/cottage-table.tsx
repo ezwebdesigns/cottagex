@@ -5,7 +5,7 @@ import { Plus, Search, Star, ExternalLink, Pencil, X, Upload, ChevronUp, Chevron
 import { updateCottage } from '@/lib/actions/cottages';
 import type { Cottage } from './page';
 
-const emptyForm = { property_token: '', name: '', slug: '', photo: '', googleLink: '', source: 'VRBO', affiliateUrl: '', featured: false, hidden: false, available: true, availability_reason: null as string | null, absence_count: 0 };
+const emptyForm = { property_token: '', name: '', slug: '', photo: '', source: 'VRBO', affiliateUrl: '', featured: false, hidden: false, available: true, availability_reason: null as string | null, absence_count: 0 };
 
 export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
   const [cottages, setCottages] = useState(initial);
@@ -86,7 +86,6 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
       name: c.name || '',
       slug: c.slug || '',
       photo: c.thumbnail || '',
-      googleLink: c.google_link || '',
       source: c.source || 'VRBO',
       affiliateUrl: c.affiliate_url || '',
       featured: c.is_featured,
@@ -121,7 +120,6 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
       availability_reason: form.available ? null : 'manual',
       absence_count: form.available ? 0 : form.absence_count,
       thumbnail: form.photo || c.thumbnail,
-      google_link: form.googleLink || c.google_link,
     } : c));
     setShowModal(false);
   };
@@ -167,6 +165,33 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
     if (c.absence_count > 0) lines.push(`Consecutive absences: ${c.absence_count}`);
     if (c.availability_reason) lines.push(`Reason: ${c.availability_reason}`);
     return lines.join('\n');
+  };
+
+  const otaLinksFor = (c: Cottage): { label: string; url: string }[] => {
+    if (c.affiliate_url) return [{ label: 'Affiliate', url: c.affiliate_url }];
+    const raw = c.ota_links as unknown;
+    const arr: unknown[] = Array.isArray(raw)
+      ? raw
+      : raw && typeof raw === 'object'
+        ? Object.values(raw as Record<string, unknown>)
+        : [];
+    const out: { label: string; url: string }[] = [];
+    for (const item of arr) {
+      const url = typeof item === 'string'
+        ? item
+        : item && typeof item === 'object'
+          ? String((item as { url?: unknown }).url || '')
+          : '';
+      const domain = item && typeof item === 'object'
+        ? String((item as { domain?: unknown }).domain || '')
+        : '';
+      if (!url) continue;
+      const host = domain || (() => { try { return new URL(url).hostname } catch { return '' } })();
+      if (!/vrbo\.com|booking\.com|expedia\.(com|ca)/i.test(host)) continue;
+      const label = /vrbo/i.test(host) ? 'VRBO' : /booking/i.test(host) ? 'Booking' : 'Expedia';
+      if (!out.some(x => x.label === label)) out.push({ label, url });
+    }
+    return out;
   };
 
   return (
@@ -294,21 +319,24 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
                   </td>
                 )}
                 <td className="px-4 py-3 hidden lg:table-cell">
-                  <div className="flex items-center gap-2">
-                    {c.google_link ? (
-                      <a href={c.google_link} target="_blank" rel="noopener noreferrer" className="text-[#0f51ec] hover:underline text-xs">Google</a>
-                    ) : (
-                      <span className="text-xs text-slate-300">—</span>
-                    )}
-                    <span className="text-slate-300">·</span>
-                    {c.affiliate_url ? (
-                      <a href={c.affiliate_url} target="_blank" rel="noopener noreferrer" className="text-[#0f51ec] hover:underline text-xs flex items-center gap-0.5">
-                        VRBO <ExternalLink className="w-3 h-3" />
-                      </a>
-                    ) : (
-                      <span className="text-xs text-slate-300">—</span>
-                    )}
-                  </div>
+                  {(() => {
+                    const links = otaLinksFor(c);
+                    if (!links.length) {
+                      return <span className="text-xs text-slate-300" title="No OTA link stored yet">—</span>;
+                    }
+                    return (
+                      <div className="flex items-center gap-2">
+                        {links.map((l, i) => (
+                          <span key={l.label} className="flex items-center gap-1">
+                            {i > 0 && <span className="text-slate-300">·</span>}
+                            <a href={l.url} target="_blank" rel="noopener noreferrer" className="text-[#0f51ec] hover:underline text-xs flex items-center gap-0.5">
+                              {l.label} <ExternalLink className="w-3 h-3" />
+                            </a>
+                          </span>
+                        ))}
+                      </div>
+                    );
+                  })()}
                 </td>
                 <td className="px-4 py-3">
                   <button
@@ -450,17 +478,6 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
                     className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0f51ec]"
                   />
                 </div>
-              </div>
-              {/* Google Link */}
-              <div>
-                <label className="text-xs font-medium text-slate-600 mb-1 block">Google Link</label>
-                <input
-                  type="url"
-                  value={form.googleLink}
-                  onChange={(e) => setForm({ ...form, googleLink: e.target.value })}
-                  placeholder="https://maps.google.com/..."
-                  className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0f51ec]"
-                />
               </div>
               {/* Source + Affiliate URL */}
               <div className="grid grid-cols-2 gap-3">
