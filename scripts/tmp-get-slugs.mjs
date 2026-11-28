@@ -1,0 +1,6 @@
+
+import pg from 'pg';
+const pool=new pg.Pool({connectionString:process.env.DATABASE_URL,ssl:{rejectUnauthorized:false}});
+const r=await pool.query('SELECT id, slug, province FROM affiliatecottages WHERE id = ANY($1)', [["acadian-peninsula-ChkQzc--852r4LBNGg0vZy8xMXo0emdzZGszEAI", "gimli-ChoQyr6MlfPMi6CVARoNL2cvMTF6M2xrc2o1eBAC", "gull-lake-ab-ChkQgtbY7-7prM9OGg0vZy8xMW5wcHlqbjVtEAI", "magog-ChoQ0pjM5N6lzdy0ARoNL2cvMTF6NzVoa3h6ZBAC", "mont-tremblant-ChkQqo2J89LygYsOGg0vZy8xMXdmcXZ2dDdyEAI", "muskoka-ChoQ2LTtqem8h5LsARoNL2cvMTF6ZzZkaHZkaBAC", "muskoka-ChoQl--gloOx0oyDARoNL2cvMTFrajVwdnZkcRAC", "okanagan-ChkQuaHS34Pf7eI4Gg0vZy8xMW1reXIxYjA0EAI", "prince-edward-ChkQp9Kp1ZKcy98WGg0vZy8xMXYzZmZyNGZmEAI", "prince-edward-ChoQnfbPyNCx7MKWARoNL2cvMTFtc3Y3MmswbRAC", "quebec-ChkQlfu1g5r3iPMQGg0vZy8xMW5qZGh3NHE0EAI", "south-shore-ns-ChoQw9eq39C74-XfARoNL2cvMTFta3lyNHkycRAC", "sussex-nb-ChoQpfyQ9v6FsNfxARoNL2cvMTFuanc5bGh2NRAC", "sutton-ChkQ9bPo1rTMrM5JGg0vZy8xMXlscTRnNmhqEAI", "sutton-ChkQm8nklbrdh_kWGg0vZy8xMXozOXJzcHQwEAI", "sylvan-lake-ChkQmO2SoMCWqN1qGg0vZy8xMXo0Y25xYjltEAI", "tofino-ChkQqPeAkbGosLlRGg0vZy8xMW1zOXJtN2swEAI", "whistler-ChkQ6cyKi_Tryq9pGg0vZy8xMW1zOXM0M2wyEAI"]]);
+console.log(JSON.stringify(r.rows));
+await pool.end();
