@@ -57,7 +57,10 @@ CREATE TABLE IF NOT EXISTS affiliatecottages (
   is_featured           BOOLEAN DEFAULT false, -- affiché sur le site → pingé quotidiennement
   last_synced           DATE DEFAULT CURRENT_DATE,
   last_pinged           TIMESTAMPTZ,           -- dernier ping HTTP (quotidien, featured only)
-  ping_status           SMALLINT,              -- code HTTP du dernier ping (200, 404...)
+  ping_status           SMALLINT,              -- DEPRECATED (Phase 2) — conservé pour compatibilité
+  last_ping_status      INTEGER,               -- code HTTP du dernier ping (200, 404, 429...)
+  absence_count         INTEGER NOT NULL DEFAULT 0, -- absences consécutives au sync mensuel
+  availability_reason   TEXT,                  -- NULL | manual | ping_404 | sync_3_absences
 
   -- ── Timestamps ────────────────────────────────────────────
   created_at            TIMESTAMPTZ DEFAULT NOW(),
@@ -136,7 +139,8 @@ ORDER BY rating DESC NULLS LAST;
 
 -- Vue : cottages featured disponibles (usage cron ping quotidien)
 CREATE OR REPLACE VIEW v_featured_cottages AS
-SELECT id, slug, name, google_link, affiliate_url, available, last_pinged, ping_status
+SELECT id, slug, name, google_link, affiliate_url, available, last_pinged,
+       last_ping_status, absence_count, availability_reason
 FROM affiliatecottages
 WHERE is_featured = true
 ORDER BY slug, rating DESC NULLS LAST;
@@ -190,5 +194,16 @@ COMMENT ON COLUMN affiliatecottages.is_featured IS
    Les autres sont uniquement vérifiés lors de la sync mensuelle.';
 
 COMMENT ON COLUMN affiliatecottages.ping_status IS
-  'Code HTTP du dernier ping HEAD sur google_link.
-   200 = OK, 404 = disparu, 301 = redirigé, NULL = jamais pingé.';
+  'DEPRECATED (Phase 2). Conserved for backward compatibility only. Use last_ping_status.';
+
+COMMENT ON COLUMN affiliatecottages.last_ping_status IS
+  'Code HTTP du dernier ping HEAD sur google_link. 200 = OK, 404 = disparu, 429 = rate limit, NULL = jamais pingé.';
+
+COMMENT ON COLUMN affiliatecottages.absence_count IS
+  'Nombre d''absences consécutives au sync mensuel DataForSEO. Réinitialisé à 0 dès que le token revient.';
+
+COMMENT ON COLUMN affiliatecottages.availability_reason IS
+  NULL = disponible normalement;
+   manual = désactivation manuelle (verrou, jamais écrasée par les crons);
+   ping_404 = lien mort détecté par le ping HTTP;
+   sync_3_absences = 3 absences consécutives au sync mensuel.';

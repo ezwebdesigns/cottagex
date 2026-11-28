@@ -138,7 +138,7 @@ const outCsv = `C:/Users/mday/AppData/Local/hermes/cache/scratch/affiliate-link-
 
 ;(async () => {
   let q = `
-    SELECT id, name, affiliate_url, google_link, is_featured, available, ping_status
+    SELECT id, name, affiliate_url, google_link, is_featured, available, last_ping_status, absence_count, availability_reason
     FROM affiliatecottages
     WHERE affiliate_url IS NOT NULL AND affiliate_url <> ''
     ORDER BY id
@@ -191,14 +191,17 @@ const outCsv = `C:/Users/mday/AppData/Local/hermes/cache/scratch/affiliate-link-
     for (const row of report) {
       const doDisable = row.verdict === 'DEAD' || (WRITE_SUSPICIOUS && row.verdict === 'SUSPICIOUS')
       if (!doDisable) {
-        // On ne touche pas ping_status (le cron sync s'en sert comme compteur).
+        // On ne touche pas absence_count (compteur du sync mensuel).
         // On horodate seulement le contrôle.
         await pool.query(`UPDATE affiliatecottages SET last_pinged = NOW() WHERE id = $1`, [row.id])
         continue
       }
       await pool.query(`
         UPDATE affiliatecottages
-        SET available = false, ping_status = $1, last_pinged = NOW()
+        SET available = false,
+            last_ping_status = $1,
+            availability_reason = 'ping_404',
+            last_pinged = NOW()
         WHERE id = $2
       `, [row.status, row.id])
       disabled++

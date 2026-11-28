@@ -37,13 +37,13 @@ const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL, ssl: { re
   `);
   console.log('\naffiliate_url avec identifiant de fiche (deep link):', deep.rows[0].total);
 
-  // distribution of last_pinged / ping_status for those with affiliate_url
+  // distribution of last_ping_status for those with affiliate_url
   const ping = await pool.query(`
-    SELECT ping_status::text AS status, count(*)::int AS n
+    SELECT last_ping_status::text AS status, count(*)::int AS n
     FROM affiliatecottages WHERE affiliate_url IS NOT NULL
     GROUP BY 1 ORDER BY 2 DESC
   `);
-  console.log('\nping_status des fiches avec affiliate_url:');
+  console.log('\nlast_ping_status des fiches avec affiliate_url:');
   for (const r of ping.rows) console.log('  status', r.status, ':', r.n);
 
   await pool.end();

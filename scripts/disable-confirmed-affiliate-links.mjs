@@ -40,14 +40,15 @@ try {
     const upd = await client.query(`
       UPDATE affiliatecottages
       SET available = false,
-          ping_status = 404,
+          last_ping_status = 404,
+          availability_reason = 'ping_404',
           last_pinged = NOW()
       WHERE id = ANY($1)
-      RETURNING id, name, available, ping_status, last_pinged
+      RETURNING id, name, available, last_ping_status, last_pinged
     `, [ids])
     console.log('Rows updated:', upd.rowCount)
     for (const r of upd.rows.slice(0, 5)) {
-      console.log('  ', r.id, '|', r.name?.slice(0, 45), '|', r.available, r.ping_status)
+      console.log('  ', r.id, '|', r.name?.slice(0, 45), '|', r.available, r.last_ping_status)
     }
   }
 
@@ -61,9 +62,9 @@ try {
   const verify = await client.query(`
     SELECT count(*)::text AS total
     FROM affiliatecottages
-    WHERE id = ANY($1) AND available = false AND ping_status = 404
+    WHERE id = ANY($1) AND available = false AND last_ping_status = 404
   `, [ids])
-  console.log('Verified 18 candidates unavailable + ping_status 404:', verify.rows[0].total)
+  console.log('Verified 18 candidates unavailable + last_ping_status 404:', verify.rows[0].total)
 } finally {
   client.release()
   await pool.end()

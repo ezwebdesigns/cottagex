@@ -30,7 +30,7 @@ export async function GET(request) {
   try {
     // Récupérer uniquement les cottages affichés sur le site
     const { rows: cottages } = await client.query(`
-      SELECT id, name, google_link
+      SELECT id, name, google_link, available, availability_reason
       FROM affiliatecottages
       WHERE is_featured = true
         AND google_link IS NOT NULL
@@ -53,18 +53,40 @@ export async function GET(request) {
         // Un lien est considéré mort uniquement sur un vrai 404/410.
         // 429 (rate limit), 403, 5xx et redirections = serveur vivant :
         // le lien existe toujours, on ne pénalise pas le cottage.
-        const dead     = res.status === 404 || res.status === 410
-        const available = !dead
+        const dead = res.status === 404 || res.status === 410
         const pingStatus = res.status
+        const manualLock = cottage.availability_reason === 'manual'
+        const fromSync = cottage.availability_reason === 'sync_3_absences'
+
+        // Règles de priorité :
+        // - 'manual' verrouille la décision humaine (le cron ne la réécrit jamais).
+        // - 'sync_3_absences' n'est levé que par le sync mensuel.
+        // - 'ping_404' est levé dès qu'un ping redevient vivant.
+        let available
+        let reason
+        if (manualLock) {
+          available = cottage.available
+          reason = 'manual'
+        } else if (dead) {
+          available = false
+          reason = 'ping_404'
+        } else if (fromSync) {
+          available = false
+          reason = 'sync_3_absences'
+        } else {
+          available = true
+          reason = null
+        }
 
         await client.query(`
           UPDATE affiliatecottages
           SET
-            available    = $1,
-            ping_status  = $2,
-            last_pinged  = NOW()
-          WHERE id = $3
-        `, [available, pingStatus, cottage.id])
+            available          = $1,
+            last_ping_status   = $2,
+            availability_reason = $3,
+            last_pinged        = NOW()
+          WHERE id = $4
+        `, [available, pingStatus, reason, cottage.id])
 
         if (available) results.available++; else results.unavailable++;
         results.pinged++

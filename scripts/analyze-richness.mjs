@@ -12,7 +12,7 @@ const pool = new pg.Pool({
     'price_cad', 'price_before_taxes', 'rating', 'reviews', 'sleeps',
     'bedrooms', 'bathrooms', 'sqm', 'amenities', 'excluded_amenities',
     'check_in_time', 'check_out_time', 'google_link', 'affiliate_url',
-    'available', 'is_featured', 'last_synced', 'last_pinged', 'ping_status',
+    'available', 'is_featured', 'last_synced', 'last_pinged', 'last_ping_status', 'absence_count', 'availability_reason',
     'image_alt', 'is_hidden', 'ota_links'
   ];
 

@@ -5,7 +5,7 @@ import { Plus, Search, Star, ExternalLink, Pencil, X, Upload, ChevronUp, Chevron
 import { updateCottage } from '@/lib/actions/cottages';
 import type { Cottage } from './page';
 
-const emptyForm = { property_token: '', name: '', slug: '', photo: '', googleLink: '', source: 'VRBO', affiliateUrl: '', featured: false, hidden: false, available: true };
+const emptyForm = { property_token: '', name: '', slug: '', photo: '', googleLink: '', source: 'VRBO', affiliateUrl: '', featured: false, hidden: false, available: true, availability_reason: null as string | null, absence_count: 0 };
 
 export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
   const [cottages, setCottages] = useState(initial);
@@ -92,6 +92,8 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
       featured: c.is_featured,
       hidden: c.is_hidden,
       available: c.available,
+      availability_reason: c.availability_reason,
+      absence_count: c.absence_count,
     });
     setShowModal(true);
   };
@@ -105,6 +107,8 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
       is_featured: form.featured,
       is_hidden: form.hidden,
       available: form.available,
+      availability_reason: form.available ? null : 'manual',
+      absence_count: form.available ? 0 : form.absence_count,
     });
     setSaving(null);
     if (!res.success) { alert('Error: ' + res.error); return; }
@@ -114,6 +118,8 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
       is_featured: form.featured,
       is_hidden: form.hidden,
       available: form.available,
+      availability_reason: form.available ? null : 'manual',
+      absence_count: form.available ? 0 : form.absence_count,
       thumbnail: form.photo || c.thumbnail,
       google_link: form.googleLink || c.google_link,
     } : c));
@@ -132,15 +138,23 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
 
   const toggleAvailable = async (c: Cottage) => {
     const next = !c.available;
-    setCottages(prev => prev.map(x => x.property_token === c.property_token ? { ...x, available: next } : x));
+    const nextReason = next ? null : 'manual';
+    const nextAbsence = next ? 0 : c.absence_count;
+    setCottages(prev => prev.map(x => x.property_token === c.property_token ? {
+      ...x, available: next, availability_reason: nextReason, absence_count: nextAbsence,
+    } : x));
     const res = await updateCottage(c.property_token, {
       available: next,
+      availability_reason: nextReason,
+      absence_count: nextAbsence,
       is_featured: c.is_featured,
       is_hidden: c.is_hidden,
       affiliate_url: c.affiliate_url,
     });
     if (!res.success) {
-      setCottages(prev => prev.map(x => x.property_token === c.property_token ? { ...x, available: c.available } : x));
+      setCottages(prev => prev.map(x => x.property_token === c.property_token ? {
+        ...x, available: c.available, availability_reason: c.availability_reason, absence_count: c.absence_count,
+      } : x));
       alert('Error: ' + res.error);
     }
   };
@@ -148,8 +162,10 @@ export function CottageTable({ cottages: initial }: { cottages: Cottage[] }) {
   const syncTitle = (c: Cottage) => {
     const lines = [`Last sync: ${c.last_synced ? new Date(c.last_synced).toISOString().split('T')[0] : '—'}`];
     if (c.last_pinged) {
-      lines.push(`Last ping: ${new Date(c.last_pinged).toISOString().split('T')[0]}${c.ping_status ? ` (HTTP ${c.ping_status})` : ''}`);
+      lines.push(`Last ping: ${new Date(c.last_pinged).toISOString().split('T')[0]}${c.last_ping_status ? ` (HTTP ${c.last_ping_status})` : ''}`);
     }
+    if (c.absence_count > 0) lines.push(`Consecutive absences: ${c.absence_count}`);
+    if (c.availability_reason) lines.push(`Reason: ${c.availability_reason}`);
     return lines.join('\n');
   };
 

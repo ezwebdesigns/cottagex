@@ -135,10 +135,13 @@ function verdictOf(t) {
     console.log(`[dfs-check] ${String(i + 1).padStart(3)}/${cottages.length} ${flag} ${String(t?.status_code ?? http).padEnd(6)} ${verdict.padEnd(7)} $${cost.toFixed(3)} ${c.name?.slice(0, 38).padEnd(38)}`)
 
     if (WRITE && verdict === 'MISSING') {
-      // 404 = convention "mort" déjà utilisée par /api/cron/ping (smallint).
+      // Phase 2 : motif HTTP dédié, plus de surcharge du compteur d'absences.
       await pool.query(`
         UPDATE affiliatecottages
-        SET available = false, ping_status = 404, last_pinged = NOW()
+        SET available = false,
+            last_ping_status = 404,
+            availability_reason = 'ping_404',
+            last_pinged = NOW()
         WHERE id = $1
       `, [c.id])
     } else if (WRITE) {

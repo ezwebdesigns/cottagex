@@ -63,7 +63,7 @@ async function upsert(client, c) {
       amenities, excluded_amenities,
       check_in_time, check_out_time,
       google_link, affiliate_url,
-      available, last_synced
+      available, absence_count, availability_reason, last_synced
     ) VALUES (
       $1,$2,$3,$4,$5,$6,$7,
       $8,$9,$10,$11,
@@ -71,7 +71,7 @@ async function upsert(client, c) {
       $16,$17,$18,$19,
       $20,$21,$22,$23,
       $24,$25,
-      true, CURRENT_DATE
+      true, 0, NULL, CURRENT_DATE
     )
     ON CONFLICT (property_token) DO UPDATE SET
       name               = EXCLUDED.name,
@@ -83,9 +83,19 @@ async function upsert(client, c) {
       reviews            = EXCLUDED.reviews,
       amenities          = EXCLUDED.amenities,
       google_link        = EXCLUDED.google_link,
-      available          = true,
-      ping_status       = 0,
-      last_synced        = CURRENT_DATE
+      last_synced        = CURRENT_DATE,
+      absence_count      = 0,
+      -- Une décision manuelle ou un ping 404 reste prioritaire sur le sync.
+      availability_reason = CASE
+        WHEN affiliatecottages.availability_reason IN ('manual', 'ping_404')
+          THEN affiliatecottages.availability_reason
+        ELSE NULL
+      END,
+      available = CASE
+        WHEN affiliatecottages.availability_reason IN ('manual', 'ping_404')
+          THEN affiliatecottages.available
+        ELSE true
+      END
       -- affiliate_url non touché : préserve tes deep links manuels
   `, [
     c.id, c.property_token, c.slug, c.province, c.name, c.type, c.source,
@@ -159,27 +169,32 @@ export async function GET(request) {
 
   // ── Purge automatique ──────────────────────────────────────────────────
   // Les tokens DB non revus ce mois-ci (destinations fetchées OK uniquement)
-  // gagnent +1 ping_status ; à 3 absences consécutives → available = false.
-  // Jamais de DELETE : affiliate_url et travail manuel préservés.
+  // gagnent +1 absence_count ; à 3 absences consécutives → available = false.
+  // Les fiches verrouillées manuellement sont ignorées. Jamais de DELETE.
   let purgedTokens = []
+  const manualSkip = "availability_reason IS DISTINCT FROM 'manual'"
   if (!dryRun) {
     try {
       const { rows: dbRows } = await pool.query(
-        'SELECT property_token, slug, ping_status FROM affiliatecottages'
+        `SELECT property_token, slug, availability_reason,
+                availability_reason IS DISTINCT FROM 'manual' AS not_manual,
+                absence_count, available
+         FROM affiliatecottages`
       )
       const missing = dbRows
-        .filter(r => !seenTokens.has(r.property_token) && okSlugs.has(r.slug))
+        .filter(r => !seenTokens.has(r.property_token) && okSlugs.has(r.slug) && r.available === true && r.not_manual)
         .map(r => r.property_token)
       results.missed = missing.length
       if (missing.length > 0) {
         await pool.query(
-          'UPDATE affiliatecottages SET ping_status = ping_status + 1 WHERE property_token = ANY($1)',
+          `UPDATE affiliatecottages SET absence_count = absence_count + 1
+           WHERE property_token = ANY($1) AND ${manualSkip}`,
           [missing]
         )
       }
       const { rows: purged } = await pool.query(
-        `UPDATE affiliatecottages SET available = false
-         WHERE ping_status >= 3 AND available = true
+        `UPDATE affiliatecottages SET available = false, availability_reason = 'sync_3_absences'
+         WHERE absence_count >= 3 AND available = true AND ${manualSkip}
          RETURNING property_token`
       )
       results.purged = purged.length
@@ -190,11 +205,15 @@ export async function GET(request) {
     }
   } else {
     const { rows: dbRows } = await pool.query(
-      'SELECT property_token, slug, ping_status FROM affiliatecottages'
+      `SELECT property_token, slug, availability_reason, absence_count, available
+       FROM affiliatecottages`
     )
-    const missing = dbRows.filter(r => !seenTokens.has(r.property_token) && okSlugs.has(r.slug))
+    const missing = dbRows.filter(r =>
+      !seenTokens.has(r.property_token) && okSlugs.has(r.slug) &&
+      r.available === true && r.availability_reason !== 'manual'
+    )
     results.missed = missing.length
-    purgedTokens = missing.filter(r => (r.ping_status + 1) >= 3).map(r => r.property_token)
+    purgedTokens = missing.filter(r => (r.absence_count + 1) >= 3).map(r => r.property_token)
     results.purged = purgedTokens.length
     console.log(`[sync] DRY-RUN — ${missing.length} absents, ${purgedTokens.length} seraient désactivés`)
   }
